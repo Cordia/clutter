@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="cogl-Utility-API">
+<refmeta>
+<refentrytitle role="top_of_page" id="cogl-Utility-API.top_of_page">Utility API</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>COGL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Utility API</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="cogl-Utility-API.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-create-context">cogl_create_context</link>                 (void);
+<link linkend="void">void</link>                <link linkend="cogl-destroy-context">cogl_destroy_context</link>                (void);
+#define             <link linkend="COGL-INVALID-HANDLE:CAPS">COGL_INVALID_HANDLE</link>
+typedef             <link linkend="CoglHandle">CoglHandle</link>;
+<link linkend="void">void</link>                (<link linkend="CoglFuncPtr">*CoglFuncPtr</link>)                      (void);
+
+enum                <link linkend="CoglFeatureFlags">CoglFeatureFlags</link>;
+<link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> <link linkend="cogl-get-features">cogl_get_features</link>                   (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-features-available">cogl_features_available</link>             (<link linkend="CoglFeatureFlags">CoglFeatureFlags</link> features);
+
+<link linkend="CoglFuncPtr">CoglFuncPtr</link>         <link linkend="cogl-get-proc-address">cogl_get_proc_address</link>               (const <link linkend="gchar">gchar</link> *name);
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-check-extension">cogl_check_extension</link>                (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *ext);
+<link linkend="void">void</link>                <link linkend="cogl-get-bitmasks">cogl_get_bitmasks</link>                   (<link linkend="gint">gint</link> *red,
+                                                         <link linkend="gint">gint</link> *green,
+                                                         <link linkend="gint">gint</link> *blue,
+                                                         <link linkend="gint">gint</link> *alpha);
+<link linkend="void">void</link>                <link linkend="cogl-paint-init">cogl_paint_init</link>                     (const <link linkend="ClutterColor">ClutterColor</link> *color);
+
+<link linkend="int">int</link>                 <link linkend="cogl-util-next-p2">cogl_util_next_p2</link>                   (<link linkend="int">int</link> a);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="cogl-Utility-API.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="cogl-Utility-API.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="cogl-create-context" role="function">
+<title>cogl_create_context ()</title>
+<indexterm zone="cogl-create-context"><primary>cogl_create_context</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_create_context                 (void);</programlisting>
+<para>
+FIXME</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-destroy-context" role="function">
+<title>cogl_destroy_context ()</title>
+<indexterm zone="cogl-destroy-context"><primary>cogl_destroy_context</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_destroy_context                (void);</programlisting>
+<para>
+FIXME</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-INVALID-HANDLE:CAPS" role="macro">
+<title>COGL_INVALID_HANDLE</title>
+<indexterm zone="COGL-INVALID-HANDLE:CAPS"><primary>COGL_INVALID_HANDLE</primary></indexterm><programlisting>#define COGL_INVALID_HANDLE NULL
+</programlisting>
+<para>
+A COGL handle that is not valid, used for unitialized handles as well as
+error conditions.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CoglHandle" role="typedef">
+<title>CoglHandle</title>
+<indexterm zone="CoglHandle"><primary>CoglHandle</primary></indexterm><programlisting>typedef gpointer CoglHandle;
+</programlisting>
+<para>
+Type used for storing references to cogl objects, the CoglHandle is
+a fully opaque type without any public data members.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CoglFuncPtr" role="function">
+<title>CoglFuncPtr ()</title>
+<indexterm zone="CoglFuncPtr"><primary>CoglFuncPtr</primary></indexterm><programlisting><link linkend="void">void</link>                (*CoglFuncPtr)                      (void);</programlisting>
+<para>
+The type used by cogl for function pointers, note that this type
+is used as a generic catch-all cast for function pointers and the
+actual arguments and return type may be different.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CoglFeatureFlags" role="enum">
+<title>enum CoglFeatureFlags</title>
+<indexterm zone="CoglFeatureFlags"><primary>CoglFeatureFlags</primary></indexterm><programlisting>typedef enum
+{
+  COGL_FEATURE_TEXTURE_RECTANGLE      = (1 &lt;&lt; 1),
+  COGL_FEATURE_TEXTURE_NPOT           = (1 &lt;&lt; 2),
+  COGL_FEATURE_TEXTURE_YUV            = (1 &lt;&lt; 3),
+  COGL_FEATURE_TEXTURE_READ_PIXELS    = (1 &lt;&lt; 4),
+  COGL_FEATURE_SHADERS_GLSL           = (1 &lt;&lt; 5),
+  COGL_FEATURE_OFFSCREEN              = (1 &lt;&lt; 6),
+  COGL_FEATURE_OFFSCREEN_MULTISAMPLE  = (1 &lt;&lt; 7),
+  COGL_FEATURE_OFFSCREEN_BLIT         = (1 &lt;&lt; 8),
+  COGL_FEATURE_FOUR_CLIP_PLANES       = (1 &lt;&lt; 9),
+  COGL_FEATURE_STENCIL_BUFFER         = (1 &lt;&lt; 10)
+
+} CoglFeatureFlags;
+</programlisting>
+<para>
+Flags for the supported features.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-get-features" role="function" condition="since:0.8">
+<title>cogl_get_features ()</title>
+<indexterm zone="cogl-get-features" role="0.8"><primary>cogl_get_features</primary></indexterm><programlisting><link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> cogl_get_features                   (void);</programlisting>
+<para>
+Returns all of the features supported by COGL.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A logical OR of all the supported COGL features.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="cogl-features-available" role="function">
+<title>cogl_features_available ()</title>
+<indexterm zone="cogl-features-available"><primary>cogl_features_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_features_available             (<link linkend="CoglFeatureFlags">CoglFeatureFlags</link> features);</programlisting>
+<para>
+Checks whether the given COGL features are available. Multiple
+features can be checked for by or-ing them together with the '|'
+operator. <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> is only returned if all of the requested features
+are available.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>features</parameter>&nbsp;:</term>
+<listitem><simpara> A bitmask of features to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the features are available, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-get-proc-address" role="function">
+<title>cogl_get_proc_address ()</title>
+<indexterm zone="cogl-get-proc-address"><primary>cogl_get_proc_address</primary></indexterm><programlisting><link linkend="CoglFuncPtr">CoglFuncPtr</link>         cogl_get_proc_address               (const <link linkend="gchar">gchar</link> *name);</programlisting>
+<para>
+Gets a pointer to a given GL or GL ES extension function. This acts
+as a wrapper around <link linkend="glXGetProcAddress"><function>glXGetProcAddress()</function></link> or whatever is the
+appropriate function for the current backend.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the function.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a pointer to the requested function or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the
+function is not available.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-check-extension" role="function">
+<title>cogl_check_extension ()</title>
+<indexterm zone="cogl-check-extension"><primary>cogl_check_extension</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_check_extension                (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *ext);</programlisting>
+<para>
+Check whether <parameter>name</parameter> occurs in list of extensions in <parameter>ext</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> extension to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ext</parameter>&nbsp;:</term>
+<listitem><simpara> list of extensions
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the extension occurs in the list, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwize.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-get-bitmasks" role="function">
+<title>cogl_get_bitmasks ()</title>
+<indexterm zone="cogl-get-bitmasks"><primary>cogl_get_bitmasks</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_get_bitmasks                   (<link linkend="gint">gint</link> *red,
+                                                         <link linkend="gint">gint</link> *green,
+                                                         <link linkend="gint">gint</link> *blue,
+                                                         <link linkend="gint">gint</link> *alpha);</programlisting>
+<para>
+Gets the number of bitplanes used for each of the color components
+in the color buffer. Pass <link linkend="NULL:CAPS"><literal>NULL</literal></link> for any of the arguments if the
+value is not required.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>red</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for the number of red bits or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>green</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for the number of green bits or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>blue</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for the number of blue bits or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for the number of alpha bits or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-paint-init" role="function">
+<title>cogl_paint_init ()</title>
+<indexterm zone="cogl-paint-init"><primary>cogl_paint_init</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_paint_init                     (const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Clears the color buffer to <parameter>color</parameter>. The depth buffer and stencil
+buffers are also cleared and fogging and lighting are disabled.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> Background color to clear to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-util-next-p2" role="function">
+<title>cogl_util_next_p2 ()</title>
+<indexterm zone="cogl-util-next-p2"><primary>cogl_util_next_p2</primary></indexterm><programlisting><link linkend="int">int</link>                 cogl_util_next_p2                   (<link linkend="int">int</link> a);</programlisting>
+<para>
+Calculates the next power greater than <parameter>a</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> Value to get the next power
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The next power after <parameter>a</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,550 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourRotate">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourRotate.top_of_page">ClutterBehaviourRotate</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourRotate</refname>
+<refpurpose>A behaviour controlling rotation</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourRotate.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="ClutterRotateAxis">ClutterRotateAxis</link>;
+enum                <link linkend="ClutterRotateDirection">ClutterRotateDirection</link>;
+                    <link linkend="ClutterBehaviourRotate-struct">ClutterBehaviourRotate</link>;
+                    <link linkend="ClutterBehaviourRotateClass">ClutterBehaviourRotateClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-rotate-new">clutter_behaviour_rotate_new</link>        (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="gdouble">gdouble</link> angle_start,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-rotate-newx">clutter_behaviour_rotate_newx</link>       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-set-axis">clutter_behaviour_rotate_set_axis</link>   (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);
+<link linkend="ClutterRotateAxis">ClutterRotateAxis</link>   <link linkend="clutter-behaviour-rotate-get-axis">clutter_behaviour_rotate_get_axis</link>   (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-set-direction">clutter_behaviour_rotate_set_direction</link>
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction);
+<link linkend="ClutterRotateDirection">ClutterRotateDirection</link> <link linkend="clutter-behaviour-rotate-get-direction">clutter_behaviour_rotate_get_direction</link>
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-set-bounds">clutter_behaviour_rotate_set_bounds</link> (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gdouble">gdouble</link> angle_start,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-set-boundsx">clutter_behaviour_rotate_set_boundsx</link>
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-get-bounds">clutter_behaviour_rotate_get_bounds</link> (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gdouble">gdouble</link> *angle_start,
+                                                         <link linkend="gdouble">gdouble</link> *angle_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-get-boundsx">clutter_behaviour_rotate_get_boundsx</link>
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-set-center">clutter_behaviour_rotate_set_center</link> (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-rotate-get-center">clutter_behaviour_rotate_get_center</link> (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y,
+                                                         <link linkend="gint">gint</link> *z);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourRotate.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourRotate
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviourRotate.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourRotate--angle-end">angle-end</link>&quot;                <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--angle-start">angle-start</link>&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--axis">axis</link>&quot;                     <link linkend="ClutterRotateAxis">ClutterRotateAxis</link>     : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--center-x">center-x</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--center-y">center-y</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--center-z">center-z</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterBehaviourRotate--direction">direction</link>&quot;                <link linkend="ClutterRotateDirection">ClutterRotateDirection</link>  : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourRotate.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link> rotate actors between a starting and ending
+angle on a given axis.
+</para>
+<para>
+The <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link> is available since version 0.4.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourRotate.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterRotateAxis" role="enum" condition="since:0.4">
+<title>enum ClutterRotateAxis</title>
+<indexterm zone="ClutterRotateAxis" role="0.4"><primary>ClutterRotateAxis</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=CLUTTER &gt;*/
+  CLUTTER_X_AXIS,
+  CLUTTER_Y_AXIS,
+  CLUTTER_Z_AXIS
+} ClutterRotateAxis;
+</programlisting>
+<para>
+Axis of a rotation.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-X-AXIS:CAPS" role="constant">
+<term><literal>CLUTTER_X_AXIS</literal></term>
+<listitem><simpara> Rotate around the X axis
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-Y-AXIS:CAPS" role="constant">
+<term><literal>CLUTTER_Y_AXIS</literal></term>
+<listitem><simpara> Rotate around the Y axis
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-Z-AXIS:CAPS" role="constant">
+<term><literal>CLUTTER_Z_AXIS</literal></term>
+<listitem><simpara> Rotate around the Z axis
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterRotateDirection" role="enum" condition="since:0.4">
+<title>enum ClutterRotateDirection</title>
+<indexterm zone="ClutterRotateDirection" role="0.4"><primary>ClutterRotateDirection</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=CLUTTER_ROTATE &gt;*/
+  CLUTTER_ROTATE_CW,
+  CLUTTER_ROTATE_CCW
+} ClutterRotateDirection;
+</programlisting>
+<para>
+Direction of a rotation.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-ROTATE-CW:CAPS" role="constant">
+<term><literal>CLUTTER_ROTATE_CW</literal></term>
+<listitem><simpara> Clockwise rotation
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-ROTATE-CCW:CAPS" role="constant">
+<term><literal>CLUTTER_ROTATE_CCW</literal></term>
+<listitem><simpara> Counter-clockwise rotation
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterBehaviourRotate-struct" role="struct">
+<title>ClutterBehaviourRotate</title>
+<indexterm zone="ClutterBehaviourRotate-struct"><primary>ClutterBehaviourRotate</primary></indexterm><programlisting>typedef struct _ClutterBehaviourRotate ClutterBehaviourRotate;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourRotateClass" role="struct">
+<title>ClutterBehaviourRotateClass</title>
+<indexterm zone="ClutterBehaviourRotateClass"><primary>ClutterBehaviourRotateClass</primary></indexterm><programlisting>typedef struct {
+  ClutterBehaviourClass parent_class;
+} ClutterBehaviourRotateClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-new" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_new ()</title>
+<indexterm zone="clutter-behaviour-rotate-new" role="0.4"><primary>clutter_behaviour_rotate_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_rotate_new        (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="gdouble">gdouble</link> angle_start,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);</programlisting>
+<para>
+Creates a new <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>. This behaviour will rotate actors
+bound to it on <parameter>axis</parameter>, following <parameter>direction</parameter>, between <parameter>angle_start</parameter> and
+<parameter>angle_end</parameter>. Angles &gt;= 360 degrees will be clamped to the canonical interval
+&lt;0, 360), if angle_start == angle_end, the behaviour will carry out a
+single rotation of 360 degrees.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation direction
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> the starting angle in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> the final angle in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-newx" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_newx ()</title>
+<indexterm zone="clutter-behaviour-rotate-newx" role="0.4"><primary>clutter_behaviour_rotate_newx</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_rotate_newx       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);</programlisting>
+<para>
+Creates a new <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>. This is the fixed point version
+of <link linkend="clutter-behaviour-rotate-new"><function>clutter_behaviour_rotate_new()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation direction
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> the starting angle, in fixed point notation in degrees,
+between 0 and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> the final angle, in fixed point notation in degrees, between 0
+and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-set-axis" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_set_axis ()</title>
+<indexterm zone="clutter-behaviour-rotate-set-axis" role="0.4"><primary>clutter_behaviour_rotate_set_axis</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_set_axis   (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);</programlisting>
+<para>
+Sets the axis used by the rotate behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRotateAxis"><type>ClutterRotateAxis</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-get-axis" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_get_axis ()</title>
+<indexterm zone="clutter-behaviour-rotate-get-axis" role="0.4"><primary>clutter_behaviour_rotate_get_axis</primary></indexterm><programlisting><link linkend="ClutterRotateAxis">ClutterRotateAxis</link>   clutter_behaviour_rotate_get_axis   (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterRotateAxis"><type>ClutterRotateAxis</type></link> used by the rotate behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the rotation axis
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-set-direction" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_set_direction ()</title>
+<indexterm zone="clutter-behaviour-rotate-set-direction" role="0.4"><primary>clutter_behaviour_rotate_set_direction</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_set_direction
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction);</programlisting>
+<para>
+Sets the rotation direction used by the rotate behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation direction
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-get-direction" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_get_direction ()</title>
+<indexterm zone="clutter-behaviour-rotate-get-direction" role="0.4"><primary>clutter_behaviour_rotate_get_direction</primary></indexterm><programlisting><link linkend="ClutterRotateDirection">ClutterRotateDirection</link> clutter_behaviour_rotate_get_direction
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterRotateDirection"><type>ClutterRotateDirection</type></link> used by the rotate behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the rotation direction
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-set-bounds" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_set_bounds ()</title>
+<indexterm zone="clutter-behaviour-rotate-set-bounds" role="0.4"><primary>clutter_behaviour_rotate_set_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_set_bounds (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gdouble">gdouble</link> angle_start,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);</programlisting>
+<para>
+Sets the initial and final angles of a rotation behaviour; angles &gt;= 360
+degrees get clamped to the canonical interval &lt;0, 360).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial angle in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> final angle in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-set-boundsx" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_set_boundsx ()</title>
+<indexterm zone="clutter-behaviour-rotate-set-boundsx" role="0.4"><primary>clutter_behaviour_rotate_set_boundsx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_set_boundsx
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);</programlisting>
+<para>
+Fixed point version of <link linkend="clutter-behaviour-rotate-set-bounds"><function>clutter_behaviour_rotate_set_bounds()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial angle, in fixed point notation in degrees, between 0
+and 360.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> final angle, in fixed point notation in degress, between 0 and
+360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-get-bounds" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_get_bounds ()</title>
+<indexterm zone="clutter-behaviour-rotate-get-bounds" role="0.4"><primary>clutter_behaviour_rotate_get_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_get_bounds (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gdouble">gdouble</link> *angle_start,
+                                                         <link linkend="gdouble">gdouble</link> *angle_end);</programlisting>
+<para>
+Retrieves the rotation boundaries of the rotate behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> return value for the initial angle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> return value for the final angle
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-get-boundsx" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_get_boundsx ()</title>
+<indexterm zone="clutter-behaviour-rotate-get-boundsx" role="0.4"><primary>clutter_behaviour_rotate_get_boundsx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_get_boundsx
+                                                        (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_end);</programlisting>
+<para>
+Retrieves the rotation boundaries of the rotate behaviour. This is
+the fixed point notation version of <link linkend="clutter-behaviour-rotate-get-bounds"><function>clutter_behaviour_rotate_get_bounds()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> return value for the initial angle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> return value for the final angle
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-set-center" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_set_center ()</title>
+<indexterm zone="clutter-behaviour-rotate-set-center" role="0.4"><primary>clutter_behaviour_rotate_set_center</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_set_center (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);</programlisting>
+<para>
+Sets the center of rotation. The coordinates are relative to the plane
+normal to the rotation axis set with <link linkend="clutter-behaviour-rotate-set-axis"><function>clutter_behaviour_rotate_set_axis()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X axis center of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y axis center of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> Z axis center of rotation
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-rotate-get-center" role="function" condition="since:0.4">
+<title>clutter_behaviour_rotate_get_center ()</title>
+<indexterm zone="clutter-behaviour-rotate-get-center" role="0.4"><primary>clutter_behaviour_rotate_get_center</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_rotate_get_center (<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link> *rotate,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y,
+                                                         <link linkend="gint">gint</link> *z);</programlisting>
+<para>
+Retrieves the center of rotation set using
+<link linkend="clutter-behaviour-rotate-set-center"><function>clutter_behaviour_rotate_set_center()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rotate</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourRotate"><type>ClutterBehaviourRotate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the X center of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the Y center of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the Z center of rotation
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourRotate.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourRotate--angle-end"><title>The <literal>&quot;angle-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--angle-end" role="0.4"><primary>ClutterBehaviourRotate:angle-end</primary></indexterm><programlisting>  &quot;angle-end&quot;                <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The final angle to where the rotation should end.</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--angle-start"><title>The <literal>&quot;angle-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--angle-start" role="0.4"><primary>ClutterBehaviourRotate:angle-start</primary></indexterm><programlisting>  &quot;angle-start&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The initial angle from whence the rotation should start.</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--axis"><title>The <literal>&quot;axis&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--axis" role="0.4"><primary>ClutterBehaviourRotate:axis</primary></indexterm><programlisting>  &quot;axis&quot;                     <link linkend="ClutterRotateAxis">ClutterRotateAxis</link>     : Read / Write</programlisting>
+<para>
+The axis of rotation.</para>
+<para>
+
+</para><para>Default value: CLUTTER_Z_AXIS</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--center-x"><title>The <literal>&quot;center-x&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--center-x" role="0.4"><primary>ClutterBehaviourRotate:center-x</primary></indexterm><programlisting>  &quot;center-x&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+The x center of rotation.</para>
+<para>
+
+</para><para>Allowed values: &gt;= -2147483647</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--center-y"><title>The <literal>&quot;center-y&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--center-y" role="0.4"><primary>ClutterBehaviourRotate:center-y</primary></indexterm><programlisting>  &quot;center-y&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+The y center of rotation.</para>
+<para>
+
+</para><para>Allowed values: &gt;= -2147483647</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--center-z"><title>The <literal>&quot;center-z&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--center-z" role="0.4"><primary>ClutterBehaviourRotate:center-z</primary></indexterm><programlisting>  &quot;center-z&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+The z center of rotation.</para>
+<para>
+
+</para><para>Allowed values: &gt;= -2147483647</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourRotate--direction"><title>The <literal>&quot;direction&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourRotate--direction" role="0.4"><primary>ClutterBehaviourRotate:direction</primary></indexterm><programlisting>  &quot;direction&quot;                <link linkend="ClutterRotateDirection">ClutterRotateDirection</link>  : Read / Write</programlisting>
+<para>
+The direction of the rotation.</para>
+<para>
+
+</para><para>Default value: CLUTTER_ROTATE_CW</para>
+<para>Since  0.4
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

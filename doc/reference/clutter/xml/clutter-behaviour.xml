@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviour">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviour.top_of_page">ClutterBehaviour</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviour</refname>
+<refpurpose>Class for providing behaviours to actors</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviour.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviour-struct">ClutterBehaviour</link>;
+                    <link linkend="ClutterBehaviourClass">ClutterBehaviourClass</link>;
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-apply">clutter_behaviour_apply</link>             (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-remove">clutter_behaviour_remove</link>            (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-remove-all">clutter_behaviour_remove_all</link>        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-behaviour-is-applied">clutter_behaviour_is_applied</link>        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                (<link linkend="ClutterBehaviourForeachFunc">*ClutterBehaviourForeachFunc</link>)      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behaviour,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-actors-foreach">clutter_behaviour_actors_foreach</link>    (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterBehaviourForeachFunc">ClutterBehaviourForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="GSList">GSList</link>*             <link linkend="clutter-behaviour-get-actors">clutter_behaviour_get_actors</link>        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);
+<link linkend="gint">gint</link>                <link linkend="clutter-behaviour-get-n-actors">clutter_behaviour_get_n_actors</link>      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-behaviour-get-nth-actor">clutter_behaviour_get_nth_actor</link>     (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="gint">gint</link> index_);
+<link linkend="ClutterAlpha">ClutterAlpha</link>*       <link linkend="clutter-behaviour-get-alpha">clutter_behaviour_get_alpha</link>         (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-set-alpha">clutter_behaviour_set_alpha</link>         (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviour.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterBehaviour
+         +----<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link>
+         +----<link linkend="ClutterBehaviourDepth">ClutterBehaviourDepth</link>
+         +----<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link>
+         +----<link linkend="ClutterBehaviourOpacity">ClutterBehaviourOpacity</link>
+         +----<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link>
+         +----<link linkend="ClutterBehaviourRotate">ClutterBehaviourRotate</link>
+         +----<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviour.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviour--alpha">alpha</link>&quot;                    <link linkend="ClutterAlpha">ClutterAlpha</link>*         : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterBehaviour.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviour-applied">applied</link>&quot;                                        : Run First
+  &quot;<link linkend="ClutterBehaviour-removed">removed</link>&quot;                                        : Run First
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterBehaviour.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> is the base class for implementing behaviours.  A
+behaviour is a controller object for <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s; you can
+use a behaviour to control one or more properties of an actor (such
+as its opacity, or its position).  A <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> is driven by
+an "alpha function" stored inside a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object; an alpha
+function is a function depending solely on time.  The alpha function
+computes a value which is then applied to the properties of the
+actors driven by a behaviour.
+</para>
+<para>
+Clutter provides some pre-defined behaviours, like <link linkend="ClutterBehaviourPath"><type>ClutterBehaviourPath</type></link>,
+which controls the position of a set of actors making them "walk" along
+a set of nodes; <link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link>, which controls the opacity
+of a set of actors; <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>, which controls the width
+and height of a set of actors.
+</para>
+<para>
+To visualize the effects of different alpha functions on a
+<link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> implementation it is possible to take the
+<link linkend="ClutterBehaviourPath"><type>ClutterBehaviourPath</type></link> as an example:
+</para>
+<para>
+<figure id="behaviour-path-alpha">
+  <title>Effects of alpha functions on a path</title>
+  <graphic fileref="path-alpha-func.png" format="PNG"/>
+</figure>
+</para>
+<para>
+The actors position between the path's end points directly correlates
+to the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>'s current alpha value driving the behaviour. With
+the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>'s function set to <link linkend="CLUTTER-ALPHA-RAMP-INC:CAPS"><literal>CLUTTER_ALPHA_RAMP_INC</literal></link> the actor
+will follow the path at a constant velocity, but when changing to
+<link linkend="CLUTTER-ALPHA-SINE-INC:CAPS"><literal>CLUTTER_ALPHA_SINE_INC</literal></link> the actor initially accelerates before quickly
+decelerating.
+</para>
+<para>
+In order to implement a new behaviour you should subclass <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+and override the "alpha_notify" virtual function; inside the overridden
+function you should obtain the alpha value from the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+instance bound to the behaviour and apply it to the desiderd property
+(or properties) of every actor controlled by the behaviour.
+</para>
+<para>
+<link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> is available since Clutter 0.2</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviour.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviour-struct" role="struct">
+<title>ClutterBehaviour</title>
+<indexterm zone="ClutterBehaviour-struct" role="0.2"><primary>ClutterBehaviour</primary></indexterm><programlisting>typedef struct _ClutterBehaviour ClutterBehaviour;</programlisting>
+<para>
+<link linkend="ClutterBehaviour-struct"><type>ClutterBehaviour</type></link> contains only private data and should
+be accessed with the functions below.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterBehaviourClass" role="struct" condition="since:0.2">
+<title>ClutterBehaviourClass</title>
+<indexterm zone="ClutterBehaviourClass" role="0.2"><primary>ClutterBehaviourClass</primary></indexterm><programlisting>typedef struct {
+  /* vfunc, not signal */
+  void (*alpha_notify) (ClutterBehaviour *behave,
+                        guint32           alpha_value);
+
+  /* signals */
+  void (*applied)  (ClutterBehaviour *behave,
+		    ClutterActor     *actor);
+  void (*removed)  (ClutterBehaviour *behave,
+		    ClutterActor     *actor);
+} ClutterBehaviourClass;
+</programlisting>
+<para>
+Base class for behaviours.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>alpha_notify</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function, called each time the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+  computes a new alpha value; the actors to which the behaviour applies
+  should be changed in this function. Every subclass of <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+  must implement this virtual function
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>applied</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for the ClutterBehaviour::applied signal
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>removed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for the ClutterBehaviour::removed signal
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-apply" role="function" condition="since:0.2">
+<title>clutter_behaviour_apply ()</title>
+<indexterm zone="clutter-behaviour-apply" role="0.2"><primary>clutter_behaviour_apply</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_apply             (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Applies <parameter>behave</parameter> to <parameter>actor</parameter>.  This function adds a reference on
+the actor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-remove" role="function" condition="since:0.2">
+<title>clutter_behaviour_remove ()</title>
+<indexterm zone="clutter-behaviour-remove" role="0.2"><primary>clutter_behaviour_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_remove            (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Removes <parameter>actor</parameter> from the list of <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s to which
+<parameter>behave</parameter> applies.  This function removes a reference on the actor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-remove-all" role="function" condition="since:0.4">
+<title>clutter_behaviour_remove_all ()</title>
+<indexterm zone="clutter-behaviour-remove-all" role="0.4"><primary>clutter_behaviour_remove_all</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_remove_all        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);</programlisting>
+<para>
+Removes every actor from the list that <parameter>behave</parameter> holds.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-is-applied" role="function" condition="since:0.4">
+<title>clutter_behaviour_is_applied ()</title>
+<indexterm zone="clutter-behaviour-is-applied" role="0.4"><primary>clutter_behaviour_is_applied</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_behaviour_is_applied        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Check if <parameter>behave</parameter> applied to  <parameter>actor</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if actor has behaviour. FALSE otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterBehaviourForeachFunc" role="function" condition="since:0.2">
+<title>ClutterBehaviourForeachFunc ()</title>
+<indexterm zone="ClutterBehaviourForeachFunc" role="0.2"><primary>ClutterBehaviourForeachFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*ClutterBehaviourForeachFunc)      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behaviour,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+This function is passed to <link linkend="clutter-behaviour-foreach-actor"><function>clutter_behaviour_foreach_actor()</function></link> and
+will be called for each actor driven by <parameter>behaviour</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> an actor driven by <parameter>behaviour</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> optional data passed to the function
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-actors-foreach" role="function" condition="since:0.2">
+<title>clutter_behaviour_actors_foreach ()</title>
+<indexterm zone="clutter-behaviour-actors-foreach" role="0.2"><primary>clutter_behaviour_actors_foreach</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_actors_foreach    (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterBehaviourForeachFunc">ClutterBehaviourForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Calls <parameter>func</parameter> for every actor driven by <parameter>behave</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> a function called for each actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> optional data to be passed to the function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-get-actors" role="function" condition="since:0.2">
+<title>clutter_behaviour_get_actors ()</title>
+<indexterm zone="clutter-behaviour-get-actors" role="0.2"><primary>clutter_behaviour_get_actors</primary></indexterm><programlisting><link linkend="GSList">GSList</link>*             clutter_behaviour_get_actors        (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);</programlisting>
+<para>
+Retrieves all the actors to which <parameter>behave</parameter> applies. It is not recommended
+for derived classes to use this in there alpha notify method but use 
+<link linkend="clutter-behaviour-actors-foreach"><type>clutter_behaviour_actors_foreach</type></link> as it avoids alot of needless allocations.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a list of actors. You should free the returned list
+  with <link linkend="g-slist-free"><function>g_slist_free()</function></link> when finished using it.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-get-n-actors" role="function" condition="since:0.2">
+<title>clutter_behaviour_get_n_actors ()</title>
+<indexterm zone="clutter-behaviour-get-n-actors" role="0.2"><primary>clutter_behaviour_get_n_actors</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_behaviour_get_n_actors      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);</programlisting>
+<para>
+Gets the number of actors this behaviour is applied too.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The number of applied actors 
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-get-nth-actor" role="function" condition="since:0.2">
+<title>clutter_behaviour_get_nth_actor ()</title>
+<indexterm zone="clutter-behaviour-get-nth-actor" role="0.2"><primary>clutter_behaviour_get_nth_actor</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_behaviour_get_nth_actor     (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="gint">gint</link> index_);</programlisting>
+<para>
+Gets an actor the behaviour was applied to referenced by index num.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index_</parameter>&nbsp;:</term>
+<listitem><simpara> the index of an actor this behaviour is applied too. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A Clutter actor or NULL if <parameter>index_</parameter> is invalid.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-get-alpha" role="function" condition="since:0.2">
+<title>clutter_behaviour_get_alpha ()</title>
+<indexterm zone="clutter-behaviour-get-alpha" role="0.2"><primary>clutter_behaviour_get_alpha</primary></indexterm><programlisting><link linkend="ClutterAlpha">ClutterAlpha</link>*       clutter_behaviour_get_alpha         (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object bound to <parameter>behave</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if no alpha
+  object has been bound to this behaviour.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-set-alpha" role="function" condition="since:0.2">
+<title>clutter_behaviour_set_alpha ()</title>
+<indexterm zone="clutter-behaviour-set-alpha" role="0.2"><primary>clutter_behaviour_set_alpha</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_set_alpha         (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behave,
+                                                         <link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);</programlisting>
+<para>
+Binds <parameter>alpha</parameter> to a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>.  The <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object
+is what makes a behaviour work: for each tick of the timeline
+used by <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> a new value of the alpha parameter is
+computed by the alpha function; the value should be used by
+the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> to update one or more properties of the
+actors to which the behaviour applies.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behave</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to unset a previously set alpha
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviour.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviour--alpha"><title>The <literal>&quot;alpha&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviour--alpha" role="0.2"><primary>ClutterBehaviour:alpha</primary></indexterm><programlisting>  &quot;alpha&quot;                    <link linkend="ClutterAlpha">ClutterAlpha</link>*         : Read / Write</programlisting>
+<para>
+The <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object used to drive this behaviour. A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+object binds a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> and a function which computes a value
+(the "alpha") depending on the time. Each time the alpha value changes
+the alpha-notify virtual function is called.</para>
+<para>
+
+</para><para>Since  0.2
+</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterBehaviour.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterBehaviour-applied"><title>The <literal>&quot;applied&quot;</literal> signal</title>
+<indexterm zone="ClutterBehaviour-applied" role="0.4"><primary>ClutterBehaviour::applied</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behaviour,
+                                                        <link linkend="ClutterActor">ClutterActor</link>     *actor,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)      : Run First</programlisting>
+<para>
+The ::apply signal is emitted each time the behaviour is applied
+to an actor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the actor the behaviour was applied to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.4
+</para></refsect2><refsect2 id="ClutterBehaviour-removed"><title>The <literal>&quot;removed&quot;</literal> signal</title>
+<indexterm zone="ClutterBehaviour-removed"><primary>ClutterBehaviour::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterBehaviour">ClutterBehaviour</link> *behaviour,
+                                                        <link linkend="ClutterActor">ClutterActor</link>     *actor,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)      : Run First</programlisting>
+<para>
+The ::removed signal is emitted each time a behaviour is not applied
+to an actor anymore.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the removed actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

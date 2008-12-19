@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterScore">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterScore.top_of_page">ClutterScore</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterScore</refname>
+<refpurpose>Controller for multiple timelines</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterScore.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterScore-struct">ClutterScore</link>;
+                    <link linkend="ClutterScoreClass">ClutterScoreClass</link>;
+<link linkend="ClutterScore">ClutterScore</link>*       <link linkend="clutter-score-new">clutter_score_new</link>                   (void);
+<link linkend="void">void</link>                <link linkend="clutter-score-set-loop">clutter_score_set_loop</link>              (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gboolean">gboolean</link> loop);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-score-get-loop">clutter_score_get_loop</link>              (<link linkend="ClutterScore">ClutterScore</link> *score);
+
+<link linkend="gulong">gulong</link>              <link linkend="clutter-score-append">clutter_score_append</link>                (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *parent,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="gulong">gulong</link>              <link linkend="clutter-score-append-at-marker">clutter_score_append_at_marker</link>      (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-score-remove">clutter_score_remove</link>                (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gulong">gulong</link> id);
+<link linkend="void">void</link>                <link linkend="clutter-score-remove-all">clutter_score_remove_all</link>            (<link linkend="ClutterScore">ClutterScore</link> *score);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-score-get-timeline">clutter_score_get_timeline</link>          (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gulong">gulong</link> id);
+<link linkend="GSList">GSList</link>*             <link linkend="clutter-score-list-timelines">clutter_score_list_timelines</link>        (<link linkend="ClutterScore">ClutterScore</link> *score);
+
+<link linkend="void">void</link>                <link linkend="clutter-score-start">clutter_score_start</link>                 (<link linkend="ClutterScore">ClutterScore</link> *score);
+<link linkend="void">void</link>                <link linkend="clutter-score-pause">clutter_score_pause</link>                 (<link linkend="ClutterScore">ClutterScore</link> *score);
+<link linkend="void">void</link>                <link linkend="clutter-score-stop">clutter_score_stop</link>                  (<link linkend="ClutterScore">ClutterScore</link> *score);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-score-is-playing">clutter_score_is_playing</link>            (<link linkend="ClutterScore">ClutterScore</link> *score);
+<link linkend="void">void</link>                <link linkend="clutter-score-rewind">clutter_score_rewind</link>                (<link linkend="ClutterScore">ClutterScore</link> *score);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterScore.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterScore
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterScore.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterScore--loop">loop</link>&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterScore.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterScore-completed">completed</link>&quot;                                      : Run Last
+  &quot;<link linkend="ClutterScore-paused">paused</link>&quot;                                         : Run Last
+  &quot;<link linkend="ClutterScore-started">started</link>&quot;                                        : Run Last
+  &quot;<link linkend="ClutterScore-timeline-completed">timeline-completed</link>&quot;                             : Run Last
+  &quot;<link linkend="ClutterScore-timeline-started">timeline-started</link>&quot;                               : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterScore.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterScore"><type>ClutterScore</type></link> is a base class for sequencing multiple timelines in order.
+Using <link linkend="ClutterScore"><type>ClutterScore</type></link> it is possible to start multiple timelines at the
+same time or launch multiple timelines when a particular timeline has
+emitted the ClutterTimeline::completed signal.
+</para>
+<para>
+Each time a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> is started and completed, a signal will be
+emitted.
+</para>
+<para>
+For example, this code will start two <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!-- -->s after
+a third timeline terminates:
+</para>
+<para>
+<informalexample><programlisting>
+  ClutterTimeline *timeline_1, *timeline_2, *timeline_3;
+  ClutterScore *score;
+
+  timeline_1 = clutter_timeline_new_for_duration (1000);
+  timeline_2 = clutter_timeline_new_for_duration (500);
+  timeline_3 = clutter_timeline_new_for_duration (500);
+
+  score = clutter_score_new ();
+
+  clutter_score_append (score, NULL,       timeline_1);
+  clutter_score_append (score, timeline_1, timeline_2);
+  clutter_score_append (score, timeline_1, timeline_3);
+
+  clutter_score_start (score);
+</programlisting></informalexample>
+</para>
+<para>
+A <link linkend="ClutterScore"><type>ClutterScore</type></link> takes a reference on the timelines it manages,
+so timelines can be safely unreferenced after being appended.
+</para>
+<para>
+New timelines can be appended to the <link linkend="ClutterScore"><type>ClutterScore</type></link> using
+<link linkend="clutter-score-append"><function>clutter_score_append()</function></link> and removed using <link linkend="clutter-score-remove"><function>clutter_score_remove()</function></link>.
+</para>
+<para>
+Timelines can also be appended to a specific marker on the
+parent timeline, using <link linkend="clutter-score-append-at-marker"><function>clutter_score_append_at_marker()</function></link>.
+</para>
+<para>
+The score can be cleared using <link linkend="clutter-score-remove-all"><function>clutter_score_remove_all()</function></link>.
+</para>
+<para>
+The list of timelines can be retrieved using
+<link linkend="clutter-score-list-timelines"><function>clutter_score_list_timelines()</function></link>.
+</para>
+<para>
+The score state is controlled using <link linkend="clutter-score-start"><function>clutter_score_start()</function></link>,
+<link linkend="clutter-score-pause"><function>clutter_score_pause()</function></link>, <link linkend="clutter-score-stop"><function>clutter_score_stop()</function></link> and <link linkend="clutter-score-rewind"><function>clutter_score_rewind()</function></link>.
+The state can be queried using <link linkend="clutter-score-is-playing"><function>clutter_score_is_playing()</function></link>.
+</para>
+<para>
+<link linkend="ClutterScore"><type>ClutterScore</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterScore.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterScore-struct" role="struct">
+<title>ClutterScore</title>
+<indexterm zone="ClutterScore-struct"><primary>ClutterScore</primary></indexterm><programlisting>typedef struct _ClutterScore ClutterScore;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterScoreClass" role="struct">
+<title>ClutterScoreClass</title>
+<indexterm zone="ClutterScoreClass"><primary>ClutterScoreClass</primary></indexterm><programlisting>typedef struct {
+  void (* timeline_started)   (ClutterScore    *score,
+                               ClutterTimeline *timeline);
+  void (* timeline_completed) (ClutterScore    *score,
+                               ClutterTimeline *timeline);
+
+  void (* started)            (ClutterScore    *score);
+  void (* completed)          (ClutterScore    *score);
+  void (* paused)             (ClutterScore    *score);
+} ClutterScoreClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-score-new" role="function" condition="since:0.6">
+<title>clutter_score_new ()</title>
+<indexterm zone="clutter-score-new" role="0.6"><primary>clutter_score_new</primary></indexterm><programlisting><link linkend="ClutterScore">ClutterScore</link>*       clutter_score_new                   (void);</programlisting>
+<para>
+Creates a new <link linkend="ClutterScore"><type>ClutterScore</type></link>. A <link linkend="ClutterScore"><type>ClutterScore</type></link> is an object that can
+hold multiple <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!-- -->s in a sequential order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterScore"><type>ClutterScore</type></link>. Use <link linkend="g-object-unref"><function>g_object_unref()</function></link>
+  when done.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-set-loop" role="function" condition="since:0.6">
+<title>clutter_score_set_loop ()</title>
+<indexterm zone="clutter-score-set-loop" role="0.6"><primary>clutter_score_set_loop</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_set_loop              (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gboolean">gboolean</link> loop);</programlisting>
+<para>
+Sets whether <parameter>score</parameter> should loop. A looping <link linkend="ClutterScore"><type>ClutterScore</type></link> will start
+from its initial state after the ::complete signal has been fired.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>loop</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> for enable looping
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-get-loop" role="function" condition="since:0.6">
+<title>clutter_score_get_loop ()</title>
+<indexterm zone="clutter-score-get-loop" role="0.6"><primary>clutter_score_get_loop</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_score_get_loop              (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Gets whether <parameter>score</parameter> is looping</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the score is looping
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-append" role="function" condition="since:0.6">
+<title>clutter_score_append ()</title>
+<indexterm zone="clutter-score-append" role="0.6"><primary>clutter_score_append</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              clutter_score_append                (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *parent,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Appends a timeline to another one existing in the score; the newly
+appended timeline will be started when <parameter>parent</parameter> is complete.
+</para>
+<para>
+If <parameter>parent</parameter> is <link linkend="NULL:CAPS"><literal>NULL</literal></link>, the new <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> will be started when
+<link linkend="clutter-score-start"><function>clutter_score_start()</function></link> is called.
+</para>
+<para>
+<link linkend="ClutterScore"><type>ClutterScore</type></link> will take a reference on <parameter>timeline</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> in the score, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the id of the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> inside the score, or
+  0 on failure. The returned id can be used with <link linkend="clutter-score-remove"><function>clutter_score_remove()</function></link>
+  or <link linkend="clutter-score-get-timeline"><function>clutter_score_get_timeline()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-append-at-marker" role="function" condition="since:0.8">
+<title>clutter_score_append_at_marker ()</title>
+<indexterm zone="clutter-score-append-at-marker" role="0.8"><primary>clutter_score_append_at_marker</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              clutter_score_append_at_marker      (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *parent,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Appends <parameter>timeline</parameter> at the given <parameter>marker_name</parameter> on the <parameter>parent</parameter>
+<link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>.
+</para>
+<para>
+If you want to append <parameter>timeline</parameter> at the end of <parameter>parent</parameter>, use
+<link linkend="clutter-score-append"><function>clutter_score_append()</function></link>.
+</para>
+<para>
+The <link linkend="ClutterScore"><type>ClutterScore</type></link> will take a reference on <parameter>timeline</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> the parent <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the marker to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> to append
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the id of the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> inside the score, or
+  0 on failure. The returned id can be used with <link linkend="clutter-score-remove"><function>clutter_score_remove()</function></link>
+  or <link linkend="clutter-score-get-timeline"><function>clutter_score_get_timeline()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-score-remove" role="function" condition="since:0.6">
+<title>clutter_score_remove ()</title>
+<indexterm zone="clutter-score-remove" role="0.6"><primary>clutter_score_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_remove                (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gulong">gulong</link> id);</programlisting>
+<para>
+Removes the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> with the given id inside <parameter>score</parameter>. If
+the timeline has other timelines attached to it, those are removed
+as well.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> the id of the timeline to remove
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-remove-all" role="function" condition="since:0.6">
+<title>clutter_score_remove_all ()</title>
+<indexterm zone="clutter-score-remove-all" role="0.6"><primary>clutter_score_remove_all</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_remove_all            (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Removes all the timelines inside <parameter>score</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-get-timeline" role="function" condition="since:0.6">
+<title>clutter_score_get_timeline ()</title>
+<indexterm zone="clutter-score-get-timeline" role="0.6"><primary>clutter_score_get_timeline</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_score_get_timeline          (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                         <link linkend="gulong">gulong</link> id);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for <parameter>id</parameter> inside <parameter>score</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> the id of the timeline
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the requested timeline, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. This function does
+  not increase the reference count on the returned <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-list-timelines" role="function" condition="since:0.6">
+<title>clutter_score_list_timelines ()</title>
+<indexterm zone="clutter-score-list-timelines" role="0.6"><primary>clutter_score_list_timelines</primary></indexterm><programlisting><link linkend="GSList">GSList</link>*             clutter_score_list_timelines        (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Retrieves a list of all the <link linkend="ClutterTimelines"><type>ClutterTimelines</type></link> managed by <parameter>score</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="GSList"><type>GSList</type></link> containing all the timelines in the score.
+  This function does not increase the reference count of the
+  returned timelines. Use <link linkend="g-slist-free"><function>g_slist_free()</function></link> on the returned list to
+  deallocate its resources.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-start" role="function" condition="since:0.6">
+<title>clutter_score_start ()</title>
+<indexterm zone="clutter-score-start" role="0.6"><primary>clutter_score_start</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_start                 (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Starts the score.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-pause" role="function" condition="since:0.6">
+<title>clutter_score_pause ()</title>
+<indexterm zone="clutter-score-pause" role="0.6"><primary>clutter_score_pause</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_pause                 (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Pauses a playing score <parameter>score</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-stop" role="function" condition="since:0.6">
+<title>clutter_score_stop ()</title>
+<indexterm zone="clutter-score-stop" role="0.6"><primary>clutter_score_stop</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_stop                  (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Stops and rewinds a playing <link linkend="ClutterScore"><type>ClutterScore</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-is-playing" role="function" condition="since:0.6">
+<title>clutter_score_is_playing ()</title>
+<indexterm zone="clutter-score-is-playing" role="0.6"><primary>clutter_score_is_playing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_score_is_playing            (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Query state of a <link linkend="ClutterScore"><type>ClutterScore</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if score is currently playing
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-score-rewind" role="function" condition="since:0.6">
+<title>clutter_score_rewind ()</title>
+<indexterm zone="clutter-score-rewind" role="0.6"><primary>clutter_score_rewind</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_score_rewind                (<link linkend="ClutterScore">ClutterScore</link> *score);</programlisting>
+<para>
+Rewinds a <link linkend="ClutterScore"><type>ClutterScore</type></link> to its initial state.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterScore"><type>ClutterScore</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterScore.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterScore--loop"><title>The <literal>&quot;loop&quot;</literal> property</title>
+<indexterm zone="ClutterScore--loop" role="0.6"><primary>ClutterScore:loop</primary></indexterm><programlisting>  &quot;loop&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the <link linkend="ClutterScore"><type>ClutterScore</type></link> should restart once finished.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterScore.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterScore-completed"><title>The <literal>&quot;completed&quot;</literal> signal</title>
+<indexterm zone="ClutterScore-completed" role="0.6"><primary>ClutterScore::completed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::completed signal is emitted each time a <link linkend="ClutterScore"><type>ClutterScore</type></link> terminates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> the score which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterScore-paused"><title>The <literal>&quot;paused&quot;</literal> signal</title>
+<indexterm zone="ClutterScore-paused" role="0.6"><primary>ClutterScore::paused</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::paused signal is emitted each time a <link linkend="ClutterScore"><type>ClutterScore</type></link>
+is paused.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> the score which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterScore-started"><title>The <literal>&quot;started&quot;</literal> signal</title>
+<indexterm zone="ClutterScore-started" role="0.6"><primary>ClutterScore::started</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterScore">ClutterScore</link> *score,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::started signal is emitted each time a <link linkend="ClutterScore"><type>ClutterScore</type></link> starts playing.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> the score which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterScore-timeline-completed"><title>The <literal>&quot;timeline-completed&quot;</literal> signal</title>
+<indexterm zone="ClutterScore-timeline-completed" role="0.6"><primary>ClutterScore::timeline-completed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterScore">ClutterScore</link>    *score,
+                                                        <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::timeline-completed signal is emitted each time a timeline
+inside a <link linkend="ClutterScore"><type>ClutterScore</type></link> terminates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> the score which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the completed timeline
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterScore-timeline-started"><title>The <literal>&quot;timeline-started&quot;</literal> signal</title>
+<indexterm zone="ClutterScore-timeline-started" role="0.6"><primary>ClutterScore::timeline-started</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterScore">ClutterScore</link>    *score,
+                                                        <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::timeline-started signal is emitted each time a new timeline
+inside a <link linkend="ClutterScore"><type>ClutterScore</type></link> starts playing.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>score</parameter>&nbsp;:</term>
+<listitem><simpara> the score which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the current timeline
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2>
+</refsect1>
+
+
+
+</refentry>

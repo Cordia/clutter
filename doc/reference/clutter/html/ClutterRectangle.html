@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterRectangle</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch02.html" title="Base actors">
+<link rel="prev" href="ch02.html" title="Base actors">
+<link rel="next" href="ClutterTexture.html" title="ClutterTexture">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch02.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterTexture.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterRectangle.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterRectangle.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterRectangle.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterRectangle.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterRectangle.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterRectangle"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterRectangle.top_of_page"></a>ClutterRectangle</span></h2>
+<p>ClutterRectangle — An actor that displays a simple rectangle.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterRectangle.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterRectangle.html#ClutterRectangle-struct" title="ClutterRectangle">ClutterRectangle</a>;
+                    <a class="link" href="ClutterRectangle.html#ClutterRectangleClass" title="ClutterRectangleClass">ClutterRectangleClass</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterRectangle.html#clutter-rectangle-new" title="clutter_rectangle_new ()">clutter_rectangle_new</a>               (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterRectangle.html#clutter-rectangle-new-with-color" title="clutter_rectangle_new_with_color ()">clutter_rectangle_new_with_color</a>    (const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterRectangle.html#clutter-rectangle-get-color" title="clutter_rectangle_get_color ()">clutter_rectangle_get_color</a>         (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterRectangle.html#clutter-rectangle-set-color" title="clutter_rectangle_set_color ()">clutter_rectangle_set_color</a>         (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterRectangle.html#clutter-rectangle-get-border-color" title="clutter_rectangle_get_border_color ()">clutter_rectangle_get_border_color</a>  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterRectangle.html#clutter-rectangle-set-border-color" title="clutter_rectangle_set_border_color ()">clutter_rectangle_set_border_color</a>  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterRectangle.html#clutter-rectangle-get-border-width" title="clutter_rectangle_get_border_width ()">clutter_rectangle_get_border_width</a>  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle);
+void                <a class="link" href="ClutterRectangle.html#clutter-rectangle-set-border-width" title="clutter_rectangle_set_border_width ()">clutter_rectangle_set_border_width</a>  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterRectangle
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterRectangle implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterRectangle.html#ClutterRectangle--border-color" title='The "border-color" property'>border-color</a>"             <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write
+  "<a class="link" href="ClutterRectangle.html#ClutterRectangle--border-width" title='The "border-width" property'>border-width</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterRectangle.html#ClutterRectangle--color" title='The "color" property'>color</a>"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write
+  "<a class="link" href="ClutterRectangle.html#ClutterRectangle--has-border" title='The "has-border" property'>has-border</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a> is a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> which draws a simple filled rectangle.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangle-struct"></a><h3>ClutterRectangle</h3>
+<pre class="programlisting">typedef struct _ClutterRectangle ClutterRectangle;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangleClass"></a><h3>ClutterRectangleClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterActorClass parent_class;
+
+  /* padding for future expansion */
+  void (*_clutter_rectangle1) (void);
+  void (*_clutter_rectangle2) (void);
+  void (*_clutter_rectangle3) (void);
+  void (*_clutter_rectangle4) (void);
+} ClutterRectangleClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-new"></a><h3>clutter_rectangle_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_rectangle_new               (void);</pre>
+<p>
+Creates a new <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> with a rectangular shape.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-new-with-color"></a><h3>clutter_rectangle_new_with_color ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_rectangle_new_with_color    (const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Creates a new <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> with a rectangular shape
+and of the given <em class="parameter"><code>color</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-get-color"></a><h3>clutter_rectangle_get_color ()</h3>
+<pre class="programlisting">void                clutter_rectangle_get_color         (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Retrieves the color of <em class="parameter"><code>rectangle</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-set-color"></a><h3>clutter_rectangle_set_color ()</h3>
+<pre class="programlisting">void                clutter_rectangle_set_color         (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Sets the color of <em class="parameter"><code>rectangle</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-get-border-color"></a><h3>clutter_rectangle_get_border_color ()</h3>
+<pre class="programlisting">void                clutter_rectangle_get_border_color  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Gets the color of the border used by <em class="parameter"><code>rectangle</code></em> and places
+it into <em class="parameter"><code>color</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-set-border-color"></a><h3>clutter_rectangle_set_border_color ()</h3>
+<pre class="programlisting">void                clutter_rectangle_set_border_color  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Sets the color of the border used by <em class="parameter"><code>rectangle</code></em> using <em class="parameter"><code>color</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> the color of the border
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-get-border-width"></a><h3>clutter_rectangle_get_border_width ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_rectangle_get_border_width  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle);</pre>
+<p>
+Gets the width (in pixels) of the border used by <em class="parameter"><code>rectangle</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the border's width
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-rectangle-set-border-width"></a><h3>clutter_rectangle_set_border_width ()</h3>
+<pre class="programlisting">void                clutter_rectangle_set_border_width  (<a class="link" href="ClutterRectangle.html" title="ClutterRectangle">ClutterRectangle</a> *rectangle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width);</pre>
+<p>
+Sets the width (in pixel) of the border used by <em class="parameter"><code>rectangle</code></em>.
+A <em class="parameter"><code>width</code></em> of 0 will unset the border.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rectangle</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> the width of the border
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterRectangle.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangle--border-color"></a><h3>The <code class="literal">"border-color"</code> property</h3>
+<pre class="programlisting">  "border-color"             <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write</pre>
+<p>
+The color of the border of the rectangle.</p>
+<p>
+
+</p>
+<p>Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangle--border-width"></a><h3>The <code class="literal">"border-width"</code> property</h3>
+<pre class="programlisting">  "border-width"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+The width of the border of the rectangle, in pixels.</p>
+<p>
+
+</p>
+<p>Default value: 0</p>
+<p>Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangle--color"></a><h3>The <code class="literal">"color"</code> property</h3>
+<pre class="programlisting">  "color"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write</pre>
+<p>
+The color of the rectangle.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterRectangle--has-border"></a><h3>The <code class="literal">"has-border"</code> property</h3>
+<pre class="programlisting">  "has-border"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a> should be displayed with a border.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.2
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

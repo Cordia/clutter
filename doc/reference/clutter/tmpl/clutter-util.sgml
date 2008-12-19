@@ -1,0 +1,83 @@
+<!-- ##### SECTION Title ##### -->
+Utilities
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION clutter_util_next_p2 ##### -->
+<para>
+
+</para>
+
+@a: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeout_pool_new ##### -->
+<para>
+
+</para>
+
+@priority: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeout_pool_add ##### -->
+<para>
+
+</para>
+
+@pool: 
+@interval: 
+@func: 
+@data: 
+@notify: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeout_pool_remove ##### -->
+<para>
+
+</para>
+
+@pool: 
+@id: 
+
+
+<!-- ##### FUNCTION clutter_frame_source_add ##### -->
+<para>
+
+</para>
+
+@interval: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_frame_source_add_full ##### -->
+<para>
+
+</para>
+
+@priority: 
+@interval: 
+@func: 
+@data: 
+@notify: 
+@Returns: 
+
+

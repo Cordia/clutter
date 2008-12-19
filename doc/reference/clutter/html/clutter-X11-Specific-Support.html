@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>X11 Specific Support</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="prev" href="clutter-ClutterBackend.html" title="ClutterBackend">
+<link rel="next" href="clutter-Win32-Specific-Support.html" title="Win32 Specific Support">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-ClutterBackend.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-Win32-Specific-Support.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-X11-Specific-Support.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-X11-Specific-Support.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-X11-Specific-Support"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-X11-Specific-Support.top_of_page"></a>X11 Specific Support</span></h2>
+<p>X11 Specific Support — X11 specific API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-X11-Specific-Support.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-set-display" title="clutter_x11_set_display ()">clutter_x11_set_display</a>             (Display *xdpy);
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-disable-event-retrieval" title="clutter_x11_disable_event_retrieval ()">clutter_x11_disable_event_retrieval</a> (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-has-event-retrieval" title="clutter_x11_has_event_retrieval ()">clutter_x11_has_event_retrieval</a>     (void);
+<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a>*       <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-stage-from-window" title="clutter_x11_get_stage_from_window ()">clutter_x11_get_stage_from_window</a>   (Window win);
+<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn">ClutterX11FilterReturn</a> <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-handle-event" title="clutter_x11_handle_event ()">clutter_x11_handle_event</a>         (XEvent *xevent);
+Display*            <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-default-display" title="clutter_x11_get_default_display ()">clutter_x11_get_default_display</a>     (void);
+int                 <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-default-screen" title="clutter_x11_get_default_screen ()">clutter_x11_get_default_screen</a>      (void);
+Window              <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-root-window" title="clutter_x11_get_root_window ()">clutter_x11_get_root_window</a>         (void);
+XVisualInfo*        <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-stage-visual" title="clutter_x11_get_stage_visual ()">clutter_x11_get_stage_visual</a>        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+Window              <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-stage-window" title="clutter_x11_get_stage_window ()">clutter_x11_get_stage_window</a>        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-set-stage-foreign" title="clutter_x11_set_stage_foreign ()">clutter_x11_set_stage_foreign</a>       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         Window xwindow);
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-trap-x-errors" title="clutter_x11_trap_x_errors ()">clutter_x11_trap_x_errors</a>           (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-untrap-x-errors" title="clutter_x11_untrap_x_errors ()">clutter_x11_untrap_x_errors</a>         (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-has-composite-extension" title="clutter_x11_has_composite_extension ()">clutter_x11_has_composite_extension</a> (void);
+
+<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn">ClutterX11FilterReturn</a> (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()">*ClutterX11FilterFunc</a>)          (XEvent *xev,
+                                                         <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *cev,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+enum                <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn">ClutterX11FilterReturn</a>;
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-add-filter" title="clutter_x11_add_filter ()">clutter_x11_add_filter</a>              (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()">ClutterX11FilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-remove-filter" title="clutter_x11_remove_filter ()">clutter_x11_remove_filter</a>           (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()">ClutterX11FilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+
+enum                <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11InputDeviceType" title="enum ClutterX11InputDeviceType">ClutterX11InputDeviceType</a>;
+                    <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11XInputDevice" title="ClutterX11XInputDevice">ClutterX11XInputDevice</a>;
+enum                <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11XInputEventTypes" title="enum ClutterX11XInputEventTypes">ClutterX11XInputEventTypes</a>;
+<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11InputDeviceType" title="enum ClutterX11InputDeviceType">ClutterX11InputDeviceType</a> <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-input-device-type" title="clutter_x11_get_input_device_type ()">clutter_x11_get_input_device_type</a>
+                                                        (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11XInputDevice" title="ClutterX11XInputDevice">ClutterX11XInputDevice</a> *device);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-get-input-devices" title="clutter_x11_get_input_devices ()">clutter_x11_get_input_devices</a>       (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-has-xinput" title="clutter_x11_has_xinput ()">clutter_x11_has_xinput</a>              (void);
+void                <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-enable-xinput" title="clutter_x11_enable_xinput ()">clutter_x11_enable_xinput</a>           (void);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-X11-Specific-Support.description"></a><h2>Description</h2>
+<p>
+The X11 backend for Clutter provides some specific API, allowing
+integration with the Xlibs API for embedding and manipulating the
+stage window, or for trapping X errors.
+</p>
+<p>
+The ClutterX11 API is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-X11-Specific-Support.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-set-display"></a><h3>clutter_x11_set_display ()</h3>
+<pre class="programlisting">void                clutter_x11_set_display             (Display *xdpy);</pre>
+<p>
+Sets the display connection Clutter should use; must be called
+before <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>, <a class="link" href="clutter-General.html#clutter-init-with-args" title="clutter_init_with_args ()"><code class="function">clutter_init_with_args()</code></a> or other functions
+pertaining Clutter's initialization process.
+</p>
+<p>
+If you are parsing the command line arguments by retrieving Clutter's
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> with <a class="link" href="clutter-General.html#clutter-get-option-group" title="clutter_get_option_group ()"><code class="function">clutter_get_option_group()</code></a> and calling
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a> yourself, you should also call
+<a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-set-display" title="clutter_x11_set_display ()"><code class="function">clutter_x11_set_display()</code></a> before <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>xdpy</code></em> :</span></p></td>
+<td> pointer to a X display connection.
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-disable-event-retrieval"></a><h3>clutter_x11_disable_event_retrieval ()</h3>
+<pre class="programlisting">void                clutter_x11_disable_event_retrieval (void);</pre>
+<p>
+Disables retrieval of X events in the main loop. Use to create event-less
+canvas or in conjunction with clutter_x11_handle_event.
+</p>
+<p>
+This function can only be called before calling <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-has-event-retrieval"></a><h3>clutter_x11_has_event_retrieval ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_x11_has_event_retrieval     (void);</pre>
+<p>
+Queries the X11 backend to check if event collection has been disabled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if event retrival has been disabled. FALSE otherwise.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-stage-from-window"></a><h3>clutter_x11_get_stage_from_window ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a>*       clutter_x11_get_stage_from_window   (Window win);</pre>
+<p>
+Gets the stage for a particular X window.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>win</code></em> :</span></p></td>
+<td> an X Window ID
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The stage or NULL if a stage does not exist for the window.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-handle-event"></a><h3>clutter_x11_handle_event ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn">ClutterX11FilterReturn</a> clutter_x11_handle_event         (XEvent *xevent);</pre>
+<p>
+This function processes a single X event; it can be used to hook
+into external X event retrieval (for example that done by GDK).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xevent</code></em> :</span></p></td>
+<td> pointer to XEvent structure
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn"><span class="type">ClutterX11FilterReturn</span></a> indicating what the caller
+  should do with the original event.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since   0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-default-display"></a><h3>clutter_x11_get_default_display ()</h3>
+<pre class="programlisting">Display*            clutter_x11_get_default_display     (void);</pre>
+<p>
+Retrieves the pointer to the default display.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the default display
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-default-screen"></a><h3>clutter_x11_get_default_screen ()</h3>
+<pre class="programlisting">int                 clutter_x11_get_default_screen      (void);</pre>
+<p>
+Gets the number of the default X Screen object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of the default screen
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-root-window"></a><h3>clutter_x11_get_root_window ()</h3>
+<pre class="programlisting">Window              clutter_x11_get_root_window         (void);</pre>
+<p>
+Retrieves the root window.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the id of the root window
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-stage-visual"></a><h3>clutter_x11_get_stage_visual ()</h3>
+<pre class="programlisting">XVisualInfo*        clutter_x11_get_stage_visual        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Returns the stage XVisualInfo</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The XVisualInfo for the stage.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-stage-window"></a><h3>clutter_x11_get_stage_window ()</h3>
+<pre class="programlisting">Window              clutter_x11_get_stage_window        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Gets the stages X Window.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> An XID for the stage window.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-set-stage-foreign"></a><h3>clutter_x11_set_stage_foreign ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_x11_set_stage_foreign       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         Window xwindow);</pre>
+<p>
+Target the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> to use an existing external X Window</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xwindow</code></em> :</span></p></td>
+<td> an existing X Window id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if foreign window is valid
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-trap-x-errors"></a><h3>clutter_x11_trap_x_errors ()</h3>
+<pre class="programlisting">void                clutter_x11_trap_x_errors           (void);</pre>
+<p>
+Traps every X error until <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-untrap-x-errors" title="clutter_x11_untrap_x_errors ()"><code class="function">clutter_x11_untrap_x_errors()</code></a> is called.</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-untrap-x-errors"></a><h3>clutter_x11_untrap_x_errors ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_x11_untrap_x_errors         (void);</pre>
+<p>
+Removes the X error trap and returns the current status.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the trapped error code, or 0 for success
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-has-composite-extension"></a><h3>clutter_x11_has_composite_extension ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_x11_has_composite_extension (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterX11FilterFunc"></a><h3>ClutterX11FilterFunc ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterReturn" title="enum ClutterX11FilterReturn">ClutterX11FilterReturn</a> (*ClutterX11FilterFunc)          (XEvent *xev,
+                                                         <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *cev,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Filter function for X11 native events.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xev</code></em> :</span></p></td>
+<td> Native X11 event structure
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cev</code></em> :</span></p></td>
+<td> Clutter event structure
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> user data passed to the filter function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the result of the filtering
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterX11FilterReturn"></a><h3>enum ClutterX11FilterReturn</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_X11_FILTER_CONTINUE,
+  CLUTTER_X11_FILTER_TRANSLATE,
+  CLUTTER_X11_FILTER_REMOVE
+} ClutterX11FilterReturn;
+</pre>
+<p>
+Return values for the <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()"><span class="type">ClutterX11FilterFunc</span></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-X11-FILTER-CONTINUE:CAPS"></a><span class="term"><code class="literal">CLUTTER_X11_FILTER_CONTINUE</code></span></p></td>
+<td> The event was not handled, continues the
+  processing
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-X11-FILTER-TRANSLATE:CAPS"></a><span class="term"><code class="literal">CLUTTER_X11_FILTER_TRANSLATE</code></span></p></td>
+<td> Native event translated into a Clutter
+  event, stops the processing
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-X11-FILTER-REMOVE:CAPS"></a><span class="term"><code class="literal">CLUTTER_X11_FILTER_REMOVE</code></span></p></td>
+<td> Remove the event, stops the processing
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-add-filter"></a><h3>clutter_x11_add_filter ()</h3>
+<pre class="programlisting">void                clutter_x11_add_filter              (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()">ClutterX11FilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Adds an event filter function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a filter function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> user data to be passed to the filter function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-remove-filter"></a><h3>clutter_x11_remove_filter ()</h3>
+<pre class="programlisting">void                clutter_x11_remove_filter           (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11FilterFunc" title="ClutterX11FilterFunc ()">ClutterX11FilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Removes the given filter function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a filter function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> user data to be passed to the filter function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterX11InputDeviceType"></a><h3>enum ClutterX11InputDeviceType</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_X11_XINPUT_POINTER_DEVICE,
+  CLUTTER_X11_XINPUT_KEYBOARD_DEVICE,
+  CLUTTER_X11_XINPUT_EXTENSION_DEVICE
+} ClutterX11InputDeviceType;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterX11XInputDevice"></a><h3>ClutterX11XInputDevice</h3>
+<pre class="programlisting">typedef struct _ClutterX11XInputDevice ClutterX11XInputDevice;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterX11XInputEventTypes"></a><h3>enum ClutterX11XInputEventTypes</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_X11_XINPUT_KEY_PRESS_EVENT = 0,
+  CLUTTER_X11_XINPUT_KEY_RELEASE_EVENT,
+  CLUTTER_X11_XINPUT_BUTTON_PRESS_EVENT,
+  CLUTTER_X11_XINPUT_BUTTON_RELEASE_EVENT,
+  CLUTTER_X11_XINPUT_MOTION_NOTIFY_EVENT,
+  CLUTTER_X11_XINPUT_LAST_EVENT
+} ClutterX11XInputEventTypes;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-input-device-type"></a><h3>clutter_x11_get_input_device_type ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-X11-Specific-Support.html#ClutterX11InputDeviceType" title="enum ClutterX11InputDeviceType">ClutterX11InputDeviceType</a> clutter_x11_get_input_device_type
+                                                        (<a class="link" href="clutter-X11-Specific-Support.html#ClutterX11XInputDevice" title="ClutterX11XInputDevice">ClutterX11XInputDevice</a> *device);</pre>
+<p>
+Retrieves the type of <em class="parameter"><code>device</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-X11-Specific-Support.html#ClutterX11XInputDevice" title="ClutterX11XInputDevice"><span class="type">ClutterX11XInputDevice</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the type of the device
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-get-input-devices"></a><h3>clutter_x11_get_input_devices ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             clutter_x11_get_input_devices       (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-has-xinput"></a><h3>clutter_x11_has_xinput ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_x11_has_xinput              (void);</pre>
+<p>
+Gets whether Clutter has XInput support.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if Clutter was compiled with XInput support
+  and XInput support is available at run time.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-x11-enable-xinput"></a><h3>clutter_x11_enable_xinput ()</h3>
+<pre class="programlisting">void                clutter_x11_enable_xinput           (void);</pre>
+<p>
+Enables the use of the XInput extension if present on connected
+XServer and support built into Clutter.  XInput allows for multiple
+pointing devices to be used. This must be called before
+<a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>.
+</p>
+<p>
+You should use <a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-has-xinput" title="clutter_x11_has_xinput ()"><span class="type">clutter_x11_has_xinput</span></a> to see if support was enabled.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

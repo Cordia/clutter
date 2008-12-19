@@ -1,0 +1,54 @@
+<!-- ##### SECTION Title ##### -->
+Win32 Specific Support
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION clutter_win32_disable_event_retrieval ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_win32_set_stage_foreign ##### -->
+<para>
+
+</para>
+
+@stage: 
+@hwnd: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_win32_get_stage_from_window ##### -->
+<para>
+
+</para>
+
+@hwnd: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_win32_get_stage_window ##### -->
+<para>
+
+</para>
+
+@stage: 
+@Returns: 
+
+

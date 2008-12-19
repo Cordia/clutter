@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Versioning Macros</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="clutter-Utilities.html" title="Utilities">
+<link rel="next" href="ch08.html" title="User interface definition">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-Utilities.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ch08.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-Versioning-Macros.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-Versioning-Macros.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-Versioning-Macros"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-Versioning-Macros.top_of_page"></a>Versioning Macros</span></h2>
+<p>Versioning Macros — Versioning utility macros</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-Versioning-Macros.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-MAJOR-VERSION:CAPS" title="CLUTTER_MAJOR_VERSION">CLUTTER_MAJOR_VERSION</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-MINOR-VERSION:CAPS" title="CLUTTER_MINOR_VERSION">CLUTTER_MINOR_VERSION</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-MICRO-VERSION:CAPS" title="CLUTTER_MICRO_VERSION">CLUTTER_MICRO_VERSION</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION:CAPS" title="CLUTTER_VERSION">CLUTTER_VERSION</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION-S:CAPS" title="CLUTTER_VERSION_S">CLUTTER_VERSION_S</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION-HEX:CAPS" title="CLUTTER_VERSION_HEX">CLUTTER_VERSION_HEX</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-CHECK-VERSION:CAPS" title="CLUTTER_CHECK_VERSION()">CLUTTER_CHECK_VERSION</a>               (major,minor,micro)
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-FLAVOUR:CAPS" title="CLUTTER_FLAVOUR">CLUTTER_FLAVOUR</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-COGL:CAPS" title="CLUTTER_COGL">CLUTTER_COGL</a>
+#define             <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-NO-FPU:CAPS" title="CLUTTER_NO_FPU">CLUTTER_NO_FPU</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Versioning-Macros.description"></a><h2>Description</h2>
+<p>
+Clutter offers a set of macros for checking the version of the library
+an application was linked to.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Versioning-Macros.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MAJOR-VERSION:CAPS"></a><h3>CLUTTER_MAJOR_VERSION</h3>
+<pre class="programlisting">#define CLUTTER_MAJOR_VERSION   (0)
+</pre>
+<p>
+The major version of the Clutter library (1, if <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION:CAPS" title="CLUTTER_VERSION"><code class="literal">CLUTTER_VERSION</code></a> is 1.2.3)</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MINOR-VERSION:CAPS"></a><h3>CLUTTER_MINOR_VERSION</h3>
+<pre class="programlisting">#define CLUTTER_MINOR_VERSION   (8)
+</pre>
+<p>
+The minor version of the Clutter library (2, if <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION:CAPS" title="CLUTTER_VERSION"><code class="literal">CLUTTER_VERSION</code></a> is 1.2.3)</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MICRO-VERSION:CAPS"></a><h3>CLUTTER_MICRO_VERSION</h3>
+<pre class="programlisting">#define CLUTTER_MICRO_VERSION   (2)
+</pre>
+<p>
+The micro version of the Clutter library (3, if <a class="link" href="clutter-Versioning-Macros.html#CLUTTER-VERSION:CAPS" title="CLUTTER_VERSION"><code class="literal">CLUTTER_VERSION</code></a> is 1.2.3)</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-VERSION:CAPS"></a><h3>CLUTTER_VERSION</h3>
+<pre class="programlisting">#define CLUTTER_VERSION         0.8.2
+</pre>
+<p>
+The full version of the Clutter library, like 1.2.3</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-VERSION-S:CAPS"></a><h3>CLUTTER_VERSION_S</h3>
+<pre class="programlisting">#define CLUTTER_VERSION_S       "0.8.2"
+</pre>
+<p>
+The full version of the Clutter library, in string form (suited for
+string concatenation)</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-VERSION-HEX:CAPS"></a><h3>CLUTTER_VERSION_HEX</h3>
+<pre class="programlisting">#define             CLUTTER_VERSION_HEX</pre>
+<p>
+Numerically encoded version of the Clutter library, like 0x010203</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-CHECK-VERSION:CAPS"></a><h3>CLUTTER_CHECK_VERSION()</h3>
+<pre class="programlisting">#define             CLUTTER_CHECK_VERSION(major,minor,micro)</pre>
+<p>
+Evaluates to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the version of the Clutter library is greater
+than <em class="parameter"><code>major</code></em>, <em class="parameter"><code>minor</code></em> and <em class="parameter"><code>micro</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>major</code></em> :</span></p></td>
+<td> major version, like 1 in 1.2.3
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minor</code></em> :</span></p></td>
+<td> minor version, like 2 in 1.2.3
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>micro</code></em> :</span></p></td>
+<td> micro version, like 3 in 1.2.3
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FLAVOUR:CAPS"></a><h3>CLUTTER_FLAVOUR</h3>
+<pre class="programlisting">#define CLUTTER_FLAVOUR         "glx"
+</pre>
+<p>
+GL Windowing system used</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-COGL:CAPS"></a><h3>CLUTTER_COGL</h3>
+<pre class="programlisting">#define CLUTTER_COGL            "gl"
+</pre>
+<p>
+Cogl (internal GL abstraction utility library) backend. Can be "gl" or
+"gles" currently</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-NO-FPU:CAPS"></a><h3>CLUTTER_NO_FPU</h3>
+<pre class="programlisting">#define CLUTTER_NO_FPU          CLUTTER_NO_FPU_MACRO_WAS_REMOVED
+</pre>
+<p>
+Set to 1 if Clutter was built without FPU (i.e fixed math), 0 otherwise
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.6: This macro is no longer defined (identical code is used
+ regardless the presence of FPU).</p>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

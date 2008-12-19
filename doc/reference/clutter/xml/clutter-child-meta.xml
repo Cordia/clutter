@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterChildMeta">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterChildMeta.top_of_page">ClutterChildMeta</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterChildMeta</refname>
+<refpurpose>Wrapper for actors inside a container</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterChildMeta.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterChildMeta-struct">ClutterChildMeta</link>;
+                    <link linkend="ClutterChildMetaClass">ClutterChildMetaClass</link>;
+<link linkend="ClutterContainer">ClutterContainer</link>*   <link linkend="clutter-child-meta-get-container">clutter_child_meta_get_container</link>    (<link linkend="ClutterChildMeta">ClutterChildMeta</link> *data);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-child-meta-get-actor">clutter_child_meta_get_actor</link>        (<link linkend="ClutterChildMeta">ClutterChildMeta</link> *data);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterChildMeta.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterChildMeta
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterChildMeta.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterChildMeta--actor">actor</link>&quot;                    <link linkend="ClutterActor">ClutterActor</link>*         : Read / Write / Construct Only
+  &quot;<link linkend="ClutterChildMeta--container">container</link>&quot;                <link linkend="ClutterContainer">ClutterContainer</link>*     : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterChildMeta.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> is a wrapper object created by <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+implementations in order to store child-specific data and properties.
+</para>
+<para>
+A <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> wraps a <link linkend="ClutterActor"><type>ClutterActor</type></link> inside a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>.
+</para>
+<para>
+<link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> is available since Clutter 0.8</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterChildMeta.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterChildMeta-struct" role="struct">
+<title>ClutterChildMeta</title>
+<indexterm zone="ClutterChildMeta-struct" role="0.8"><primary>ClutterChildMeta</primary></indexterm><programlisting>typedef struct {
+  ClutterContainer *container;
+  ClutterActor *actor;
+} ClutterChildMeta;
+</programlisting>
+<para>
+Base interface for container specific state for child actors. A child
+data is meant to be used when you need to keep track of information
+about each individual child added to a container.
+</para>
+<para>
+In order to use it you should create your own subclass of
+<link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> and set the <link linkend="ClutterContainerIface-child-meta-type"><type>"child_meta_type"</type></link>
+interface member to your subclass type, like:
+</para>
+<para>
+<informalexample><programlisting>
+static void
+my_container_iface_init (ClutterContainerIface *iface)
+{
+  /&ast; set the rest of the <link linkend="ClutterContainer">ClutterContainer</link> vtable &ast;/
+
+  container_iface->child_meta_type  = MY_TYPE_CHILD_META;
+}
+</programlisting></informalexample>
+</para>
+<para>
+This will automatically create a <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> of type
+MY_TYPE_CHILD_META for every actor that is added to the container.
+</para>
+<para>
+The child data for an actor can be retrieved using the
+<link linkend="clutter-container-get-child-meta"><function>clutter_container_get_child_meta()</function></link> function.
+</para>
+<para>
+The properties of the data and your subclass can be manipulated with
+<link linkend="clutter-container-child-set"><function>clutter_container_child_set()</function></link> and <link linkend="clutter-container-child-get"><function>clutter_container_child_get()</function></link> which
+act like <link linkend="g-object-set"><function>g_object_set()</function></link> and <link linkend="g-object-get"><function>g_object_get()</function></link>.
+</para>
+<para>
+You can provide hooks for your own storage as well as control the
+instantiation by overriding <link linkend="ClutterContainerIface-create-child-meta"><type>"create_child_meta"</type></link>,
+<link linkend="ClutterContainerIface-destroy-child-meta"><type>"destroy_child_meta"</type></link> and
+<link linkend="ClutterContainerIface-get-child-meta"><type>"get_child_meta"</type></link>.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterContainer">ClutterContainer</link>&nbsp;*<structfield>container</structfield>;</term>
+<listitem><simpara> the container handling this data
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>actor</structfield>;</term>
+<listitem><simpara> the actor wrapped by this data
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="ClutterChildMetaClass" role="struct">
+<title>ClutterChildMetaClass</title>
+<indexterm zone="ClutterChildMetaClass"><primary>ClutterChildMetaClass</primary></indexterm><programlisting>typedef struct {
+} ClutterChildMetaClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-child-meta-get-container" role="function" condition="since:0.8">
+<title>clutter_child_meta_get_container ()</title>
+<indexterm zone="clutter-child-meta-get-container" role="0.8"><primary>clutter_child_meta_get_container</primary></indexterm><programlisting><link linkend="ClutterContainer">ClutterContainer</link>*   clutter_child_meta_get_container    (<link linkend="ClutterChildMeta">ClutterChildMeta</link> *data);</programlisting>
+<para>
+Retrieves the container using <parameter>data</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-child-meta-get-actor" role="function" condition="since:0.8">
+<title>clutter_child_meta_get_actor ()</title>
+<indexterm zone="clutter-child-meta-get-actor" role="0.8"><primary>clutter_child_meta_get_actor</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_child_meta_get_actor        (<link linkend="ClutterChildMeta">ClutterChildMeta</link> *data);</programlisting>
+<para>
+Retrieves the actor wrapped by <parameter>data</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterChildMeta.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterChildMeta--actor"><title>The <literal>&quot;actor&quot;</literal> property</title>
+<indexterm zone="ClutterChildMeta--actor" role="0.8"><primary>ClutterChildMeta:actor</primary></indexterm><programlisting>  &quot;actor&quot;                    <link linkend="ClutterActor">ClutterActor</link>*         : Read / Write / Construct Only</programlisting>
+<para>
+The <link linkend="ClutterActor"><type>ClutterActor</type></link> being wrapped by this <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link></para>
+<para>
+
+</para><para>Since  0.8
+</para>
+</refsect2>
+<refsect2 id="ClutterChildMeta--container"><title>The <literal>&quot;container&quot;</literal> property</title>
+<indexterm zone="ClutterChildMeta--container" role="0.8"><primary>ClutterChildMeta:container</primary></indexterm><programlisting>  &quot;container&quot;                <link linkend="ClutterContainer">ClutterContainer</link>*     : Read / Write / Construct Only</programlisting>
+<para>
+The <link linkend="ClutterContainer"><type>ClutterContainer</type></link> that created this <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link>.</para>
+<para>
+
+</para><para>Since  0.8
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Utility API</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="COGL 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="prev" href="cogl-Primitives.html" title="Primitives">
+<link rel="next" href="cogl-Textures.html" title="Textures">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="cogl-Primitives.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">COGL 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="cogl-Textures.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#cogl-Utility-API.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#cogl-Utility-API.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="cogl-Utility-API"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="cogl-Utility-API.top_of_page"></a>Utility API</span></h2>
+<p>Utility API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="cogl-Utility-API.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="cogl-Utility-API.html#cogl-create-context" title="cogl_create_context ()">cogl_create_context</a>                 (void);
+void                <a class="link" href="cogl-Utility-API.html#cogl-destroy-context" title="cogl_destroy_context ()">cogl_destroy_context</a>                (void);
+#define             <a class="link" href="cogl-Utility-API.html#COGL-INVALID-HANDLE:CAPS" title="COGL_INVALID_HANDLE">COGL_INVALID_HANDLE</a>
+typedef             <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>;
+void                (<a class="link" href="cogl-Utility-API.html#CoglFuncPtr" title="CoglFuncPtr ()">*CoglFuncPtr</a>)                      (void);
+
+enum                <a class="link" href="cogl-Utility-API.html#CoglFeatureFlags" title="enum CoglFeatureFlags">CoglFeatureFlags</a>;
+ClutterFeatureFlags <a class="link" href="cogl-Utility-API.html#cogl-get-features" title="cogl_get_features ()">cogl_get_features</a>                   (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="cogl-Utility-API.html#cogl-features-available" title="cogl_features_available ()">cogl_features_available</a>             (<a class="link" href="cogl-Utility-API.html#CoglFeatureFlags" title="enum CoglFeatureFlags">CoglFeatureFlags</a> features);
+
+<a class="link" href="cogl-Utility-API.html#CoglFuncPtr" title="CoglFuncPtr ()">CoglFuncPtr</a>         <a class="link" href="cogl-Utility-API.html#cogl-get-proc-address" title="cogl_get_proc_address ()">cogl_get_proc_address</a>               (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="cogl-Utility-API.html#cogl-check-extension" title="cogl_check_extension ()">cogl_check_extension</a>                (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *ext);
+void                <a class="link" href="cogl-Utility-API.html#cogl-get-bitmasks" title="cogl_get_bitmasks ()">cogl_get_bitmasks</a>                   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *red,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *green,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *blue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *alpha);
+void                <a class="link" href="cogl-Utility-API.html#cogl-paint-init" title="cogl_paint_init ()">cogl_paint_init</a>                     (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *color);
+
+int                 <a class="link" href="cogl-Utility-API.html#cogl-util-next-p2" title="cogl_util_next_p2 ()">cogl_util_next_p2</a>                   (int a);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Utility-API.description"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Utility-API.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="cogl-create-context"></a><h3>cogl_create_context ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cogl_create_context                 (void);</pre>
+<p>
+FIXME</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-destroy-context"></a><h3>cogl_destroy_context ()</h3>
+<pre class="programlisting">void                cogl_destroy_context                (void);</pre>
+<p>
+FIXME</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-INVALID-HANDLE:CAPS"></a><h3>COGL_INVALID_HANDLE</h3>
+<pre class="programlisting">#define COGL_INVALID_HANDLE NULL
+</pre>
+<p>
+A COGL handle that is not valid, used for unitialized handles as well as
+error conditions.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CoglHandle"></a><h3>CoglHandle</h3>
+<pre class="programlisting">typedef gpointer CoglHandle;
+</pre>
+<p>
+Type used for storing references to cogl objects, the CoglHandle is
+a fully opaque type without any public data members.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CoglFuncPtr"></a><h3>CoglFuncPtr ()</h3>
+<pre class="programlisting">void                (*CoglFuncPtr)                      (void);</pre>
+<p>
+The type used by cogl for function pointers, note that this type
+is used as a generic catch-all cast for function pointers and the
+actual arguments and return type may be different.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CoglFeatureFlags"></a><h3>enum CoglFeatureFlags</h3>
+<pre class="programlisting">typedef enum
+{
+  COGL_FEATURE_TEXTURE_RECTANGLE      = (1 &lt;&lt; 1),
+  COGL_FEATURE_TEXTURE_NPOT           = (1 &lt;&lt; 2),
+  COGL_FEATURE_TEXTURE_YUV            = (1 &lt;&lt; 3),
+  COGL_FEATURE_TEXTURE_READ_PIXELS    = (1 &lt;&lt; 4),
+  COGL_FEATURE_SHADERS_GLSL           = (1 &lt;&lt; 5),
+  COGL_FEATURE_OFFSCREEN              = (1 &lt;&lt; 6),
+  COGL_FEATURE_OFFSCREEN_MULTISAMPLE  = (1 &lt;&lt; 7),
+  COGL_FEATURE_OFFSCREEN_BLIT         = (1 &lt;&lt; 8),
+  COGL_FEATURE_FOUR_CLIP_PLANES       = (1 &lt;&lt; 9),
+  COGL_FEATURE_STENCIL_BUFFER         = (1 &lt;&lt; 10)
+
+} CoglFeatureFlags;
+</pre>
+<p>
+Flags for the supported features.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-features"></a><h3>cogl_get_features ()</h3>
+<pre class="programlisting">ClutterFeatureFlags cogl_get_features                   (void);</pre>
+<p>
+Returns all of the features supported by COGL.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A logical OR of all the supported COGL features.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-features-available"></a><h3>cogl_features_available ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cogl_features_available             (<a class="link" href="cogl-Utility-API.html#CoglFeatureFlags" title="enum CoglFeatureFlags">CoglFeatureFlags</a> features);</pre>
+<p>
+Checks whether the given COGL features are available. Multiple
+features can be checked for by or-ing them together with the '|'
+operator. <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> is only returned if all of the requested features
+are available.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>features</code></em> :</span></p></td>
+<td> A bitmask of features to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the features are available, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-proc-address"></a><h3>cogl_get_proc_address ()</h3>
+<pre class="programlisting"><a class="link" href="cogl-Utility-API.html#CoglFuncPtr" title="CoglFuncPtr ()">CoglFuncPtr</a>         cogl_get_proc_address               (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name);</pre>
+<p>
+Gets a pointer to a given GL or GL ES extension function. This acts
+as a wrapper around <code class="function">glXGetProcAddress()</code> or whatever is the
+appropriate function for the current backend.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> the name of the function.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a pointer to the requested function or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the
+function is not available.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-check-extension"></a><h3>cogl_check_extension ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cogl_check_extension                (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *ext);</pre>
+<p>
+Check whether <em class="parameter"><code>name</code></em> occurs in list of extensions in <em class="parameter"><code>ext</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> extension to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ext</code></em> :</span></p></td>
+<td> list of extensions
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the extension occurs in the list, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwize.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-bitmasks"></a><h3>cogl_get_bitmasks ()</h3>
+<pre class="programlisting">void                cogl_get_bitmasks                   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *red,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *green,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *blue,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *alpha);</pre>
+<p>
+Gets the number of bitplanes used for each of the color components
+in the color buffer. Pass <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for any of the arguments if the
+value is not required.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>red</code></em> :</span></p></td>
+<td> Return location for the number of red bits or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>green</code></em> :</span></p></td>
+<td> Return location for the number of green bits or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>blue</code></em> :</span></p></td>
+<td> Return location for the number of blue bits or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> Return location for the number of alpha bits or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-paint-init"></a><h3>cogl_paint_init ()</h3>
+<pre class="programlisting">void                cogl_paint_init                     (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *color);</pre>
+<p>
+Clears the color buffer to <em class="parameter"><code>color</code></em>. The depth buffer and stencil
+buffers are also cleared and fogging and lighting are disabled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> Background color to clear to
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-util-next-p2"></a><h3>cogl_util_next_p2 ()</h3>
+<pre class="programlisting">int                 cogl_util_next_p2                   (int a);</pre>
+<p>
+Calculates the next power greater than <em class="parameter"><code>a</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> Value to get the next power
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The next power after <em class="parameter"><code>a</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,1137 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Events">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Events.top_of_page">Events</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Events</refname>
+<refpurpose>User and window system events</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Events.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="CLUTTER-CURRENT-TIME:CAPS">CLUTTER_CURRENT_TIME</link>
+#define             <link linkend="CLUTTER-PRIORITY-EVENTS:CAPS">CLUTTER_PRIORITY_EVENTS</link>
+enum                <link linkend="ClutterModifierType">ClutterModifierType</link>;
+enum                <link linkend="ClutterScrollDirection">ClutterScrollDirection</link>;
+enum                <link linkend="ClutterStageState">ClutterStageState</link>;
+enum                <link linkend="ClutterEventType">ClutterEventType</link>;
+union               <link linkend="ClutterEvent">ClutterEvent</link>;
+enum                <link linkend="ClutterEventFlags">ClutterEventFlags</link>;
+                    <link linkend="ClutterButtonEvent">ClutterButtonEvent</link>;
+                    <link linkend="ClutterKeyEvent">ClutterKeyEvent</link>;
+                    <link linkend="ClutterMotionEvent">ClutterMotionEvent</link>;
+                    <link linkend="ClutterScrollEvent">ClutterScrollEvent</link>;
+                    <link linkend="ClutterStageStateEvent">ClutterStageStateEvent</link>;
+                    <link linkend="ClutterCrossingEvent">ClutterCrossingEvent</link>;
+                    <link linkend="ClutterInputDevice">ClutterInputDevice</link>;
+<link linkend="ClutterEvent">ClutterEvent</link>*       <link linkend="clutter-event-new">clutter_event_new</link>                   (<link linkend="ClutterEventType">ClutterEventType</link> type);
+<link linkend="ClutterEvent">ClutterEvent</link>*       <link linkend="clutter-event-copy">clutter_event_copy</link>                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="void">void</link>                <link linkend="clutter-event-free">clutter_event_free</link>                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="ClutterEventType">ClutterEventType</link>    <link linkend="clutter-event-type">clutter_event_type</link>                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+
+<link linkend="void">void</link>                <link linkend="clutter-event-get-coords">clutter_event_get_coords</link>            (<link linkend="ClutterEvent">ClutterEvent</link> *event,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y);
+<link linkend="ClutterModifierType">ClutterModifierType</link> <link linkend="clutter-event-get-state">clutter_event_get_state</link>             (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="guint32">guint32</link>             <link linkend="clutter-event-get-time">clutter_event_get_time</link>              (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-event-get-source">clutter_event_get_source</link>            (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="ClutterStage">ClutterStage</link>*       <link linkend="clutter-event-get-stage">clutter_event_get_stage</link>             (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+
+<link linkend="ClutterEvent">ClutterEvent</link>*       <link linkend="clutter-event-get">clutter_event_get</link>                   (void);
+<link linkend="ClutterEvent">ClutterEvent</link>*       <link linkend="clutter-event-peek">clutter_event_peek</link>                  (void);
+<link linkend="void">void</link>                <link linkend="clutter-event-put">clutter_event_put</link>                   (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-events-pending">clutter_events_pending</link>              (void);
+
+<link linkend="guint32">guint32</link>             <link linkend="clutter-button-event-button">clutter_button_event_button</link>         (<link linkend="ClutterButtonEvent">ClutterButtonEvent</link> *buttev);
+
+<link linkend="guint">guint</link>               <link linkend="clutter-key-event-symbol">clutter_key_event_symbol</link>            (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);
+<link linkend="guint16">guint16</link>             <link linkend="clutter-key-event-code">clutter_key_event_code</link>              (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);
+<link linkend="guint32">guint32</link>             <link linkend="clutter-key-event-unicode">clutter_key_event_unicode</link>           (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);
+<link linkend="guint32">guint32</link>             <link linkend="clutter-keysym-to-unicode">clutter_keysym_to_unicode</link>           (<link linkend="guint">guint</link> keyval);
+
+<link linkend="gint">gint</link>                <link linkend="clutter-event-get-device-id">clutter_event_get_device_id</link>         (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+<link linkend="ClutterInputDevice">ClutterInputDevice</link>* <link linkend="clutter-get-input-device-for-id">clutter_get_input_device_for_id</link>     (<link linkend="gint">gint</link> id);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Events.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Windowing events handled by Clutter.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Events.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CLUTTER-CURRENT-TIME:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_CURRENT_TIME</title>
+<indexterm zone="CLUTTER-CURRENT-TIME:CAPS" role="0.4"><primary>CLUTTER_CURRENT_TIME</primary></indexterm><programlisting>#define CLUTTER_CURRENT_TIME    0L
+</programlisting>
+<para>
+Default value for "now".</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-PRIORITY-EVENTS:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_PRIORITY_EVENTS</title>
+<indexterm zone="CLUTTER-PRIORITY-EVENTS:CAPS" role="0.4"><primary>CLUTTER_PRIORITY_EVENTS</primary></indexterm><programlisting>#define CLUTTER_PRIORITY_EVENTS (G_PRIORITY_DEFAULT)
+</programlisting>
+<para>
+Priority for event handling.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterModifierType" role="enum" condition="since:0.4">
+<title>enum ClutterModifierType</title>
+<indexterm zone="ClutterModifierType" role="0.4"><primary>ClutterModifierType</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_SHIFT_MASK    = 1 &lt;&lt; 0,
+  CLUTTER_LOCK_MASK     = 1 &lt;&lt; 1,
+  CLUTTER_CONTROL_MASK  = 1 &lt;&lt; 2,
+  CLUTTER_MOD1_MASK     = 1 &lt;&lt; 3,
+  CLUTTER_MOD2_MASK     = 1 &lt;&lt; 4,
+  CLUTTER_MOD3_MASK     = 1 &lt;&lt; 5,
+  CLUTTER_MOD4_MASK     = 1 &lt;&lt; 6,
+  CLUTTER_MOD5_MASK     = 1 &lt;&lt; 7,
+  CLUTTER_BUTTON1_MASK  = 1 &lt;&lt; 8,
+  CLUTTER_BUTTON2_MASK  = 1 &lt;&lt; 9,
+  CLUTTER_BUTTON3_MASK  = 1 &lt;&lt; 10,
+  CLUTTER_BUTTON4_MASK  = 1 &lt;&lt; 11,
+  CLUTTER_BUTTON5_MASK  = 1 &lt;&lt; 12
+} ClutterModifierType;
+</programlisting>
+<para>
+Masks applied to a <link linkend="ClutterEvent"><type>ClutterEvent</type></link> by modifiers.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-SHIFT-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_SHIFT_MASK</literal></term>
+<listitem><simpara> Mask applied by the Shift key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-LOCK-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_LOCK_MASK</literal></term>
+<listitem><simpara> Mask applied by the Caps Lock key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-CONTROL-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_CONTROL_MASK</literal></term>
+<listitem><simpara> Mask applied by the Control key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOD1-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_MOD1_MASK</literal></term>
+<listitem><simpara> Mask applied by the first Mod key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOD2-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_MOD2_MASK</literal></term>
+<listitem><simpara> Mask applied by the second Mod key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOD3-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_MOD3_MASK</literal></term>
+<listitem><simpara> Mask applied by the third Mod key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOD4-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_MOD4_MASK</literal></term>
+<listitem><simpara> Mask applied by the fourth Mod key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOD5-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_MOD5_MASK</literal></term>
+<listitem><simpara> Mask applied by the fifth Mod key
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON1-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON1_MASK</literal></term>
+<listitem><simpara> Mask applied by the first pointer button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON2-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON2_MASK</literal></term>
+<listitem><simpara> Mask applied by the second pointer button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON3-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON3_MASK</literal></term>
+<listitem><simpara> Mask applied by the third pointer button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON4-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON4_MASK</literal></term>
+<listitem><simpara> Mask applied by the fourth pointer button
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON5-MASK:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON5_MASK</literal></term>
+<listitem><simpara> Mask applied by the fifth pointer button
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterScrollDirection" role="enum" condition="since:0.4">
+<title>enum ClutterScrollDirection</title>
+<indexterm zone="ClutterScrollDirection" role="0.4"><primary>ClutterScrollDirection</primary></indexterm><programlisting>typedef enum
+{
+  CLUTTER_SCROLL_UP,
+  CLUTTER_SCROLL_DOWN,
+  CLUTTER_SCROLL_LEFT,
+  CLUTTER_SCROLL_RIGHT
+} ClutterScrollDirection;
+</programlisting>
+<para>
+Direction of a pointer scroll event.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-SCROLL-UP:CAPS" role="constant">
+<term><literal>CLUTTER_SCROLL_UP</literal></term>
+<listitem><simpara> Scroll up
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCROLL-DOWN:CAPS" role="constant">
+<term><literal>CLUTTER_SCROLL_DOWN</literal></term>
+<listitem><simpara> Scroll down
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCROLL-LEFT:CAPS" role="constant">
+<term><literal>CLUTTER_SCROLL_LEFT</literal></term>
+<listitem><simpara> Scroll left
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCROLL-RIGHT:CAPS" role="constant">
+<term><literal>CLUTTER_SCROLL_RIGHT</literal></term>
+<listitem><simpara> Scroll right
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterStageState" role="enum" condition="since:0.4">
+<title>enum ClutterStageState</title>
+<indexterm zone="ClutterStageState" role="0.4"><primary>ClutterStageState</primary></indexterm><programlisting>typedef enum
+{
+  CLUTTER_STAGE_STATE_FULLSCREEN       = (1&lt;&lt;1),
+  CLUTTER_STAGE_STATE_OFFSCREEN        = (1&lt;&lt;2),
+  CLUTTER_STAGE_STATE_ACTIVATED        = (1&lt;&lt;3)
+} ClutterStageState;
+</programlisting>
+<para>
+Stage state masks</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-STAGE-STATE-FULLSCREEN:CAPS" role="constant">
+<term><literal>CLUTTER_STAGE_STATE_FULLSCREEN</literal></term>
+<listitem><simpara> Fullscreen mask
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-STAGE-STATE-OFFSCREEN:CAPS" role="constant">
+<term><literal>CLUTTER_STAGE_STATE_OFFSCREEN</literal></term>
+<listitem><simpara> Offscreen mask
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-STAGE-STATE-ACTIVATED:CAPS" role="constant">
+<term><literal>CLUTTER_STAGE_STATE_ACTIVATED</literal></term>
+<listitem><simpara> Activated mask
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterEventType" role="enum" condition="since:0.4">
+<title>enum ClutterEventType</title>
+<indexterm zone="ClutterEventType" role="0.4"><primary>ClutterEventType</primary></indexterm><programlisting>typedef enum 
+{
+  CLUTTER_NOTHING = 0,
+  CLUTTER_KEY_PRESS,
+  CLUTTER_KEY_RELEASE,
+  CLUTTER_MOTION,
+  CLUTTER_ENTER,
+  CLUTTER_LEAVE,
+  CLUTTER_BUTTON_PRESS,
+  CLUTTER_BUTTON_RELEASE,
+  CLUTTER_SCROLL,
+  CLUTTER_STAGE_STATE,
+  CLUTTER_DESTROY_NOTIFY,
+  CLUTTER_CLIENT_MESSAGE,
+  CLUTTER_DELETE
+} ClutterEventType;
+</programlisting>
+<para>
+Types of events.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-NOTHING:CAPS" role="constant">
+<term><literal>CLUTTER_NOTHING</literal></term>
+<listitem><simpara> Empty event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-KEY-PRESS:CAPS" role="constant">
+<term><literal>CLUTTER_KEY_PRESS</literal></term>
+<listitem><simpara> Key press event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-KEY-RELEASE:CAPS" role="constant">
+<term><literal>CLUTTER_KEY_RELEASE</literal></term>
+<listitem><simpara> Key release event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-MOTION:CAPS" role="constant">
+<term><literal>CLUTTER_MOTION</literal></term>
+<listitem><simpara> Pointer motion event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-ENTER:CAPS" role="constant">
+<term><literal>CLUTTER_ENTER</literal></term>
+<listitem><simpara> Actor enter event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-LEAVE:CAPS" role="constant">
+<term><literal>CLUTTER_LEAVE</literal></term>
+<listitem><simpara> Actor leave event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON-PRESS:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON_PRESS</literal></term>
+<listitem><simpara> Pointer button press event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-BUTTON-RELEASE:CAPS" role="constant">
+<term><literal>CLUTTER_BUTTON_RELEASE</literal></term>
+<listitem><simpara> Pointer button release event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCROLL:CAPS" role="constant">
+<term><literal>CLUTTER_SCROLL</literal></term>
+<listitem><simpara> Pointer scroll event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-STAGE-STATE:CAPS" role="constant">
+<term><literal>CLUTTER_STAGE_STATE</literal></term>
+<listitem><simpara> Stage stage change event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-DESTROY-NOTIFY:CAPS" role="constant">
+<term><literal>CLUTTER_DESTROY_NOTIFY</literal></term>
+<listitem><simpara> Destroy notification event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-CLIENT-MESSAGE:CAPS" role="constant">
+<term><literal>CLUTTER_CLIENT_MESSAGE</literal></term>
+<listitem><simpara> Client message event
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-DELETE:CAPS" role="constant">
+<term><literal>CLUTTER_DELETE</literal></term>
+<listitem><simpara> Stage delete event
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterEvent" role="union" condition="since:0.2">
+<title>union ClutterEvent</title>
+<indexterm zone="ClutterEvent" role="0.2"><primary>ClutterEvent</primary></indexterm><programlisting>union ClutterEvent
+{
+  ClutterEventType type;
+
+  ClutterAnyEvent any;
+  ClutterButtonEvent button;
+  ClutterKeyEvent key;
+  ClutterMotionEvent motion;
+  ClutterScrollEvent scroll;
+  ClutterStageStateEvent stage_state;
+  ClutterCrossingEvent crossing;
+};
+</programlisting>
+<para>
+Generic event wrapper.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterEventFlags" role="enum" condition="since:0.6">
+<title>enum ClutterEventFlags</title>
+<indexterm zone="ClutterEventFlags" role="0.6"><primary>ClutterEventFlags</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_EVENT_FLAG_SYNTHETIC = 1 &lt;&lt; 0,
+} ClutterEventFlags;
+</programlisting>
+<para>
+Flags for the <link linkend="ClutterEvent"><type>ClutterEvent</type></link></para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-EVENT-FLAG-SYNTHETIC:CAPS" role="constant">
+<term><literal>CLUTTER_EVENT_FLAG_SYNTHETIC</literal></term>
+<listitem><simpara> Synthetic event
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterButtonEvent" role="struct" condition="since:0.2">
+<title>ClutterButtonEvent</title>
+<indexterm zone="ClutterButtonEvent" role="0.2"><primary>ClutterButtonEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source;
+  gint x;
+  gint y;
+  ClutterModifierType modifier_state;
+  guint32 button;
+  guint click_count;
+  gdouble *axes; /* Future use */
+  ClutterInputDevice *device; /* Future use */
+} ClutterButtonEvent;
+</programlisting>
+<para>
+Button event</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> event X coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> event Y coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterModifierType">ClutterModifierType</link>&nbsp;<structfield>modifier_state</structfield>;</term>
+<listitem><simpara> button modifiers
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>button</structfield>;</term>
+<listitem><simpara> event button
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&nbsp;<structfield>click_count</structfield>;</term>
+<listitem><simpara> number of button presses within the default time
+  and radius
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gdouble">gdouble</link>&nbsp;*<structfield>axes</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterInputDevice">ClutterInputDevice</link>&nbsp;*<structfield>device</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterKeyEvent" role="struct" condition="since:0.2">
+<title>ClutterKeyEvent</title>
+<indexterm zone="ClutterKeyEvent" role="0.2"><primary>ClutterKeyEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source;
+  ClutterModifierType modifier_state;
+  guint keyval;
+  guint16 hardware_keycode;
+  gunichar unicode_value;
+} ClutterKeyEvent;
+</programlisting>
+<para>
+Key event</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterModifierType">ClutterModifierType</link>&nbsp;<structfield>modifier_state</structfield>;</term>
+<listitem><simpara> key modifiers
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint">guint</link>&nbsp;<structfield>keyval</structfield>;</term>
+<listitem><simpara> raw key value
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint16">guint16</link>&nbsp;<structfield>hardware_keycode</structfield>;</term>
+<listitem><simpara> raw hardware key value
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gunichar">gunichar</link>&nbsp;<structfield>unicode_value</structfield>;</term>
+<listitem><simpara> Unicode representation
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterMotionEvent" role="struct" condition="since:0.2">
+<title>ClutterMotionEvent</title>
+<indexterm zone="ClutterMotionEvent" role="0.2"><primary>ClutterMotionEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source;
+  gint x;
+  gint y;
+  ClutterModifierType modifier_state;
+  gdouble *axes; /* Future use */
+  ClutterInputDevice *device; /* Future use */
+} ClutterMotionEvent;
+</programlisting>
+<para>
+Event for the pointer motion</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> event X coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> event Y coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterModifierType">ClutterModifierType</link>&nbsp;<structfield>modifier_state</structfield>;</term>
+<listitem><simpara> button modifiers
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gdouble">gdouble</link>&nbsp;*<structfield>axes</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterInputDevice">ClutterInputDevice</link>&nbsp;*<structfield>device</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterScrollEvent" role="struct" condition="since:0.2">
+<title>ClutterScrollEvent</title>
+<indexterm zone="ClutterScrollEvent" role="0.2"><primary>ClutterScrollEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source;
+  gint x;
+  gint y;
+  ClutterScrollDirection direction;
+  ClutterModifierType modifier_state;
+  gdouble *axes; /* future use */
+  ClutterInputDevice *device; /* future use */
+} ClutterScrollEvent;
+</programlisting>
+<para>
+Scroll wheel (or similar device) event</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> event X coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> event Y coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterScrollDirection">ClutterScrollDirection</link>&nbsp;<structfield>direction</structfield>;</term>
+<listitem><simpara> direction of the scrolling
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterModifierType">ClutterModifierType</link>&nbsp;<structfield>modifier_state</structfield>;</term>
+<listitem><simpara> button modifiers
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gdouble">gdouble</link>&nbsp;*<structfield>axes</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterInputDevice">ClutterInputDevice</link>&nbsp;*<structfield>device</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterStageStateEvent" role="struct" condition="since:0.2">
+<title>ClutterStageStateEvent</title>
+<indexterm zone="ClutterStageStateEvent" role="0.2"><primary>ClutterStageStateEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source; /* unused XXX: should probably be the stage itself */
+  ClutterStageState changed_mask;
+  ClutterStageState new_state;
+} ClutterStageStateEvent;
+</programlisting>
+<para>
+Event signalling a change in the <link linkend="ClutterStage"><type>ClutterStage</type></link> state.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor (unused)
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStageState">ClutterStageState</link>&nbsp;<structfield>changed_mask</structfield>;</term>
+<listitem><simpara> bitwise OR of the changed flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStageState">ClutterStageState</link>&nbsp;<structfield>new_state</structfield>;</term>
+<listitem><simpara> bitwise OR of the current state flags
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterCrossingEvent" role="struct" condition="since:0.2">
+<title>ClutterCrossingEvent</title>
+<indexterm zone="ClutterCrossingEvent" role="0.2"><primary>ClutterCrossingEvent</primary></indexterm><programlisting>typedef struct {
+  ClutterEventType type;
+  guint32 time;
+  ClutterEventFlags flags;
+  ClutterStage *stage;
+  ClutterActor *source;
+  gint x;
+  gint y;
+  ClutterInputDevice *device; /* future use */
+  ClutterActor *related;
+} ClutterCrossingEvent;
+</programlisting>
+<para>
+Event for the movement of the pointer across different actors</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterEventType">ClutterEventType</link>&nbsp;<structfield>type</structfield>;</term>
+<listitem><simpara> event type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>time</structfield>;</term>
+<listitem><simpara> event time
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterEventFlags">ClutterEventFlags</link>&nbsp;<structfield>flags</structfield>;</term>
+<listitem><simpara> event flags
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterStage">ClutterStage</link>&nbsp;*<structfield>stage</structfield>;</term>
+<listitem><simpara> event source stage
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>source</structfield>;</term>
+<listitem><simpara> event source actor
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> event X coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> event Y coordinate
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterInputDevice">ClutterInputDevice</link>&nbsp;*<structfield>device</structfield>;</term>
+<listitem><simpara> reserved for future use
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterActor">ClutterActor</link>&nbsp;*<structfield>related</structfield>;</term>
+<listitem><simpara> actor related to the crossing
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterInputDevice" role="struct">
+<title>ClutterInputDevice</title>
+<indexterm zone="ClutterInputDevice"><primary>ClutterInputDevice</primary></indexterm><programlisting>typedef struct _ClutterInputDevice ClutterInputDevice;</programlisting>
+<para>
+Generic representation of an input device. The
+actual contents of this structure depend on the
+backend used.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-event-new" role="function">
+<title>clutter_event_new ()</title>
+<indexterm zone="clutter-event-new"><primary>clutter_event_new</primary></indexterm><programlisting><link linkend="ClutterEvent">ClutterEvent</link>*       clutter_event_new                   (<link linkend="ClutterEventType">ClutterEventType</link> type);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEvent"><type>ClutterEvent</type></link> of the specified type.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> The type of event.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly allocated <link linkend="ClutterEvent"><type>ClutterEvent</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-event-copy" role="function">
+<title>clutter_event_copy ()</title>
+<indexterm zone="clutter-event-copy"><primary>clutter_event_copy</primary></indexterm><programlisting><link linkend="ClutterEvent">ClutterEvent</link>*       clutter_event_copy                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Copies <parameter>event</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEvent"><type>ClutterEvent</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly allocated <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-event-free" role="function">
+<title>clutter_event_free ()</title>
+<indexterm zone="clutter-event-free"><primary>clutter_event_free</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_event_free                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Frees all resources used by <parameter>event</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEvent"><type>ClutterEvent</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-event-type" role="function">
+<title>clutter_event_type ()</title>
+<indexterm zone="clutter-event-type"><primary>clutter_event_type</primary></indexterm><programlisting><link linkend="ClutterEventType">ClutterEventType</link>    clutter_event_type                  (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the type of the event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterEventType"><type>ClutterEventType</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-event-get-coords" role="function" condition="since:0.4">
+<title>clutter_event_get_coords ()</title>
+<indexterm zone="clutter-event-get-coords" role="0.4"><primary>clutter_event_get_coords</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_event_get_coords            (<link linkend="ClutterEvent">ClutterEvent</link> *event,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y);</programlisting>
+<para>
+Retrieves the coordinates of <parameter>event</parameter> and puts them into <parameter>x</parameter> and <parameter>y</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the X coordinate
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the Y coordinate
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-event-get-state" role="function" condition="since:0.4">
+<title>clutter_event_get_state ()</title>
+<indexterm zone="clutter-event-get-state" role="0.4"><primary>clutter_event_get_state</primary></indexterm><programlisting><link linkend="ClutterModifierType">ClutterModifierType</link> clutter_event_get_state             (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the modifier state of the event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the modifier state parameter, or 0
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-event-get-time" role="function" condition="since:0.4">
+<title>clutter_event_get_time ()</title>
+<indexterm zone="clutter-event-get-time" role="0.4"><primary>clutter_event_get_time</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_event_get_time              (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the time of the event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the time of the event, or <link linkend="CLUTTER-CURRENT-TIME:CAPS"><literal>CLUTTER_CURRENT_TIME</literal></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-event-get-source" role="function" condition="since:0.6">
+<title>clutter_event_get_source ()</title>
+<indexterm zone="clutter-event-get-source" role="0.6"><primary>clutter_event_get_source</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_event_get_source            (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the source <link linkend="ClutterActor"><type>ClutterActor</type></link> the event originated from, or
+NULL if the event has no source.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-event-get-stage" role="function" condition="since:0.8">
+<title>clutter_event_get_stage ()</title>
+<indexterm zone="clutter-event-get-stage" role="0.8"><primary>clutter_event_get_stage</primary></indexterm><programlisting><link linkend="ClutterStage">ClutterStage</link>*       clutter_event_get_stage             (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the source <link linkend="ClutterStage"><type>ClutterStage</type></link> the event originated for, or
+NULL if the event has no stage.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterStage"><type>ClutterStage</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-event-get" role="function" condition="since:0.4">
+<title>clutter_event_get ()</title>
+<indexterm zone="clutter-event-get" role="0.4"><primary>clutter_event_get</primary></indexterm><programlisting><link linkend="ClutterEvent">ClutterEvent</link>*       clutter_event_get                   (void);</programlisting>
+<para>
+Pops an event off the event queue. Applications should not need to call 
+this.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="ClutterEvent"><type>ClutterEvent</type></link> or NULL if queue empty
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-event-peek" role="function" condition="since:0.4">
+<title>clutter_event_peek ()</title>
+<indexterm zone="clutter-event-peek" role="0.4"><primary>clutter_event_peek</primary></indexterm><programlisting><link linkend="ClutterEvent">ClutterEvent</link>*       clutter_event_peek                  (void);</programlisting>
+<para>
+Returns a pointer to the first event from the event queue but 
+does not remove it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="ClutterEvent"><type>ClutterEvent</type></link> or NULL if queue empty.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-event-put" role="function" condition="since:0.6">
+<title>clutter_event_put ()</title>
+<indexterm zone="clutter-event-put" role="0.6"><primary>clutter_event_put</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_event_put                   (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Puts a copy of the event on the back of the event queue. The event will have
+the <link linkend="CLUTTER-EVENT-FLAG-SYNTHETIC:CAPS"><type>CLUTTER_EVENT_FLAG_SYNTHETIC</type></link> flag set. If the source is set event
+signals will be emitted for this source and capture/bubbling for it's
+ancestors. If the source is not set it will be generated by picking or use
+the actor that currently has keyboard focus.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-events-pending" role="function" condition="since:0.4">
+<title>clutter_events_pending ()</title>
+<indexterm zone="clutter-events-pending" role="0.4"><primary>clutter_events_pending</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_events_pending              (void);</programlisting>
+<para>
+Checks if events are pending in the event queue.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if there are pending events, FALSE otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-button-event-button" role="function" condition="since:0.4">
+<title>clutter_button_event_button ()</title>
+<indexterm zone="clutter-button-event-button" role="0.4"><primary>clutter_button_event_button</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_button_event_button         (<link linkend="ClutterButtonEvent">ClutterButtonEvent</link> *buttev);</programlisting>
+<para>
+Retrieve the button number of the event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buttev</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterButtonEvent"><type>ClutterButtonEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the button number.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-key-event-symbol" role="function">
+<title>clutter_key_event_symbol ()</title>
+<indexterm zone="clutter-key-event-symbol"><primary>clutter_key_event_symbol</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_key_event_symbol            (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);</programlisting>
+<para>
+Retrieves the value of the key that caused <parameter>keyev</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyev</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterKeyEvent"><type>ClutterKeyEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The keysym representing the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-key-event-code" role="function">
+<title>clutter_key_event_code ()</title>
+<indexterm zone="clutter-key-event-code"><primary>clutter_key_event_code</primary></indexterm><programlisting><link linkend="guint16">guint16</link>             clutter_key_event_code              (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);</programlisting>
+<para>
+Retrieves the keycode of the key that caused <parameter>keyev</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyev</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterKeyEvent"><type>ClutterKeyEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The keycode representing the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-key-event-unicode" role="function">
+<title>clutter_key_event_unicode ()</title>
+<indexterm zone="clutter-key-event-unicode"><primary>clutter_key_event_unicode</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_key_event_unicode           (<link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *keyev);</programlisting>
+<para>
+Retrieves the unicode value for the key that caused <parameter>keyev</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyev</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterKeyEvent"><type>ClutterKeyEvent</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The unicode value representing the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-keysym-to-unicode" role="function">
+<title>clutter_keysym_to_unicode ()</title>
+<indexterm zone="clutter-keysym-to-unicode"><primary>clutter_keysym_to_unicode</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_keysym_to_unicode           (<link linkend="guint">guint</link> keyval);</programlisting>
+<para>
+Convert from a Clutter key symbol to the corresponding ISO10646 (Unicode)
+character.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyval</parameter>&nbsp;:</term>
+<listitem><simpara> a clutter key symbol 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the corresponding unicode character, or 0 if there
+              is no corresponding character.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-event-get-device-id" role="function">
+<title>clutter_event_get_device_id ()</title>
+<indexterm zone="clutter-event-get-device-id"><primary>clutter_event_get_device_id</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_event_get_device_id         (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Retrieves the events device id if set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a clutter event 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A unique identifier for the device or -1 if the event has
+              no specific device set.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-get-input-device-for-id" role="function" condition="since:0.8">
+<title>clutter_get_input_device_for_id ()</title>
+<indexterm zone="clutter-get-input-device-for-id" role="0.8"><primary>clutter_get_input_device_for_id</primary></indexterm><programlisting><link linkend="ClutterInputDevice">ClutterInputDevice</link>* clutter_get_input_device_for_id     (<link linkend="gint">gint</link> id);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterInputDevice"><type>ClutterInputDevice</type></link> from its id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> a device id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterInputDevice"><type>ClutterInputDevice</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

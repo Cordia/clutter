@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Timelines</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="prev" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="next" href="clutter-animation-behaviours.html" title="Behaviours">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="clutter-animations.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="clutter-animations.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-animation-behaviours.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="clutter-animation-timelines"></a>Timelines</h2></div></div></div>
+<p>
+  #ClutterTimelines abstract a set period of time with a set frame
+  rate at which to call a provided callback.
+  </p>
+<p>
+  #ClutterTimelines also extend the timeout sources functionality
+  further by:
+  </p>
+<div class="orderedlist"><ol type="1">
+<li><p>Having a set duration (in milliseconds) and a set
+    'frame rate' - that is, the rate at which the callback is
+    called</p></li>
+<li><p>Passing current progress information to the
+    callback</p></li>
+<li><p>Handling 'dropped frames' and guarenteeing the set
+    duration by skipping over frames if the callback cannot keep up with
+    the set frame rate</p></li>
+<li><p>Querying the number of milliseconds elapsed between
+    the current and previous callback.</p></li>
+<li><p>Allowing the timeline to be modified on the fly as
+    well as being stopped, started, looped, rewound and
+    reversed</p></li>
+<li><p>Using a #ClutterTimeoutPool to more efficiently
+    schedule multiple timeout sources without incurring in potential
+    starvation of the main loop slices</p></li>
+</ol></div>
+<p>
+  A Timeline is created with;
+  </p>
+<pre class="programlisting">
+clutter_timeline_new (n_frames, frames_per_seconds); 
+  </pre>
+<p>
+  Taking a number of frames and a frames per second, or by;
+  </p>
+<pre class="programlisting">
+clutter_timeline_new_for_duration (msecs);
+  </pre>
+<p>
+  Which takes the duration of the timeline in milliseconds with a
+  default frame rate (See clutter_get_default_frame_rate()).
+  </p>
+<p>
+ 
+  The speed, duration and number of frames of the timeline then be
+  modifed via the objects properties and API calls. The timeline can
+  be made to loop by settings it "loop" property to %TRUE.
+
+  </p>
+<p>
+
+  The timelines is started via clutter_timeline_start() and its
+  playback further manipulated by the clutter_timeline_pause(),
+  clutter_timeline_stop(), clutter_timeline_rewind() and
+  clutter_timeline_skip() calls.
+
+  </p>
+<p>
+
+  By attaching a handler to the timeline's ClutterTimeline::new-frame
+  signal a timeline can then be used to drive an animation by altering
+  an actor's visual properties in this callback. The callback looks like:
+
+  </p>
+<pre class="programlisting">
+void
+on_new_frame (ClutterTimeline *timeline,
+              gint             frame_num,
+              gpointer         user_data)
+{
+
+}
+  </pre>
+<p>
+
+  The <code class="literal">frame_num</code> parameter is set to the timeline's
+  current frame number (which is between 0 and the "num-frames" property).
+  This value can be used to compute the state of a particular animation
+  that is dependant on the frame numer. The clutter_timeline_get_progress()
+  function can also be used to get a normalised value of the timeline's
+  current position between 0 and 1.
+
+  </p>
+<p>
+
+  Timelines can also be played in reverse by setting the direction using
+  clutter_timeline_set_direction(), and can also have a one-time delay set
+  before they begin playing by using clutter_timeline_set_delay().
+
+  </p>
+<p>
+
+  Timelines can also control a pyshical simulation; the
+  clutter_timeline_get_delta() function allows retrieving the number of
+  frames and milliseconds elapsed since the previous callback to ensure
+  the physics engine to be able to take the actual time elapsed between
+  iterations into account.
+
+  </p>
+<div class="example">
+<a name="clutter-timeline-example"></a><p class="title"><b>Example 9. </b></p>
+<div class="example-contents">
+<p>
+  The following example demonstrates rotating an actor with a timeline.
+  </p>
+<pre class="programlisting">
+#include &lt;clutter/clutter.h&gt;
+
+void
+on_new_frame (ClutterTimeline *timeline, 
+	      gint             frame_num, 
+	      gpointer         data)
+{
+  ClutterActor *actor = CLUTTER_ACTOR(data);
+
+  clutter_actor_set_rotation (actor, CLUTTER_Z_AXIS,
+                              (gdouble) frame_num,
+                              clutter_actor_get_width (actor) / 2,
+			      clutter_actor_get_height (actor) / 2,
+                              0);
+}
+
+int
+main (int argc, char *argv[])
+{
+  ClutterTimeline *timeline;
+
+  ClutterActor    *stage, *actor;
+  GdkPixbuf       *pixbuf;
+
+  clutter_init (&amp;argc, &amp;argv);
+
+  stage = clutter_stage_get_default ();
+
+  pixbuf = gdk_pixbuf_new_from_file ("an-image.png", NULL);
+
+  actor  = clutter_texture_new_from_pixbuf (pixbuf);
+
+  clutter_container_add_actor (CLUTTER_CONTAINER (stage), actor);
+
+  clutter_actor_set_position (actor, 100, 100);
+
+  timeline = clutter_timeline_new_for (360, 60); /* a degree per frame */
+  clutter_timeline_set_loop (timeline, TRUE);
+
+  g_signal_connect (timeline, "new-frame", G_CALLBACK (on_new_frame), actor);
+
+  clutter_actor_show_all (stage);
+
+  clutter_timeline_start (timeline);
+
+  clutter_main();
+
+  return 0;
+}
+  </pre>
+</div>
+</div>
+<br class="example-break"><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>
+  Multiple timelines can be sequenced in order by means of the
+  #ClutterScore. See the #ClutterScore documentation for more details on
+  using this.
+  </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

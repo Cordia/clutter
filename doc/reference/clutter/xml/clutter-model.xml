@@ -1,0 +1,1097 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterModel">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterModel.top_of_page">ClutterModel</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterModel</refname>
+<refpurpose>A generic model implementation</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterModel.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterModel-struct">ClutterModel</link>;
+                    <link linkend="ClutterModelClass">ClutterModelClass</link>;
+<link linkend="void">void</link>                <link linkend="clutter-model-set-names">clutter_model_set_names</link>             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         const <link linkend="gchar">gchar</link> * const names[]);
+<link linkend="void">void</link>                <link linkend="clutter-model-set-types">clutter_model_set_types</link>             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="GType">GType</link> *types);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-model-get-column-name">clutter_model_get_column_name</link>       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column);
+<link linkend="GType">GType</link>               <link linkend="clutter-model-get-column-type">clutter_model_get_column_type</link>       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column);
+<link linkend="guint">guint</link>               <link linkend="clutter-model-get-n-columns">clutter_model_get_n_columns</link>         (<link linkend="ClutterModel">ClutterModel</link> *model);
+<link linkend="guint">guint</link>               <link linkend="clutter-model-get-n-rows">clutter_model_get_n_rows</link>            (<link linkend="ClutterModel">ClutterModel</link> *model);
+
+<link linkend="void">void</link>                <link linkend="clutter-model-append">clutter_model_append</link>                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-model-appendv">clutter_model_appendv</link>               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);
+<link linkend="void">void</link>                <link linkend="clutter-model-prepend">clutter_model_prepend</link>               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-model-prependv">clutter_model_prependv</link>              (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);
+<link linkend="void">void</link>                <link linkend="clutter-model-insert">clutter_model_insert</link>                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-model-insertv">clutter_model_insertv</link>               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);
+<link linkend="void">void</link>                <link linkend="clutter-model-insert-value">clutter_model_insert_value</link>          (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         <link linkend="guint">guint</link> column,
+                                                         const <link linkend="GValue">GValue</link> *value);
+<link linkend="void">void</link>                <link linkend="clutter-model-remove">clutter_model_remove</link>                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);
+
+<link linkend="gboolean">gboolean</link>            (<link linkend="ClutterModelForeachFunc">*ClutterModelForeachFunc</link>)          (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-model-foreach">clutter_model_foreach</link>               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelForeachFunc">ClutterModelForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-model-set-sorting-column">clutter_model_set_sorting_column</link>    (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="gint">gint</link> column);
+<link linkend="gint">gint</link>                <link linkend="clutter-model-get-sorting-column">clutter_model_get_sorting_column</link>    (<link linkend="ClutterModel">ClutterModel</link> *model);
+<link linkend="gint">gint</link>                (<link linkend="ClutterModelSortFunc">*ClutterModelSortFunc</link>)             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         const <link linkend="GValue">GValue</link> *a,
+                                                         const <link linkend="GValue">GValue</link> *b,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-model-set-sort">clutter_model_set_sort</link>              (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column,
+                                                         <link linkend="ClutterModelSortFunc">ClutterModelSortFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="void">void</link>                <link linkend="clutter-model-resort">clutter_model_resort</link>                (<link linkend="ClutterModel">ClutterModel</link> *model);
+<link linkend="gboolean">gboolean</link>            (<link linkend="ClutterModelFilterFunc">*ClutterModelFilterFunc</link>)           (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-model-set-filter">clutter_model_set_filter</link>            (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelFilterFunc">ClutterModelFilterFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-model-filter-iter">clutter_model_filter_iter</link>           (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-model-filter-row">clutter_model_filter_row</link>            (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);
+
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-get-first-iter">clutter_model_get_first_iter</link>        (<link linkend="ClutterModel">ClutterModel</link> *model);
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-get-last-iter">clutter_model_get_last_iter</link>         (<link linkend="ClutterModel">ClutterModel</link> *model);
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-get-iter-at-row">clutter_model_get_iter_at_row</link>       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterModel.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterModel
+         +----<link linkend="ClutterListModel">ClutterListModel</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+<refsect1 id="ClutterModel.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterModel-filter-changed">filter-changed</link>&quot;                                 : Run Last
+  &quot;<link linkend="ClutterModel-row-added">row-added</link>&quot;                                      : Run Last
+  &quot;<link linkend="ClutterModel-row-changed">row-changed</link>&quot;                                    : Run Last
+  &quot;<link linkend="ClutterModel-row-removed">row-removed</link>&quot;                                    : Run Last
+  &quot;<link linkend="ClutterModel-sort-changed">sort-changed</link>&quot;                                   : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterModel.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterModel"><type>ClutterModel</type></link> is a generic list model API which can be used to implement
+the model-view-controller architectural pattern in Clutter.
+</para>
+<para>
+The <link linkend="ClutterModel"><type>ClutterModel</type></link> class is a list model which can accept most GObject 
+types as a column type.
+</para>
+<para>
+Creating a simple clutter model:
+<informalexample><programlisting>
+enum
+{
+  COLUMN_INT,
+  COLUMN_STRING,
+
+  N_COLUMNS
+};
+
+{
+  ClutterModel *model;
+  gint i;
+
+  model = clutter_model_default_new (N_COLUMNS,
+                                     /<!-- -->* column type, column title *<!-- -->/
+                                     G_TYPE_INT,     "my integers",
+                                     G_TYPE_STRING,  "my strings");
+  for (i = 0; i &lt; 10; i++)
+    {
+      gchar *string = g_strdup_printf ("String %d", i);
+      clutter_model_append (model,
+                            COLUMN_INT, i,
+                            COLUMN_STRING, string,
+                            -1);
+      g_free (string);
+    }
+
+  
+}
+</programlisting></informalexample>
+</para>
+<para>
+Iterating through the model consists of retrieving a new <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+pointing to the starting row, and calling <link linkend="clutter-model-iter-next"><function>clutter_model_iter_next()</function></link> or
+<link linkend="clutter-model-iter-prev"><function>clutter_model_iter_prev()</function></link> to move forward or backwards, repectively.
+</para>
+<para>
+A valid <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> represents the position between two rows in the
+model. For example, the "first" iterator represents the gap immediately 
+before the first row, and the "last" iterator represents the gap immediately
+after the last row. In an empty sequence, the first and last iterators are
+the same.
+</para>
+<para>
+Iterating a <link linkend="ClutterModel--"><type>""</type></link>
+<informalexample><programlisting>
+enum
+{
+  COLUMN_INT,
+  COLUMN_STRING.
+
+  N_COLUMNS
+};
+
+{
+  ClutterModel *model;
+  ClutterModelIter *iter = NULL;
+
+  /<!-- -->*  Fill the model *<!-- -->/
+  model = populate_model ();
+
+  /<!-- -->* Get the first iter *<!-- -->/
+  iter = clutter_model_get_first_iter (model);
+  while (!clutter_model_iter_is_last (iter))
+    {
+      print_row (iter);
+      
+      iter = clutter_model_iter_next (iter);
+    }
+
+  /<!-- -->* Make sure to unref the iter *<!-- -->/
+  g_object_unref (iter);
+}
+</programlisting></informalexample>
+</para>
+<para>
+<link linkend="ClutterModel"><type>ClutterModel</type></link> is an abstract class. Clutter provides a default model
+implementation called <link linkend="ClutterModelDefault"><type>ClutterModelDefault</type></link> which has been optimised
+for insertion and look up in sorted lists.
+</para>
+<para>
+<link linkend="ClutterModel"><type>ClutterModel</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterModel.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterModel-struct" role="struct">
+<title>ClutterModel</title>
+<indexterm zone="ClutterModel-struct" role="0.6"><primary>ClutterModel</primary></indexterm><programlisting>typedef struct _ClutterModel ClutterModel;</programlisting>
+<para>
+Base class for list models. The <link linkend="ClutterModel"><type>ClutterModel</type></link> structure contains
+only private data and should be manipulated using the provided
+API.</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterModelClass" role="struct" condition="since:0.6">
+<title>ClutterModelClass</title>
+<indexterm zone="ClutterModelClass" role="0.6"><primary>ClutterModelClass</primary></indexterm><programlisting>typedef struct {
+  /* vtable */
+  guint             (* get_n_rows)      (ClutterModel         *model);
+  guint             (* get_n_columns)   (ClutterModel         *model);
+  const gchar *     (* get_column_name) (ClutterModel         *model,
+                                         guint                 column);
+  GType             (* get_column_type) (ClutterModel         *model,
+                                         guint                 column);
+  ClutterModelIter *(* insert_row)      (ClutterModel         *model,
+                                         gint                  index_);
+  void              (* remove_row)      (ClutterModel         *model,
+                                         guint                 row);
+  ClutterModelIter *(* get_iter_at_row) (ClutterModel         *model,
+                                         guint                 row);
+  void              (* resort)          (ClutterModel         *model,
+                                         ClutterModelSortFunc  func,
+                                         gpointer              data);
+
+  /* signals */
+  void              (* row_added)       (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* row_removed)     (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* row_changed)     (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* sort_changed)    (ClutterModel     *model);
+  void              (* filter_changed)  (ClutterModel     *model);
+} ClutterModelClass;
+</programlisting>
+<para>
+Class for <link linkend="ClutterModel"><type>ClutterModel</type></link> instances.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>get_n_rows</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for returning the number of rows
+  of the model, not considering any filter function if present
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_n_columns</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for retuning the number of columns
+  of the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_column_name</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for returning the name of a column
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_column_type</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for returning the type of a column
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>insert_row</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for inserting a row at the given index
+  and returning an iterator pointing to it; if the index is a negative
+  integer, the row should be appended to the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>remove_row</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for removing a row at the given index
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_iter_at_row</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for returning an iterator for the
+  given row
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>resort</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for sorting the model using the passed
+  sorting function
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>row_added</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterModel::row-added
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>row_removed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterModel::row-removed
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>row_changed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterModel::row-changed
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>sort_changed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterModel::sort-changed
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>filter_changed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterModel::filter-changed
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-set-names" role="function" condition="since:0.6">
+<title>clutter_model_set_names ()</title>
+<indexterm zone="clutter-model-set-names" role="0.6"><primary>clutter_model_set_names</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_set_names             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         const <link linkend="gchar">gchar</link> * const names[]);</programlisting>
+<para>
+Assigns a name to the columns of a <link linkend="ClutterModel"><type>ClutterModel</type></link>.
+</para>
+<para>
+This function is meant primarily for <link linkend="GObjects"><type>GObjects</type></link> that inherit from
+<link linkend="ClutterModel"><type>ClutterModel</type></link>, and should only be used when contructing a <link linkend="ClutterModel"><type>ClutterModel</type></link>.
+It will not work after the initial creation of the <link linkend="ClutterModel"><type>ClutterModel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> the number of column names
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>names</parameter>&nbsp;:</term>
+<listitem><simpara> an array of strings
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-set-types" role="function" condition="since:0.6">
+<title>clutter_model_set_types ()</title>
+<indexterm zone="clutter-model-set-types" role="0.6"><primary>clutter_model_set_types</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_set_types             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="GType">GType</link> *types);</programlisting>
+<para>
+Sets the types of the columns inside a <link linkend="ClutterModel"><type>ClutterModel</type></link>.
+</para>
+<para>
+This function is meant primarily for <link linkend="GObjects"><type>GObjects</type></link> that inherit from
+<link linkend="ClutterModel"><type>ClutterModel</type></link>, and should only be used when contructing a <link linkend="ClutterModel"><type>ClutterModel</type></link>.
+It will not work after the initial creation of the <link linkend="ClutterModel"><type>ClutterModel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> number of columns for the model
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>types</parameter>&nbsp;:</term>
+<listitem><simpara> an array of <link linkend="GType"><type>GType</type></link> types
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-column-name" role="function" condition="since:0.6">
+<title>clutter_model_get_column_name ()</title>
+<indexterm zone="clutter-model-get-column-name" role="0.6"><primary>clutter_model_get_column_name</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_model_get_column_name       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column);</programlisting>
+<para>
+Retrieves the name of the <parameter>column</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> the column number
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the name of the column. The model holds the returned
+  string, and it should not be modified or freed
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-column-type" role="function" condition="since:0.6">
+<title>clutter_model_get_column_type ()</title>
+<indexterm zone="clutter-model-get-column-type" role="0.6"><primary>clutter_model_get_column_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               clutter_model_get_column_type       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column);</programlisting>
+<para>
+Retrieves the type of the <parameter>column</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> the column number
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the type of the column.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-n-columns" role="function" condition="since:0.6">
+<title>clutter_model_get_n_columns ()</title>
+<indexterm zone="clutter-model-get-n-columns" role="0.6"><primary>clutter_model_get_n_columns</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_model_get_n_columns         (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Retrieves the number of columns inside <parameter>model</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of columns
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-n-rows" role="function" condition="since:0.6">
+<title>clutter_model_get_n_rows ()</title>
+<indexterm zone="clutter-model-get-n-rows" role="0.6"><primary>clutter_model_get_n_rows</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_model_get_n_rows            (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Retrieves the number of rows inside <parameter>model</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The length of the <parameter>model</parameter>. If there is a filter set, then
+  the length of the filtered <parameter>model</parameter> is returned.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-append" role="function" condition="since:0.6">
+<title>clutter_model_append ()</title>
+<indexterm zone="clutter-model-append" role="0.6"><primary>clutter_model_append</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_append                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         ...);</programlisting>
+<para>
+Creates and appends a new row to the <link linkend="ClutterModel"><type>ClutterModel</type></link>, setting the
+row values upon creation. For example, to append a new row where
+column 0 is type <link linkend="G-TYPE-INT:CAPS"><literal>G_TYPE_INT</literal></link> and column 1 is of type <link linkend="G-TYPE-STRING:CAPS"><literal>G_TYPE_STRING</literal></link>:
+</para>
+<para>
+<informalexample><programlisting>
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_append (model, 0, 42, 1, "Team <link linkend="1:CAPS">1</link>", -1);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> pairs of column number and value, terminated with -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-appendv" role="function" condition="since:0.6">
+<title>clutter_model_appendv ()</title>
+<indexterm zone="clutter-model-appendv" role="0.6"><primary>clutter_model_appendv</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_appendv               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);</programlisting>
+<para>
+Creates and appends a new row to the <link linkend="ClutterModel"><type>ClutterModel</type></link>, setting the row
+values for the given <parameter>columns</parameter> upon creation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> the number of columns and values
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>columns</parameter>&nbsp;:</term>
+<listitem><simpara> a vector with the columns to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>values</parameter>&nbsp;:</term>
+<listitem><simpara> a vector with the values
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-prepend" role="function" condition="since:0.6">
+<title>clutter_model_prepend ()</title>
+<indexterm zone="clutter-model-prepend" role="0.6"><primary>clutter_model_prepend</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_prepend               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         ...);</programlisting>
+<para>
+Creates and prepends a new row to the <link linkend="ClutterModel"><type>ClutterModel</type></link>, setting the row
+values upon creation. For example, to prepend a new row where column 0
+is type <link linkend="G-TYPE-INT:CAPS"><literal>G_TYPE_INT</literal></link> and column 1 is of type <link linkend="G-TYPE-STRING:CAPS"><literal>G_TYPE_STRING</literal></link>:
+</para>
+<para>
+<informalexample><programlisting>
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_prepend (model, 0, 42, 1, "Team <link linkend="1:CAPS">1</link>", -1);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> pairs of column number and value, terminated with -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-prependv" role="function" condition="since:0.6">
+<title>clutter_model_prependv ()</title>
+<indexterm zone="clutter-model-prependv" role="0.6"><primary>clutter_model_prependv</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_prependv              (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);</programlisting>
+<para>
+Creates and prepends a new row to the <link linkend="ClutterModel"><type>ClutterModel</type></link>, setting the row
+values for the given <parameter>columns</parameter> upon creation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> the number of columns and values to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>columns</parameter>&nbsp;:</term>
+<listitem><simpara> a vector containing the columns to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>values</parameter>&nbsp;:</term>
+<listitem><simpara> a vector containing the values for the cells
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-insert" role="function" condition="since:0.6">
+<title>clutter_model_insert ()</title>
+<indexterm zone="clutter-model-insert" role="0.6"><primary>clutter_model_insert</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_insert                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         ...);</programlisting>
+<para>
+Inserts a new row to the <link linkend="ClutterModel"><type>ClutterModel</type></link> at <parameter>row</parameter>, setting the row
+values upon creation. For example, to insert a new row at index 100,
+where column 0 is type <link linkend="G-TYPE-INT:CAPS"><literal>G_TYPE_INT</literal></link> and column 1 is of type
+<link linkend="G-TYPE-STRING:CAPS"><literal>G_TYPE_STRING</literal></link>:
+</para>
+<para>
+<informalexample><programlisting>
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_insert (model, 3, 0, 42, 1, "Team <link linkend="1:CAPS">1</link>", -1);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> the position to insert the new row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> pairs of column number and value, terminated with -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-insertv" role="function" condition="since:0.6">
+<title>clutter_model_insertv ()</title>
+<indexterm zone="clutter-model-insertv" role="0.6"><primary>clutter_model_insertv</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_insertv               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         <link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="guint">guint</link> *columns,
+                                                         <link linkend="GValue">GValue</link> *values);</programlisting>
+<para>
+Inserts data at <parameter>row</parameter> into the <link linkend="ClutterModel"><type>ClutterModel</type></link>, setting the row
+values for the given <parameter>columns</parameter> upon creation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> row index
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> the number of columns and values to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>columns</parameter>&nbsp;:</term>
+<listitem><simpara> a vector containing the columns to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>values</parameter>&nbsp;:</term>
+<listitem><simpara> a vector containing the values for the cells
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-insert-value" role="function" condition="since:0.6">
+<title>clutter_model_insert_value ()</title>
+<indexterm zone="clutter-model-insert-value" role="0.6"><primary>clutter_model_insert_value</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_insert_value          (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row,
+                                                         <link linkend="guint">guint</link> column,
+                                                         const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Sets the data in the cell specified by <parameter>iter</parameter> and <parameter>column</parameter>. The type of 
+<parameter>value</parameter> must be convertable to the type of the column. If the row does
+not exist then it is created.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> position of the row to modify
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> column to modify
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> new value for the cell
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-remove" role="function" condition="since:0.6">
+<title>clutter_model_remove ()</title>
+<indexterm zone="clutter-model-remove" role="0.6"><primary>clutter_model_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_remove                (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);</programlisting>
+<para>
+Removes the row at the given position from the model.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> position of row to remove
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterModelForeachFunc" role="function" condition="since:0.6">
+<title>ClutterModelForeachFunc ()</title>
+<indexterm zone="ClutterModelForeachFunc" role="0.6"><primary>ClutterModelForeachFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*ClutterModelForeachFunc)          (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Iterates on the content of a row in the model</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> the iterator for the row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data passed to <link linkend="clutter-model-foreach"><function>clutter_model_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the iteration should continue, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-foreach" role="function" condition="since:0.6">
+<title>clutter_model_foreach ()</title>
+<indexterm zone="clutter-model-foreach" role="0.6"><primary>clutter_model_foreach</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_foreach               (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelForeachFunc">ClutterModelForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Calls <parameter>func</parameter> for each row in the model.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelForeachFunc"><type>ClutterModelForeachFunc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to <parameter>func</parameter>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-set-sorting-column" role="function" condition="since:0.6">
+<title>clutter_model_set_sorting_column ()</title>
+<indexterm zone="clutter-model-set-sorting-column" role="0.6"><primary>clutter_model_set_sorting_column</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_set_sorting_column    (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="gint">gint</link> column);</programlisting>
+<para>
+Sets the model to sort by <parameter>column</parameter>. If <parameter>column</parameter> is a negative value
+the sorting column will be unset.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> the column of the <parameter>model</parameter> to sort, or -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-sorting-column" role="function" condition="since:0.6">
+<title>clutter_model_get_sorting_column ()</title>
+<indexterm zone="clutter-model-get-sorting-column" role="0.6"><primary>clutter_model_get_sorting_column</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_model_get_sorting_column    (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Retrieves the number of column used for sorting the <parameter>model</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a column number, or -1 if the model is not sorted
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterModelSortFunc" role="function" condition="since:0.6">
+<title>ClutterModelSortFunc ()</title>
+<indexterm zone="ClutterModelSortFunc" role="0.6"><primary>ClutterModelSortFunc</primary></indexterm><programlisting><link linkend="gint">gint</link>                (*ClutterModelSortFunc)             (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         const <link linkend="GValue">GValue</link> *a,
+                                                         const <link linkend="GValue">GValue</link> *b,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Compares the content of two rows in the model.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> representing the contents of the row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> representing the contents of the second row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data passed to <link linkend="clutter-model-set-sort"><function>clutter_model_set_sort()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a positive integer if <parameter>a</parameter> is after <parameter>b</parameter>, a negative integer if
+  <parameter>a</parameter> is before <parameter>b</parameter>, or 0 if the rows are the same
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-set-sort" role="function" condition="since:0.6">
+<title>clutter_model_set_sort ()</title>
+<indexterm zone="clutter-model-set-sort" role="0.6"><primary>clutter_model_set_sort</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_set_sort              (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> column,
+                                                         <link linkend="ClutterModelSortFunc">ClutterModelSortFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Sorts <parameter>model</parameter> using the given sorting function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> the column to sort on
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelSortFunc"><type>ClutterModelSortFunc</type></link>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to <parameter>func</parameter>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> destroy notifier of <parameter>user_data</parameter>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-resort" role="function" condition="since:0.6">
+<title>clutter_model_resort ()</title>
+<indexterm zone="clutter-model-resort" role="0.6"><primary>clutter_model_resort</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_resort                (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Force a resort on the <parameter>model</parameter>. This function should only be
+used by subclasses of <link linkend="ClutterModel"><type>ClutterModel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterModelFilterFunc" role="function" condition="since:0.6">
+<title>ClutterModelFilterFunc ()</title>
+<indexterm zone="ClutterModelFilterFunc" role="0.6"><primary>ClutterModelFilterFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*ClutterModelFilterFunc)           (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Filters the content of a row in the model.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> the iterator for the row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data passed to <link linkend="clutter-model-set-filter"><function>clutter_model_set_filter()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> If the row should be displayed, return <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-set-filter" role="function" condition="since:0.6">
+<title>clutter_model_set_filter ()</title>
+<indexterm zone="clutter-model-set-filter" role="0.6"><primary>clutter_model_set_filter</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_set_filter            (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelFilterFunc">ClutterModelFilterFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Filters the <parameter>model</parameter> using the given filtering function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelFilterFunc"><type>ClutterModelFilterFunc</type></link>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to <parameter>func</parameter>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> destroy notifier of <parameter>user_data</parameter>, or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-filter-iter" role="function" condition="since:0.6">
+<title>clutter_model_filter_iter ()</title>
+<indexterm zone="clutter-model-filter-iter" role="0.6"><primary>clutter_model_filter_iter</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_model_filter_iter           (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Checks whether the row pointer by <parameter>iter</parameter> should be filtered or not using
+the filtering function set on <parameter>model</parameter>.
+</para>
+<para>
+This function should be used only by subclasses of <link linkend="ClutterModel"><type>ClutterModel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> the row to filter
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the row should be displayed,
+  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-filter-row" role="function" condition="since:0.6">
+<title>clutter_model_filter_row ()</title>
+<indexterm zone="clutter-model-filter-row" role="0.6"><primary>clutter_model_filter_row</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_model_filter_row            (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);</programlisting>
+<para>
+Checks whether <parameter>row</parameter> should be filtered or not using the
+filtering function set on <parameter>model</parameter>.
+</para>
+<para>
+This function should be used only by subclasses of <link linkend="ClutterModel"><type>ClutterModel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> the row to filter
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the row should be displayed,
+  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-first-iter" role="function" condition="since:0.6">
+<title>clutter_model_get_first_iter ()</title>
+<indexterm zone="clutter-model-get-first-iter" role="0.6"><primary>clutter_model_get_first_iter</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_get_first_iter        (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Retrieves a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> representing the first row in <parameter>model</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>. Call <link linkend="g-object-unref"><function>g_object_unref()</function></link> when
+  done using it
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-last-iter" role="function" condition="since:0.6">
+<title>clutter_model_get_last_iter ()</title>
+<indexterm zone="clutter-model-get-last-iter" role="0.6"><primary>clutter_model_get_last_iter</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_get_last_iter         (<link linkend="ClutterModel">ClutterModel</link> *model);</programlisting>
+<para>
+Retrieves a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> representing the last row in <parameter>model</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>. Call <link linkend="g-object-unref"><function>g_object_unref()</function></link> when
+  done using it
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-get-iter-at-row" role="function" condition="since:0.6">
+<title>clutter_model_get_iter_at_row ()</title>
+<indexterm zone="clutter-model-get-iter-at-row" role="0.6"><primary>clutter_model_get_iter_at_row</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_get_iter_at_row       (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                         <link linkend="guint">guint</link> row);</programlisting>
+<para>
+Retrieves a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> representing the row at the given index.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModel"><type>ClutterModel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>row</parameter>&nbsp;:</term>
+<listitem><simpara> position of the row to retrieve
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if <parameter>row</parameter> was out of bounds.
+  When done using the iterator object, call <link linkend="g-object-unref"><function>g_object_unref()</function></link> to deallocate
+  its resources
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterModel.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterModel-filter-changed"><title>The <literal>&quot;filter-changed&quot;</literal> signal</title>
+<indexterm zone="ClutterModel-filter-changed" role="0.6"><primary>ClutterModel::filter-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::filter-changed signal is emitted when a new filter has been applied</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterModel"><type>ClutterModel</type></link> on which the signal is emitted   
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterModel-row-added"><title>The <literal>&quot;row-added&quot;</literal> signal</title>
+<indexterm zone="ClutterModel-row-added" role="0.6"><primary>ClutterModel::row-added</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterModel">ClutterModel</link>     *model,
+                                                        <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)      : Run Last</programlisting>
+<para>
+The ::row-added signal is emitted when a new row has been added.
+The data on the row has already been set when the ::row-added signal
+has been emitted.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterModel"><type>ClutterModel</type></link> on which the signal is emitted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> pointing to the new row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterModel-row-changed"><title>The <literal>&quot;row-changed&quot;</literal> signal</title>
+<indexterm zone="ClutterModel-row-changed" role="0.6"><primary>ClutterModel::row-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterModel">ClutterModel</link>     *model,
+                                                        <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)      : Run Last</programlisting>
+<para>
+The ::row-removed signal is emitted when a row has been changed.
+The data on the row has already been updated when the ::row-changed
+signal has been emitted.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterModel"><type>ClutterModel</type></link> on which the signal is emitted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> pointing to the changed row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterModel-row-removed"><title>The <literal>&quot;row-removed&quot;</literal> signal</title>
+<indexterm zone="ClutterModel-row-removed" role="0.6"><primary>ClutterModel::row-removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterModel">ClutterModel</link>     *model,
+                                                        <link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)      : Run Last</programlisting>
+<para>
+The ::row-removed signal is emitted when a row has been removed.
+The data on the row pointed by the passed iterator is still valid
+when the ::row-removed signal has been emitted.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterModel"><type>ClutterModel</type></link> on which the signal is emitted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> pointing to the removed row
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2><refsect2 id="ClutterModel-sort-changed"><title>The <literal>&quot;sort-changed&quot;</literal> signal</title>
+<indexterm zone="ClutterModel-sort-changed" role="0.6"><primary>ClutterModel::sort-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterModel">ClutterModel</link> *model,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::sort-changed signal is emitted after the model has been sorted</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterModel"><type>ClutterModel</type></link> on which the signal is emitted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.6
+</para></refsect2>
+</refsect1>
+
+
+
+</refentry>

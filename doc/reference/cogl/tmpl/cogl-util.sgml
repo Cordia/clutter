@@ -1,0 +1,134 @@
+<!-- ##### SECTION Title ##### -->
+Utility API
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION cogl_create_context ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_destroy_context ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_INVALID_HANDLE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF CoglHandle ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION CoglFuncPtr ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM CoglFeatureFlags ##### -->
+<para>
+
+</para>
+
+@COGL_FEATURE_TEXTURE_RECTANGLE: 
+@COGL_FEATURE_TEXTURE_NPOT: 
+@COGL_FEATURE_TEXTURE_YUV: 
+@COGL_FEATURE_TEXTURE_READ_PIXELS: 
+@COGL_FEATURE_SHADERS_GLSL: 
+@COGL_FEATURE_OFFSCREEN: 
+@COGL_FEATURE_OFFSCREEN_MULTISAMPLE: 
+@COGL_FEATURE_OFFSCREEN_BLIT: 
+@COGL_FEATURE_FOUR_CLIP_PLANES: 
+@COGL_FEATURE_STENCIL_BUFFER: 
+
+<!-- ##### FUNCTION cogl_get_features ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_features_available ##### -->
+<para>
+
+</para>
+
+@features: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_get_proc_address ##### -->
+<para>
+
+</para>
+
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_check_extension ##### -->
+<para>
+
+</para>
+
+@name: 
+@ext: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_get_bitmasks ##### -->
+<para>
+
+</para>
+
+@red: 
+@green: 
+@blue: 
+@alpha: 
+
+
+<!-- ##### FUNCTION cogl_paint_init ##### -->
+<para>
+
+</para>
+
+@color: 
+
+
+<!-- ##### FUNCTION cogl_util_next_p2 ##### -->
+<para>
+
+</para>
+
+@a: 
+@Returns: 
+
+

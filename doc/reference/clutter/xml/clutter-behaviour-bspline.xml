@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourBspline">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourBspline.top_of_page">ClutterBehaviourBspline</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourBspline</refname>
+<refpurpose>A behaviour interpolating position along a B-Spline</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourBspline.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviourBspline-struct">ClutterBehaviourBspline</link>;
+                    <link linkend="ClutterBehaviourBsplineClass">ClutterBehaviourBsplineClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-bspline-new">clutter_behaviour_bspline_new</link>       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-append-knot">clutter_behaviour_bspline_append_knot</link>
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-append-knots">clutter_behaviour_bspline_append_knots</link>
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *first_knot,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-truncate">clutter_behaviour_bspline_truncate</link>  (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-join">clutter_behaviour_bspline_join</link>      (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs1,
+                                                         <link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs2);
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-bspline-split">clutter_behaviour_bspline_split</link>     (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-clear">clutter_behaviour_bspline_clear</link>     (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-adjust">clutter_behaviour_bspline_adjust</link>    (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-set-origin">clutter_behaviour_bspline_set_origin</link>
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-bspline-get-origin">clutter_behaviour_bspline_get_origin</link>
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourBspline.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourBspline
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourBspline.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterBehaviourBspline implements
+</para>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourBspline.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourBspline-knot-reached">knot-reached</link>&quot;                                   : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterBehaviourBspline.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link> interpolates actors along a defined B-Spline path.
+</para>
+<para>
+A bezier spline is a set of cubic bezier curves defined by a sequence of
+control points given when creating a new <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link> instance.
+</para>
+<para>
+Additional bezier curves can be added to the end of the bspline using
+clutter_behaviour_bspline_append_* family of functions, control points can
+be moved using <link linkend="clutter-behaviour-bspline-adjust"><function>clutter_behaviour_bspline_adjust()</function></link>. The bspline can be split
+into two with <link linkend="clutter-behaviour-bspline-split"><function>clutter_behaviour_bspline_split()</function></link>, and bsplines can be
+concatenated using <link linkend="clutter-behaviour-bspline-join"><function>clutter_behaviour_bspline_join()</function></link>.
+</para>
+<para>
+Each time the behaviour reaches a point on the path, the "knot-reached"
+signal is emitted.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourBspline.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviourBspline-struct" role="struct">
+<title>ClutterBehaviourBspline</title>
+<indexterm zone="ClutterBehaviourBspline-struct" role="0.2"><primary>ClutterBehaviourBspline</primary></indexterm><programlisting>typedef struct _ClutterBehaviourBspline ClutterBehaviourBspline;</programlisting>
+<para>
+<link linkend="ClutterBehaviourBspline-struct"><type>ClutterBehaviourBspline</type></link> contains only private data and
+should be accessed using the functions below.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterBehaviourBsplineClass" role="struct" condition="since:0.2">
+<title>ClutterBehaviourBsplineClass</title>
+<indexterm zone="ClutterBehaviourBsplineClass" role="0.2"><primary>ClutterBehaviourBsplineClass</primary></indexterm><programlisting>typedef struct {
+  void (*knot_reached) (ClutterBehaviourBspline *bsplineb,
+                        const ClutterKnot       *knot);
+} ClutterBehaviourBsplineClass;
+</programlisting>
+<para>
+<link linkend="ClutterBehaviourBsplineClass-struct"><type>ClutterBehaviourBsplineClass</type></link> contains only private data
+and should be accessed using the functions below.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>knot_reached</structfield>&nbsp;()</term>
+<listitem><simpara> class handler for the <link linkend="ClutterBehaviourBspline-knot-reached"><type>"knot-reached"</type></link>
+  signal
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-new" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_new ()</title>
+<indexterm zone="clutter-behaviour-bspline-new" role="0.4"><primary>clutter_behaviour_bspline_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_bspline_new       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots);</programlisting>
+<para>
+Creates a new bezier spline behaviour. You can use this behaviour to drive
+actors along the bezier spline, described by the <parameter>knots</parameter> control points.
+</para>
+<para>
+Bspline is defined by 3n + 1 points, n &gt;=1; any trailing points passed
+into this function are stored internally and used during any subsequent
+clutter_behaviour_bspline_append_* operations.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knots</parameter>&nbsp;:</term>
+<listitem><simpara> a list of <link linkend="ClutterKnots"><type>ClutterKnots</type></link> representing individual control points
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_knots</parameter>&nbsp;:</term>
+<listitem><simpara> the number of control points
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-append-knot" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_append_knot ()</title>
+<indexterm zone="clutter-behaviour-bspline-append-knot" role="0.4"><primary>clutter_behaviour_bspline_append_knot</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_append_knot
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Appends a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> control point to the bezier spline bs. Note, that
+since a bezier is defined by 4 control points, the point gets stored in
+a temporary chache, and only when there are enough control points to
+create a new bezier curve will the bspline extended.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara>      a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara>    a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> control point to append.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-append-knots" role="function" condition="since:0.6">
+<title>clutter_behaviour_bspline_append_knots ()</title>
+<indexterm zone="clutter-behaviour-bspline-append-knots" role="0.6"><primary>clutter_behaviour_bspline_append_knots</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_append_knots
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *first_knot,
+                                                         ...);</programlisting>
+<para>
+Appends a bezier spline defined by the last control point of bezier spline
+bs and the array of <link linkend="ClutterKnot"><type>ClutterKnot</type></link> control points to the orginal bezier spline
+bs.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_knot</parameter>&nbsp;:</term>
+<listitem><simpara> first <link linkend="ClutterKnot"><type>ClutterKnot</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> a NULL-terminated array of <link linkend="ClutterKnot"><type>ClutterKnot</type></link> control points.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-truncate" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_truncate ()</title>
+<indexterm zone="clutter-behaviour-bspline-truncate" role="0.4"><primary>clutter_behaviour_bspline_truncate</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_truncate  (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset);</programlisting>
+<para>
+Truncates the bezier spline at the control point; if the control point at
+offset is not one of the on-curve points, the bspline will be
+truncated at the nearest preceeding on-curve point.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara>      a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara>  offset of control where the bspline should be truncated  
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-join" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_join ()</title>
+<indexterm zone="clutter-behaviour-bspline-join" role="0.4"><primary>clutter_behaviour_bspline_join</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_join      (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs1,
+                                                         <link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs2);</programlisting>
+<para>
+Joins a copy of bezier spline bs2 onto the end of bezier spline bs1; bs2 is
+not modified.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs1</parameter>&nbsp;:</term>
+<listitem><simpara>      a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bs2</parameter>&nbsp;:</term>
+<listitem><simpara>      a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-split" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_split ()</title>
+<indexterm zone="clutter-behaviour-bspline-split" role="0.4"><primary>clutter_behaviour_bspline_split</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_bspline_split     (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset);</programlisting>
+<para>
+Splits a bezier spline into two at the control point at offset; if the
+control point at offset is not one of the on-curve bezier points, the
+bspline will be split at the nearest on-curve point before the offset.
+The original bspline is shortened appropriately.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> an offset of the control point at which to split the spline.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> new ClutterBehaviourBspline.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-clear" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_clear ()</title>
+<indexterm zone="clutter-behaviour-bspline-clear" role="0.4"><primary>clutter_behaviour_bspline_clear</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_clear     (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs);</programlisting>
+<para>
+Empties a bspline.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara>      a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-adjust" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_adjust ()</title>
+<indexterm zone="clutter-behaviour-bspline-adjust" role="0.4"><primary>clutter_behaviour_bspline_adjust</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_adjust    (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="guint">guint</link> offset,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Change the coordinaces of control point at index to those represented by
+the knot.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> an index of control point to ajdust
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> with new coordinances for the control point.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-set-origin" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_set_origin ()</title>
+<indexterm zone="clutter-behaviour-bspline-set-origin" role="0.4"><primary>clutter_behaviour_bspline_set_origin</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_set_origin
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Sets the origin of the bezier to the point represented by knot. (Initially
+the origin of a bspline is given by the position of the first control point
+of the first bezier curve.)</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara>   a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> origin for the bezier
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-bspline-get-origin" role="function" condition="since:0.4">
+<title>clutter_behaviour_bspline_get_origin ()</title>
+<indexterm zone="clutter-behaviour-bspline-get-origin" role="0.4"><primary>clutter_behaviour_bspline_get_origin</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_bspline_get_origin
+                                                        (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *bs,
+                                                         <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Gets the origin of the bezier.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bs</parameter>&nbsp;:</term>
+<listitem><simpara>   a <link linkend="ClutterBehaviourBspline"><type>ClutterBehaviourBspline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> where to store the origin of the bezier
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterBehaviourBspline.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterBehaviourBspline-knot-reached"><title>The <literal>&quot;knot-reached&quot;</literal> signal</title>
+<indexterm zone="ClutterBehaviourBspline-knot-reached" role="0.2"><primary>ClutterBehaviourBspline::knot-reached</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterBehaviourBspline">ClutterBehaviourBspline</link> *pathb,
+                                                        <link linkend="ClutterKnot">ClutterKnot</link>             *knot,
+                                                        <link linkend="gpointer">gpointer</link>                 user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted at the end of each frame.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> the object which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterKnot"><type>ClutterKnot</type></link> reached
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.2
+</para></refsect2>
+</refsect1>
+
+
+
+</refentry>

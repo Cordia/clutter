@@ -1,0 +1,1837 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterModel</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch09.html" title="Generic list model">
+<link rel="prev" href="ch09.html" title="Generic list model">
+<link rel="next" href="ClutterModelIter.html" title="ClutterModelIter">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch09.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch09.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterModelIter.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterModel.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterModel.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterModel.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterModel.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterModel"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterModel.top_of_page"></a>ClutterModel</span></h2>
+<p>ClutterModel — A generic model implementation</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterModel.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterModel.html#ClutterModel-struct" title="ClutterModel">ClutterModel</a>;
+                    <a class="link" href="ClutterModel.html#ClutterModelClass" title="ClutterModelClass">ClutterModelClass</a>;
+void                <a class="link" href="ClutterModel.html#clutter-model-set-names" title="clutter_model_set_names ()">clutter_model_set_names</a>             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const names[]);
+void                <a class="link" href="ClutterModel.html#clutter-model-set-types" title="clutter_model_set_types ()">clutter_model_set_types</a>             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> *types);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterModel.html#clutter-model-get-column-name" title="clutter_model_get_column_name ()">clutter_model_get_column_name</a>       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column);
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="ClutterModel.html#clutter-model-get-column-type" title="clutter_model_get_column_type ()">clutter_model_get_column_type</a>       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterModel.html#clutter-model-get-n-columns" title="clutter_model_get_n_columns ()">clutter_model_get_n_columns</a>         (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterModel.html#clutter-model-get-n-rows" title="clutter_model_get_n_rows ()">clutter_model_get_n_rows</a>            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+
+void                <a class="link" href="ClutterModel.html#clutter-model-append" title="clutter_model_append ()">clutter_model_append</a>                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         ...);
+void                <a class="link" href="ClutterModel.html#clutter-model-appendv" title="clutter_model_appendv ()">clutter_model_appendv</a>               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);
+void                <a class="link" href="ClutterModel.html#clutter-model-prepend" title="clutter_model_prepend ()">clutter_model_prepend</a>               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         ...);
+void                <a class="link" href="ClutterModel.html#clutter-model-prependv" title="clutter_model_prependv ()">clutter_model_prependv</a>              (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);
+void                <a class="link" href="ClutterModel.html#clutter-model-insert" title="clutter_model_insert ()">clutter_model_insert</a>                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         ...);
+void                <a class="link" href="ClutterModel.html#clutter-model-insertv" title="clutter_model_insertv ()">clutter_model_insertv</a>               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);
+void                <a class="link" href="ClutterModel.html#clutter-model-insert-value" title="clutter_model_insert_value ()">clutter_model_insert_value</a>          (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+void                <a class="link" href="ClutterModel.html#clutter-model-remove" title="clutter_model_remove ()">clutter_model_remove</a>                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);
+
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (<a class="link" href="ClutterModel.html#ClutterModelForeachFunc" title="ClutterModelForeachFunc ()">*ClutterModelForeachFunc</a>)          (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterModel.html#clutter-model-foreach" title="clutter_model_foreach ()">clutter_model_foreach</a>               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelForeachFunc" title="ClutterModelForeachFunc ()">ClutterModelForeachFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterModel.html#clutter-model-set-sorting-column" title="clutter_model_set_sorting_column ()">clutter_model_set_sorting_column</a>    (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> column);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterModel.html#clutter-model-get-sorting-column" title="clutter_model_get_sorting_column ()">clutter_model_get_sorting_column</a>    (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                (<a class="link" href="ClutterModel.html#ClutterModelSortFunc" title="ClutterModelSortFunc ()">*ClutterModelSortFunc</a>)             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *a,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *b,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterModel.html#clutter-model-set-sort" title="clutter_model_set_sort ()">clutter_model_set_sort</a>              (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelSortFunc" title="ClutterModelSortFunc ()">ClutterModelSortFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+void                <a class="link" href="ClutterModel.html#clutter-model-resort" title="clutter_model_resort ()">clutter_model_resort</a>                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (<a class="link" href="ClutterModel.html#ClutterModelFilterFunc" title="ClutterModelFilterFunc ()">*ClutterModelFilterFunc</a>)           (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterModel.html#clutter-model-set-filter" title="clutter_model_set_filter ()">clutter_model_set_filter</a>            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelFilterFunc" title="ClutterModelFilterFunc ()">ClutterModelFilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterModel.html#clutter-model-filter-iter" title="clutter_model_filter_iter ()">clutter_model_filter_iter</a>           (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterModel.html#clutter-model-filter-row" title="clutter_model_filter_row ()">clutter_model_filter_row</a>            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);
+
+<a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   <a class="link" href="ClutterModel.html#clutter-model-get-first-iter" title="clutter_model_get_first_iter ()">clutter_model_get_first_iter</a>        (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+<a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   <a class="link" href="ClutterModel.html#clutter-model-get-last-iter" title="clutter_model_get_last_iter ()">clutter_model_get_last_iter</a>         (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);
+<a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   <a class="link" href="ClutterModel.html#clutter-model-get-iter-at-row" title="clutter_model_get_iter_at_row ()">clutter_model_get_iter_at_row</a>       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterModel.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterModel
+         +----<a class="link" href="ClutterListModel.html" title="ClutterListModel">ClutterListModel</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterModel.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterModel.html#ClutterModel-filter-changed" title='The "filter-changed" signal'>filter-changed</a>"                                 : Run Last
+  "<a class="link" href="ClutterModel.html#ClutterModel-row-added" title='The "row-added" signal'>row-added</a>"                                      : Run Last
+  "<a class="link" href="ClutterModel.html#ClutterModel-row-changed" title='The "row-changed" signal'>row-changed</a>"                                    : Run Last
+  "<a class="link" href="ClutterModel.html#ClutterModel-row-removed" title='The "row-removed" signal'>row-removed</a>"                                    : Run Last
+  "<a class="link" href="ClutterModel.html#ClutterModel-sort-changed" title='The "sort-changed" signal'>sort-changed</a>"                                   : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterModel.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> is a generic list model API which can be used to implement
+the model-view-controller architectural pattern in Clutter.
+</p>
+<p>
+The <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> class is a list model which can accept most GObject 
+types as a column type.
+</p>
+<p>
+Creating a simple clutter model:
+</p>
+<div class="informalexample"><pre class="programlisting">
+enum
+{
+  COLUMN_INT,
+  COLUMN_STRING,
+
+  N_COLUMNS
+};
+
+{
+  ClutterModel *model;
+  gint i;
+
+  model = clutter_model_default_new (N_COLUMNS,
+                                     /* column type, column title */
+                                     G_TYPE_INT,     "my integers",
+                                     G_TYPE_STRING,  "my strings");
+  for (i = 0; i &lt; 10; i++)
+    {
+      gchar *string = g_strdup_printf ("String %d", i);
+      clutter_model_append (model,
+                            COLUMN_INT, i,
+                            COLUMN_STRING, string,
+                            -1);
+      g_free (string);
+    }
+
+  
+}
+</pre></div>
+<p>
+</p>
+<p>
+Iterating through the model consists of retrieving a new <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a>
+pointing to the starting row, and calling <a class="link" href="ClutterModelIter.html#clutter-model-iter-next" title="clutter_model_iter_next ()"><code class="function">clutter_model_iter_next()</code></a> or
+<a class="link" href="ClutterModelIter.html#clutter-model-iter-prev" title="clutter_model_iter_prev ()"><code class="function">clutter_model_iter_prev()</code></a> to move forward or backwards, repectively.
+</p>
+<p>
+A valid <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> represents the position between two rows in the
+model. For example, the "first" iterator represents the gap immediately 
+before the first row, and the "last" iterator represents the gap immediately
+after the last row. In an empty sequence, the first and last iterators are
+the same.
+</p>
+<p>
+Iterating a <span class="type">""</span>
+</p>
+<div class="informalexample"><pre class="programlisting">
+enum
+{
+  COLUMN_INT,
+  COLUMN_STRING.
+
+  N_COLUMNS
+};
+
+{
+  ClutterModel *model;
+  ClutterModelIter *iter = NULL;
+
+  /*  Fill the model */
+  model = populate_model ();
+
+  /* Get the first iter */
+  iter = clutter_model_get_first_iter (model);
+  while (!clutter_model_iter_is_last (iter))
+    {
+      print_row (iter);
+      
+      iter = clutter_model_iter_next (iter);
+    }
+
+  /* Make sure to unref the iter */
+  g_object_unref (iter);
+}
+</pre></div>
+<p>
+</p>
+<p>
+<a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> is an abstract class. Clutter provides a default model
+implementation called <span class="type">ClutterModelDefault</span> which has been optimised
+for insertion and look up in sorted lists.
+</p>
+<p>
+<a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterModel.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-struct"></a><h3>ClutterModel</h3>
+<pre class="programlisting">typedef struct _ClutterModel ClutterModel;</pre>
+<p>
+Base class for list models. The <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> structure contains
+only private data and should be manipulated using the provided
+API.</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModelClass"></a><h3>ClutterModelClass</h3>
+<pre class="programlisting">typedef struct {
+  /* vtable */
+  guint             (* get_n_rows)      (ClutterModel         *model);
+  guint             (* get_n_columns)   (ClutterModel         *model);
+  const gchar *     (* get_column_name) (ClutterModel         *model,
+                                         guint                 column);
+  GType             (* get_column_type) (ClutterModel         *model,
+                                         guint                 column);
+  ClutterModelIter *(* insert_row)      (ClutterModel         *model,
+                                         gint                  index_);
+  void              (* remove_row)      (ClutterModel         *model,
+                                         guint                 row);
+  ClutterModelIter *(* get_iter_at_row) (ClutterModel         *model,
+                                         guint                 row);
+  void              (* resort)          (ClutterModel         *model,
+                                         ClutterModelSortFunc  func,
+                                         gpointer              data);
+
+  /* signals */
+  void              (* row_added)       (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* row_removed)     (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* row_changed)     (ClutterModel     *model,
+                                         ClutterModelIter *iter);
+  void              (* sort_changed)    (ClutterModel     *model);
+  void              (* filter_changed)  (ClutterModel     *model);
+} ClutterModelClass;
+</pre>
+<p>
+Class for <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> instances.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_n_rows</code></em> ()</span></p></td>
+<td> virtual function for returning the number of rows
+  of the model, not considering any filter function if present
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_n_columns</code></em> ()</span></p></td>
+<td> virtual function for retuning the number of columns
+  of the model
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_column_name</code></em> ()</span></p></td>
+<td> virtual function for returning the name of a column
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_column_type</code></em> ()</span></p></td>
+<td> virtual function for returning the type of a column
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>insert_row</code></em> ()</span></p></td>
+<td> virtual function for inserting a row at the given index
+  and returning an iterator pointing to it; if the index is a negative
+  integer, the row should be appended to the model
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>remove_row</code></em> ()</span></p></td>
+<td> virtual function for removing a row at the given index
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_iter_at_row</code></em> ()</span></p></td>
+<td> virtual function for returning an iterator for the
+  given row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>resort</code></em> ()</span></p></td>
+<td> virtual function for sorting the model using the passed
+  sorting function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>row_added</code></em> ()</span></p></td>
+<td> signal class handler for ClutterModel::row-added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>row_removed</code></em> ()</span></p></td>
+<td> signal class handler for ClutterModel::row-removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>row_changed</code></em> ()</span></p></td>
+<td> signal class handler for ClutterModel::row-changed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>sort_changed</code></em> ()</span></p></td>
+<td> signal class handler for ClutterModel::sort-changed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>filter_changed</code></em> ()</span></p></td>
+<td> signal class handler for ClutterModel::filter-changed
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-set-names"></a><h3>clutter_model_set_names ()</h3>
+<pre class="programlisting">void                clutter_model_set_names             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const names[]);</pre>
+<p>
+Assigns a name to the columns of a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.
+</p>
+<p>
+This function is meant primarily for <span class="type">GObjects</span> that inherit from
+<a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, and should only be used when contructing a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.
+It will not work after the initial creation of the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> the number of column names
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>names</code></em> :</span></p></td>
+<td> an array of strings
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-set-types"></a><h3>clutter_model_set_types ()</h3>
+<pre class="programlisting">void                clutter_model_set_types             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> *types);</pre>
+<p>
+Sets the types of the columns inside a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.
+</p>
+<p>
+This function is meant primarily for <span class="type">GObjects</span> that inherit from
+<a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, and should only be used when contructing a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.
+It will not work after the initial creation of the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> number of columns for the model
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>types</code></em> :</span></p></td>
+<td> an array of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+><span class="type">GType</span></a> types
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-column-name"></a><h3>clutter_model_get_column_name ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_model_get_column_name       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column);</pre>
+<p>
+Retrieves the name of the <em class="parameter"><code>column</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td> the column number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the name of the column. The model holds the returned
+  string, and it should not be modified or freed
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-column-type"></a><h3>clutter_model_get_column_type ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>               clutter_model_get_column_type       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column);</pre>
+<p>
+Retrieves the type of the <em class="parameter"><code>column</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td> the column number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the type of the column.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-n-columns"></a><h3>clutter_model_get_n_columns ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_model_get_n_columns         (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Retrieves the number of columns inside <em class="parameter"><code>model</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of columns
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-n-rows"></a><h3>clutter_model_get_n_rows ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_model_get_n_rows            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Retrieves the number of rows inside <em class="parameter"><code>model</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The length of the <em class="parameter"><code>model</code></em>. If there is a filter set, then
+  the length of the filtered <em class="parameter"><code>model</code></em> is returned.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-append"></a><h3>clutter_model_append ()</h3>
+<pre class="programlisting">void                clutter_model_append                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         ...);</pre>
+<p>
+Creates and appends a new row to the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, setting the
+row values upon creation. For example, to append a new row where
+column 0 is type <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INT:CAPS"
+><code class="literal">G_TYPE_INT</code></a> and column 1 is of type <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-STRING:CAPS"
+><code class="literal">G_TYPE_STRING</code></a>:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_append (model, 0, 42, 1, "Team 1", -1);
+</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> pairs of column number and value, terminated with -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-appendv"></a><h3>clutter_model_appendv ()</h3>
+<pre class="programlisting">void                clutter_model_appendv               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);</pre>
+<p>
+Creates and appends a new row to the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, setting the row
+values for the given <em class="parameter"><code>columns</code></em> upon creation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> the number of columns and values
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>columns</code></em> :</span></p></td>
+<td> a vector with the columns to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>values</code></em> :</span></p></td>
+<td> a vector with the values
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-prepend"></a><h3>clutter_model_prepend ()</h3>
+<pre class="programlisting">void                clutter_model_prepend               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         ...);</pre>
+<p>
+Creates and prepends a new row to the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, setting the row
+values upon creation. For example, to prepend a new row where column 0
+is type <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INT:CAPS"
+><code class="literal">G_TYPE_INT</code></a> and column 1 is of type <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-STRING:CAPS"
+><code class="literal">G_TYPE_STRING</code></a>:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_prepend (model, 0, 42, 1, "Team 1", -1);
+</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> pairs of column number and value, terminated with -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-prependv"></a><h3>clutter_model_prependv ()</h3>
+<pre class="programlisting">void                clutter_model_prependv              (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);</pre>
+<p>
+Creates and prepends a new row to the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, setting the row
+values for the given <em class="parameter"><code>columns</code></em> upon creation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> the number of columns and values to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>columns</code></em> :</span></p></td>
+<td> a vector containing the columns to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>values</code></em> :</span></p></td>
+<td> a vector containing the values for the cells
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-insert"></a><h3>clutter_model_insert ()</h3>
+<pre class="programlisting">void                clutter_model_insert                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         ...);</pre>
+<p>
+Inserts a new row to the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> at <em class="parameter"><code>row</code></em>, setting the row
+values upon creation. For example, to insert a new row at index 100,
+where column 0 is type <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INT:CAPS"
+><code class="literal">G_TYPE_INT</code></a> and column 1 is of type
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-STRING:CAPS"
+><code class="literal">G_TYPE_STRING</code></a>:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  ClutterModel *model;
+  model = clutter_model_default_new (2,
+                                     G_TYPE_INT,    "Score",
+                                     G_TYPE_STRING, "Team");
+  clutter_model_insert (model, 3, 0, 42, 1, "Team 1", -1);
+</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> the position to insert the new row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> pairs of column number and value, terminated with -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-insertv"></a><h3>clutter_model_insertv ()</h3>
+<pre class="programlisting">void                clutter_model_insertv               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *values);</pre>
+<p>
+Inserts data at <em class="parameter"><code>row</code></em> into the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>, setting the row
+values for the given <em class="parameter"><code>columns</code></em> upon creation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> row index
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> the number of columns and values to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>columns</code></em> :</span></p></td>
+<td> a vector containing the columns to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>values</code></em> :</span></p></td>
+<td> a vector containing the values for the cells
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-insert-value"></a><h3>clutter_model_insert_value ()</h3>
+<pre class="programlisting">void                clutter_model_insert_value          (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Sets the data in the cell specified by <em class="parameter"><code>iter</code></em> and <em class="parameter"><code>column</code></em>. The type of 
+<em class="parameter"><code>value</code></em> must be convertable to the type of the column. If the row does
+not exist then it is created.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> position of the row to modify
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td> column to modify
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> new value for the cell
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-remove"></a><h3>clutter_model_remove ()</h3>
+<pre class="programlisting">void                clutter_model_remove                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);</pre>
+<p>
+Removes the row at the given position from the model.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> position of row to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModelForeachFunc"></a><h3>ClutterModelForeachFunc ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (*ClutterModelForeachFunc)          (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Iterates on the content of a row in the model</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> the iterator for the row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data passed to <a class="link" href="ClutterModel.html#clutter-model-foreach" title="clutter_model_foreach ()"><code class="function">clutter_model_foreach()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the iteration should continue, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-foreach"></a><h3>clutter_model_foreach ()</h3>
+<pre class="programlisting">void                clutter_model_foreach               (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelForeachFunc" title="ClutterModelForeachFunc ()">ClutterModelForeachFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Calls <em class="parameter"><code>func</code></em> for each row in the model.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html#ClutterModelForeachFunc" title="ClutterModelForeachFunc ()"><span class="type">ClutterModelForeachFunc</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> user data to pass to <em class="parameter"><code>func</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-set-sorting-column"></a><h3>clutter_model_set_sorting_column ()</h3>
+<pre class="programlisting">void                clutter_model_set_sorting_column    (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> column);</pre>
+<p>
+Sets the model to sort by <em class="parameter"><code>column</code></em>. If <em class="parameter"><code>column</code></em> is a negative value
+the sorting column will be unset.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td> the column of the <em class="parameter"><code>model</code></em> to sort, or -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-sorting-column"></a><h3>clutter_model_get_sorting_column ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_model_get_sorting_column    (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Retrieves the number of column used for sorting the <em class="parameter"><code>model</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a column number, or -1 if the model is not sorted
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModelSortFunc"></a><h3>ClutterModelSortFunc ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                (*ClutterModelSortFunc)             (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *a,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *b,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Compares the content of two rows in the model.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> representing the contents of the row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> representing the contents of the second row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data passed to <a class="link" href="ClutterModel.html#clutter-model-set-sort" title="clutter_model_set_sort ()"><code class="function">clutter_model_set_sort()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a positive integer if <em class="parameter"><code>a</code></em> is after <em class="parameter"><code>b</code></em>, a negative integer if
+  <em class="parameter"><code>a</code></em> is before <em class="parameter"><code>b</code></em>, or 0 if the rows are the same
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-set-sort"></a><h3>clutter_model_set_sort ()</h3>
+<pre class="programlisting">void                clutter_model_set_sort              (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> column,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelSortFunc" title="ClutterModelSortFunc ()">ClutterModelSortFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Sorts <em class="parameter"><code>model</code></em> using the given sorting function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>column</code></em> :</span></p></td>
+<td> the column to sort on
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html#ClutterModelSortFunc" title="ClutterModelSortFunc ()"><span class="type">ClutterModelSortFunc</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> user data to pass to <em class="parameter"><code>func</code></em>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> destroy notifier of <em class="parameter"><code>user_data</code></em>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-resort"></a><h3>clutter_model_resort ()</h3>
+<pre class="programlisting">void                clutter_model_resort                (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Force a resort on the <em class="parameter"><code>model</code></em>. This function should only be
+used by subclasses of <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModelFilterFunc"></a><h3>ClutterModelFilterFunc ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            (*ClutterModelFilterFunc)           (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Filters the content of a row in the model.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> the iterator for the row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data passed to <a class="link" href="ClutterModel.html#clutter-model-set-filter" title="clutter_model_set_filter ()"><code class="function">clutter_model_set_filter()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> If the row should be displayed, return <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-set-filter"></a><h3>clutter_model_set_filter ()</h3>
+<pre class="programlisting">void                clutter_model_set_filter            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModel.html#ClutterModelFilterFunc" title="ClutterModelFilterFunc ()">ClutterModelFilterFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Filters the <em class="parameter"><code>model</code></em> using the given filtering function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html#ClutterModelFilterFunc" title="ClutterModelFilterFunc ()"><span class="type">ClutterModelFilterFunc</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> user data to pass to <em class="parameter"><code>func</code></em>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> destroy notifier of <em class="parameter"><code>user_data</code></em>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-filter-iter"></a><h3>clutter_model_filter_iter ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_model_filter_iter           (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter);</pre>
+<p>
+Checks whether the row pointer by <em class="parameter"><code>iter</code></em> should be filtered or not using
+the filtering function set on <em class="parameter"><code>model</code></em>.
+</p>
+<p>
+This function should be used only by subclasses of <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> the row to filter
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the row should be displayed,
+  <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-filter-row"></a><h3>clutter_model_filter_row ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_model_filter_row            (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);</pre>
+<p>
+Checks whether <em class="parameter"><code>row</code></em> should be filtered or not using the
+filtering function set on <em class="parameter"><code>model</code></em>.
+</p>
+<p>
+This function should be used only by subclasses of <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> the row to filter
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the row should be displayed,
+  <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-first-iter"></a><h3>clutter_model_get_first_iter ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   clutter_model_get_first_iter        (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Retrieves a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> representing the first row in <em class="parameter"><code>model</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a>. Call <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a> when
+  done using it
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-last-iter"></a><h3>clutter_model_get_last_iter ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   clutter_model_get_last_iter         (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model);</pre>
+<p>
+Retrieves a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> representing the last row in <em class="parameter"><code>model</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a>. Call <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a> when
+  done using it
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-model-get-iter-at-row"></a><h3>clutter_model_get_iter_at_row ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a>*   clutter_model_get_iter_at_row       (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> row);</pre>
+<p>
+Retrieves a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> representing the row at the given index.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>row</code></em> :</span></p></td>
+<td> position of the row to retrieve
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>row</code></em> was out of bounds.
+  When done using the iterator object, call <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a> to deallocate
+  its resources
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterModel.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-filter-changed"></a><h3>The <code class="literal">"filter-changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::filter-changed signal is emitted when a new filter has been applied</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> on which the signal is emitted   
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-row-added"></a><h3>The <code class="literal">"row-added"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>     *model,
+                                                        <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>          user_data)      : Run Last</pre>
+<p>
+The ::row-added signal is emitted when a new row has been added.
+The data on the row has already been set when the ::row-added signal
+has been emitted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> on which the signal is emitted
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> pointing to the new row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-row-changed"></a><h3>The <code class="literal">"row-changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>     *model,
+                                                        <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>          user_data)      : Run Last</pre>
+<p>
+The ::row-removed signal is emitted when a row has been changed.
+The data on the row has already been updated when the ::row-changed
+signal has been emitted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> on which the signal is emitted
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> pointing to the changed row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-row-removed"></a><h3>The <code class="literal">"row-removed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>     *model,
+                                                        <a class="link" href="ClutterModelIter.html" title="ClutterModelIter">ClutterModelIter</a> *iter,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>          user_data)      : Run Last</pre>
+<p>
+The ::row-removed signal is emitted when a row has been removed.
+The data on the row pointed by the passed iterator is still valid
+when the ::row-removed signal has been emitted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> on which the signal is emitted
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterModelIter.html" title="ClutterModelIter"><span class="type">ClutterModelIter</span></a> pointing to the removed row
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterModel-sort-changed"></a><h3>The <code class="literal">"sort-changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a> *model,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::sort-changed signal is emitted after the model has been sorted</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> on which the signal is emitted
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

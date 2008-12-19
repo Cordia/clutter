@@ -1,0 +1,1624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterTimeline</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch04.html" title="Base classes">
+<link rel="prev" href="ch04.html" title="Base classes">
+<link rel="next" href="ClutterScore.html" title="ClutterScore">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch04.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterScore.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterTimeline.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterTimeline.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterTimeline.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterTimeline.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterTimeline.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterTimeline"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterTimeline.top_of_page"></a>ClutterTimeline</span></h2>
+<p>ClutterTimeline — A class for time-based events</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterTimeline.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterTimeline.html#ClutterTimeline-struct" title="ClutterTimeline">ClutterTimeline</a>;
+                    <a class="link" href="ClutterTimeline.html#ClutterTimelineClass" title="ClutterTimelineClass">ClutterTimelineClass</a>;
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    <a class="link" href="ClutterTimeline.html#clutter-timeline-new" title="clutter_timeline_new ()">clutter_timeline_new</a>                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> fps);
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    <a class="link" href="ClutterTimeline.html#clutter-timeline-new-for-duration" title="clutter_timeline_new_for_duration ()">clutter_timeline_new_for_duration</a>   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    <a class="link" href="ClutterTimeline.html#clutter-timeline-clone" title="clutter_timeline_clone ()">clutter_timeline_clone</a>              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-speed" title="clutter_timeline_set_speed ()">clutter_timeline_set_speed</a>          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> fps);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterTimeline.html#clutter-timeline-get-speed" title="clutter_timeline_get_speed ()">clutter_timeline_get_speed</a>          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-duration" title="clutter_timeline_set_duration ()">clutter_timeline_set_duration</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterTimeline.html#clutter-timeline-get-duration" title="clutter_timeline_get_duration ()">clutter_timeline_get_duration</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-loop" title="clutter_timeline_set_loop ()">clutter_timeline_set_loop</a>           (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> loop);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTimeline.html#clutter-timeline-get-loop" title="clutter_timeline_get_loop ()">clutter_timeline_get_loop</a>           (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-n-frames" title="clutter_timeline_set_n_frames ()">clutter_timeline_set_n_frames</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterTimeline.html#clutter-timeline-get-n-frames" title="clutter_timeline_get_n_frames ()">clutter_timeline_get_n_frames</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-delay" title="clutter_timeline_set_delay ()">clutter_timeline_set_delay</a>          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterTimeline.html#clutter-timeline-get-delay" title="clutter_timeline_get_delay ()">clutter_timeline_get_delay</a>          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+enum                <a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a>;
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-set-direction" title="clutter_timeline_set_direction ()">clutter_timeline_set_direction</a>      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a> direction);
+<a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a> <a class="link" href="ClutterTimeline.html#clutter-timeline-get-direction" title="clutter_timeline_get_direction ()">clutter_timeline_get_direction</a> (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-start" title="clutter_timeline_start ()">clutter_timeline_start</a>              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-pause" title="clutter_timeline_pause ()">clutter_timeline_pause</a>              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-stop" title="clutter_timeline_stop ()">clutter_timeline_stop</a>               (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-rewind" title="clutter_timeline_rewind ()">clutter_timeline_rewind</a>             (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-skip" title="clutter_timeline_skip ()">clutter_timeline_skip</a>               (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-advance" title="clutter_timeline_advance ()">clutter_timeline_advance</a>            (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frame_num);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterTimeline.html#clutter-timeline-get-current-frame" title="clutter_timeline_get_current_frame ()">clutter_timeline_get_current_frame</a>  (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterTimeline.html#clutter-timeline-get-delta" title="clutter_timeline_get_delta ()">clutter_timeline_get_delta</a>          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *msecs);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="ClutterTimeline.html#clutter-timeline-get-progress" title="clutter_timeline_get_progress ()">clutter_timeline_get_progress</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="ClutterTimeline.html#clutter-timeline-get-progressx" title="clutter_timeline_get_progressx ()">clutter_timeline_get_progressx</a>      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTimeline.html#clutter-timeline-is-playing" title="clutter_timeline_is_playing ()">clutter_timeline_is_playing</a>         (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-add-marker-at-frame" title="clutter_timeline_add_marker_at_frame ()">clutter_timeline_add_marker_at_frame</a>
+                                                        (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frame_num);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-add-marker-at-time" title="clutter_timeline_add_marker_at_time ()">clutter_timeline_add_marker_at_time</a> (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTimeline.html#clutter-timeline-has-marker" title="clutter_timeline_has_marker ()">clutter_timeline_has_marker</a>         (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>**             <a class="link" href="ClutterTimeline.html#clutter-timeline-list-markers" title="clutter_timeline_list_markers ()">clutter_timeline_list_markers</a>       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> frame_num,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> *n_markers);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-remove-marker" title="clutter_timeline_remove_marker ()">clutter_timeline_remove_marker</a>      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);
+void                <a class="link" href="ClutterTimeline.html#clutter-timeline-advance-to-marker" title="clutter_timeline_advance_to_marker ()">clutter_timeline_advance_to_marker</a>  (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterTimeline
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--delay" title='The "delay" property'>delay</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--direction" title='The "direction" property'>direction</a>"                <a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a>  : Read / Write
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--duration" title='The "duration" property'>duration</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--fps" title='The "fps" property'>fps</a>"                      <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--loop" title='The "loop" property'>loop</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline--num-frames" title='The "num-frames" property'>num-frames</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline-completed" title='The "completed" signal'>completed</a>"                                      : Run Last
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline-marker-reached" title='The "marker-reached" signal'>marker-reached</a>"                                 : Run Last / No Recursion / Has Details / No Hooks
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline-new-frame" title='The "new-frame" signal'>new-frame</a>"                                      : Run Last
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline-paused" title='The "paused" signal'>paused</a>"                                         : Run Last
+  "<a class="link" href="ClutterTimeline.html#ClutterTimeline-started" title='The "started" signal'>started</a>"                                        : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> is a base class for managing time based events such
+as animations.
+</p>
+<p>
+Every timeline shares the same <span class="type">ClutterTimeoutPool</span> to decrease the
+possibility of starving the main loop when using many timelines
+at the same time; this might cause problems if you are also using
+a library making heavy use of threads with no GLib main loop integration.
+</p>
+<p>
+In that case you might disable the common timeline pool by setting
+the <code class="literal">CLUTTER_TIMELINE</code>=no-pool environment variable prior to launching
+your application.
+</p>
+<p>
+One way to visualise a timeline is as a path with marks along its length.
+When creating a timeline of <em class="parameter"><code>n_frames</code></em> via <a class="link" href="ClutterTimeline.html#clutter-timeline-new" title="clutter_timeline_new ()"><code class="function">clutter_timeline_new()</code></a>, then the
+number of frames can be seen as the paths length, and each unit of length
+(each frame) is delimited by a mark.
+</p>
+<p>
+For a non looping timeline there will be (n_frames + 1) marks along its
+length. For a looping timeline, the two ends are joined with one mark.
+Technically this mark represents two discrete frame numbers, but for a
+looping timeline the start and end frame numbers are considered equivalent.
+</p>
+<p>
+When you create a timeline it starts with
+<a class="link" href="ClutterTimeline.html#clutter-timeline-get-current-frame" title="clutter_timeline_get_current_frame ()"><code class="function">clutter_timeline_get_current_frame()</code></a> == 0.
+</p>
+<p>
+After starting a timeline, the first timeout is for current_frame_num == 1
+(Notably it isn't 0 since there is a delay before the first timeout signals
+so re-asserting the starting frame (0) wouldn't make sense.)
+Notably, this implies that actors you intend to be affected by the
+timeline's progress, should be manually primed/positioned for frame 0 which
+will be displayed before the first timeout. (If you are not careful about
+this point you will likely see flashes of incorrect actor state in your
+program)
+</p>
+<p>
+For a non looping timeline the last timeout would be for
+current_frame_num == <em class="parameter"><code>n_frames</code></em>
+</p>
+<p>
+For a looping timeline the timeout for current_frame_num == <em class="parameter"><code>n_frames</code></em> would
+be followed by a timeout for current_frame_num == 1 (remember frame 0 is
+considered == frame (<em class="parameter"><code>n_frames</code></em>)).
+</p>
+<p>
+There may be times when a system is not able to meet the frame rate
+requested for a timeline, and in this case the frame number will be
+interpolated at the next timeout event. The interpolation is calculated from
+the time that the timeline was started, not from the time of the last
+timeout, so a given timeline should basically elapse in the same - real
+world - time on any given system. An invariable here though is that
+current_frame_num == <em class="parameter"><code>n_frames</code></em> will always be signaled, but notably frame 1
+can be interpolated past and so never signaled.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-struct"></a><h3>ClutterTimeline</h3>
+<pre class="programlisting">typedef struct _ClutterTimeline ClutterTimeline;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimelineClass"></a><h3>ClutterTimelineClass</h3>
+<pre class="programlisting">typedef struct {
+  void (*started)        (ClutterTimeline *timeline);
+  void (*completed)      (ClutterTimeline *timeline);
+  void (*paused)         (ClutterTimeline *timeline);
+  
+  void (*new_frame)      (ClutterTimeline *timeline,
+		          gint             frame_num);
+
+  void (*marker_reached) (ClutterTimeline *timeline,
+                          const gchar     *marker_name,
+                          gint             frame_num);
+} ClutterTimelineClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-new"></a><h3>clutter_timeline_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    clutter_timeline_new                (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> fps);</pre>
+<p>
+Create a new  <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_frames</code></em> :</span></p></td>
+<td> the number of frames
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fps</code></em> :</span></p></td>
+<td> the number of frames per second
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-new-for-duration"></a><h3>clutter_timeline_new_for_duration ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    clutter_timeline_new_for_duration   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);</pre>
+<p>
+Creates a new <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> with a duration of <em class="parameter"><code>msecs</code></em> using
+the value of the ClutterTimeline:fps property to compute the
+equivalent number of frames.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> Duration of the timeline in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-clone"></a><h3>clutter_timeline_clone ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    clutter_timeline_clone              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Create a new <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> instance which has property values
+matching that of supplied timeline. The cloned timeline will not
+be started and will not be positioned to the current position of
+<em class="parameter"><code>timeline</code></em>: you will have to start it with <a class="link" href="ClutterTimeline.html#clutter-timeline-start" title="clutter_timeline_start ()"><code class="function">clutter_timeline_start()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> to duplicate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>, cloned from <em class="parameter"><code>timeline</code></em>
+
+Since 0.4
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-speed"></a><h3>clutter_timeline_set_speed ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_speed          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> fps);</pre>
+<p>
+Set the speed in frames per second of the timeline.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fps</code></em> :</span></p></td>
+<td> New speed of timeline as frames per second
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-speed"></a><h3>clutter_timeline_get_speed ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeline_get_speed          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Gets the frames per second played by <em class="parameter"><code>timeline</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of frames per second.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-duration"></a><h3>clutter_timeline_set_duration ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_duration       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);</pre>
+<p>
+Sets the duration of the timeline, in milliseconds. The speed
+of the timeline depends on the ClutterTimeline:fps setting.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> duration of the timeline in milliseconds
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-duration"></a><h3>clutter_timeline_get_duration ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeline_get_duration       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Retrieves the duration of a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> in milliseconds.
+See <a class="link" href="ClutterTimeline.html#clutter-timeline-set-duration" title="clutter_timeline_set_duration ()"><code class="function">clutter_timeline_set_duration()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the duration of the timeline, in milliseconds.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-loop"></a><h3>clutter_timeline_set_loop ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_loop           (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> loop);</pre>
+<p>
+Sets whether <em class="parameter"><code>timeline</code></em> should loop.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loop</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> for enable looping
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-loop"></a><h3>clutter_timeline_get_loop ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_timeline_get_loop           (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Gets whether <em class="parameter"><code>timeline</code></em> is looping</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the timeline is looping
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-n-frames"></a><h3>clutter_timeline_set_n_frames ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_n_frames       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames);</pre>
+<p>
+Sets the total number of frames for <em class="parameter"><code>timeline</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_frames</code></em> :</span></p></td>
+<td> the number of frames
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-n-frames"></a><h3>clutter_timeline_get_n_frames ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeline_get_n_frames       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Request the total number of frames for the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Number of frames for this <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-delay"></a><h3>clutter_timeline_set_delay ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_delay          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);</pre>
+<p>
+Sets the delay, in milliseconds, before <em class="parameter"><code>timeline</code></em> should start.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> delay in milliseconds
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-delay"></a><h3>clutter_timeline_get_delay ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeline_get_delay          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Retrieves the delay set using <a class="link" href="ClutterTimeline.html#clutter-timeline-set-delay" title="clutter_timeline_set_delay ()"><code class="function">clutter_timeline_set_delay()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the delay in milliseconds.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimelineDirection"></a><h3>enum ClutterTimelineDirection</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_TIMELINE_FORWARD,
+  CLUTTER_TIMELINE_BACKWARD
+} ClutterTimelineDirection;
+</pre>
+<p>
+The direction of a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-TIMELINE-FORWARD:CAPS"></a><span class="term"><code class="literal">CLUTTER_TIMELINE_FORWARD</code></span></p></td>
+<td> forward direction for a timeline
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TIMELINE-BACKWARD:CAPS"></a><span class="term"><code class="literal">CLUTTER_TIMELINE_BACKWARD</code></span></p></td>
+<td> backward direction for a timeline
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-set-direction"></a><h3>clutter_timeline_set_direction ()</h3>
+<pre class="programlisting">void                clutter_timeline_set_direction      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a> direction);</pre>
+<p>
+Sets the direction of <em class="parameter"><code>timeline</code></em>, either <a class="link" href="ClutterTimeline.html#CLUTTER-TIMELINE-FORWARD:CAPS"><code class="literal">CLUTTER_TIMELINE_FORWARD</code></a> or
+<a class="link" href="ClutterTimeline.html#CLUTTER-TIMELINE-BACKWARD:CAPS"><code class="literal">CLUTTER_TIMELINE_BACKWARD</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> the direction of the timeline
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-direction"></a><h3>clutter_timeline_get_direction ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a> clutter_timeline_get_direction (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Retrieves the direction of the timeline set with
+<a class="link" href="ClutterTimeline.html#clutter-timeline-set-direction" title="clutter_timeline_set_direction ()"><code class="function">clutter_timeline_set_direction()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the direction of the timeline
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-start"></a><h3>clutter_timeline_start ()</h3>
+<pre class="programlisting">void                clutter_timeline_start              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Starts the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-pause"></a><h3>clutter_timeline_pause ()</h3>
+<pre class="programlisting">void                clutter_timeline_pause              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Pauses the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> on current frame</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-stop"></a><h3>clutter_timeline_stop ()</h3>
+<pre class="programlisting">void                clutter_timeline_stop               (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Stops the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> and moves to frame 0</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-rewind"></a><h3>clutter_timeline_rewind ()</h3>
+<pre class="programlisting">void                clutter_timeline_rewind             (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Rewinds <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> to the first frame if its direction is
+CLUTTER_TIMELINE_FORWARD and the last frame if it is
+CLUTTER_TIMELINE_BACKWARD.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-skip"></a><h3>clutter_timeline_skip ()</h3>
+<pre class="programlisting">void                clutter_timeline_skip               (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_frames);</pre>
+<p>
+Advance timeline by requested number of frames.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_frames</code></em> :</span></p></td>
+<td> Number of frames to skip
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-advance"></a><h3>clutter_timeline_advance ()</h3>
+<pre class="programlisting">void                clutter_timeline_advance            (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frame_num);</pre>
+<p>
+Advance timeline to requested frame number</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>frame_num</code></em> :</span></p></td>
+<td> Frame number to advance to
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-current-frame"></a><h3>clutter_timeline_get_current_frame ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_timeline_get_current_frame  (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Request the current frame number of the timeline.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> current frame number
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-delta"></a><h3>clutter_timeline_get_delta ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeline_get_delta          (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *msecs);</pre>
+<p>
+Retrieves the number of frames and the amount of time elapsed since
+the last ClutterTimeline::new-frame signal.
+</p>
+<p>
+This function is only useful inside handlers for the ::new-frame
+signal, and its behaviour is undefined if the timeline is not
+playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> return location for the milliseconds elapsed since the last
+  frame, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the amount of frames elapsed since the last one
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-progress"></a><h3>clutter_timeline_get_progress ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             clutter_timeline_get_progress       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+The position of the timeline in a [0, 1] interval.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the position of the timeline.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-get-progressx"></a><h3>clutter_timeline_get_progressx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_timeline_get_progressx      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Fixed point version of <a class="link" href="ClutterTimeline.html#clutter-timeline-get-progress" title="clutter_timeline_get_progress ()"><code class="function">clutter_timeline_get_progress()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the position of the timeline as a fixed point value
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-is-playing"></a><h3>clutter_timeline_is_playing ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_timeline_is_playing         (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Query state of a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if timeline is currently playing, FALSE if not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-add-marker-at-frame"></a><h3>clutter_timeline_add_marker_at_frame ()</h3>
+<pre class="programlisting">void                clutter_timeline_add_marker_at_frame
+                                                        (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frame_num);</pre>
+<p>
+Adds a named marker at <em class="parameter"><code>frame_num</code></em>. Markers are unique string identifiers
+for a specific frame. Once <em class="parameter"><code>timeline</code></em> reaches <em class="parameter"><code>frame_num</code></em>, it will emit
+a ::marker-reached signal for each marker attached to that frame.
+</p>
+<p>
+A marker can be removed with <a class="link" href="ClutterTimeline.html#clutter-timeline-remove-marker" title="clutter_timeline_remove_marker ()"><code class="function">clutter_timeline_remove_marker()</code></a>. The
+timeline can be advanced to a marker using
+<a class="link" href="ClutterTimeline.html#clutter-timeline-advance-to-marker" title="clutter_timeline_advance_to_marker ()"><code class="function">clutter_timeline_advance_to_marker()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the unique name for this marker
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>frame_num</code></em> :</span></p></td>
+<td> the marker's frame
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-add-marker-at-time"></a><h3>clutter_timeline_add_marker_at_time ()</h3>
+<pre class="programlisting">void                clutter_timeline_add_marker_at_time (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> msecs);</pre>
+<p>
+Time-based variant of <a class="link" href="ClutterTimeline.html#clutter-timeline-add-marker-at-frame" title="clutter_timeline_add_marker_at_frame ()"><code class="function">clutter_timeline_add_marker_at_frame()</code></a>.
+</p>
+<p>
+Adds a named marker at <em class="parameter"><code>msecs</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the unique name for this marker
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>msecs</code></em> :</span></p></td>
+<td> position of the marker in milliseconds
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-has-marker"></a><h3>clutter_timeline_has_marker ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_timeline_has_marker         (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);</pre>
+<p>
+Checks whether <em class="parameter"><code>timeline</code></em> has a marker set with the given name.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the name of the marker
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the marker was found
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-list-markers"></a><h3>clutter_timeline_list_markers ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>**             clutter_timeline_list_markers       (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> frame_num,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> *n_markers);</pre>
+<p>
+Retrieves the list of markers at <em class="parameter"><code>frame_num</code></em>. If <em class="parameter"><code>frame_num</code></em> is a
+negative integer, all the markers attached to <em class="parameter"><code>timeline</code></em> will be
+returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>frame_num</code></em> :</span></p></td>
+<td> the frame number to check, or -1
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_markers</code></em> :</span></p></td>
+<td> the number of markers returned
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a newly allocated, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated string array
+  containing the names of the markers. Use <a
+href="/usr/share/gtk-doc/html/glib/glib-String-Utility-Functions.html#g-strfreev"
+><code class="function">g_strfreev()</code></a> when
+  done.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-remove-marker"></a><h3>clutter_timeline_remove_marker ()</h3>
+<pre class="programlisting">void                clutter_timeline_remove_marker      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);</pre>
+<p>
+Removes <em class="parameter"><code>marker_name</code></em>, if found, from <em class="parameter"><code>timeline</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the name of the marker to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeline-advance-to-marker"></a><h3>clutter_timeline_advance_to_marker ()</h3>
+<pre class="programlisting">void                clutter_timeline_advance_to_marker  (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name);</pre>
+<p>
+Advances <em class="parameter"><code>timeline</code></em> to the frame of the given <em class="parameter"><code>marker_name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the name of the marker
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--delay"></a><h3>The <code class="literal">"delay"</code> property</h3>
+<pre class="programlisting">  "delay"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+A delay, in milliseconds, that should be observed by the
+timeline before actually starting.</p>
+<p>
+
+</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--direction"></a><h3>The <code class="literal">"direction"</code> property</h3>
+<pre class="programlisting">  "direction"                <a class="link" href="ClutterTimeline.html#ClutterTimelineDirection" title="enum ClutterTimelineDirection">ClutterTimelineDirection</a>  : Read / Write</pre>
+<p>
+The direction of the timeline, either <a class="link" href="ClutterTimeline.html#CLUTTER-TIMELINE-FORWARD:CAPS"><code class="literal">CLUTTER_TIMELINE_FORWARD</code></a> or
+<a class="link" href="ClutterTimeline.html#CLUTTER-TIMELINE-BACKWARD:CAPS"><code class="literal">CLUTTER_TIMELINE_BACKWARD</code></a>.</p>
+<p>
+
+</p>
+<p>Default value: CLUTTER_TIMELINE_FORWARD</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--duration"></a><h3>The <code class="literal">"duration"</code> property</h3>
+<pre class="programlisting">  "duration"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+Duration of the timeline in milliseconds, depending on the
+ClutterTimeline:fps value.</p>
+<p>
+
+</p>
+<p>Default value: 1000</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--fps"></a><h3>The <code class="literal">"fps"</code> property</h3>
+<pre class="programlisting">  "fps"                      <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+Timeline frames per second. Because of the nature of the main
+loop used by Clutter this is to be considered a best approximation.</p>
+<p>
+
+</p>
+<p>Allowed values: [1,1000]</p>
+<p>Default value: 60</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--loop"></a><h3>The <code class="literal">"loop"</code> property</h3>
+<pre class="programlisting">  "loop"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the timeline should automatically rewind and restart.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline--num-frames"></a><h3>The <code class="literal">"num-frames"</code> property</h3>
+<pre class="programlisting">  "num-frames"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+Total number of frames for the timeline.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 1</p>
+<p>Default value: 1</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTimeline.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-completed"></a><h3>The <code class="literal">"completed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::completed signal is emitted when the timeline reaches the
+number of frames specified by the ClutterTimeline:num-frames property.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-marker-reached"></a><h3>The <code class="literal">"marker-reached"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>           *marker_name,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>             frame_num,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)        : Run Last / No Recursion / Has Details / No Hooks</pre>
+<p>
+The ::marker-reached signal is emitted each time a timeline
+reaches a marker set with <a class="link" href="ClutterTimeline.html#clutter-timeline-add-marker-at-frame" title="clutter_timeline_add_marker_at_frame ()"><code class="function">clutter_timeline_add_marker_at_frame()</code></a>
+or <a class="link" href="ClutterTimeline.html#clutter-timeline-add-marker-at-time" title="clutter_timeline_add_marker_at_time ()"><code class="function">clutter_timeline_add_marker_at_time()</code></a>. This signal is
+detailed with the name of the marker as well, so it is
+possible to connect a callback to the ::marker-reached signal
+for a specific marker with:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  clutter_timeline_add_marker_at_frame (timeline, "foo", 24);
+  clutter_timeline_add_marker_at_frame (timeline, "bar", 48);
+
+  g_signal_connect (timeline, "marker-reached",
+                    G_CALLBACK (each_marker_reached), NULL);
+  g_signal_connect (timeline, "marker-reached::foo",
+                    G_CALLBACK (foo_marker_reached), NULL);
+  g_signal_connect (timeline, "marker-reached::bar",
+                    G_CALLBACK (bar_marker_reached), NULL);
+</pre></div>
+<p>
+</p>
+<p>
+In the example, the first callback will be invoked for both
+the "foo" and "bar" marker, while the second and third callbacks
+will be invoked for the "foo" or "bar" markers, respectively.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the name of the marker reached
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>frame_num</code></em> :</span></p></td>
+<td> the frame number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-new-frame"></a><h3>The <code class="literal">"new-frame"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>             frame_num,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::new-frame signal is emitted each time a new frame in the
+timeline is reached.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the timeline which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>frame_num</code></em> :</span></p></td>
+<td> the number of the new frame between 0 and
+ClutterTimeline:num-frames
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-paused"></a><h3>The <code class="literal">"paused"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::paused signal is emitted when <a class="link" href="ClutterTimeline.html#clutter-timeline-pause" title="clutter_timeline_pause ()"><code class="function">clutter_timeline_pause()</code></a> is invoked.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTimeline-started"></a><h3>The <code class="literal">"started"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::started signal is emitted when the timeline starts its run.
+This might be as soon as <a class="link" href="ClutterTimeline.html#clutter-timeline-start" title="clutter_timeline_start ()"><code class="function">clutter_timeline_start()</code></a> is invoked or
+after the delay set in the ClutterTimeline:delay property has
+expired.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

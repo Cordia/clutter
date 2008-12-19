@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourScale</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">
+<link rel="next" href="ch06.html" title="Simple effects API">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterBehaviourRotate.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ch06.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourScale.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourScale.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourScale.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourScale.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourScale"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourScale.top_of_page"></a>ClutterBehaviourScale</span></h2>
+<p>ClutterBehaviourScale — A behaviour controlling scale</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourScale.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="ClutterBehaviourScale.html#ClutterGravity" title="enum ClutterGravity">ClutterGravity</a>;
+                    <a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScale-struct" title="ClutterBehaviourScale">ClutterBehaviourScale</a>;
+                    <a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScaleClass" title="ClutterBehaviourScaleClass">ClutterBehaviourScaleClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-new" title="clutter_behaviour_scale_new ()">clutter_behaviour_scale_new</a>         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_end);
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-newx" title="clutter_behaviour_scale_newx ()">clutter_behaviour_scale_newx</a>        (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_end);
+void                <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-set-bounds" title="clutter_behaviour_scale_set_bounds ()">clutter_behaviour_scale_set_bounds</a>  (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_end);
+void                <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-get-bounds" title="clutter_behaviour_scale_get_bounds ()">clutter_behaviour_scale_get_bounds</a>  (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y_scale_end);
+void                <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-set-boundsx" title="clutter_behaviour_scale_set_boundsx ()">clutter_behaviour_scale_set_boundsx</a> (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_end);
+void                <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-get-boundsx" title="clutter_behaviour_scale_get_boundsx ()">clutter_behaviour_scale_get_boundsx</a> (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *y_scale_end);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourScale.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourScale
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourScale.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScale--x-scale-end" title='The "x-scale-end" property'>x-scale-end</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScale--x-scale-start" title='The "x-scale-start" property'>x-scale-start</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScale--y-scale-end" title='The "y-scale-end" property'>y-scale-end</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourScale.html#ClutterBehaviourScale--y-scale-start" title='The "y-scale-start" property'>y-scale-start</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourScale.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a> interpolates actors size between two values.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourScale.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterGravity"></a><h3>enum ClutterGravity</h3>
+<pre class="programlisting">typedef enum { /*&lt; prefix=CLUTTER_GRAVITY &gt;*/
+  CLUTTER_GRAVITY_NONE       = 0,
+  CLUTTER_GRAVITY_NORTH,
+  CLUTTER_GRAVITY_NORTH_EAST,
+  CLUTTER_GRAVITY_EAST,
+  CLUTTER_GRAVITY_SOUTH_EAST,
+  CLUTTER_GRAVITY_SOUTH,
+  CLUTTER_GRAVITY_SOUTH_WEST,
+  CLUTTER_GRAVITY_WEST,
+  CLUTTER_GRAVITY_NORTH_WEST,
+  CLUTTER_GRAVITY_CENTER
+} ClutterGravity;
+</pre>
+<p>
+Gravity of the scaling operations. When a gravity different than
+<a class="link" href="ClutterBehaviourScale.html#CLUTTER-GRAVITY-NONE:CAPS"><code class="literal">CLUTTER_GRAVITY_NONE</code></a> is used, an actor is scaled keeping the position
+of the specified portion at the same coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-NONE:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_NONE</code></span></p></td>
+<td> Do not apply any gravity
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-NORTH:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_NORTH</code></span></p></td>
+<td> Scale from topmost downwards
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-NORTH-EAST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_NORTH_EAST</code></span></p></td>
+<td> Scale from the top right corner
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-EAST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_EAST</code></span></p></td>
+<td> Scale from the right side
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-SOUTH-EAST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_SOUTH_EAST</code></span></p></td>
+<td> Scale from the bottom right corner
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-SOUTH:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_SOUTH</code></span></p></td>
+<td> Scale from the bottom upwards
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-SOUTH-WEST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_SOUTH_WEST</code></span></p></td>
+<td> Scale from the bottom left corner
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-WEST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_WEST</code></span></p></td>
+<td> Scale from the left side
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-NORTH-WEST:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_NORTH_WEST</code></span></p></td>
+<td> Scale from the top left corner
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-GRAVITY-CENTER:CAPS"></a><span class="term"><code class="literal">CLUTTER_GRAVITY_CENTER</code></span></p></td>
+<td> Scale from the center.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScale-struct"></a><h3>ClutterBehaviourScale</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourScale ClutterBehaviourScale;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScaleClass"></a><h3>ClutterBehaviourScaleClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterBehaviourClass parent_class;
+} ClutterBehaviourScaleClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-new"></a><h3>clutter_behaviour_scale_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_scale_new         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_end);</pre>
+<p>
+Creates a new  <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-newx"></a><h3>clutter_behaviour_scale_newx ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_scale_newx        (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_end);</pre>
+<p>
+A fixed point implementation of <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-new" title="clutter_behaviour_scale_new ()"><code class="function">clutter_behaviour_scale_new()</code></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-set-bounds"></a><h3>clutter_behaviour_scale_set_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_scale_set_bounds  (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> y_scale_end);</pre>
+<p>
+Sets the bounds used by scale behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scale</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the Y axis
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-get-bounds"></a><h3>clutter_behaviour_scale_get_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_scale_get_bounds  (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y_scale_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *x_scale_end,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *y_scale_end);</pre>
+<p>
+Retrieves the bounds used by scale behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scale</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> return location for the initial scale factor on the X
+  axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> return location for the initial scale factor on the Y
+  axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> return location for the final scale factor on the X axis,
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> return location for the final scale factor on the Y axis,
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-set-boundsx"></a><h3>clutter_behaviour_scale_set_boundsx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_scale_set_boundsx (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y_scale_end);</pre>
+<p>
+Fixed point version of <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-set-bounds" title="clutter_behaviour_scale_set_bounds ()"><code class="function">clutter_behaviour_scale_set_bounds()</code></a>.
+</p>
+<p>
+Sets the bounds used by scale behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scale</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> initial scale factor on the Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> final scale factor on the Y axis
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-scale-get-boundsx"></a><h3>clutter_behaviour_scale_get_boundsx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_scale_get_boundsx (<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a> *scale,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *x_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *y_scale_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *x_scale_end,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *y_scale_end);</pre>
+<p>
+Fixed point version of <a class="link" href="ClutterBehaviourScale.html#clutter-behaviour-scale-get-bounds" title="clutter_behaviour_scale_get_bounds ()"><code class="function">clutter_behaviour_scale_get_bounds()</code></a>.
+</p>
+<p>
+Retrieves the bounds used by scale behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scale</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_start</code></em> :</span></p></td>
+<td> return location for the initial scale factor on the X
+  axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_start</code></em> :</span></p></td>
+<td> return location for the initial scale factor on the Y
+  axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_scale_end</code></em> :</span></p></td>
+<td> return location for the final scale factor on the X axis,
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_scale_end</code></em> :</span></p></td>
+<td> return location for the final scale factor on the Y axis,
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourScale.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScale--x-scale-end"></a><h3>The <code class="literal">"x-scale-end"</code> property</h3>
+<pre class="programlisting">  "x-scale-end"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The final scaling factor on the X axis for the actors.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 1</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScale--x-scale-start"></a><h3>The <code class="literal">"x-scale-start"</code> property</h3>
+<pre class="programlisting">  "x-scale-start"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The initial scaling factor on the X axis for the actors.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 1</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScale--y-scale-end"></a><h3>The <code class="literal">"y-scale-end"</code> property</h3>
+<pre class="programlisting">  "y-scale-end"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The final scaling factor on the Y axis for the actors.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 1</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourScale--y-scale-start"></a><h3>The <code class="literal">"y-scale-start"</code> property</h3>
+<pre class="programlisting">  "y-scale-start"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The initial scaling factor on the Y axis for the actors.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 1</p>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

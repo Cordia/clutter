@@ -1,0 +1,1450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourEllipse</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ClutterBehaviourDepth.html" title="ClutterBehaviourDepth">
+<link rel="next" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterBehaviourDepth.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviourOpacity.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourEllipse.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourEllipse.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourEllipse.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourEllipse.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourEllipse"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourEllipse.top_of_page"></a>ClutterBehaviourEllipse</span></h2>
+<p>ClutterBehaviourEllipse — A behaviour interpolating position along an ellipse</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourEllipse.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse-struct" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a>;
+                    <a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipseClass" title="ClutterBehaviourEllipseClass">ClutterBehaviourEllipseClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-new" title="clutter_behaviour_ellipse_new ()">clutter_behaviour_ellipse_new</a>       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> end);
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-newx" title="clutter_behaviour_ellipse_newx ()">clutter_behaviour_ellipse_newx</a>      (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> end);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-center" title="clutter_behaviour_ellipse_set_center ()">clutter_behaviour_ellipse_set_center</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-center" title="clutter_behaviour_ellipse_get_center ()">clutter_behaviour_ellipse_get_center</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *y);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-start" title="clutter_behaviour_ellipse_set_angle_start ()">clutter_behaviour_ellipse_set_angle_start</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-start" title="clutter_behaviour_ellipse_get_angle_start ()">clutter_behaviour_ellipse_get_angle_start</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-startx" title="clutter_behaviour_ellipse_set_angle_startx ()">clutter_behaviour_ellipse_set_angle_startx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-startx" title="clutter_behaviour_ellipse_get_angle_startx ()">clutter_behaviour_ellipse_get_angle_startx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-end" title="clutter_behaviour_ellipse_set_angle_end ()">clutter_behaviour_ellipse_set_angle_end</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-end" title="clutter_behaviour_ellipse_get_angle_end ()">clutter_behaviour_ellipse_get_angle_end</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-endx" title="clutter_behaviour_ellipse_set_angle_endx ()">clutter_behaviour_ellipse_set_angle_endx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-endx" title="clutter_behaviour_ellipse_get_angle_endx ()">clutter_behaviour_ellipse_get_angle_endx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-tilt" title="clutter_behaviour_ellipse_set_angle_tilt ()">clutter_behaviour_ellipse_set_angle_tilt</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-tilt" title="clutter_behaviour_ellipse_get_angle_tilt ()">clutter_behaviour_ellipse_get_angle_tilt</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-tiltx" title="clutter_behaviour_ellipse_set_angle_tiltx ()">clutter_behaviour_ellipse_set_angle_tiltx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-tiltx" title="clutter_behaviour_ellipse_get_angle_tiltx ()">clutter_behaviour_ellipse_get_angle_tiltx</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-height" title="clutter_behaviour_ellipse_set_height ()">clutter_behaviour_ellipse_set_height</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-height" title="clutter_behaviour_ellipse_get_height ()">clutter_behaviour_ellipse_get_height</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-width" title="clutter_behaviour_ellipse_set_width ()">clutter_behaviour_ellipse_set_width</a> (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-width" title="clutter_behaviour_ellipse_get_width ()">clutter_behaviour_ellipse_get_width</a> (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-tilt" title="clutter_behaviour_ellipse_set_tilt ()">clutter_behaviour_ellipse_set_tilt</a>  (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_z);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-tilt" title="clutter_behaviour_ellipse_get_tilt ()">clutter_behaviour_ellipse_get_tilt</a>  (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_z);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-tiltx" title="clutter_behaviour_ellipse_set_tiltx ()">clutter_behaviour_ellipse_set_tiltx</a> (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_z);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-tiltx" title="clutter_behaviour_ellipse_get_tiltx ()">clutter_behaviour_ellipse_get_tiltx</a> (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_z);
+void                <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-direction" title="clutter_behaviour_ellipse_set_direction ()">clutter_behaviour_ellipse_set_direction</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction);
+<a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-direction" title="clutter_behaviour_ellipse_get_direction ()">clutter_behaviour_ellipse_get_direction</a>
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourEllipse.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourEllipse
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourEllipse.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-end" title='The "angle-end" property'>angle-end</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-start" title='The "angle-start" property'>angle-start</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-x" title='The "angle-tilt-x" property'>angle-tilt-x</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-y" title='The "angle-tilt-y" property'>angle-tilt-y</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-z" title='The "angle-tilt-z" property'>angle-tilt-z</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--center" title='The "center" property'>center</a>"                   <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*          : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--direction" title='The "direction" property'>direction</a>"                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a>  : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--height" title='The "height" property'>height</a>"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--width" title='The "width" property'>width</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourEllipse.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a> interpolates actors along a path defined by
+ an ellipse.
+</p>
+<p>
+Note, on applying an ellipse behaviour to an actor its position will
+be set to what is dictated by the ellipses initial position.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourEllipse.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse-struct"></a><h3>ClutterBehaviourEllipse</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourEllipse ClutterBehaviourEllipse;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipseClass"></a><h3>ClutterBehaviourEllipseClass</h3>
+<pre class="programlisting">typedef struct {
+  void (*knot_reached) (ClutterBehaviourEllipse *ellipseb,
+                        const ClutterKnot       *knot);
+} ClutterBehaviourEllipseClass;
+</pre>
+<p>
+Ellipse behaviour class</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="structfield"><code>knot_reached</code></em> ()</span></p></td>
+<td> signal class handler for the
+  ClutterBehaviourEllipse::knot_reached signal
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-new"></a><h3>clutter_behaviour_ellipse_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_ellipse_new       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> end);</pre>
+<p>
+Creates a behaviour that drives actors along an elliptical path with
+given center, width and height; the movement starts at <em class="parameter"><code>angle_start</code></em>
+degrees (with 0 corresponding to 12 o'clock) and ends at <em class="parameter"><code>angle_end</code></em>
+degrees. Angles &gt;= 360 degrees get clamped to the canonical interval
+&lt;0, 360), if start == end, the behaviour will rotate by exacly 360 degrees.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinace of the center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordiance of the center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> width of the ellipse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> height of the ellipse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection"><span class="type">ClutterRotateDirection</span></a> of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
+<td> angle in degrees at which movement starts, between 0 and 360
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
+<td> angle in degrees at which movement ends, between 0 and 360
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-newx"></a><h3>clutter_behaviour_ellipse_newx ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_ellipse_newx      (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> end);</pre>
+<p>
+Creates a behaviour that drives actors along an elliptical path. This
+is the fixed point variant of <a class="link" href="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-new" title="clutter_behaviour_ellipse_new ()"><code class="function">clutter_behaviour_ellipse_new()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinace of the center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordiance of the center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> width of the ellipse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> height of the ellipse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection"><span class="type">ClutterRotateDirection</span></a> of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> angle in degrees at which movement starts
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> angle in degrees at which movement ends
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-center"></a><h3>clutter_behaviour_ellipse_set_center ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_center
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y);</pre>
+<p>
+Sets the center of the elliptical path to the point represented by knot.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinace of centre
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinace of centre
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-center"></a><h3>clutter_behaviour_ellipse_get_center ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_get_center
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *y);</pre>
+<p>
+Gets the center of the elliptical path path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> location to store the x coordinace of the center, or NULL
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> location to store the y coordinace of the center, or NULL
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-start"></a><h3>clutter_behaviour_ellipse_set_angle_start ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_start
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start);</pre>
+<p>
+Sets the angle at which movement starts; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> angle at which movement starts in degrees, between 0 and 360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-start"></a><h3>clutter_behaviour_ellipse_get_angle_start ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             clutter_behaviour_ellipse_get_angle_start
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the angle at which movements starts.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle in degrees
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-startx"></a><h3>clutter_behaviour_ellipse_set_angle_startx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_startx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start);</pre>
+<p>
+Sets the angle at which movement starts; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> An angle, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, at which movement starts, in
+degrees, between 0 and 360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-startx"></a><h3>clutter_behaviour_ellipse_get_angle_startx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_behaviour_ellipse_get_angle_startx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the angle at which movements starts.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, in degrees.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-end"></a><h3>clutter_behaviour_ellipse_set_angle_end ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_end
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);</pre>
+<p>
+Sets the angle at which movement ends; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> angle at which movement ends in degrees, between 0 and 360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-end"></a><h3>clutter_behaviour_ellipse_get_angle_end ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             clutter_behaviour_ellipse_get_angle_end
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the at which movements ends.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle in degrees
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-endx"></a><h3>clutter_behaviour_ellipse_set_angle_endx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_endx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);</pre>
+<p>
+Sets the angle at which movement ends; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> angle, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, at which movement ends, in degrees,
+between 0 and 360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-endx"></a><h3>clutter_behaviour_ellipse_get_angle_endx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_behaviour_ellipse_get_angle_endx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the angle at which movements ends.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, in degrees
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-tilt"></a><h3>clutter_behaviour_ellipse_set_angle_tilt ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_tilt
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt);</pre>
+<p>
+Sets the angle at which the ellipse should be tilted around it's center.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis"><span class="type">ClutterRotateAxis</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt</code></em> :</span></p></td>
+<td> tilt of the elipse around the center in the given axis in
+degrees.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-tilt"></a><h3>clutter_behaviour_ellipse_get_angle_tilt ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             clutter_behaviour_ellipse_get_angle_tilt
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);</pre>
+<p>
+Gets the tilt of the ellipse around the center in the given axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis"><span class="type">ClutterRotateAxis</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle in degrees.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-angle-tiltx"></a><h3>clutter_behaviour_ellipse_set_angle_tiltx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_angle_tiltx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt);</pre>
+<p>
+Sets the angle at which the ellipse should be tilted around it's center.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> a <span class="type">ClutterRoateAxis</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt</code></em> :</span></p></td>
+<td> tilt, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, of the elipse around the center in the given
+axis in degrees.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-angle-tiltx"></a><h3>clutter_behaviour_ellipse_get_angle_tiltx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_behaviour_ellipse_get_angle_tiltx
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);</pre>
+<p>
+Gets the tilt of the ellipse around the center in the given axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis"><span class="type">ClutterRotateAxis</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> angle, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, in degrees
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-height"></a><h3>clutter_behaviour_ellipse_set_height ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_height
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height);</pre>
+<p>
+Sets the height of the elliptical path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> height of the ellipse
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-height"></a><h3>clutter_behaviour_ellipse_get_height ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_behaviour_ellipse_get_height
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the height of the elliptical path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the height of the path
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-width"></a><h3>clutter_behaviour_ellipse_set_width ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_width (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width);</pre>
+<p>
+Sets the width of the elliptical path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> width of the ellipse
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-width"></a><h3>clutter_behaviour_ellipse_get_width ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_behaviour_ellipse_get_width (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Gets the width of the elliptical path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the width of the path
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-tilt"></a><h3>clutter_behaviour_ellipse_set_tilt ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_tilt  (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_tilt_z);</pre>
+<p>
+Sets the angles at which the ellipse should be tilted around it's center.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_x</code></em> :</span></p></td>
+<td> tilt of the elipse around the center in X axis in degrees.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_y</code></em> :</span></p></td>
+<td> tilt of the elipse around the center in Y axis in degrees.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_z</code></em> :</span></p></td>
+<td> tilt of the elipse around the center in Z axis in degrees.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-tilt"></a><h3>clutter_behaviour_ellipse_get_tilt ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_get_tilt  (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_tilt_z);</pre>
+<p>
+Gets the tilt of the ellipse around the center in Y axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_x</code></em> :</span></p></td>
+<td> return location for tilt angle on the X axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_y</code></em> :</span></p></td>
+<td> return location for tilt angle on the Y axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_z</code></em> :</span></p></td>
+<td> return location for tilt angle on the Z axis, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-tiltx"></a><h3>clutter_behaviour_ellipse_set_tiltx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_tiltx (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_tilt_z);</pre>
+<p>
+Sets the angle at which the ellipse should be tilted around it's center.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_x</code></em> :</span></p></td>
+<td> tilt of the elipse in degrees, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the center in X axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_y</code></em> :</span></p></td>
+<td> tilt of the elipse in degrees, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the center in Y axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_z</code></em> :</span></p></td>
+<td> tilt of the elipse in degrees, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the center in Z axis
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-tiltx"></a><h3>clutter_behaviour_ellipse_get_tiltx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_get_tiltx (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_tilt_z);</pre>
+<p>
+Gets the tilt of the ellipse around the center in Y axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_x</code></em> :</span></p></td>
+<td> location for tilt of the elipse, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the
+center in X axis in degrees, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_y</code></em> :</span></p></td>
+<td> location for tilt of the elipse, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the
+center in Y axis in degress, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_tilt_z</code></em> :</span></p></td>
+<td> location for tilt of the elipse, as <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>, around the
+center in Z axis in degrees, or NULL.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-set-direction"></a><h3>clutter_behaviour_ellipse_set_direction ()</h3>
+<pre class="programlisting">void                clutter_behaviour_ellipse_set_direction
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction);</pre>
+<p>
+Sets the rotation direction used by the ellipse behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> the rotation direction
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-ellipse-get-direction"></a><h3>clutter_behaviour_ellipse_get_direction ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> clutter_behaviour_ellipse_get_direction
+                                                        (<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a> *self);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection"><span class="type">ClutterRotateDirection</span></a> used by the ellipse behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse"><span class="type">ClutterBehaviourEllipse</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the rotation direction
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourEllipse.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--angle-end"></a><h3>The <code class="literal">"angle-end"</code> property</h3>
+<pre class="programlisting">  "angle-end"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The final angle to where the rotation should end.</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--angle-start"></a><h3>The <code class="literal">"angle-start"</code> property</h3>
+<pre class="programlisting">  "angle-start"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The initial angle from where the rotation should start.</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--angle-tilt-x"></a><h3>The <code class="literal">"angle-tilt-x"</code> property</h3>
+<pre class="programlisting">  "angle-tilt-x"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The tilt angle for the rotation around center in x axis</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 360</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--angle-tilt-y"></a><h3>The <code class="literal">"angle-tilt-y"</code> property</h3>
+<pre class="programlisting">  "angle-tilt-y"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The tilt angle for the rotation around center in y axis</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 360</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--angle-tilt-z"></a><h3>The <code class="literal">"angle-tilt-z"</code> property</h3>
+<pre class="programlisting">  "angle-tilt-z"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The tilt_z angle for the rotation</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 360</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--center"></a><h3>The <code class="literal">"center"</code> property</h3>
+<pre class="programlisting">  "center"                   <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*          : Read / Write</pre>
+<p>
+The center of the ellipse.</p>
+<p>
+
+</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--direction"></a><h3>The <code class="literal">"direction"</code> property</h3>
+<pre class="programlisting">  "direction"                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a>  : Read / Write</pre>
+<p>
+The direction of the rotation.</p>
+<p>
+
+</p>
+<p>Default value: CLUTTER_ROTATE_CW</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--height"></a><h3>The <code class="literal">"height"</code> property</h3>
+<pre class="programlisting">  "height"                   <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+Height of the ellipse.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 50</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourEllipse--width"></a><h3>The <code class="literal">"width"</code> property</h3>
+<pre class="programlisting">  "width"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+Width of the ellipse.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 100</p>
+<p>Since  0.4
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

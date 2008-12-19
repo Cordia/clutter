@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterListModel</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch09.html" title="Generic list model">
+<link rel="prev" href="ClutterModelIter.html" title="ClutterModelIter">
+<link rel="next" href="pt06.html" title="Part VI. Clutter Backends">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterModelIter.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch09.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="pt06.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterListModel.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterListModel.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterListModel.object-hierarchy" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterListModel"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterListModel.top_of_page"></a>ClutterListModel</span></h2>
+<p>ClutterListModel — List model implementation</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterListModel.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterListModel.html#ClutterListModel-struct" title="ClutterListModel">ClutterListModel</a>;
+<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>*       <a class="link" href="ClutterListModel.html#clutter-list-model-new" title="clutter_list_model_new ()">clutter_list_model_new</a>              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         ...);
+<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>*       <a class="link" href="ClutterListModel.html#clutter-list-model-newv" title="clutter_list_model_newv ()">clutter_list_model_newv</a>             (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> *types,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const names[]);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterListModel.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>
+         +----ClutterListModel
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterListModel.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterListModel.html" title="ClutterListModel"><span class="type">ClutterListModel</span></a> is a <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> implementation provided by
+Clutter. <a class="link" href="ClutterListModel.html" title="ClutterListModel"><span class="type">ClutterListModel</span></a> uses a <a
+href="/usr/share/gtk-doc/html/glib/glib-Sequences.html#GSequence"
+><span class="type">GSequence</span></a> for storing the
+values for each row, so it's optimized for insertion and look up
+in sorted lists.
+</p>
+<p>
+<a class="link" href="ClutterListModel.html" title="ClutterListModel"><span class="type">ClutterListModel</span></a> is a terminal class: it cannot be subclassed,
+only instantiated. 
+</p>
+<p>
+<a class="link" href="ClutterListModel.html" title="ClutterListModel"><span class="type">ClutterListModel</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterListModel.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterListModel-struct"></a><h3>ClutterListModel</h3>
+<pre class="programlisting">typedef struct _ClutterListModel ClutterListModel;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-list-model-new"></a><h3>clutter_list_model_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>*       clutter_list_model_new              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         ...);</pre>
+<p>
+Creates a new default model with <em class="parameter"><code>n_columns</code></em> columns with the types 
+and names passed in.
+</p>
+<p>
+For example:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+model = clutter_list_model_new (3,
+                                G_TYPE_INT,      "Score",
+                                G_TYPE_STRING,   "Team",
+                                GDK_TYPE_PIXBUF, "Logo");
+</pre></div>
+<p>
+</p>
+<p>
+will create a new <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a> with three columns of type int,
+string and <a
+href="/usr/share/gtk-doc/html/gdk-pixbuf/gdk-pixbuf-gdk-pixbuf.html#GdkPixbuf"
+><span class="type">GdkPixbuf</span></a> respectively.
+</p>
+<p>
+Note that the name of the column can be set to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>, in which case
+the canonical name of the type held by the column will be used as
+the title.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> number of columns in the model
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> <em class="parameter"><code>n_columns</code></em> number of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+><span class="type">GType</span></a> and string pairs
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterListModel.html" title="ClutterListModel"><span class="type">ClutterListModel</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-list-model-newv"></a><h3>clutter_list_model_newv ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterModel.html" title="ClutterModel">ClutterModel</a>*       clutter_list_model_newv             (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_columns,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> *types,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const names[]);</pre>
+<p>
+Non-vararg version of <a class="link" href="ClutterListModel.html#clutter-list-model-new" title="clutter_list_model_new ()"><code class="function">clutter_list_model_new()</code></a>. This function is
+useful for language bindings.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_columns</code></em> :</span></p></td>
+<td> number of columns in the model
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>types</code></em> :</span></p></td>
+<td> an array of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+><span class="type">GType</span></a> types for the columns, from first to last
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>names</code></em> :</span></p></td>
+<td> an array of names for the columns, from first to last
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new default <a class="link" href="ClutterModel.html" title="ClutterModel"><span class="type">ClutterModel</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

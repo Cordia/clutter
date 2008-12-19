@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-ClutterBackend">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-ClutterBackend.top_of_page">ClutterBackend</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBackend</refname>
+<refpurpose>Backend abstraction</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-ClutterBackend.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="ClutterBackend">ClutterBackend</link>*     <link linkend="clutter-get-default-backend">clutter_get_default_backend</link>         (void);
+<link linkend="gdouble">gdouble</link>             <link linkend="clutter-backend-get-resolution">clutter_backend_get_resolution</link>      (<link linkend="ClutterBackend">ClutterBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="clutter-backend-set-resolution">clutter_backend_set_resolution</link>      (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="gdouble">gdouble</link> dpi);
+<link linkend="guint">guint</link>               <link linkend="clutter-backend-get-double-click-time">clutter_backend_get_double_click_time</link>
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="clutter-backend-set-double-click-time">clutter_backend_set_double_click_time</link>
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="guint">guint</link> msec);
+<link linkend="guint">guint</link>               <link linkend="clutter-backend-get-double-click-distance">clutter_backend_get_double_click_distance</link>
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="clutter-backend-set-double-click-distance">clutter_backend_set_double_click_distance</link>
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="guint">guint</link> distance);
+<link linkend="void">void</link>                <link linkend="clutter-backend-set-font-options">clutter_backend_set_font_options</link>    (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="cairo-font-options-t">cairo_font_options_t</link> *options);
+<link linkend="cairo-font-options-t">cairo_font_options_t</link>* <link linkend="clutter-backend-get-font-options">clutter_backend_get_font_options</link>  (<link linkend="ClutterBackend">ClutterBackend</link> *backend);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-ClutterBackend.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Clutter can be compiled against different backends. Each backend
+has to implement a set of functions, in order to be used by Clutter.
+</para>
+<para>
+<link linkend="ClutterBackend"><type>ClutterBackend</type></link> is the base class abstracting the various implementation;
+it provides a basic API to query the backend for generic information
+and settings.
+</para>
+<para>
+<link linkend="ClutterBackend"><type>ClutterBackend</type></link> is available since Clutter 0.4</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-ClutterBackend.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="clutter-get-default-backend" role="function" condition="since:0.4">
+<title>clutter_get_default_backend ()</title>
+<indexterm zone="clutter-get-default-backend" role="0.4"><primary>clutter_get_default_backend</primary></indexterm><programlisting><link linkend="ClutterBackend">ClutterBackend</link>*     clutter_get_default_backend         (void);</programlisting>
+<para>
+FIXME</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the default backend. You should not ref or
+unref the returned object. Applications should not rarely need
+to use this.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-get-resolution" role="function" condition="since:0.4">
+<title>clutter_backend_get_resolution ()</title>
+<indexterm zone="clutter-backend-get-resolution" role="0.4"><primary>clutter_backend_get_resolution</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             clutter_backend_get_resolution      (<link linkend="ClutterBackend">ClutterBackend</link> *backend);</programlisting>
+<para>
+Gets the resolution for font handling on the screen; see
+<link linkend="clutter-backend-set-resolution"><function>clutter_backend_set_resolution()</function></link> for full details.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current resolution, or -1 if no resolution
+  has been set.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-set-resolution" role="function" condition="since:0.4">
+<title>clutter_backend_set_resolution ()</title>
+<indexterm zone="clutter-backend-set-resolution" role="0.4"><primary>clutter_backend_set_resolution</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_backend_set_resolution      (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="gdouble">gdouble</link> dpi);</programlisting>
+<para>
+Sets the resolution for font handling on the screen. This is a
+scale factor between points specified in a <link linkend="PangoFontDescription"><type>PangoFontDescription</type></link>
+and cairo units. The default value is 96, meaning that a 10 point
+font will be 13 units high. (10 * 96. / 72. = 13.3).
+</para>
+<para>
+Applications should never need to call this function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dpi</parameter>&nbsp;:</term>
+<listitem><simpara> the resolution in "dots per inch" (Physical inches aren't
+  actually involved; the terminology is conventional).
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-get-double-click-time" role="function" condition="since:0.4">
+<title>clutter_backend_get_double_click_time ()</title>
+<indexterm zone="clutter-backend-get-double-click-time" role="0.4"><primary>clutter_backend_get_double_click_time</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_backend_get_double_click_time
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend);</programlisting>
+<para>
+Gets the maximum time between two button press events, as set
+by <link linkend="clutter-backend-set-double-click-time"><function>clutter_backend_set_double_click_time()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a time in milliseconds
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-set-double-click-time" role="function" condition="since:0.4">
+<title>clutter_backend_set_double_click_time ()</title>
+<indexterm zone="clutter-backend-set-double-click-time" role="0.4"><primary>clutter_backend_set_double_click_time</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_backend_set_double_click_time
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="guint">guint</link> msec);</programlisting>
+<para>
+Sets the maximum time between two button press events, used to
+verify whether it's a double click event or not.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msec</parameter>&nbsp;:</term>
+<listitem><simpara> milliseconds between two button press events
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-get-double-click-distance" role="function" condition="since:0.4">
+<title>clutter_backend_get_double_click_distance ()</title>
+<indexterm zone="clutter-backend-get-double-click-distance" role="0.4"><primary>clutter_backend_get_double_click_distance</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_backend_get_double_click_distance
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend);</programlisting>
+<para>
+Retrieves the distance used to verify a double click event</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a distance, in pixels.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-set-double-click-distance" role="function" condition="since:0.4">
+<title>clutter_backend_set_double_click_distance ()</title>
+<indexterm zone="clutter-backend-set-double-click-distance" role="0.4"><primary>clutter_backend_set_double_click_distance</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_backend_set_double_click_distance
+                                                        (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="guint">guint</link> distance);</programlisting>
+<para>
+Sets the maximum distance used to verify a double click event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>distance</parameter>&nbsp;:</term>
+<listitem><simpara> a distance, in pixels
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-backend-set-font-options" role="function" condition="since:0.8">
+<title>clutter_backend_set_font_options ()</title>
+<indexterm zone="clutter-backend-set-font-options" role="0.8"><primary>clutter_backend_set_font_options</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_backend_set_font_options    (<link linkend="ClutterBackend">ClutterBackend</link> *backend,
+                                                         <link linkend="cairo-font-options-t">cairo_font_options_t</link> *options);</programlisting>
+<para>
+Sets the new font options for <parameter>backend</parameter>. If <parameter>options</parameter> is <link linkend="NULL:CAPS"><literal>NULL</literal></link>,
+the first following call to <link linkend="clutter-backend-get-font-options"><function>clutter_backend_get_font_options()</function></link>
+will return the default font options for <parameter>backend</parameter>.
+</para>
+<para>
+This function is intended for actors creating a Pango layout
+using the PangoCairo API.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>options</parameter>&nbsp;:</term>
+<listitem><simpara> Cairo font options for the backend, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-backend-get-font-options" role="function" condition="since:0.8">
+<title>clutter_backend_get_font_options ()</title>
+<indexterm zone="clutter-backend-get-font-options" role="0.8"><primary>clutter_backend_get_font_options</primary></indexterm><programlisting><link linkend="cairo-font-options-t">cairo_font_options_t</link>* clutter_backend_get_font_options  (<link linkend="ClutterBackend">ClutterBackend</link> *backend);</programlisting>
+<para>
+Retrieves the font options for <parameter>backend</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the font options of the <link linkend="ClutterBackend"><type>ClutterBackend</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

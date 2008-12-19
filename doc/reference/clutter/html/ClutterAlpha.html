@@ -1,0 +1,1235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterAlpha</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch04.html" title="Base classes">
+<link rel="prev" href="ClutterScore.html" title="ClutterScore">
+<link rel="next" href="ClutterBehaviour.html" title="ClutterBehaviour">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterScore.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviour.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterAlpha.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterAlpha.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterAlpha.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterAlpha.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterAlpha"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterAlpha.top_of_page"></a>ClutterAlpha</span></h2>
+<p>ClutterAlpha — A class for calculating an alpha value as a function
+of time.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterAlpha.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterAlpha.html#ClutterAlpha-struct" title="ClutterAlpha">ClutterAlpha</a>;
+                    <a class="link" href="ClutterAlpha.html#ClutterAlphaClass" title="ClutterAlphaClass">ClutterAlphaClass</a>;
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       <a class="link" href="ClutterAlpha.html#clutter-alpha-new" title="clutter_alpha_new ()">clutter_alpha_new</a>                   (void);
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       <a class="link" href="ClutterAlpha.html#clutter-alpha-new-full" title="clutter_alpha_new_full ()">clutter_alpha_new_full</a>              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()">ClutterAlphaFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-alpha-get-alpha" title="clutter_alpha_get_alpha ()">clutter_alpha_get_alpha</a>             (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS" title="CLUTTER_ALPHA_MAX_ALPHA">CLUTTER_ALPHA_MAX_ALPHA</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             (<a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()">*ClutterAlphaFunc</a>)                 (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()">clutter_alpha_set_func</a>              (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()">ClutterAlphaFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy);
+void                <a class="link" href="ClutterAlpha.html#clutter-alpha-set-closure" title="clutter_alpha_set_closure ()">clutter_alpha_set_closure</a>           (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GClosure"
+>GClosure</a> *closure);
+void                <a class="link" href="ClutterAlpha.html#clutter-alpha-set-timeline" title="clutter_alpha_set_timeline ()">clutter_alpha_set_timeline</a>          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    <a class="link" href="ClutterAlpha.html#clutter-alpha-get-timeline" title="clutter_alpha_get_timeline ()">clutter_alpha_get_timeline</a>          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-RAMP-INC:CAPS" title="CLUTTER_ALPHA_RAMP_INC">CLUTTER_ALPHA_RAMP_INC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-ramp-inc-func" title="clutter_ramp_inc_func ()">clutter_ramp_inc_func</a>               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-RAMP-DEC:CAPS" title="CLUTTER_ALPHA_RAMP_DEC">CLUTTER_ALPHA_RAMP_DEC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-ramp-dec-func" title="clutter_ramp_dec_func ()">clutter_ramp_dec_func</a>               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-RAMP:CAPS" title="CLUTTER_ALPHA_RAMP">CLUTTER_ALPHA_RAMP</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-ramp-func" title="clutter_ramp_func ()">clutter_ramp_func</a>                   (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SINE:CAPS" title="CLUTTER_ALPHA_SINE">CLUTTER_ALPHA_SINE</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-sine-func" title="clutter_sine_func ()">clutter_sine_func</a>                   (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SINE-INC:CAPS" title="CLUTTER_ALPHA_SINE_INC">CLUTTER_ALPHA_SINE_INC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-sine-inc-func" title="clutter_sine_inc_func ()">clutter_sine_inc_func</a>               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SINE-DEC:CAPS" title="CLUTTER_ALPHA_SINE_DEC">CLUTTER_ALPHA_SINE_DEC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-sine-dec-func" title="clutter_sine_dec_func ()">clutter_sine_dec_func</a>               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SINE-HALF:CAPS" title="CLUTTER_ALPHA_SINE_HALF">CLUTTER_ALPHA_SINE_HALF</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-sine-half-func" title="clutter_sine_half_func ()">clutter_sine_half_func</a>              (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SQUARE:CAPS" title="CLUTTER_ALPHA_SQUARE">CLUTTER_ALPHA_SQUARE</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-square-func" title="clutter_square_func ()">clutter_square_func</a>                 (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS" title="CLUTTER_ALPHA_SMOOTHSTEP_INC">CLUTTER_ALPHA_SMOOTHSTEP_INC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-smoothstep-inc-func" title="clutter_smoothstep_inc_func ()">clutter_smoothstep_inc_func</a>         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS" title="CLUTTER_ALPHA_SMOOTHSTEP_DEC">CLUTTER_ALPHA_SMOOTHSTEP_DEC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-smoothstep-dec-func" title="clutter_smoothstep_dec_func ()">clutter_smoothstep_dec_func</a>         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-EXP-INC:CAPS" title="CLUTTER_ALPHA_EXP_INC">CLUTTER_ALPHA_EXP_INC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-exp-inc-func" title="clutter_exp_inc_func ()">clutter_exp_inc_func</a>                (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+#define             <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-EXP-DEC:CAPS" title="CLUTTER_ALPHA_EXP_DEC">CLUTTER_ALPHA_EXP_DEC</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             <a class="link" href="ClutterAlpha.html#clutter-exp-dec-func" title="clutter_exp_dec_func ()">clutter_exp_dec_func</a>                (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterAlpha.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----ClutterAlpha
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterAlpha.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterAlpha.html#ClutterAlpha--alpha" title='The "alpha" property'>alpha</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read
+  "<a class="link" href="ClutterAlpha.html#ClutterAlpha--timeline" title='The "timeline" property'>timeline</a>"                 <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*      : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterAlpha.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> is a class for calculating an integer value between
+0 and <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS" title="CLUTTER_ALPHA_MAX_ALPHA"><code class="literal">CLUTTER_ALPHA_MAX_ALPHA</code></a> as a function of time.  You should
+provide a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> and bind it to the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object;
+you should also provide a function returning the alpha value depending
+on the position inside the timeline; this function will be executed
+each time a new frame in the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> is reached.  Since the
+alpha function is controlled by the timeline instance, you can pause
+or stop the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> from calling the alpha function by controlling
+the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> object.
+</p>
+<p>
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> is used to "drive" a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> instance.
+</p>
+<p>
+</p>
+<div class="figure">
+<a name="alpha-functions"></a><p class="title"><b>Figure 3. Graphic representation of some alpha functions</b></p>
+<div class="figure-contents"><div><img src="alpha-func.png" alt="Graphic representation of some alpha functions"></div></div>
+</div>
+<p><br class="figure-break"></p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterAlpha.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterAlpha-struct"></a><h3>ClutterAlpha</h3>
+<pre class="programlisting">typedef struct _ClutterAlpha ClutterAlpha;</pre>
+<p>
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> combines a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> and a function.
+The contents of the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> structure are private and should
+only be accessed using the provided API.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterAlphaClass"></a><h3>ClutterAlphaClass</h3>
+<pre class="programlisting">typedef struct {
+} ClutterAlphaClass;
+</pre>
+<p>
+Base class for <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-new"></a><h3>clutter_alpha_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       clutter_alpha_new                   (void);</pre>
+<p>
+Creates a new <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance.  You must set a function
+to compute the alpha value using <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a> and
+bind a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> object to the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance
+using <a class="link" href="ClutterAlpha.html#clutter-alpha-set-timeline" title="clutter_alpha_set_timeline ()"><code class="function">clutter_alpha_set_timeline()</code></a>.
+</p>
+<p>
+You should use the newly created <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance inside
+a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created empty <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-new-full"></a><h3>clutter_alpha_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       clutter_alpha_new_full              (<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                         <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()">ClutterAlphaFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy);</pre>
+<p>
+Creates a new <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance and sets the timeline
+and alpha function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> timeline
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()"><span class="type">ClutterAlphaFunc</span></a> alpha function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to be passed to the alpha function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destroy</code></em> :</span></p></td>
+<td> notify to be called when removing the alpha function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-get-alpha"></a><h3>clutter_alpha_get_alpha ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_alpha_get_alpha             (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);</pre>
+<p>
+Query the current alpha value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The current alpha value for the alpha
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-MAX-ALPHA:CAPS"></a><h3>CLUTTER_ALPHA_MAX_ALPHA</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_MAX_ALPHA 0xffff
+</pre>
+<p>
+Maximum value returned by <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()"><span class="type">ClutterAlphaFunc</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterAlphaFunc"></a><h3>ClutterAlphaFunc ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             (*ClutterAlphaFunc)                 (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+A function of time, which returns a value between 0 and
+<a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS" title="CLUTTER_ALPHA_MAX_ALPHA"><code class="literal">CLUTTER_ALPHA_MAX_ALPHA</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> user data passed to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an unsigned integer value, between 0 and
+<a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS" title="CLUTTER_ALPHA_MAX_ALPHA"><code class="literal">CLUTTER_ALPHA_MAX_ALPHA</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-set-func"></a><h3>clutter_alpha_set_func ()</h3>
+<pre class="programlisting">void                clutter_alpha_set_func              (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()">ClutterAlphaFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy);</pre>
+<p>
+Sets the <a class="link" href="ClutterAlpha.html#ClutterAlphaFunc" title="ClutterAlphaFunc ()"><span class="type">ClutterAlphaFunc</span></a> function used to compute
+the alpha value at each frame of the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+bound to <em class="parameter"><code>alpha</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> A <span class="type">ClutterAlphaAlphaFunc</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> user data to be passed to the alpha function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destroy</code></em> :</span></p></td>
+<td> notify function used when disposing the alpha function
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-set-closure"></a><h3>clutter_alpha_set_closure ()</h3>
+<pre class="programlisting">void                clutter_alpha_set_closure           (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GClosure"
+>GClosure</a> *closure);</pre>
+<p>
+Sets the <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GClosure"
+><span class="type">GClosure</span></a> used to compute
+the alpha value at each frame of the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+bound to <em class="parameter"><code>alpha</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>closure</code></em> :</span></p></td>
+<td> A <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GClosure"
+><span class="type">GClosure</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-set-timeline"></a><h3>clutter_alpha_set_timeline ()</h3>
+<pre class="programlisting">void                clutter_alpha_set_timeline          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Binds <em class="parameter"><code>alpha</code></em> to <em class="parameter"><code>timeline</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-alpha-get-timeline"></a><h3>clutter_alpha_get_timeline ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    clutter_alpha_get_timeline          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);</pre>
+<p>
+Gets the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> bound to <em class="parameter"><code>alpha</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> instance
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-RAMP-INC:CAPS"></a><h3>CLUTTER_ALPHA_RAMP_INC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_RAMP_INC       clutter_ramp_inc_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-ramp-inc-func" title="clutter_ramp_inc_func ()"><code class="function">clutter_ramp_inc_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ramp-inc-func"></a><h3>clutter_ramp_inc_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_ramp_inc_func               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a monotonic increasing ramp. You
+can use this function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-RAMP-DEC:CAPS"></a><h3>CLUTTER_ALPHA_RAMP_DEC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_RAMP_DEC       clutter_ramp_dec_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-ramp-dec-func" title="clutter_ramp_dec_func ()"><code class="function">clutter_ramp_dec_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ramp-dec-func"></a><h3>clutter_ramp_dec_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_ramp_dec_func               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a monotonic decreasing ramp. You
+can use this function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-RAMP:CAPS"></a><h3>CLUTTER_ALPHA_RAMP</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_RAMP           clutter_ramp_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-ramp-func" title="clutter_ramp_func ()"><code class="function">clutter_ramp_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ramp-func"></a><h3>clutter_ramp_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_ramp_func                   (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a full ramp function (increase for
+half the time, decrease for the remaining half). You can use this
+function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SINE:CAPS"></a><h3>CLUTTER_ALPHA_SINE</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SINE           clutter_sine_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-sine-func" title="clutter_sine_func ()"><code class="function">clutter_sine_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sine-func"></a><h3>clutter_sine_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_sine_func                   (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a sine wave. You can use this
+function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SINE-INC:CAPS"></a><h3>CLUTTER_ALPHA_SINE_INC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SINE_INC       clutter_sine_inc_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-sine-inc-func" title="clutter_sine_inc_func ()"><code class="function">clutter_sine_inc_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sine-inc-func"></a><h3>clutter_sine_inc_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_sine_inc_func               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a sine wave over interval [0, pi / 2].
+You can use this function as the alpha function for
+<a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SINE-DEC:CAPS"></a><h3>CLUTTER_ALPHA_SINE_DEC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SINE_DEC       clutter_sine_dec_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-sine-dec-func" title="clutter_sine_dec_func ()"><code class="function">clutter_sine_dec_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sine-dec-func"></a><h3>clutter_sine_dec_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_sine_dec_func               (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a sine wave over interval [pi / 2, pi].
+You can use this function as the alpha function for
+<a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SINE-HALF:CAPS"></a><h3>CLUTTER_ALPHA_SINE_HALF</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SINE_HALF      clutter_sine_half_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-sine-half-func" title="clutter_sine_half_func ()"><code class="function">clutter_sine_half_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sine-half-func"></a><h3>clutter_sine_half_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_sine_half_func              (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a sine wave over interval [0, pi].
+You can use this function as the alpha function for
+<a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SQUARE:CAPS"></a><h3>CLUTTER_ALPHA_SQUARE</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SQUARE         clutter_square_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-square-func" title="clutter_square_func ()"><code class="function">clutter_square_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-square-func"></a><h3>clutter_square_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_square_func                 (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a square wave. You can use this
+function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS"></a><h3>CLUTTER_ALPHA_SMOOTHSTEP_INC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SMOOTHSTEP_INC clutter_smoothstep_inc_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-smoothstep-inc-func" title="clutter_smoothstep_inc_func ()"><code class="function">clutter_smoothstep_inc_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-smoothstep-inc-func"></a><h3>clutter_smoothstep_inc_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_smoothstep_inc_func         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a smoothstep curve. You can use this
+function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS"></a><h3>CLUTTER_ALPHA_SMOOTHSTEP_DEC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_SMOOTHSTEP_DEC clutter_smoothstep_dec_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-smoothstep-dec-func" title="clutter_smoothstep_dec_func ()"><code class="function">clutter_smoothstep_dec_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-smoothstep-dec-func"></a><h3>clutter_smoothstep_dec_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_smoothstep_dec_func         (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a downward smoothstep curve. You can use
+this function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-EXP-INC:CAPS"></a><h3>CLUTTER_ALPHA_EXP_INC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_EXP_INC        clutter_exp_inc_func
+</pre>
+<p>
+Convenience symbol for <a class="link" href="ClutterAlpha.html#clutter-exp-inc-func" title="clutter_exp_inc_func ()"><code class="function">clutter_exp_inc_func()</code></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-exp-inc-func"></a><h3>clutter_exp_inc_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_exp_inc_func                (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a 2^x curve. You can use this function as the
+alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ALPHA-EXP-DEC:CAPS"></a><h3>CLUTTER_ALPHA_EXP_DEC</h3>
+<pre class="programlisting">#define CLUTTER_ALPHA_EXP_DEC        clutter_exp_dec_func
+</pre>
+<p>
+Convenience symbold for <a class="link" href="ClutterAlpha.html#clutter-exp-dec-func" title="clutter_exp_dec_func ()"><code class="function">clutter_exp_dec_func()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-exp-dec-func"></a><h3>clutter_exp_dec_func ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a>             clutter_exp_dec_func                (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> dummy);</pre>
+<p>
+Convenience alpha function for a decreasing 2^x curve. You can use this
+function as the alpha function for <a class="link" href="ClutterAlpha.html#clutter-alpha-set-func" title="clutter_alpha_set_func ()"><code class="function">clutter_alpha_set_func()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dummy</code></em> :</span></p></td>
+<td> unused argument
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an alpha value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterAlpha.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterAlpha--alpha"></a><h3>The <code class="literal">"alpha"</code> property</h3>
+<pre class="programlisting">  "alpha"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read</pre>
+<p>
+The alpha value as computed by the alpha function.</p>
+<p>
+
+</p>
+<p>Allowed values: &lt;= 65535</p>
+<p>Default value: 0</p>
+<p>Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterAlpha--timeline"></a><h3>The <code class="literal">"timeline"</code> property</h3>
+<pre class="programlisting">  "timeline"                 <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*      : Read / Write</pre>
+<p>
+A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> instance used to drive the alpha function.</p>
+<p>
+
+</p>
+<p>Since  0.2
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

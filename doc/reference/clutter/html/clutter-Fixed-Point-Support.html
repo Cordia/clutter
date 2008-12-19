@@ -1,0 +1,1510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fixed Point Support</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="clutter-Events.html" title="Events">
+<link rel="next" href="clutter-General.html" title="General">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-Events.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-General.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-Fixed-Point-Support.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-Fixed-Point-Support.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-Fixed-Point-Support"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-Fixed-Point-Support.top_of_page"></a>Fixed Point Support</span></h2>
+<p>Fixed Point Support — Fixed Point API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-Fixed-Point-Support.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+typedef             <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>;
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-Q:CAPS" title="CFX_Q">CFX_Q</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-ONE:CAPS" title="CFX_ONE">CFX_ONE</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-HALF:CAPS" title="CFX_HALF">CFX_HALF</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-MAX:CAPS" title="CFX_MAX">CFX_MAX</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-MIN:CAPS" title="CFX_MIN">CFX_MIN</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-PI:CAPS" title="CFX_PI">CFX_PI</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-2PI:CAPS" title="CFX_2PI">CFX_2PI</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-PI-2:CAPS" title="CFX_PI_2">CFX_PI_2</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-PI-4:CAPS" title="CFX_PI_4">CFX_PI_4</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-120:CAPS" title="CFX_120">CFX_120</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-180:CAPS" title="CFX_180">CFX_180</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-240:CAPS" title="CFX_240">CFX_240</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-360:CAPS" title="CFX_360">CFX_360</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-60:CAPS" title="CFX_60">CFX_60</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-255:CAPS" title="CFX_255">CFX_255</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-INT:CAPS" title="CLUTTER_FIXED_TO_INT()">CLUTTER_FIXED_TO_INT</a>                (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-FLOAT:CAPS" title="CLUTTER_FIXED_TO_FLOAT()">CLUTTER_FIXED_TO_FLOAT</a>              (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-DOUBLE:CAPS" title="CLUTTER_FIXED_TO_DOUBLE()">CLUTTER_FIXED_TO_DOUBLE</a>             (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-FIXED:CAPS" title="CLUTTER_FLOAT_TO_FIXED()">CLUTTER_FLOAT_TO_FIXED</a>              (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-INT:CAPS" title="CLUTTER_FLOAT_TO_INT()">CLUTTER_FLOAT_TO_INT</a>                (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-UINT:CAPS" title="CLUTTER_FLOAT_TO_UINT()">CLUTTER_FLOAT_TO_UINT</a>               (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-INT-TO-FIXED:CAPS" title="CLUTTER_INT_TO_FIXED()">CLUTTER_INT_TO_FIXED</a>                (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-INT:CAPS" title="CLUTTER_FIXED_INT()">CLUTTER_FIXED_INT</a>                   (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-FRACTION:CAPS" title="CLUTTER_FIXED_FRACTION()">CLUTTER_FIXED_FRACTION</a>              (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-FLOOR:CAPS" title="CLUTTER_FIXED_FLOOR()">CLUTTER_FIXED_FLOOR</a>                 (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-CEIL:CAPS" title="CLUTTER_FIXED_CEIL()">CLUTTER_FIXED_CEIL</a>                  (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-MUL:CAPS" title="CLUTTER_FIXED_MUL()">CLUTTER_FIXED_MUL</a>                   (x,y)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-DIV:CAPS" title="CLUTTER_FIXED_DIV()">CLUTTER_FIXED_DIV</a>                   (x,y)
+typedef             <a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle">ClutterAngle</a>;
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEG:CAPS" title="CLUTTER_ANGLE_FROM_DEG()">CLUTTER_ANGLE_FROM_DEG</a>              (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEGF:CAPS" title="CLUTTER_ANGLE_FROM_DEGF()">CLUTTER_ANGLE_FROM_DEGF</a>             (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEGX:CAPS" title="CLUTTER_ANGLE_FROM_DEGX()">CLUTTER_ANGLE_FROM_DEGX</a>             (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEGF:CAPS" title="CLUTTER_ANGLE_TO_DEGF()">CLUTTER_ANGLE_TO_DEGF</a>               (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEG:CAPS" title="CLUTTER_ANGLE_TO_DEG()">CLUTTER_ANGLE_TO_DEG</a>                (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEGX:CAPS" title="CLUTTER_ANGLE_TO_DEGX()">CLUTTER_ANGLE_TO_DEGX</a>               (x)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-MAX-DEG:CAPS" title="CLUTTER_ANGLE_MAX_DEG">CLUTTER_ANGLE_MAX_DEG</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CFX-RADIANS-TO-DEGREES:CAPS" title="CFX_RADIANS_TO_DEGREES">CFX_RADIANS_TO_DEGREES</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#clutter-cosi" title="clutter_cosi()">clutter_cosi</a>                        (angle)
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#clutter-cosx" title="clutter_cosx()">clutter_cosx</a>                        (angle)
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sini" title="clutter_sini ()">clutter_sini</a>                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle">ClutterAngle</a> angle);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sinx" title="clutter_sinx ()">clutter_sinx</a>                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle);
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-10-PERCENT:CAPS" title="CLUTTER_SQRTI_ARG_10_PERCENT">CLUTTER_SQRTI_ARG_10_PERCENT</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-5-PERCENT:CAPS" title="CLUTTER_SQRTI_ARG_5_PERCENT">CLUTTER_SQRTI_ARG_5_PERCENT</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-MAX:CAPS" title="CLUTTER_SQRTI_ARG_MAX">CLUTTER_SQRTI_ARG_MAX</a>
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sqrti" title="clutter_sqrti ()">clutter_sqrti</a>                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sqrtx" title="clutter_sqrtx ()">clutter_sqrtx</a>                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-log2x" title="clutter_log2x ()">clutter_log2x</a>                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> x);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-Fixed-Point-Support.html#clutter-pow2x" title="clutter_pow2x ()">clutter_pow2x</a>                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-Fixed-Point-Support.html#clutter-powx" title="clutter_powx ()">clutter_powx</a>                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-qmulx" title="clutter_qmulx ()">clutter_qmulx</a>                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op1,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op2);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-qdivx" title="clutter_qdivx ()">clutter_qdivx</a>                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op1,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op2);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-tani" title="clutter_tani ()">clutter_tani</a>                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle">ClutterAngle</a> angle);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-atani" title="clutter_atani ()">clutter_atani</a>                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-atan2i" title="clutter_atan2i ()">clutter_atan2i</a>                      (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);
+
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-MAXFIXED:CAPS" title="CLUTTER_MAXFIXED">CLUTTER_MAXFIXED</a>
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-MINFIXED:CAPS" title="CLUTTER_MINFIXED">CLUTTER_MINFIXED</a>
+                    <a class="link" href="clutter-Fixed-Point-Support.html#ClutterParamSpecFixed" title="ClutterParamSpecFixed">ClutterParamSpecFixed</a>;
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         <a class="link" href="clutter-Fixed-Point-Support.html#clutter-param-spec-fixed" title="clutter_param_spec_fixed ()">clutter_param_spec_fixed</a>            (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *nick,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *blurb,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> minimum,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> maximum,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> default_value,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamFlags"
+>GParamFlags</a> flags);
+#define             <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-VALUE-HOLDS-FIXED:CAPS" title="CLUTTER_VALUE_HOLDS_FIXED()">CLUTTER_VALUE_HOLDS_FIXED</a>           (x)
+void                <a class="link" href="clutter-Fixed-Point-Support.html#clutter-value-set-fixed" title="clutter_value_set_fixed ()">clutter_value_set_fixed</a>             (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> fixed_);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="clutter-Fixed-Point-Support.html#clutter-value-get-fixed" title="clutter_value_get_fixed ()">clutter_value_get_fixed</a>             (const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Fixed-Point-Support.description"></a><h2>Description</h2>
+<p>
+Clutter has a fixed point API targeted at platforms without a
+floating point unit, such as embedded devices. On such platforms
+this API should be preferred to the floating point one as it does
+not trigger the slow path of software emulation, relying on integer
+math for fixed-to-floating and floating-to-fixed conversion.
+</p>
+<p>
+It is no recommened for use on platforms with a floating point unit
+(eg desktop systems) nor for use in bindings.
+</p>
+<p>
+Basic rules of Fixed Point arithmethic:
+</p>
+<p>
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Two fixed point numbers can be directly added,
+    subtracted and have their modulus taken.</p></li>
+<li><p>To add other numerical type to a fixed point number it has to
+    be first converted to fixed point.</p></li>
+<li><p>A fixed point number can be directly multiplied or divided by
+    an integer.</p></li>
+<li><p>Two fixed point numbers can only be multiplied and divided by the
+    provided <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-MUL:CAPS" title="CLUTTER_FIXED_MUL()"><span class="type">CLUTTER_FIXED_MUL</span></a> and <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-DIV:CAPS" title="CLUTTER_FIXED_DIV()"><span class="type">CLUTTER_FIXED_DIV</span></a> macros.</p></li>
+</ul></div>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Fixed-Point-Support.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterFixed"></a><h3>ClutterFixed</h3>
+<pre class="programlisting">typedef gint32 ClutterFixed;
+</pre>
+<p>
+Fixed point number (16.16)</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-Q:CAPS"></a><h3>CFX_Q</h3>
+<pre class="programlisting">#define CFX_Q      16		/* Decimal part size in bits */
+</pre>
+<p>
+Size in bits of decimal part of floating point value.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-ONE:CAPS"></a><h3>CFX_ONE</h3>
+<pre class="programlisting">#define CFX_ONE    (1 &lt;&lt; CFX_Q)	/* 1 */
+</pre>
+<p>
+1.0 represented as a fixed point value.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-HALF:CAPS"></a><h3>CFX_HALF</h3>
+<pre class="programlisting">#define CFX_HALF   32768
+</pre>
+<p>
+0.5 represented as a fixed point value.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-MAX:CAPS"></a><h3>CFX_MAX</h3>
+<pre class="programlisting">#define CFX_MAX    0x7fffffff
+</pre>
+<p>
+Maximum fixed point value.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-MIN:CAPS"></a><h3>CFX_MIN</h3>
+<pre class="programlisting">#define CFX_MIN    0x80000000
+</pre>
+<p>
+Minimum fixed point value.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-PI:CAPS"></a><h3>CFX_PI</h3>
+<pre class="programlisting">#define CFX_PI     0x0003243f
+</pre>
+<p>
+Fixed point representation of Pi</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-2PI:CAPS"></a><h3>CFX_2PI</h3>
+<pre class="programlisting">#define CFX_2PI    0x0006487f
+</pre>
+<p>
+Fixed point representation of Pi*2</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-PI-2:CAPS"></a><h3>CFX_PI_2</h3>
+<pre class="programlisting">#define CFX_PI_2   0x00019220   /* pi/2 */
+</pre>
+<p>
+Fixed point representation of Pi/2</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-PI-4:CAPS"></a><h3>CFX_PI_4</h3>
+<pre class="programlisting">#define CFX_PI_4   0x0000c910   /* pi/4 */
+</pre>
+<p>
+Fixed point representation of Pi/4</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-120:CAPS"></a><h3>CFX_120</h3>
+<pre class="programlisting">#define CFX_120 CLUTTER_INT_TO_FIXED (120)
+</pre>
+<p>
+Fixed point representation of the number 120</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-180:CAPS"></a><h3>CFX_180</h3>
+<pre class="programlisting">#define CFX_180 CLUTTER_INT_TO_FIXED (180)
+</pre>
+<p>
+Fixed point representation of the number 180</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-240:CAPS"></a><h3>CFX_240</h3>
+<pre class="programlisting">#define CFX_240 CLUTTER_INT_TO_FIXED (240)
+</pre>
+<p>
+Fixed point representation of the number 240</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-360:CAPS"></a><h3>CFX_360</h3>
+<pre class="programlisting">#define CFX_360 CLUTTER_INT_TO_FIXED (360)
+</pre>
+<p>
+Fixed point representation of the number 360</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-60:CAPS"></a><h3>CFX_60</h3>
+<pre class="programlisting">#define CFX_60  CLUTTER_INT_TO_FIXED (60)
+</pre>
+<p>
+Fixed point representation of the number 60</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-255:CAPS"></a><h3>CFX_255</h3>
+<pre class="programlisting">#define CFX_255 CLUTTER_INT_TO_FIXED (255)
+</pre>
+<p>
+Fixed point representation of the number 255</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-TO-INT:CAPS"></a><h3>CLUTTER_FIXED_TO_INT()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_TO_INT(x)         ((x) &gt;&gt; CFX_Q)
+</pre>
+<p>
+Converts a fixed point value to integer (removing the decimal part).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-TO-FLOAT:CAPS"></a><h3>CLUTTER_FIXED_TO_FLOAT()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_TO_FLOAT(x)       ((float) ((int)(x) / 65536.0))
+</pre>
+<p>
+Convert a fixed point value to float.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-TO-DOUBLE:CAPS"></a><h3>CLUTTER_FIXED_TO_DOUBLE()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_TO_DOUBLE(x)      ((double) ((int)(x) / 65536.0))
+</pre>
+<p>
+Convert a fixed point value to double.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FLOAT-TO-FIXED:CAPS"></a><h3>CLUTTER_FLOAT_TO_FIXED()</h3>
+<pre class="programlisting">#define CLUTTER_FLOAT_TO_FIXED(x)       (clutter_double_to_fixed ((x)))
+</pre>
+<p>
+Convert a float value to fixed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a floating point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FLOAT-TO-INT:CAPS"></a><h3>CLUTTER_FLOAT_TO_INT()</h3>
+<pre class="programlisting">#define CLUTTER_FLOAT_TO_INT(x)         (clutter_double_to_int ((x)))
+</pre>
+<p>
+Convert a float value to int.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a floating point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FLOAT-TO-UINT:CAPS"></a><h3>CLUTTER_FLOAT_TO_UINT()</h3>
+<pre class="programlisting">#define CLUTTER_FLOAT_TO_UINT(x)         (clutter_double_to_uint ((x)))
+</pre>
+<p>
+Convert a float value to unsigned int.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a floating point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-INT-TO-FIXED:CAPS"></a><h3>CLUTTER_INT_TO_FIXED()</h3>
+<pre class="programlisting">#define CLUTTER_INT_TO_FIXED(x)         ((x) &lt;&lt; CFX_Q)
+</pre>
+<p>
+Convert an integer value to fixed point.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> an integer value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-INT:CAPS"></a><h3>CLUTTER_FIXED_INT()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_INT(x)            CLUTTER_FIXED_TO_INT((x))
+</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">CLUTTER_FIXED_INT</code> has been deprecated since version 0.6 and should not be used in newly-written code. Use <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-INT:CAPS" title="CLUTTER_FIXED_TO_INT()"><code class="literal">CLUTTER_FIXED_TO_INT</code></a> instead</p>
+</div>
+<p>
+Convert a fixed point value to integer (removing decimal part).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-FRACTION:CAPS"></a><h3>CLUTTER_FIXED_FRACTION()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_FRACTION(x)       ((x) &amp; ((1 &lt;&lt; CFX_Q) - 1))
+</pre>
+<p>
+Retrieves the fractionary part of a fixed point value</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-FLOOR:CAPS"></a><h3>CLUTTER_FIXED_FLOOR()</h3>
+<pre class="programlisting">#define             CLUTTER_FIXED_FLOOR(x)</pre>
+<p>
+Round down a fixed point value to an integer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-CEIL:CAPS"></a><h3>CLUTTER_FIXED_CEIL()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_CEIL(x)           (CLUTTER_FIXED_FLOOR (x + 0xffff))
+</pre>
+<p>
+Round up a fixed point value to an integer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-MUL:CAPS"></a><h3>CLUTTER_FIXED_MUL()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_MUL(x,y) ((x) &gt;&gt; 8) * ((y) &gt;&gt; 8)
+</pre>
+<p>
+Multiply two fixed point values</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-FIXED-DIV:CAPS"></a><h3>CLUTTER_FIXED_DIV()</h3>
+<pre class="programlisting">#define CLUTTER_FIXED_DIV(x,y) ((((x) &lt;&lt; 8)/(y)) &lt;&lt; 8)
+</pre>
+<p>
+Divide two fixed point values</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> a fixed point value
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterAngle"></a><h3>ClutterAngle</h3>
+<pre class="programlisting">typedef gint32 ClutterAngle;    /* angle such that 1024 == 2*PI */
+</pre>
+<p>
+Integer representation of an angle such that 1024 corresponds to
+full circle (i.e., 2*Pi).</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-FROM-DEG:CAPS"></a><h3>CLUTTER_ANGLE_FROM_DEG()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_FROM_DEG(x)  (CLUTTER_FLOAT_TO_INT (((x) * 1024.0) / 360.0))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-FROM-DEGF:CAPS"></a><h3>CLUTTER_ANGLE_FROM_DEGF()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_FROM_DEGF(x) (CLUTTER_FLOAT_TO_INT (((float)(x) * 1024.0f) / 360.0f))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-FROM-DEGX:CAPS"></a><h3>CLUTTER_ANGLE_FROM_DEGX()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_FROM_DEGX(x) (CFX_INT((((x)/360)*1024) + CFX_HALF))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-TO-DEGF:CAPS"></a><h3>CLUTTER_ANGLE_TO_DEGF()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_TO_DEGF(x)   (((float)(x) * 360.0)/ 1024.0)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-TO-DEG:CAPS"></a><h3>CLUTTER_ANGLE_TO_DEG()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_TO_DEG(x)    (((x) * 360.0)/ 1024.0)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-TO-DEGX:CAPS"></a><h3>CLUTTER_ANGLE_TO_DEGX()</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_TO_DEGX(x)   (CLUTTER_INT_TO_FIXED((x) * 45)/128)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-ANGLE-MAX-DEG:CAPS"></a><h3>CLUTTER_ANGLE_MAX_DEG</h3>
+<pre class="programlisting">#define CLUTTER_ANGLE_MAX_DEG 1509949439.6
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CFX-RADIANS-TO-DEGREES:CAPS"></a><h3>CFX_RADIANS_TO_DEGREES</h3>
+<pre class="programlisting">#define CFX_RADIANS_TO_DEGREES 0x394bb8
+</pre>
+<p>
+Fixed point representation of the number 180 / pi</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-cosi"></a><h3>clutter_cosi()</h3>
+<pre class="programlisting">#define clutter_cosi(angle) (clutter_sini ((angle) + 256))
+</pre>
+<p>
+Very fast fixed point implementation of cosine function.
+</p>
+<p>
+ClutterAngle is an integer such that 1024 represents
+full circle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle"><span class="type">ClutterAngle</span></a> angle
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-cosx"></a><h3>clutter_cosx()</h3>
+<pre class="programlisting">#define clutter_cosx(angle) (clutter_sinx((angle) + CFX_PI_2))
+</pre>
+<p>
+Fixed point cosine function</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> angle in radians
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sini"></a><h3>clutter_sini ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_sini                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle">ClutterAngle</a> angle);</pre>
+<p>
+Very fast fixed point implementation of sine function.
+</p>
+<p>
+ClutterAngle is an integer such that 1024 represents
+full circle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle"><span class="type">ClutterAngle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> sine value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sinx"></a><h3>clutter_sinx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_sinx                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle);</pre>
+<p>
+Fixed point implementation of sine function</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> angle in radians
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> sine value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-SQRTI-ARG-10-PERCENT:CAPS"></a><h3>CLUTTER_SQRTI_ARG_10_PERCENT</h3>
+<pre class="programlisting">#define             CLUTTER_SQRTI_ARG_10_PERCENT</pre>
+<p>
+Maximum argument that can be passed to <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sqrti" title="clutter_sqrti ()"><span class="type">clutter_sqrti</span></a> for which the
+resulting error is &lt; 10%</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-SQRTI-ARG-5-PERCENT:CAPS"></a><h3>CLUTTER_SQRTI_ARG_5_PERCENT</h3>
+<pre class="programlisting">#define             CLUTTER_SQRTI_ARG_5_PERCENT</pre>
+<p>
+Maximum argument that can be passed to <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sqrti" title="clutter_sqrti ()"><span class="type">clutter_sqrti</span></a> for which the
+resulting error is &lt; 5%</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-SQRTI-ARG-MAX:CAPS"></a><h3>CLUTTER_SQRTI_ARG_MAX</h3>
+<pre class="programlisting">#define             CLUTTER_SQRTI_ARG_MAX</pre>
+<p>
+Maximum argument that can be passed to <a class="link" href="clutter-Fixed-Point-Support.html#clutter-sqrti" title="clutter_sqrti ()"><span class="type">clutter_sqrti</span></a> function.</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sqrti"></a><h3>clutter_sqrti ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_sqrti                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x);</pre>
+<p>
+Very fast fixed point implementation of square root for integers.
+</p>
+<p>
+This function is at least 6x faster than clib <code class="function">sqrt()</code> on x86, and (this is
+not a typo!) about 500x faster on ARM without FPU. It's error is &lt; 5%
+for arguments &lt; <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-5-PERCENT:CAPS" title="CLUTTER_SQRTI_ARG_5_PERCENT"><span class="type">CLUTTER_SQRTI_ARG_5_PERCENT</span></a> and &lt; 10% for arguments &lt;
+<a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-10-PERCENT:CAPS" title="CLUTTER_SQRTI_ARG_10_PERCENT"><span class="type">CLUTTER_SQRTI_ARG_10_PERCENT</span></a>. The maximum argument that can be passed to
+this function is CLUTTER_SQRTI_ARG_MAX.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> integer value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> integer square root.
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-sqrtx"></a><h3>clutter_sqrtx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_sqrtx                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);</pre>
+<p>
+A fixed point implementation of squre root</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> square root.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-log2x"></a><h3>clutter_log2x ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_log2x                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> x);</pre>
+<p>
+Calculates base 2 logarithm.
+</p>
+<p>
+This function is some 2.5 times faster on x86, and over 12 times faster on
+fpu-less arm, than using libc <code class="function">log()</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> value to calculate base 2 logarithm from
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> base 2 logarithm.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-pow2x"></a><h3>clutter_pow2x ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_pow2x                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);</pre>
+<p>
+Calculates 2 to x power.
+</p>
+<p>
+This function is around 11 times faster on x86, and around 22 times faster
+on fpu-less arm than libc pow(2, x).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> exponent
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 2 in x power.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-powx"></a><h3>clutter_powx ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_powx                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> x,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y);</pre>
+<p>
+Calculates x to y power. (Note, if x is a constant it will be faster to
+calculate the power as clutter_pow2x (CLUTTER_FIXED_MUL(y, log2 (x)))</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> base
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> exponent
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> x in y power.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-qmulx"></a><h3>clutter_qmulx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_qmulx                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op1,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op2);</pre>
+<p>
+Multiplies two fixed values using 64bit arithmetic; this provides
+significantly better precission than the <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-MUL:CAPS" title="CLUTTER_FIXED_MUL()"><span class="type">CLUTTER_FIXED_MUL</span></a> macro,
+but at performance cost (about 2.7 times slowdown on ARMv5e, and 2 times
+on x86).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>op1</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>op2</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the result of the operation
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-qdivx"></a><h3>clutter_qdivx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_qdivx                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op1,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> op2);</pre>
+<p>
+Divides two fixed values using 64bit arithmetic; this provides
+significantly better precission than the <a class="link" href="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-DIV:CAPS" title="CLUTTER_FIXED_DIV()"><span class="type">CLUTTER_FIXED_DIV</span></a> macro,
+but at performance cost.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>op1</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>op2</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-tani"></a><h3>clutter_tani ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_tani                        (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle">ClutterAngle</a> angle);</pre>
+<p>
+Very fast fixed point implementation of tan function.
+</p>
+<p>
+ClutterAngle is an integer such that 1024 represents
+full circle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterAngle" title="ClutterAngle"><span class="type">ClutterAngle</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> sine value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.3
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-atani"></a><h3>clutter_atani ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_atani                       (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);</pre>
+<p>
+Fast fixed-point version of the arctangent function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> The tangent to calculate the angle for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The angle in radians represented as a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>
+for which the tangent is <em class="parameter"><code>x</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-atan2i"></a><h3>clutter_atan2i ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_atan2i                      (<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> y,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> x);</pre>
+<p>
+Calculates the arctangent of <em class="parameter"><code>y</code></em> / <em class="parameter"><code>x</code></em> but uses the sign of both
+arguments to return the angle in right quadrant.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Numerator of tangent
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> Denominator of tangent
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The arctangent of <em class="parameter"><code>y</code></em> / <em class="parameter"><code>x</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MAXFIXED:CAPS"></a><h3>CLUTTER_MAXFIXED</h3>
+<pre class="programlisting">#define CLUTTER_MAXFIXED        CFX_MAX
+</pre>
+<p>
+Higher boundary for <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MINFIXED:CAPS"></a><h3>CLUTTER_MINFIXED</h3>
+<pre class="programlisting">#define CLUTTER_MINFIXED        CFX_MIN
+</pre>
+<p>
+Lower boundary for <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterParamSpecFixed"></a><h3>ClutterParamSpecFixed</h3>
+<pre class="programlisting">typedef struct {
+  ClutterFixed  minimum;
+  ClutterFixed  maximum;
+  ClutterFixed  default_value;
+} ClutterParamSpecFixed;
+</pre>
+<p>
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> subclass for fixed point based properties</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>minimum</code></em>;</span></p></td>
+<td> lower boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>maximum</code></em>;</span></p></td>
+<td> higher boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>default_value</code></em>;</span></p></td>
+<td> default value
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-param-spec-fixed"></a><h3>clutter_param_spec_fixed ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         clutter_param_spec_fixed            (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *nick,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *blurb,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> minimum,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> maximum,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> default_value,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamFlags"
+>GParamFlags</a> flags);</pre>
+<p>
+Creates a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> for properties using <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a> values</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the property
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nick</code></em> :</span></p></td>
+<td> short name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>blurb</code></em> :</span></p></td>
+<td> description (can be translatable)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minimum</code></em> :</span></p></td>
+<td> lower boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>maximum</code></em> :</span></p></td>
+<td> higher boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>default_value</code></em> :</span></p></td>
+<td> default value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> flags for the param spec
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-VALUE-HOLDS-FIXED:CAPS"></a><h3>CLUTTER_VALUE_HOLDS_FIXED()</h3>
+<pre class="programlisting">#define CLUTTER_VALUE_HOLDS_FIXED(x)    (G_VALUE_HOLDS ((x), CLUTTER_TYPE_FIXED))
+</pre>
+<p>
+Evaluates to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>x</code></em> holds a <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed"><span class="type">ClutterFixed</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-value-set-fixed"></a><h3>clutter_value_set_fixed ()</h3>
+<pre class="programlisting">void                clutter_value_set_fixed             (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> fixed_);</pre>
+<p>
+Sets <em class="parameter"><code>value</code></em> to <em class="parameter"><code>fixed_</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> initialized to <span class="type">CLUTTER_TYPE_FIXED</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fixed_</code></em> :</span></p></td>
+<td> the fixed point value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-value-get-fixed"></a><h3>clutter_value_get_fixed ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_value_get_fixed             (const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Gets the fixed point value stored inside <em class="parameter"><code>value</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> initialized to <span class="type">CLUTTER_TYPE_FIXED</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the value inside the passed <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

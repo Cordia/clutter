@@ -1,0 +1,999 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Primitives</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="COGL 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="prev" href="cogl-General-API.html" title="General API">
+<link rel="next" href="cogl-Utility-API.html" title="Utility API">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="cogl-General-API.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">COGL 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="cogl-Utility-API.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#cogl-Primitives.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#cogl-Primitives.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="cogl-Primitives"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="cogl-Primitives.top_of_page"></a>Primitives</span></h2>
+<p>Primitives — Functions that draw various primitive shapes and
+allow for construction of more complex paths.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="cogl-Primitives.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+void                <a class="link" href="cogl-Primitives.html#cogl-color" title="cogl_color ()">cogl_color</a>                          (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *color);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-fill" title="cogl_path_fill ()">cogl_path_fill</a>                      (void);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-stroke" title="cogl_path_stroke ()">cogl_path_stroke</a>                    (void);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-move-to" title="cogl_path_move_to ()">cogl_path_move_to</a>                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-close" title="cogl_path_close ()">cogl_path_close</a>                     (void);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-line-to" title="cogl_path_line_to ()">cogl_path_line_to</a>                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-curve-to" title="cogl_path_curve_to ()">cogl_path_curve_to</a>                  (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x3,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y3);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-arc" title="cogl_path_arc ()">cogl_path_arc</a>                       (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> angle_1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> angle_2);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-rel-move-to" title="cogl_path_rel_move_to ()">cogl_path_rel_move_to</a>               (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-rel-line-to" title="cogl_path_rel_line_to ()">cogl_path_rel_line_to</a>               (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-rel-curve-to" title="cogl_path_rel_curve_to ()">cogl_path_rel_curve_to</a>              (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x3,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y3);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-line" title="cogl_path_line ()">cogl_path_line</a>                      (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-polyline" title="cogl_path_polyline ()">cogl_path_polyline</a>                  (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> *coords,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> num_points);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-polygon" title="cogl_path_polygon ()">cogl_path_polygon</a>                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> *coords,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> num_points);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-rectangle" title="cogl_path_rectangle ()">cogl_path_rectangle</a>                 (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-round-rectangle" title="cogl_path_round_rectangle ()">cogl_path_round_rectangle</a>           (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> arc_step);
+void                <a class="link" href="cogl-Primitives.html#cogl-path-ellipse" title="cogl_path_ellipse ()">cogl_path_ellipse</a>                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_y);
+void                <a class="link" href="cogl-Primitives.html#cogl-rectangle" title="cogl_rectangle ()">cogl_rectangle</a>                      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height);
+void                <a class="link" href="cogl-Primitives.html#cogl-rectanglex" title="cogl_rectanglex ()">cogl_rectanglex</a>                     (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Primitives.description"></a><h2>Description</h2>
+<p>
+There are three levels on which drawing with cogl can be used. The
+highest level functions construct various simple primitive shapes
+to be either filled or stroked. Using a lower-level set of functions
+more complex and arbitrary paths can be constructed by concatenating
+straight line, bezier curve and arc segments. Additionally there
+are utility functions that draw the most common primitives - rectangles
+and trapezoids - in a maximaly optimized fashion.
+</p>
+<p>
+When constructing arbitrary paths, the current pen location is
+initialized using the move_to command. The subsequent path segments
+implicitly use the last pen location as their first vertex and move
+the pen location to the last vertex they produce at the end. Also
+there are special versions of functions that allow specifying the
+vertices of the path segments relative to the last pen location
+rather then in the absolute coordinates.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Primitives.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="cogl-color"></a><h3>cogl_color ()</h3>
+<pre class="programlisting">void                cogl_color                          (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *color);</pre>
+<p>
+Changes the color of cogl's current paint, which is used for filling and stroking
+primitives.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> new current <em class="parameter"><code>ClutterColor</code></em>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-fill"></a><h3>cogl_path_fill ()</h3>
+<pre class="programlisting">void                cogl_path_fill                      (void);</pre>
+<p>
+Fills the constructed shape using the current drawing color.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-stroke"></a><h3>cogl_path_stroke ()</h3>
+<pre class="programlisting">void                cogl_path_stroke                    (void);</pre>
+<p>
+Strokes the constructed shape using the current drawing color
+and a width of 1 pixel (regardless of the current transformation
+matrix).</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-move-to"></a><h3>cogl_path_move_to ()</h3>
+<pre class="programlisting">void                cogl_path_move_to                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);</pre>
+<p>
+Clears the previously constructed shape and begins a new path
+contour by moving the pen to the given coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the pen location to move to.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the pen location to move to.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-close"></a><h3>cogl_path_close ()</h3>
+<pre class="programlisting">void                cogl_path_close                     (void);</pre>
+<p>
+Closes the path being constructed by adding a straight line segment
+to it that ends at the first vertex of the path.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-line-to"></a><h3>cogl_path_line_to ()</h3>
+<pre class="programlisting">void                cogl_path_line_to                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);</pre>
+<p>
+Adds a straight line segment to the current path that ends at the
+given coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the end line vertex
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the end line vertex
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-curve-to"></a><h3>cogl_path_curve_to ()</h3>
+<pre class="programlisting">void                cogl_path_curve_to                  (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x3,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y3);</pre>
+<p>
+Adds a cubic bezier curve segment to the current path with the given
+second, third and fourth control points and using current pen location
+as the first control point.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> X coordinate of the second bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Y coordinate of the second bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> X coordinate of the third bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Y coordinate of the third bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x3</code></em> :</span></p></td>
+<td> X coordinate of the fourth bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y3</code></em> :</span></p></td>
+<td> Y coordinate of the fourth bezier control point
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-arc"></a><h3>cogl_path_arc ()</h3>
+<pre class="programlisting">void                cogl_path_arc                       (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> angle_1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> angle_2);</pre>
+<p>
+Adds an elliptical arc segment to the current path. A straight line
+segment will link the current pen location with the first vertex
+of the arc. If you perform a move_to to the arcs start just before
+drawing it you create a free standing arc.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>center_x</code></em> :</span></p></td>
+<td> X coordinate of the elliptical arc center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>center_y</code></em> :</span></p></td>
+<td> Y coordinate of the elliptical arc center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>radius_x</code></em> :</span></p></td>
+<td> X radius of the elliptical arc
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>radius_y</code></em> :</span></p></td>
+<td> Y radious of the elliptical arc
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_1</code></em> :</span></p></td>
+<td> Angle in the unit-circle at which the arc begin
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_2</code></em> :</span></p></td>
+<td> Angle in the unit-circle at which the arc ends
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-rel-move-to"></a><h3>cogl_path_rel_move_to ()</h3>
+<pre class="programlisting">void                cogl_path_rel_move_to               (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);</pre>
+<p>
+Clears the previously constructed shape and begins a new path
+contour by moving the pen to the given coordinates relative
+to the current pen location.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X offset from the current pen location to move the pen to.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y offset from the current pen location to move the pen to.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-rel-line-to"></a><h3>cogl_path_rel_line_to ()</h3>
+<pre class="programlisting">void                cogl_path_rel_line_to               (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);</pre>
+<p>
+Adds a straight line segment to the current path that ends at the
+given coordinates relative to the current pen location.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X offset from the current pen location of the end line vertex
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y offset from the current pen location of the end line vertex
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-rel-curve-to"></a><h3>cogl_path_rel_curve_to ()</h3>
+<pre class="programlisting">void                cogl_path_rel_curve_to              (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x3,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y3);</pre>
+<p>
+Adds a cubic bezier curve segment to the current path with the given
+second, third and fourth control points and using current pen location
+as the first control point. The given coordinates are relative to the
+current pen location.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> X coordinate of the second bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Y coordinate of the second bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> X coordinate of the third bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Y coordinate of the third bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x3</code></em> :</span></p></td>
+<td> X coordinate of the fourth bezier control point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y3</code></em> :</span></p></td>
+<td> Y coordinate of the fourth bezier control point
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-line"></a><h3>cogl_path_line ()</h3>
+<pre class="programlisting">void                cogl_path_line                      (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y1,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x2,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y2);</pre>
+<p>
+Clears the previously constructed shape and constructs a straight
+line shape start and ending at the given coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x1</code></em> :</span></p></td>
+<td> X coordinate of the start line vertex
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y1</code></em> :</span></p></td>
+<td> Y coordinate of the start line vertex
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x2</code></em> :</span></p></td>
+<td> X coordinate of the end line vertex
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y2</code></em> :</span></p></td>
+<td> Y coordinate of the end line vertex
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-polyline"></a><h3>cogl_path_polyline ()</h3>
+<pre class="programlisting">void                cogl_path_polyline                  (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> *coords,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> num_points);</pre>
+<p>
+Clears the previously constructed shape and constructs a series of straight
+line segments, starting from the first given vertex coordinate. Each
+subsequent segment stars where the previous one ended and ends at the next
+given vertex coordinate.
+</p>
+<p>
+The coords array must contain 2 * num_points values. The first value
+represents the X coordinate of the first vertex, the second value
+represents the Y coordinate of the first vertex, continuing in the same
+fashion for the rest of the vertices. (num_points - 1) segments will
+be constructed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>coords</code></em> :</span></p></td>
+<td> A pointer to the first element of an array of fixed-point
+values that specify the vertex coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_points</code></em> :</span></p></td>
+<td> The total number of vertices.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-polygon"></a><h3>cogl_path_polygon ()</h3>
+<pre class="programlisting">void                cogl_path_polygon                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> *coords,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> num_points);</pre>
+<p>
+Clears the previously constructed shape and constructs a polygonal
+shape of the given number of vertices.
+</p>
+<p>
+The coords array must contain 2 * num_points values. The first value
+represents the X coordinate of the first vertex, the second value
+represents the Y coordinate of the first vertex, continuing in the same
+fashion for the rest of the vertices.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>coords</code></em> :</span></p></td>
+<td> A pointer to the first element of an array of fixed-point
+values that specify the vertex coordinates.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_points</code></em> :</span></p></td>
+<td> The total number of vertices.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-rectangle"></a><h3>cogl_path_rectangle ()</h3>
+<pre class="programlisting">void                cogl_path_rectangle                 (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);</pre>
+<p>
+Clears the previously constructed shape and constructs a rectangular
+shape at the given coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the top-left corner.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the top-left corner.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Rectangle width.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Rectangle height.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-round-rectangle"></a><h3>cogl_path_round_rectangle ()</h3>
+<pre class="programlisting">void                cogl_path_round_rectangle           (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterAngle"
+>ClutterAngle</a> arc_step);</pre>
+<p>
+Clears the previously constructed shape and constructs a rectangular
+shape with rounded corners.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width of the rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height of the rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>radius</code></em> :</span></p></td>
+<td> Radius of the corner arcs.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arc_step</code></em> :</span></p></td>
+<td> Angle increment resolution for subdivision of
+the corner arcs.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-path-ellipse"></a><h3>cogl_path_ellipse ()</h3>
+<pre class="programlisting">void                cogl_path_ellipse                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> center_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> radius_y);</pre>
+<p>
+Clears the previously constructed shape and constructs an ellipse
+shape.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>center_x</code></em> :</span></p></td>
+<td> X coordinate of the ellipse center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>center_y</code></em> :</span></p></td>
+<td> Y coordinate of the ellipse center
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>radius_x</code></em> :</span></p></td>
+<td> X radius of the ellipse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>radius_y</code></em> :</span></p></td>
+<td> Y radius of the ellipse
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-rectangle"></a><h3>cogl_rectangle ()</h3>
+<pre class="programlisting">void                cogl_rectangle                      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height);</pre>
+<p>
+Fills a rectangle at the given coordinates with the current
+drawing color in a highly optimizied fashion.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width of the rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height of the rectangle
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-rectanglex"></a><h3>cogl_rectanglex ()</h3>
+<pre class="programlisting">void                cogl_rectanglex                     (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);</pre>
+<p>
+A fixed-point version of cogl_fast_fill_rectangle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of the top-left corner
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width of the rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height of the rectangle
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

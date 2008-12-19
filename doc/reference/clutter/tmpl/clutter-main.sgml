@@ -1,0 +1,381 @@
+<!-- ##### SECTION Title ##### -->
+General
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO CLUTTER_PRIORITY_REDRAW ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_PRIORITY_TIMELINE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM ClutterInitError ##### -->
+<para>
+
+</para>
+
+@CLUTTER_INIT_SUCCESS: 
+@CLUTTER_INIT_ERROR_UNKNOWN: 
+@CLUTTER_INIT_ERROR_THREADS: 
+@CLUTTER_INIT_ERROR_BACKEND: 
+@CLUTTER_INIT_ERROR_INTERNAL: 
+
+<!-- ##### FUNCTION clutter_init ##### -->
+<para>
+
+</para>
+
+@argc: 
+@argv: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_init_with_args ##### -->
+<para>
+
+</para>
+
+@argc: 
+@argv: 
+@parameter_string: 
+@entries: 
+@translation_domain: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_option_group ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_option_group_without_init ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_main ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_main_quit ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_main_level ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_debug_enabled ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_show_fps ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_timestamp ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_actor_by_gid ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_set_default_frame_rate ##### -->
+<para>
+
+</para>
+
+@frames_per_sec: 
+
+
+<!-- ##### FUNCTION clutter_get_default_frame_rate ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_set_motion_events_enabled ##### -->
+<para>
+
+</para>
+
+@enable: 
+
+
+<!-- ##### FUNCTION clutter_get_motion_events_enabled ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_set_motion_events_frequency ##### -->
+<para>
+
+</para>
+
+@frequency: 
+
+
+<!-- ##### FUNCTION clutter_get_motion_events_frequency ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_clear_glyph_cache ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_set_use_mipmapped_text ##### -->
+<para>
+
+</para>
+
+@value: 
+
+
+<!-- ##### FUNCTION clutter_get_use_mipmapped_text ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_set_lock_functions ##### -->
+<para>
+
+</para>
+
+@enter_fn: 
+@leave_fn: 
+
+
+<!-- ##### FUNCTION clutter_threads_init ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_threads_enter ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_threads_leave ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_threads_add_idle ##### -->
+<para>
+
+</para>
+
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_add_idle_full ##### -->
+<para>
+
+</para>
+
+@priority: 
+@func: 
+@data: 
+@notify: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_add_timeout ##### -->
+<para>
+
+</para>
+
+@interval: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_add_timeout_full ##### -->
+<para>
+
+</para>
+
+@priority: 
+@interval: 
+@func: 
+@data: 
+@notify: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_add_frame_source ##### -->
+<para>
+
+</para>
+
+@interval: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_threads_add_frame_source_full ##### -->
+<para>
+
+</para>
+
+@priority: 
+@interval: 
+@func: 
+@data: 
+@notify: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_keyboard_grab ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_pointer_grab ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_grab_keyboard ##### -->
+<para>
+
+</para>
+
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_grab_pointer ##### -->
+<para>
+
+</para>
+
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_ungrab_keyboard ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_ungrab_pointer ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_grab_pointer_for_device ##### -->
+<para>
+
+</para>
+
+@actor: 
+@id: 
+
+
+<!-- ##### FUNCTION clutter_ungrab_pointer_for_device ##### -->
+<para>
+
+</para>
+
+@id: 
+
+
+<!-- ##### FUNCTION clutter_do_event ##### -->
+<para>
+
+</para>
+
+@event: 
+
+

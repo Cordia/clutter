@@ -1,0 +1,139 @@
+<!-- ##### SECTION Title ##### -->
+ClutterGroup
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterGroup ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL ClutterGroup::add ##### -->
+<para>
+
+</para>
+
+@cluttergroup: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterGroup::remove ##### -->
+<para>
+
+</para>
+
+@cluttergroup: the object which received the signal.
+@arg1: 
+
+<!-- ##### STRUCT ClutterGroupClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION clutter_group_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_group_add_many ##### -->
+<para>
+
+</para>
+
+@group: 
+@first_actor: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_group_add_many_valist ##### -->
+<para>
+
+</para>
+
+@group: 
+@first_actor: 
+@var_args: 
+
+
+<!-- ##### FUNCTION clutter_group_remove ##### -->
+<para>
+
+</para>
+
+@group: 
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_group_remove_all ##### -->
+<para>
+
+</para>
+
+@group: 
+
+
+<!-- ##### FUNCTION clutter_group_get_n_children ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_group_get_nth_child ##### -->
+<para>
+
+</para>
+
+@self: 
+@index_: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_group_raise ##### -->
+<para>
+
+</para>
+
+@self: 
+@actor: 
+@sibling: 
+
+
+<!-- ##### FUNCTION clutter_group_lower ##### -->
+<para>
+
+</para>
+
+@self: 
+@actor: 
+@sibling: 
+
+
+<!-- ##### FUNCTION clutter_group_sort_depth_order ##### -->
+<para>
+
+</para>
+
+@self: 
+
+

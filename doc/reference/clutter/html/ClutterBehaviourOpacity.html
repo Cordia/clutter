@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourOpacity</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">
+<link rel="next" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterBehaviourEllipse.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviourPath.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourOpacity.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourOpacity.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourOpacity.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourOpacity.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourOpacity"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourOpacity.top_of_page"></a>ClutterBehaviourOpacity</span></h2>
+<p>ClutterBehaviourOpacity — Behaviour controlling the opacity</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourOpacity.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity-struct" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a>;
+                    <a class="link" href="ClutterBehaviourOpacity.html#ClutterBehaviourOpacityClass" title="ClutterBehaviourOpacityClass">ClutterBehaviourOpacityClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-new" title="clutter_behaviour_opacity_new ()">clutter_behaviour_opacity_new</a>       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_end);
+void                <a class="link" href="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-set-bounds" title="clutter_behaviour_opacity_set_bounds ()">clutter_behaviour_opacity_set_bounds</a>
+                                                        (<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a> *behaviour,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_end);
+void                <a class="link" href="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-get-bounds" title="clutter_behaviour_opacity_get_bounds ()">clutter_behaviour_opacity_get_bounds</a>
+                                                        (<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a> *behaviour,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> *opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> *opacity_end);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourOpacity.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourOpacity
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourOpacity.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity--opacity-end" title='The "opacity-end" property'>opacity-end</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity--opacity-start" title='The "opacity-start" property'>opacity-start</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourOpacity.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a> controls the opacity of a set of actors.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourOpacity.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourOpacity-struct"></a><h3>ClutterBehaviourOpacity</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourOpacity ClutterBehaviourOpacity;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourOpacityClass"></a><h3>ClutterBehaviourOpacityClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterBehaviourClass   parent_class;
+} ClutterBehaviourOpacityClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-opacity-new"></a><h3>clutter_behaviour_opacity_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_opacity_new       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_end);</pre>
+<p>
+Creates a new <a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a> object, driven by <em class="parameter"><code>alpha</code></em>
+which controls the opacity property of every actor, making it
+change in the interval between <em class="parameter"><code>opacity_start</code></em> and <em class="parameter"><code>opacity_end</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> instance, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_start</code></em> :</span></p></td>
+<td> minimum level of opacity
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_end</code></em> :</span></p></td>
+<td> maximum level of opacity
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-opacity-set-bounds"></a><h3>clutter_behaviour_opacity_set_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_opacity_set_bounds
+                                                        (<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a> *behaviour,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> opacity_end);</pre>
+<p>
+Sets the initial and final levels of the opacity applied by <em class="parameter"><code>behaviour</code></em>
+on each actor it controls.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behaviour</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_start</code></em> :</span></p></td>
+<td> minimum level of opacity
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_end</code></em> :</span></p></td>
+<td> maximum level of opacity
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-opacity-get-bounds"></a><h3>clutter_behaviour_opacity_get_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_opacity_get_bounds
+                                                        (<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a> *behaviour,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> *opacity_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint8"
+>guint8</a> *opacity_end);</pre>
+<p>
+Gets the initial and final levels of the opacity applied by <em class="parameter"><code>behaviour</code></em>
+on each actor it controls.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behaviour</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_start</code></em> :</span></p></td>
+<td> return location for the minimum level of opacity, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>opacity_end</code></em> :</span></p></td>
+<td> return location for the maximum level of opacity, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourOpacity.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourOpacity--opacity-end"></a><h3>The <code class="literal">"opacity-end"</code> property</h3>
+<pre class="programlisting">  "opacity-end"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+Final opacity level of the behaviour.</p>
+<p>
+
+</p>
+<p>Allowed values: &lt;= 255</p>
+<p>Default value: 0</p>
+<p>Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourOpacity--opacity-start"></a><h3>The <code class="literal">"opacity-start"</code> property</h3>
+<pre class="programlisting">  "opacity-start"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+Initial opacity level of the behaviour.</p>
+<p>
+
+</p>
+<p>Allowed values: &lt;= 255</p>
+<p>Default value: 0</p>
+<p>Since  0.2
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

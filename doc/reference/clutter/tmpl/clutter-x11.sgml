@@ -1,0 +1,232 @@
+<!-- ##### SECTION Title ##### -->
+X11 Specific Support
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION clutter_x11_set_display ##### -->
+<para>
+
+</para>
+
+@xdpy: 
+
+
+<!-- ##### FUNCTION clutter_x11_disable_event_retrieval ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_x11_has_event_retrieval ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_stage_from_window ##### -->
+<para>
+
+</para>
+
+@win: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_handle_event ##### -->
+<para>
+
+</para>
+
+@xevent: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_default_display ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_default_screen ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_root_window ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_stage_visual ##### -->
+<para>
+
+</para>
+
+@stage: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_stage_window ##### -->
+<para>
+
+</para>
+
+@stage: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_set_stage_foreign ##### -->
+<para>
+
+</para>
+
+@stage: 
+@xwindow: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_trap_x_errors ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_x11_untrap_x_errors ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_has_composite_extension ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION ClutterX11FilterFunc ##### -->
+<para>
+
+</para>
+
+@xev: 
+@cev: 
+@data: 
+@Returns: 
+
+
+<!-- ##### ENUM ClutterX11FilterReturn ##### -->
+<para>
+
+</para>
+
+@CLUTTER_X11_FILTER_CONTINUE: 
+@CLUTTER_X11_FILTER_TRANSLATE: 
+@CLUTTER_X11_FILTER_REMOVE: 
+
+<!-- ##### FUNCTION clutter_x11_add_filter ##### -->
+<para>
+
+</para>
+
+@func: 
+@data: 
+
+
+<!-- ##### FUNCTION clutter_x11_remove_filter ##### -->
+<para>
+
+</para>
+
+@func: 
+@data: 
+
+
+<!-- ##### ENUM ClutterX11InputDeviceType ##### -->
+<para>
+
+</para>
+
+@CLUTTER_X11_XINPUT_POINTER_DEVICE: 
+@CLUTTER_X11_XINPUT_KEYBOARD_DEVICE: 
+@CLUTTER_X11_XINPUT_EXTENSION_DEVICE: 
+
+<!-- ##### STRUCT ClutterX11XInputDevice ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM ClutterX11XInputEventTypes ##### -->
+<para>
+
+</para>
+
+@CLUTTER_X11_XINPUT_KEY_PRESS_EVENT: 
+@CLUTTER_X11_XINPUT_KEY_RELEASE_EVENT: 
+@CLUTTER_X11_XINPUT_BUTTON_PRESS_EVENT: 
+@CLUTTER_X11_XINPUT_BUTTON_RELEASE_EVENT: 
+@CLUTTER_X11_XINPUT_MOTION_NOTIFY_EVENT: 
+@CLUTTER_X11_XINPUT_LAST_EVENT: 
+
+<!-- ##### FUNCTION clutter_x11_get_input_device_type ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_get_input_devices ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_has_xinput ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_x11_enable_xinput ##### -->
+<para>
+
+</para>
+
+
+

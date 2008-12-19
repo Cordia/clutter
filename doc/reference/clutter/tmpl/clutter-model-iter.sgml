@@ -1,0 +1,169 @@
+<!-- ##### SECTION Title ##### -->
+ClutterModelIter
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterModelIter ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterModelIter:model ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterModelIter:row ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterModelIterClass ##### -->
+<para>
+
+</para>
+
+@get_value: 
+@set_value: 
+@is_first: 
+@is_last: 
+@next: 
+@prev: 
+@get_model: 
+@get_row: 
+@copy: 
+
+<!-- ##### FUNCTION clutter_model_iter_copy ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_get ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_get_valist ##### -->
+<para>
+
+</para>
+
+@iter: 
+@args: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_get_value ##### -->
+<para>
+
+</para>
+
+@iter: 
+@column: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_set ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_set_valist ##### -->
+<para>
+
+</para>
+
+@iter: 
+@args: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_set_value ##### -->
+<para>
+
+</para>
+
+@iter: 
+@column: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_is_first ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_is_last ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_next ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_prev ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_get_model ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_iter_get_row ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+

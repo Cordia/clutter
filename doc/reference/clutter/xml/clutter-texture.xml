@@ -1,0 +1,810 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterTexture">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterTexture.top_of_page">ClutterTexture</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterTexture</refname>
+<refpurpose>An actor for displaying and manipulating images.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterTexture.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterTexture-struct">ClutterTexture</link>;
+                    <link linkend="ClutterTextureClass">ClutterTextureClass</link>;
+enum                <link linkend="ClutterTextureFlags">ClutterTextureFlags</link>;
+enum                <link linkend="ClutterTextureQuality">ClutterTextureQuality</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-texture-new">clutter_texture_new</link>                 (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-texture-new-from-file">clutter_texture_new_from_file</link>       (const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-texture-new-from-actor">clutter_texture_new_from_actor</link>      (<link linkend="ClutterActor">ClutterActor</link> *actor);
+#define             <link linkend="CLUTTER-TEXTURE-ERROR:CAPS">CLUTTER_TEXTURE_ERROR</link>
+enum                <link linkend="ClutterTextureError">ClutterTextureError</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-texture-set-from-file">clutter_texture_set_from_file</link>       (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-texture-set-from-rgb-data">clutter_texture_set_from_rgb_data</link>   (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gboolean">gboolean</link> has_alpha,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="gint">gint</link> rowstride,
+                                                         <link linkend="gint">gint</link> bpp,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-texture-set-from-yuv-data">clutter_texture_set_from_yuv_data</link>   (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-texture-set-area-from-rgb-data">clutter_texture_set_area_from_rgb_data</link>
+                                                        (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gboolean">gboolean</link> has_alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="gint">gint</link> rowstride,
+                                                         <link linkend="gint">gint</link> bpp,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="clutter-texture-get-base-size">clutter_texture_get_base_size</link>       (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="gint">gint</link> *width,
+                                                         <link linkend="gint">gint</link> *height);
+<link linkend="ClutterTextureQuality">ClutterTextureQuality</link> <link linkend="clutter-texture-get-filter-quality">clutter_texture_get_filter_quality</link>
+                                                        (<link linkend="ClutterTexture">ClutterTexture</link> *texture);
+<link linkend="void">void</link>                <link linkend="clutter-texture-set-filter-quality">clutter_texture_set_filter_quality</link>  (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="ClutterTextureQuality">ClutterTextureQuality</link> filter_quality);
+<link linkend="gint">gint</link>                <link linkend="clutter-texture-get-max-tile-waste">clutter_texture_get_max_tile_waste</link>  (<link linkend="ClutterTexture">ClutterTexture</link> *texture);
+<link linkend="void">void</link>                <link linkend="clutter-texture-set-max-tile-waste">clutter_texture_set_max_tile_waste</link>  (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="gint">gint</link> max_tile_waste);
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="clutter-texture-get-cogl-texture">clutter_texture_get_cogl_texture</link>    (<link linkend="ClutterTexture">ClutterTexture</link> *texture);
+<link linkend="void">void</link>                <link linkend="clutter-texture-set-cogl-texture">clutter_texture_set_cogl_texture</link>    (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="CoglHandle">CoglHandle</link> cogl_tex);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterTexture.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterTexture
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterTexture.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterTexture implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterTexture.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterTexture--cogl-texture">cogl-texture</link>&quot;             <link linkend="ClutterTextureHandle">ClutterTextureHandle</link>*  : Read / Write
+  &quot;<link linkend="ClutterTexture--disable-slicing">disable-slicing</link>&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only
+  &quot;<link linkend="ClutterTexture--filename">filename</link>&quot;                 <link linkend="gchar">gchar</link>*                : Write
+  &quot;<link linkend="ClutterTexture--filter-quality">filter-quality</link>&quot;           <link linkend="ClutterTextureQuality">ClutterTextureQuality</link>  : Read / Write / Construct
+  &quot;<link linkend="ClutterTexture--keep-aspect-ratio">keep-aspect-ratio</link>&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterTexture--pixel-format">pixel-format</link>&quot;             <link linkend="gint">gint</link>                  : Read
+  &quot;<link linkend="ClutterTexture--repeat-x">repeat-x</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterTexture--repeat-y">repeat-y</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterTexture--sync-size">sync-size</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterTexture--tile-waste">tile-waste</link>&quot;               <link linkend="gint">gint</link>                  : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterTexture.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterTexture-pixbuf-change">pixbuf-change</link>&quot;                                  : Run Last
+  &quot;<link linkend="ClutterTexture-size-change">size-change</link>&quot;                                    : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterTexture.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterTexture"><type>ClutterTexture</type></link> is a base class for displaying and manipulating pixel
+buffer type data.
+</para>
+<para>
+The <link linkend="clutter-texture-set-from-rgb-data"><function>clutter_texture_set_from_rgb_data()</function></link> and
+<link linkend="clutter-texture-set-from-file"><function>clutter_texture_set_from_file()</function></link> functions are used to copy image
+data into texture memory and subsequently realize the texture.
+</para>
+<para>
+If texture reads are supported by underlying GL implementation,
+unrealizing frees image data from texture memory moving to main
+system memory. Re-realizing then performs the opposite operation.
+This process allows basic management of commonly limited available
+texture memory.
+</para>
+<para>
+Note: a ClutterTexture will scale its contents to fit the bounding
+box requested using <link linkend="clutter-actor-set-size"><function>clutter_actor_set_size()</function></link>. To display an area of
+a texture without scaling, you should set the clip area using
+<link linkend="clutter-actor-set-clip"><function>clutter_actor_set_clip()</function></link>.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterTexture.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterTexture-struct" role="struct">
+<title>ClutterTexture</title>
+<indexterm zone="ClutterTexture-struct"><primary>ClutterTexture</primary></indexterm><programlisting>typedef struct _ClutterTexture ClutterTexture;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterTextureClass" role="struct">
+<title>ClutterTextureClass</title>
+<indexterm zone="ClutterTextureClass"><primary>ClutterTextureClass</primary></indexterm><programlisting>typedef struct {
+  ClutterActorClass parent_class;
+
+  void (*size_change)   (ClutterTexture *texture, 
+		         gint            width, 
+		         gint            height);
+  void (*pixbuf_change) (ClutterTexture *texture);
+} ClutterTextureClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterTextureFlags" role="enum" condition="since:0.4">
+<title>enum ClutterTextureFlags</title>
+<indexterm zone="ClutterTextureFlags" role="0.4"><primary>ClutterTextureFlags</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=CLUTTER_TEXTURE &gt;*/
+    CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 &lt;&lt; 1,
+    CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 &lt;&lt; 2, /* FIXME: not handled */
+    CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 &lt;&lt; 3
+
+    /* FIXME: add compressed types ? */
+} ClutterTextureFlags;
+</programlisting>
+<para>
+Flags for <link linkend="clutter-texture-set-from-rgb-data"><function>clutter_texture_set_from_rgb_data()</function></link> and
+<link linkend="clutter-texture-set-from-yuv-data"><function>clutter_texture_set_from_yuv_data()</function></link>.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-TEXTURE-RGB-FLAG-BGR:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_RGB_FLAG_BGR</literal></term>
+<listitem><simpara> FIXME
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-RGB-FLAG-PREMULT:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_RGB_FLAG_PREMULT</literal></term>
+<listitem><simpara> FIXME
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-YUV-FLAG-YUV2:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_YUV_FLAG_YUV2</literal></term>
+<listitem><simpara> FIXME
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterTextureQuality" role="enum" condition="since:0.8">
+<title>enum ClutterTextureQuality</title>
+<indexterm zone="ClutterTextureQuality" role="0.8"><primary>ClutterTextureQuality</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=CLUTTER_TEXTURE_QUALITY &gt;*/
+  CLUTTER_TEXTURE_QUALITY_LOW = 0,
+  CLUTTER_TEXTURE_QUALITY_MEDIUM,
+  CLUTTER_TEXTURE_QUALITY_HIGH
+} ClutterTextureQuality;
+</programlisting>
+<para>
+Enumaration controlling the texture quality.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-TEXTURE-QUALITY-LOW:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_QUALITY_LOW</literal></term>
+<listitem><simpara> fastest rendering will use nearest neighbour
+  interpolation when rendering. good setting.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_QUALITY_MEDIUM</literal></term>
+<listitem><simpara> higher quality rendering without using
+  extra resources.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-QUALITY-HIGH:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_QUALITY_HIGH</literal></term>
+<listitem><simpara> render the texture with the best quality
+  available using extra memory.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-new" role="function">
+<title>clutter_texture_new ()</title>
+<indexterm zone="clutter-texture-new"><primary>clutter_texture_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_texture_new                 (void);</programlisting>
+<para>
+Creates a new empty <link linkend="ClutterTexture"><type>ClutterTexture</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly created <link linkend="ClutterTexture"><type>ClutterTexture</type></link> object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-texture-new-from-file" role="function" condition="since:0.8">
+<title>clutter_texture_new_from_file ()</title>
+<indexterm zone="clutter-texture-new-from-file" role="0.8"><primary>clutter_texture_new_from_file</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_texture_new_from_file       (const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a new ClutterTexture actor to display the image contained a
+file. If the image failed to load then NULL is returned and <parameter>error</parameter>
+is set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> The name of an image file to load.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> Return locatoin for an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly created <link linkend="ClutterTexture"><type>ClutterTexture</type></link> object or NULL on
+error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-new-from-actor" role="function" condition="since:0.6">
+<title>clutter_texture_new_from_actor ()</title>
+<indexterm zone="clutter-texture-new-from-actor" role="0.6"><primary>clutter_texture_new_from_actor</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_texture_new_from_actor      (<link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Creates a new <link linkend="ClutterTexture"><type>ClutterTexture</type></link> object with its source a prexisting
+actor (and associated children). The textures content will contain
+'live' redirected output of the actors scene.
+</para>
+<para>
+Note this function is intented as a utility call for uniformly applying
+shaders to groups and other potential visual effects. It requires that
+the <link linkend="CLUTTER-FEATURE-OFFSCREEN:CAPS"><literal>CLUTTER_FEATURE_OFFSCREEN</literal></link> feature is supported by the current backend 
+and the target system.
+</para>
+<para>
+Some tips on usage:
+</para>
+<para>
+<itemizedlist>
+  <listitem>
+    <para>The source actor must be made visible (i.e by calling
+    <link linkend="clutter-actor-show"><type>clutter_actor_show</type></link>).</para>
+  </listitem>
+  <listitem>
+    <para>The source actor must have a parent in order for it to be
+    allocated a size from the layouting mechanism. If the source
+    actor does not have a parent when this function is called then
+    the ClutterTexture will adopt it and allocate it at its
+    preferred size. Using this you can clone an actor that is
+    otherwise not displayed. Because of this feature if you do
+    intend to display the source actor then you must make sure that
+    the actor is parented before calling
+    <link linkend="clutter-texture-new-from-actor"><function>clutter_texture_new_from_actor()</function></link> or that you unparent it before
+    adding it to a container.</para>
+  </listitem>
+  <listitem>
+    <para>When getting the image for the clone texture, Clutter
+    will attempt to render the source actor exactly as it would
+    appear if it was rendered on screen. The source actor's parent
+    transformations are taken into account. Therefore if your
+    source actor is rotated along the X or Y axes so that it has
+    some depth, the texture will appear differently depending on
+    the on-screen location of the source actor. While painting the
+    source actor, Clutter will set up a temporary asymmetric
+    perspective matrix as the projection matrix so that the source
+    actor will be projected as if a small section of the screen was
+    being viewed. Before version 0.8.2, an orthogonal identity
+    projection was used which meant that the source actor would be
+    clipped if any part of it was not on the zero Z-plane.</para>
+  </listitem>
+  <listitem>
+    <para>Avoid reparenting the source with the created texture.</para>
+  </listitem>
+  <listitem>
+    <para>A group can be padded with a transparent rectangle as to
+    provide a border to contents for shader output (blurring text
+    for example).</para>
+  </listitem>
+  <listitem>
+    <para>The texture will automatically resize to contain a further
+    transformed source. However, this involves overhead and can be
+    avoided by placing the source actor in a bounding group
+    sized large enough to contain any child tranformations.</para>
+  </listitem>
+  <listitem>
+    <para>Uploading pixel data to the texture (e.g by using
+    <link linkend="clutter-actor-set-from-file"><function>clutter_actor_set_from_file()</function></link>) will destroy the offscreen texture data
+    and end redirection.</para>
+  </listitem>
+  <listitem>
+    <para><link linkend="cogl-texture-get-data"><function>cogl_texture_get_data()</function></link> with the handle returned by
+    <link linkend="clutter-texture-get-cogl-texture"><function>clutter_texture_get_cogl_texture()</function></link> can be used to read the
+    offscreen texture pixels into a pixbuf.</para>
+  </listitem>
+</itemizedlist></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A source <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly created <link linkend="ClutterTexture"><type>ClutterTexture</type></link> object, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on failure.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-TEXTURE-ERROR:CAPS" role="macro">
+<title>CLUTTER_TEXTURE_ERROR</title>
+<indexterm zone="CLUTTER-TEXTURE-ERROR:CAPS"><primary>CLUTTER_TEXTURE_ERROR</primary></indexterm><programlisting>#define CLUTTER_TEXTURE_ERROR   (clutter_texture_error_quark ())
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterTextureError" role="enum" condition="since:0.4">
+<title>enum ClutterTextureError</title>
+<indexterm zone="ClutterTextureError" role="0.4"><primary>ClutterTextureError</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
+  CLUTTER_TEXTURE_ERROR_NO_YUV,
+  CLUTTER_TEXTURE_ERROR_BAD_FORMAT
+} ClutterTextureError;
+</programlisting>
+<para>
+Error enumeration for <link linkend="ClutterTexture"><type>ClutterTexture</type></link></para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-TEXTURE-ERROR-OUT-OF-MEMORY:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY</literal></term>
+<listitem><simpara> OOM condition
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-ERROR-NO-YUV:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_ERROR_NO_YUV</literal></term>
+<listitem><simpara> YUV operation attempted but no YUV support
+  found
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TEXTURE-ERROR-BAD-FORMAT:CAPS" role="constant">
+<term><literal>CLUTTER_TEXTURE_ERROR_BAD_FORMAT</literal></term>
+<listitem><simpara> The requested format for
+clutter_texture_set_from_rgb_data or
+clutter_texture_set_from_yuv_data is unsupported.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-texture-set-from-file" role="function" condition="since:0.8">
+<title>clutter_texture_set_from_file ()</title>
+<indexterm zone="clutter-texture-set-from-file" role="0.8"><primary>clutter_texture_set_from_file</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_texture_set_from_file       (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Sets the <link linkend="ClutterTexture"><type>ClutterTexture</type></link> image data from an image file. In case of
+failure, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> is returned and <parameter>error</parameter> is set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> The filename of the image in GLib file name encoding
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the image was successfully loaded and set
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-set-from-rgb-data" role="function" condition="since:0.4.">
+<title>clutter_texture_set_from_rgb_data ()</title>
+<indexterm zone="clutter-texture-set-from-rgb-data" role="0.4."><primary>clutter_texture_set_from_rgb_data</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_texture_set_from_rgb_data   (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gboolean">gboolean</link> has_alpha,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="gint">gint</link> rowstride,
+                                                         <link linkend="gint">gint</link> bpp,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Sets <link linkend="ClutterTexture"><type>ClutterTexture</type></link> image data.
+</para>
+<para>
+Note: This function is likely to change in future versions.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Image data in RGBA type colorspace.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>has_alpha</parameter>&nbsp;:</term>
+<listitem><simpara> Set to TRUE if image data has an alpha channel.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width in pixels of image data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height in pixels of image data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rowstride</parameter>&nbsp;:</term>
+<listitem><simpara> Distance in bytes between row starts.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bpp</parameter>&nbsp;:</term>
+<listitem><simpara> bytes per pixel (Currently only 3 and 4 supported, 
+                       depending on <parameter>has_alpha</parameter>)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterTextureFlags"><type>ClutterTextureFlags</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> on failure.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4.
+</para></refsect2>
+<refsect2 id="clutter-texture-set-from-yuv-data" role="function">
+<title>clutter_texture_set_from_yuv_data ()</title>
+<indexterm zone="clutter-texture-set-from-yuv-data"><primary>clutter_texture_set_from_yuv_data</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_texture_set_from_yuv_data   (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Sets a <link linkend="ClutterTexture"><type>ClutterTexture</type></link> from YUV image data. If an error occurred,
+<link linkend="FALSE:CAPS"><literal>FALSE</literal></link> is returned and <parameter>error</parameter> is set.
+</para>
+<para>
+This function is likely to change in future versions.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Image data in YUV type colorspace.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width in pixels of image data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height in pixels of image data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterTextureFlags"><type>ClutterTextureFlags</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the texture was successfully updated
+
+Since 0.4.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-texture-set-area-from-rgb-data" role="function">
+<title>clutter_texture_set_area_from_rgb_data ()</title>
+<indexterm zone="clutter-texture-set-area-from-rgb-data"><primary>clutter_texture_set_area_from_rgb_data</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_texture_set_area_from_rgb_data
+                                                        (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gboolean">gboolean</link> has_alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="gint">gint</link> rowstride,
+                                                         <link linkend="gint">gint</link> bpp,
+                                                         <link linkend="ClutterTextureFlags">ClutterTextureFlags</link> flags,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Updates a sub-region of the pixel data in a <link linkend="ClutterTexture"><type>ClutterTexture</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Image data in RGB type colorspace.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>has_alpha</parameter>&nbsp;:</term>
+<listitem><simpara> Set to TRUE if image data has an alpha channel.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of upper left corner of region to update.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of upper left corner of region to update.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width in pixels of region to update.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height in pixels of region to update.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rowstride</parameter>&nbsp;:</term>
+<listitem><simpara> Distance in bytes between row starts on source buffer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bpp</parameter>&nbsp;:</term>
+<listitem><simpara> bytes per pixel (Currently only 3 and 4 supported, 
+                       depending on <parameter>has_alpha</parameter>)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterTextureFlags"><type>ClutterTextureFlags</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> on failure.
+
+Since 0.6.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-texture-get-base-size" role="function">
+<title>clutter_texture_get_base_size ()</title>
+<indexterm zone="clutter-texture-get-base-size"><primary>clutter_texture_get_base_size</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_texture_get_base_size       (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="gint">gint</link> *width,
+                                                         <link linkend="gint">gint</link> *height);</programlisting>
+<para>
+Gets the size in pixels of the untransformed underlying texture pixbuf data.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara>   Pointer to gint to be populated with width value if non NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara>  Pointer to gint to be populated with height value if non NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-texture-get-filter-quality" role="function" condition="since:0.8">
+<title>clutter_texture_get_filter_quality ()</title>
+<indexterm zone="clutter-texture-get-filter-quality" role="0.8"><primary>clutter_texture_get_filter_quality</primary></indexterm><programlisting><link linkend="ClutterTextureQuality">ClutterTextureQuality</link> clutter_texture_get_filter_quality
+                                                        (<link linkend="ClutterTexture">ClutterTexture</link> *texture);</programlisting>
+<para>
+Gets the filter quality used when scaling a texture.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The filter quality value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-set-filter-quality" role="function" condition="since:0.8">
+<title>clutter_texture_set_filter_quality ()</title>
+<indexterm zone="clutter-texture-set-filter-quality" role="0.8"><primary>clutter_texture_set_filter_quality</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_texture_set_filter_quality  (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="ClutterTextureQuality">ClutterTextureQuality</link> filter_quality);</programlisting>
+<para>
+Sets the filter quality when scaling a texture. The quality is an
+enumeration currently the following values are supported:
+<link linkend="CLUTTER-TEXTURE-QUALITY-LOW:CAPS"><literal>CLUTTER_TEXTURE_QUALITY_LOW</literal></link> which is fast but only uses nearest neighbour
+interpolation. <link linkend="CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS"><literal>CLUTTER_TEXTURE_QUALITY_MEDIUM</literal></link> which is computationally a
+bit more expensive (bilinear interpolation), and
+<link linkend="CLUTTER-TEXTURE-QUALITY-HIGH:CAPS"><literal>CLUTTER_TEXTURE_QUALITY_HIGH</literal></link> which uses extra texture memory resources to
+improve scaled down rendering as well (by using mipmaps). The default value
+is <link linkend="CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS"><literal>CLUTTER_TEXTURE_QUALITY_MEDIUM</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filter_quality</parameter>&nbsp;:</term>
+<listitem><simpara> new filter quality value
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-get-max-tile-waste" role="function" condition="since:0.8">
+<title>clutter_texture_get_max_tile_waste ()</title>
+<indexterm zone="clutter-texture-get-max-tile-waste" role="0.8"><primary>clutter_texture_get_max_tile_waste</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_texture_get_max_tile_waste  (<link linkend="ClutterTexture">ClutterTexture</link> *texture);</programlisting>
+<para>
+Gets the maximum waste that will be used when creating a texture or
+-1 if slicing is disabled.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The maximum waste or -1 if the texture waste is
+unlimited.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-set-max-tile-waste" role="function" condition="since:0.8">
+<title>clutter_texture_set_max_tile_waste ()</title>
+<indexterm zone="clutter-texture-set-max-tile-waste" role="0.8"><primary>clutter_texture_set_max_tile_waste</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_texture_set_max_tile_waste  (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="gint">gint</link> max_tile_waste);</programlisting>
+<para>
+Sets the maximum number of pixels in either axis that can be wasted
+for an individual texture slice. If -1 is specified then the
+texture is forced not to be sliced and the texture creation will
+fail if the hardware can't create a texture large enough.
+</para>
+<para>
+The value is only used when first creating a texture so changing it
+after the texture data has been set has no effect.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max_tile_waste</parameter>&nbsp;:</term>
+<listitem><simpara> Maximum amount of waste in pixels or -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-texture-get-cogl-texture" role="function" condition="since:0.8">
+<title>clutter_texture_get_cogl_texture ()</title>
+<indexterm zone="clutter-texture-get-cogl-texture" role="0.8"><primary>clutter_texture_get_cogl_texture</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          clutter_texture_get_cogl_texture    (<link linkend="ClutterTexture">ClutterTexture</link> *texture);</programlisting>
+<para>
+Returns a handle to the underlying COGL texture used for drawing
+the actor. No extra reference is taken so if you need to keep the
+handle then you should call cogl_texture_ref on it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> COGL texture handle
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+
+</para></refsect2>
+<refsect2 id="clutter-texture-set-cogl-texture" role="function" condition="since:0.8">
+<title>clutter_texture_set_cogl_texture ()</title>
+<indexterm zone="clutter-texture-set-cogl-texture" role="0.8"><primary>clutter_texture_set_cogl_texture</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_texture_set_cogl_texture    (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                         <link linkend="CoglHandle">CoglHandle</link> cogl_tex);</programlisting>
+<para>
+Replaces the underlying COGL texture drawn by this actor with
+<parameter>cogl_tex</parameter>. A reference to the texture is taken so if the handle is
+no longer needed it should be deref'd with cogl_texture_unref.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTexture"><type>ClutterTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cogl_tex</parameter>&nbsp;:</term>
+<listitem><simpara> A CoglHandle for a texture
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterTexture.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterTexture--cogl-texture"><title>The <literal>&quot;cogl-texture&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--cogl-texture"><primary>ClutterTexture:cogl-texture</primary></indexterm><programlisting>  &quot;cogl-texture&quot;             <link linkend="ClutterTextureHandle">ClutterTextureHandle</link>*  : Read / Write</programlisting>
+<para>The underlying COGL texture handle used to draw this actor.</para></refsect2>
+<refsect2 id="ClutterTexture--disable-slicing"><title>The <literal>&quot;disable-slicing&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--disable-slicing"><primary>ClutterTexture:disable-slicing</primary></indexterm><programlisting>  &quot;disable-slicing&quot;          <link linkend="gboolean">gboolean</link>              : Read / Write / Construct Only</programlisting>
+<para>Force the underlying texture to be singlularand not made of of smaller space saving inidivual textures.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterTexture--filename"><title>The <literal>&quot;filename&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--filename"><primary>ClutterTexture:filename</primary></indexterm><programlisting>  &quot;filename&quot;                 <link linkend="gchar">gchar</link>*                : Write</programlisting>
+<para>The full path of the file containing the texture.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="ClutterTexture--filter-quality"><title>The <literal>&quot;filter-quality&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--filter-quality"><primary>ClutterTexture:filter-quality</primary></indexterm><programlisting>  &quot;filter-quality&quot;           <link linkend="ClutterTextureQuality">ClutterTextureQuality</link>  : Read / Write / Construct</programlisting>
+<para>Rendering quality used when drawing the texture.</para><para>Default value: CLUTTER_TEXTURE_QUALITY_MEDIUM</para>
+</refsect2>
+<refsect2 id="ClutterTexture--keep-aspect-ratio"><title>The <literal>&quot;keep-aspect-ratio&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--keep-aspect-ratio"><primary>ClutterTexture:keep-aspect-ratio</primary></indexterm><programlisting>  &quot;keep-aspect-ratio&quot;        <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Keep the aspect ratio of the texture when requesting the preferred width or height.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterTexture--pixel-format"><title>The <literal>&quot;pixel-format&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--pixel-format"><primary>ClutterTexture:pixel-format</primary></indexterm><programlisting>  &quot;pixel-format&quot;             <link linkend="gint">gint</link>                  : Read</programlisting>
+<para>CoglPixelFormat to use.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 19</para>
+</refsect2>
+<refsect2 id="ClutterTexture--repeat-x"><title>The <literal>&quot;repeat-x&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--repeat-x"><primary>ClutterTexture:repeat-x</primary></indexterm><programlisting>  &quot;repeat-x&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Repeat underlying pixbuf rather than scale in x direction.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterTexture--repeat-y"><title>The <literal>&quot;repeat-y&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--repeat-y"><primary>ClutterTexture:repeat-y</primary></indexterm><programlisting>  &quot;repeat-y&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Repeat underlying pixbuf rather than scale in y direction.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterTexture--sync-size"><title>The <literal>&quot;sync-size&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--sync-size"><primary>ClutterTexture:sync-size</primary></indexterm><programlisting>  &quot;sync-size&quot;                <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Auto sync size of actor to underlying pixbuf dimensions.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="ClutterTexture--tile-waste"><title>The <literal>&quot;tile-waste&quot;</literal> property</title>
+<indexterm zone="ClutterTexture--tile-waste"><primary>ClutterTexture:tile-waste</primary></indexterm><programlisting>  &quot;tile-waste&quot;               <link linkend="gint">gint</link>                  : Read / Write / Construct Only</programlisting>
+<para>Max wastage dimension of a texture when using sliced textures or -1 to disable slicing. Bigger values use less textures, smaller values less texture memory.</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: 64</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterTexture.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterTexture-pixbuf-change"><title>The <literal>&quot;pixbuf-change&quot;</literal> signal</title>
+<indexterm zone="ClutterTexture-pixbuf-change"><primary>ClutterTexture::pixbuf-change</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)      : Run Last</programlisting>
+<para>
+The ::pixbuf-change signal is emitted each time the pixbuf
+used by <parameter>texture</parameter> changes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> the texture which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="ClutterTexture-size-change"><title>The <literal>&quot;size-change&quot;</literal> signal</title>
+<indexterm zone="ClutterTexture-size-change"><primary>ClutterTexture::size-change</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTexture">ClutterTexture</link> *texture,
+                                                        <link linkend="gint">gint</link>            width,
+                                                        <link linkend="gint">gint</link>            height,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)      : Run Last</programlisting>
+<para>
+The ::size-change signal is emitted each time the size of the
+pixbuf used by <parameter>texture</parameter> changes.  The new size is given as
+argument to the callback.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> the texture which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> the width of the new texture
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> the height of the new texture
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

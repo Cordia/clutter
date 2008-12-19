@@ -1,0 +1,971 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterTimeline">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterTimeline.top_of_page">ClutterTimeline</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterTimeline</refname>
+<refpurpose>A class for time-based events</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterTimeline.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterTimeline-struct">ClutterTimeline</link>;
+                    <link linkend="ClutterTimelineClass">ClutterTimelineClass</link>;
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-timeline-new">clutter_timeline_new</link>                (<link linkend="guint">guint</link> n_frames,
+                                                         <link linkend="guint">guint</link> fps);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-timeline-new-for-duration">clutter_timeline_new_for_duration</link>   (<link linkend="guint">guint</link> msecs);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-timeline-clone">clutter_timeline_clone</link>              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-speed">clutter_timeline_set_speed</link>          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> fps);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeline-get-speed">clutter_timeline_get_speed</link>          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-duration">clutter_timeline_set_duration</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> msecs);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeline-get-duration">clutter_timeline_get_duration</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-loop">clutter_timeline_set_loop</link>           (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="gboolean">gboolean</link> loop);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-timeline-get-loop">clutter_timeline_get_loop</link>           (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-n-frames">clutter_timeline_set_n_frames</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> n_frames);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeline-get-n-frames">clutter_timeline_get_n_frames</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-delay">clutter_timeline_set_delay</link>          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> msecs);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeline-get-delay">clutter_timeline_get_delay</link>          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+enum                <link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link>;
+<link linkend="void">void</link>                <link linkend="clutter-timeline-set-direction">clutter_timeline_set_direction</link>      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link> direction);
+<link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link> <link linkend="clutter-timeline-get-direction">clutter_timeline_get_direction</link> (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+
+<link linkend="void">void</link>                <link linkend="clutter-timeline-start">clutter_timeline_start</link>              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-pause">clutter_timeline_pause</link>              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-stop">clutter_timeline_stop</link>               (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-rewind">clutter_timeline_rewind</link>             (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-skip">clutter_timeline_skip</link>               (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> n_frames);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-advance">clutter_timeline_advance</link>            (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> frame_num);
+<link linkend="gint">gint</link>                <link linkend="clutter-timeline-get-current-frame">clutter_timeline_get_current_frame</link>  (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeline-get-delta">clutter_timeline_get_delta</link>          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> *msecs);
+<link linkend="gdouble">gdouble</link>             <link linkend="clutter-timeline-get-progress">clutter_timeline_get_progress</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-timeline-get-progressx">clutter_timeline_get_progressx</link>      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-timeline-is-playing">clutter_timeline_is_playing</link>         (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+
+<link linkend="void">void</link>                <link linkend="clutter-timeline-add-marker-at-frame">clutter_timeline_add_marker_at_frame</link>
+                                                        (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="guint">guint</link> frame_num);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-add-marker-at-time">clutter_timeline_add_marker_at_time</link> (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="guint">guint</link> msecs);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-timeline-has-marker">clutter_timeline_has_marker</link>         (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);
+<link linkend="gchar">gchar</link>**             <link linkend="clutter-timeline-list-markers">clutter_timeline_list_markers</link>       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="gint">gint</link> frame_num,
+                                                         <link linkend="gsize">gsize</link> *n_markers);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-remove-marker">clutter_timeline_remove_marker</link>      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);
+<link linkend="void">void</link>                <link linkend="clutter-timeline-advance-to-marker">clutter_timeline_advance_to_marker</link>  (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterTimeline.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterTimeline
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterTimeline.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterTimeline--delay">delay</link>&quot;                    <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterTimeline--direction">direction</link>&quot;                <link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link>  : Read / Write
+  &quot;<link linkend="ClutterTimeline--duration">duration</link>&quot;                 <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterTimeline--fps">fps</link>&quot;                      <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterTimeline--loop">loop</link>&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterTimeline--num-frames">num-frames</link>&quot;               <link linkend="guint">guint</link>                 : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterTimeline.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterTimeline-completed">completed</link>&quot;                                      : Run Last
+  &quot;<link linkend="ClutterTimeline-marker-reached">marker-reached</link>&quot;                                 : Run Last / No Recursion / Has Details / No Hooks
+  &quot;<link linkend="ClutterTimeline-new-frame">new-frame</link>&quot;                                      : Run Last
+  &quot;<link linkend="ClutterTimeline-paused">paused</link>&quot;                                         : Run Last
+  &quot;<link linkend="ClutterTimeline-started">started</link>&quot;                                        : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterTimeline.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> is a base class for managing time based events such
+as animations.
+</para>
+<para>
+Every timeline shares the same <link linkend="ClutterTimeoutPool"><type>ClutterTimeoutPool</type></link> to decrease the
+possibility of starving the main loop when using many timelines
+at the same time; this might cause problems if you are also using
+a library making heavy use of threads with no GLib main loop integration.
+</para>
+<para>
+In that case you might disable the common timeline pool by setting
+the <link linkend="CLUTTER-TIMELINE:CAPS"><literal>CLUTTER_TIMELINE</literal></link>=no-pool environment variable prior to launching
+your application.
+</para>
+<para>
+One way to visualise a timeline is as a path with marks along its length.
+When creating a timeline of <parameter>n_frames</parameter> via <link linkend="clutter-timeline-new"><function>clutter_timeline_new()</function></link>, then the
+number of frames can be seen as the paths length, and each unit of length
+(each frame) is delimited by a mark.
+</para>
+<para>
+For a non looping timeline there will be (n_frames + 1) marks along its
+length. For a looping timeline, the two ends are joined with one mark.
+Technically this mark represents two discrete frame numbers, but for a
+looping timeline the start and end frame numbers are considered equivalent.
+</para>
+<para>
+When you create a timeline it starts with
+<link linkend="clutter-timeline-get-current-frame"><function>clutter_timeline_get_current_frame()</function></link> == 0.
+</para>
+<para>
+After starting a timeline, the first timeout is for current_frame_num == 1
+(Notably it isn't 0 since there is a delay before the first timeout signals
+so re-asserting the starting frame (0) wouldn't make sense.)
+Notably, this implies that actors you intend to be affected by the
+timeline's progress, should be manually primed/positioned for frame 0 which
+will be displayed before the first timeout. (If you are not careful about
+this point you will likely see flashes of incorrect actor state in your
+program)
+</para>
+<para>
+For a non looping timeline the last timeout would be for
+current_frame_num == <parameter>n_frames</parameter>
+</para>
+<para>
+For a looping timeline the timeout for current_frame_num == <parameter>n_frames</parameter> would
+be followed by a timeout for current_frame_num == 1 (remember frame 0 is
+considered == frame (<parameter>n_frames</parameter>)).
+</para>
+<para>
+There may be times when a system is not able to meet the frame rate
+requested for a timeline, and in this case the frame number will be
+interpolated at the next timeout event. The interpolation is calculated from
+the time that the timeline was started, not from the time of the last
+timeout, so a given timeline should basically elapse in the same - real
+world - time on any given system. An invariable here though is that
+current_frame_num == <parameter>n_frames</parameter> will always be signaled, but notably frame 1
+can be interpolated past and so never signaled.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterTimeline.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterTimeline-struct" role="struct">
+<title>ClutterTimeline</title>
+<indexterm zone="ClutterTimeline-struct"><primary>ClutterTimeline</primary></indexterm><programlisting>typedef struct _ClutterTimeline ClutterTimeline;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterTimelineClass" role="struct">
+<title>ClutterTimelineClass</title>
+<indexterm zone="ClutterTimelineClass"><primary>ClutterTimelineClass</primary></indexterm><programlisting>typedef struct {
+  void (*started)        (ClutterTimeline *timeline);
+  void (*completed)      (ClutterTimeline *timeline);
+  void (*paused)         (ClutterTimeline *timeline);
+  
+  void (*new_frame)      (ClutterTimeline *timeline,
+		          gint             frame_num);
+
+  void (*marker_reached) (ClutterTimeline *timeline,
+                          const gchar     *marker_name,
+                          gint             frame_num);
+} ClutterTimelineClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-timeline-new" role="function">
+<title>clutter_timeline_new ()</title>
+<indexterm zone="clutter-timeline-new"><primary>clutter_timeline_new</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_timeline_new                (<link linkend="guint">guint</link> n_frames,
+                                                         <link linkend="guint">guint</link> fps);</programlisting>
+<para>
+Create a new  <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>n_frames</parameter>&nbsp;:</term>
+<listitem><simpara> the number of frames
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fps</parameter>&nbsp;:</term>
+<listitem><simpara> the number of frames per second
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-new-for-duration" role="function" condition="since:0.6">
+<title>clutter_timeline_new_for_duration ()</title>
+<indexterm zone="clutter-timeline-new-for-duration" role="0.6"><primary>clutter_timeline_new_for_duration</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_timeline_new_for_duration   (<link linkend="guint">guint</link> msecs);</programlisting>
+<para>
+Creates a new <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> with a duration of <parameter>msecs</parameter> using
+the value of the ClutterTimeline:fps property to compute the
+equivalent number of frames.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> Duration of the timeline in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-clone" role="function">
+<title>clutter_timeline_clone ()</title>
+<indexterm zone="clutter-timeline-clone"><primary>clutter_timeline_clone</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_timeline_clone              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Create a new <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> instance which has property values
+matching that of supplied timeline. The cloned timeline will not
+be started and will not be positioned to the current position of
+<parameter>timeline</parameter>: you will have to start it with <link linkend="clutter-timeline-start"><function>clutter_timeline_start()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> to duplicate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>, cloned from <parameter>timeline</parameter>
+
+Since 0.4
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-set-speed" role="function">
+<title>clutter_timeline_set_speed ()</title>
+<indexterm zone="clutter-timeline-set-speed"><primary>clutter_timeline_set_speed</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_speed          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> fps);</programlisting>
+<para>
+Set the speed in frames per second of the timeline.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fps</parameter>&nbsp;:</term>
+<listitem><simpara> New speed of timeline as frames per second
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-get-speed" role="function">
+<title>clutter_timeline_get_speed ()</title>
+<indexterm zone="clutter-timeline-get-speed"><primary>clutter_timeline_get_speed</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeline_get_speed          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Gets the frames per second played by <parameter>timeline</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of frames per second.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-set-duration" role="function" condition="since:0.6">
+<title>clutter_timeline_set_duration ()</title>
+<indexterm zone="clutter-timeline-set-duration" role="0.6"><primary>clutter_timeline_set_duration</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_duration       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> msecs);</programlisting>
+<para>
+Sets the duration of the timeline, in milliseconds. The speed
+of the timeline depends on the ClutterTimeline:fps setting.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> duration of the timeline in milliseconds
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-get-duration" role="function" condition="since:0.6">
+<title>clutter_timeline_get_duration ()</title>
+<indexterm zone="clutter-timeline-get-duration" role="0.6"><primary>clutter_timeline_get_duration</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeline_get_duration       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Retrieves the duration of a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> in milliseconds.
+See <link linkend="clutter-timeline-set-duration"><function>clutter_timeline_set_duration()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the duration of the timeline, in milliseconds.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-set-loop" role="function">
+<title>clutter_timeline_set_loop ()</title>
+<indexterm zone="clutter-timeline-set-loop"><primary>clutter_timeline_set_loop</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_loop           (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="gboolean">gboolean</link> loop);</programlisting>
+<para>
+Sets whether <parameter>timeline</parameter> should loop.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>loop</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> for enable looping
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-get-loop" role="function">
+<title>clutter_timeline_get_loop ()</title>
+<indexterm zone="clutter-timeline-get-loop"><primary>clutter_timeline_get_loop</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_timeline_get_loop           (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Gets whether <parameter>timeline</parameter> is looping</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the timeline is looping
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-set-n-frames" role="function">
+<title>clutter_timeline_set_n_frames ()</title>
+<indexterm zone="clutter-timeline-set-n-frames"><primary>clutter_timeline_set_n_frames</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_n_frames       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> n_frames);</programlisting>
+<para>
+Sets the total number of frames for <parameter>timeline</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_frames</parameter>&nbsp;:</term>
+<listitem><simpara> the number of frames
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-get-n-frames" role="function">
+<title>clutter_timeline_get_n_frames ()</title>
+<indexterm zone="clutter-timeline-get-n-frames"><primary>clutter_timeline_get_n_frames</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeline_get_n_frames       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Request the total number of frames for the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of frames for this <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-set-delay" role="function" condition="since:0.4">
+<title>clutter_timeline_set_delay ()</title>
+<indexterm zone="clutter-timeline-set-delay" role="0.4"><primary>clutter_timeline_set_delay</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_delay          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> msecs);</programlisting>
+<para>
+Sets the delay, in milliseconds, before <parameter>timeline</parameter> should start.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> delay in milliseconds
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-timeline-get-delay" role="function" condition="since:0.4">
+<title>clutter_timeline_get_delay ()</title>
+<indexterm zone="clutter-timeline-get-delay" role="0.4"><primary>clutter_timeline_get_delay</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeline_get_delay          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Retrieves the delay set using <link linkend="clutter-timeline-set-delay"><function>clutter_timeline_set_delay()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the delay in milliseconds.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="ClutterTimelineDirection" role="enum" condition="since:0.6">
+<title>enum ClutterTimelineDirection</title>
+<indexterm zone="ClutterTimelineDirection" role="0.6"><primary>ClutterTimelineDirection</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_TIMELINE_FORWARD,
+  CLUTTER_TIMELINE_BACKWARD
+} ClutterTimelineDirection;
+</programlisting>
+<para>
+The direction of a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link></para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-TIMELINE-FORWARD:CAPS" role="constant">
+<term><literal>CLUTTER_TIMELINE_FORWARD</literal></term>
+<listitem><simpara> forward direction for a timeline
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-TIMELINE-BACKWARD:CAPS" role="constant">
+<term><literal>CLUTTER_TIMELINE_BACKWARD</literal></term>
+<listitem><simpara> backward direction for a timeline
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-set-direction" role="function" condition="since:0.6">
+<title>clutter_timeline_set_direction ()</title>
+<indexterm zone="clutter-timeline-set-direction" role="0.6"><primary>clutter_timeline_set_direction</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_set_direction      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link> direction);</programlisting>
+<para>
+Sets the direction of <parameter>timeline</parameter>, either <link linkend="CLUTTER-TIMELINE-FORWARD:CAPS"><literal>CLUTTER_TIMELINE_FORWARD</literal></link> or
+<link linkend="CLUTTER-TIMELINE-BACKWARD:CAPS"><literal>CLUTTER_TIMELINE_BACKWARD</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> the direction of the timeline
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-get-direction" role="function" condition="since:0.6">
+<title>clutter_timeline_get_direction ()</title>
+<indexterm zone="clutter-timeline-get-direction" role="0.6"><primary>clutter_timeline_get_direction</primary></indexterm><programlisting><link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link> clutter_timeline_get_direction (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Retrieves the direction of the timeline set with
+<link linkend="clutter-timeline-set-direction"><function>clutter_timeline_set_direction()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the direction of the timeline
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-start" role="function">
+<title>clutter_timeline_start ()</title>
+<indexterm zone="clutter-timeline-start"><primary>clutter_timeline_start</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_start              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Starts the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> playing.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-pause" role="function">
+<title>clutter_timeline_pause ()</title>
+<indexterm zone="clutter-timeline-pause"><primary>clutter_timeline_pause</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_pause              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Pauses the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> on current frame</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-stop" role="function">
+<title>clutter_timeline_stop ()</title>
+<indexterm zone="clutter-timeline-stop"><primary>clutter_timeline_stop</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_stop               (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Stops the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> and moves to frame 0</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-rewind" role="function">
+<title>clutter_timeline_rewind ()</title>
+<indexterm zone="clutter-timeline-rewind"><primary>clutter_timeline_rewind</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_rewind             (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Rewinds <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> to the first frame if its direction is
+CLUTTER_TIMELINE_FORWARD and the last frame if it is
+CLUTTER_TIMELINE_BACKWARD.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-skip" role="function">
+<title>clutter_timeline_skip ()</title>
+<indexterm zone="clutter-timeline-skip"><primary>clutter_timeline_skip</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_skip               (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> n_frames);</programlisting>
+<para>
+Advance timeline by requested number of frames.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_frames</parameter>&nbsp;:</term>
+<listitem><simpara> Number of frames to skip
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-advance" role="function">
+<title>clutter_timeline_advance ()</title>
+<indexterm zone="clutter-timeline-advance"><primary>clutter_timeline_advance</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_advance            (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> frame_num);</programlisting>
+<para>
+Advance timeline to requested frame number</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>frame_num</parameter>&nbsp;:</term>
+<listitem><simpara> Frame number to advance to
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-get-current-frame" role="function">
+<title>clutter_timeline_get_current_frame ()</title>
+<indexterm zone="clutter-timeline-get-current-frame"><primary>clutter_timeline_get_current_frame</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_timeline_get_current_frame  (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Request the current frame number of the timeline.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> current frame number
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-get-delta" role="function" condition="since:0.6">
+<title>clutter_timeline_get_delta ()</title>
+<indexterm zone="clutter-timeline-get-delta" role="0.6"><primary>clutter_timeline_get_delta</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeline_get_delta          (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="guint">guint</link> *msecs);</programlisting>
+<para>
+Retrieves the number of frames and the amount of time elapsed since
+the last ClutterTimeline::new-frame signal.
+</para>
+<para>
+This function is only useful inside handlers for the ::new-frame
+signal, and its behaviour is undefined if the timeline is not
+playing.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the milliseconds elapsed since the last
+  frame, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the amount of frames elapsed since the last one
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-get-progress" role="function" condition="since:0.6">
+<title>clutter_timeline_get_progress ()</title>
+<indexterm zone="clutter-timeline-get-progress" role="0.6"><primary>clutter_timeline_get_progress</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             clutter_timeline_get_progress       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+The position of the timeline in a [0, 1] interval.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the position of the timeline.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-get-progressx" role="function" condition="since:0.6">
+<title>clutter_timeline_get_progressx ()</title>
+<indexterm zone="clutter-timeline-get-progressx" role="0.6"><primary>clutter_timeline_get_progressx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_timeline_get_progressx      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Fixed point version of <link linkend="clutter-timeline-get-progress"><function>clutter_timeline_get_progress()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the position of the timeline as a fixed point value
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-timeline-is-playing" role="function">
+<title>clutter_timeline_is_playing ()</title>
+<indexterm zone="clutter-timeline-is-playing"><primary>clutter_timeline_is_playing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_timeline_is_playing         (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Query state of a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if timeline is currently playing, FALSE if not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeline-add-marker-at-frame" role="function" condition="since:0.8">
+<title>clutter_timeline_add_marker_at_frame ()</title>
+<indexterm zone="clutter-timeline-add-marker-at-frame" role="0.8"><primary>clutter_timeline_add_marker_at_frame</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_add_marker_at_frame
+                                                        (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="guint">guint</link> frame_num);</programlisting>
+<para>
+Adds a named marker at <parameter>frame_num</parameter>. Markers are unique string identifiers
+for a specific frame. Once <parameter>timeline</parameter> reaches <parameter>frame_num</parameter>, it will emit
+a ::marker-reached signal for each marker attached to that frame.
+</para>
+<para>
+A marker can be removed with <link linkend="clutter-timeline-remove-marker"><function>clutter_timeline_remove_marker()</function></link>. The
+timeline can be advanced to a marker using
+<link linkend="clutter-timeline-advance-to-marker"><function>clutter_timeline_advance_to_marker()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the unique name for this marker
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>frame_num</parameter>&nbsp;:</term>
+<listitem><simpara> the marker's frame
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-timeline-add-marker-at-time" role="function" condition="since:0.8">
+<title>clutter_timeline_add_marker_at_time ()</title>
+<indexterm zone="clutter-timeline-add-marker-at-time" role="0.8"><primary>clutter_timeline_add_marker_at_time</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_add_marker_at_time (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name,
+                                                         <link linkend="guint">guint</link> msecs);</programlisting>
+<para>
+Time-based variant of <link linkend="clutter-timeline-add-marker-at-frame"><function>clutter_timeline_add_marker_at_frame()</function></link>.
+</para>
+<para>
+Adds a named marker at <parameter>msecs</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the unique name for this marker
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> position of the marker in milliseconds
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-timeline-has-marker" role="function" condition="since:0.8">
+<title>clutter_timeline_has_marker ()</title>
+<indexterm zone="clutter-timeline-has-marker" role="0.8"><primary>clutter_timeline_has_marker</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_timeline_has_marker         (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);</programlisting>
+<para>
+Checks whether <parameter>timeline</parameter> has a marker set with the given name.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the marker
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the marker was found
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-timeline-list-markers" role="function" condition="since:0.8">
+<title>clutter_timeline_list_markers ()</title>
+<indexterm zone="clutter-timeline-list-markers" role="0.8"><primary>clutter_timeline_list_markers</primary></indexterm><programlisting><link linkend="gchar">gchar</link>**             clutter_timeline_list_markers       (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="gint">gint</link> frame_num,
+                                                         <link linkend="gsize">gsize</link> *n_markers);</programlisting>
+<para>
+Retrieves the list of markers at <parameter>frame_num</parameter>. If <parameter>frame_num</parameter> is a
+negative integer, all the markers attached to <parameter>timeline</parameter> will be
+returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>frame_num</parameter>&nbsp;:</term>
+<listitem><simpara> the frame number to check, or -1
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_markers</parameter>&nbsp;:</term>
+<listitem><simpara> the number of markers returned
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly allocated, <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated string array
+  containing the names of the markers. Use <link linkend="g-strfreev"><function>g_strfreev()</function></link> when
+  done.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-timeline-remove-marker" role="function" condition="since:0.8">
+<title>clutter_timeline_remove_marker ()</title>
+<indexterm zone="clutter-timeline-remove-marker" role="0.8"><primary>clutter_timeline_remove_marker</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_remove_marker      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);</programlisting>
+<para>
+Removes <parameter>marker_name</parameter>, if found, from <parameter>timeline</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the marker to remove
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-timeline-advance-to-marker" role="function" condition="since:0.8">
+<title>clutter_timeline_advance_to_marker ()</title>
+<indexterm zone="clutter-timeline-advance-to-marker" role="0.8"><primary>clutter_timeline_advance_to_marker</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeline_advance_to_marker  (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         const <link linkend="gchar">gchar</link> *marker_name);</programlisting>
+<para>
+Advances <parameter>timeline</parameter> to the frame of the given <parameter>marker_name</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the marker
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterTimeline.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterTimeline--delay"><title>The <literal>&quot;delay&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--delay" role="0.4"><primary>ClutterTimeline:delay</primary></indexterm><programlisting>  &quot;delay&quot;                    <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+A delay, in milliseconds, that should be observed by the
+timeline before actually starting.</para>
+<para>
+
+</para><para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterTimeline--direction"><title>The <literal>&quot;direction&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--direction" role="0.6"><primary>ClutterTimeline:direction</primary></indexterm><programlisting>  &quot;direction&quot;                <link linkend="ClutterTimelineDirection">ClutterTimelineDirection</link>  : Read / Write</programlisting>
+<para>
+The direction of the timeline, either <link linkend="CLUTTER-TIMELINE-FORWARD:CAPS"><literal>CLUTTER_TIMELINE_FORWARD</literal></link> or
+<link linkend="CLUTTER-TIMELINE-BACKWARD:CAPS"><literal>CLUTTER_TIMELINE_BACKWARD</literal></link>.</para>
+<para>
+
+</para><para>Default value: CLUTTER_TIMELINE_FORWARD</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterTimeline--duration"><title>The <literal>&quot;duration&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--duration" role="0.6"><primary>ClutterTimeline:duration</primary></indexterm><programlisting>  &quot;duration&quot;                 <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+Duration of the timeline in milliseconds, depending on the
+ClutterTimeline:fps value.</para>
+<para>
+
+</para><para>Default value: 1000</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterTimeline--fps"><title>The <literal>&quot;fps&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--fps"><primary>ClutterTimeline:fps</primary></indexterm><programlisting>  &quot;fps&quot;                      <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+Timeline frames per second. Because of the nature of the main
+loop used by Clutter this is to be considered a best approximation.</para>
+<para>
+
+</para><para>Allowed values: [1,1000]</para>
+<para>Default value: 60</para>
+</refsect2>
+<refsect2 id="ClutterTimeline--loop"><title>The <literal>&quot;loop&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--loop"><primary>ClutterTimeline:loop</primary></indexterm><programlisting>  &quot;loop&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the timeline should automatically rewind and restart.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterTimeline--num-frames"><title>The <literal>&quot;num-frames&quot;</literal> property</title>
+<indexterm zone="ClutterTimeline--num-frames"><primary>ClutterTimeline:num-frames</primary></indexterm><programlisting>  &quot;num-frames&quot;               <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+Total number of frames for the timeline.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 1</para>
+<para>Default value: 1</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterTimeline.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterTimeline-completed"><title>The <literal>&quot;completed&quot;</literal> signal</title>
+<indexterm zone="ClutterTimeline-completed"><primary>ClutterTimeline::completed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::completed signal is emitted when the timeline reaches the
+number of frames specified by the ClutterTimeline:num-frames property.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="ClutterTimeline-marker-reached"><title>The <literal>&quot;marker-reached&quot;</literal> signal</title>
+<indexterm zone="ClutterTimeline-marker-reached" role="0.8"><primary>ClutterTimeline::marker-reached</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gchar">gchar</link>           *marker_name,
+                                                        <link linkend="gint">gint</link>             frame_num,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)        : Run Last / No Recursion / Has Details / No Hooks</programlisting>
+<para>
+The ::marker-reached signal is emitted each time a timeline
+reaches a marker set with <link linkend="clutter-timeline-add-marker-at-frame"><function>clutter_timeline_add_marker_at_frame()</function></link>
+or <link linkend="clutter-timeline-add-marker-at-time"><function>clutter_timeline_add_marker_at_time()</function></link>. This signal is
+detailed with the name of the marker as well, so it is
+possible to connect a callback to the ::marker-reached signal
+for a specific marker with:
+</para>
+<para>
+<informalexample><programlisting>
+  clutter_timeline_add_marker_at_frame (timeline, "foo", 24);
+  clutter_timeline_add_marker_at_frame (timeline, "bar", 48);
+
+  g_signal_connect (timeline, "marker-reached",
+                    G_CALLBACK (each_marker_reached), NULL);
+  g_signal_connect (timeline, "marker-reached::foo",
+                    G_CALLBACK (foo_marker_reached), NULL);
+  g_signal_connect (timeline, "marker-reached::bar",
+                    G_CALLBACK (bar_marker_reached), NULL);
+</programlisting></informalexample>
+</para>
+<para>
+In the example, the first callback will be invoked for both
+the "foo" and "bar" marker, while the second and third callbacks
+will be invoked for the "foo" or "bar" markers, respectively.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>marker_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the marker reached
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>frame_num</parameter>&nbsp;:</term>
+<listitem><simpara> the frame number
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.8
+</para></refsect2><refsect2 id="ClutterTimeline-new-frame"><title>The <literal>&quot;new-frame&quot;</literal> signal</title>
+<indexterm zone="ClutterTimeline-new-frame"><primary>ClutterTimeline::new-frame</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gint">gint</link>             frame_num,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::new-frame signal is emitted each time a new frame in the
+timeline is reached.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the timeline which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>frame_num</parameter>&nbsp;:</term>
+<listitem><simpara> the number of the new frame between 0 and
+ClutterTimeline:num-frames
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="ClutterTimeline-paused"><title>The <literal>&quot;paused&quot;</literal> signal</title>
+<indexterm zone="ClutterTimeline-paused"><primary>ClutterTimeline::paused</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::paused signal is emitted when <link linkend="clutter-timeline-pause"><function>clutter_timeline_pause()</function></link> is invoked.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="ClutterTimeline-started"><title>The <literal>&quot;started&quot;</literal> signal</title>
+<indexterm zone="ClutterTimeline-started"><primary>ClutterTimeline::started</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::started signal is emitted when the timeline starts its run.
+This might be as soon as <link linkend="clutter-timeline-start"><function>clutter_timeline_start()</function></link> is invoked or
+after the delay set in the ClutterTimeline:delay property has
+expired.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

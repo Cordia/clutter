@@ -1,0 +1,233 @@
+<!-- ##### SECTION Title ##### -->
+ClutterContainer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterContainer ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT ClutterContainerIface ##### -->
+<para>
+
+</para>
+
+@add: 
+@remove: 
+@foreach: 
+@raise: 
+@lower: 
+@sort_depth_order: 
+@child_meta_type: 
+@create_child_meta: 
+@destroy_child_meta: 
+@get_child_meta: 
+@actor_added: 
+@actor_removed: 
+@child_notify: 
+
+<!-- ##### FUNCTION clutter_container_add_actor ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_container_add ##### -->
+<para>
+
+</para>
+
+@container: 
+@first_actor: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_container_add_valist ##### -->
+<para>
+
+</para>
+
+@container: 
+@first_actor: 
+@var_args: 
+
+
+<!-- ##### FUNCTION clutter_container_remove_actor ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_container_remove ##### -->
+<para>
+
+</para>
+
+@container: 
+@first_actor: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_container_remove_valist ##### -->
+<para>
+
+</para>
+
+@container: 
+@first_actor: 
+@var_args: 
+
+
+<!-- ##### FUNCTION clutter_container_get_children ##### -->
+<para>
+
+</para>
+
+@container: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_container_foreach ##### -->
+<para>
+
+</para>
+
+@container: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_container_find_child_by_name ##### -->
+<para>
+
+</para>
+
+@container: 
+@child_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_container_raise_child ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+@sibling: 
+
+
+<!-- ##### FUNCTION clutter_container_lower_child ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+@sibling: 
+
+
+<!-- ##### FUNCTION clutter_container_sort_depth_order ##### -->
+<para>
+
+</para>
+
+@container: 
+
+
+<!-- ##### FUNCTION clutter_container_class_find_child_property ##### -->
+<para>
+
+</para>
+
+@klass: 
+@property_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_container_class_list_child_properties ##### -->
+<para>
+
+</para>
+
+@klass: 
+@n_properties: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_container_child_set_property ##### -->
+<para>
+
+</para>
+
+@container: 
+@child: 
+@property: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_container_child_get_property ##### -->
+<para>
+
+</para>
+
+@container: 
+@child: 
+@property: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_container_child_set ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+@first_prop: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_container_child_get ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+@first_prop: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_container_get_child_meta ##### -->
+<para>
+
+</para>
+
+@container: 
+@actor: 
+@Returns: 
+
+

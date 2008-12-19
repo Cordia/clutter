@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterListModel">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterListModel.top_of_page">ClutterListModel</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterListModel</refname>
+<refpurpose>List model implementation</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterListModel.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterListModel-struct">ClutterListModel</link>;
+<link linkend="ClutterModel">ClutterModel</link>*       <link linkend="clutter-list-model-new">clutter_list_model_new</link>              (<link linkend="guint">guint</link> n_columns,
+                                                         ...);
+<link linkend="ClutterModel">ClutterModel</link>*       <link linkend="clutter-list-model-newv">clutter_list_model_newv</link>             (<link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="GType">GType</link> *types,
+                                                         const <link linkend="gchar">gchar</link> * const names[]);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterListModel.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterModel">ClutterModel</link>
+         +----ClutterListModel
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="ClutterListModel.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterListModel"><type>ClutterListModel</type></link> is a <link linkend="ClutterModel"><type>ClutterModel</type></link> implementation provided by
+Clutter. <link linkend="ClutterListModel"><type>ClutterListModel</type></link> uses a <link linkend="GSequence"><type>GSequence</type></link> for storing the
+values for each row, so it's optimized for insertion and look up
+in sorted lists.
+</para>
+<para>
+<link linkend="ClutterListModel"><type>ClutterListModel</type></link> is a terminal class: it cannot be subclassed,
+only instantiated. 
+</para>
+<para>
+<link linkend="ClutterListModel"><type>ClutterListModel</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterListModel.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterListModel-struct" role="struct">
+<title>ClutterListModel</title>
+<indexterm zone="ClutterListModel-struct"><primary>ClutterListModel</primary></indexterm><programlisting>typedef struct _ClutterListModel ClutterListModel;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-list-model-new" role="function" condition="since:0.6">
+<title>clutter_list_model_new ()</title>
+<indexterm zone="clutter-list-model-new" role="0.6"><primary>clutter_list_model_new</primary></indexterm><programlisting><link linkend="ClutterModel">ClutterModel</link>*       clutter_list_model_new              (<link linkend="guint">guint</link> n_columns,
+                                                         ...);</programlisting>
+<para>
+Creates a new default model with <parameter>n_columns</parameter> columns with the types 
+and names passed in.
+</para>
+<para>
+For example:
+</para>
+<para>
+<informalexample><programlisting>
+model = clutter_list_model_new (3,
+                                G_TYPE_INT,      "Score",
+                                G_TYPE_STRING,   "Team",
+                                GDK_TYPE_PIXBUF, "Logo");
+</programlisting></informalexample>
+</para>
+<para>
+will create a new <link linkend="ClutterModel"><type>ClutterModel</type></link> with three columns of type int,
+string and <link linkend="GdkPixbuf"><type>GdkPixbuf</type></link> respectively.
+</para>
+<para>
+Note that the name of the column can be set to <link linkend="NULL:CAPS"><literal>NULL</literal></link>, in which case
+the canonical name of the type held by the column will be used as
+the title.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> number of columns in the model
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> <parameter>n_columns</parameter> number of <link linkend="GType"><type>GType</type></link> and string pairs
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterListModel"><type>ClutterListModel</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-list-model-newv" role="function" condition="since:0.6">
+<title>clutter_list_model_newv ()</title>
+<indexterm zone="clutter-list-model-newv" role="0.6"><primary>clutter_list_model_newv</primary></indexterm><programlisting><link linkend="ClutterModel">ClutterModel</link>*       clutter_list_model_newv             (<link linkend="guint">guint</link> n_columns,
+                                                         <link linkend="GType">GType</link> *types,
+                                                         const <link linkend="gchar">gchar</link> * const names[]);</programlisting>
+<para>
+Non-vararg version of <link linkend="clutter-list-model-new"><function>clutter_list_model_new()</function></link>. This function is
+useful for language bindings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>n_columns</parameter>&nbsp;:</term>
+<listitem><simpara> number of columns in the model
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>types</parameter>&nbsp;:</term>
+<listitem><simpara> an array of <link linkend="GType"><type>GType</type></link> types for the columns, from first to last
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>names</parameter>&nbsp;:</term>
+<listitem><simpara> an array of names for the columns, from first to last
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new default <link linkend="ClutterModel"><type>ClutterModel</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

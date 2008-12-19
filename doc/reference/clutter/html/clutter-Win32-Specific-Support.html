@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Win32 Specific Support</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="prev" href="clutter-X11-Specific-Support.html" title="X11 Specific Support">
+<link rel="next" href="pt07.html" title="Part VII. Additional Documentation">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-X11-Specific-Support.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt06.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="pt07.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-Win32-Specific-Support.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-Win32-Specific-Support.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-Win32-Specific-Support"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-Win32-Specific-Support.top_of_page"></a>Win32 Specific Support</span></h2>
+<p>Win32 Specific Support — Win32 specific API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-Win32-Specific-Support.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+void                <a class="link" href="clutter-Win32-Specific-Support.html#clutter-win32-disable-event-retrieval" title="clutter_win32_disable_event_retrieval ()">clutter_win32_disable_event_retrieval</a>
+                                                        (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-Win32-Specific-Support.html#clutter-win32-set-stage-foreign" title="clutter_win32_set_stage_foreign ()">clutter_win32_set_stage_foreign</a>     (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         HWND hwnd);
+<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a>*       <a class="link" href="clutter-Win32-Specific-Support.html#clutter-win32-get-stage-from-window" title="clutter_win32_get_stage_from_window ()">clutter_win32_get_stage_from_window</a> (HWND hwnd);
+HWND                <a class="link" href="clutter-Win32-Specific-Support.html#clutter-win32-get-stage-window" title="clutter_win32_get_stage_window ()">clutter_win32_get_stage_window</a>      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Win32-Specific-Support.description"></a><h2>Description</h2>
+<p>
+The Win32 backend for Clutter provides some specific API, allowing
+integration with the Win32 API for embedding and manipulating the
+stage window.
+</p>
+<p>
+The ClutterWin32 API is available since Clutter 0.8</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Win32-Specific-Support.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="clutter-win32-disable-event-retrieval"></a><h3>clutter_win32_disable_event_retrieval ()</h3>
+<pre class="programlisting">void                clutter_win32_disable_event_retrieval
+                                                        (void);</pre>
+<p>
+Disables retrieval of Windows messages in the main loop. Use to
+create event-less canvas.
+</p>
+<p>
+This function can only be called before calling <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-win32-set-stage-foreign"></a><h3>clutter_win32_set_stage_foreign ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_win32_set_stage_foreign     (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         HWND hwnd);</pre>
+<p>
+Target the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> to use an existing external window handle.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hwnd</code></em> :</span></p></td>
+<td> an existing window handle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if foreign window is valid
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-win32-get-stage-from-window"></a><h3>clutter_win32_get_stage_from_window ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a>*       clutter_win32_get_stage_from_window (HWND hwnd);</pre>
+<p>
+Gets the stage for a particular window.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hwnd</code></em> :</span></p></td>
+<td> a window handle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The stage or NULL if a stage does not exist for the
+window.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-win32-get-stage-window"></a><h3>clutter_win32_get_stage_window ()</h3>
+<pre class="programlisting">HWND                clutter_win32_get_stage_window      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Gets the stage's window handle</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> An HWND for the stage window.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

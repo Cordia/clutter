@@ -1,0 +1,97 @@
+<!-- ##### SECTION Title ##### -->
+Offscreen Buffers
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION cogl_offscreen_new_to_texture ##### -->
+<para>
+
+</para>
+
+@texhandle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_offscreen_new_multisample ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_offscreen_ref ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_offscreen_unref ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_is_offscreen ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_offscreen_blit ##### -->
+<para>
+
+</para>
+
+@src_buffer: 
+@dst_buffer: 
+
+
+<!-- ##### FUNCTION cogl_offscreen_blit_region ##### -->
+<para>
+
+</para>
+
+@src_buffer: 
+@dst_buffer: 
+@src_x: 
+@src_y: 
+@src_w: 
+@src_h: 
+@dst_x: 
+@dst_y: 
+@dst_w: 
+@dst_h: 
+
+
+<!-- ##### FUNCTION cogl_draw_buffer ##### -->
+<para>
+
+</para>
+
+@target: 
+@offscreen: 
+
+

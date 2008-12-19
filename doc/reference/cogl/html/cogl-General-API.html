@@ -1,0 +1,1096 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>General API</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="COGL 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="prev" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="next" href="cogl-Primitives.html" title="Primitives">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">COGL 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="cogl-Primitives.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#cogl-General-API.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#cogl-General-API.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="cogl-General-API"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="cogl-General-API.top_of_page"></a>General API</span></h2>
+<p>General API — General purpose API</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="cogl-General-API.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#define             <a class="link" href="cogl-General-API.html#COGL-PIXEL-FORMAT-24:CAPS" title="COGL_PIXEL_FORMAT_24">COGL_PIXEL_FORMAT_24</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-PIXEL-FORMAT-32:CAPS" title="COGL_PIXEL_FORMAT_32">COGL_PIXEL_FORMAT_32</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-A-BIT:CAPS" title="COGL_A_BIT">COGL_A_BIT</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-BGR-BIT:CAPS" title="COGL_BGR_BIT">COGL_BGR_BIT</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-AFIRST-BIT:CAPS" title="COGL_AFIRST_BIT">COGL_AFIRST_BIT</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-PREMULT-BIT:CAPS" title="COGL_PREMULT_BIT">COGL_PREMULT_BIT</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-UNORDERED-MASK:CAPS" title="COGL_UNORDERED_MASK">COGL_UNORDERED_MASK</a>
+#define             <a class="link" href="cogl-General-API.html#COGL-UNPREMULT-MASK:CAPS" title="COGL_UNPREMULT_MASK">COGL_UNPREMULT_MASK</a>
+enum                <a class="link" href="cogl-General-API.html#CoglPixelFormat" title="enum CoglPixelFormat">CoglPixelFormat</a>;
+enum                <a class="link" href="cogl-General-API.html#CoglBufferTarget" title="enum CoglBufferTarget">CoglBufferTarget</a>;
+
+void                <a class="link" href="cogl-General-API.html#cogl-perspective" title="cogl_perspective ()">cogl_perspective</a>                    (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);
+void                <a class="link" href="cogl-General-API.html#cogl-frustum" title="cogl_frustum ()">cogl_frustum</a>                        (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> left,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> right,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> bottom,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> top,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);
+void                <a class="link" href="cogl-General-API.html#cogl-setup-viewport" title="cogl_setup_viewport ()">cogl_setup_viewport</a>                 (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);
+void                <a class="link" href="cogl-General-API.html#cogl-viewport" title="cogl_viewport ()">cogl_viewport</a>                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height);
+void                <a class="link" href="cogl-General-API.html#cogl-get-modelview-matrix" title="cogl_get_modelview_matrix ()">cogl_get_modelview_matrix</a>           (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> m[16]);
+void                <a class="link" href="cogl-General-API.html#cogl-get-projection-matrix" title="cogl_get_projection_matrix ()">cogl_get_projection_matrix</a>          (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> m[16]);
+void                <a class="link" href="cogl-General-API.html#cogl-get-viewport" title="cogl_get_viewport ()">cogl_get_viewport</a>                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> v[4]);
+
+void                <a class="link" href="cogl-General-API.html#cogl-push-matrix" title="cogl_push_matrix ()">cogl_push_matrix</a>                    (void);
+void                <a class="link" href="cogl-General-API.html#cogl-pop-matrix" title="cogl_pop_matrix ()">cogl_pop_matrix</a>                     (void);
+void                <a class="link" href="cogl-General-API.html#cogl-scale" title="cogl_scale ()">cogl_scale</a>                          (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);
+void                <a class="link" href="cogl-General-API.html#cogl-translatex" title="cogl_translatex ()">cogl_translatex</a>                     (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z);
+void                <a class="link" href="cogl-General-API.html#cogl-translate" title="cogl_translate ()">cogl_translate</a>                      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);
+void                <a class="link" href="cogl-General-API.html#cogl-rotatex" title="cogl_rotatex ()">cogl_rotatex</a>                        (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> angle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);
+void                <a class="link" href="cogl-General-API.html#cogl-rotate" title="cogl_rotate ()">cogl_rotate</a>                         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> angle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);
+
+void                <a class="link" href="cogl-General-API.html#cogl-clip-set" title="cogl_clip_set ()">cogl_clip_set</a>                       (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);
+void                <a class="link" href="cogl-General-API.html#cogl-clip-unset" title="cogl_clip_unset ()">cogl_clip_unset</a>                     (void);
+void                <a class="link" href="cogl-General-API.html#cogl-clip-stack-save" title="cogl_clip_stack_save ()">cogl_clip_stack_save</a>                (void);
+void                <a class="link" href="cogl-General-API.html#cogl-clip-stack-restore" title="cogl_clip_stack_restore ()">cogl_clip_stack_restore</a>             (void);
+
+void                <a class="link" href="cogl-General-API.html#cogl-enable-depth-test" title="cogl_enable_depth_test ()">cogl_enable_depth_test</a>              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> setting);
+void                <a class="link" href="cogl-General-API.html#cogl-alpha-func" title="cogl_alpha_func ()">cogl_alpha_func</a>                     (COGLenum func,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> ref);
+void                <a class="link" href="cogl-General-API.html#cogl-fog-set" title="cogl_fog_set ()">cogl_fog_set</a>                        (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *fog_color,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> density,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-General-API.description"></a><h2>Description</h2>
+<p>
+General utility functions for COGL.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-General-API.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="COGL-PIXEL-FORMAT-24:CAPS"></a><h3>COGL_PIXEL_FORMAT_24</h3>
+<pre class="programlisting">#define COGL_PIXEL_FORMAT_24    2
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-PIXEL-FORMAT-32:CAPS"></a><h3>COGL_PIXEL_FORMAT_32</h3>
+<pre class="programlisting">#define COGL_PIXEL_FORMAT_32    3
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-A-BIT:CAPS"></a><h3>COGL_A_BIT</h3>
+<pre class="programlisting">#define COGL_A_BIT              (1 &lt;&lt; 4)
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-BGR-BIT:CAPS"></a><h3>COGL_BGR_BIT</h3>
+<pre class="programlisting">#define COGL_BGR_BIT            (1 &lt;&lt; 5)
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-AFIRST-BIT:CAPS"></a><h3>COGL_AFIRST_BIT</h3>
+<pre class="programlisting">#define COGL_AFIRST_BIT         (1 &lt;&lt; 6)
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-PREMULT-BIT:CAPS"></a><h3>COGL_PREMULT_BIT</h3>
+<pre class="programlisting">#define COGL_PREMULT_BIT        (1 &lt;&lt; 7)
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-UNORDERED-MASK:CAPS"></a><h3>COGL_UNORDERED_MASK</h3>
+<pre class="programlisting">#define COGL_UNORDERED_MASK     0x0F
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="COGL-UNPREMULT-MASK:CAPS"></a><h3>COGL_UNPREMULT_MASK</h3>
+<pre class="programlisting">#define COGL_UNPREMULT_MASK     0x7F
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CoglPixelFormat"></a><h3>enum CoglPixelFormat</h3>
+<pre class="programlisting">typedef enum
+{
+  COGL_PIXEL_FORMAT_ANY           = 0,
+  COGL_PIXEL_FORMAT_A_8           = 1 | COGL_A_BIT,
+
+  COGL_PIXEL_FORMAT_RGB_565       = 4,
+  COGL_PIXEL_FORMAT_RGBA_4444     = 5 | COGL_A_BIT,
+  COGL_PIXEL_FORMAT_RGBA_5551     = 6 | COGL_A_BIT,
+  COGL_PIXEL_FORMAT_YUV           = 7,
+  COGL_PIXEL_FORMAT_G_8           = 8,
+  
+  COGL_PIXEL_FORMAT_RGB_888       =  COGL_PIXEL_FORMAT_24,
+
+  COGL_PIXEL_FORMAT_BGR_888       = (COGL_PIXEL_FORMAT_24 |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_8888     =  COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT,
+
+  COGL_PIXEL_FORMAT_BGRA_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_ARGB_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_ABGR_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_BGR_BIT         |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT),
+
+  COGL_PIXEL_FORMAT_BGRA_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_ARGB_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_ABGR_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_BGR_BIT         |
+                                     COGL_AFIRST_BIT),
+  
+  COGL_PIXEL_FORMAT_RGBA_4444_PRE = (COGL_PIXEL_FORMAT_RGBA_4444 |
+                                     COGL_A_BIT                  |
+                                     COGL_PREMULT_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_5551_PRE = (COGL_PIXEL_FORMAT_RGBA_5551 |
+                                     COGL_A_BIT                  |
+                                     COGL_PREMULT_BIT),
+  
+  
+} CoglPixelFormat;
+</pre>
+<p>
+Pixel formats used by COGL.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CoglBufferTarget"></a><h3>enum CoglBufferTarget</h3>
+<pre class="programlisting">typedef enum
+{
+  COGL_WINDOW_BUFFER      = (1 &lt;&lt; 1),
+  COGL_MASK_BUFFER        = (1 &lt;&lt; 2),
+  COGL_OFFSCREEN_BUFFER   = (1 &lt;&lt; 3)
+  
+} CoglBufferTarget;
+</pre>
+<p>
+</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-perspective"></a><h3>cogl_perspective ()</h3>
+<pre class="programlisting">void                cogl_perspective                    (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);</pre>
+<p>
+Replaces the current projection matrix with a perspective matrix
+based on the provided values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fovy</code></em> :</span></p></td>
+<td> Vertical of view angle in degrees.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>aspect</code></em> :</span></p></td>
+<td> Aspect ratio of diesplay
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> Nearest visible point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> Furthest visible point along the z-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-frustum"></a><h3>cogl_frustum ()</h3>
+<pre class="programlisting">void                cogl_frustum                        (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> left,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> right,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> bottom,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> top,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);</pre>
+<p>
+Replaces the current projection matrix with a perspective matrix
+for the given viewing frustum.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>left</code></em> :</span></p></td>
+<td> Left clipping plane
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>right</code></em> :</span></p></td>
+<td> Right clipping plane
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bottom</code></em> :</span></p></td>
+<td> Bottom clipping plane
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>top</code></em> :</span></p></td>
+<td> Top clipping plane
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> Nearest visible point
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> Furthest visible point along the z-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-setup-viewport"></a><h3>cogl_setup_viewport ()</h3>
+<pre class="programlisting">void                cogl_setup_viewport                 (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);</pre>
+<p>
+Replaces the current viewport and projection matrix with the given
+values. The viewport is placed at the top left corner of the window
+with the given width and height. The projection matrix is replaced
+with one that has a viewing angle of <em class="parameter"><code>fovy</code></em> along the y-axis and a
+view scaled according to <em class="parameter"><code>aspect</code></em> along the x-axis. The view is
+clipped according to <em class="parameter"><code>z_near</code></em> and <em class="parameter"><code>z_far</code></em> on the z-axis.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width of the viewport
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height of the viewport
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fovy</code></em> :</span></p></td>
+<td> Field of view angle in degrees
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>aspect</code></em> :</span></p></td>
+<td> Aspect ratio to determine the field of view along the x-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> Nearest visible point along the z-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> Furthest visible point along the z-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-viewport"></a><h3>cogl_viewport ()</h3>
+<pre class="programlisting">void                cogl_viewport                       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> height);</pre>
+<p>
+Replace the current viewport with the given values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width of the viewport
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height of the viewport
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-modelview-matrix"></a><h3>cogl_get_modelview_matrix ()</h3>
+<pre class="programlisting">void                cogl_get_modelview_matrix           (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> m[16]);</pre>
+<p>
+Stores the current model-view matrix in <em class="parameter"><code>m</code></em>. The matrix is in
+column-major order.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>m</code></em> :</span></p></td>
+<td> pointer to a 4x4 array of <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+><span class="type">ClutterFixed</span></a>s to receive the matrix
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-projection-matrix"></a><h3>cogl_get_projection_matrix ()</h3>
+<pre class="programlisting">void                cogl_get_projection_matrix          (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> m[16]);</pre>
+<p>
+Stores the current projection matrix in <em class="parameter"><code>m</code></em>. The matrix is in
+column-major order.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>m</code></em> :</span></p></td>
+<td> pointer to a 4x4 array of <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+><span class="type">ClutterFixed</span></a>s to receive the matrix
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-get-viewport"></a><h3>cogl_get_viewport ()</h3>
+<pre class="programlisting">void                cogl_get_viewport                   (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> v[4]);</pre>
+<p>
+Stores the current viewport in <em class="parameter"><code>v</code></em>. <em class="parameter"><code>v</code></em>[0] and <em class="parameter"><code>v</code></em>[1] get the x and y
+position of the viewport and <em class="parameter"><code>v</code></em>[2] and <em class="parameter"><code>v</code></em>[3] get the width and
+height.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>v</code></em> :</span></p></td>
+<td> pointer to a 4 element array of <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+><span class="type">ClutterFixed</span></a>s to
+receive the viewport dimensions.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-push-matrix"></a><h3>cogl_push_matrix ()</h3>
+<pre class="programlisting">void                cogl_push_matrix                    (void);</pre>
+<p>
+Store the current model-view matrix on the matrix stack. The matrix
+can later be restored with <a class="link" href="cogl-General-API.html#cogl-pop-matrix" title="cogl_pop_matrix ()"><code class="function">cogl_pop_matrix()</code></a>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-pop-matrix"></a><h3>cogl_pop_matrix ()</h3>
+<pre class="programlisting">void                cogl_pop_matrix                     (void);</pre>
+<p>
+Restore the current model-view matrix from the matrix stack.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-scale"></a><h3>cogl_scale ()</h3>
+<pre class="programlisting">void                cogl_scale                          (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y);</pre>
+<p>
+Multiplies the current model-view matrix by one that scales the x
+and y axes by the given values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> Amount to scale along the x-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Amount to scale along the y-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-translatex"></a><h3>cogl_translatex ()</h3>
+<pre class="programlisting">void                cogl_translatex                     (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z);</pre>
+<p>
+Multiplies the current model-view matrix by one that translates the
+model along all three axes according to the given values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> Distance to translate along the x-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Distance to translate along the y-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> Distance to translate along the z-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-translate"></a><h3>cogl_translate ()</h3>
+<pre class="programlisting">void                cogl_translate                      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);</pre>
+<p>
+Integer version of <a class="link" href="cogl-General-API.html#cogl-translatex" title="cogl_translatex ()"><code class="function">cogl_translatex()</code></a>. Multiplies the current
+model-view matrix by one that translates the model along all three
+axes according to the given values.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> Distance to translate along the x-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Distance to translate along the y-axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> Distance to translate along the z-axis
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-rotatex"></a><h3>cogl_rotatex ()</h3>
+<pre class="programlisting">void                cogl_rotatex                        (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> angle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);</pre>
+<p>
+Multiplies the current model-view matrix by one that rotates the
+model around the vertex specified by <em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em> and <em class="parameter"><code>z</code></em>. The rotation
+follows the right-hand thumb rule so for example rotating by 10
+degrees about the vertex (0, 0, 1) causes a small counter-clockwise
+rotation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> Angle in degrees to rotate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X-component of vertex to rotate around.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y-component of vertex to rotate around.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> Z-component of vertex to rotate around.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-rotate"></a><h3>cogl_rotate ()</h3>
+<pre class="programlisting">void                cogl_rotate                         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> angle,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);</pre>
+<p>
+Integer version of <a class="link" href="cogl-General-API.html#cogl-rotatex" title="cogl_rotatex ()"><code class="function">cogl_rotatex()</code></a>. Multiplies the current
+model-view matrix by one that rotates the model around the vertex
+specified by <em class="parameter"><code>x</code></em>, <em class="parameter"><code>y</code></em> and <em class="parameter"><code>z</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle</code></em> :</span></p></td>
+<td> Angle in degrees to rotate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X-component of vertex to rotate around.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y-component of vertex to rotate around.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> Z-component of vertex to rotate around.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-clip-set"></a><h3>cogl_clip_set ()</h3>
+<pre class="programlisting">void                cogl_clip_set                       (<a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> x_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> y_offset,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> height);</pre>
+<p>
+Specifies a rectangular clipping area for all subsequent drawing
+operations. Any drawing commands that extend outside the rectangle
+will be clipped so that only the portion inside the rectangle will
+be displayed. The rectangle dimensions are transformed by the
+current model-view matrix.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x_offset</code></em> :</span></p></td>
+<td> left edge of the clip rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y_offset</code></em> :</span></p></td>
+<td> top edge of the clip rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> width of the clip rectangle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> height of the clip rectangle
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-clip-unset"></a><h3>cogl_clip_unset ()</h3>
+<pre class="programlisting">void                cogl_clip_unset                     (void);</pre>
+<p>
+Removes the current clipping rectangle so that all drawing
+operations extend to full size of the viewport again.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-clip-stack-save"></a><h3>cogl_clip_stack_save ()</h3>
+<pre class="programlisting">void                cogl_clip_stack_save                (void);</pre>
+<p>
+Save the entire state of the clipping stack and then clear all
+clipping. The previous state can be returned to with
+<a class="link" href="cogl-General-API.html#cogl-clip-stack-restore" title="cogl_clip_stack_restore ()"><code class="function">cogl_clip_stack_restore()</code></a>. Each call to <a class="link" href="cogl-General-API.html#cogl-clip-set" title="cogl_clip_set ()"><code class="function">cogl_clip_set()</code></a> after this
+must be matched by a call to <a class="link" href="cogl-General-API.html#cogl-clip-unset" title="cogl_clip_unset ()"><code class="function">cogl_clip_unset()</code></a> before calling
+<a class="link" href="cogl-General-API.html#cogl-clip-stack-restore" title="cogl_clip_stack_restore ()"><code class="function">cogl_clip_stack_restore()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-clip-stack-restore"></a><h3>cogl_clip_stack_restore ()</h3>
+<pre class="programlisting">void                cogl_clip_stack_restore             (void);</pre>
+<p>
+Restore the state of the clipping stack that was previously saved
+by <a class="link" href="cogl-General-API.html#cogl-clip-stack-save" title="cogl_clip_stack_save ()"><code class="function">cogl_clip_stack_save()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-enable-depth-test"></a><h3>cogl_enable_depth_test ()</h3>
+<pre class="programlisting">void                cogl_enable_depth_test              (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> setting);</pre>
+<p>
+Sets whether depth testing is enabled. If it is disabled then the
+order that actors are layered on the screen depends solely on the
+order specified using <a
+href="/usr/share/gtk-doc/html/clutter/ClutterActor.html#clutter-actor-raise"
+><code class="function">clutter_actor_raise()</code></a> and
+<a
+href="/usr/share/gtk-doc/html/clutter/ClutterActor.html#clutter-actor-lower"
+><code class="function">clutter_actor_lower()</code></a>, otherwise it will also take into account the
+actor's depth. Depth testing is disabled by default.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>setting</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to enable depth testing or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> to disable.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-alpha-func"></a><h3>cogl_alpha_func ()</h3>
+<pre class="programlisting">void                cogl_alpha_func                     (COGLenum func,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> ref);</pre>
+<p>
+Changes the alpha test to use the specified function specified in <em class="parameter"><code>func</code></em>,
+comparing with the value in <em class="parameter"><code>ref</code></em>. The default function is CGL_ALWAYS the
+initial reference value is 1.0.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> the comparison function to use, one of CGL_NEVER, CGL_LESS,
+CGL_EQUAL, CGL_LEQUAL, CGL_GREATER, CGL_NOTEQUAL, CGL_GEQUAL and GL_ALWAYS.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ref</code></em> :</span></p></td>
+<td> reference value.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-fog-set"></a><h3>cogl_fog_set ()</h3>
+<pre class="programlisting">void                cogl_fog_set                        (const <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Colors.html#ClutterColor"
+>ClutterColor</a> *fog_color,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> density,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/clutter/clutter-Fixed-Point-Support.html#ClutterFixed"
+>ClutterFixed</a> z_far);</pre>
+<p>
+Enables fogging. Fogging causes vertices that are further away from
+the eye to be rendered with a different color. The color is
+linearly interpolated so that vertices at <em class="parameter"><code>z_near</code></em> are drawn fully
+with their original color and vertices at <em class="parameter"><code>z_far</code></em> are drawn fully
+with <em class="parameter"><code>fog_color</code></em>. Fogging will remain enabled until the next call to
+<a class="link" href="cogl-Utility-API.html#cogl-paint-init" title="cogl_paint_init ()"><code class="function">cogl_paint_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fog_color</code></em> :</span></p></td>
+<td> The color of the fog
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>density</code></em> :</span></p></td>
+<td> Ignored
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> Position along z-axis where no fogging should be applied
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> Position along z-axes where full fogging should be applied
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

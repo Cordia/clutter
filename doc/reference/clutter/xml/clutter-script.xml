@@ -1,0 +1,706 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterScript">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterScript.top_of_page">ClutterScript</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterScript</refname>
+<refpurpose>Loads a scene from UI definition data</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterScript.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterScript-struct">ClutterScript</link>;
+                    <link linkend="ClutterScriptClass">ClutterScriptClass</link>;
+<link linkend="ClutterScript">ClutterScript</link>*      <link linkend="clutter-script-new">clutter_script_new</link>                  (void);
+enum                <link linkend="ClutterScriptError">ClutterScriptError</link>;
+<link linkend="guint">guint</link>               <link linkend="clutter-script-load-from-data">clutter_script_load_from_data</link>       (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="guint">guint</link>               <link linkend="clutter-script-load-from-file">clutter_script_load_from_file</link>       (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="clutter-script-add-search-paths">clutter_script_add_search_paths</link>     (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> * const paths[],
+                                                         <link linkend="gsize">gsize</link> n_paths);
+<link linkend="gchar">gchar</link>*              <link linkend="clutter-script-lookup-filename">clutter_script_lookup_filename</link>      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *filename);
+
+<link linkend="GObject">GObject</link>*            <link linkend="clutter-script-get-object">clutter_script_get_object</link>           (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *name);
+<link linkend="gint">gint</link>                <link linkend="clutter-script-get-objects">clutter_script_get_objects</link>          (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *first_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-script-unmerge-objects">clutter_script_unmerge_objects</link>      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="guint">guint</link> merge_id);
+<link linkend="void">void</link>                <link linkend="clutter-script-ensure-objects">clutter_script_ensure_objects</link>       (<link linkend="ClutterScript">ClutterScript</link> *script);
+<link linkend="GList">GList</link>*              <link linkend="clutter-script-list-objects">clutter_script_list_objects</link>         (<link linkend="ClutterScript">ClutterScript</link> *script);
+
+<link linkend="void">void</link>                (<link linkend="ClutterScriptConnectFunc">*ClutterScriptConnectFunc</link>)         (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="GObject">GObject</link> *object,
+                                                         const <link linkend="gchar">gchar</link> *signal_name,
+                                                         const <link linkend="gchar">gchar</link> *handler_name,
+                                                         <link linkend="GObject">GObject</link> *connect_object,
+                                                         <link linkend="GConnectFlags">GConnectFlags</link> flags,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-script-connect-signals">clutter_script_connect_signals</link>      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-script-connect-signals-full">clutter_script_connect_signals_full</link> (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="ClutterScriptConnectFunc">ClutterScriptConnectFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+
+<link linkend="GType">GType</link>               <link linkend="clutter-script-get-type-from-name">clutter_script_get_type_from_name</link>   (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *type_name);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-get-script-id">clutter_get_script_id</link>               (<link linkend="GObject">GObject</link> *gobject);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterScript.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterScript
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterScript.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterScript--filename">filename</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="ClutterScript--filename-set">filename-set</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterScript.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterScript"><type>ClutterScript</type></link> is an object used for loading and building parts or a
+complete scenegraph from external definition data in forms of string
+buffers or files.
+</para>
+<para>
+The UI definition format is JSON, the JavaScript Object Notation as
+described by RFC 4627. <link linkend="ClutterScript"><type>ClutterScript</type></link> can load a JSON data stream,
+parse it and build all the objects defined into it. Each object must
+have an "id" and a "type" properties defining the name to be used
+to retrieve it from <link linkend="ClutterScript"><type>ClutterScript</type></link> with <link linkend="clutter-script-get-object"><function>clutter_script_get_object()</function></link>,
+and the class type to be instanciated. Every other attribute will
+be mapped to the class properties.
+</para>
+<para>
+A <link linkend="ClutterScript"><type>ClutterScript</type></link> holds a reference on every object it creates from
+the definition data, except for the stage. Every non-actor object
+will be finalized when the <link linkend="ClutterScript"><type>ClutterScript</type></link> instance holding it will
+be finalized, so they need to be referenced using <link linkend="g-object-ref"><function>g_object_ref()</function></link> in
+order for them to survive.
+</para>
+<para>
+A simple object might be defined as:
+</para>
+<para>
+<informalexample><programlisting>
+{
+  "id"     : "red-button",
+  "type"   : "ClutterRectangle",
+  "width"  : 100,
+  "height" : 100,
+  "color"  : "&num;ff0000ff"
+}
+</programlisting></informalexample>
+</para>
+<para>
+This will produce a red <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>, 100x100 pixels wide, and
+with a ClutterScript id of "red-button"; it can be retrieved by calling:
+</para>
+<para>
+<informalexample><programlisting>
+ClutterActor *red_button;
+
+red_button = CLUTTER_ACTOR (clutter_script_get_object (script, "red-button"));
+</programlisting></informalexample>
+</para>
+<para>
+and then manipulated with the Clutter API. For every object created
+using ClutterScript it is possible to check the id by calling
+<link linkend="clutter-get-script-id"><function>clutter_get_script_id()</function></link>.
+</para>
+<para>
+Packing can be represented using the "children" member, and passing an
+array of objects or ids of objects already defined (but not packed: the
+packing rules of Clutter still apply, and an actor cannot be packed
+in multiple containers without unparenting it in between).
+</para>
+<para>
+Behaviours and timelines can also be defined inside a UI definition
+buffer:
+</para>
+<para>
+<informalexample><programlisting>
+{
+  "id"          : "rotate-behaviour",
+  "type"        : "ClutterBehaviourRotate",
+  "angle-start" : 0.0,
+  "angle-end"   : 360.0,
+  "axis"        : "z-axis",
+  "alpha"       : {
+    "timeline" : { "duration" : 4000, "fps" : 60, "loop" : true },
+    "function" : "sine"
+  }
+}
+</programlisting></informalexample>
+</para>
+<para>
+And then to apply a defined behaviour to an actor defined inside the
+definition of an actor, the "behaviour" member can be used:
+</para>
+<para>
+<informalexample><programlisting>
+{
+  "id" : "my-rotating-actor",
+  "type" : "ClutterTexture",
+  ...
+  "behaviours" : [ "rotate-behaviour" ]
+}
+</programlisting></informalexample>
+</para>
+<para>
+A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> belonging to a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> can only be defined
+implicitely. A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> belonging to a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> can be
+either defined implicitely or explicitely. Implicitely defined
+<link linkend="ClutterAlpha"><type>ClutterAlpha</type></link><!-- -->s and <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!-- -->s can omit the
+<varname>id</varname> member, as well as the <varname>type</varname> member,
+but will not be available using <link linkend="clutter-script-get-object"><function>clutter_script_get_object()</function></link> (they can,
+however, be extracted using the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> and <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+API respectively).
+</para>
+<para>
+Signal handlers can be defined inside a Clutter UI definition file and
+then autoconnected to their respective signals using the
+<link linkend="clutter-script-connect-signals"><function>clutter_script_connect_signals()</function></link> function:
+</para>
+<para>
+<informalexample><programlisting>
+  ...
+  "signals" : [
+    { "name" : "button-press-event", "handler" : "on_button_press" },
+    {
+      "name" : "foo-signal",
+      "handler" : "after_foo",
+      "after" : true
+    },
+  ],
+  ...
+</programlisting></informalexample>
+</para>
+<para>
+Signal handler definitions must have a "name" and a "handler" members;
+they can also have the "after" and "swapped" boolean members (for the
+signal connection flags <link linkend="G-CONNECT-AFTER:CAPS"><literal>G_CONNECT_AFTER</literal></link> and <link linkend="G-CONNECT-SWAPPED:CAPS"><literal>G_CONNECT_SWAPPED</literal></link>
+respectively) and the "object" string member for calling
+<link linkend="g-signal-connect-object"><function>g_signal_connect_object()</function></link> instead of <link linkend="g-signal-connect"><function>g_signal_connect()</function></link>.
+</para>
+<para>
+Clutter reserves the following names, so classes defining properties
+through the usual GObject registration process should avoid using these
+names to avoid collisions:
+</para>
+<para>
+<programlisting><![CDATA[
+  "id"         := the unique name of a ClutterScript object
+  "type"       := the class literal name, also used to infer the type function
+  "type_func"  := the GType function name, for non-standard classes
+  "children"   := an array of names or objects to add as children
+  "behaviours" := an array of names or objects to apply to an actor
+  "signals"    := an array of signal definitions to connect to an object
+]]></programlisting>
+</para>
+<para>
+<link linkend="ClutterScript"><type>ClutterScript</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterScript.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterScript-struct" role="struct">
+<title>ClutterScript</title>
+<indexterm zone="ClutterScript-struct"><primary>ClutterScript</primary></indexterm><programlisting>typedef struct _ClutterScript ClutterScript;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterScriptClass" role="struct">
+<title>ClutterScriptClass</title>
+<indexterm zone="ClutterScriptClass"><primary>ClutterScriptClass</primary></indexterm><programlisting>typedef struct {
+  GType (* get_type_from_name) (ClutterScript *script,
+                                const gchar   *type_name);
+} ClutterScriptClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-script-new" role="function" condition="since:0.6">
+<title>clutter_script_new ()</title>
+<indexterm zone="clutter-script-new" role="0.6"><primary>clutter_script_new</primary></indexterm><programlisting><link linkend="ClutterScript">ClutterScript</link>*      clutter_script_new                  (void);</programlisting>
+<para>
+Creates a new <link linkend="ClutterScript"><type>ClutterScript</type></link> instance. <link linkend="ClutterScript"><type>ClutterScript</type></link> can be used
+to load objects definitions for scenegraph elements, like actors,
+or behavioural elements, like behaviours and timelines. The
+definitions must be encoded using the JavaScript Object Notation (JSON)
+language.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterScript"><type>ClutterScript</type></link> instance. Use
+  <link linkend="g-object-unref"><function>g_object_unref()</function></link> when done.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterScriptError" role="enum" condition="since:0.6">
+<title>enum ClutterScriptError</title>
+<indexterm zone="ClutterScriptError" role="0.6"><primary>ClutterScriptError</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION,
+  CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY,
+  CLUTTER_SCRIPT_ERROR_INVALID_VALUE
+} ClutterScriptError;
+</programlisting>
+<para>
+<link linkend="ClutterScript"><type>ClutterScript</type></link> error enumeration.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-SCRIPT-ERROR-INVALID-TYPE-FUNCTION:CAPS" role="constant">
+<term><literal>CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION</literal></term>
+<listitem><simpara> Type function not found
+  or invalid
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCRIPT-ERROR-INVALID-PROPERTY:CAPS" role="constant">
+<term><literal>CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY</literal></term>
+<listitem><simpara> Property not found or invalid
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SCRIPT-ERROR-INVALID-VALUE:CAPS" role="constant">
+<term><literal>CLUTTER_SCRIPT_ERROR_INVALID_VALUE</literal></term>
+<listitem><simpara> Invalid value
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-load-from-data" role="function" condition="since:0.6">
+<title>clutter_script_load_from_data ()</title>
+<indexterm zone="clutter-script-load-from-data" role="0.6"><primary>clutter_script_load_from_data</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_script_load_from_data       (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Loads the definitions from <parameter>data</parameter> into <parameter>script</parameter> and merges with
+the currently loaded ones, if any.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> a buffer containing the definitions
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> the length of the buffer, or -1 if <parameter>data</parameter> is a NUL-terminated
+  buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> on error, zero is returned and <parameter>error</parameter> is set
+  accordingly. On success, the merge id for the UI definitions is
+  returned. You can use the merge id with <link linkend="clutter-script-unmerge"><function>clutter_script_unmerge()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-load-from-file" role="function" condition="since:0.6">
+<title>clutter_script_load_from_file ()</title>
+<indexterm zone="clutter-script-load-from-file" role="0.6"><primary>clutter_script_load_from_file</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_script_load_from_file       (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *filename,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Loads the definitions from <parameter>filename</parameter> into <parameter>script</parameter> and merges with
+the currently loaded ones, if any.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> the full path to the definition file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> on error, zero is returned and <parameter>error</parameter> is set
+  accordingly. On success, the merge id for the UI definitions is
+  returned. You can use the merge id with <link linkend="clutter-script-unmerge"><function>clutter_script_unmerge()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-add-search-paths" role="function" condition="since:0.8">
+<title>clutter_script_add_search_paths ()</title>
+<indexterm zone="clutter-script-add-search-paths" role="0.8"><primary>clutter_script_add_search_paths</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_script_add_search_paths     (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> * const paths[],
+                                                         <link linkend="gsize">gsize</link> n_paths);</programlisting>
+<para>
+Adds <parameter>paths</parameter> to the list of search paths held by <parameter>script</parameter>.
+</para>
+<para>
+The search paths are used by <link linkend="clutter-script-lookup-filename"><function>clutter_script_lookup_filename()</function></link>, which
+can be used to define search paths for the textures source file name
+or other custom, file-based properties.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>paths</parameter>&nbsp;:</term>
+<listitem><simpara> an array of strings containing different search paths
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_paths</parameter>&nbsp;:</term>
+<listitem><simpara> the length of the passed array
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-script-lookup-filename" role="function" condition="since:0.8">
+<title>clutter_script_lookup_filename ()</title>
+<indexterm zone="clutter-script-lookup-filename" role="0.8"><primary>clutter_script_lookup_filename</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              clutter_script_lookup_filename      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *filename);</programlisting>
+<para>
+Looks up <parameter>filename</parameter> inside the search paths of <parameter>script</parameter>. If <parameter>filename</parameter>
+is found, its full path will be returned .</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the file to lookup
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the full path of <parameter>filename</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if no path was
+  found.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-script-get-object" role="function" condition="since:0.6">
+<title>clutter_script_get_object ()</title>
+<indexterm zone="clutter-script-get-object" role="0.6"><primary>clutter_script_get_object</primary></indexterm><programlisting><link linkend="GObject">GObject</link>*            clutter_script_get_object           (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *name);</programlisting>
+<para>
+Retrieves the object bound to <parameter>name</parameter>. This function does not increment
+the reference count of the returned object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the object to retrieve
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the named object, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if no object with the
+  given name was available
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-get-objects" role="function" condition="since:0.6">
+<title>clutter_script_get_objects ()</title>
+<indexterm zone="clutter-script-get-objects" role="0.6"><primary>clutter_script_get_objects</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_script_get_objects          (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *first_name,
+                                                         ...);</programlisting>
+<para>
+Retrieves a list of objects for the given names. After <parameter>script</parameter>, object
+names/return location pairs should be listed, with a <link linkend="NULL:CAPS"><literal>NULL</literal></link> pointer
+ending the list, like:
+</para>
+<para>
+<informalexample><programlisting>
+  GObject *my_label, *a_button, *main_timeline;
+
+  clutter_script_get_objects (script,
+                              "my-label", &amp;my_label,
+                              "a-button", &amp;a_button,
+                              "main-timeline", &amp;main_timeline,
+                              NULL);
+</programlisting></informalexample>
+</para>
+<para>
+Note: This function does not increment the reference count of the
+returned objects.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the first object to retrieve
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GObject"><type>GObject</type></link>, then additional names, ending
+  with <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of objects returned.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-unmerge-objects" role="function" condition="since:0.6">
+<title>clutter_script_unmerge_objects ()</title>
+<indexterm zone="clutter-script-unmerge-objects" role="0.6"><primary>clutter_script_unmerge_objects</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_script_unmerge_objects      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="guint">guint</link> merge_id);</programlisting>
+<para>
+Unmerges the objects identified by <parameter>merge_id</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>merge_id</parameter>&nbsp;:</term>
+<listitem><simpara> merge id returned when loading a UI definition
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-ensure-objects" role="function" condition="since:0.6">
+<title>clutter_script_ensure_objects ()</title>
+<indexterm zone="clutter-script-ensure-objects" role="0.6"><primary>clutter_script_ensure_objects</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_script_ensure_objects       (<link linkend="ClutterScript">ClutterScript</link> *script);</programlisting>
+<para>
+Ensure that every object defined inside <parameter>script</parameter> is correctly
+constructed. You should rarely need to use this function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-list-objects" role="function" condition="since:0.8.2">
+<title>clutter_script_list_objects ()</title>
+<indexterm zone="clutter-script-list-objects" role="0.8.2"><primary>clutter_script_list_objects</primary></indexterm><programlisting><link linkend="GList">GList</link>*              clutter_script_list_objects         (<link linkend="ClutterScript">ClutterScript</link> *script);</programlisting>
+<para>
+Retrieves all the objects created by <parameter>script</parameter>.
+</para>
+<para>
+Note: this function does not increment the reference count of the
+objects it returns.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a list of <link linkend="GObject"><type>GObject</type></link><!-- -->s, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. The objects are
+  owned by the <link linkend="ClutterScript"><type>ClutterScript</type></link> instance. Use <link linkend="g-list-free"><function>g_list_free()</function></link> on the
+  returned value when done.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="ClutterScriptConnectFunc" role="function" condition="since:0.6">
+<title>ClutterScriptConnectFunc ()</title>
+<indexterm zone="ClutterScriptConnectFunc" role="0.6"><primary>ClutterScriptConnectFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*ClutterScriptConnectFunc)         (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="GObject">GObject</link> *object,
+                                                         const <link linkend="gchar">gchar</link> *signal_name,
+                                                         const <link linkend="gchar">gchar</link> *handler_name,
+                                                         <link linkend="GObject">GObject</link> *connect_object,
+                                                         <link linkend="GConnectFlags">GConnectFlags</link> flags,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This is the signature of a function used to connect signals.  It is used
+by the <link linkend="clutter-script-connect-signals-full"><function>clutter_script_connect_signals_full()</function></link> function.  It is mainly
+intended for interpreted language bindings, but could be useful where the
+programmer wants more control over the signal connection process.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&nbsp;:</term>
+<listitem><simpara> the object to connect
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>signal_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handler_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the signal handler
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>connect_object</parameter>&nbsp;:</term>
+<listitem><simpara> the object to connect the signal to, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> signal connection flags
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to the signal handler
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-connect-signals" role="function" condition="since:0.6">
+<title>clutter_script_connect_signals ()</title>
+<indexterm zone="clutter-script-connect-signals" role="0.6"><primary>clutter_script_connect_signals</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_script_connect_signals      (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Connects all the signals defined into a UI definition file to their
+handlers.
+</para>
+<para>
+This method invokes <link linkend="clutter-script-connect-signals-full"><function>clutter_script_connect_signals_full()</function></link> internally
+and uses  <link linkend="GModule"><type>GModule</type></link>'s introspective features (by opening the current
+module's scope) to look at the application's symbol table.
+</para>
+<para>
+Note that this function will not work if <link linkend="GModule"><type>GModule</type></link> is not supported by
+the platform Clutter is running on.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the signal handlers, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-connect-signals-full" role="function" condition="since:0.6">
+<title>clutter_script_connect_signals_full ()</title>
+<indexterm zone="clutter-script-connect-signals-full" role="0.6"><primary>clutter_script_connect_signals_full</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_script_connect_signals_full (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="ClutterScriptConnectFunc">ClutterScriptConnectFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Connects all the signals defined into a UI definition file to their
+handlers.
+</para>
+<para>
+This function allows to control how the signal handlers are
+going to be connected to their respective signals. It is meant
+primarily for language bindings to allow resolving the function
+names using the native API.
+</para>
+<para>
+Applications should use <link linkend="clutter-script-connect-signals"><function>clutter_script_connect_signals()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> signal connection function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the signal handlers, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-script-get-type-from-name" role="function" condition="since:0.6">
+<title>clutter_script_get_type_from_name ()</title>
+<indexterm zone="clutter-script-get-type-from-name" role="0.6"><primary>clutter_script_get_type_from_name</primary></indexterm><programlisting><link linkend="GType">GType</link>               clutter_script_get_type_from_name   (<link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *type_name);</programlisting>
+<para>
+Looks up a type by name, using the virtual function that 
+<link linkend="ClutterScript"><type>ClutterScript</type></link> has for that purpose. This function should
+rarely be used.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScript"><type>ClutterScript</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type_name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the type to look up
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the type for the requested type name, or
+  <link linkend="G-TYPE-INVALID:CAPS"><literal>G_TYPE_INVALID</literal></link> if not corresponding type was found.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-get-script-id" role="function" condition="since:0.6">
+<title>clutter_get_script_id ()</title>
+<indexterm zone="clutter-get-script-id" role="0.6"><primary>clutter_get_script_id</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_get_script_id               (<link linkend="GObject">GObject</link> *gobject);</programlisting>
+<para>
+Retrieves the Clutter script id, if any.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>gobject</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GObject"><type>GObject</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the script id, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if <parameter>object</parameter> was not defined inside
+  a UI definition file. The returned string is owned by the object and
+  should never be modified or freed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterScript.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterScript--filename"><title>The <literal>&quot;filename&quot;</literal> property</title>
+<indexterm zone="ClutterScript--filename" role="0.6"><primary>ClutterScript:filename</primary></indexterm><programlisting>  &quot;filename&quot;                 <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>
+The path of the currently parsed file. If ClutterScript:filename-set
+is <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> then the value of this property is undefined.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterScript--filename-set"><title>The <literal>&quot;filename-set&quot;</literal> property</title>
+<indexterm zone="ClutterScript--filename-set" role="0.6"><primary>ClutterScript:filename-set</primary></indexterm><programlisting>  &quot;filename-set&quot;             <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether the ClutterScript:filename property is set. If this property
+is <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> then the currently parsed data comes from a file, and the
+file name is stored inside the ClutterScript:filename property.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

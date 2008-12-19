@@ -1,0 +1,92 @@
+<!-- ##### SECTION Title ##### -->
+Versioning Macros
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO CLUTTER_MAJOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_MINOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_MICRO_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_VERSION_S ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_VERSION_HEX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_CHECK_VERSION ##### -->
+<para>
+
+</para>
+
+@major: 
+@minor: 
+@micro: 
+
+
+<!-- ##### MACRO CLUTTER_FLAVOUR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_COGL ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_NO_FPU ##### -->
+<para>
+
+</para>
+
+
+

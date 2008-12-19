@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="COGL 0.8.2 Reference Manual" link="index.html" author="" name="cogl" version="2">
+  <chapters>
+    <sub name="COGL - GL Abstraction API" link="ch01.html">
+      <sub name="About COGL" link="ch01.html#cogl-intro"/>
+      <sub name="General API" link="cogl-General-API.html"/>
+      <sub name="Primitives" link="cogl-Primitives.html"/>
+      <sub name="Utility API" link="cogl-Utility-API.html"/>
+      <sub name="Textures" link="cogl-Textures.html"/>
+      <sub name="Shaders and Programmable Pipeline" link="cogl-Shaders-and-Programmable-Pipeline.html"/>
+      <sub name="Offscreen Buffers" link="cogl-Offscreen-Buffers.html"/>
+    </sub>
+    <sub name="Index" link="ix01.html"/>
+    <sub name="License" link="license.html"/>
+  </chapters>
+  <functions>
+    <keyword type="macro" name="COGL_PIXEL_FORMAT_24" link="cogl-General-API.html#COGL-PIXEL-FORMAT-24:CAPS"/>
+    <keyword type="macro" name="COGL_PIXEL_FORMAT_32" link="cogl-General-API.html#COGL-PIXEL-FORMAT-32:CAPS"/>
+    <keyword type="macro" name="COGL_A_BIT" link="cogl-General-API.html#COGL-A-BIT:CAPS"/>
+    <keyword type="macro" name="COGL_BGR_BIT" link="cogl-General-API.html#COGL-BGR-BIT:CAPS"/>
+    <keyword type="macro" name="COGL_AFIRST_BIT" link="cogl-General-API.html#COGL-AFIRST-BIT:CAPS"/>
+    <keyword type="macro" name="COGL_PREMULT_BIT" link="cogl-General-API.html#COGL-PREMULT-BIT:CAPS"/>
+    <keyword type="macro" name="COGL_UNORDERED_MASK" link="cogl-General-API.html#COGL-UNORDERED-MASK:CAPS"/>
+    <keyword type="macro" name="COGL_UNPREMULT_MASK" link="cogl-General-API.html#COGL-UNPREMULT-MASK:CAPS"/>
+    <keyword type="enum" name="enum CoglPixelFormat" link="cogl-General-API.html#CoglPixelFormat"/>
+    <keyword type="enum" name="enum CoglBufferTarget" link="cogl-General-API.html#CoglBufferTarget"/>
+    <keyword type="function" name="cogl_perspective ()" link="cogl-General-API.html#cogl-perspective"/>
+    <keyword type="function" name="cogl_frustum ()" link="cogl-General-API.html#cogl-frustum" since="0.8.2"/>
+    <keyword type="function" name="cogl_setup_viewport ()" link="cogl-General-API.html#cogl-setup-viewport"/>
+    <keyword type="function" name="cogl_viewport ()" link="cogl-General-API.html#cogl-viewport" since="0.8.2"/>
+    <keyword type="function" name="cogl_get_modelview_matrix ()" link="cogl-General-API.html#cogl-get-modelview-matrix"/>
+    <keyword type="function" name="cogl_get_projection_matrix ()" link="cogl-General-API.html#cogl-get-projection-matrix"/>
+    <keyword type="function" name="cogl_get_viewport ()" link="cogl-General-API.html#cogl-get-viewport"/>
+    <keyword type="function" name="cogl_push_matrix ()" link="cogl-General-API.html#cogl-push-matrix"/>
+    <keyword type="function" name="cogl_pop_matrix ()" link="cogl-General-API.html#cogl-pop-matrix"/>
+    <keyword type="function" name="cogl_scale ()" link="cogl-General-API.html#cogl-scale"/>
+    <keyword type="function" name="cogl_translatex ()" link="cogl-General-API.html#cogl-translatex"/>
+    <keyword type="function" name="cogl_translate ()" link="cogl-General-API.html#cogl-translate"/>
+    <keyword type="function" name="cogl_rotatex ()" link="cogl-General-API.html#cogl-rotatex"/>
+    <keyword type="function" name="cogl_rotate ()" link="cogl-General-API.html#cogl-rotate"/>
+    <keyword type="function" name="cogl_clip_set ()" link="cogl-General-API.html#cogl-clip-set"/>
+    <keyword type="function" name="cogl_clip_unset ()" link="cogl-General-API.html#cogl-clip-unset"/>
+    <keyword type="function" name="cogl_clip_stack_save ()" link="cogl-General-API.html#cogl-clip-stack-save" since="0.8.2"/>
+    <keyword type="function" name="cogl_clip_stack_restore ()" link="cogl-General-API.html#cogl-clip-stack-restore" since="0.8.2"/>
+    <keyword type="function" name="cogl_enable_depth_test ()" link="cogl-General-API.html#cogl-enable-depth-test"/>
+    <keyword type="function" name="cogl_alpha_func ()" link="cogl-General-API.html#cogl-alpha-func"/>
+    <keyword type="function" name="cogl_fog_set ()" link="cogl-General-API.html#cogl-fog-set"/>
+    <keyword type="function" name="cogl_color ()" link="cogl-Primitives.html#cogl-color"/>
+    <keyword type="function" name="cogl_path_fill ()" link="cogl-Primitives.html#cogl-path-fill"/>
+    <keyword type="function" name="cogl_path_stroke ()" link="cogl-Primitives.html#cogl-path-stroke"/>
+    <keyword type="function" name="cogl_path_move_to ()" link="cogl-Primitives.html#cogl-path-move-to"/>
+    <keyword type="function" name="cogl_path_close ()" link="cogl-Primitives.html#cogl-path-close"/>
+    <keyword type="function" name="cogl_path_line_to ()" link="cogl-Primitives.html#cogl-path-line-to"/>
+    <keyword type="function" name="cogl_path_curve_to ()" link="cogl-Primitives.html#cogl-path-curve-to"/>
+    <keyword type="function" name="cogl_path_arc ()" link="cogl-Primitives.html#cogl-path-arc"/>
+    <keyword type="function" name="cogl_path_rel_move_to ()" link="cogl-Primitives.html#cogl-path-rel-move-to"/>
+    <keyword type="function" name="cogl_path_rel_line_to ()" link="cogl-Primitives.html#cogl-path-rel-line-to"/>
+    <keyword type="function" name="cogl_path_rel_curve_to ()" link="cogl-Primitives.html#cogl-path-rel-curve-to"/>
+    <keyword type="function" name="cogl_path_line ()" link="cogl-Primitives.html#cogl-path-line"/>
+    <keyword type="function" name="cogl_path_polyline ()" link="cogl-Primitives.html#cogl-path-polyline"/>
+    <keyword type="function" name="cogl_path_polygon ()" link="cogl-Primitives.html#cogl-path-polygon"/>
+    <keyword type="function" name="cogl_path_rectangle ()" link="cogl-Primitives.html#cogl-path-rectangle"/>
+    <keyword type="function" name="cogl_path_round_rectangle ()" link="cogl-Primitives.html#cogl-path-round-rectangle"/>
+    <keyword type="function" name="cogl_path_ellipse ()" link="cogl-Primitives.html#cogl-path-ellipse"/>
+    <keyword type="function" name="cogl_rectangle ()" link="cogl-Primitives.html#cogl-rectangle"/>
+    <keyword type="function" name="cogl_rectanglex ()" link="cogl-Primitives.html#cogl-rectanglex"/>
+    <keyword type="function" name="cogl_create_context ()" link="cogl-Utility-API.html#cogl-create-context"/>
+    <keyword type="function" name="cogl_destroy_context ()" link="cogl-Utility-API.html#cogl-destroy-context"/>
+    <keyword type="macro" name="COGL_INVALID_HANDLE" link="cogl-Utility-API.html#COGL-INVALID-HANDLE:CAPS"/>
+    <keyword type="typedef" name="CoglHandle" link="cogl-Utility-API.html#CoglHandle"/>
+    <keyword type="function" name="CoglFuncPtr ()" link="cogl-Utility-API.html#CoglFuncPtr"/>
+    <keyword type="enum" name="enum CoglFeatureFlags" link="cogl-Utility-API.html#CoglFeatureFlags"/>
+    <keyword type="function" name="cogl_get_features ()" link="cogl-Utility-API.html#cogl-get-features" since="0.8"/>
+    <keyword type="function" name="cogl_features_available ()" link="cogl-Utility-API.html#cogl-features-available"/>
+    <keyword type="function" name="cogl_get_proc_address ()" link="cogl-Utility-API.html#cogl-get-proc-address"/>
+    <keyword type="function" name="cogl_check_extension ()" link="cogl-Utility-API.html#cogl-check-extension"/>
+    <keyword type="function" name="cogl_get_bitmasks ()" link="cogl-Utility-API.html#cogl-get-bitmasks"/>
+    <keyword type="function" name="cogl_paint_init ()" link="cogl-Utility-API.html#cogl-paint-init"/>
+    <keyword type="function" name="cogl_util_next_p2 ()" link="cogl-Utility-API.html#cogl-util-next-p2"/>
+    <keyword type="struct" name="CoglTextureVertex" link="cogl-Textures.html#CoglTextureVertex"/>
+    <keyword type="function" name="cogl_texture_new_with_size ()" link="cogl-Textures.html#cogl-texture-new-with-size"/>
+    <keyword type="function" name="cogl_texture_new_from_file ()" link="cogl-Textures.html#cogl-texture-new-from-file"/>
+    <keyword type="function" name="cogl_texture_new_from_data ()" link="cogl-Textures.html#cogl-texture-new-from-data"/>
+    <keyword type="function" name="cogl_texture_new_from_foreign ()" link="cogl-Textures.html#cogl-texture-new-from-foreign"/>
+    <keyword type="function" name="cogl_is_texture ()" link="cogl-Textures.html#cogl-is-texture"/>
+    <keyword type="function" name="cogl_texture_get_width ()" link="cogl-Textures.html#cogl-texture-get-width"/>
+    <keyword type="function" name="cogl_texture_get_height ()" link="cogl-Textures.html#cogl-texture-get-height"/>
+    <keyword type="function" name="cogl_texture_get_format ()" link="cogl-Textures.html#cogl-texture-get-format"/>
+    <keyword type="function" name="cogl_texture_get_rowstride ()" link="cogl-Textures.html#cogl-texture-get-rowstride"/>
+    <keyword type="function" name="cogl_texture_get_max_waste ()" link="cogl-Textures.html#cogl-texture-get-max-waste"/>
+    <keyword type="function" name="cogl_texture_get_min_filter ()" link="cogl-Textures.html#cogl-texture-get-min-filter"/>
+    <keyword type="function" name="cogl_texture_get_mag_filter ()" link="cogl-Textures.html#cogl-texture-get-mag-filter"/>
+    <keyword type="function" name="cogl_texture_is_sliced ()" link="cogl-Textures.html#cogl-texture-is-sliced"/>
+    <keyword type="function" name="cogl_texture_get_gl_texture ()" link="cogl-Textures.html#cogl-texture-get-gl-texture"/>
+    <keyword type="function" name="cogl_texture_get_data ()" link="cogl-Textures.html#cogl-texture-get-data"/>
+    <keyword type="function" name="cogl_texture_set_filters ()" link="cogl-Textures.html#cogl-texture-set-filters"/>
+    <keyword type="function" name="cogl_texture_set_region ()" link="cogl-Textures.html#cogl-texture-set-region"/>
+    <keyword type="function" name="cogl_texture_ref ()" link="cogl-Textures.html#cogl-texture-ref"/>
+    <keyword type="function" name="cogl_texture_unref ()" link="cogl-Textures.html#cogl-texture-unref"/>
+    <keyword type="function" name="cogl_texture_rectangle ()" link="cogl-Textures.html#cogl-texture-rectangle"/>
+    <keyword type="function" name="cogl_texture_polygon ()" link="cogl-Textures.html#cogl-texture-polygon"/>
+    <keyword type="function" name="cogl_create_shader ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-create-shader"/>
+    <keyword type="function" name="cogl_shader_ref ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-ref"/>
+    <keyword type="function" name="cogl_shader_unref ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-unref"/>
+    <keyword type="function" name="cogl_is_shader ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-is-shader"/>
+    <keyword type="function" name="cogl_shader_source ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-source"/>
+    <keyword type="function" name="cogl_shader_compile ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-compile"/>
+    <keyword type="function" name="cogl_shader_get_info_log ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-get-info-log"/>
+    <keyword type="function" name="cogl_shader_get_parameteriv ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-shader-get-parameteriv"/>
+    <keyword type="function" name="cogl_create_program ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-create-program"/>
+    <keyword type="function" name="cogl_program_ref ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-ref"/>
+    <keyword type="function" name="cogl_program_unref ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-unref"/>
+    <keyword type="function" name="cogl_is_program ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-is-program"/>
+    <keyword type="function" name="cogl_program_attach_shader ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-attach-shader"/>
+    <keyword type="function" name="cogl_program_link ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-link"/>
+    <keyword type="function" name="cogl_program_use ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-use"/>
+    <keyword type="function" name="cogl_program_get_uniform_location ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-get-uniform-location"/>
+    <keyword type="function" name="cogl_program_uniform_1f ()" link="cogl-Shaders-and-Programmable-Pipeline.html#cogl-program-uniform-1f"/>
+    <keyword type="function" name="cogl_offscreen_new_to_texture ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-new-to-texture"/>
+    <keyword type="function" name="cogl_offscreen_new_multisample ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-new-multisample"/>
+    <keyword type="function" name="cogl_offscreen_ref ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-ref"/>
+    <keyword type="function" name="cogl_offscreen_unref ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-unref"/>
+    <keyword type="function" name="cogl_is_offscreen ()" link="cogl-Offscreen-Buffers.html#cogl-is-offscreen"/>
+    <keyword type="function" name="cogl_offscreen_blit ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-blit"/>
+    <keyword type="function" name="cogl_offscreen_blit_region ()" link="cogl-Offscreen-Buffers.html#cogl-offscreen-blit-region"/>
+    <keyword type="function" name="cogl_draw_buffer ()" link="cogl-Offscreen-Buffers.html#cogl-draw-buffer"/>
+  </functions>
+</book>

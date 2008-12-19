@@ -1,0 +1,740 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterAlpha">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterAlpha.top_of_page">ClutterAlpha</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterAlpha</refname>
+<refpurpose>A class for calculating an alpha value as a function
+of time.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterAlpha.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterAlpha-struct">ClutterAlpha</link>;
+                    <link linkend="ClutterAlphaClass">ClutterAlphaClass</link>;
+<link linkend="ClutterAlpha">ClutterAlpha</link>*       <link linkend="clutter-alpha-new">clutter_alpha_new</link>                   (void);
+<link linkend="ClutterAlpha">ClutterAlpha</link>*       <link linkend="clutter-alpha-new-full">clutter_alpha_new_full</link>              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
+<link linkend="guint32">guint32</link>             <link linkend="clutter-alpha-get-alpha">clutter_alpha_get_alpha</link>             (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);
+#define             <link linkend="CLUTTER-ALPHA-MAX-ALPHA:CAPS">CLUTTER_ALPHA_MAX_ALPHA</link>
+<link linkend="guint32">guint32</link>             (<link linkend="ClutterAlphaFunc">*ClutterAlphaFunc</link>)                 (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="clutter-alpha-set-func">clutter_alpha_set_func</link>              (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);
+<link linkend="void">void</link>                <link linkend="clutter-alpha-set-closure">clutter_alpha_set_closure</link>           (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="GClosure">GClosure</link> *closure);
+<link linkend="void">void</link>                <link linkend="clutter-alpha-set-timeline">clutter_alpha_set_timeline</link>          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-alpha-get-timeline">clutter_alpha_get_timeline</link>          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);
+#define             <link linkend="CLUTTER-ALPHA-RAMP-INC:CAPS">CLUTTER_ALPHA_RAMP_INC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-ramp-inc-func">clutter_ramp_inc_func</link>               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-RAMP-DEC:CAPS">CLUTTER_ALPHA_RAMP_DEC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-ramp-dec-func">clutter_ramp_dec_func</link>               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-RAMP:CAPS">CLUTTER_ALPHA_RAMP</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-ramp-func">clutter_ramp_func</link>                   (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SINE:CAPS">CLUTTER_ALPHA_SINE</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-sine-func">clutter_sine_func</link>                   (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SINE-INC:CAPS">CLUTTER_ALPHA_SINE_INC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-sine-inc-func">clutter_sine_inc_func</link>               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SINE-DEC:CAPS">CLUTTER_ALPHA_SINE_DEC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-sine-dec-func">clutter_sine_dec_func</link>               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SINE-HALF:CAPS">CLUTTER_ALPHA_SINE_HALF</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-sine-half-func">clutter_sine_half_func</link>              (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SQUARE:CAPS">CLUTTER_ALPHA_SQUARE</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-square-func">clutter_square_func</link>                 (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS">CLUTTER_ALPHA_SMOOTHSTEP_INC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-smoothstep-inc-func">clutter_smoothstep_inc_func</link>         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS">CLUTTER_ALPHA_SMOOTHSTEP_DEC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-smoothstep-dec-func">clutter_smoothstep_dec_func</link>         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-EXP-INC:CAPS">CLUTTER_ALPHA_EXP_INC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-exp-inc-func">clutter_exp_inc_func</link>                (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+#define             <link linkend="CLUTTER-ALPHA-EXP-DEC:CAPS">CLUTTER_ALPHA_EXP_DEC</link>
+<link linkend="guint32">guint32</link>             <link linkend="clutter-exp-dec-func">clutter_exp_dec_func</link>                (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterAlpha.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----ClutterAlpha
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterAlpha.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterAlpha--alpha">alpha</link>&quot;                    <link linkend="guint">guint</link>                 : Read
+  &quot;<link linkend="ClutterAlpha--timeline">timeline</link>&quot;                 <link linkend="ClutterTimeline">ClutterTimeline</link>*      : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterAlpha.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> is a class for calculating an integer value between
+0 and <link linkend="CLUTTER-ALPHA-MAX-ALPHA:CAPS"><literal>CLUTTER_ALPHA_MAX_ALPHA</literal></link> as a function of time.  You should
+provide a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> and bind it to the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object;
+you should also provide a function returning the alpha value depending
+on the position inside the timeline; this function will be executed
+each time a new frame in the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> is reached.  Since the
+alpha function is controlled by the timeline instance, you can pause
+or stop the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> from calling the alpha function by controlling
+the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> object.
+</para>
+<para>
+<link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> is used to "drive" a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> instance.
+</para>
+<para>
+<figure id="alpha-functions">
+  <title>Graphic representation of some alpha functions</title>
+  <graphic fileref="alpha-func.png" format="PNG"/>
+</figure></para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterAlpha.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterAlpha-struct" role="struct">
+<title>ClutterAlpha</title>
+<indexterm zone="ClutterAlpha-struct" role="0.2"><primary>ClutterAlpha</primary></indexterm><programlisting>typedef struct _ClutterAlpha ClutterAlpha;</programlisting>
+<para>
+<link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> combines a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> and a function.
+The contents of the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> structure are private and should
+only be accessed using the provided API.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterAlphaClass" role="struct" condition="since:0.2">
+<title>ClutterAlphaClass</title>
+<indexterm zone="ClutterAlphaClass" role="0.2"><primary>ClutterAlphaClass</primary></indexterm><programlisting>typedef struct {
+} ClutterAlphaClass;
+</programlisting>
+<para>
+Base class for <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link></para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-new" role="function" condition="since:0.2">
+<title>clutter_alpha_new ()</title>
+<indexterm zone="clutter-alpha-new" role="0.2"><primary>clutter_alpha_new</primary></indexterm><programlisting><link linkend="ClutterAlpha">ClutterAlpha</link>*       clutter_alpha_new                   (void);</programlisting>
+<para>
+Creates a new <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance.  You must set a function
+to compute the alpha value using <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link> and
+bind a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> object to the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance
+using <link linkend="clutter-alpha-set-timeline"><function>clutter_alpha_set_timeline()</function></link>.
+</para>
+<para>
+You should use the newly created <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance inside
+a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created empty <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-new-full" role="function" condition="since:0.2">
+<title>clutter_alpha_new_full ()</title>
+<indexterm zone="clutter-alpha-new-full" role="0.2"><primary>clutter_alpha_new_full</primary></indexterm><programlisting><link linkend="ClutterAlpha">ClutterAlpha</link>*       clutter_alpha_new_full              (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
+<para>
+Creates a new <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance and sets the timeline
+and alpha function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> timeline
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterAlphaFunc"><type>ClutterAlphaFunc</type></link> alpha function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the alpha function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy</parameter>&nbsp;:</term>
+<listitem><simpara> notify to be called when removing the alpha function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-get-alpha" role="function" condition="since:0.2">
+<title>clutter_alpha_get_alpha ()</title>
+<indexterm zone="clutter-alpha-get-alpha" role="0.2"><primary>clutter_alpha_get_alpha</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_alpha_get_alpha             (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);</programlisting>
+<para>
+Query the current alpha value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The current alpha value for the alpha
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-MAX-ALPHA:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_MAX_ALPHA</title>
+<indexterm zone="CLUTTER-ALPHA-MAX-ALPHA:CAPS" role="0.2"><primary>CLUTTER_ALPHA_MAX_ALPHA</primary></indexterm><programlisting>#define CLUTTER_ALPHA_MAX_ALPHA 0xffff
+</programlisting>
+<para>
+Maximum value returned by <link linkend="ClutterAlphaFunc"><type>ClutterAlphaFunc</type></link></para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterAlphaFunc" role="function" condition="since:0.2">
+<title>ClutterAlphaFunc ()</title>
+<indexterm zone="ClutterAlphaFunc" role="0.2"><primary>ClutterAlphaFunc</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             (*ClutterAlphaFunc)                 (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+A function of time, which returns a value between 0 and
+<link linkend="CLUTTER-ALPHA-MAX-ALPHA:CAPS"><literal>CLUTTER_ALPHA_MAX_ALPHA</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an unsigned integer value, between 0 and
+<link linkend="CLUTTER-ALPHA-MAX-ALPHA:CAPS"><literal>CLUTTER_ALPHA_MAX_ALPHA</literal></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-set-func" role="function" condition="since:0.2">
+<title>clutter_alpha_set_func ()</title>
+<indexterm zone="clutter-alpha-set-func" role="0.2"><primary>clutter_alpha_set_func</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_alpha_set_func              (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy);</programlisting>
+<para>
+Sets the <link linkend="ClutterAlphaFunc"><type>ClutterAlphaFunc</type></link> function used to compute
+the alpha value at each frame of the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+bound to <parameter>alpha</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlphaAlphaFunc"><type>ClutterAlphaAlphaFunc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to be passed to the alpha function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy</parameter>&nbsp;:</term>
+<listitem><simpara> notify function used when disposing the alpha function
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-set-closure" role="function" condition="since:0.8">
+<title>clutter_alpha_set_closure ()</title>
+<indexterm zone="clutter-alpha-set-closure" role="0.8"><primary>clutter_alpha_set_closure</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_alpha_set_closure           (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="GClosure">GClosure</link> *closure);</programlisting>
+<para>
+Sets the <link linkend="GClosure"><type>GClosure</type></link> used to compute
+the alpha value at each frame of the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+bound to <parameter>alpha</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>closure</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="GClosure"><type>GClosure</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-alpha-set-timeline" role="function" condition="since:0.2">
+<title>clutter_alpha_set_timeline ()</title>
+<indexterm zone="clutter-alpha-set-timeline" role="0.2"><primary>clutter_alpha_set_timeline</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_alpha_set_timeline          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline);</programlisting>
+<para>
+Binds <parameter>alpha</parameter> to <parameter>timeline</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-alpha-get-timeline" role="function" condition="since:0.2">
+<title>clutter_alpha_get_timeline ()</title>
+<indexterm zone="clutter-alpha-get-timeline" role="0.2"><primary>clutter_alpha_get_timeline</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_alpha_get_timeline          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha);</programlisting>
+<para>
+Gets the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> bound to <parameter>alpha</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> instance
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-RAMP-INC:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_RAMP_INC</title>
+<indexterm zone="CLUTTER-ALPHA-RAMP-INC:CAPS" role="0.2"><primary>CLUTTER_ALPHA_RAMP_INC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_RAMP_INC       clutter_ramp_inc_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-ramp-inc-func"><function>clutter_ramp_inc_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-ramp-inc-func" role="function" condition="since:0.2">
+<title>clutter_ramp_inc_func ()</title>
+<indexterm zone="clutter-ramp-inc-func" role="0.2"><primary>clutter_ramp_inc_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_ramp_inc_func               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a monotonic increasing ramp. You
+can use this function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-RAMP-DEC:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_RAMP_DEC</title>
+<indexterm zone="CLUTTER-ALPHA-RAMP-DEC:CAPS" role="0.2"><primary>CLUTTER_ALPHA_RAMP_DEC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_RAMP_DEC       clutter_ramp_dec_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-ramp-dec-func"><function>clutter_ramp_dec_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-ramp-dec-func" role="function" condition="since:0.2">
+<title>clutter_ramp_dec_func ()</title>
+<indexterm zone="clutter-ramp-dec-func" role="0.2"><primary>clutter_ramp_dec_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_ramp_dec_func               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a monotonic decreasing ramp. You
+can use this function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-RAMP:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_RAMP</title>
+<indexterm zone="CLUTTER-ALPHA-RAMP:CAPS" role="0.2"><primary>CLUTTER_ALPHA_RAMP</primary></indexterm><programlisting>#define CLUTTER_ALPHA_RAMP           clutter_ramp_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-ramp-func"><function>clutter_ramp_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-ramp-func" role="function" condition="since:0.2">
+<title>clutter_ramp_func ()</title>
+<indexterm zone="clutter-ramp-func" role="0.2"><primary>clutter_ramp_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_ramp_func                   (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a full ramp function (increase for
+half the time, decrease for the remaining half). You can use this
+function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SINE:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_SINE</title>
+<indexterm zone="CLUTTER-ALPHA-SINE:CAPS" role="0.2"><primary>CLUTTER_ALPHA_SINE</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SINE           clutter_sine_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-sine-func"><function>clutter_sine_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sine-func" role="function" condition="since:0.2">
+<title>clutter_sine_func ()</title>
+<indexterm zone="clutter-sine-func" role="0.2"><primary>clutter_sine_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_sine_func                   (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a sine wave. You can use this
+function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SINE-INC:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_SINE_INC</title>
+<indexterm zone="CLUTTER-ALPHA-SINE-INC:CAPS" role="0.2"><primary>CLUTTER_ALPHA_SINE_INC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SINE_INC       clutter_sine_inc_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-sine-inc-func"><function>clutter_sine_inc_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sine-inc-func" role="function" condition="since:0.2">
+<title>clutter_sine_inc_func ()</title>
+<indexterm zone="clutter-sine-inc-func" role="0.2"><primary>clutter_sine_inc_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_sine_inc_func               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a sine wave over interval [0, pi / 2].
+You can use this function as the alpha function for
+<link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SINE-DEC:CAPS" role="macro" condition="since:0.2">
+<title>CLUTTER_ALPHA_SINE_DEC</title>
+<indexterm zone="CLUTTER-ALPHA-SINE-DEC:CAPS" role="0.2"><primary>CLUTTER_ALPHA_SINE_DEC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SINE_DEC       clutter_sine_dec_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-sine-dec-func"><function>clutter_sine_dec_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sine-dec-func" role="function" condition="since:0.4">
+<title>clutter_sine_dec_func ()</title>
+<indexterm zone="clutter-sine-dec-func" role="0.4"><primary>clutter_sine_dec_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_sine_dec_func               (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a sine wave over interval [pi / 2, pi].
+You can use this function as the alpha function for
+<link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SINE-HALF:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_SINE_HALF</title>
+<indexterm zone="CLUTTER-ALPHA-SINE-HALF:CAPS" role="0.4"><primary>CLUTTER_ALPHA_SINE_HALF</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SINE_HALF      clutter_sine_half_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-sine-half-func"><function>clutter_sine_half_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-sine-half-func" role="function" condition="since:0.4">
+<title>clutter_sine_half_func ()</title>
+<indexterm zone="clutter-sine-half-func" role="0.4"><primary>clutter_sine_half_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_sine_half_func              (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a sine wave over interval [0, pi].
+You can use this function as the alpha function for
+<link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SQUARE:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_SQUARE</title>
+<indexterm zone="CLUTTER-ALPHA-SQUARE:CAPS" role="0.4"><primary>CLUTTER_ALPHA_SQUARE</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SQUARE         clutter_square_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-square-func"><function>clutter_square_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-square-func" role="function" condition="since:0.4">
+<title>clutter_square_func ()</title>
+<indexterm zone="clutter-square-func" role="0.4"><primary>clutter_square_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_square_func                 (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a square wave. You can use this
+function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_SMOOTHSTEP_INC</title>
+<indexterm zone="CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS" role="0.4"><primary>CLUTTER_ALPHA_SMOOTHSTEP_INC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SMOOTHSTEP_INC clutter_smoothstep_inc_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-smoothstep-inc-func"><function>clutter_smoothstep_inc_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-smoothstep-inc-func" role="function" condition="since:0.4">
+<title>clutter_smoothstep_inc_func ()</title>
+<indexterm zone="clutter-smoothstep-inc-func" role="0.4"><primary>clutter_smoothstep_inc_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_smoothstep_inc_func         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a smoothstep curve. You can use this
+function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_SMOOTHSTEP_DEC</title>
+<indexterm zone="CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS" role="0.4"><primary>CLUTTER_ALPHA_SMOOTHSTEP_DEC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_SMOOTHSTEP_DEC clutter_smoothstep_dec_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-smoothstep-dec-func"><function>clutter_smoothstep_dec_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-smoothstep-dec-func" role="function" condition="since:0.4">
+<title>clutter_smoothstep_dec_func ()</title>
+<indexterm zone="clutter-smoothstep-dec-func" role="0.4"><primary>clutter_smoothstep_dec_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_smoothstep_dec_func         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a downward smoothstep curve. You can use
+this function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-EXP-INC:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_EXP_INC</title>
+<indexterm zone="CLUTTER-ALPHA-EXP-INC:CAPS" role="0.4"><primary>CLUTTER_ALPHA_EXP_INC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_EXP_INC        clutter_exp_inc_func
+</programlisting>
+<para>
+Convenience symbol for <link linkend="clutter-exp-inc-func"><function>clutter_exp_inc_func()</function></link></para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-exp-inc-func" role="function" condition="since:0.4">
+<title>clutter_exp_inc_func ()</title>
+<indexterm zone="clutter-exp-inc-func" role="0.4"><primary>clutter_exp_inc_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_exp_inc_func                (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a 2^x curve. You can use this function as the
+alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-ALPHA-EXP-DEC:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_ALPHA_EXP_DEC</title>
+<indexterm zone="CLUTTER-ALPHA-EXP-DEC:CAPS" role="0.4"><primary>CLUTTER_ALPHA_EXP_DEC</primary></indexterm><programlisting>#define CLUTTER_ALPHA_EXP_DEC        clutter_exp_dec_func
+</programlisting>
+<para>
+Convenience symbold for <link linkend="clutter-exp-dec-func"><function>clutter_exp_dec_func()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-exp-dec-func" role="function" condition="since:0.4">
+<title>clutter_exp_dec_func ()</title>
+<indexterm zone="clutter-exp-dec-func" role="0.4"><primary>clutter_exp_dec_func</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             clutter_exp_dec_func                (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gpointer">gpointer</link> dummy);</programlisting>
+<para>
+Convenience alpha function for a decreasing 2^x curve. You can use this
+function as the alpha function for <link linkend="clutter-alpha-set-func"><function>clutter_alpha_set_func()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dummy</parameter>&nbsp;:</term>
+<listitem><simpara> unused argument
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an alpha value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterAlpha.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterAlpha--alpha"><title>The <literal>&quot;alpha&quot;</literal> property</title>
+<indexterm zone="ClutterAlpha--alpha" role="0.2"><primary>ClutterAlpha:alpha</primary></indexterm><programlisting>  &quot;alpha&quot;                    <link linkend="guint">guint</link>                 : Read</programlisting>
+<para>
+The alpha value as computed by the alpha function.</para>
+<para>
+
+</para><para>Allowed values: &lt;= 65535</para>
+<para>Default value: 0</para>
+<para>Since  0.2
+</para>
+</refsect2>
+<refsect2 id="ClutterAlpha--timeline"><title>The <literal>&quot;timeline&quot;</literal> property</title>
+<indexterm zone="ClutterAlpha--timeline" role="0.2"><primary>ClutterAlpha:timeline</primary></indexterm><programlisting>  &quot;timeline&quot;                 <link linkend="ClutterTimeline">ClutterTimeline</link>*      : Read / Write</programlisting>
+<para>
+A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> instance used to drive the alpha function.</para>
+<para>
+
+</para><para>Since  0.2
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

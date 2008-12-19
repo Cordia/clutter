@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Clutter 0.8.2 Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="next" href="clutter-overview.html" title="Part I. Overview">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="book" lang="en">
+<div class="titlepage">
+<div>
+<div><table class="navigation" id="top" width="100%" cellpadding="2" cellspacing="0"><tr><th valign="middle"><p class="title">Clutter 0.8.2 Reference Manual</p></th></tr></table></div>
+<div><p class="releaseinfo">Version 0.8.2</p></div>
+<div><p class="copyright">Copyright © 2008 OpenedHand LTD</p></div>
+<div><div class="legalnotice">
+<a name="id2583124"></a><p>
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the <em class="citetitle">GNU Free
+        Documentation License</em>, Version 1.1 or any later
+        version published by the Free Software Foundation with no
+        Invariant Sections, no Front-Cover Texts, and no Back-Cover
+        Texts. You may obtain a copy of the <em class="citetitle">GNU Free
+        Documentation License</em> from the Free Software
+        Foundation by visiting <a class="ulink" href="http://www.fsf.org" target="_top">their Web site</a> or by writing
+        to:
+
+        </p>
+<div class="address"><p><br>
+          The Free Software Foundation, Inc.,<br>
+          <span class="street">59 Temple Place</span> - Suite 330,<br>
+          <span class="city">Boston</span>, <span class="state">MA</span> <span class="postcode">02111-1307</span>,<br>
+          <span class="country">USA</span><br>
+        </p></div>
+<p>
+      </p>
+</div></div>
+</div>
+<hr>
+</div>
+<div class="toc"><dl>
+<dt><span class="part"><a href="clutter-overview.html">I. Overview</a></span></dt>
+<dt><span class="part"><a href="building-clutter.html">II. Building Clutter</a></span></dt>
+<dt><span class="part"><a href="clutterbase.html">III. Clutter Core Reference</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="ch01.html">Abstract classes and interfaces</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterActor.html">ClutterActor</a></span><span class="refpurpose"> — Base abstract class for all visual stage actors.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterContainer.html">ClutterContainer</a></span><span class="refpurpose"> — An interface for implementing container actors</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterChildMeta.html">ClutterChildMeta</a></span><span class="refpurpose"> — Wrapper for actors inside a container</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterMedia.html">ClutterMedia</a></span><span class="refpurpose"> — An interface for controlling playback of media data.</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch02.html">Base actors</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterRectangle.html">ClutterRectangle</a></span><span class="refpurpose"> — An actor that displays a simple rectangle.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterTexture.html">ClutterTexture</a></span><span class="refpurpose"> — An actor for displaying and manipulating images.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterCloneTexture.html">ClutterCloneTexture</a></span><span class="refpurpose"> — Actor for cloning existing textures in an 
+efficient way.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterLabel.html">ClutterLabel</a></span><span class="refpurpose"> — Actor for displaying text</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterEntry.html">ClutterEntry</a></span><span class="refpurpose"> — A single line text entry actor</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch03.html">Container actors</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterGroup.html">ClutterGroup</a></span><span class="refpurpose"> — Actor class containing multiple children.
+actors.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterStage.html">ClutterStage</a></span><span class="refpurpose"> — Top level visual element to which actors are placed.</span>
+</dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="clutteranimation.html">IV. Clutter Animation Framework</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="ch04.html">Base classes</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterTimeline.html">ClutterTimeline</a></span><span class="refpurpose"> — A class for time-based events</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterScore.html">ClutterScore</a></span><span class="refpurpose"> — Controller for multiple timelines</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterAlpha.html">ClutterAlpha</a></span><span class="refpurpose"> — A class for calculating an alpha value as a function
+of time.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviour.html">ClutterBehaviour</a></span><span class="refpurpose"> — Class for providing behaviours to actors</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch05.html">Behaviours</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourBspline.html">ClutterBehaviourBspline</a></span><span class="refpurpose"> — A behaviour interpolating position along a B-Spline</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourDepth.html">ClutterBehaviourDepth</a></span><span class="refpurpose"> — A behaviour controlling the Z position</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourEllipse.html">ClutterBehaviourEllipse</a></span><span class="refpurpose"> — A behaviour interpolating position along an ellipse</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourOpacity.html">ClutterBehaviourOpacity</a></span><span class="refpurpose"> — Behaviour controlling the opacity</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourPath.html">ClutterBehaviourPath</a></span><span class="refpurpose"> — A behaviour interpolating position along a path</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourRotate.html">ClutterBehaviourRotate</a></span><span class="refpurpose"> — A behaviour controlling rotation</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterBehaviourScale.html">ClutterBehaviourScale</a></span><span class="refpurpose"> — A behaviour controlling scale</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch06.html">Simple effects API</a></span></dt>
+<dd><dl><dt>
+<span class="refentrytitle"><a href="clutter-Clutter-Effects.html">Clutter Effects</a></span><span class="refpurpose"> — Utility Class for basic visual effects</span>
+</dt></dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="pt05.html">V. Clutter Tools</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="ch07.html">General purpose API</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="clutter-Colors.html">Colors</a></span><span class="refpurpose"> — Color management and manipulation.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Events.html">Events</a></span><span class="refpurpose"> — User and window system events</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Fixed-Point-Support.html">Fixed Point Support</a></span><span class="refpurpose"> — Fixed Point API</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-General.html">General</a></span><span class="refpurpose"> — Various 'global' clutter functions.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterShader.html">ClutterShader</a></span><span class="refpurpose"> — Programmable pipeline abstraction</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Unit-conversion.html">Unit conversion</a></span><span class="refpurpose"> — A logical distance unit.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Utilities.html">Utilities</a></span><span class="refpurpose"> — Misc utility functions.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Versioning-Macros.html">Versioning Macros</a></span><span class="refpurpose"> — Versioning utility macros</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch08.html">User interface definition</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterScript.html">ClutterScript</a></span><span class="refpurpose"> — Loads a scene from UI definition data</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-ClutterScriptable.html">ClutterScriptable</a></span><span class="refpurpose"> — Override the UI definition parsing</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch09.html">Generic list model</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ClutterModel.html">ClutterModel</a></span><span class="refpurpose"> — A generic model implementation</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterModelIter.html">ClutterModelIter</a></span><span class="refpurpose"> — Iterates through a model</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ClutterListModel.html">ClutterListModel</a></span><span class="refpurpose"> — List model implementation</span>
+</dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="pt06.html">VI. Clutter Backends</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="clutter-ClutterBackend.html">ClutterBackend</a></span><span class="refpurpose"> — Backend abstraction</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-X11-Specific-Support.html">X11 Specific Support</a></span><span class="refpurpose"> — X11 specific API</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="clutter-Win32-Specific-Support.html">Win32 Specific Support</a></span><span class="refpurpose"> — Win32 specific API</span>
+</dt>
+</dl></dd>
+<dt><span class="part"><a href="pt07.html">VII. Additional Documentation</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="clutter-subclassing-ClutterActor.html">Implementing a new actor</a></span></dt>
+<dt><span class="chapter"><a href="clutter-animations.html">Creating Animations with Clutter</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="clutter-animations.html#clutter-animation-basic">Basic Animations</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-timelines.html">Timelines</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-behaviours.html">Behaviours</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-effects.html">Effects</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-conclusion.html">Conclusion</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="creating-your-own-behaviours.html">Creating You Own Behaviours</a></span></dt>
+</dl></dd>
+<dt><span class="index"><a href="ix01.html">Index</a></span></dt>
+<dt><span class="index"><a href="ix02.html">Index of deprecated symbols</a></span></dt>
+<dt><span class="index"><a href="ix03.html">Index of new symbols in 0.2</a></span></dt>
+<dt><span class="index"><a href="ix04.html">Index of new symbols in 0.4</a></span></dt>
+<dt><span class="index"><a href="ix05.html">Index of new symbols in 0.6</a></span></dt>
+<dt><span class="index"><a href="ix06.html">Index of new symbols in 0.8</a></span></dt>
+<dt><span class="appendix"><a href="license.html">A. License</a></span></dt>
+</dl></div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

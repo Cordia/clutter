@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterChildMeta</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="prev" href="ClutterContainer.html" title="ClutterContainer">
+<link rel="next" href="ClutterMedia.html" title="ClutterMedia">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterContainer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterMedia.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterChildMeta.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterChildMeta.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterChildMeta.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterChildMeta.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterChildMeta"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterChildMeta.top_of_page"></a>ClutterChildMeta</span></h2>
+<p>ClutterChildMeta — Wrapper for actors inside a container</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterChildMeta.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterChildMeta.html#ClutterChildMeta-struct" title="ClutterChildMeta">ClutterChildMeta</a>;
+                    <a class="link" href="ClutterChildMeta.html#ClutterChildMetaClass" title="ClutterChildMetaClass">ClutterChildMetaClass</a>;
+<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>*   <a class="link" href="ClutterChildMeta.html#clutter-child-meta-get-container" title="clutter_child_meta_get_container ()">clutter_child_meta_get_container</a>    (<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a> *data);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterChildMeta.html#clutter-child-meta-get-actor" title="clutter_child_meta_get_actor ()">clutter_child_meta_get_actor</a>        (<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a> *data);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterChildMeta.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterChildMeta
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterChildMeta.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterChildMeta.html#ClutterChildMeta--actor" title='The "actor" property'>actor</a>"                    <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*         : Read / Write / Construct Only
+  "<a class="link" href="ClutterChildMeta.html#ClutterChildMeta--container" title='The "container" property'>container</a>"                <a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>*     : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterChildMeta.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> is a wrapper object created by <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+implementations in order to store child-specific data and properties.
+</p>
+<p>
+A <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> wraps a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> inside a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>.
+</p>
+<p>
+<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> is available since Clutter 0.8</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterChildMeta.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterChildMeta-struct"></a><h3>ClutterChildMeta</h3>
+<pre class="programlisting">typedef struct {
+  ClutterContainer *container;
+  ClutterActor *actor;
+} ClutterChildMeta;
+</pre>
+<p>
+Base interface for container specific state for child actors. A child
+data is meant to be used when you need to keep track of information
+about each individual child added to a container.
+</p>
+<p>
+In order to use it you should create your own subclass of
+<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> and set the <span class="type">"child_meta_type"</span>
+interface member to your subclass type, like:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+static void
+my_container_iface_init (ClutterContainerIface *iface)
+{
+  /* set the rest of the <a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> vtable */
+
+  container_iface-&gt;child_meta_type  = MY_TYPE_CHILD_META;
+}
+</pre></div>
+<p>
+</p>
+<p>
+This will automatically create a <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> of type
+MY_TYPE_CHILD_META for every actor that is added to the container.
+</p>
+<p>
+The child data for an actor can be retrieved using the
+<a class="link" href="ClutterContainer.html#clutter-container-get-child-meta" title="clutter_container_get_child_meta ()"><code class="function">clutter_container_get_child_meta()</code></a> function.
+</p>
+<p>
+The properties of the data and your subclass can be manipulated with
+<a class="link" href="ClutterContainer.html#clutter-container-child-set" title="clutter_container_child_set ()"><code class="function">clutter_container_child_set()</code></a> and <a class="link" href="ClutterContainer.html#clutter-container-child-get" title="clutter_container_child_get ()"><code class="function">clutter_container_child_get()</code></a> which
+act like <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-set"
+><code class="function">g_object_set()</code></a> and <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-get"
+><code class="function">g_object_get()</code></a>.
+</p>
+<p>
+You can provide hooks for your own storage as well as control the
+instantiation by overriding <span class="type">"create_child_meta"</span>,
+<span class="type">"destroy_child_meta"</span> and
+<span class="type">"get_child_meta"</span>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *<em class="structfield"><code>container</code></em>;</span></p></td>
+<td> the container handling this data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *<em class="structfield"><code>actor</code></em>;</span></p></td>
+<td> the actor wrapped by this data
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterChildMetaClass"></a><h3>ClutterChildMetaClass</h3>
+<pre class="programlisting">typedef struct {
+} ClutterChildMetaClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-child-meta-get-container"></a><h3>clutter_child_meta_get_container ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>*   clutter_child_meta_get_container    (<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a> *data);</pre>
+<p>
+Retrieves the container using <em class="parameter"><code>data</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-child-meta-get-actor"></a><h3>clutter_child_meta_get_actor ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_child_meta_get_actor        (<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a> *data);</pre>
+<p>
+Retrieves the actor wrapped by <em class="parameter"><code>data</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterChildMeta.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterChildMeta--actor"></a><h3>The <code class="literal">"actor"</code> property</h3>
+<pre class="programlisting">  "actor"                    <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*         : Read / Write / Construct Only</pre>
+<p>
+The <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> being wrapped by this <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a></p>
+<p>
+
+</p>
+<p>Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterChildMeta--container"></a><h3>The <code class="literal">"container"</code> property</h3>
+<pre class="programlisting">  "container"                <a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>*     : Read / Write / Construct Only</pre>
+<p>
+The <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> that created this <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a>.</p>
+<p>
+
+</p>
+<p>Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

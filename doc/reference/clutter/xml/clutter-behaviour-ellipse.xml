@@ -1,0 +1,872 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourEllipse">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourEllipse.top_of_page">ClutterBehaviourEllipse</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourEllipse</refname>
+<refpurpose>A behaviour interpolating position along an ellipse</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourEllipse.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviourEllipse-struct">ClutterBehaviourEllipse</link>;
+                    <link linkend="ClutterBehaviourEllipseClass">ClutterBehaviourEllipseClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-ellipse-new">clutter_behaviour_ellipse_new</link>       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="gdouble">gdouble</link> start,
+                                                         <link linkend="gdouble">gdouble</link> end);
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-ellipse-newx">clutter_behaviour_ellipse_newx</link>      (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-center">clutter_behaviour_ellipse_set_center</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-get-center">clutter_behaviour_ellipse_get_center</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-start">clutter_behaviour_ellipse_set_angle_start</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_start);
+<link linkend="gdouble">gdouble</link>             <link linkend="clutter-behaviour-ellipse-get-angle-start">clutter_behaviour_ellipse_get_angle_start</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-startx">clutter_behaviour_ellipse_set_angle_startx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-behaviour-ellipse-get-angle-startx">clutter_behaviour_ellipse_get_angle_startx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-end">clutter_behaviour_ellipse_set_angle_end</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);
+<link linkend="gdouble">gdouble</link>             <link linkend="clutter-behaviour-ellipse-get-angle-end">clutter_behaviour_ellipse_get_angle_end</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-endx">clutter_behaviour_ellipse_set_angle_endx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-behaviour-ellipse-get-angle-endx">clutter_behaviour_ellipse_get_angle_endx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-tilt">clutter_behaviour_ellipse_set_angle_tilt</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt);
+<link linkend="gdouble">gdouble</link>             <link linkend="clutter-behaviour-ellipse-get-angle-tilt">clutter_behaviour_ellipse_get_angle_tilt</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-angle-tiltx">clutter_behaviour_ellipse_set_angle_tiltx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-behaviour-ellipse-get-angle-tiltx">clutter_behaviour_ellipse_get_angle_tiltx</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-height">clutter_behaviour_ellipse_set_height</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> height);
+<link linkend="gint">gint</link>                <link linkend="clutter-behaviour-ellipse-get-height">clutter_behaviour_ellipse_get_height</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-width">clutter_behaviour_ellipse_set_width</link> (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> width);
+<link linkend="gint">gint</link>                <link linkend="clutter-behaviour-ellipse-get-width">clutter_behaviour_ellipse_get_width</link> (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-tilt">clutter_behaviour_ellipse_set_tilt</link>  (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_x,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_y,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_z);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-get-tilt">clutter_behaviour_ellipse_get_tilt</link>  (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_x,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_y,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_z);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-tiltx">clutter_behaviour_ellipse_set_tiltx</link> (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_z);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-get-tiltx">clutter_behaviour_ellipse_get_tiltx</link> (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_z);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-ellipse-set-direction">clutter_behaviour_ellipse_set_direction</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction);
+<link linkend="ClutterRotateDirection">ClutterRotateDirection</link> <link linkend="clutter-behaviour-ellipse-get-direction">clutter_behaviour_ellipse_get_direction</link>
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourEllipse.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourEllipse
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviourEllipse.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourEllipse--angle-end">angle-end</link>&quot;                <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--angle-start">angle-start</link>&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--angle-tilt-x">angle-tilt-x</link>&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--angle-tilt-y">angle-tilt-y</link>&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--angle-tilt-z">angle-tilt-z</link>&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--center">center</link>&quot;                   <link linkend="ClutterKnot">ClutterKnot</link>*          : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--direction">direction</link>&quot;                <link linkend="ClutterRotateDirection">ClutterRotateDirection</link>  : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--height">height</link>&quot;                   <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterBehaviourEllipse--width">width</link>&quot;                    <link linkend="gint">gint</link>                  : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourEllipse.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link> interpolates actors along a path defined by
+ an ellipse.
+</para>
+<para>
+Note, on applying an ellipse behaviour to an actor its position will
+be set to what is dictated by the ellipses initial position.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourEllipse.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviourEllipse-struct" role="struct">
+<title>ClutterBehaviourEllipse</title>
+<indexterm zone="ClutterBehaviourEllipse-struct"><primary>ClutterBehaviourEllipse</primary></indexterm><programlisting>typedef struct _ClutterBehaviourEllipse ClutterBehaviourEllipse;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourEllipseClass" role="struct" condition="since:0.4">
+<title>ClutterBehaviourEllipseClass</title>
+<indexterm zone="ClutterBehaviourEllipseClass" role="0.4"><primary>ClutterBehaviourEllipseClass</primary></indexterm><programlisting>typedef struct {
+  void (*knot_reached) (ClutterBehaviourEllipse *ellipseb,
+                        const ClutterKnot       *knot);
+} ClutterBehaviourEllipseClass;
+</programlisting>
+<para>
+Ellipse behaviour class</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>knot_reached</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for the
+  ClutterBehaviourEllipse::knot_reached signal
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-new" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_new ()</title>
+<indexterm zone="clutter-behaviour-ellipse-new" role="0.4"><primary>clutter_behaviour_ellipse_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_ellipse_new       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="gdouble">gdouble</link> start,
+                                                         <link linkend="gdouble">gdouble</link> end);</programlisting>
+<para>
+Creates a behaviour that drives actors along an elliptical path with
+given center, width and height; the movement starts at <parameter>angle_start</parameter>
+degrees (with 0 corresponding to 12 o'clock) and ends at <parameter>angle_end</parameter>
+degrees. Angles &gt;= 360 degrees get clamped to the canonical interval
+&lt;0, 360), if start == end, the behaviour will rotate by exacly 360 degrees.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinace of the center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordiance of the center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> width of the ellipse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> height of the ellipse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterRotateDirection"><type>ClutterRotateDirection</type></link> of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start</parameter>&nbsp;:</term>
+<listitem><simpara> angle in degrees at which movement starts, between 0 and 360
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>end</parameter>&nbsp;:</term>
+<listitem><simpara> angle in degrees at which movement ends, between 0 and 360
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-newx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_newx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-newx" role="0.4"><primary>clutter_behaviour_ellipse_newx</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_ellipse_newx      (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> width,
+                                                         <link linkend="gint">gint</link> height,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> end);</programlisting>
+<para>
+Creates a behaviour that drives actors along an elliptical path. This
+is the fixed point variant of <link linkend="clutter-behaviour-ellipse-new"><function>clutter_behaviour_ellipse_new()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinace of the center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordiance of the center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> width of the ellipse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> height of the ellipse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterRotateDirection"><type>ClutterRotateDirection</type></link> of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> angle in degrees at which movement starts
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>end</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> angle in degrees at which movement ends
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-center" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_center ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-center" role="0.4"><primary>clutter_behaviour_ellipse_set_center</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_center
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y);</programlisting>
+<para>
+Sets the center of the elliptical path to the point represented by knot.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> x coordinace of centre
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> y coordinace of centre
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-center" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_center ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-center" role="0.4"><primary>clutter_behaviour_ellipse_get_center</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_get_center
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> *x,
+                                                         <link linkend="gint">gint</link> *y);</programlisting>
+<para>
+Gets the center of the elliptical path path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> location to store the x coordinace of the center, or NULL
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> location to store the y coordinace of the center, or NULL
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-start" role="function" condition="since:0.6">
+<title>clutter_behaviour_ellipse_set_angle_start ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-start" role="0.6"><primary>clutter_behaviour_ellipse_set_angle_start</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_start
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_start);</programlisting>
+<para>
+Sets the angle at which movement starts; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> angle at which movement starts in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-start" role="function" condition="since:0.6">
+<title>clutter_behaviour_ellipse_get_angle_start ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-start" role="0.6"><primary>clutter_behaviour_ellipse_get_angle_start</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             clutter_behaviour_ellipse_get_angle_start
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the angle at which movements starts.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle in degrees
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-startx" role="function" condition="since:0.6">
+<title>clutter_behaviour_ellipse_set_angle_startx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-startx" role="0.6"><primary>clutter_behaviour_ellipse_set_angle_startx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_startx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_start);</programlisting>
+<para>
+Sets the angle at which movement starts; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_start</parameter>&nbsp;:</term>
+<listitem><simpara> An angle, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, at which movement starts, in
+degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-startx" role="function" condition="since:0.6">
+<title>clutter_behaviour_ellipse_get_angle_startx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-startx" role="0.6"><primary>clutter_behaviour_ellipse_get_angle_startx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_behaviour_ellipse_get_angle_startx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the angle at which movements starts.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, in degrees.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-end" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_angle_end ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-end" role="0.4"><primary>clutter_behaviour_ellipse_set_angle_end</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_end
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_end);</programlisting>
+<para>
+Sets the angle at which movement ends; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> angle at which movement ends in degrees, between 0 and 360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-end" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_angle_end ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-end" role="0.4"><primary>clutter_behaviour_ellipse_get_angle_end</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             clutter_behaviour_ellipse_get_angle_end
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the at which movements ends.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle in degrees
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-endx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_angle_endx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-endx" role="0.4"><primary>clutter_behaviour_ellipse_set_angle_endx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_endx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_end);</programlisting>
+<para>
+Sets the angle at which movement ends; angles &gt;= 360 degress get clamped
+to the canonical interval &lt;0, 360).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_end</parameter>&nbsp;:</term>
+<listitem><simpara> angle, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, at which movement ends, in degrees,
+between 0 and 360.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-endx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_angle_endx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-endx" role="0.4"><primary>clutter_behaviour_ellipse_get_angle_endx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_behaviour_ellipse_get_angle_endx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the angle at which movements ends.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, in degrees
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-tilt" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_angle_tilt ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-tilt" role="0.4"><primary>clutter_behaviour_ellipse_set_angle_tilt</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_tilt
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt);</programlisting>
+<para>
+Sets the angle at which the ellipse should be tilted around it's center.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRotateAxis"><type>ClutterRotateAxis</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse around the center in the given axis in
+degrees.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-tilt" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_angle_tilt ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-tilt" role="0.4"><primary>clutter_behaviour_ellipse_get_angle_tilt</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             clutter_behaviour_ellipse_get_angle_tilt
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);</programlisting>
+<para>
+Gets the tilt of the ellipse around the center in the given axis.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRotateAxis"><type>ClutterRotateAxis</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle in degrees.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-angle-tiltx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_angle_tiltx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-angle-tiltx" role="0.4"><primary>clutter_behaviour_ellipse_set_angle_tiltx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_angle_tiltx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt);</programlisting>
+<para>
+Sets the angle at which the ellipse should be tilted around it's center.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRoateAxis"><type>ClutterRoateAxis</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt</parameter>&nbsp;:</term>
+<listitem><simpara> tilt, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, of the elipse around the center in the given
+axis in degrees.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-angle-tiltx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_angle_tiltx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-angle-tiltx" role="0.4"><primary>clutter_behaviour_ellipse_get_angle_tiltx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_behaviour_ellipse_get_angle_tiltx
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis);</programlisting>
+<para>
+Gets the tilt of the ellipse around the center in the given axis.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRotateAxis"><type>ClutterRotateAxis</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> angle, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, in degrees
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-height" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_height ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-height" role="0.4"><primary>clutter_behaviour_ellipse_set_height</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_height
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> height);</programlisting>
+<para>
+Sets the height of the elliptical path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> height of the ellipse
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-height" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_height ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-height" role="0.4"><primary>clutter_behaviour_ellipse_get_height</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_behaviour_ellipse_get_height
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the height of the elliptical path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the height of the path
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-width" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_width ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-width" role="0.4"><primary>clutter_behaviour_ellipse_set_width</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_width (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gint">gint</link> width);</programlisting>
+<para>
+Sets the width of the elliptical path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> width of the ellipse
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-width" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_width ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-width" role="0.4"><primary>clutter_behaviour_ellipse_get_width</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_behaviour_ellipse_get_width (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Gets the width of the elliptical path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the width of the path
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-tilt" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_tilt ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-tilt" role="0.4"><primary>clutter_behaviour_ellipse_set_tilt</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_tilt  (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_x,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_y,
+                                                         <link linkend="gdouble">gdouble</link> angle_tilt_z);</programlisting>
+<para>
+Sets the angles at which the ellipse should be tilted around it's center.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse around the center in X axis in degrees.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse around the center in Y axis in degrees.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse around the center in Z axis in degrees.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-tilt" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_tilt ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-tilt" role="0.4"><primary>clutter_behaviour_ellipse_get_tilt</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_get_tilt  (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_x,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_y,
+                                                         <link linkend="gdouble">gdouble</link> *angle_tilt_z);</programlisting>
+<para>
+Gets the tilt of the ellipse around the center in Y axis.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
+<listitem><simpara> return location for tilt angle on the X axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
+<listitem><simpara> return location for tilt angle on the Y axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
+<listitem><simpara> return location for tilt angle on the Z axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-tiltx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_tiltx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-tiltx" role="0.4"><primary>clutter_behaviour_ellipse_set_tiltx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_tiltx (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> angle_tilt_z);</programlisting>
+<para>
+Sets the angle at which the ellipse should be tilted around it's center.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse in degrees, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the center in X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse in degrees, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the center in Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
+<listitem><simpara> tilt of the elipse in degrees, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the center in Z axis
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-tiltx" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_tiltx ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-tiltx" role="0.4"><primary>clutter_behaviour_ellipse_get_tiltx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_get_tiltx (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *angle_tilt_z);</programlisting>
+<para>
+Gets the tilt of the ellipse around the center in Y axis.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
+<listitem><simpara> location for tilt of the elipse, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the
+center in X axis in degrees, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
+<listitem><simpara> location for tilt of the elipse, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the
+center in Y axis in degress, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
+<listitem><simpara> location for tilt of the elipse, as <link linkend="ClutterFixed"><type>ClutterFixed</type></link>, around the
+center in Z axis in degrees, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-set-direction" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_set_direction ()</title>
+<indexterm zone="clutter-behaviour-ellipse-set-direction" role="0.4"><primary>clutter_behaviour_ellipse_set_direction</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_ellipse_set_direction
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction);</programlisting>
+<para>
+Sets the rotation direction used by the ellipse behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> the rotation direction
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-ellipse-get-direction" role="function" condition="since:0.4">
+<title>clutter_behaviour_ellipse_get_direction ()</title>
+<indexterm zone="clutter-behaviour-ellipse-get-direction" role="0.4"><primary>clutter_behaviour_ellipse_get_direction</primary></indexterm><programlisting><link linkend="ClutterRotateDirection">ClutterRotateDirection</link> clutter_behaviour_ellipse_get_direction
+                                                        (<link linkend="ClutterBehaviourEllipse">ClutterBehaviourEllipse</link> *self);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterRotateDirection"><type>ClutterRotateDirection</type></link> used by the ellipse behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourEllipse"><type>ClutterBehaviourEllipse</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the rotation direction
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourEllipse.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourEllipse--angle-end"><title>The <literal>&quot;angle-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--angle-end" role="0.4"><primary>ClutterBehaviourEllipse:angle-end</primary></indexterm><programlisting>  &quot;angle-end&quot;                <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The final angle to where the rotation should end.</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--angle-start"><title>The <literal>&quot;angle-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--angle-start" role="0.4"><primary>ClutterBehaviourEllipse:angle-start</primary></indexterm><programlisting>  &quot;angle-start&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The initial angle from where the rotation should start.</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--angle-tilt-x"><title>The <literal>&quot;angle-tilt-x&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--angle-tilt-x" role="0.4"><primary>ClutterBehaviourEllipse:angle-tilt-x</primary></indexterm><programlisting>  &quot;angle-tilt-x&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The tilt angle for the rotation around center in x axis</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 360</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--angle-tilt-y"><title>The <literal>&quot;angle-tilt-y&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--angle-tilt-y" role="0.4"><primary>ClutterBehaviourEllipse:angle-tilt-y</primary></indexterm><programlisting>  &quot;angle-tilt-y&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The tilt angle for the rotation around center in y axis</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 360</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--angle-tilt-z"><title>The <literal>&quot;angle-tilt-z&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--angle-tilt-z" role="0.4"><primary>ClutterBehaviourEllipse:angle-tilt-z</primary></indexterm><programlisting>  &quot;angle-tilt-z&quot;             <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The tilt_z angle for the rotation</para>
+<para>
+
+</para><para>Allowed values: [0,360]</para>
+<para>Default value: 360</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--center"><title>The <literal>&quot;center&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--center" role="0.4"><primary>ClutterBehaviourEllipse:center</primary></indexterm><programlisting>  &quot;center&quot;                   <link linkend="ClutterKnot">ClutterKnot</link>*          : Read / Write</programlisting>
+<para>
+The center of the ellipse.</para>
+<para>
+
+</para><para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--direction"><title>The <literal>&quot;direction&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--direction" role="0.4"><primary>ClutterBehaviourEllipse:direction</primary></indexterm><programlisting>  &quot;direction&quot;                <link linkend="ClutterRotateDirection">ClutterRotateDirection</link>  : Read / Write</programlisting>
+<para>
+The direction of the rotation.</para>
+<para>
+
+</para><para>Default value: CLUTTER_ROTATE_CW</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--height"><title>The <literal>&quot;height&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--height" role="0.4"><primary>ClutterBehaviourEllipse:height</primary></indexterm><programlisting>  &quot;height&quot;                   <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+Height of the ellipse.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 50</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourEllipse--width"><title>The <literal>&quot;width&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourEllipse--width" role="0.4"><primary>ClutterBehaviourEllipse:width</primary></indexterm><programlisting>  &quot;width&quot;                    <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+Width of the ellipse.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 100</para>
+<para>Since  0.4
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

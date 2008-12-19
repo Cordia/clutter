@@ -1,0 +1,94 @@
+GENERAL
+=======
+
+General notes and rules on clutter core hacking;
+
+ - GNU style indentation, please try hard to wrap at 80 chars.
+
+ - All non static public API funcs should be documented in the source files
+   via gtk-doc. Structures, enumerations and macros should be documented in
+   the header files.
+
+ - All non-trivial static and private API should be documented, especially
+   the eventual lifetime handling of the arguments/return values or locking
+   of mutexes.
+
+ - All public functions with float parameters should also provide a fixed
+   point version, with the 'x' postfix to the function name, e.g.:
+   
+     clutter_actor_set_foo      - floating point
+     clutter_actor_set_foox     - fixed point
+
+   Fixed point should be always be used internally, except when precision
+   is paramount.
+
+ - All public functions dealing with pixels should also provide a
+   ClutterUnit version, with the 'u' postfix to the function name, e.g:
+
+     clutter_actor_set_bar      - pixels
+     clutter_actor_set_baru     - units
+   
+   ClutterUnit should always be used internally.
+
+ - Properties should always be in floating point (never fixed point).
+   The preferred precision is double. 
+
+ - Properties should use pixels whenever is possible. If sub-pixel
+   precision is fundamental, use ClutterParamSpecUnit and
+   clutter_param_spec_unit() to install ClutterUnit properties, and
+   clutter_value_set_unit()/clutter_value_get_unit() to handle GValues in
+   a safe way. Never install a ClutterUnit property using a GParamSpecInt.
+
+ - Public entry points must always check their arguments with
+   g_return_if_fail() or g_return_val_if_fail().
+
+ - Private entry points should use g_assert() to verify internal state;
+   do not use g_return_if_fail()/g_return_val_if_fail() as they might
+   be compiled out.
+
+ - Really try to avoid if possible additions to clutter-private.h. Use
+   accessor functions instead.
+
+ - Don't add direct GL calls but wrap with cogl (also adding GLES
+   version if possible, or at least a stub).
+
+ - Use CLUTTER_NOTE() macro for debug statements.
+
+ - New features should also include an exhaustive test unit under tests.
+
+RELEASES
+========
+
+In making a new release;
+
+ - Check out a fresh copy from SVN.
+
+ - Verify versioning in configure.ac, increasing relevant
+   clutter_major_version/clutter_minor_version/clutter_micro_version
+   value. For point releases, bump clutter_micro_version to the next
+   even number.
+
+ - If there was no API change (addition, removal), increment
+   clutter_interface_age by two. If there was an API change,
+   set clutter_interface_age to zero. The interface_age is used to
+   keep the soname the same.
+
+ - Update NEWS (New feature details, bug #'s), README (Any API changes
+   relevant to developers + version), AUTHORS if relevant.
+
+ - Add a Release entry to the ChangeLog noting version.
+
+ - Call make distcheck and fix if fails. 
+
+ - Upload the tarball.
+
+ - Bump clutter_micro_version to the next odd number version.
+
+ - Commit.
+ 
+ - Announce release to waiting world on blog and mailing list.
+
+ - Release any dependant add-ons following similar rules to above. 
+   Dont forget to check *.pc file version deps!
+
+$LastChangedDate: 2008-06-26 14:59:30 +0100 (Thu, 26 Jun 2008) $

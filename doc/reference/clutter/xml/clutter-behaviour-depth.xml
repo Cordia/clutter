@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourDepth">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourDepth.top_of_page">ClutterBehaviourDepth</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourDepth</refname>
+<refpurpose>A behaviour controlling the Z position</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourDepth.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviourDepth-struct">ClutterBehaviourDepth</link>;
+                    <link linkend="ClutterBehaviourDepthClass">ClutterBehaviourDepthClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-depth-new">clutter_behaviour_depth_new</link>         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> depth_start,
+                                                         <link linkend="gint">gint</link> depth_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-depth-set-bounds">clutter_behaviour_depth_set_bounds</link>  (<link linkend="ClutterBehaviourDepth">ClutterBehaviourDepth</link> *behaviour,
+                                                         <link linkend="gint">gint</link> depth_start,
+                                                         <link linkend="gint">gint</link> depth_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-depth-get-bounds">clutter_behaviour_depth_get_bounds</link>  (<link linkend="ClutterBehaviourDepth">ClutterBehaviourDepth</link> *behaviour,
+                                                         <link linkend="gint">gint</link> *depth_start,
+                                                         <link linkend="gint">gint</link> *depth_end);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourDepth.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourDepth
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviourDepth.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourDepth--depth-end">depth-end</link>&quot;                <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterBehaviourDepth--depth-start">depth-start</link>&quot;              <link linkend="gint">gint</link>                  : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourDepth.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviourDepth"><type>ClutterBehaviourDepth</type></link> is a simple <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> controlling the
+depth of a set of actors between a start and end depth.
+</para>
+<para>
+<link linkend="ClutterBehaviourDepth"><type>ClutterBehaviourDepth</type></link> is available since Clutter 0.4.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourDepth.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviourDepth-struct" role="struct">
+<title>ClutterBehaviourDepth</title>
+<indexterm zone="ClutterBehaviourDepth-struct"><primary>ClutterBehaviourDepth</primary></indexterm><programlisting>typedef struct _ClutterBehaviourDepth ClutterBehaviourDepth;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourDepthClass" role="struct">
+<title>ClutterBehaviourDepthClass</title>
+<indexterm zone="ClutterBehaviourDepthClass"><primary>ClutterBehaviourDepthClass</primary></indexterm><programlisting>typedef struct {
+  ClutterBehaviourClass parent_class;
+} ClutterBehaviourDepthClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-behaviour-depth-new" role="function" condition="since:0.4">
+<title>clutter_behaviour_depth_new ()</title>
+<indexterm zone="clutter-behaviour-depth-new" role="0.4"><primary>clutter_behaviour_depth_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_depth_new         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gint">gint</link> depth_start,
+                                                         <link linkend="gint">gint</link> depth_end);</programlisting>
+<para>
+Creates a new <link linkend="ClutterBehaviourDepth"><type>ClutterBehaviourDepth</type></link> which can be used to control
+the ClutterActor:depth property of a set of <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial value of the depth
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_end</parameter>&nbsp;:</term>
+<listitem><simpara> final value of the depth
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created behaviour
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-depth-set-bounds" role="function" condition="since:0.6">
+<title>clutter_behaviour_depth_set_bounds ()</title>
+<indexterm zone="clutter-behaviour-depth-set-bounds" role="0.6"><primary>clutter_behaviour_depth_set_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_depth_set_bounds  (<link linkend="ClutterBehaviourDepth">ClutterBehaviourDepth</link> *behaviour,
+                                                         <link linkend="gint">gint</link> depth_start,
+                                                         <link linkend="gint">gint</link> depth_end);</programlisting>
+<para>
+Sets the boundaries of the <parameter>behaviour</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourDepth"><type>ClutterBehaviourDepth</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial value of the depth
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_end</parameter>&nbsp;:</term>
+<listitem><simpara> final value of the depth
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-depth-get-bounds" role="function" condition="since:0.6">
+<title>clutter_behaviour_depth_get_bounds ()</title>
+<indexterm zone="clutter-behaviour-depth-get-bounds" role="0.6"><primary>clutter_behaviour_depth_get_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_depth_get_bounds  (<link linkend="ClutterBehaviourDepth">ClutterBehaviourDepth</link> *behaviour,
+                                                         <link linkend="gint">gint</link> *depth_start,
+                                                         <link linkend="gint">gint</link> *depth_end);</programlisting>
+<para>
+Gets the boundaries of the <parameter>behaviour</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourDepth"><type>ClutterBehaviourDepth</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the initial depth value, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the final depth value, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourDepth.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourDepth--depth-end"><title>The <literal>&quot;depth-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourDepth--depth-end" role="0.4"><primary>ClutterBehaviourDepth:depth-end</primary></indexterm><programlisting>  &quot;depth-end&quot;                <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+End depth level to apply to the actors.</para>
+<para>
+
+</para><para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourDepth--depth-start"><title>The <literal>&quot;depth-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourDepth--depth-start" role="0.4"><primary>ClutterBehaviourDepth:depth-start</primary></indexterm><programlisting>  &quot;depth-start&quot;              <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+Start depth level to apply to the actors.</para>
+<para>
+
+</para><para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

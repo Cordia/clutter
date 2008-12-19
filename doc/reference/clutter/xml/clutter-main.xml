@@ -1,0 +1,1038 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-General">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-General.top_of_page">General</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>General</refname>
+<refpurpose>Various 'global' clutter functions.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-General.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="CLUTTER-PRIORITY-REDRAW:CAPS">CLUTTER_PRIORITY_REDRAW</link>
+#define             <link linkend="CLUTTER-PRIORITY-TIMELINE:CAPS">CLUTTER_PRIORITY_TIMELINE</link>
+
+enum                <link linkend="ClutterInitError">ClutterInitError</link>;
+<link linkend="ClutterInitError">ClutterInitError</link>    <link linkend="clutter-init">clutter_init</link>                        (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);
+<link linkend="ClutterInitError">ClutterInitError</link>    <link linkend="clutter-init-with-args">clutter_init_with_args</link>              (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv,
+                                                         <link linkend="char">char</link> *parameter_string,
+                                                         <link linkend="GOptionEntry">GOptionEntry</link> *entries,
+                                                         <link linkend="char">char</link> *translation_domain,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="GOptionGroup">GOptionGroup</link>*       <link linkend="clutter-get-option-group">clutter_get_option_group</link>            (void);
+<link linkend="GOptionGroup">GOptionGroup</link>*       <link linkend="clutter-get-option-group-without-init">clutter_get_option_group_without_init</link>
+                                                        (void);
+
+<link linkend="void">void</link>                <link linkend="clutter-main">clutter_main</link>                        (void);
+<link linkend="void">void</link>                <link linkend="clutter-main-quit">clutter_main_quit</link>                   (void);
+<link linkend="gint">gint</link>                <link linkend="clutter-main-level">clutter_main_level</link>                  (void);
+
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-get-debug-enabled">clutter_get_debug_enabled</link>           (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-get-show-fps">clutter_get_show_fps</link>                (void);
+<link linkend="gulong">gulong</link>              <link linkend="clutter-get-timestamp">clutter_get_timestamp</link>               (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-get-actor-by-gid">clutter_get_actor_by_gid</link>            (<link linkend="guint32">guint32</link> id);
+<link linkend="void">void</link>                <link linkend="clutter-set-default-frame-rate">clutter_set_default_frame_rate</link>      (<link linkend="guint">guint</link> frames_per_sec);
+<link linkend="guint">guint</link>               <link linkend="clutter-get-default-frame-rate">clutter_get_default_frame_rate</link>      (void);
+<link linkend="void">void</link>                <link linkend="clutter-set-motion-events-enabled">clutter_set_motion_events_enabled</link>   (<link linkend="gboolean">gboolean</link> enable);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-get-motion-events-enabled">clutter_get_motion_events_enabled</link>   (void);
+<link linkend="void">void</link>                <link linkend="clutter-set-motion-events-frequency">clutter_set_motion_events_frequency</link> (<link linkend="guint">guint</link> frequency);
+<link linkend="guint">guint</link>               <link linkend="clutter-get-motion-events-frequency">clutter_get_motion_events_frequency</link> (void);
+<link linkend="void">void</link>                <link linkend="clutter-clear-glyph-cache">clutter_clear_glyph_cache</link>           (void);
+<link linkend="void">void</link>                <link linkend="clutter-set-use-mipmapped-text">clutter_set_use_mipmapped_text</link>      (<link linkend="gboolean">gboolean</link> value);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-get-use-mipmapped-text">clutter_get_use_mipmapped_text</link>      (void);
+
+<link linkend="void">void</link>                <link linkend="clutter-threads-set-lock-functions">clutter_threads_set_lock_functions</link>  (<link linkend="GCallback">GCallback</link> enter_fn,
+                                                         <link linkend="GCallback">GCallback</link> leave_fn);
+<link linkend="void">void</link>                <link linkend="clutter-threads-init">clutter_threads_init</link>                (void);
+<link linkend="void">void</link>                <link linkend="clutter-threads-enter">clutter_threads_enter</link>               (void);
+<link linkend="void">void</link>                <link linkend="clutter-threads-leave">clutter_threads_leave</link>               (void);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-idle">clutter_threads_add_idle</link>            (<link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-idle-full">clutter_threads_add_idle_full</link>       (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-timeout">clutter_threads_add_timeout</link>         (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-timeout-full">clutter_threads_add_timeout_full</link>    (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-frame-source">clutter_threads_add_frame_source</link>    (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="guint">guint</link>               <link linkend="clutter-threads-add-frame-source-full">clutter_threads_add_frame_source_full</link>
+                                                        (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-get-keyboard-grab">clutter_get_keyboard_grab</link>           (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-get-pointer-grab">clutter_get_pointer_grab</link>            (void);
+<link linkend="void">void</link>                <link linkend="clutter-grab-keyboard">clutter_grab_keyboard</link>               (<link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-grab-pointer">clutter_grab_pointer</link>                (<link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-ungrab-keyboard">clutter_ungrab_keyboard</link>             (void);
+<link linkend="void">void</link>                <link linkend="clutter-ungrab-pointer">clutter_ungrab_pointer</link>              (void);
+<link linkend="void">void</link>                <link linkend="clutter-grab-pointer-for-device">clutter_grab_pointer_for_device</link>     (<link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> id);
+<link linkend="void">void</link>                <link linkend="clutter-ungrab-pointer-for-device">clutter_ungrab_pointer_for_device</link>   (<link linkend="gint">gint</link> id);
+
+<link linkend="void">void</link>                <link linkend="clutter-do-event">clutter_do_event</link>                    (<link linkend="ClutterEvent">ClutterEvent</link> *event);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-General.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions to retrieve various global Clutter resources and other utility
+functions for mainloops, events and threads</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-General.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CLUTTER-PRIORITY-REDRAW:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_PRIORITY_REDRAW</title>
+<indexterm zone="CLUTTER-PRIORITY-REDRAW:CAPS" role="0.8"><primary>CLUTTER_PRIORITY_REDRAW</primary></indexterm><programlisting>#define CLUTTER_PRIORITY_REDRAW         (G_PRIORITY_DEFAULT + 10)
+</programlisting>
+<para>
+Priority of the redraws.</para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="CLUTTER-PRIORITY-TIMELINE:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_PRIORITY_TIMELINE</title>
+<indexterm zone="CLUTTER-PRIORITY-TIMELINE:CAPS" role="0.8"><primary>CLUTTER_PRIORITY_TIMELINE</primary></indexterm><programlisting>#define CLUTTER_PRIORITY_TIMELINE       (G_PRIORITY_DEFAULT + 30)
+</programlisting>
+<para>
+Priority of the timelines.</para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="ClutterInitError" role="enum" condition="since:0.2">
+<title>enum ClutterInitError</title>
+<indexterm zone="ClutterInitError" role="0.2"><primary>ClutterInitError</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_INIT_SUCCESS        =  1,
+  CLUTTER_INIT_ERROR_UNKNOWN  =  0,
+  CLUTTER_INIT_ERROR_THREADS  = -1,
+  CLUTTER_INIT_ERROR_BACKEND  = -2,
+  CLUTTER_INIT_ERROR_INTERNAL = -3
+} ClutterInitError;
+</programlisting>
+<para>
+Error conditions returned by <link linkend="clutter-init"><function>clutter_init()</function></link> and <link linkend="clutter-init-with-args"><function>clutter_init_with_args()</function></link>.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-INIT-SUCCESS:CAPS" role="constant">
+<term><literal>CLUTTER_INIT_SUCCESS</literal></term>
+<listitem><simpara> Initialisation successful
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-INIT-ERROR-UNKNOWN:CAPS" role="constant">
+<term><literal>CLUTTER_INIT_ERROR_UNKNOWN</literal></term>
+<listitem><simpara> Unknown error
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-INIT-ERROR-THREADS:CAPS" role="constant">
+<term><literal>CLUTTER_INIT_ERROR_THREADS</literal></term>
+<listitem><simpara> Thread initialisation failed
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-INIT-ERROR-BACKEND:CAPS" role="constant">
+<term><literal>CLUTTER_INIT_ERROR_BACKEND</literal></term>
+<listitem><simpara> Backend initialisation failed
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-INIT-ERROR-INTERNAL:CAPS" role="constant">
+<term><literal>CLUTTER_INIT_ERROR_INTERNAL</literal></term>
+<listitem><simpara> Internal error
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-init" role="function">
+<title>clutter_init ()</title>
+<indexterm zone="clutter-init"><primary>clutter_init</primary></indexterm><programlisting><link linkend="ClutterInitError">ClutterInitError</link>    clutter_init                        (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv);</programlisting>
+<para>
+It will initialise everything needed to operate with Clutter and
+parses some standard command line options. <parameter>argc</parameter> and <parameter>argv</parameter> are
+adjusted accordingly so your own code will never see those standard
+arguments.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> The number of arguments in <parameter>argv</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> A pointer to an array of arguments.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 1 on success, &lt; 0 on failure.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-init-with-args" role="function" condition="since:0.2">
+<title>clutter_init_with_args ()</title>
+<indexterm zone="clutter-init-with-args" role="0.2"><primary>clutter_init_with_args</primary></indexterm><programlisting><link linkend="ClutterInitError">ClutterInitError</link>    clutter_init_with_args              (<link linkend="int">int</link> *argc,
+                                                         <link linkend="char">char</link> ***argv,
+                                                         <link linkend="char">char</link> *parameter_string,
+                                                         <link linkend="GOptionEntry">GOptionEntry</link> *entries,
+                                                         <link linkend="char">char</link> *translation_domain,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+This function does the same work as <link linkend="clutter-init"><function>clutter_init()</function></link>. Additionally,
+it allows you to add your own command line options, and it
+automatically generates nicely formatted <option>--help</option>
+output. Note that your program will be terminated after writing
+out the help output. Also note that, in case of error, the
+error message will be placed inside <parameter>error</parameter> instead of being
+printed on the display.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>argc</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to the number of command line arguments
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to the array of command line arguments
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parameter_string</parameter>&nbsp;:</term>
+<listitem><simpara> a string which is displayed in the
+  first line of <option>--help</option> output, after
+  <literal><replaceable>programname</replaceable> [OPTION...]</literal>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>entries</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of <link linkend="GOptionEntry"><type>GOptionEntry</type></link><!-- -->s
+  describing the options of your program
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>translation_domain</parameter>&nbsp;:</term>
+<listitem><simpara> a translation domain to use for translating
+  the <option>--help</option> output for the options in <parameter>entries</parameter>
+  with <link linkend="gettext"><function>gettext()</function></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> a return location for a <link linkend="GError"><type>GError</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="CLUTTER-INIT-SUCCESS:CAPS"><literal>CLUTTER_INIT_SUCCESS</literal></link> if Clutter has been successfully
+  initialised, or other values or <link linkend="ClutterInitError"><type>ClutterInitError</type></link> in case of
+  error.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-get-option-group" role="function" condition="since:0.2">
+<title>clutter_get_option_group ()</title>
+<indexterm zone="clutter-get-option-group" role="0.2"><primary>clutter_get_option_group</primary></indexterm><programlisting><link linkend="GOptionGroup">GOptionGroup</link>*       clutter_get_option_group            (void);</programlisting>
+<para>
+Returns a <link linkend="GOptionGroup"><type>GOptionGroup</type></link> for the command line arguments recognized
+by Clutter. You should add this group to your <link linkend="GOptionContext"><type>GOptionContext</type></link> with
+<link linkend="g-option-context-add-group"><function>g_option_context_add_group()</function></link>, if you are using <link linkend="g-option-context-parse"><function>g_option_context_parse()</function></link>
+to parse your commandline arguments.
+</para>
+<para>
+Calling <link linkend="g-option-context-parse"><function>g_option_context_parse()</function></link> with Clutter's <link linkend="GOptionGroup"><type>GOptionGroup</type></link> will result
+in Clutter's initialization. That is, the following code:
+</para>
+<para>
+<informalexample><programlisting>
+  g_option_context_set_main_group (context, clutter_get_option_group ());
+  res = g_option_context_parse (context, &amp;argc, &amp;argc, NULL);
+</programlisting></informalexample>
+</para>
+<para>
+is functionally equivalent to:
+</para>
+<para>
+<informalexample><programlisting>
+  clutter_init (&amp;argc, &amp;argv);
+</programlisting></informalexample>
+</para>
+<para>
+After <link linkend="g-option-context-parse"><function>g_option_context_parse()</function></link> on a <link linkend="GOptionContext"><type>GOptionContext</type></link> containing the
+Clutter <link linkend="GOptionGroup"><type>GOptionGroup</type></link> has returned <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>, Clutter is guaranteed to be
+initialized.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="GOptionGroup"><type>GOptionGroup</type></link> for the commandline arguments
+  recognized by Clutter
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-get-option-group-without-init" role="function" condition="since:0.8.2">
+<title>clutter_get_option_group_without_init ()</title>
+<indexterm zone="clutter-get-option-group-without-init" role="0.8.2"><primary>clutter_get_option_group_without_init</primary></indexterm><programlisting><link linkend="GOptionGroup">GOptionGroup</link>*       clutter_get_option_group_without_init
+                                                        (void);</programlisting>
+<para>
+Returns a <link linkend="GOptionGroup"><type>GOptionGroup</type></link> for the command line arguments recognized
+by Clutter. You should add this group to your <link linkend="GOptionContext"><type>GOptionContext</type></link> with
+<link linkend="g-option-context-add-group"><function>g_option_context_add_group()</function></link>, if you are using <link linkend="g-option-context-parse"><function>g_option_context_parse()</function></link>
+to parse your commandline arguments. Unlike <link linkend="clutter-get-option-group"><function>clutter_get_option_group()</function></link>,
+calling <link linkend="g-option-context-parse"><function>g_option_context_parse()</function></link> with the <link linkend="GOptionGroup"><type>GOptionGroup</type></link> returned by this
+function requires a subsequent explicit call to <link linkend="clutter-init"><function>clutter_init()</function></link>; use this
+function when needing to set foreign display connection with
+<link linkend="clutter-x11-set-display"><function>clutter_x11_set_display()</function></link>, or with <link linkend="gtk-clutter-init"><function>gtk_clutter_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="GOptionGroup"><type>GOptionGroup</type></link> for the commandline arguments
+  recognized by Clutter
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="clutter-main" role="function">
+<title>clutter_main ()</title>
+<indexterm zone="clutter-main"><primary>clutter_main</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_main                        (void);</programlisting>
+<para>
+Starts the Clutter mainloop.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-main-quit" role="function">
+<title>clutter_main_quit ()</title>
+<indexterm zone="clutter-main-quit"><primary>clutter_main_quit</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_main_quit                   (void);</programlisting>
+<para>
+Terminates the Clutter mainloop.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-main-level" role="function">
+<title>clutter_main_level ()</title>
+<indexterm zone="clutter-main-level"><primary>clutter_main_level</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_main_level                  (void);</programlisting>
+<para>
+Retrieves the depth of the Clutter mainloop.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The level of the mainloop.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-get-debug-enabled" role="function">
+<title>clutter_get_debug_enabled ()</title>
+<indexterm zone="clutter-get-debug-enabled"><primary>clutter_get_debug_enabled</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_get_debug_enabled           (void);</programlisting>
+<para>
+Check if clutter has debugging turned on.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if debugging is turned on, FALSE otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-get-show-fps" role="function" condition="since:0.4">
+<title>clutter_get_show_fps ()</title>
+<indexterm zone="clutter-get-show-fps" role="0.4"><primary>clutter_get_show_fps</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_get_show_fps                (void);</programlisting>
+<para>
+Returns whether Clutter should print out the frames per second on the
+console. You can enable this setting either using the
+<literal>CLUTTER_SHOW_FPS</literal> environment variable or passing
+the <literal>--clutter-show-fps</literal> command line argument. *</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if Clutter should show the FPS.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-get-timestamp" role="function">
+<title>clutter_get_timestamp ()</title>
+<indexterm zone="clutter-get-timestamp"><primary>clutter_get_timestamp</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              clutter_get_timestamp               (void);</programlisting>
+<para>
+Returns the approximate number of microseconds passed since clutter was
+intialised.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of microseconds since <link linkend="clutter-init"><function>clutter_init()</function></link> was called.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-get-actor-by-gid" role="function" condition="since:0.6">
+<title>clutter_get_actor_by_gid ()</title>
+<indexterm zone="clutter-get-actor-by-gid" role="0.6"><primary>clutter_get_actor_by_gid</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_get_actor_by_gid            (<link linkend="guint32">guint32</link> id);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterActor"><type>ClutterActor</type></link> with <parameter>id</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> ID.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the actor with the passed id or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. The returned
+  actor does not have its reference count increased.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-set-default-frame-rate" role="function" condition="since:0.6">
+<title>clutter_set_default_frame_rate ()</title>
+<indexterm zone="clutter-set-default-frame-rate" role="0.6"><primary>clutter_set_default_frame_rate</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_set_default_frame_rate      (<link linkend="guint">guint</link> frames_per_sec);</programlisting>
+<para>
+Sets the default frame rate to be used when creating <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!--
+-->s</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>frames_per_sec</parameter>&nbsp;:</term>
+<listitem><simpara> the new default frame rate
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-get-default-frame-rate" role="function" condition="since:0.6">
+<title>clutter_get_default_frame_rate ()</title>
+<indexterm zone="clutter-get-default-frame-rate" role="0.6"><primary>clutter_get_default_frame_rate</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_get_default_frame_rate      (void);</programlisting>
+<para>
+Retrieves the default frame rate used when creating <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!--
+-->s.
+</para>
+<para>
+This value is also used to compute the default frequency of motion
+events.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the default frame rate
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-set-motion-events-enabled" role="function" condition="since:0.6">
+<title>clutter_set_motion_events_enabled ()</title>
+<indexterm zone="clutter-set-motion-events-enabled" role="0.6"><primary>clutter_set_motion_events_enabled</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_set_motion_events_enabled   (<link linkend="gboolean">gboolean</link> enable);</programlisting>
+<para>
+Sets whether per-actor motion events should be enabled or not (the
+default is to enable them).
+</para>
+<para>
+If <parameter>enable</parameter> is <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> the following events will not work:
+<itemizedlist>
+  <listitem><para>ClutterActor::motion-event, unless on the
+    <link linkend="ClutterStage"><type>ClutterStage</type></link></para></listitem>
+  <listitem><para>ClutterActor::enter-event</para></listitem>
+  <listitem><para>ClutterActor::leave-event</para></listitem>
+</itemizedlist></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>enable</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to enable per-actor motion events
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-get-motion-events-enabled" role="function" condition="since:0.6">
+<title>clutter_get_motion_events_enabled ()</title>
+<indexterm zone="clutter-get-motion-events-enabled" role="0.6"><primary>clutter_get_motion_events_enabled</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_get_motion_events_enabled   (void);</programlisting>
+<para>
+Gets whether the per-actor motion events are enabled.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the motion events are enabled
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-set-motion-events-frequency" role="function" condition="since:0.6">
+<title>clutter_set_motion_events_frequency ()</title>
+<indexterm zone="clutter-set-motion-events-frequency" role="0.6"><primary>clutter_set_motion_events_frequency</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_set_motion_events_frequency (<link linkend="guint">guint</link> frequency);</programlisting>
+<para>
+Sets the motion events frequency. Setting this to a non-zero value
+will override the default setting, so it should be rarely used.
+</para>
+<para>
+Motion events are delivered from the default backend to the stage
+and are used to generate the enter/leave events pair. This might lead
+to a performance penalty due to the way the actors are identified.
+Using this function is possible to reduce the frequency of the motion
+events delivery to the stage.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>frequency</parameter>&nbsp;:</term>
+<listitem><simpara> the number of motion events per second, or 0 for the
+  default value
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-get-motion-events-frequency" role="function" condition="since:0.6">
+<title>clutter_get_motion_events_frequency ()</title>
+<indexterm zone="clutter-get-motion-events-frequency" role="0.6"><primary>clutter_get_motion_events_frequency</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_get_motion_events_frequency (void);</programlisting>
+<para>
+Retrieves the number of motion events per second that are delivered
+to the stage.
+</para>
+<para>
+See <link linkend="clutter-set-motion-events-frequency"><function>clutter_set_motion_events_frequency()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of motion events per second
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-clear-glyph-cache" role="function" condition="since:0.8">
+<title>clutter_clear_glyph_cache ()</title>
+<indexterm zone="clutter-clear-glyph-cache" role="0.8"><primary>clutter_clear_glyph_cache</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_clear_glyph_cache           (void);</programlisting>
+<para>
+Clears the internal cache of glyphs used by the Pango
+renderer. This will free up some memory and GL texture
+resources. The cache will be automatically refilled as more text is
+drawn.</para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-set-use-mipmapped-text" role="function" condition="since:0.8">
+<title>clutter_set_use_mipmapped_text ()</title>
+<indexterm zone="clutter-set-use-mipmapped-text" role="0.8"><primary>clutter_set_use_mipmapped_text</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_set_use_mipmapped_text      (<link linkend="gboolean">gboolean</link> value);</programlisting>
+<para>
+Sets whether subsequent text rendering operations will use
+mipmapped textures or not. Using mipmapped textures will improve
+the quality for scaled down text but will use more texture memory.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to enable mipmapping or <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> to disable.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-get-use-mipmapped-text" role="function" condition="since:0.8">
+<title>clutter_get_use_mipmapped_text ()</title>
+<indexterm zone="clutter-get-use-mipmapped-text" role="0.8"><primary>clutter_get_use_mipmapped_text</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_get_use_mipmapped_text      (void);</programlisting>
+<para>
+Gets whether mipmapped textures are used in text operations.
+See <link linkend="clutter-set-use-mipmapped-text"><function>clutter_set_use_mipmapped_text()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if text operations should use mipmapped
+  textures
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-threads-set-lock-functions" role="function" condition="since:0.4">
+<title>clutter_threads_set_lock_functions ()</title>
+<indexterm zone="clutter-threads-set-lock-functions" role="0.4"><primary>clutter_threads_set_lock_functions</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_threads_set_lock_functions  (<link linkend="GCallback">GCallback</link> enter_fn,
+                                                         <link linkend="GCallback">GCallback</link> leave_fn);</programlisting>
+<para>
+Allows the application to replace the standard method that
+Clutter uses to protect its data structures. Normally, Clutter
+creates a single <link linkend="GMutex"><type>GMutex</type></link> that is locked by <link linkend="clutter-threads-enter"><function>clutter_threads_enter()</function></link>,
+and released by <link linkend="clutter-threads-leave"><function>clutter_threads_leave()</function></link>; using this function an
+application provides, instead, a function <parameter>enter_fn</parameter> that is
+called by <link linkend="clutter-threads-enter"><function>clutter_threads_enter()</function></link> and a function <parameter>leave_fn</parameter> that is
+called by <link linkend="clutter-threads-leave"><function>clutter_threads_leave()</function></link>.
+</para>
+<para>
+The functions must provide at least same locking functionality
+as the default implementation, but can also do extra application
+specific processing.
+</para>
+<para>
+As an example, consider an application that has its own recursive
+lock that when held, holds the Clutter lock as well. When Clutter
+unlocks the Clutter lock when entering a recursive main loop, the
+application must temporarily release its lock as well.
+</para>
+<para>
+Most threaded Clutter apps won't need to use this method.
+</para>
+<para>
+This method must be called before <link linkend="clutter-threads-init"><function>clutter_threads_init()</function></link>, and cannot
+be called multiple times.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>enter_fn</parameter>&nbsp;:</term>
+<listitem><simpara> function called when aquiring the Clutter main lock
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>leave_fn</parameter>&nbsp;:</term>
+<listitem><simpara> function called when releasing the Clutter main lock
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-init" role="function" condition="since:0.4">
+<title>clutter_threads_init ()</title>
+<indexterm zone="clutter-threads-init" role="0.4"><primary>clutter_threads_init</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_threads_init                (void);</programlisting>
+<para>
+Initialises the Clutter threading mechanism, so that Clutter API can be
+called by multiple threads, using <link linkend="clutter-threads-enter"><function>clutter_threads_enter()</function></link> and
+<link linkend="clutter-threads-leave"><function>clutter_threads_leave()</function></link> to mark the critical sections.
+</para>
+<para>
+You must call <link linkend="g-thread-init"><function>g_thread_init()</function></link> before this function.
+</para>
+<para>
+This function must be called before <link linkend="clutter-init"><function>clutter_init()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-enter" role="function" condition="since:0.4">
+<title>clutter_threads_enter ()</title>
+<indexterm zone="clutter-threads-enter" role="0.4"><primary>clutter_threads_enter</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_threads_enter               (void);</programlisting>
+<para>
+Locks the Clutter thread lock.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-leave" role="function" condition="since:0.4">
+<title>clutter_threads_leave ()</title>
+<indexterm zone="clutter-threads-leave" role="0.4"><primary>clutter_threads_leave</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_threads_leave               (void);</programlisting>
+<para>
+Unlocks the Clutter thread lock.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-add-idle" role="function" condition="since:0.4">
+<title>clutter_threads_add_idle ()</title>
+<indexterm zone="clutter-threads-add-idle" role="0.4"><primary>clutter_threads_add_idle</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_idle            (<link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple wrapper around <link linkend="clutter-threads-add-idle-full"><function>clutter_threads_add_idle_full()</function></link> using the
+default priority.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-add-idle-full" role="function" condition="since:0.4">
+<title>clutter_threads_add_idle_full ()</title>
+<indexterm zone="clutter-threads-add-idle-full" role="0.4"><primary>clutter_threads_add_idle_full</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_idle_full       (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Adds a function to be called whenever there are no higher priority
+events pending. If the function returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> it is automatically
+removed from the list of event sources and will not be called again.
+</para>
+<para>
+This function can be considered a thread-safe variant of <link linkend="g-idle-add-full"><function>g_idle_add_full()</function></link>:
+it will call <parameter>function</parameter> while holding the Clutter lock. It is logically
+equivalent to the following implementation:
+</para>
+<para>
+<informalexample><programlisting>
+static gboolean
+idle_safe_callback (gpointer data)
+{
+   SafeClosure *closure = data;
+   gboolean res = FALSE;
+
+   /&ast; mark the critical section &ast;/
+
+   clutter_threads_enter();
+
+   /&ast; the callback does not need to acquire the Clutter
+    &ast; lock itself, as it is held by the this proxy handler
+    &ast;/
+   res = closure->callback (closure->data);
+
+   clutter_threads_leave();
+
+   return res;
+}
+static gulong
+add_safe_idle (GSourceFunc callback,
+               gpointer    data)
+{
+  SafeClosure *closure = g_new0 (SafeClosure, 1);
+
+  closure-&gt;callback = callback;
+  closure-&gt;data = data;
+
+  return g_add_idle_full (G_PRIORITY_DEFAULT_IDLE,
+                          idle_safe_callback,
+                          closure,
+                          g_free)
+}
+</programlisting></informalexample>
+</para>
+<para>
+This function should be used by threaded applications to make sure
+that <parameter>func</parameter> is emitted under the Clutter threads lock and invoked
+from the same thread that started the Clutter main loop. For instance,
+it can be used to update the UI using the results from a worker
+thread:
+</para>
+<para>
+<informalexample><programlisting>
+static gboolean
+update_ui (gpointer data)
+{
+  SomeClosure *closure = data;
+
+  /&ast; it is safe to call Clutter API from this function because
+   &ast; it is invoked from the same thread that started the main
+   &ast; loop and under the Clutter thread lock
+   &ast;/
+  clutter_label_set_text (CLUTTER_LABEL (closure-&gt;label),
+                          closure-&gt;text);
+
+  g_object_unref (closure-&gt;label);
+  g_free (closure);
+
+  return FALSE;
+}
+
+  /&ast; within another thread &ast;/
+  closure = g_new0 (SomeClosure, 1);
+  /&ast; always take a reference on GObject instances &ast;/
+  closure-&gt;label = g_object_ref (my_application-&gt;label);
+  closure-&gt;text = g_strdup (processed_text_to_update_the_label);
+
+  clutter_threads_add_idle_full (G_PRIORITY_HIGH_IDLE,
+                                 update_ui,
+                                 closure,
+                                 NULL);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priority</parameter>&nbsp;:</term>
+<listitem><simpara> the priority of the timeout source. Typically this will be in the
+   range between <link linkend="G-PRIORITY-DEFAULT-IDLE:CAPS"><type>G_PRIORITY_DEFAULT_IDLE</type></link> and <link linkend="G-PRIORITY-HIGH-IDLE:CAPS"><type>G_PRIORITY_HIGH_IDLE</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> functio to call when the idle source is removed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-add-timeout" role="function" condition="since:0.4">
+<title>clutter_threads_add_timeout ()</title>
+<indexterm zone="clutter-threads-add-timeout" role="0.4"><primary>clutter_threads_add_timeout</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_timeout         (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple wrapper around <link linkend="clutter-threads-add-timeout-full"><function>clutter_threads_add_timeout_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-add-timeout-full" role="function" condition="since:0.4">
+<title>clutter_threads_add_timeout_full ()</title>
+<indexterm zone="clutter-threads-add-timeout-full" role="0.4"><primary>clutter_threads_add_timeout_full</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_timeout_full    (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Sets a function to be called at regular intervals holding the Clutter
+threads lock, with the given priority. The function is called repeatedly
+until it returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>, at which point the timeout is automatically
+removed and the function will not be called again. The <parameter>notify</parameter> function
+is called when the timeout is removed.
+</para>
+<para>
+The first call to the function will be at the end of the first <parameter>interval</parameter>.
+</para>
+<para>
+It is important to note that, due to how the Clutter main loop is
+implemented, the timing will not be accurate and it will not try to
+"keep up" with the interval. A more reliable source is available
+using <link linkend="clutter-threads-add-frame-source-full"><function>clutter_threads_add_frame_source_full()</function></link>, which is also internally
+used by <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>.
+</para>
+<para>
+See also <link linkend="clutter-threads-add-idle-full"><function>clutter_threads_add_idle_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priority</parameter>&nbsp;:</term>
+<listitem><simpara> the priority of the timeout source. Typically this will be in the
+           range between <link linkend="G-PRIORITY-DEFAULT:CAPS"><type>G_PRIORITY_DEFAULT</type></link> and <link linkend="G-PRIORITY-HIGH:CAPS"><type>G_PRIORITY_HIGH</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to call when the timeout source is removed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-threads-add-frame-source" role="function" condition="since:0.8">
+<title>clutter_threads_add_frame_source ()</title>
+<indexterm zone="clutter-threads-add-frame-source" role="0.8"><primary>clutter_threads_add_frame_source</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_frame_source    (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple wrapper around <link linkend="clutter-threads-add-frame-source-full"><function>clutter_threads_add_frame_source_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-threads-add-frame-source-full" role="function" condition="since:0.8">
+<title>clutter_threads_add_frame_source_full ()</title>
+<indexterm zone="clutter-threads-add-frame-source-full" role="0.8"><primary>clutter_threads_add_frame_source_full</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_threads_add_frame_source_full
+                                                        (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Sets a function to be called at regular intervals holding the Clutter
+threads lock, with the given priority. The function is called repeatedly
+until it returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>, at which point the timeout is automatically
+removed and the function will not be called again. The <parameter>notify</parameter> function
+is called when the timeout is removed.
+</para>
+<para>
+This function is similar to <link linkend="clutter-threads-add-timeout-full"><function>clutter_threads_add_timeout_full()</function></link>
+except that it will try to compensate for delays. For example, if
+<parameter>func</parameter> takes half the interval time to execute then the function
+will be called again half the interval time after it finished. In
+contrast <link linkend="clutter-threads-add-timeout-full"><function>clutter_threads_add_timeout_full()</function></link> would not fire until a
+full interval after the function completes so the delay between
+calls would be <parameter>interval</parameter> * 1.5. This function does not however try
+to invoke the function multiple times to catch up missing frames if
+<parameter>func</parameter> takes more than <parameter>interval</parameter> ms to execute.
+</para>
+<para>
+See also <link linkend="clutter-threads-add-idle-full"><function>clutter_threads_add_idle_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priority</parameter>&nbsp;:</term>
+<listitem><simpara> the priority of the frame source. Typically this will be in the
+           range between <link linkend="G-PRIORITY-DEFAULT:CAPS"><type>G_PRIORITY_DEFAULT</type></link> and <link linkend="G-PRIORITY-HIGH:CAPS"><type>G_PRIORITY_HIGH</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to call when the timeout source is removed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-get-keyboard-grab" role="function" condition="since:0.6">
+<title>clutter_get_keyboard_grab ()</title>
+<indexterm zone="clutter-get-keyboard-grab" role="0.6"><primary>clutter_get_keyboard_grab</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_get_keyboard_grab           (void);</programlisting>
+<para>
+Queries the current keyboard grab of clutter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the actor currently holding the keyboard grab, or NULL if there is no grab.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-get-pointer-grab" role="function" condition="since:0.6">
+<title>clutter_get_pointer_grab ()</title>
+<indexterm zone="clutter-get-pointer-grab" role="0.6"><primary>clutter_get_pointer_grab</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_get_pointer_grab            (void);</programlisting>
+<para>
+Queries the current pointer grab of clutter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the actor currently holding the pointer grab, or NULL if there is no grab.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-grab-keyboard" role="function" condition="since:0.6">
+<title>clutter_grab_keyboard ()</title>
+<indexterm zone="clutter-grab-keyboard" role="0.6"><primary>clutter_grab_keyboard</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_grab_keyboard               (<link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Grabs keyboard events, after the grab is done keyboard events ("key-press-event"
+and "key-release-event") are delivered to this actor directly. The source
+set in the event will be the actor that would have received the event if the
+keyboard grab was not in effect.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-grab-pointer" role="function" condition="since:0.6">
+<title>clutter_grab_pointer ()</title>
+<indexterm zone="clutter-grab-pointer" role="0.6"><primary>clutter_grab_pointer</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_grab_pointer                (<link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Grabs pointer events, after the grab is done all pointer related events
+(press, motion, release, enter, leave and scroll) are delivered to this
+actor directly. The source set in the event will be the actor that would
+have received the event if the pointer grab was not in effect.
+</para>
+<para>
+If you wish to grab all the pointer events for a specific input device,
+you should use <link linkend="clutter-grab-pointer-for-device"><function>clutter_grab_pointer_for_device()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-ungrab-keyboard" role="function" condition="since:0.6">
+<title>clutter_ungrab_keyboard ()</title>
+<indexterm zone="clutter-ungrab-keyboard" role="0.6"><primary>clutter_ungrab_keyboard</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_ungrab_keyboard             (void);</programlisting>
+<para>
+Removes an existing grab of the keyboard.</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-ungrab-pointer" role="function" condition="since:0.6">
+<title>clutter_ungrab_pointer ()</title>
+<indexterm zone="clutter-ungrab-pointer" role="0.6"><primary>clutter_ungrab_pointer</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_ungrab_pointer              (void);</programlisting>
+<para>
+Removes an existing grab of the pointer.</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-grab-pointer-for-device" role="function" condition="since:0.8">
+<title>clutter_grab_pointer_for_device ()</title>
+<indexterm zone="clutter-grab-pointer-for-device" role="0.8"><primary>clutter_grab_pointer_for_device</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_grab_pointer_for_device     (<link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> id);</programlisting>
+<para>
+Grabs all the pointer events coming from the device <parameter>id</parameter> for <parameter>actor</parameter>.
+</para>
+<para>
+If <parameter>id</parameter> is -1 then this function is equivalent to <link linkend="clutter-grab-pointer"><function>clutter_grab_pointer()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> a device id, or -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-ungrab-pointer-for-device" role="function" condition="since:0.8">
+<title>clutter_ungrab_pointer_for_device ()</title>
+<indexterm zone="clutter-ungrab-pointer-for-device" role="0.8"><primary>clutter_ungrab_pointer_for_device</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_ungrab_pointer_for_device   (<link linkend="gint">gint</link> id);</programlisting>
+<para>
+Removes an existing grab of the pointer events for device <parameter>id</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> a device id
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-do-event" role="function" condition="since:0.4">
+<title>clutter_do_event ()</title>
+<indexterm zone="clutter-do-event" role="0.4"><primary>clutter_do_event</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_do_event                    (<link linkend="ClutterEvent">ClutterEvent</link> *event);</programlisting>
+<para>
+Processes an event. This function should never be called by applications.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>event</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEvent"><type>ClutterEvent</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

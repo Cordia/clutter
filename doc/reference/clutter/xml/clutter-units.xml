@@ -1,0 +1,567 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Unit-conversion">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Unit-conversion.top_of_page">Unit conversion</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Unit conversion</refname>
+<refpurpose>A logical distance unit.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Unit-conversion.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="ClutterUnit">ClutterUnit</link>;
+#define             <link linkend="CLUTTER-UNITS-FROM-DEVICE:CAPS">CLUTTER_UNITS_FROM_DEVICE</link>           (x)
+#define             <link linkend="CLUTTER-UNITS-TO-DEVICE:CAPS">CLUTTER_UNITS_TO_DEVICE</link>             (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-FIXED:CAPS">CLUTTER_UNITS_FROM_FIXED</link>            (x)
+#define             <link linkend="CLUTTER-UNITS-TO-FIXED:CAPS">CLUTTER_UNITS_TO_FIXED</link>              (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-FLOAT:CAPS">CLUTTER_UNITS_FROM_FLOAT</link>            (x)
+#define             <link linkend="CLUTTER-UNITS-TO-FLOAT:CAPS">CLUTTER_UNITS_TO_FLOAT</link>              (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-INT:CAPS">CLUTTER_UNITS_FROM_INT</link>              (x)
+#define             <link linkend="CLUTTER-UNITS-TO-INT:CAPS">CLUTTER_UNITS_TO_INT</link>                (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS">CLUTTER_UNITS_FROM_PANGO_UNIT</link>       (x)
+#define             <link linkend="CLUTTER-UNITS-TO-PANGO-UNIT:CAPS">CLUTTER_UNITS_TO_PANGO_UNIT</link>         (x)
+#define             <link linkend="CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS">CLUTTER_UNITS_TMP_FROM_DEVICE</link>       (x)
+#define             <link linkend="CLUTTER-UNITS-TMP-TO-DEVICE:CAPS">CLUTTER_UNITS_TMP_TO_DEVICE</link>         (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS">CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE</link>(x)
+#define             <link linkend="CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS">CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE</link>(x)
+#define             <link linkend="CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS">CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE</link>(a, x)
+#define             <link linkend="CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS">CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE</link>(a, x)
+#define             <link linkend="CLUTTER-UNITS-FROM-MM:CAPS">CLUTTER_UNITS_FROM_MM</link>               (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-MMX:CAPS">CLUTTER_UNITS_FROM_MMX</link>              (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-POINTS:CAPS">CLUTTER_UNITS_FROM_POINTS</link>           (x)
+#define             <link linkend="CLUTTER-UNITS-FROM-POINTSX:CAPS">CLUTTER_UNITS_FROM_POINTSX</link>          (x)
+
+#define             <link linkend="CLUTTER-MAXUNIT:CAPS">CLUTTER_MAXUNIT</link>
+#define             <link linkend="CLUTTER-MINUNIT:CAPS">CLUTTER_MINUNIT</link>
+                    <link linkend="ClutterParamSpecUnit">ClutterParamSpecUnit</link>;
+<link linkend="GParamSpec">GParamSpec</link>*         <link linkend="clutter-param-spec-unit">clutter_param_spec_unit</link>             (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *nick,
+                                                         const <link linkend="gchar">gchar</link> *blurb,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> minimum,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> maximum,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> default_value,
+                                                         <link linkend="GParamFlags">GParamFlags</link> flags);
+#define             <link linkend="CLUTTER-VALUE-HOLDS-UNIT:CAPS">CLUTTER_VALUE_HOLDS_UNIT</link>            (x)
+<link linkend="void">void</link>                <link linkend="clutter-value-set-unit">clutter_value_set_unit</link>              (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> units);
+<link linkend="ClutterUnit">ClutterUnit</link>         <link linkend="clutter-value-get-unit">clutter_value_get_unit</link>              (const <link linkend="GValue">GValue</link> *value);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Unit-conversion.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Clutter units are logical units with granularity greater than that of the
+device units; they are used by <link linkend="ClutterActorBox"><type>ClutterActorBox</type></link> and the units-based family
+of <link linkend="ClutterActor"><type>ClutterActor</type></link> functions. To convert between Clutter units and device
+units, use <link linkend="CLUTTER-UNITS-FROM-DEVICE:CAPS"><literal>CLUTTER_UNITS_FROM_DEVICE</literal></link> and <link linkend="CLUTTER-UNITS-TO-DEVICE:CAPS"><literal>CLUTTER_UNITS_TO_DEVICE</literal></link> macros.
+</para>
+<para>
+<link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s can be converted from other units like millimeters,
+typographic points (at the current resolution) and percentages. It is
+also possible to convert fixed point values to and from <link linkend="ClutterUnit"><type>ClutterUnit</type></link>
+values.
+</para>
+<para>
+In order to register a <link linkend="ClutterUnit"><type>ClutterUnit</type></link> property, the <link linkend="ClutterParamSpecUnit"><type>ClutterParamSpecUnit</type></link>
+<link linkend="GParamSpec"><type>GParamSpec</type></link> sub-class should be used:
+</para>
+<para>
+<informalexample><programlisting>
+  GParamSpec *pspec;
+
+  pspec = clutter_param_spec_unit ("width",
+                                   "Width",
+                                   "Width of the actor, in units",
+                                   0, CLUTTER_MAXUNIT,
+                                   0,
+                                   G_PARAM_READWRITE);
+  g_object_class_install_property (gobject_class, PROP_WIDTH, pspec);
+</programlisting></informalexample>
+</para>
+<para>
+A <link linkend="GValue"><type>GValue</type></link> holding units can be manipulated using <link linkend="clutter-value-set-unit"><function>clutter_value_set_unit()</function></link>
+and <link linkend="clutter-value-get-unit"><function>clutter_value_get_unit()</function></link>. <link linkend="GValue"><type>GValue</type></link><!-- -->s containing a <link linkend="ClutterUnit"><type>ClutterUnit</type></link>
+value can also be transformed to <link linkend="GValue"><type>GValue</type></link><!-- -->s containing integer
+values - with a loss of precision:
+</para>
+<para>
+<informalexample><programlisting>
+  static gboolean
+  units_to_int (const GValue *src,
+                GValue       *dest)
+  {
+    g_return_val_if_fail (CLUTTER_VALUE_HOLDS_UNIT (src), FALSE);
+
+    g_value_init (dest, G_TYPE_INT);
+    return g_value_transform (src, &amp;dest);
+  }
+</programlisting></informalexample>
+</para>
+<para>
+The code above is equivalent to:
+</para>
+<para>
+<informalexample><programlisting>
+  static gboolean
+  units_to_int (const GValue *src,
+                GValue       *dest)
+  {
+    g_return_val_if_fail (CLUTTER_VALUE_HOLDS_UNIT (src), FALSE);
+
+    g_value_init (dest, G_TYPE_INT);
+    g_value_set_int (dest,
+                     CLUTTER_UNITS_TO_INT (clutter_value_get_unit (src)));
+
+    return TRUE;
+  }
+</programlisting></informalexample>
+</para>
+<para>
+<link linkend="ClutterUnit"><type>ClutterUnit</type></link> is available since Clutter 0.4</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Unit-conversion.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterUnit" role="typedef" condition="since:0.4">
+<title>ClutterUnit</title>
+<indexterm zone="ClutterUnit" role="0.4"><primary>ClutterUnit</primary></indexterm><programlisting>typedef gint32 ClutterUnit;
+</programlisting>
+<para>
+Device independent unit used by Clutter. The value held can be transformed
+into other units, likes pixels.</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-DEVICE:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_FROM_DEVICE()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-DEVICE:CAPS" role="0.6"><primary>CLUTTER_UNITS_FROM_DEVICE</primary></indexterm><programlisting>#define CLUTTER_UNITS_FROM_DEVICE(x)     CLUTTER_UNITS_FROM_INT ((x))
+</programlisting>
+<para>
+Converts <parameter>x</parameter> from pixels to <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> value in pixels
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-TO-DEVICE:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_TO_DEVICE()</title>
+<indexterm zone="CLUTTER-UNITS-TO-DEVICE:CAPS" role="0.6"><primary>CLUTTER_UNITS_TO_DEVICE</primary></indexterm><programlisting>#define CLUTTER_UNITS_TO_DEVICE(x)       CLUTTER_UNITS_TO_INT ((x))
+</programlisting>
+<para>
+Converts <parameter>x</parameter> from <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s to pixels</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> value in <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-FIXED:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_FIXED()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-FIXED:CAPS"><primary>CLUTTER_UNITS_FROM_FIXED</primary></indexterm><programlisting>#define CLUTTER_UNITS_FROM_FIXED(x)      (x)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-TO-FIXED:CAPS" role="macro">
+<title>CLUTTER_UNITS_TO_FIXED()</title>
+<indexterm zone="CLUTTER-UNITS-TO-FIXED:CAPS"><primary>CLUTTER_UNITS_TO_FIXED</primary></indexterm><programlisting>#define CLUTTER_UNITS_TO_FIXED(x)        (x)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-FLOAT:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_FLOAT()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-FLOAT:CAPS"><primary>CLUTTER_UNITS_FROM_FLOAT</primary></indexterm><programlisting>#define CLUTTER_UNITS_FROM_FLOAT(x)      CLUTTER_FLOAT_TO_FIXED ((x))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-TO-FLOAT:CAPS" role="macro">
+<title>CLUTTER_UNITS_TO_FLOAT()</title>
+<indexterm zone="CLUTTER-UNITS-TO-FLOAT:CAPS"><primary>CLUTTER_UNITS_TO_FLOAT</primary></indexterm><programlisting>#define CLUTTER_UNITS_TO_FLOAT(x)        CLUTTER_FIXED_TO_FLOAT ((x))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-INT:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_INT()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-INT:CAPS"><primary>CLUTTER_UNITS_FROM_INT</primary></indexterm><programlisting>#define CLUTTER_UNITS_FROM_INT(x)        CLUTTER_INT_TO_FIXED ((x))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-TO-INT:CAPS" role="macro">
+<title>CLUTTER_UNITS_TO_INT()</title>
+<indexterm zone="CLUTTER-UNITS-TO-INT:CAPS"><primary>CLUTTER_UNITS_TO_INT</primary></indexterm><programlisting>#define CLUTTER_UNITS_TO_INT(x)          CLUTTER_FIXED_TO_INT ((x))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_FROM_PANGO_UNIT()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS" role="0.6"><primary>CLUTTER_UNITS_FROM_PANGO_UNIT</primary></indexterm><programlisting>#define CLUTTER_UNITS_FROM_PANGO_UNIT(x) ((x) &lt;&lt; 6)
+</programlisting>
+<para>
+Converts a value in Pango units to <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> value in Pango units
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-TO-PANGO-UNIT:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_TO_PANGO_UNIT()</title>
+<indexterm zone="CLUTTER-UNITS-TO-PANGO-UNIT:CAPS" role="0.6"><primary>CLUTTER_UNITS_TO_PANGO_UNIT</primary></indexterm><programlisting>#define CLUTTER_UNITS_TO_PANGO_UNIT(x)   ((x) &gt;&gt; 6)
+</programlisting>
+<para>
+Converts a value in <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s to Pango units</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> value in <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS" role="macro">
+<title>CLUTTER_UNITS_TMP_FROM_DEVICE()</title>
+<indexterm zone="CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS"><primary>CLUTTER_UNITS_TMP_FROM_DEVICE</primary></indexterm><programlisting>#define CLUTTER_UNITS_TMP_FROM_DEVICE(x) (x)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-TMP-TO-DEVICE:CAPS" role="macro">
+<title>CLUTTER_UNITS_TMP_TO_DEVICE()</title>
+<indexterm zone="CLUTTER-UNITS-TMP-TO-DEVICE:CAPS"><primary>CLUTTER_UNITS_TMP_TO_DEVICE</primary></indexterm><programlisting>#define CLUTTER_UNITS_TMP_TO_DEVICE(x)   (x)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS"><primary>CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE(x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS"><primary>CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE(x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS"><primary>CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE(a, x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS"><primary>CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE(a, x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-MM:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_FROM_MM()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-MM:CAPS" role="0.6"><primary>CLUTTER_UNITS_FROM_MM</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_MM(x)</programlisting>
+<para>
+Converts a value in millimeters into <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a value in millimeters
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-MMX:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_MMX()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-MMX:CAPS"><primary>CLUTTER_UNITS_FROM_MMX</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_MMX(x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-POINTS:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_UNITS_FROM_POINTS()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-POINTS:CAPS" role="0.6"><primary>CLUTTER_UNITS_FROM_POINTS</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_POINTS(x)</programlisting>
+<para>
+Converts a value in typographic points into <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a value in typographic points
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-UNITS-FROM-POINTSX:CAPS" role="macro">
+<title>CLUTTER_UNITS_FROM_POINTSX()</title>
+<indexterm zone="CLUTTER-UNITS-FROM-POINTSX:CAPS"><primary>CLUTTER_UNITS_FROM_POINTSX</primary></indexterm><programlisting>#define             CLUTTER_UNITS_FROM_POINTSX(x)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-MAXUNIT:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_MAXUNIT</title>
+<indexterm zone="CLUTTER-MAXUNIT:CAPS" role="0.8"><primary>CLUTTER_MAXUNIT</primary></indexterm><programlisting>#define CLUTTER_MAXUNIT         (0x7fffffff)
+</programlisting>
+<para>
+Higher boundary for a <link linkend="ClutterUnit"><type>ClutterUnit</type></link></para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="CLUTTER-MINUNIT:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_MINUNIT</title>
+<indexterm zone="CLUTTER-MINUNIT:CAPS" role="0.8"><primary>CLUTTER_MINUNIT</primary></indexterm><programlisting>#define CLUTTER_MINUNIT         (0x80000000)
+</programlisting>
+<para>
+Lower boundary for a <link linkend="ClutterUnit"><type>ClutterUnit</type></link></para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="ClutterParamSpecUnit" role="struct" condition="since:0.8">
+<title>ClutterParamSpecUnit</title>
+<indexterm zone="ClutterParamSpecUnit" role="0.8"><primary>ClutterParamSpecUnit</primary></indexterm><programlisting>typedef struct {
+  ClutterUnit   minimum;
+  ClutterUnit   maximum;
+  ClutterUnit   default_value;
+} ClutterParamSpecUnit;
+</programlisting>
+<para>
+<link linkend="GParamSpec"><type>GParamSpec</type></link> subclass for unit based properties.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterUnit">ClutterUnit</link>&nbsp;<structfield>minimum</structfield>;</term>
+<listitem><simpara> lower boundary
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterUnit">ClutterUnit</link>&nbsp;<structfield>maximum</structfield>;</term>
+<listitem><simpara> higher boundary
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterUnit">ClutterUnit</link>&nbsp;<structfield>default_value</structfield>;</term>
+<listitem><simpara> default value
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-param-spec-unit" role="function" condition="since:0.8">
+<title>clutter_param_spec_unit ()</title>
+<indexterm zone="clutter-param-spec-unit" role="0.8"><primary>clutter_param_spec_unit</primary></indexterm><programlisting><link linkend="GParamSpec">GParamSpec</link>*         clutter_param_spec_unit             (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *nick,
+                                                         const <link linkend="gchar">gchar</link> *blurb,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> minimum,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> maximum,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> default_value,
+                                                         <link linkend="GParamFlags">GParamFlags</link> flags);</programlisting>
+<para>
+Creates a <link linkend="GParamSpec"><type>GParamSpec</type></link> for properties using <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the property
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nick</parameter>&nbsp;:</term>
+<listitem><simpara> short name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>blurb</parameter>&nbsp;:</term>
+<listitem><simpara> description (can be translatable)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>minimum</parameter>&nbsp;:</term>
+<listitem><simpara> lower boundary
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>maximum</parameter>&nbsp;:</term>
+<listitem><simpara> higher boundary
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_value</parameter>&nbsp;:</term>
+<listitem><simpara> default value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags for the param spec
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="GParamSpec"><type>GParamSpec</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="CLUTTER-VALUE-HOLDS-UNIT:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_VALUE_HOLDS_UNIT()</title>
+<indexterm zone="CLUTTER-VALUE-HOLDS-UNIT:CAPS" role="0.8"><primary>CLUTTER_VALUE_HOLDS_UNIT</primary></indexterm><programlisting>#define CLUTTER_VALUE_HOLDS_UNIT(x)       (G_VALUE_HOLDS ((x), CLUTTER_TYPE_UNIT))
+</programlisting>
+<para>
+Evaluates to <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>x</parameter> holds <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-value-set-unit" role="function" condition="since:0.8">
+<title>clutter_value_set_unit ()</title>
+<indexterm zone="clutter-value-set-unit" role="0.8"><primary>clutter_value_set_unit</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_value_set_unit              (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="ClutterUnit">ClutterUnit</link> units);</programlisting>
+<para>
+Sets <parameter>value</parameter> to <parameter>units</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> initialized to <link linkend="CLUTTER-TYPE-UNIT:CAPS"><type>CLUTTER_TYPE_UNIT</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>units</parameter>&nbsp;:</term>
+<listitem><simpara> the units to set
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-value-get-unit" role="function" condition="since:0.8">
+<title>clutter_value_get_unit ()</title>
+<indexterm zone="clutter-value-get-unit" role="0.8"><primary>clutter_value_get_unit</primary></indexterm><programlisting><link linkend="ClutterUnit">ClutterUnit</link>         clutter_value_get_unit              (const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Gets the <link linkend="ClutterUnit"><type>ClutterUnit</type></link><!-- -->s contained in <parameter>value</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> initialized to <link linkend="CLUTTER-TYPE-UNIT:CAPS"><type>CLUTTER_TYPE_UNIT</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the units inside the passed <link linkend="GValue"><type>GValue</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

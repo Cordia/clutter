@@ -1,0 +1,434 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourScale">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourScale.top_of_page">ClutterBehaviourScale</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourScale</refname>
+<refpurpose>A behaviour controlling scale</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourScale.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="ClutterGravity">ClutterGravity</link>;
+                    <link linkend="ClutterBehaviourScale-struct">ClutterBehaviourScale</link>;
+                    <link linkend="ClutterBehaviourScaleClass">ClutterBehaviourScaleClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-scale-new">clutter_behaviour_scale_new</link>         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end);
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-scale-newx">clutter_behaviour_scale_newx</link>        (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-scale-set-bounds">clutter_behaviour_scale_set_bounds</link>  (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-scale-get-bounds">clutter_behaviour_scale_get_bounds</link>  (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="gdouble">gdouble</link> *x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> *y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> *x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> *y_scale_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-scale-set-boundsx">clutter_behaviour_scale_set_boundsx</link> (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-scale-get-boundsx">clutter_behaviour_scale_get_boundsx</link> (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *y_scale_end);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourScale.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourScale
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviourScale.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourScale--x-scale-end">x-scale-end</link>&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourScale--x-scale-start">x-scale-start</link>&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourScale--y-scale-end">y-scale-end</link>&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write
+  &quot;<link linkend="ClutterBehaviourScale--y-scale-start">y-scale-start</link>&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourScale.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link> interpolates actors size between two values.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourScale.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterGravity" role="enum" condition="since:0.2">
+<title>enum ClutterGravity</title>
+<indexterm zone="ClutterGravity" role="0.2"><primary>ClutterGravity</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=CLUTTER_GRAVITY &gt;*/
+  CLUTTER_GRAVITY_NONE       = 0,
+  CLUTTER_GRAVITY_NORTH,
+  CLUTTER_GRAVITY_NORTH_EAST,
+  CLUTTER_GRAVITY_EAST,
+  CLUTTER_GRAVITY_SOUTH_EAST,
+  CLUTTER_GRAVITY_SOUTH,
+  CLUTTER_GRAVITY_SOUTH_WEST,
+  CLUTTER_GRAVITY_WEST,
+  CLUTTER_GRAVITY_NORTH_WEST,
+  CLUTTER_GRAVITY_CENTER
+} ClutterGravity;
+</programlisting>
+<para>
+Gravity of the scaling operations. When a gravity different than
+<link linkend="CLUTTER-GRAVITY-NONE:CAPS"><literal>CLUTTER_GRAVITY_NONE</literal></link> is used, an actor is scaled keeping the position
+of the specified portion at the same coordinates.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-GRAVITY-NONE:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_NONE</literal></term>
+<listitem><simpara> Do not apply any gravity
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-NORTH:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_NORTH</literal></term>
+<listitem><simpara> Scale from topmost downwards
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-NORTH-EAST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_NORTH_EAST</literal></term>
+<listitem><simpara> Scale from the top right corner
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-EAST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_EAST</literal></term>
+<listitem><simpara> Scale from the right side
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-SOUTH-EAST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_SOUTH_EAST</literal></term>
+<listitem><simpara> Scale from the bottom right corner
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-SOUTH:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_SOUTH</literal></term>
+<listitem><simpara> Scale from the bottom upwards
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-SOUTH-WEST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_SOUTH_WEST</literal></term>
+<listitem><simpara> Scale from the bottom left corner
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-WEST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_WEST</literal></term>
+<listitem><simpara> Scale from the left side
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-NORTH-WEST:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_NORTH_WEST</literal></term>
+<listitem><simpara> Scale from the top left corner
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-GRAVITY-CENTER:CAPS" role="constant">
+<term><literal>CLUTTER_GRAVITY_CENTER</literal></term>
+<listitem><simpara> Scale from the center.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterBehaviourScale-struct" role="struct">
+<title>ClutterBehaviourScale</title>
+<indexterm zone="ClutterBehaviourScale-struct"><primary>ClutterBehaviourScale</primary></indexterm><programlisting>typedef struct _ClutterBehaviourScale ClutterBehaviourScale;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourScaleClass" role="struct">
+<title>ClutterBehaviourScaleClass</title>
+<indexterm zone="ClutterBehaviourScaleClass"><primary>ClutterBehaviourScaleClass</primary></indexterm><programlisting>typedef struct {
+  ClutterBehaviourClass parent_class;
+} ClutterBehaviourScaleClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-new" role="function" condition="since:0.2">
+<title>clutter_behaviour_scale_new ()</title>
+<indexterm zone="clutter-behaviour-scale-new" role="0.2"><primary>clutter_behaviour_scale_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_scale_new         (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end);</programlisting>
+<para>
+Creates a new  <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-newx" role="function" condition="since:0.2">
+<title>clutter_behaviour_scale_newx ()</title>
+<indexterm zone="clutter-behaviour-scale-newx" role="0.2"><primary>clutter_behaviour_scale_newx</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_scale_newx        (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_end);</programlisting>
+<para>
+A fixed point implementation of <link linkend="clutter-behaviour-scale-new"><function>clutter_behaviour_scale_new()</function></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-set-bounds" role="function" condition="since:0.6">
+<title>clutter_behaviour_scale_set_bounds ()</title>
+<indexterm zone="clutter-behaviour-scale-set-bounds" role="0.6"><primary>clutter_behaviour_scale_set_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_scale_set_bounds  (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end);</programlisting>
+<para>
+Sets the bounds used by scale behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scale</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the Y axis
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-get-bounds" role="function" condition="since:0.4">
+<title>clutter_behaviour_scale_get_bounds ()</title>
+<indexterm zone="clutter-behaviour-scale-get-bounds" role="0.4"><primary>clutter_behaviour_scale_get_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_scale_get_bounds  (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="gdouble">gdouble</link> *x_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> *y_scale_start,
+                                                         <link linkend="gdouble">gdouble</link> *x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> *y_scale_end);</programlisting>
+<para>
+Retrieves the bounds used by scale behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scale</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the initial scale factor on the X
+  axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the initial scale factor on the Y
+  axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the final scale factor on the X axis,
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the final scale factor on the Y axis,
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-set-boundsx" role="function" condition="since:0.6">
+<title>clutter_behaviour_scale_set_boundsx ()</title>
+<indexterm zone="clutter-behaviour-scale-set-boundsx" role="0.6"><primary>clutter_behaviour_scale_set_boundsx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_scale_set_boundsx (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_scale_end);</programlisting>
+<para>
+Fixed point version of <link linkend="clutter-behaviour-scale-set-bounds"><function>clutter_behaviour_scale_set_bounds()</function></link>.
+</para>
+<para>
+Sets the bounds used by scale behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scale</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> initial scale factor on the Y axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the X axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> final scale factor on the Y axis
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-scale-get-boundsx" role="function" condition="since:0.4">
+<title>clutter_behaviour_scale_get_boundsx ()</title>
+<indexterm zone="clutter-behaviour-scale-get-boundsx" role="0.4"><primary>clutter_behaviour_scale_get_boundsx</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_scale_get_boundsx (<link linkend="ClutterBehaviourScale">ClutterBehaviourScale</link> *scale,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *x_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *y_scale_start,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *x_scale_end,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> *y_scale_end);</programlisting>
+<para>
+Fixed point version of <link linkend="clutter-behaviour-scale-get-bounds"><function>clutter_behaviour_scale_get_bounds()</function></link>.
+</para>
+<para>
+Retrieves the bounds used by scale behaviour.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scale</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourScale"><type>ClutterBehaviourScale</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the initial scale factor on the X
+  axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the initial scale factor on the Y
+  axis, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the final scale factor on the X axis,
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the final scale factor on the Y axis,
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourScale.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourScale--x-scale-end"><title>The <literal>&quot;x-scale-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourScale--x-scale-end" role="0.6"><primary>ClutterBehaviourScale:x-scale-end</primary></indexterm><programlisting>  &quot;x-scale-end&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The final scaling factor on the X axis for the actors.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 1</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourScale--x-scale-start"><title>The <literal>&quot;x-scale-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourScale--x-scale-start" role="0.6"><primary>ClutterBehaviourScale:x-scale-start</primary></indexterm><programlisting>  &quot;x-scale-start&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The initial scaling factor on the X axis for the actors.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 1</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourScale--y-scale-end"><title>The <literal>&quot;y-scale-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourScale--y-scale-end" role="0.6"><primary>ClutterBehaviourScale:y-scale-end</primary></indexterm><programlisting>  &quot;y-scale-end&quot;              <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The final scaling factor on the Y axis for the actors.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 1</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourScale--y-scale-start"><title>The <literal>&quot;y-scale-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourScale--y-scale-start" role="0.6"><primary>ClutterBehaviourScale:y-scale-start</primary></indexterm><programlisting>  &quot;y-scale-start&quot;            <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+The initial scaling factor on the Y axis for the actors.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 1</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,188 @@
+<!-- ##### SECTION Title ##### -->
+Clutter Effects
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterEffectTemplate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT ClutterEffectTemplateClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION clutter_effect_template_new ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@alpha_func: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_template_new_full ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@alpha_func: 
+@user_data: 
+@notify: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_template_new_for_duration ##### -->
+<para>
+
+</para>
+
+@msecs: 
+@alpha_func: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_template_construct ##### -->
+<para>
+
+</para>
+
+@template_: 
+@timeline: 
+@alpha_func: 
+@user_data: 
+@notify: 
+
+
+<!-- ##### FUNCTION clutter_effect_template_get_timeline_clone ##### -->
+<para>
+
+</para>
+
+@template_: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_template_set_timeline_clone ##### -->
+<para>
+
+</para>
+
+@template_: 
+@setting: 
+
+
+<!-- ##### USER_FUNCTION ClutterEffectCompleteFunc ##### -->
+<para>
+
+</para>
+
+@actor: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_effect_fade ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@opacity_end: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_move ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@x: 
+@y: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_path ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@knots: 
+@n_knots: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_scale ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@x_scale_end: 
+@y_scale_end: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_depth ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@depth_end: 
+@func: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_effect_rotate ##### -->
+<para>
+
+</para>
+
+@template_: 
+@actor: 
+@axis: 
+@angle: 
+@center_x: 
+@center_y: 
+@center_z: 
+@direction: 
+@func: 
+@data: 
+@Returns: 
+
+

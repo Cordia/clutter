@@ -1,0 +1,73 @@
+<!-- ##### SECTION Title ##### -->
+ClutterBehaviourDepth
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterBehaviourDepth ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterBehaviourDepth:depth-end ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourDepth:depth-start ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterBehaviourDepthClass ##### -->
+<para>
+
+</para>
+
+@parent_class: 
+
+<!-- ##### FUNCTION clutter_behaviour_depth_new ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@depth_start: 
+@depth_end: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_depth_set_bounds ##### -->
+<para>
+
+</para>
+
+@behaviour: 
+@depth_start: 
+@depth_end: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_depth_get_bounds ##### -->
+<para>
+
+</para>
+
+@behaviour: 
+@depth_start: 
+@depth_end: 
+
+

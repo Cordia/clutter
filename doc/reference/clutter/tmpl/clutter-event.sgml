@@ -1,0 +1,379 @@
+<!-- ##### SECTION Title ##### -->
+Events
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO CLUTTER_CURRENT_TIME ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_PRIORITY_EVENTS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM ClutterModifierType ##### -->
+<para>
+
+</para>
+
+@CLUTTER_SHIFT_MASK: 
+@CLUTTER_LOCK_MASK: 
+@CLUTTER_CONTROL_MASK: 
+@CLUTTER_MOD1_MASK: 
+@CLUTTER_MOD2_MASK: 
+@CLUTTER_MOD3_MASK: 
+@CLUTTER_MOD4_MASK: 
+@CLUTTER_MOD5_MASK: 
+@CLUTTER_BUTTON1_MASK: 
+@CLUTTER_BUTTON2_MASK: 
+@CLUTTER_BUTTON3_MASK: 
+@CLUTTER_BUTTON4_MASK: 
+@CLUTTER_BUTTON5_MASK: 
+
+<!-- ##### ENUM ClutterScrollDirection ##### -->
+<para>
+
+</para>
+
+@CLUTTER_SCROLL_UP: 
+@CLUTTER_SCROLL_DOWN: 
+@CLUTTER_SCROLL_LEFT: 
+@CLUTTER_SCROLL_RIGHT: 
+
+<!-- ##### ENUM ClutterStageState ##### -->
+<para>
+
+</para>
+
+@CLUTTER_STAGE_STATE_FULLSCREEN: 
+@CLUTTER_STAGE_STATE_OFFSCREEN: 
+@CLUTTER_STAGE_STATE_ACTIVATED: 
+
+<!-- ##### ENUM ClutterEventType ##### -->
+<para>
+
+</para>
+
+@CLUTTER_NOTHING: 
+@CLUTTER_KEY_PRESS: 
+@CLUTTER_KEY_RELEASE: 
+@CLUTTER_MOTION: 
+@CLUTTER_ENTER: 
+@CLUTTER_LEAVE: 
+@CLUTTER_BUTTON_PRESS: 
+@CLUTTER_BUTTON_RELEASE: 
+@CLUTTER_SCROLL: 
+@CLUTTER_STAGE_STATE: 
+@CLUTTER_DESTROY_NOTIFY: 
+@CLUTTER_CLIENT_MESSAGE: 
+@CLUTTER_DELETE: 
+
+<!-- ##### UNION ClutterEvent ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM ClutterEventFlags ##### -->
+<para>
+
+</para>
+
+@CLUTTER_EVENT_FLAG_SYNTHETIC: 
+
+<!-- ##### STRUCT ClutterButtonEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@x: 
+@y: 
+@modifier_state: 
+@button: 
+@click_count: 
+@axes: 
+@device: 
+
+<!-- ##### STRUCT ClutterKeyEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@modifier_state: 
+@keyval: 
+@hardware_keycode: 
+@unicode_value: 
+
+<!-- ##### STRUCT ClutterMotionEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@x: 
+@y: 
+@modifier_state: 
+@axes: 
+@device: 
+
+<!-- ##### STRUCT ClutterScrollEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@x: 
+@y: 
+@direction: 
+@modifier_state: 
+@axes: 
+@device: 
+
+<!-- ##### STRUCT ClutterStageStateEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@changed_mask: 
+@new_state: 
+
+<!-- ##### STRUCT ClutterCrossingEvent ##### -->
+<para>
+
+</para>
+
+@type: 
+@time: 
+@flags: 
+@stage: 
+@source: 
+@x: 
+@y: 
+@device: 
+@related: 
+
+<!-- ##### STRUCT ClutterInputDevice ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION clutter_event_new ##### -->
+<para>
+
+</para>
+
+@type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_copy ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_free ##### -->
+<para>
+
+</para>
+
+@event: 
+
+
+<!-- ##### FUNCTION clutter_event_type ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get_coords ##### -->
+<para>
+
+</para>
+
+@event: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_event_get_state ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get_time ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get_source ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get_stage ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_peek ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_put ##### -->
+<para>
+
+</para>
+
+@event: 
+
+
+<!-- ##### FUNCTION clutter_events_pending ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_button_event_button ##### -->
+<para>
+
+</para>
+
+@buttev: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_key_event_symbol ##### -->
+<para>
+
+</para>
+
+@keyev: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_key_event_code ##### -->
+<para>
+
+</para>
+
+@keyev: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_key_event_unicode ##### -->
+<para>
+
+</para>
+
+@keyev: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_keysym_to_unicode ##### -->
+<para>
+
+</para>
+
+@keyval: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_event_get_device_id ##### -->
+<para>
+
+</para>
+
+@event: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_input_device_for_id ##### -->
+<para>
+
+</para>
+
+@id: 
+@Returns: 
+
+

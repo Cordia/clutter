@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterModelIter">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterModelIter.top_of_page">ClutterModelIter</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterModelIter</refname>
+<refpurpose>Iterates through a model</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterModelIter.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterModelIter-struct">ClutterModelIter</link>;
+                    <link linkend="ClutterModelIterClass">ClutterModelIterClass</link>;
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-iter-copy">clutter_model_iter_copy</link>             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-get">clutter_model_iter_get</link>              (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-get-valist">clutter_model_iter_get_valist</link>       (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="va-list">va_list</link> args);
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-get-value">clutter_model_iter_get_value</link>        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="guint">guint</link> column,
+                                                         <link linkend="GValue">GValue</link> *value);
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-set">clutter_model_iter_set</link>              (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-set-valist">clutter_model_iter_set_valist</link>       (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="va-list">va_list</link> args);
+<link linkend="void">void</link>                <link linkend="clutter-model-iter-set-value">clutter_model_iter_set_value</link>        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="guint">guint</link> column,
+                                                         const <link linkend="GValue">GValue</link> *value);
+
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-model-iter-is-first">clutter_model_iter_is_first</link>         (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-model-iter-is-last">clutter_model_iter_is_last</link>          (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-iter-next">clutter_model_iter_next</link>             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+<link linkend="ClutterModelIter">ClutterModelIter</link>*   <link linkend="clutter-model-iter-prev">clutter_model_iter_prev</link>             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+
+<link linkend="ClutterModel">ClutterModel</link>*       <link linkend="clutter-model-iter-get-model">clutter_model_iter_get_model</link>        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+<link linkend="guint">guint</link>               <link linkend="clutter-model-iter-get-row">clutter_model_iter_get_row</link>          (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterModelIter.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterModelIter
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterModelIter.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterModelIter--model">model</link>&quot;                    <link linkend="ClutterModel">ClutterModel</link>*         : Read / Write
+  &quot;<link linkend="ClutterModelIter--row">row</link>&quot;                      <link linkend="guint">guint</link>                 : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterModelIter.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> is an object used for iterating through all the rows
+of a <link linkend="ClutterModel"><type>ClutterModel</type></link>. It allows setting and getting values on the row
+which is currently pointing at.
+</para>
+<para>
+A <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> represents a position between two elements
+of the sequence. For example, the iterator returned by
+<link linkend="clutter-model-get-first-iter"><function>clutter_model_get_first_iter()</function></link> represents the gap immediately before
+the first row of the <link linkend="ClutterModel"><type>ClutterModel</type></link>, and the iterator returned by
+<link linkend="clutter-model-get-last-iter"><function>clutter_model_get_last_iter()</function></link> represents the gap immediately after the
+last row.
+</para>
+<para>
+A <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> can only be created by a <link linkend="ClutterModel"><type>ClutterModel</type></link> implementation
+and it is valid as long as the model does not change.
+</para>
+<para>
+<link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterModelIter.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterModelIter-struct" role="struct">
+<title>ClutterModelIter</title>
+<indexterm zone="ClutterModelIter-struct" role="0.6"><primary>ClutterModelIter</primary></indexterm><programlisting>typedef struct _ClutterModelIter ClutterModelIter;</programlisting>
+<para>
+Base class for list models iters. The <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> structure
+contains only private data and should be manipulated using the
+provided API.</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterModelIterClass" role="struct" condition="since:0.6">
+<title>ClutterModelIterClass</title>
+<indexterm zone="ClutterModelIterClass" role="0.6"><primary>ClutterModelIterClass</primary></indexterm><programlisting>typedef struct {
+  /* vtable not signals */
+  void              (* get_value) (ClutterModelIter *iter, 
+                                   guint             column, 
+                                   GValue           *value);
+  void              (* set_value) (ClutterModelIter *iter, 
+                                   guint             column, 
+                                   const GValue     *value);
+
+  gboolean          (* is_first)  (ClutterModelIter *iter);
+  gboolean          (* is_last)   (ClutterModelIter *iter);
+
+  ClutterModelIter *(* next)      (ClutterModelIter *iter);
+  ClutterModelIter *(* prev)      (ClutterModelIter *iter);
+
+  ClutterModel *    (* get_model) (ClutterModelIter *iter);
+  guint             (* get_row)   (ClutterModelIter *iter);
+
+  ClutterModelIter *(* copy)      (ClutterModelIter *iter);
+} ClutterModelIterClass;
+</programlisting>
+<para>
+Class for <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link> instances.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>get_value</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for retrieving the value at the given
+  column of the row pointed by the iterator
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>set_value</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for setting the value at the given
+  column of the row pointer by the iterator
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>is_first</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for knowing whether the iterator points
+  at the first row in the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>is_last</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for knowing whether the iterator points
+  at the last row in the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>next</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for moving the iterator to the following
+  row in the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>prev</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for moving the iterator toe the previous
+  row in the model
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_model</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for getting the model to which the
+  iterator belongs to
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_row</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for getting the row to which the iterator
+  points
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>copy</structfield>&nbsp;()</term>
+<listitem><simpara> Virtual function for copying a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-copy" role="function" condition="since:0.8">
+<title>clutter_model_iter_copy ()</title>
+<indexterm zone="clutter-model-iter-copy" role="0.8"><primary>clutter_model_iter_copy</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_iter_copy             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Copies the passed iterator.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a copy of the iterator, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-model-iter-get" role="function" condition="since:0.6">
+<title>clutter_model_iter_get ()</title>
+<indexterm zone="clutter-model-iter-get" role="0.6"><primary>clutter_model_iter_get</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_get              (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         ...);</programlisting>
+<para>
+Gets the value of one or more cells in the row referenced by <parameter>iter</parameter>. The
+variable argument list should contain integer column numbers, each column
+column number followed by a place to store the value being retrieved. The
+list is terminated by a -1.
+</para>
+<para>
+For example, to get a value from column 0 with type <link linkend="G-TYPE-STRING:CAPS"><literal>G_TYPE_STRING</literal></link> use:
+<informalexample><programlisting>
+  clutter_model_iter_get (iter, 0, &amp;place_string_here, -1);
+</programlisting></informalexample>
+</para>
+<para>
+where place_string_here is a gchar* to be filled with the string. If
+appropriate, the returned values have to be freed or unreferenced.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> a list of column/return location pairs, terminated by -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-get-valist" role="function" condition="since:0.6">
+<title>clutter_model_iter_get_valist ()</title>
+<indexterm zone="clutter-model-iter-get-valist" role="0.6"><primary>clutter_model_iter_get_valist</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_get_valist       (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="va-list">va_list</link> args);</programlisting>
+<para>
+See <link linkend="clutter-model-iter-get"><function>clutter_model_iter_get()</function></link>. This version takes a va_list for language
+bindings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> a list of column/return location pairs, terminated by -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-get-value" role="function" condition="since:0.6">
+<title>clutter_model_iter_get_value ()</title>
+<indexterm zone="clutter-model-iter-get-value" role="0.6"><primary>clutter_model_iter_get_value</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_get_value        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="guint">guint</link> column,
+                                                         <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Sets an initializes <parameter>value</parameter> to that at <parameter>column</parameter>. When done with <parameter>value</parameter>, 
+<link linkend="g-value-unset"><function>g_value_unset()</function></link> needs to be called to free any allocated memory.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> column number to retrieve the value from
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> an empty <link linkend="GValue"><type>GValue</type></link> to set
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-set" role="function" condition="since:0.6">
+<title>clutter_model_iter_set ()</title>
+<indexterm zone="clutter-model-iter-set" role="0.6"><primary>clutter_model_iter_set</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_set              (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         ...);</programlisting>
+<para>
+Sets the value of one or more cells in the row referenced by <parameter>iter</parameter>. The
+variable argument list should contain integer column numbers, each column
+column number followed by the value to be set. The  list is terminated by a
+-1.
+</para>
+<para>
+For example, to set column 0 with type <link linkend="G-TYPE-STRING:CAPS"><literal>G_TYPE_STRING</literal></link>, use:
+<informalexample><programlisting>
+  clutter_model_iter_set (iter, 0, "foo", -1);
+</programlisting></informalexample></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> a list of column/return location pairs, terminated by -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-set-valist" role="function" condition="since:0.6">
+<title>clutter_model_iter_set_valist ()</title>
+<indexterm zone="clutter-model-iter-set-valist" role="0.6"><primary>clutter_model_iter_set_valist</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_set_valist       (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="va-list">va_list</link> args);</programlisting>
+<para>
+See <link linkend="clutter-model-iter-set"><function>clutter_model_iter_set()</function></link>; this version takes a va_list for language
+bindings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> va_list of column/value pairs, terminiated by -1
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-set-value" role="function" condition="since:0.6">
+<title>clutter_model_iter_set_value ()</title>
+<indexterm zone="clutter-model-iter-set-value" role="0.6"><primary>clutter_model_iter_set_value</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_model_iter_set_value        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter,
+                                                         <link linkend="guint">guint</link> column,
+                                                         const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Sets the data in the cell specified by <parameter>iter</parameter> and <parameter>column</parameter>. The type of
+<parameter>value</parameter> must be convertable to the type of the column.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>column</parameter>&nbsp;:</term>
+<listitem><simpara> column number to retrieve the value from
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> new value for the cell
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-is-first" role="function" condition="since:0.6">
+<title>clutter_model_iter_is_first ()</title>
+<indexterm zone="clutter-model-iter-is-first" role="0.6"><primary>clutter_model_iter_is_first</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_model_iter_is_first         (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Gets whether the current iterator is at the beginning of the model
+to which it belongs.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if <parameter>iter</parameter> is the first iter in the filtered model
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-is-last" role="function" condition="since:0.6">
+<title>clutter_model_iter_is_last ()</title>
+<indexterm zone="clutter-model-iter-is-last" role="0.6"><primary>clutter_model_iter_is_last</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_model_iter_is_last          (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Gets whether the iterator is at the end of the model to which it
+belongs.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if <parameter>iter</parameter> is the last iter in the filtered model.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-next" role="function" condition="since:0.6">
+<title>clutter_model_iter_next ()</title>
+<indexterm zone="clutter-model-iter-next" role="0.6"><primary>clutter_model_iter_next</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_iter_next             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Updates the <parameter>iter</parameter> to point at the next position in the model.
+The model implementation should take into account the presence of
+a filter function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The passed iterator, updated to point at the next
+  row in the model.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-prev" role="function" condition="since:0.6">
+<title>clutter_model_iter_prev ()</title>
+<indexterm zone="clutter-model-iter-prev" role="0.6"><primary>clutter_model_iter_prev</primary></indexterm><programlisting><link linkend="ClutterModelIter">ClutterModelIter</link>*   clutter_model_iter_prev             (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Sets the <parameter>iter</parameter> to point at the previous position in the model.
+The model implementation should take into account the presence of
+a filter function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The passed iterator, updated to point at the previous
+  row in the model.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-get-model" role="function" condition="since:0.6">
+<title>clutter_model_iter_get_model ()</title>
+<indexterm zone="clutter-model-iter-get-model" role="0.6"><primary>clutter_model_iter_get_model</primary></indexterm><programlisting><link linkend="ClutterModel">ClutterModel</link>*       clutter_model_iter_get_model        (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Retrieves a pointer to the <link linkend="ClutterModel"><type>ClutterModel</type></link> that this iter is part of.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a pointer to a <link linkend="ClutterModel"><type>ClutterModel</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-model-iter-get-row" role="function" condition="since:0.6">
+<title>clutter_model_iter_get_row ()</title>
+<indexterm zone="clutter-model-iter-get-row" role="0.6"><primary>clutter_model_iter_get_row</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_model_iter_get_row          (<link linkend="ClutterModelIter">ClutterModelIter</link> *iter);</programlisting>
+<para>
+Retrieves the position of the row that the <parameter>iter</parameter> points to.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>iter</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterModelIter"><type>ClutterModelIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the position of the <parameter>iter</parameter> in the model
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterModelIter.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterModelIter--model"><title>The <literal>&quot;model&quot;</literal> property</title>
+<indexterm zone="ClutterModelIter--model" role="0.6"><primary>ClutterModelIter:model</primary></indexterm><programlisting>  &quot;model&quot;                    <link linkend="ClutterModel">ClutterModel</link>*         : Read / Write</programlisting>
+<para>
+A reference to the <link linkend="ClutterModel"><type>ClutterModel</type></link> that this iter belongs to.</para>
+<para>
+
+</para><para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterModelIter--row"><title>The <literal>&quot;row&quot;</literal> property</title>
+<indexterm zone="ClutterModelIter--row" role="0.6"><primary>ClutterModelIter:row</primary></indexterm><programlisting>  &quot;row&quot;                      <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+The row number to which this iter points to.</para>
+<para>
+
+</para><para>Default value: 0</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

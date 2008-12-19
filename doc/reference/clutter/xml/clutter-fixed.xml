@@ -1,0 +1,1015 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Fixed-Point-Support">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Fixed-Point-Support.top_of_page">Fixed Point Support</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Fixed Point Support</refname>
+<refpurpose>Fixed Point API</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Fixed-Point-Support.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="ClutterFixed">ClutterFixed</link>;
+#define             <link linkend="CFX-Q:CAPS">CFX_Q</link>
+#define             <link linkend="CFX-ONE:CAPS">CFX_ONE</link>
+#define             <link linkend="CFX-HALF:CAPS">CFX_HALF</link>
+#define             <link linkend="CFX-MAX:CAPS">CFX_MAX</link>
+#define             <link linkend="CFX-MIN:CAPS">CFX_MIN</link>
+#define             <link linkend="CFX-PI:CAPS">CFX_PI</link>
+#define             <link linkend="CFX-2PI:CAPS">CFX_2PI</link>
+#define             <link linkend="CFX-PI-2:CAPS">CFX_PI_2</link>
+#define             <link linkend="CFX-PI-4:CAPS">CFX_PI_4</link>
+#define             <link linkend="CFX-120:CAPS">CFX_120</link>
+#define             <link linkend="CFX-180:CAPS">CFX_180</link>
+#define             <link linkend="CFX-240:CAPS">CFX_240</link>
+#define             <link linkend="CFX-360:CAPS">CFX_360</link>
+#define             <link linkend="CFX-60:CAPS">CFX_60</link>
+#define             <link linkend="CFX-255:CAPS">CFX_255</link>
+#define             <link linkend="CLUTTER-FIXED-TO-INT:CAPS">CLUTTER_FIXED_TO_INT</link>                (x)
+#define             <link linkend="CLUTTER-FIXED-TO-FLOAT:CAPS">CLUTTER_FIXED_TO_FLOAT</link>              (x)
+#define             <link linkend="CLUTTER-FIXED-TO-DOUBLE:CAPS">CLUTTER_FIXED_TO_DOUBLE</link>             (x)
+#define             <link linkend="CLUTTER-FLOAT-TO-FIXED:CAPS">CLUTTER_FLOAT_TO_FIXED</link>              (x)
+#define             <link linkend="CLUTTER-FLOAT-TO-INT:CAPS">CLUTTER_FLOAT_TO_INT</link>                (x)
+#define             <link linkend="CLUTTER-FLOAT-TO-UINT:CAPS">CLUTTER_FLOAT_TO_UINT</link>               (x)
+#define             <link linkend="CLUTTER-INT-TO-FIXED:CAPS">CLUTTER_INT_TO_FIXED</link>                (x)
+#define             <link linkend="CLUTTER-FIXED-INT:CAPS">CLUTTER_FIXED_INT</link>                   (x)
+#define             <link linkend="CLUTTER-FIXED-FRACTION:CAPS">CLUTTER_FIXED_FRACTION</link>              (x)
+#define             <link linkend="CLUTTER-FIXED-FLOOR:CAPS">CLUTTER_FIXED_FLOOR</link>                 (x)
+#define             <link linkend="CLUTTER-FIXED-CEIL:CAPS">CLUTTER_FIXED_CEIL</link>                  (x)
+#define             <link linkend="CLUTTER-FIXED-MUL:CAPS">CLUTTER_FIXED_MUL</link>                   (x,y)
+#define             <link linkend="CLUTTER-FIXED-DIV:CAPS">CLUTTER_FIXED_DIV</link>                   (x,y)
+typedef             <link linkend="ClutterAngle">ClutterAngle</link>;
+#define             <link linkend="CLUTTER-ANGLE-FROM-DEG:CAPS">CLUTTER_ANGLE_FROM_DEG</link>              (x)
+#define             <link linkend="CLUTTER-ANGLE-FROM-DEGF:CAPS">CLUTTER_ANGLE_FROM_DEGF</link>             (x)
+#define             <link linkend="CLUTTER-ANGLE-FROM-DEGX:CAPS">CLUTTER_ANGLE_FROM_DEGX</link>             (x)
+#define             <link linkend="CLUTTER-ANGLE-TO-DEGF:CAPS">CLUTTER_ANGLE_TO_DEGF</link>               (x)
+#define             <link linkend="CLUTTER-ANGLE-TO-DEG:CAPS">CLUTTER_ANGLE_TO_DEG</link>                (x)
+#define             <link linkend="CLUTTER-ANGLE-TO-DEGX:CAPS">CLUTTER_ANGLE_TO_DEGX</link>               (x)
+#define             <link linkend="CLUTTER-ANGLE-MAX-DEG:CAPS">CLUTTER_ANGLE_MAX_DEG</link>
+#define             <link linkend="CFX-RADIANS-TO-DEGREES:CAPS">CFX_RADIANS_TO_DEGREES</link>
+#define             <link linkend="clutter-cosi">clutter_cosi</link>                        (angle)
+#define             <link linkend="clutter-cosx">clutter_cosx</link>                        (angle)
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-sini">clutter_sini</link>                        (<link linkend="ClutterAngle">ClutterAngle</link> angle);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-sinx">clutter_sinx</link>                        (<link linkend="ClutterFixed">ClutterFixed</link> angle);
+#define             <link linkend="CLUTTER-SQRTI-ARG-10-PERCENT:CAPS">CLUTTER_SQRTI_ARG_10_PERCENT</link>
+#define             <link linkend="CLUTTER-SQRTI-ARG-5-PERCENT:CAPS">CLUTTER_SQRTI_ARG_5_PERCENT</link>
+#define             <link linkend="CLUTTER-SQRTI-ARG-MAX:CAPS">CLUTTER_SQRTI_ARG_MAX</link>
+<link linkend="gint">gint</link>                <link linkend="clutter-sqrti">clutter_sqrti</link>                       (<link linkend="gint">gint</link> x);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-sqrtx">clutter_sqrtx</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> x);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-log2x">clutter_log2x</link>                       (<link linkend="guint">guint</link> x);
+<link linkend="guint">guint</link>               <link linkend="clutter-pow2x">clutter_pow2x</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> x);
+<link linkend="guint">guint</link>               <link linkend="clutter-powx">clutter_powx</link>                        (<link linkend="guint">guint</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-qmulx">clutter_qmulx</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> op1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> op2);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-qdivx">clutter_qdivx</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> op1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> op2);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-tani">clutter_tani</link>                        (<link linkend="ClutterAngle">ClutterAngle</link> angle);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-atani">clutter_atani</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> x);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-atan2i">clutter_atan2i</link>                      (<link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x);
+
+#define             <link linkend="CLUTTER-MAXFIXED:CAPS">CLUTTER_MAXFIXED</link>
+#define             <link linkend="CLUTTER-MINFIXED:CAPS">CLUTTER_MINFIXED</link>
+                    <link linkend="ClutterParamSpecFixed">ClutterParamSpecFixed</link>;
+<link linkend="GParamSpec">GParamSpec</link>*         <link linkend="clutter-param-spec-fixed">clutter_param_spec_fixed</link>            (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *nick,
+                                                         const <link linkend="gchar">gchar</link> *blurb,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> minimum,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> maximum,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> default_value,
+                                                         <link linkend="GParamFlags">GParamFlags</link> flags);
+#define             <link linkend="CLUTTER-VALUE-HOLDS-FIXED:CAPS">CLUTTER_VALUE_HOLDS_FIXED</link>           (x)
+<link linkend="void">void</link>                <link linkend="clutter-value-set-fixed">clutter_value_set_fixed</link>             (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> fixed_);
+<link linkend="ClutterFixed">ClutterFixed</link>        <link linkend="clutter-value-get-fixed">clutter_value_get_fixed</link>             (const <link linkend="GValue">GValue</link> *value);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Fixed-Point-Support.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Clutter has a fixed point API targeted at platforms without a
+floating point unit, such as embedded devices. On such platforms
+this API should be preferred to the floating point one as it does
+not trigger the slow path of software emulation, relying on integer
+math for fixed-to-floating and floating-to-fixed conversion.
+</para>
+<para>
+It is no recommened for use on platforms with a floating point unit
+(eg desktop systems) nor for use in bindings.
+</para>
+<para>
+Basic rules of Fixed Point arithmethic:
+</para>
+<para>
+<itemizedlist>
+  <listitem>
+    <para>Two fixed point numbers can be directly added,
+    subtracted and have their modulus taken.</para>
+  </listitem>
+  <listitem>
+    <para>To add other numerical type to a fixed point number it has to
+    be first converted to fixed point.</para>
+  </listitem>
+  <listitem>
+    <para>A fixed point number can be directly multiplied or divided by
+    an integer.</para>
+  </listitem>
+  <listitem>
+    <para>Two fixed point numbers can only be multiplied and divided by the
+    provided <link linkend="CLUTTER-FIXED-MUL:CAPS"><type>CLUTTER_FIXED_MUL</type></link> and <link linkend="CLUTTER-FIXED-DIV:CAPS"><type>CLUTTER_FIXED_DIV</type></link> macros.</para>
+  </listitem>
+</itemizedlist></para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Fixed-Point-Support.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterFixed" role="typedef">
+<title>ClutterFixed</title>
+<indexterm zone="ClutterFixed"><primary>ClutterFixed</primary></indexterm><programlisting>typedef gint32 ClutterFixed;
+</programlisting>
+<para>
+Fixed point number (16.16)</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-Q:CAPS" role="macro">
+<title>CFX_Q</title>
+<indexterm zone="CFX-Q:CAPS"><primary>CFX_Q</primary></indexterm><programlisting>#define CFX_Q      16		/* Decimal part size in bits */
+</programlisting>
+<para>
+Size in bits of decimal part of floating point value.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-ONE:CAPS" role="macro">
+<title>CFX_ONE</title>
+<indexterm zone="CFX-ONE:CAPS"><primary>CFX_ONE</primary></indexterm><programlisting>#define CFX_ONE    (1 &lt;&lt; CFX_Q)	/* 1 */
+</programlisting>
+<para>
+1.0 represented as a fixed point value.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-HALF:CAPS" role="macro">
+<title>CFX_HALF</title>
+<indexterm zone="CFX-HALF:CAPS"><primary>CFX_HALF</primary></indexterm><programlisting>#define CFX_HALF   32768
+</programlisting>
+<para>
+0.5 represented as a fixed point value.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-MAX:CAPS" role="macro">
+<title>CFX_MAX</title>
+<indexterm zone="CFX-MAX:CAPS"><primary>CFX_MAX</primary></indexterm><programlisting>#define CFX_MAX    0x7fffffff
+</programlisting>
+<para>
+Maximum fixed point value.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-MIN:CAPS" role="macro">
+<title>CFX_MIN</title>
+<indexterm zone="CFX-MIN:CAPS"><primary>CFX_MIN</primary></indexterm><programlisting>#define CFX_MIN    0x80000000
+</programlisting>
+<para>
+Minimum fixed point value.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-PI:CAPS" role="macro">
+<title>CFX_PI</title>
+<indexterm zone="CFX-PI:CAPS"><primary>CFX_PI</primary></indexterm><programlisting>#define CFX_PI     0x0003243f
+</programlisting>
+<para>
+Fixed point representation of Pi</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-2PI:CAPS" role="macro">
+<title>CFX_2PI</title>
+<indexterm zone="CFX-2PI:CAPS"><primary>CFX_2PI</primary></indexterm><programlisting>#define CFX_2PI    0x0006487f
+</programlisting>
+<para>
+Fixed point representation of Pi*2</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-PI-2:CAPS" role="macro">
+<title>CFX_PI_2</title>
+<indexterm zone="CFX-PI-2:CAPS"><primary>CFX_PI_2</primary></indexterm><programlisting>#define CFX_PI_2   0x00019220   /* pi/2 */
+</programlisting>
+<para>
+Fixed point representation of Pi/2</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-PI-4:CAPS" role="macro">
+<title>CFX_PI_4</title>
+<indexterm zone="CFX-PI-4:CAPS"><primary>CFX_PI_4</primary></indexterm><programlisting>#define CFX_PI_4   0x0000c910   /* pi/4 */
+</programlisting>
+<para>
+Fixed point representation of Pi/4</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-120:CAPS" role="macro">
+<title>CFX_120</title>
+<indexterm zone="CFX-120:CAPS"><primary>CFX_120</primary></indexterm><programlisting>#define CFX_120 CLUTTER_INT_TO_FIXED (120)
+</programlisting>
+<para>
+Fixed point representation of the number 120</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-180:CAPS" role="macro">
+<title>CFX_180</title>
+<indexterm zone="CFX-180:CAPS"><primary>CFX_180</primary></indexterm><programlisting>#define CFX_180 CLUTTER_INT_TO_FIXED (180)
+</programlisting>
+<para>
+Fixed point representation of the number 180</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-240:CAPS" role="macro">
+<title>CFX_240</title>
+<indexterm zone="CFX-240:CAPS"><primary>CFX_240</primary></indexterm><programlisting>#define CFX_240 CLUTTER_INT_TO_FIXED (240)
+</programlisting>
+<para>
+Fixed point representation of the number 240</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-360:CAPS" role="macro">
+<title>CFX_360</title>
+<indexterm zone="CFX-360:CAPS"><primary>CFX_360</primary></indexterm><programlisting>#define CFX_360 CLUTTER_INT_TO_FIXED (360)
+</programlisting>
+<para>
+Fixed point representation of the number 360</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-60:CAPS" role="macro">
+<title>CFX_60</title>
+<indexterm zone="CFX-60:CAPS"><primary>CFX_60</primary></indexterm><programlisting>#define CFX_60  CLUTTER_INT_TO_FIXED (60)
+</programlisting>
+<para>
+Fixed point representation of the number 60</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-255:CAPS" role="macro">
+<title>CFX_255</title>
+<indexterm zone="CFX-255:CAPS"><primary>CFX_255</primary></indexterm><programlisting>#define CFX_255 CLUTTER_INT_TO_FIXED (255)
+</programlisting>
+<para>
+Fixed point representation of the number 255</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-FIXED-TO-INT:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_FIXED_TO_INT()</title>
+<indexterm zone="CLUTTER-FIXED-TO-INT:CAPS" role="0.6"><primary>CLUTTER_FIXED_TO_INT</primary></indexterm><programlisting>#define CLUTTER_FIXED_TO_INT(x)         ((x) &gt;&gt; CFX_Q)
+</programlisting>
+<para>
+Converts a fixed point value to integer (removing the decimal part).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-FIXED-TO-FLOAT:CAPS" role="macro">
+<title>CLUTTER_FIXED_TO_FLOAT()</title>
+<indexterm zone="CLUTTER-FIXED-TO-FLOAT:CAPS"><primary>CLUTTER_FIXED_TO_FLOAT</primary></indexterm><programlisting>#define CLUTTER_FIXED_TO_FLOAT(x)       ((float) ((int)(x) / 65536.0))
+</programlisting>
+<para>
+Convert a fixed point value to float.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-TO-DOUBLE:CAPS" role="macro">
+<title>CLUTTER_FIXED_TO_DOUBLE()</title>
+<indexterm zone="CLUTTER-FIXED-TO-DOUBLE:CAPS"><primary>CLUTTER_FIXED_TO_DOUBLE</primary></indexterm><programlisting>#define CLUTTER_FIXED_TO_DOUBLE(x)      ((double) ((int)(x) / 65536.0))
+</programlisting>
+<para>
+Convert a fixed point value to double.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FLOAT-TO-FIXED:CAPS" role="macro">
+<title>CLUTTER_FLOAT_TO_FIXED()</title>
+<indexterm zone="CLUTTER-FLOAT-TO-FIXED:CAPS"><primary>CLUTTER_FLOAT_TO_FIXED</primary></indexterm><programlisting>#define CLUTTER_FLOAT_TO_FIXED(x)       (clutter_double_to_fixed ((x)))
+</programlisting>
+<para>
+Convert a float value to fixed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a floating point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FLOAT-TO-INT:CAPS" role="macro">
+<title>CLUTTER_FLOAT_TO_INT()</title>
+<indexterm zone="CLUTTER-FLOAT-TO-INT:CAPS"><primary>CLUTTER_FLOAT_TO_INT</primary></indexterm><programlisting>#define CLUTTER_FLOAT_TO_INT(x)         (clutter_double_to_int ((x)))
+</programlisting>
+<para>
+Convert a float value to int.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a floating point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FLOAT-TO-UINT:CAPS" role="macro">
+<title>CLUTTER_FLOAT_TO_UINT()</title>
+<indexterm zone="CLUTTER-FLOAT-TO-UINT:CAPS"><primary>CLUTTER_FLOAT_TO_UINT</primary></indexterm><programlisting>#define CLUTTER_FLOAT_TO_UINT(x)         (clutter_double_to_uint ((x)))
+</programlisting>
+<para>
+Convert a float value to unsigned int.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a floating point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-INT-TO-FIXED:CAPS" role="macro">
+<title>CLUTTER_INT_TO_FIXED()</title>
+<indexterm zone="CLUTTER-INT-TO-FIXED:CAPS"><primary>CLUTTER_INT_TO_FIXED</primary></indexterm><programlisting>#define CLUTTER_INT_TO_FIXED(x)         ((x) &lt;&lt; CFX_Q)
+</programlisting>
+<para>
+Convert an integer value to fixed point.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> an integer value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-INT:CAPS" role="macro" condition="deprecated:0.6: Use %CLUTTER_FIXED_TO_INT instead">
+<title>CLUTTER_FIXED_INT()</title>
+<indexterm zone="CLUTTER-FIXED-INT:CAPS" role="deprecated"><primary>CLUTTER_FIXED_INT</primary></indexterm><programlisting>#define CLUTTER_FIXED_INT(x)            CLUTTER_FIXED_TO_INT((x))
+</programlisting>
+<warning><para><literal>CLUTTER_FIXED_INT</literal> has been deprecated since version 0.6 and should not be used in newly-written code. Use <link linkend="CLUTTER-FIXED-TO-INT:CAPS"><literal>CLUTTER_FIXED_TO_INT</literal></link> instead</para></warning>
+<para>
+Convert a fixed point value to integer (removing decimal part).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-FRACTION:CAPS" role="macro">
+<title>CLUTTER_FIXED_FRACTION()</title>
+<indexterm zone="CLUTTER-FIXED-FRACTION:CAPS"><primary>CLUTTER_FIXED_FRACTION</primary></indexterm><programlisting>#define CLUTTER_FIXED_FRACTION(x)       ((x) &amp; ((1 &lt;&lt; CFX_Q) - 1))
+</programlisting>
+<para>
+Retrieves the fractionary part of a fixed point value</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-FLOOR:CAPS" role="macro">
+<title>CLUTTER_FIXED_FLOOR()</title>
+<indexterm zone="CLUTTER-FIXED-FLOOR:CAPS"><primary>CLUTTER_FIXED_FLOOR</primary></indexterm><programlisting>#define             CLUTTER_FIXED_FLOOR(x)</programlisting>
+<para>
+Round down a fixed point value to an integer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-CEIL:CAPS" role="macro">
+<title>CLUTTER_FIXED_CEIL()</title>
+<indexterm zone="CLUTTER-FIXED-CEIL:CAPS"><primary>CLUTTER_FIXED_CEIL</primary></indexterm><programlisting>#define CLUTTER_FIXED_CEIL(x)           (CLUTTER_FIXED_FLOOR (x + 0xffff))
+</programlisting>
+<para>
+Round up a fixed point value to an integer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-MUL:CAPS" role="macro">
+<title>CLUTTER_FIXED_MUL()</title>
+<indexterm zone="CLUTTER-FIXED-MUL:CAPS"><primary>CLUTTER_FIXED_MUL</primary></indexterm><programlisting>#define CLUTTER_FIXED_MUL(x,y) ((x) &gt;&gt; 8) * ((y) &gt;&gt; 8)
+</programlisting>
+<para>
+Multiply two fixed point values</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FIXED-DIV:CAPS" role="macro">
+<title>CLUTTER_FIXED_DIV()</title>
+<indexterm zone="CLUTTER-FIXED-DIV:CAPS"><primary>CLUTTER_FIXED_DIV</primary></indexterm><programlisting>#define CLUTTER_FIXED_DIV(x,y) ((((x) &lt;&lt; 8)/(y)) &lt;&lt; 8)
+</programlisting>
+<para>
+Divide two fixed point values</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> a fixed point value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="ClutterAngle" role="typedef">
+<title>ClutterAngle</title>
+<indexterm zone="ClutterAngle"><primary>ClutterAngle</primary></indexterm><programlisting>typedef gint32 ClutterAngle;    /* angle such that 1024 == 2*PI */
+</programlisting>
+<para>
+Integer representation of an angle such that 1024 corresponds to
+full circle (i.e., 2*Pi).</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-ANGLE-FROM-DEG:CAPS" role="macro">
+<title>CLUTTER_ANGLE_FROM_DEG()</title>
+<indexterm zone="CLUTTER-ANGLE-FROM-DEG:CAPS"><primary>CLUTTER_ANGLE_FROM_DEG</primary></indexterm><programlisting>#define CLUTTER_ANGLE_FROM_DEG(x)  (CLUTTER_FLOAT_TO_INT (((x) * 1024.0) / 360.0))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-FROM-DEGF:CAPS" role="macro">
+<title>CLUTTER_ANGLE_FROM_DEGF()</title>
+<indexterm zone="CLUTTER-ANGLE-FROM-DEGF:CAPS"><primary>CLUTTER_ANGLE_FROM_DEGF</primary></indexterm><programlisting>#define CLUTTER_ANGLE_FROM_DEGF(x) (CLUTTER_FLOAT_TO_INT (((float)(x) * 1024.0f) / 360.0f))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-FROM-DEGX:CAPS" role="macro">
+<title>CLUTTER_ANGLE_FROM_DEGX()</title>
+<indexterm zone="CLUTTER-ANGLE-FROM-DEGX:CAPS"><primary>CLUTTER_ANGLE_FROM_DEGX</primary></indexterm><programlisting>#define CLUTTER_ANGLE_FROM_DEGX(x) (CFX_INT((((x)/360)*1024) + CFX_HALF))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-TO-DEGF:CAPS" role="macro">
+<title>CLUTTER_ANGLE_TO_DEGF()</title>
+<indexterm zone="CLUTTER-ANGLE-TO-DEGF:CAPS"><primary>CLUTTER_ANGLE_TO_DEGF</primary></indexterm><programlisting>#define CLUTTER_ANGLE_TO_DEGF(x)   (((float)(x) * 360.0)/ 1024.0)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-TO-DEG:CAPS" role="macro">
+<title>CLUTTER_ANGLE_TO_DEG()</title>
+<indexterm zone="CLUTTER-ANGLE-TO-DEG:CAPS"><primary>CLUTTER_ANGLE_TO_DEG</primary></indexterm><programlisting>#define CLUTTER_ANGLE_TO_DEG(x)    (((x) * 360.0)/ 1024.0)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-TO-DEGX:CAPS" role="macro">
+<title>CLUTTER_ANGLE_TO_DEGX()</title>
+<indexterm zone="CLUTTER-ANGLE-TO-DEGX:CAPS"><primary>CLUTTER_ANGLE_TO_DEGX</primary></indexterm><programlisting>#define CLUTTER_ANGLE_TO_DEGX(x)   (CLUTTER_INT_TO_FIXED((x) * 45)/128)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-ANGLE-MAX-DEG:CAPS" role="macro">
+<title>CLUTTER_ANGLE_MAX_DEG</title>
+<indexterm zone="CLUTTER-ANGLE-MAX-DEG:CAPS"><primary>CLUTTER_ANGLE_MAX_DEG</primary></indexterm><programlisting>#define CLUTTER_ANGLE_MAX_DEG 1509949439.6
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="CFX-RADIANS-TO-DEGREES:CAPS" role="macro">
+<title>CFX_RADIANS_TO_DEGREES</title>
+<indexterm zone="CFX-RADIANS-TO-DEGREES:CAPS"><primary>CFX_RADIANS_TO_DEGREES</primary></indexterm><programlisting>#define CFX_RADIANS_TO_DEGREES 0x394bb8
+</programlisting>
+<para>
+Fixed point representation of the number 180 / pi</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-cosi" role="macro" condition="since:0.2">
+<title>clutter_cosi()</title>
+<indexterm zone="clutter-cosi" role="0.2"><primary>clutter_cosi</primary></indexterm><programlisting>#define clutter_cosi(angle) (clutter_sini ((angle) + 256))
+</programlisting>
+<para>
+Very fast fixed point implementation of cosine function.
+</para>
+<para>
+ClutterAngle is an integer such that 1024 represents
+full circle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAngle"><type>ClutterAngle</type></link> angle
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-cosx" role="macro" condition="since:0.2">
+<title>clutter_cosx()</title>
+<indexterm zone="clutter-cosx" role="0.2"><primary>clutter_cosx</primary></indexterm><programlisting>#define clutter_cosx(angle) (clutter_sinx((angle) + CFX_PI_2))
+</programlisting>
+<para>
+Fixed point cosine function</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterFixed"><type>ClutterFixed</type></link> angle in radians
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sini" role="function" condition="since:0.2">
+<title>clutter_sini ()</title>
+<indexterm zone="clutter-sini" role="0.2"><primary>clutter_sini</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_sini                        (<link linkend="ClutterAngle">ClutterAngle</link> angle);</programlisting>
+<para>
+Very fast fixed point implementation of sine function.
+</para>
+<para>
+ClutterAngle is an integer such that 1024 represents
+full circle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAngle"><type>ClutterAngle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> sine value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sinx" role="function" condition="since:0.2">
+<title>clutter_sinx ()</title>
+<indexterm zone="clutter-sinx" role="0.2"><primary>clutter_sinx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_sinx                        (<link linkend="ClutterFixed">ClutterFixed</link> angle);</programlisting>
+<para>
+Fixed point implementation of sine function</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterFixed"><type>ClutterFixed</type></link> angle in radians
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> sine value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="CLUTTER-SQRTI-ARG-10-PERCENT:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_SQRTI_ARG_10_PERCENT</title>
+<indexterm zone="CLUTTER-SQRTI-ARG-10-PERCENT:CAPS" role="0.6"><primary>CLUTTER_SQRTI_ARG_10_PERCENT</primary></indexterm><programlisting>#define             CLUTTER_SQRTI_ARG_10_PERCENT</programlisting>
+<para>
+Maximum argument that can be passed to <link linkend="clutter-sqrti"><type>clutter_sqrti</type></link> for which the
+resulting error is &lt; 10%</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-SQRTI-ARG-5-PERCENT:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_SQRTI_ARG_5_PERCENT</title>
+<indexterm zone="CLUTTER-SQRTI-ARG-5-PERCENT:CAPS" role="0.6"><primary>CLUTTER_SQRTI_ARG_5_PERCENT</primary></indexterm><programlisting>#define             CLUTTER_SQRTI_ARG_5_PERCENT</programlisting>
+<para>
+Maximum argument that can be passed to <link linkend="clutter-sqrti"><type>clutter_sqrti</type></link> for which the
+resulting error is &lt; 5%</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="CLUTTER-SQRTI-ARG-MAX:CAPS" role="macro" condition="since:0.6">
+<title>CLUTTER_SQRTI_ARG_MAX</title>
+<indexterm zone="CLUTTER-SQRTI-ARG-MAX:CAPS" role="0.6"><primary>CLUTTER_SQRTI_ARG_MAX</primary></indexterm><programlisting>#define             CLUTTER_SQRTI_ARG_MAX</programlisting>
+<para>
+Maximum argument that can be passed to <link linkend="clutter-sqrti"><type>clutter_sqrti</type></link> function.</para>
+<para>
+
+</para><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-sqrti" role="function" condition="since:0.2">
+<title>clutter_sqrti ()</title>
+<indexterm zone="clutter-sqrti" role="0.2"><primary>clutter_sqrti</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_sqrti                       (<link linkend="gint">gint</link> x);</programlisting>
+<para>
+Very fast fixed point implementation of square root for integers.
+</para>
+<para>
+This function is at least 6x faster than clib <link linkend="sqrt"><function>sqrt()</function></link> on x86, and (this is
+not a typo!) about 500x faster on ARM without FPU. It's error is &lt; 5%
+for arguments &lt; <link linkend="CLUTTER-SQRTI-ARG-5-PERCENT:CAPS"><type>CLUTTER_SQRTI_ARG_5_PERCENT</type></link> and &lt; 10% for arguments &lt;
+<link linkend="CLUTTER-SQRTI-ARG-10-PERCENT:CAPS"><type>CLUTTER_SQRTI_ARG_10_PERCENT</type></link>. The maximum argument that can be passed to
+this function is CLUTTER_SQRTI_ARG_MAX.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> integer value
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> integer square root.
+
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-sqrtx" role="function" condition="since:0.2">
+<title>clutter_sqrtx ()</title>
+<indexterm zone="clutter-sqrtx" role="0.2"><primary>clutter_sqrtx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_sqrtx                       (<link linkend="ClutterFixed">ClutterFixed</link> x);</programlisting>
+<para>
+A fixed point implementation of squre root</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> square root.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-log2x" role="function" condition="since:0.4">
+<title>clutter_log2x ()</title>
+<indexterm zone="clutter-log2x" role="0.4"><primary>clutter_log2x</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_log2x                       (<link linkend="guint">guint</link> x);</programlisting>
+<para>
+Calculates base 2 logarithm.
+</para>
+<para>
+This function is some 2.5 times faster on x86, and over 12 times faster on
+fpu-less arm, than using libc <link linkend="log"><function>log()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> value to calculate base 2 logarithm from
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> base 2 logarithm.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-pow2x" role="function" condition="since:0.4">
+<title>clutter_pow2x ()</title>
+<indexterm zone="clutter-pow2x" role="0.4"><primary>clutter_pow2x</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_pow2x                       (<link linkend="ClutterFixed">ClutterFixed</link> x);</programlisting>
+<para>
+Calculates 2 to x power.
+</para>
+<para>
+This function is around 11 times faster on x86, and around 22 times faster
+on fpu-less arm than libc pow(2, x).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> exponent
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 2 in x power.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-powx" role="function" condition="since:0.4">
+<title>clutter_powx ()</title>
+<indexterm zone="clutter-powx" role="0.4"><primary>clutter_powx</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_powx                        (<link linkend="guint">guint</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Calculates x to y power. (Note, if x is a constant it will be faster to
+calculate the power as clutter_pow2x (CLUTTER_FIXED_MUL(y, log2 (x)))</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> base
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> exponent
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> x in y power.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-qmulx" role="function" condition="since:0.4">
+<title>clutter_qmulx ()</title>
+<indexterm zone="clutter-qmulx" role="0.4"><primary>clutter_qmulx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_qmulx                       (<link linkend="ClutterFixed">ClutterFixed</link> op1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> op2);</programlisting>
+<para>
+Multiplies two fixed values using 64bit arithmetic; this provides
+significantly better precission than the <link linkend="CLUTTER-FIXED-MUL:CAPS"><type>CLUTTER_FIXED_MUL</type></link> macro,
+but at performance cost (about 2.7 times slowdown on ARMv5e, and 2 times
+on x86).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>op1</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>op2</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the result of the operation
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-qdivx" role="function" condition="since:0.4">
+<title>clutter_qdivx ()</title>
+<indexterm zone="clutter-qdivx" role="0.4"><primary>clutter_qdivx</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_qdivx                       (<link linkend="ClutterFixed">ClutterFixed</link> op1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> op2);</programlisting>
+<para>
+Divides two fixed values using 64bit arithmetic; this provides
+significantly better precission than the <link linkend="CLUTTER-FIXED-DIV:CAPS"><type>CLUTTER_FIXED_DIV</type></link> macro,
+but at performance cost.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>op1</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>op2</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-tani" role="function" condition="since:0.3">
+<title>clutter_tani ()</title>
+<indexterm zone="clutter-tani" role="0.3"><primary>clutter_tani</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_tani                        (<link linkend="ClutterAngle">ClutterAngle</link> angle);</programlisting>
+<para>
+Very fast fixed point implementation of tan function.
+</para>
+<para>
+ClutterAngle is an integer such that 1024 represents
+full circle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAngle"><type>ClutterAngle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="ClutterFixed"><type>ClutterFixed</type></link> sine value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.3
+</para></refsect2>
+<refsect2 id="clutter-atani" role="function">
+<title>clutter_atani ()</title>
+<indexterm zone="clutter-atani"><primary>clutter_atani</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_atani                       (<link linkend="ClutterFixed">ClutterFixed</link> x);</programlisting>
+<para>
+Fast fixed-point version of the arctangent function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> The tangent to calculate the angle for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The angle in radians represented as a <link linkend="ClutterFixed"><type>ClutterFixed</type></link>
+for which the tangent is <parameter>x</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-atan2i" role="function">
+<title>clutter_atan2i ()</title>
+<indexterm zone="clutter-atan2i"><primary>clutter_atan2i</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_atan2i                      (<link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x);</programlisting>
+<para>
+Calculates the arctangent of <parameter>y</parameter> / <parameter>x</parameter> but uses the sign of both
+arguments to return the angle in right quadrant.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Numerator of tangent
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> Denominator of tangent
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The arctangent of <parameter>y</parameter> / <parameter>x</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-MAXFIXED:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_MAXFIXED</title>
+<indexterm zone="CLUTTER-MAXFIXED:CAPS" role="0.8"><primary>CLUTTER_MAXFIXED</primary></indexterm><programlisting>#define CLUTTER_MAXFIXED        CFX_MAX
+</programlisting>
+<para>
+Higher boundary for <link linkend="ClutterFixed"><type>ClutterFixed</type></link></para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="CLUTTER-MINFIXED:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_MINFIXED</title>
+<indexterm zone="CLUTTER-MINFIXED:CAPS" role="0.8"><primary>CLUTTER_MINFIXED</primary></indexterm><programlisting>#define CLUTTER_MINFIXED        CFX_MIN
+</programlisting>
+<para>
+Lower boundary for <link linkend="ClutterFixed"><type>ClutterFixed</type></link></para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="ClutterParamSpecFixed" role="struct" condition="since:0.8">
+<title>ClutterParamSpecFixed</title>
+<indexterm zone="ClutterParamSpecFixed" role="0.8"><primary>ClutterParamSpecFixed</primary></indexterm><programlisting>typedef struct {
+  ClutterFixed  minimum;
+  ClutterFixed  maximum;
+  ClutterFixed  default_value;
+} ClutterParamSpecFixed;
+</programlisting>
+<para>
+<link linkend="GParamSpec"><type>GParamSpec</type></link> subclass for fixed point based properties</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="ClutterFixed">ClutterFixed</link>&nbsp;<structfield>minimum</structfield>;</term>
+<listitem><simpara> lower boundary
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterFixed">ClutterFixed</link>&nbsp;<structfield>maximum</structfield>;</term>
+<listitem><simpara> higher boundary
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="ClutterFixed">ClutterFixed</link>&nbsp;<structfield>default_value</structfield>;</term>
+<listitem><simpara> default value
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-param-spec-fixed" role="function" condition="since:0.8">
+<title>clutter_param_spec_fixed ()</title>
+<indexterm zone="clutter-param-spec-fixed" role="0.8"><primary>clutter_param_spec_fixed</primary></indexterm><programlisting><link linkend="GParamSpec">GParamSpec</link>*         clutter_param_spec_fixed            (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *nick,
+                                                         const <link linkend="gchar">gchar</link> *blurb,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> minimum,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> maximum,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> default_value,
+                                                         <link linkend="GParamFlags">GParamFlags</link> flags);</programlisting>
+<para>
+Creates a <link linkend="GParamSpec"><type>GParamSpec</type></link> for properties using <link linkend="ClutterFixed"><type>ClutterFixed</type></link> values</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of the property
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nick</parameter>&nbsp;:</term>
+<listitem><simpara> short name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>blurb</parameter>&nbsp;:</term>
+<listitem><simpara> description (can be translatable)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>minimum</parameter>&nbsp;:</term>
+<listitem><simpara> lower boundary
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>maximum</parameter>&nbsp;:</term>
+<listitem><simpara> higher boundary
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>default_value</parameter>&nbsp;:</term>
+<listitem><simpara> default value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> flags for the param spec
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="GParamSpec"><type>GParamSpec</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="CLUTTER-VALUE-HOLDS-FIXED:CAPS" role="macro" condition="since:0.8">
+<title>CLUTTER_VALUE_HOLDS_FIXED()</title>
+<indexterm zone="CLUTTER-VALUE-HOLDS-FIXED:CAPS" role="0.8"><primary>CLUTTER_VALUE_HOLDS_FIXED</primary></indexterm><programlisting>#define CLUTTER_VALUE_HOLDS_FIXED(x)    (G_VALUE_HOLDS ((x), CLUTTER_TYPE_FIXED))
+</programlisting>
+<para>
+Evaluates to <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>x</parameter> holds a <link linkend="ClutterFixed"><type>ClutterFixed</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-value-set-fixed" role="function" condition="since:0.8">
+<title>clutter_value_set_fixed ()</title>
+<indexterm zone="clutter-value-set-fixed" role="0.8"><primary>clutter_value_set_fixed</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_value_set_fixed             (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> fixed_);</programlisting>
+<para>
+Sets <parameter>value</parameter> to <parameter>fixed_</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> initialized to <link linkend="CLUTTER-TYPE-FIXED:CAPS"><type>CLUTTER_TYPE_FIXED</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fixed_</parameter>&nbsp;:</term>
+<listitem><simpara> the fixed point value to set
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-value-get-fixed" role="function" condition="since:0.8">
+<title>clutter_value_get_fixed ()</title>
+<indexterm zone="clutter-value-get-fixed" role="0.8"><primary>clutter_value_get_fixed</primary></indexterm><programlisting><link linkend="ClutterFixed">ClutterFixed</link>        clutter_value_get_fixed             (const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Gets the fixed point value stored inside <parameter>value</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GValue"><type>GValue</type></link> initialized to <link linkend="CLUTTER-TYPE-FIXED:CAPS"><type>CLUTTER_TYPE_FIXED</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the value inside the passed <link linkend="GValue"><type>GValue</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

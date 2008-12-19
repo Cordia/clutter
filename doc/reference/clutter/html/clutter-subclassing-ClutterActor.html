@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Implementing a new actor</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="prev" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="next" href="clutter-animations.html" title="Creating Animations with Clutter">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="pt07.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-animations.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter" lang="en">
+<div class="titlepage"><div>
+<div><h2 class="title">
+<a name="clutter-subclassing-ClutterActor"></a>Implementing a new actor</h2></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">Emmanuele</span> <span class="surname">Bassi</span>
+</h3>
+<div class="affiliation"><div class="address"><p><br>
+          <code class="email">&lt;<a class="email" href="mailto:ebassi@openedhand.com">ebassi@openedhand.com</a>&gt;</code><br>
+        </p></div></div>
+</div></div>
+</div></div>
+<p>In order to implement a new #ClutterActor subclass the usual
+  machinery for subclassing a #GObject should be used:</p>
+<div class="informalexample"><pre class="programlisting">
+#define FOO_TYPE_ACTOR            (foo_actor_get_type ())
+#define FOO_ACTOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), FOO_TYPE_ACTOR, FooActor))
+#define FOO_IS_ACTOR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FOO_TYPE_ACTOR))
+#define FOO_ACTOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), FOO_TYPE_ACTOR, FooActorClass))
+#define FOO_IS_ACTOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), FOO_TYPE_ACTOR))
+#define FOO_ACTOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), FOO_TYPE_ACTOR, FooActorClass))
+
+typedef struct _FooActor
+{
+  ClutterActor parent_instance;
+} FooActor;
+
+typedef struct _FooActorClass
+{
+  ClutterActorClass parent_class;
+} FooActorClass;
+
+G_DEFINE_TYPE (FooActor, foo_actor, CLUTTER_TYPE_ACTOR);
+
+static void
+foo_actor_class_init (FooActorClass *klass)
+{
+
+}
+
+static void
+foo_actor_init (FooActor *actor)
+{
+
+}
+    </pre></div>
+<p>The implementation of an actor roughly depends on what kind
+  of actor the class should display.</p>
+<p>The implementation process can be broken down into sections:
+
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">size requisition</span></p></td>
+<td><p>used by containers to know how much space
+        an actor requires for itself and its eventual
+        children.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">size allocation</span></p></td>
+<td><p>used by containers to define how much space
+        an actor should have for itself and its eventual
+        children.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">painting and picking</span></p></td>
+<td><p>the actual actor painting and the "picking"
+        done to determine the actors that received events</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+  </p>
+<p>Container actors should also implement the #ClutterContainer
+  interface to provide a consistent API for adding, removing and iterating
+  over their children.</p>
+<div class="refsect1" lang="en">
+<a name="actor-size-requisition"></a><h2>Size requisition</h2>
+<p>Actors should usually implement the size requisition virtual
+    functions unless they depend on explicit sizing by the developer,
+    using the clutter_actor_set_width() and clutter_actor_set_height()
+    functions and their wrappers.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>For instance, an actor that depends on the explicit
+    sizing is the #ClutterRectangle actor.</p>
+</div>
+<p>The size requisition is split into two different phases: width
+    requisition and height requisition.</p>
+<p>The <code class="classname">ClutterActor</code>::get_preferred_width() and
+    <code class="classname">ClutterActor</code>::get_preferred_height() methods of a
+    #ClutterActor are invoked when clutter_actor_get_preferred_width() and 
+    clutter_actor_get_preferred_height() are respectively called on an instance
+    of that actor class. They are used to return the preferred size of the 
+    actor. Container actors, or composite actors with internal children, 
+    should call clutter_actor_get_preferred_width() and 
+    clutter_actor_get_preferred_height() on each visible child inside
+    their implementation of the get_preferred_width() and get_preferred_height()
+    virtual functions.</p>
+<p>The get_preferred_width() and get_preferred_height() virtual
+    functions return both the minimum size of the actor and its natural
+    size. The minimum size is defined as the amount of space an actor
+    must occupy to be useful; the natural size is defined as the amount
+    of space an actor would occupy if nothing would constrain it.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>The natural size must always be greater than, or equal
+    to the minimum size. #ClutterActor will warn in case this assumption
+    is not respected by an implementation.</p>
+</div>
+<p>The height request may be computed for a specific width, which
+    is passed to the implementation, thus allowing height-for-width
+    geometry management. Similarly, the width request may be computed
+    for a specific height, allowing width-for-height geometry management.
+    By default, every #ClutterActor uses the height-for-width geometry
+    management, but the setting can be changed by using the
+    #ClutterActor:request-mode property.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>The clutter_actor_get_preferred_size() function will
+    automatically check the geometry management preferred by the actor
+    and return its preferred size depending on the value of the request-mode
+    property and on the natural size of the actor.</p>
+</div>
+<p>The size requisition starts from the #ClutterStage and it is
+    performed on every child of the stage following down the hierarchy
+    of the scene graph.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>The size requisition should not take into account the
+    actor's scale, rotation or anchor point unless an actor is performing
+    layout management depending on those properties.</p>
+</div>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>All the sizes are expressed using #ClutterUnits, the
+    internal high-precision unit type, which guarantees sub-pixel precision.
+    #ClutterUnit currently has the same limitations that #ClutterFixed has,
+    see the <a class="link" href="clutter-Fixed-Point-Support.html" title="Fixed Point Support">fixed point page</a>.
+    </p>
+</div>
+<div class="example">
+<a name="clutter-actor-get-width-request-example"></a><p class="title"><b>Example 1. Width requisition implementation of a container</b></p>
+<div class="example-contents">
+<p>This example shows how an actor class should override the
+      get_preferred_width() virtual function of #ClutterActor. In this case,
+      the returned widths are the union of the extents of all the
+      <code class="classname">FooActor</code> children.</p>
+<p>The get_preferred_height() implementation would be similar to the
+      get_preferred_width() implementation, so it is omitted.</p>
+<pre class="programlisting">
+static void
+foo_actor_get_preferred_width (ClutterActor *actor,
+                               ClutterUnit   for_height,
+                               ClutterUnit  *min_width_p,
+                               ClutterUnit  *natural_width_p)
+{
+  GList *l;
+  ClutterUnit min_left, min_right;
+  ClutterUnit natural_left, natural_right;
+
+  min_left = 0;
+  min_right = 0;
+  natural_left = 0;
+  natural_right = 0;
+
+  for (l = children; l != NULL; l = l-&gt;next)
+    {
+      ClutterActor *child = l-&gt;data;
+      ClutterUnit child_x, child_min, child_natural;
+
+      child_x = clutter_actor_get_xu (child);
+
+      clutter_actor_get_preferred_width (child, for_height,
+                                         &amp;child_min,
+                                         &amp;child_natural);
+
+      if (l == children)
+        {
+          /* First child */
+          min_left = child_x;
+          natural_left = child_x;
+          min_right = min_left + child_min;
+          natural_right = natural_left + child_natural;
+        }
+      else
+        {
+          if (child_x &lt; min_left)
+            min_left = child_x;
+
+          if (child_x &lt; natural_left)
+            natural_left = child_x;
+
+          if (child_x + child_min &gt; min_right)
+            min_right = child_x + child_min;
+
+          if (child_x + child_natural &gt; natural_right)
+            natural_right = child_x + child_natural;
+        }
+    }
+
+  /* The request is defined as the width and height we want starting from 
+   * our origin, since our allocation will set the origin; so we now need 
+   * to remove any part of the request that is to the left of the origin.
+   */
+  if (min_left &lt; 0)
+    min_left = 0;
+
+  if (natural_left &lt; 0)
+    natural_left = 0;
+
+  if (min_right &lt; 0)
+    min_right = 0;
+
+  if (natural_right &lt; 0)
+    natural_right = 0;
+
+  g_assert (min_right &gt;= min_left);
+  g_assert (natural_right &gt;= natural_left);
+
+  if (min_width_p)
+    *min_width_p = min_right - min_left;
+
+  if (natural_width_p)
+    *natural_width_p = natural_right - min_left;
+}
+      </pre>
+</div>
+</div>
+<br class="example-break">
+</div>
+<div class="refsect1" lang="en">
+<a name="actor-size-allocation"></a><h2>Size allocation</h2>
+<p>The <code class="classname">ClutterActor</code>::allocate() method of a
+    #ClutterActor is invoked when clutter_actor_allocate() is called on an
+    instance of that actor class. It is used by a parent actor to set the 
+    coordinates of the bounding box for its children actors. Hence, 
+    container actors, or composite actors with internal children, should 
+    override the allocate() virtual function and call clutter_actor_allocate()
+    on each visible child.</p>
+<p>Each actor can know from their allocation box whether they
+    have been moved with respect to their parent actor. Each child will
+    also be able to tell whether their parent has been moved with respect
+    to the stage.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>The allocate() virtual function implementation will be
+    notified whether the actor has been moved, while clutter_actor_allocate()
+    will usually be invoked with a boolean flag meaning that the parent
+    has been moved.</p>
+</div>
+<div class="example">
+<a name="container-allocate-example"></a><p class="title"><b>Example 2. Allocation of a container</b></p>
+<div class="example-contents">
+<p>In this example, <code class="classname">FooActor</code> acts like a
+      horizontal box with overflowing, like a toolbar which will display
+      more children as it expands. The children falling outside of the
+      allocated area will fade out; the children falling inside the
+      same area will fade in.</p>
+<pre class="programlisting">
+static void
+foo_actor_allocate (ClutterActor          *actor,
+                    const ClutterActorBox *box,
+                    gboolean               absolute_origin_changed)
+{
+  FooActor *foo_actor = FOO_ACTOR (actor);
+  ClutterUnit current_width;
+  GList *l;
+
+  /* chain up to set the allocation of the actor */
+  CLUTTER_ACTOR_CLASS (foo_actor_parent_class)-&gt;allocate (actor, box, absolute_origin_changed);
+
+  current_width = foo_actor-&gt;padding;
+
+  for (l = foo_actor-&gt;children;
+       l != NULL;
+       l = l-&gt;next)
+    {
+      FooActorChild *child = l-&gt;data;
+      ClutterUnit natural_width, natural_height;
+      ClutterActorBox child_box = { 0, };
+
+      /* each child will get as much space as they require */
+      clutter_actor_get_preferred_size (CLUTTER_ACTOR (child),
+                                        NULL, NULL,
+                                        &amp;natural_width, &amp;natural_height);
+
+      /* if the child is overflowing, we just fade it out */
+      if (current_width + natual_width &gt; box-&gt;x2 - box-&gt;x1)
+        foo_actor_fade_child (foo_actor, child, 0);
+      else
+        {
+          current_width += natural_width + priv-&gt;padding;
+
+          child_box.x1 = current_width;
+          child_box.y1 = 0;
+          child_box.x2 = child_box.x1 + natural_width;
+          child_box.y2 = child_box.y1 + natural_height;
+
+          /* update the allocation */
+          clutter_actor_allocate (CLUTTER_ACTOR (child),
+                                  &amp;child_box,
+                                  absolute_origin_changed);
+
+          /* fade the child in if it wasn't visible */
+          foo_actor_fade_child (foo_actor, child, 255);
+        }
+    }
+}
+      </pre>
+</div>
+</div>
+<br class="example-break"><p>The allocation is also the "paint area", that is the area where
+    the paint operations should be performed.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="actor-painting-and-picking"></a><h2>Painting and picking</h2>
+<p>The <code class="classname">ClutterActor</code>::paint() method should be
+    overridden if the actor needs to control its drawing process, either by
+    using the Clutter GL and GLES abstraction library (COGL) or by directly
+    using the GL or GLES API.</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>Actors performing transformations should push the GL matrix
+    first and then pop the GL matrix before returning. COGL provides wrapper
+    functions for this operation, cogl_push_matrix() and cogl_pop_matrix().
+    </p>
+</div>
+<div class="example">
+<a name="simple-actor-paint-example"></a><p class="title"><b>Example 3. Paint implementation of a simple actor</b></p>
+<div class="example-contents">
+<p>In this example, the <code class="classname">FooActor</code>
+      implementation of the paint() virtual function is drawing a rectangle
+      with rounded corners with a custom color. The COGL API is used, to
+      allow portability between GL and GLES platforms.</p>
+<pre class="programlisting">
+static void
+foo_actor_paint (ClutterActor *actor)
+{
+  FooActor *foo_actor = FOO_ACTOR (actor);
+  ClutterColor color = { 0, };
+  ClutterUnit w, h, r;
+
+  /* FooActor has a specific background color */
+  color.red   = foo_actor-&gt;bg_color.red;
+  color.green = foo_actor-&gt;bg_color.green;
+  color.blue  = foo_actor-&gt;bg_color.blue;
+
+  /* the alpha component must take into account the absolute
+   * opacity of the actor on the screen at this point in the
+   * scenegraph; this value is obtained by calling
+   * clutter_actor_get_paint_opacity().
+   */
+  color.alpha = clutter_actor_get_paint_opacity (actor);
+
+  /* set the color of the pen */
+  cogl_color (&amp;color);
+
+  /* get the size of the actor with sub-pixel precision */
+  w = CLUTTER_UNITS_TO_FIXED (clutter_actor_get_widthu (actor));
+  h = CLUTTER_UNITS_TO_FIXED (clutter_actor_get_heightu (actor));
+
+  /* this is the arc radius for the rounded rectangle corners */
+  r = CLUTTER_UNITS_TO_FIXED (foo_actor-&gt;radius);
+
+  /* paint a rounded rectangle using GL primitives; the area of
+   * paint is (0, 0) - (width, height), which means the whole
+   * allocation or, if the actor has a fixed size, the size that
+   * has been set.
+   */
+  cogl_path_round_rectangle (0, 0, w, h, r, 5);
+
+  /* and fill it with the current color */
+  cogl_path_fill ();
+}
+      </pre>
+</div>
+</div>
+<br class="example-break"><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>When inside the <code class="classname">ClutterActor</code>::paint()
+    method the actor is already positioned at the coordinates specified by
+    its parent; all the paint operations should take place from the (0, 0)
+    coordinates.</p>
+</div>
+<p>Container actors or composite actors with internal children should
+    also override the paint method, and call clutter_actor_paint() on every
+    visible child:</p>
+<div class="example">
+<a name="container-actor-paint-example"></a><p class="title"><b>Example 4. Paint implementation of a container</b></p>
+<div class="example-contents">
+<p>In this example, <code class="classname">FooActor</code> is a simple
+      container invoking clutter_actor_paint() on every visible child.</p>
+<pre class="programlisting">
+static void
+foo_actor_paint (ClutterActor *actor)
+{
+  FooActor *foo_actor = FOO_ACTOR (actor);
+  GList *child;
+
+  for (child = foo_actor-&gt;children;
+       child != NULL;
+       child = child-&gt;next)
+    {
+      ClutterActor *child_actor = child-&gt;data;
+
+      /* paint only visible children */
+      if (CLUTTER_ACTOR_IS_VISIBLE (child_actor))
+        clutter_actor_paint (child_actor);
+    }
+}
+      </pre>
+</div>
+</div>
+<br class="example-break"><p>If the actor has a non-rectangular shape, or it has internal
+    children that need to be distinguished by the events delivery mechanism,
+    the <code class="classname">ClutterActor</code>::pick() method should also be
+    overridden. The pick() method works exactly like the paint() method, but
+    the actor should paint just its shape with the passed colour:</p>
+<div class="example">
+<a name="simple-actor-pick-example"></a><p class="title"><b>Example 5. Pick implementation of a simple actor</b></p>
+<div class="example-contents">
+<p>In this example, <code class="classname">FooActor</code> overrides the
+      pick() virtual function default implementation to paint itself with a
+      shaped silhouette, to allow events only on the actual shape of the actor
+      instead of the whole paint area.</p>
+<pre class="programlisting">
+static void
+foo_actor_pick (ClutterActor       *actor,
+                const ClutterColor *pick_color)
+{
+  FooActor *foo_actor = FOO_ACTOR (actor);
+  ClutterUnit w, h, r;
+
+  /* it is possible to avoid a costly paint by checking whether the
+   * actor should really be painted in pick mode
+   */
+  if (!clutter_actor_should_pick_paint (actor))
+    return;
+
+  w = CLUTTER_UNITS_TO_FIXED (clutter_actor_get_widthu (actor));
+  h = CLUTTER_UNITS_TO_FIXED (clutter_actor_get_heightu (actor));
+
+  /* this is the arc radius for the rounded rectangle corners */
+  r = CLUTTER_UNITS_TO_FIXED (foo_actor-&gt;radius);
+
+  /* use the passed color to paint ourselves */
+  cogl_color (pick_color);
+
+  /* paint a round rectangle */
+  cogl_round_rectangle (0, 0, w, h, r, 5);
+
+  /* and fill it with the current color */
+  cogl_fill ();
+}
+      </pre>
+</div>
+</div>
+<br class="example-break"><p>Containers should simply chain up to the parent class'
+    pick() implementation to get their silhouette painted and then
+    paint their children:</p>
+<div class="example">
+<a name="container-actor-pick-example"></a><p class="title"><b>Example 6. Pick implementation of a container</b></p>
+<div class="example-contents">
+<p>In this example, <code class="classname">FooActor</code> allows the
+      picking of each child it contains, as well as itself.</p>
+<pre class="programlisting">
+static void
+foo_actor_pick (ClutterActor       *actor,
+                const ClutterColor *pick_color)
+{
+  FooActor *foo_actor = FOO_ACTOR (actor);
+
+  /* this will paint a silhouette corresponding to the paint box */
+  CLUTTER_ACTOR_CLASS (foo_actor_parent_class)-&gt;pick (actor, pick_color);
+
+  /* clutter_actor_paint() is context-sensitive, and will perform
+   * a pick paint if the scene graph is in pick mode
+   */
+  if (CLUTTER_ACTOR_IS_VISIBLE (foo_actor-&gt;child))
+    clutter_actor_paint (foo_actor-&gt;child);
+}
+      </pre>
+</div>
+</div>
+<br class="example-break">
+</div>
+<div class="refsect1" lang="en">
+<a name="implementing-clutter-container"></a><h2>Implementing Containers</h2>
+<p>
+    The #ClutterContainer interface should be implemented by subclasses
+    of #ClutterActor who wants to provide a general API for adding child
+    actors.
+    </p>
+<p>
+    If the #ClutterActor subclass only handles internal children, or it's
+    not suitable for having generic actors added to it, it should not
+    implement the #ClutterContainer interface, but simply use
+    clutter_actor_set_parent():
+    </p>
+<div class="example">
+<a name="clutter-actor-set-parent-example"></a><p class="title"><b>Example 7. Parenting an actor</b></p>
+<div class="example-contents">
+<p>In this example, <code class="classname">FooActor</code> has an internal
+      child of type <code class="classname">BazActor</code> which is assigned using a
+      specific function called foo_actor_add_baz(). The
+      <code class="classname">FooActor</code> instance takes ownership of the
+      <code class="classname">BazActor</code> instance and sets the parent-child
+      relationship using clutter_actor_set_parent().</p>
+<pre class="programlisting">
+void
+foo_actor_add_baz (FooActor *foo_actor,
+                   BazActor *baz_actor)
+{
+  g_return_if_fail (FOO_IS_ACTOR (foo_actor));
+  g_return_if_fail (BAZ_IS_ACTOR (baz_actor));
+
+  /* unparent the previous BazActor; this will automatically call
+   * g_object_unref() on the actor
+   */
+  if (foo_actor-&gt;baz)
+    clutter_actor_unparent (foo_actor-&gt;baz);
+
+  foo_actor-&gt;baz = baz_actor;
+
+  /* this will cause the initial floating reference of ClutterActor to
+   * disappear, and add a new reference on baz_actor. foo_actor has now
+   * taken ownership of baz_actor, so that:
+   *
+   *   foo_actor_add_baz (foo_actor, baz_actor_new ());
+   *
+   * is a safe statement (no reference is leaked).
+   */
+  clutter_actor_set_parent (CLUTTER_ACTOR (baz_actor),
+                            CLUTTER_ACTOR (foo_actor));
+
+  /* a container should queue a change in the layout */
+  clutter_actor_queue_relayout (CLUTTER_ACTOR (foo_actor));
+
+  /* emit a signal and notification */
+  g_signal_emit (foo_actor, foo_actor_signals[BAZ_CHANGED], 0, baz_actor);
+  g_object_notify (G_OBJECT (foo_actor), "baz");
+}
+      </pre>
+</div>
+</div>
+<br class="example-break"><p>
+    In order to implement the #ClutterContainer interface, these virtual
+    functions must be defined:
+
+      </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">ClutterContainer::add</span></p></td>
+<td><p>The container actor should hold a pointer to the passed
+            #ClutterActor, call clutter_actor_set_parent() on it and then
+            emit the #ClutterContainer::actor-added signal to notify
+            handlers of the newly added actor.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">ClutterContainer::remove</span></p></td>
+<td><p>The container actor should increase the reference count
+            of the passed #ClutterActor, remove the pointer held on the
+            child and call clutter_actor_unparent() on it; then, emit the
+            #ClutterContainer::actor-removed signal and decrease the
+            reference count.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">ClutterContainer::foreach</span></p></td>
+<td><p>The container should invoke the callback on every
+            child it is holding.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">ClutterContainer::raise</span></p></td>
+<td><p>The container should move the passed child on top
+            of the given sibling, or on top of the paint stack in
+            case the sibling is NULL.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">ClutterContainer::lower</span></p></td>
+<td><p>The container should move the passed child below
+            the given sibling, or on the bottom of the paint stack
+            in case the sibling is NULL.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">ClutterContainer::sort_depth_order</span></p></td>
+<td><p>The container should sort the paint stack depending
+            on the relative depths of each child.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

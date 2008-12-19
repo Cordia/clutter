@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="Clutter 0.8.2 Reference Manual" link="index.html" author="" name="clutter">
+  <chapters>
+    <sub name="Overview" link="clutter-overview.html"/>
+    <sub name="Building Clutter" link="building-clutter.html"/>
+    <sub name="Clutter Core Reference" link="clutterbase.html">
+      <sub name="Abstract classes and interfaces" link="ch01.html">
+        <sub name="ClutterActor" link="ClutterActor.html"/>
+        <sub name="ClutterContainer" link="ClutterContainer.html"/>
+        <sub name="ClutterChildMeta" link="ClutterChildMeta.html"/>
+        <sub name="ClutterMedia" link="ClutterMedia.html"/>
+      </sub>
+      <sub name="Base actors" link="ch02.html">
+        <sub name="ClutterRectangle" link="ClutterRectangle.html"/>
+        <sub name="ClutterTexture" link="ClutterTexture.html"/>
+        <sub name="ClutterCloneTexture" link="ClutterCloneTexture.html"/>
+        <sub name="ClutterLabel" link="ClutterLabel.html"/>
+        <sub name="ClutterEntry" link="ClutterEntry.html"/>
+      </sub>
+      <sub name="Container actors" link="ch03.html">
+        <sub name="ClutterGroup" link="ClutterGroup.html"/>
+        <sub name="ClutterStage" link="ClutterStage.html"/>
+      </sub>
+    </sub>
+    <sub name="Clutter Animation Framework" link="clutteranimation.html">
+      <sub name="Base classes" link="ch04.html">
+        <sub name="ClutterTimeline" link="ClutterTimeline.html"/>
+        <sub name="ClutterScore" link="ClutterScore.html"/>
+        <sub name="ClutterAlpha" link="ClutterAlpha.html"/>
+        <sub name="ClutterBehaviour" link="ClutterBehaviour.html"/>
+      </sub>
+      <sub name="Behaviours" link="ch05.html">
+        <sub name="ClutterBehaviourBspline" link="ClutterBehaviourBspline.html"/>
+        <sub name="ClutterBehaviourDepth" link="ClutterBehaviourDepth.html"/>
+        <sub name="ClutterBehaviourEllipse" link="ClutterBehaviourEllipse.html"/>
+        <sub name="ClutterBehaviourOpacity" link="ClutterBehaviourOpacity.html"/>
+        <sub name="ClutterBehaviourPath" link="ClutterBehaviourPath.html"/>
+        <sub name="ClutterBehaviourRotate" link="ClutterBehaviourRotate.html"/>
+        <sub name="ClutterBehaviourScale" link="ClutterBehaviourScale.html"/>
+      </sub>
+      <sub name="Simple effects API" link="ch06.html">
+        <sub name="Clutter Effects" link="clutter-Clutter-Effects.html"/>
+      </sub>
+    </sub>
+    <sub name="Clutter Tools" link="pt05.html">
+      <sub name="General purpose API" link="ch07.html">
+        <sub name="Colors" link="clutter-Colors.html"/>
+        <sub name="Events" link="clutter-Events.html"/>
+        <sub name="Fixed Point Support" link="clutter-Fixed-Point-Support.html"/>
+        <sub name="General" link="clutter-General.html"/>
+        <sub name="ClutterShader" link="ClutterShader.html"/>
+        <sub name="Unit conversion" link="clutter-Unit-conversion.html"/>
+        <sub name="Utilities" link="clutter-Utilities.html"/>
+        <sub name="Versioning Macros" link="clutter-Versioning-Macros.html"/>
+      </sub>
+      <sub name="User interface definition" link="ch08.html">
+        <sub name="ClutterScript" link="ClutterScript.html"/>
+        <sub name="ClutterScriptable" link="clutter-ClutterScriptable.html"/>
+      </sub>
+      <sub name="Generic list model" link="ch09.html">
+        <sub name="ClutterModel" link="ClutterModel.html"/>
+        <sub name="ClutterModelIter" link="ClutterModelIter.html"/>
+        <sub name="ClutterListModel" link="ClutterListModel.html"/>
+      </sub>
+    </sub>
+    <sub name="Clutter Backends" link="pt06.html">
+      <sub name="ClutterBackend" link="clutter-ClutterBackend.html"/>
+      <sub name="X11 Specific Support" link="clutter-X11-Specific-Support.html"/>
+      <sub name="Win32 Specific Support" link="clutter-Win32-Specific-Support.html"/>
+    </sub>
+    <sub name="Additional Documentation" link="pt07.html">
+      <sub name="Implementing a new actor" link="clutter-subclassing-ClutterActor.html"/>
+      <sub name="Creating Animations with Clutter" link="clutter-animations.html">
+        <sub name="Basic Animations" link="clutter-animations.html#clutter-animation-basic"/>
+        <sub name="Timelines" link="clutter-animation-timelines.html"/>
+        <sub name="Behaviours" link="clutter-animation-behaviours.html"/>
+        <sub name="Effects" link="clutter-animation-effects.html"/>
+        <sub name="Conclusion" link="clutter-animation-conclusion.html"/>
+      </sub>
+      <sub name="Creating You Own Behaviours" link="creating-your-own-behaviours.html"/>
+    </sub>
+    <sub name="Index" link="ix01.html"/>
+    <sub name="Index of deprecated symbols" link="ix02.html"/>
+    <sub name="Index of new symbols in 0.2" link="ix03.html"/>
+    <sub name="Index of new symbols in 0.4" link="ix04.html"/>
+    <sub name="Index of new symbols in 0.6" link="ix05.html"/>
+    <sub name="Index of new symbols in 0.8" link="ix06.html"/>
+    <sub name="License" link="license.html"/>
+  </chapters>
+  <functions>
+    <function name="CLUTTER_ACTOR_SET_FLAGS()" link="ClutterActor.html#CLUTTER-ACTOR-SET-FLAGS:CAPS"/>
+    <function name="CLUTTER_ACTOR_UNSET_FLAGS()" link="ClutterActor.html#CLUTTER-ACTOR-UNSET-FLAGS:CAPS"/>
+    <function name="CLUTTER_ACTOR_IS_MAPPED()" link="ClutterActor.html#CLUTTER-ACTOR-IS-MAPPED:CAPS"/>
+    <function name="CLUTTER_ACTOR_IS_REALIZED()" link="ClutterActor.html#CLUTTER-ACTOR-IS-REALIZED:CAPS"/>
+    <function name="CLUTTER_ACTOR_IS_VISIBLE()" link="ClutterActor.html#CLUTTER-ACTOR-IS-VISIBLE:CAPS"/>
+    <function name="CLUTTER_ACTOR_IS_REACTIVE()" link="ClutterActor.html#CLUTTER-ACTOR-IS-REACTIVE:CAPS"/>
+    <function name="ClutterActorBox" link="ClutterActor.html#ClutterActorBox"/>
+    <function name="enum ClutterActorFlags" link="ClutterActor.html#ClutterActorFlags"/>
+    <function name="enum ClutterRequestMode" link="ClutterActor.html#ClutterRequestMode"/>
+    <function name="ClutterGeometry" link="ClutterActor.html#ClutterGeometry"/>
+    <function name="CLUTTER_CALLBACK()" link="ClutterActor.html#CLUTTER-CALLBACK:CAPS"/>
+    <function name="ClutterCallback ()" link="ClutterActor.html#ClutterCallback"/>
+    <function name="ClutterActor" link="ClutterActor.html#ClutterActor-struct"/>
+    <function name="ClutterActorClass" link="ClutterActor.html#ClutterActorClass"/>
+    <function name="clutter_actor_show ()" link="ClutterActor.html#clutter-actor-show"/>
+    <function name="clutter_actor_show_all ()" link="ClutterActor.html#clutter-actor-show-all"/>
+    <function name="clutter_actor_hide ()" link="ClutterActor.html#clutter-actor-hide"/>
+    <function name="clutter_actor_hide_all ()" link="ClutterActor.html#clutter-actor-hide-all"/>
+    <function name="clutter_actor_realize ()" link="ClutterActor.html#clutter-actor-realize"/>
+    <function name="clutter_actor_unrealize ()" link="ClutterActor.html#clutter-actor-unrealize"/>
+    <function name="clutter_actor_paint ()" link="ClutterActor.html#clutter-actor-paint"/>
+    <function name="clutter_actor_queue_redraw ()" link="ClutterActor.html#clutter-actor-queue-redraw"/>
+    <function name="clutter_actor_queue_relayout ()" link="ClutterActor.html#clutter-actor-queue-relayout"/>
+    <function name="clutter_actor_destroy ()" link="ClutterActor.html#clutter-actor-destroy"/>
+    <function name="clutter_actor_event ()" link="ClutterActor.html#clutter-actor-event"/>
+    <function name="clutter_actor_pick ()" link="ClutterActor.html#clutter-actor-pick"/>
+    <function name="clutter_actor_should_pick_paint ()" link="ClutterActor.html#clutter-actor-should-pick-paint"/>
+    <function name="clutter_actor_allocate ()" link="ClutterActor.html#clutter-actor-allocate"/>
+    <function name="clutter_actor_allocate_preferred_size ()" link="ClutterActor.html#clutter-actor-allocate-preferred-size"/>
+    <function name="clutter_actor_get_allocation_coords ()" link="ClutterActor.html#clutter-actor-get-allocation-coords"/>
+    <function name="clutter_actor_get_allocation_box ()" link="ClutterActor.html#clutter-actor-get-allocation-box"/>
+    <function name="clutter_actor_get_allocation_geometry ()" link="ClutterActor.html#clutter-actor-get-allocation-geometry"/>
+    <function name="clutter_actor_get_allocation_vertices ()" link="ClutterActor.html#clutter-actor-get-allocation-vertices"/>
+    <function name="clutter_actor_get_preferred_size ()" link="ClutterActor.html#clutter-actor-get-preferred-size"/>
+    <function name="clutter_actor_get_preferred_width ()" link="ClutterActor.html#clutter-actor-get-preferred-width"/>
+    <function name="clutter_actor_get_preferred_height ()" link="ClutterActor.html#clutter-actor-get-preferred-height"/>
+    <function name="clutter_actor_set_fixed_position_set ()" link="ClutterActor.html#clutter-actor-set-fixed-position-set"/>
+    <function name="clutter_actor_get_fixed_position_set ()" link="ClutterActor.html#clutter-actor-get-fixed-position-set"/>
+    <function name="clutter_actor_set_geometry ()" link="ClutterActor.html#clutter-actor-set-geometry"/>
+    <function name="clutter_actor_get_geometry ()" link="ClutterActor.html#clutter-actor-get-geometry"/>
+    <function name="clutter_actor_set_size ()" link="ClutterActor.html#clutter-actor-set-size"/>
+    <function name="clutter_actor_get_size ()" link="ClutterActor.html#clutter-actor-get-size"/>
+    <function name="clutter_actor_set_position ()" link="ClutterActor.html#clutter-actor-set-position"/>
+    <function name="clutter_actor_get_position ()" link="ClutterActor.html#clutter-actor-get-position"/>
+    <function name="clutter_actor_set_width ()" link="ClutterActor.html#clutter-actor-set-width"/>
+    <function name="clutter_actor_get_width ()" link="ClutterActor.html#clutter-actor-get-width"/>
+    <function name="clutter_actor_set_height ()" link="ClutterActor.html#clutter-actor-set-height"/>
+    <function name="clutter_actor_get_height ()" link="ClutterActor.html#clutter-actor-get-height"/>
+    <function name="clutter_actor_set_x ()" link="ClutterActor.html#clutter-actor-set-x"/>
+    <function name="clutter_actor_get_x ()" link="ClutterActor.html#clutter-actor-get-x"/>
+    <function name="clutter_actor_set_y ()" link="ClutterActor.html#clutter-actor-set-y"/>
+    <function name="clutter_actor_get_y ()" link="ClutterActor.html#clutter-actor-get-y"/>
+    <function name="clutter_actor_move_by ()" link="ClutterActor.html#clutter-actor-move-by"/>
+    <function name="clutter_actor_set_rotation ()" link="ClutterActor.html#clutter-actor-set-rotation"/>
+    <function name="clutter_actor_get_rotation ()" link="ClutterActor.html#clutter-actor-get-rotation"/>
+    <function name="clutter_actor_is_rotated ()" link="ClutterActor.html#clutter-actor-is-rotated"/>
+    <function name="clutter_actor_set_opacity ()" link="ClutterActor.html#clutter-actor-set-opacity"/>
+    <function name="clutter_actor_get_opacity ()" link="ClutterActor.html#clutter-actor-get-opacity"/>
+    <function name="clutter_actor_set_name ()" link="ClutterActor.html#clutter-actor-set-name"/>
+    <function name="clutter_actor_get_name ()" link="ClutterActor.html#clutter-actor-get-name"/>
+    <function name="clutter_actor_get_gid ()" link="ClutterActor.html#clutter-actor-get-gid"/>
+    <function name="clutter_actor_set_clip ()" link="ClutterActor.html#clutter-actor-set-clip"/>
+    <function name="clutter_actor_remove_clip ()" link="ClutterActor.html#clutter-actor-remove-clip"/>
+    <function name="clutter_actor_has_clip ()" link="ClutterActor.html#clutter-actor-has-clip"/>
+    <function name="clutter_actor_get_clip ()" link="ClutterActor.html#clutter-actor-get-clip"/>
+    <function name="clutter_actor_set_parent ()" link="ClutterActor.html#clutter-actor-set-parent"/>
+    <function name="clutter_actor_get_parent ()" link="ClutterActor.html#clutter-actor-get-parent"/>
+    <function name="clutter_actor_reparent ()" link="ClutterActor.html#clutter-actor-reparent"/>
+    <function name="clutter_actor_unparent ()" link="ClutterActor.html#clutter-actor-unparent"/>
+    <function name="clutter_actor_raise ()" link="ClutterActor.html#clutter-actor-raise"/>
+    <function name="clutter_actor_lower ()" link="ClutterActor.html#clutter-actor-lower"/>
+    <function name="clutter_actor_raise_top ()" link="ClutterActor.html#clutter-actor-raise-top"/>
+    <function name="clutter_actor_lower_bottom ()" link="ClutterActor.html#clutter-actor-lower-bottom"/>
+    <function name="clutter_actor_get_stage ()" link="ClutterActor.html#clutter-actor-get-stage"/>
+    <function name="clutter_actor_set_depth ()" link="ClutterActor.html#clutter-actor-set-depth"/>
+    <function name="clutter_actor_get_depth ()" link="ClutterActor.html#clutter-actor-get-depth"/>
+    <function name="clutter_actor_set_scale ()" link="ClutterActor.html#clutter-actor-set-scale"/>
+    <function name="clutter_actor_get_scale ()" link="ClutterActor.html#clutter-actor-get-scale"/>
+    <function name="clutter_actor_is_scaled ()" link="ClutterActor.html#clutter-actor-is-scaled"/>
+    <function name="clutter_actor_apply_transform_to_point ()" link="ClutterActor.html#clutter-actor-apply-transform-to-point"/>
+    <function name="clutter_actor_transform_stage_point ()" link="ClutterActor.html#clutter-actor-transform-stage-point"/>
+    <function name="clutter_actor_apply_relative_transform_to_point ()" link="ClutterActor.html#clutter-actor-apply-relative-transform-to-point"/>
+    <function name="clutter_actor_get_transformed_position ()" link="ClutterActor.html#clutter-actor-get-transformed-position"/>
+    <function name="clutter_actor_get_transformed_size ()" link="ClutterActor.html#clutter-actor-get-transformed-size"/>
+    <function name="clutter_actor_get_paint_opacity ()" link="ClutterActor.html#clutter-actor-get-paint-opacity"/>
+    <function name="clutter_actor_get_abs_allocation_vertices ()" link="ClutterActor.html#clutter-actor-get-abs-allocation-vertices"/>
+    <function name="ClutterVertex" link="ClutterActor.html#ClutterVertex"/>
+    <function name="clutter_actor_box_get_from_vertices ()" link="ClutterActor.html#clutter-actor-box-get-from-vertices"/>
+    <function name="clutter_actor_set_anchor_point ()" link="ClutterActor.html#clutter-actor-set-anchor-point"/>
+    <function name="clutter_actor_get_anchor_point ()" link="ClutterActor.html#clutter-actor-get-anchor-point"/>
+    <function name="clutter_actor_set_anchor_point_from_gravity ()" link="ClutterActor.html#clutter-actor-set-anchor-point-from-gravity"/>
+    <function name="clutter_actor_move_anchor_point ()" link="ClutterActor.html#clutter-actor-move-anchor-point"/>
+    <function name="clutter_actor_move_anchor_point_from_gravity ()" link="ClutterActor.html#clutter-actor-move-anchor-point-from-gravity"/>
+    <function name="clutter_actor_set_reactive ()" link="ClutterActor.html#clutter-actor-set-reactive"/>
+    <function name="clutter_actor_get_reactive ()" link="ClutterActor.html#clutter-actor-get-reactive"/>
+    <function name="clutter_actor_set_shader ()" link="ClutterActor.html#clutter-actor-set-shader"/>
+    <function name="clutter_actor_get_shader ()" link="ClutterActor.html#clutter-actor-get-shader"/>
+    <function name="clutter_actor_set_shader_param ()" link="ClutterActor.html#clutter-actor-set-shader-param"/>
+    <function name="clutter_actor_set_depthu ()" link="ClutterActor.html#clutter-actor-set-depthu"/>
+    <function name="clutter_actor_get_depthu ()" link="ClutterActor.html#clutter-actor-get-depthu"/>
+    <function name="clutter_actor_set_heightu ()" link="ClutterActor.html#clutter-actor-set-heightu"/>
+    <function name="clutter_actor_get_heightu ()" link="ClutterActor.html#clutter-actor-get-heightu"/>
+    <function name="clutter_actor_set_widthu ()" link="ClutterActor.html#clutter-actor-set-widthu"/>
+    <function name="clutter_actor_get_widthu ()" link="ClutterActor.html#clutter-actor-get-widthu"/>
+    <function name="clutter_actor_set_xu ()" link="ClutterActor.html#clutter-actor-set-xu"/>
+    <function name="clutter_actor_get_xu ()" link="ClutterActor.html#clutter-actor-get-xu"/>
+    <function name="clutter_actor_set_yu ()" link="ClutterActor.html#clutter-actor-set-yu"/>
+    <function name="clutter_actor_get_yu ()" link="ClutterActor.html#clutter-actor-get-yu"/>
+    <function name="clutter_actor_set_positionu ()" link="ClutterActor.html#clutter-actor-set-positionu"/>
+    <function name="clutter_actor_get_positionu ()" link="ClutterActor.html#clutter-actor-get-positionu"/>
+    <function name="clutter_actor_set_sizeu ()" link="ClutterActor.html#clutter-actor-set-sizeu"/>
+    <function name="clutter_actor_get_sizeu ()" link="ClutterActor.html#clutter-actor-get-sizeu"/>
+    <function name="clutter_actor_set_anchor_pointu ()" link="ClutterActor.html#clutter-actor-set-anchor-pointu"/>
+    <function name="clutter_actor_get_anchor_pointu ()" link="ClutterActor.html#clutter-actor-get-anchor-pointu"/>
+    <function name="clutter_actor_move_anchor_pointu ()" link="ClutterActor.html#clutter-actor-move-anchor-pointu"/>
+    <function name="clutter_actor_set_clipu ()" link="ClutterActor.html#clutter-actor-set-clipu"/>
+    <function name="clutter_actor_get_clipu ()" link="ClutterActor.html#clutter-actor-get-clipu"/>
+    <function name="clutter_actor_set_rotationu ()" link="ClutterActor.html#clutter-actor-set-rotationu"/>
+    <function name="clutter_actor_get_rotationu ()" link="ClutterActor.html#clutter-actor-get-rotationu"/>
+    <function name="clutter_actor_move_byu ()" link="ClutterActor.html#clutter-actor-move-byu"/>
+    <function name="clutter_actor_get_transformed_positionu ()" link="ClutterActor.html#clutter-actor-get-transformed-positionu"/>
+    <function name="clutter_actor_get_transformed_sizeu ()" link="ClutterActor.html#clutter-actor-get-transformed-sizeu"/>
+    <function name="clutter_actor_set_scalex ()" link="ClutterActor.html#clutter-actor-set-scalex"/>
+    <function name="clutter_actor_get_scalex ()" link="ClutterActor.html#clutter-actor-get-scalex"/>
+    <function name="clutter_actor_set_rotationx ()" link="ClutterActor.html#clutter-actor-set-rotationx"/>
+    <function name="clutter_actor_get_rotationx ()" link="ClutterActor.html#clutter-actor-get-rotationx"/>
+    <function name="The &quot;allocation&quot; property" link="ClutterActor.html#ClutterActor--allocation"/>
+    <function name="The &quot;anchor-x&quot; property" link="ClutterActor.html#ClutterActor--anchor-x"/>
+    <function name="The &quot;anchor-y&quot; property" link="ClutterActor.html#ClutterActor--anchor-y"/>
+    <function name="The &quot;clip&quot; property" link="ClutterActor.html#ClutterActor--clip"/>
+    <function name="The &quot;depth&quot; property" link="ClutterActor.html#ClutterActor--depth"/>
+    <function name="The &quot;fixed-position-set&quot; property" link="ClutterActor.html#ClutterActor--fixed-position-set"/>
+    <function name="The &quot;fixed-x&quot; property" link="ClutterActor.html#ClutterActor--fixed-x"/>
+    <function name="The &quot;fixed-y&quot; property" link="ClutterActor.html#ClutterActor--fixed-y"/>
+    <function name="The &quot;has-clip&quot; property" link="ClutterActor.html#ClutterActor--has-clip"/>
+    <function name="The &quot;height&quot; property" link="ClutterActor.html#ClutterActor--height"/>
+    <function name="The &quot;min-height&quot; property" link="ClutterActor.html#ClutterActor--min-height"/>
+    <function name="The &quot;min-height-set&quot; property" link="ClutterActor.html#ClutterActor--min-height-set"/>
+    <function name="The &quot;min-width&quot; property" link="ClutterActor.html#ClutterActor--min-width"/>
+    <function name="The &quot;min-width-set&quot; property" link="ClutterActor.html#ClutterActor--min-width-set"/>
+    <function name="The &quot;name&quot; property" link="ClutterActor.html#ClutterActor--name"/>
+    <function name="The &quot;natural-height&quot; property" link="ClutterActor.html#ClutterActor--natural-height"/>
+    <function name="The &quot;natural-height-set&quot; property" link="ClutterActor.html#ClutterActor--natural-height-set"/>
+    <function name="The &quot;natural-width&quot; property" link="ClutterActor.html#ClutterActor--natural-width"/>
+    <function name="The &quot;natural-width-set&quot; property" link="ClutterActor.html#ClutterActor--natural-width-set"/>
+    <function name="The &quot;opacity&quot; property" link="ClutterActor.html#ClutterActor--opacity"/>
+    <function name="The &quot;reactive&quot; property" link="ClutterActor.html#ClutterActor--reactive"/>
+    <function name="The &quot;request-mode&quot; property" link="ClutterActor.html#ClutterActor--request-mode"/>
+    <function name="The &quot;rotation-angle-x&quot; property" link="ClutterActor.html#ClutterActor--rotation-angle-x"/>
+    <function name="The &quot;rotation-angle-y&quot; property" link="ClutterActor.html#ClutterActor--rotation-angle-y"/>
+    <function name="The &quot;rotation-angle-z&quot; property" link="ClutterActor.html#ClutterActor--rotation-angle-z"/>
+    <function name="The &quot;rotation-center-x&quot; property" link="ClutterActor.html#ClutterActor--rotation-center-x"/>
+    <function name="The &quot;rotation-center-y&quot; property" link="ClutterActor.html#ClutterActor--rotation-center-y"/>
+    <function name="The &quot;rotation-center-z&quot; property" link="ClutterActor.html#ClutterActor--rotation-center-z"/>
+    <function name="The &quot;scale-x&quot; property" link="ClutterActor.html#ClutterActor--scale-x"/>
+    <function name="The &quot;scale-y&quot; property" link="ClutterActor.html#ClutterActor--scale-y"/>
+    <function name="The &quot;show-on-set-parent&quot; property" link="ClutterActor.html#ClutterActor--show-on-set-parent"/>
+    <function name="The &quot;visible&quot; property" link="ClutterActor.html#ClutterActor--visible"/>
+    <function name="The &quot;width&quot; property" link="ClutterActor.html#ClutterActor--width"/>
+    <function name="The &quot;x&quot; property" link="ClutterActor.html#ClutterActor--x"/>
+    <function name="The &quot;y&quot; property" link="ClutterActor.html#ClutterActor--y"/>
+    <function name="The &quot;button-press-event&quot; signal" link="ClutterActor.html#ClutterActor-button-press-event"/>
+    <function name="The &quot;button-release-event&quot; signal" link="ClutterActor.html#ClutterActor-button-release-event"/>
+    <function name="The &quot;captured-event&quot; signal" link="ClutterActor.html#ClutterActor-captured-event"/>
+    <function name="The &quot;destroy&quot; signal" link="ClutterActor.html#ClutterActor-destroy"/>
+    <function name="The &quot;enter-event&quot; signal" link="ClutterActor.html#ClutterActor-enter-event"/>
+    <function name="The &quot;event&quot; signal" link="ClutterActor.html#ClutterActor-event"/>
+    <function name="The &quot;focus-in&quot; signal" link="ClutterActor.html#ClutterActor-focus-in"/>
+    <function name="The &quot;focus-out&quot; signal" link="ClutterActor.html#ClutterActor-focus-out"/>
+    <function name="The &quot;hide&quot; signal" link="ClutterActor.html#ClutterActor-hide"/>
+    <function name="The &quot;key-press-event&quot; signal" link="ClutterActor.html#ClutterActor-key-press-event"/>
+    <function name="The &quot;key-release-event&quot; signal" link="ClutterActor.html#ClutterActor-key-release-event"/>
+    <function name="The &quot;leave-event&quot; signal" link="ClutterActor.html#ClutterActor-leave-event"/>
+    <function name="The &quot;motion-event&quot; signal" link="ClutterActor.html#ClutterActor-motion-event"/>
+    <function name="The &quot;paint&quot; signal" link="ClutterActor.html#ClutterActor-paint"/>
+    <function name="The &quot;parent-set&quot; signal" link="ClutterActor.html#ClutterActor-parent-set"/>
+    <function name="The &quot;realize&quot; signal" link="ClutterActor.html#ClutterActor-realize"/>
+    <function name="The &quot;scroll-event&quot; signal" link="ClutterActor.html#ClutterActor-scroll-event"/>
+    <function name="The &quot;show&quot; signal" link="ClutterActor.html#ClutterActor-show"/>
+    <function name="The &quot;unrealize&quot; signal" link="ClutterActor.html#ClutterActor-unrealize"/>
+    <function name="ClutterContainer" link="ClutterContainer.html#ClutterContainer-struct"/>
+    <function name="ClutterContainerIface" link="ClutterContainer.html#ClutterContainerIface"/>
+    <function name="clutter_container_add_actor ()" link="ClutterContainer.html#clutter-container-add-actor"/>
+    <function name="clutter_container_add ()" link="ClutterContainer.html#clutter-container-add"/>
+    <function name="clutter_container_add_valist ()" link="ClutterContainer.html#clutter-container-add-valist"/>
+    <function name="clutter_container_remove_actor ()" link="ClutterContainer.html#clutter-container-remove-actor"/>
+    <function name="clutter_container_remove ()" link="ClutterContainer.html#clutter-container-remove"/>
+    <function name="clutter_container_remove_valist ()" link="ClutterContainer.html#clutter-container-remove-valist"/>
+    <function name="clutter_container_get_children ()" link="ClutterContainer.html#clutter-container-get-children"/>
+    <function name="clutter_container_foreach ()" link="ClutterContainer.html#clutter-container-foreach"/>
+    <function name="clutter_container_find_child_by_name ()" link="ClutterContainer.html#clutter-container-find-child-by-name"/>
+    <function name="clutter_container_raise_child ()" link="ClutterContainer.html#clutter-container-raise-child"/>
+    <function name="clutter_container_lower_child ()" link="ClutterContainer.html#clutter-container-lower-child"/>
+    <function name="clutter_container_sort_depth_order ()" link="ClutterContainer.html#clutter-container-sort-depth-order"/>
+    <function name="clutter_container_class_find_child_property ()" link="ClutterContainer.html#clutter-container-class-find-child-property"/>
+    <function name="clutter_container_class_list_child_properties ()" link="ClutterContainer.html#clutter-container-class-list-child-properties"/>
+    <function name="clutter_container_child_set_property ()" link="ClutterContainer.html#clutter-container-child-set-property"/>
+    <function name="clutter_container_child_get_property ()" link="ClutterContainer.html#clutter-container-child-get-property"/>
+    <function name="clutter_container_child_set ()" link="ClutterContainer.html#clutter-container-child-set"/>
+    <function name="clutter_container_child_get ()" link="ClutterContainer.html#clutter-container-child-get"/>
+    <function name="clutter_container_get_child_meta ()" link="ClutterContainer.html#clutter-container-get-child-meta"/>
+    <function name="ClutterChildMeta" link="ClutterChildMeta.html#ClutterChildMeta-struct"/>
+    <function name="ClutterChildMetaClass" link="ClutterChildMeta.html#ClutterChildMetaClass"/>
+    <function name="clutter_child_meta_get_container ()" link="ClutterChildMeta.html#clutter-child-meta-get-container"/>
+    <function name="clutter_child_meta_get_actor ()" link="ClutterChildMeta.html#clutter-child-meta-get-actor"/>
+    <function name="The &quot;actor&quot; property" link="ClutterChildMeta.html#ClutterChildMeta--actor"/>
+    <function name="The &quot;container&quot; property" link="ClutterChildMeta.html#ClutterChildMeta--container"/>
+    <function name="ClutterMedia" link="ClutterMedia.html#ClutterMedia-struct"/>
+    <function name="ClutterMediaInterface" link="ClutterMedia.html#ClutterMediaInterface"/>
+    <function name="clutter_media_set_uri ()" link="ClutterMedia.html#clutter-media-set-uri"/>
+    <function name="clutter_media_get_uri ()" link="ClutterMedia.html#clutter-media-get-uri"/>
+    <function name="clutter_media_set_playing ()" link="ClutterMedia.html#clutter-media-set-playing"/>
+    <function name="clutter_media_get_playing ()" link="ClutterMedia.html#clutter-media-get-playing"/>
+    <function name="clutter_media_set_position ()" link="ClutterMedia.html#clutter-media-set-position"/>
+    <function name="clutter_media_get_position ()" link="ClutterMedia.html#clutter-media-get-position"/>
+    <function name="clutter_media_set_volume ()" link="ClutterMedia.html#clutter-media-set-volume"/>
+    <function name="clutter_media_get_volume ()" link="ClutterMedia.html#clutter-media-get-volume"/>
+    <function name="clutter_media_get_can_seek ()" link="ClutterMedia.html#clutter-media-get-can-seek"/>
+    <function name="clutter_media_get_buffer_percent ()" link="ClutterMedia.html#clutter-media-get-buffer-percent"/>
+    <function name="clutter_media_get_duration ()" link="ClutterMedia.html#clutter-media-get-duration"/>
+    <function name="clutter_media_set_filename ()" link="ClutterMedia.html#clutter-media-set-filename"/>
+    <function name="The &quot;buffer-percent&quot; property" link="ClutterMedia.html#ClutterMedia--buffer-percent"/>
+    <function name="The &quot;can-seek&quot; property" link="ClutterMedia.html#ClutterMedia--can-seek"/>
+    <function name="The &quot;duration&quot; property" link="ClutterMedia.html#ClutterMedia--duration"/>
+    <function name="The &quot;playing&quot; property" link="ClutterMedia.html#ClutterMedia--playing"/>
+    <function name="The &quot;position&quot; property" link="ClutterMedia.html#ClutterMedia--position"/>
+    <function name="The &quot;uri&quot; property" link="ClutterMedia.html#ClutterMedia--uri"/>
+    <function name="The &quot;volume&quot; property" link="ClutterMedia.html#ClutterMedia--volume"/>
+    <function name="The &quot;eos&quot; signal" link="ClutterMedia.html#ClutterMedia-eos"/>
+    <function name="The &quot;error&quot; signal" link="ClutterMedia.html#ClutterMedia-error"/>
+    <function name="ClutterRectangle" link="ClutterRectangle.html#ClutterRectangle-struct"/>
+    <function name="ClutterRectangleClass" link="ClutterRectangle.html#ClutterRectangleClass"/>
+    <function name="clutter_rectangle_new ()" link="ClutterRectangle.html#clutter-rectangle-new"/>
+    <function name="clutter_rectangle_new_with_color ()" link="ClutterRectangle.html#clutter-rectangle-new-with-color"/>
+    <function name="clutter_rectangle_get_color ()" link="ClutterRectangle.html#clutter-rectangle-get-color"/>
+    <function name="clutter_rectangle_set_color ()" link="ClutterRectangle.html#clutter-rectangle-set-color"/>
+    <function name="clutter_rectangle_get_border_color ()" link="ClutterRectangle.html#clutter-rectangle-get-border-color"/>
+    <function name="clutter_rectangle_set_border_color ()" link="ClutterRectangle.html#clutter-rectangle-set-border-color"/>
+    <function name="clutter_rectangle_get_border_width ()" link="ClutterRectangle.html#clutter-rectangle-get-border-width"/>
+    <function name="clutter_rectangle_set_border_width ()" link="ClutterRectangle.html#clutter-rectangle-set-border-width"/>
+    <function name="The &quot;border-color&quot; property" link="ClutterRectangle.html#ClutterRectangle--border-color"/>
+    <function name="The &quot;border-width&quot; property" link="ClutterRectangle.html#ClutterRectangle--border-width"/>
+    <function name="The &quot;color&quot; property" link="ClutterRectangle.html#ClutterRectangle--color"/>
+    <function name="The &quot;has-border&quot; property" link="ClutterRectangle.html#ClutterRectangle--has-border"/>
+    <function name="ClutterTexture" link="ClutterTexture.html#ClutterTexture-struct"/>
+    <function name="ClutterTextureClass" link="ClutterTexture.html#ClutterTextureClass"/>
+    <function name="enum ClutterTextureFlags" link="ClutterTexture.html#ClutterTextureFlags"/>
+    <function name="enum ClutterTextureQuality" link="ClutterTexture.html#ClutterTextureQuality"/>
+    <function name="clutter_texture_new ()" link="ClutterTexture.html#clutter-texture-new"/>
+    <function name="clutter_texture_new_from_file ()" link="ClutterTexture.html#clutter-texture-new-from-file"/>
+    <function name="clutter_texture_new_from_actor ()" link="ClutterTexture.html#clutter-texture-new-from-actor"/>
+    <function name="CLUTTER_TEXTURE_ERROR" link="ClutterTexture.html#CLUTTER-TEXTURE-ERROR:CAPS"/>
+    <function name="enum ClutterTextureError" link="ClutterTexture.html#ClutterTextureError"/>
+    <function name="clutter_texture_set_from_file ()" link="ClutterTexture.html#clutter-texture-set-from-file"/>
+    <function name="clutter_texture_set_from_rgb_data ()" link="ClutterTexture.html#clutter-texture-set-from-rgb-data"/>
+    <function name="clutter_texture_set_from_yuv_data ()" link="ClutterTexture.html#clutter-texture-set-from-yuv-data"/>
+    <function name="clutter_texture_set_area_from_rgb_data ()" link="ClutterTexture.html#clutter-texture-set-area-from-rgb-data"/>
+    <function name="clutter_texture_get_base_size ()" link="ClutterTexture.html#clutter-texture-get-base-size"/>
+    <function name="clutter_texture_get_filter_quality ()" link="ClutterTexture.html#clutter-texture-get-filter-quality"/>
+    <function name="clutter_texture_set_filter_quality ()" link="ClutterTexture.html#clutter-texture-set-filter-quality"/>
+    <function name="clutter_texture_get_max_tile_waste ()" link="ClutterTexture.html#clutter-texture-get-max-tile-waste"/>
+    <function name="clutter_texture_set_max_tile_waste ()" link="ClutterTexture.html#clutter-texture-set-max-tile-waste"/>
+    <function name="clutter_texture_get_cogl_texture ()" link="ClutterTexture.html#clutter-texture-get-cogl-texture"/>
+    <function name="clutter_texture_set_cogl_texture ()" link="ClutterTexture.html#clutter-texture-set-cogl-texture"/>
+    <function name="The &quot;cogl-texture&quot; property" link="ClutterTexture.html#ClutterTexture--cogl-texture"/>
+    <function name="The &quot;disable-slicing&quot; property" link="ClutterTexture.html#ClutterTexture--disable-slicing"/>
+    <function name="The &quot;filename&quot; property" link="ClutterTexture.html#ClutterTexture--filename"/>
+    <function name="The &quot;filter-quality&quot; property" link="ClutterTexture.html#ClutterTexture--filter-quality"/>
+    <function name="The &quot;keep-aspect-ratio&quot; property" link="ClutterTexture.html#ClutterTexture--keep-aspect-ratio"/>
+    <function name="The &quot;pixel-format&quot; property" link="ClutterTexture.html#ClutterTexture--pixel-format"/>
+    <function name="The &quot;repeat-x&quot; property" link="ClutterTexture.html#ClutterTexture--repeat-x"/>
+    <function name="The &quot;repeat-y&quot; property" link="ClutterTexture.html#ClutterTexture--repeat-y"/>
+    <function name="The &quot;sync-size&quot; property" link="ClutterTexture.html#ClutterTexture--sync-size"/>
+    <function name="The &quot;tile-waste&quot; property" link="ClutterTexture.html#ClutterTexture--tile-waste"/>
+    <function name="The &quot;pixbuf-change&quot; signal" link="ClutterTexture.html#ClutterTexture-pixbuf-change"/>
+    <function name="The &quot;size-change&quot; signal" link="ClutterTexture.html#ClutterTexture-size-change"/>
+    <function name="ClutterCloneTexture" link="ClutterCloneTexture.html#ClutterCloneTexture-struct"/>
+    <function name="ClutterCloneTextureClass" link="ClutterCloneTexture.html#ClutterCloneTextureClass"/>
+    <function name="clutter_clone_texture_new ()" link="ClutterCloneTexture.html#clutter-clone-texture-new"/>
+    <function name="clutter_clone_texture_get_parent_texture ()" link="ClutterCloneTexture.html#clutter-clone-texture-get-parent-texture"/>
+    <function name="clutter_clone_texture_set_parent_texture ()" link="ClutterCloneTexture.html#clutter-clone-texture-set-parent-texture"/>
+    <function name="The &quot;parent-texture&quot; property" link="ClutterCloneTexture.html#ClutterCloneTexture--parent-texture"/>
+    <function name="The &quot;repeat-x&quot; property" link="ClutterCloneTexture.html#ClutterCloneTexture--repeat-x"/>
+    <function name="The &quot;repeat-y&quot; property" link="ClutterCloneTexture.html#ClutterCloneTexture--repeat-y"/>
+    <function name="ClutterLabel" link="ClutterLabel.html#ClutterLabel-struct"/>
+    <function name="ClutterLabelClass" link="ClutterLabel.html#ClutterLabelClass"/>
+    <function name="clutter_label_new ()" link="ClutterLabel.html#clutter-label-new"/>
+    <function name="clutter_label_new_with_text ()" link="ClutterLabel.html#clutter-label-new-with-text"/>
+    <function name="clutter_label_new_full ()" link="ClutterLabel.html#clutter-label-new-full"/>
+    <function name="clutter_label_set_text ()" link="ClutterLabel.html#clutter-label-set-text"/>
+    <function name="clutter_label_get_text ()" link="ClutterLabel.html#clutter-label-get-text"/>
+    <function name="clutter_label_set_font_name ()" link="ClutterLabel.html#clutter-label-set-font-name"/>
+    <function name="clutter_label_get_font_name ()" link="ClutterLabel.html#clutter-label-get-font-name"/>
+    <function name="clutter_label_set_color ()" link="ClutterLabel.html#clutter-label-set-color"/>
+    <function name="clutter_label_get_color ()" link="ClutterLabel.html#clutter-label-get-color"/>
+    <function name="clutter_label_set_ellipsize ()" link="ClutterLabel.html#clutter-label-set-ellipsize"/>
+    <function name="clutter_label_get_ellipsize ()" link="ClutterLabel.html#clutter-label-get-ellipsize"/>
+    <function name="clutter_label_set_line_wrap ()" link="ClutterLabel.html#clutter-label-set-line-wrap"/>
+    <function name="clutter_label_get_line_wrap ()" link="ClutterLabel.html#clutter-label-get-line-wrap"/>
+    <function name="clutter_label_set_line_wrap_mode ()" link="ClutterLabel.html#clutter-label-set-line-wrap-mode"/>
+    <function name="clutter_label_get_line_wrap_mode ()" link="ClutterLabel.html#clutter-label-get-line-wrap-mode"/>
+    <function name="clutter_label_get_layout ()" link="ClutterLabel.html#clutter-label-get-layout"/>
+    <function name="clutter_label_set_attributes ()" link="ClutterLabel.html#clutter-label-set-attributes"/>
+    <function name="clutter_label_get_attributes ()" link="ClutterLabel.html#clutter-label-get-attributes"/>
+    <function name="clutter_label_set_use_markup ()" link="ClutterLabel.html#clutter-label-set-use-markup"/>
+    <function name="clutter_label_get_use_markup ()" link="ClutterLabel.html#clutter-label-get-use-markup"/>
+    <function name="clutter_label_set_alignment ()" link="ClutterLabel.html#clutter-label-set-alignment"/>
+    <function name="clutter_label_get_alignment ()" link="ClutterLabel.html#clutter-label-get-alignment"/>
+    <function name="clutter_label_get_justify ()" link="ClutterLabel.html#clutter-label-get-justify"/>
+    <function name="clutter_label_set_justify ()" link="ClutterLabel.html#clutter-label-set-justify"/>
+    <function name="The &quot;alignment&quot; property" link="ClutterLabel.html#ClutterLabel--alignment"/>
+    <function name="The &quot;attributes&quot; property" link="ClutterLabel.html#ClutterLabel--attributes"/>
+    <function name="The &quot;color&quot; property" link="ClutterLabel.html#ClutterLabel--color"/>
+    <function name="The &quot;ellipsize&quot; property" link="ClutterLabel.html#ClutterLabel--ellipsize"/>
+    <function name="The &quot;font-name&quot; property" link="ClutterLabel.html#ClutterLabel--font-name"/>
+    <function name="The &quot;justify&quot; property" link="ClutterLabel.html#ClutterLabel--justify"/>
+    <function name="The &quot;text&quot; property" link="ClutterLabel.html#ClutterLabel--text"/>
+    <function name="The &quot;use-markup&quot; property" link="ClutterLabel.html#ClutterLabel--use-markup"/>
+    <function name="The &quot;wrap&quot; property" link="ClutterLabel.html#ClutterLabel--wrap"/>
+    <function name="The &quot;wrap-mode&quot; property" link="ClutterLabel.html#ClutterLabel--wrap-mode"/>
+    <function name="ClutterEntry" link="ClutterEntry.html#ClutterEntry-struct"/>
+    <function name="ClutterEntryClass" link="ClutterEntry.html#ClutterEntryClass"/>
+    <function name="clutter_entry_new ()" link="ClutterEntry.html#clutter-entry-new"/>
+    <function name="clutter_entry_new_with_text ()" link="ClutterEntry.html#clutter-entry-new-with-text"/>
+    <function name="clutter_entry_new_full ()" link="ClutterEntry.html#clutter-entry-new-full"/>
+    <function name="clutter_entry_set_text ()" link="ClutterEntry.html#clutter-entry-set-text"/>
+    <function name="clutter_entry_get_text ()" link="ClutterEntry.html#clutter-entry-get-text"/>
+    <function name="clutter_entry_set_font_name ()" link="ClutterEntry.html#clutter-entry-set-font-name"/>
+    <function name="clutter_entry_get_font_name ()" link="ClutterEntry.html#clutter-entry-get-font-name"/>
+    <function name="clutter_entry_set_color ()" link="ClutterEntry.html#clutter-entry-set-color"/>
+    <function name="clutter_entry_get_color ()" link="ClutterEntry.html#clutter-entry-get-color"/>
+    <function name="clutter_entry_get_layout ()" link="ClutterEntry.html#clutter-entry-get-layout"/>
+    <function name="clutter_entry_set_alignment ()" link="ClutterEntry.html#clutter-entry-set-alignment"/>
+    <function name="clutter_entry_get_alignment ()" link="ClutterEntry.html#clutter-entry-get-alignment"/>
+    <function name="clutter_entry_set_cursor_position ()" link="ClutterEntry.html#clutter-entry-set-cursor-position"/>
+    <function name="clutter_entry_get_cursor_position ()" link="ClutterEntry.html#clutter-entry-get-cursor-position"/>
+    <function name="clutter_entry_handle_key_event ()" link="ClutterEntry.html#clutter-entry-handle-key-event"/>
+    <function name="clutter_entry_insert_unichar ()" link="ClutterEntry.html#clutter-entry-insert-unichar"/>
+    <function name="clutter_entry_delete_chars ()" link="ClutterEntry.html#clutter-entry-delete-chars"/>
+    <function name="clutter_entry_insert_text ()" link="ClutterEntry.html#clutter-entry-insert-text"/>
+    <function name="clutter_entry_delete_text ()" link="ClutterEntry.html#clutter-entry-delete-text"/>
+    <function name="clutter_entry_set_visible_cursor ()" link="ClutterEntry.html#clutter-entry-set-visible-cursor"/>
+    <function name="clutter_entry_get_visible_cursor ()" link="ClutterEntry.html#clutter-entry-get-visible-cursor"/>
+    <function name="clutter_entry_set_visibility ()" link="ClutterEntry.html#clutter-entry-set-visibility"/>
+    <function name="clutter_entry_get_visibility ()" link="ClutterEntry.html#clutter-entry-get-visibility"/>
+    <function name="clutter_entry_set_invisible_char ()" link="ClutterEntry.html#clutter-entry-set-invisible-char"/>
+    <function name="clutter_entry_get_invisible_char ()" link="ClutterEntry.html#clutter-entry-get-invisible-char"/>
+    <function name="clutter_entry_set_max_length ()" link="ClutterEntry.html#clutter-entry-set-max-length"/>
+    <function name="clutter_entry_get_max_length ()" link="ClutterEntry.html#clutter-entry-get-max-length"/>
+    <function name="The &quot;alignment&quot; property" link="ClutterEntry.html#ClutterEntry--alignment"/>
+    <function name="The &quot;color&quot; property" link="ClutterEntry.html#ClutterEntry--color"/>
+    <function name="The &quot;cursor-visible&quot; property" link="ClutterEntry.html#ClutterEntry--cursor-visible"/>
+    <function name="The &quot;entry-padding&quot; property" link="ClutterEntry.html#ClutterEntry--entry-padding"/>
+    <function name="The &quot;font-name&quot; property" link="ClutterEntry.html#ClutterEntry--font-name"/>
+    <function name="The &quot;max-length&quot; property" link="ClutterEntry.html#ClutterEntry--max-length"/>
+    <function name="The &quot;position&quot; property" link="ClutterEntry.html#ClutterEntry--position"/>
+    <function name="The &quot;text&quot; property" link="ClutterEntry.html#ClutterEntry--text"/>
+    <function name="The &quot;text-visible&quot; property" link="ClutterEntry.html#ClutterEntry--text-visible"/>
+    <function name="The &quot;x-align&quot; property" link="ClutterEntry.html#ClutterEntry--x-align"/>
+    <function name="The &quot;activate&quot; signal" link="ClutterEntry.html#ClutterEntry-activate"/>
+    <function name="The &quot;cursor-event&quot; signal" link="ClutterEntry.html#ClutterEntry-cursor-event"/>
+    <function name="The &quot;text-changed&quot; signal" link="ClutterEntry.html#ClutterEntry-text-changed"/>
+    <function name="ClutterGroup" link="ClutterGroup.html#ClutterGroup-struct"/>
+    <function name="ClutterGroupClass" link="ClutterGroup.html#ClutterGroupClass"/>
+    <function name="clutter_group_new ()" link="ClutterGroup.html#clutter-group-new"/>
+    <function name="clutter_group_add_many ()" link="ClutterGroup.html#clutter-group-add-many"/>
+    <function name="clutter_group_add_many_valist ()" link="ClutterGroup.html#clutter-group-add-many-valist"/>
+    <function name="clutter_group_remove ()" link="ClutterGroup.html#clutter-group-remove"/>
+    <function name="clutter_group_remove_all ()" link="ClutterGroup.html#clutter-group-remove-all"/>
+    <function name="clutter_group_get_n_children ()" link="ClutterGroup.html#clutter-group-get-n-children"/>
+    <function name="clutter_group_get_nth_child ()" link="ClutterGroup.html#clutter-group-get-nth-child"/>
+    <function name="clutter_group_raise ()" link="ClutterGroup.html#clutter-group-raise"/>
+    <function name="clutter_group_lower ()" link="ClutterGroup.html#clutter-group-lower"/>
+    <function name="clutter_group_sort_depth_order ()" link="ClutterGroup.html#clutter-group-sort-depth-order"/>
+    <function name="The &quot;add&quot; signal" link="ClutterGroup.html#ClutterGroup-add"/>
+    <function name="The &quot;remove&quot; signal" link="ClutterGroup.html#ClutterGroup-remove"/>
+    <function name="ClutterStage" link="ClutterStage.html#ClutterStage-struct"/>
+    <function name="ClutterStageClass" link="ClutterStage.html#ClutterStageClass"/>
+    <function name="CLUTTER_STAGE_WIDTH()" link="ClutterStage.html#CLUTTER-STAGE-WIDTH:CAPS"/>
+    <function name="CLUTTER_STAGE_HEIGHT()" link="ClutterStage.html#CLUTTER-STAGE-HEIGHT:CAPS"/>
+    <function name="clutter_stage_get_default ()" link="ClutterStage.html#clutter-stage-get-default"/>
+    <function name="clutter_stage_new ()" link="ClutterStage.html#clutter-stage-new"/>
+    <function name="clutter_stage_is_default ()" link="ClutterStage.html#clutter-stage-is-default"/>
+    <function name="clutter_stage_set_color ()" link="ClutterStage.html#clutter-stage-set-color"/>
+    <function name="clutter_stage_get_color ()" link="ClutterStage.html#clutter-stage-get-color"/>
+    <function name="clutter_stage_fullscreen ()" link="ClutterStage.html#clutter-stage-fullscreen"/>
+    <function name="clutter_stage_unfullscreen ()" link="ClutterStage.html#clutter-stage-unfullscreen"/>
+    <function name="clutter_stage_show_cursor ()" link="ClutterStage.html#clutter-stage-show-cursor"/>
+    <function name="clutter_stage_hide_cursor ()" link="ClutterStage.html#clutter-stage-hide-cursor"/>
+    <function name="clutter_stage_get_actor_at_pos ()" link="ClutterStage.html#clutter-stage-get-actor-at-pos"/>
+    <function name="clutter_stage_ensure_current ()" link="ClutterStage.html#clutter-stage-ensure-current"/>
+    <function name="clutter_stage_queue_redraw ()" link="ClutterStage.html#clutter-stage-queue-redraw"/>
+    <function name="clutter_stage_event ()" link="ClutterStage.html#clutter-stage-event"/>
+    <function name="clutter_stage_set_key_focus ()" link="ClutterStage.html#clutter-stage-set-key-focus"/>
+    <function name="clutter_stage_get_key_focus ()" link="ClutterStage.html#clutter-stage-get-key-focus"/>
+    <function name="clutter_stage_get_resolution ()" link="ClutterStage.html#clutter-stage-get-resolution"/>
+    <function name="clutter_stage_get_resolutionx ()" link="ClutterStage.html#clutter-stage-get-resolutionx"/>
+    <function name="clutter_stage_read_pixels ()" link="ClutterStage.html#clutter-stage-read-pixels"/>
+    <function name="ClutterPerspective" link="ClutterStage.html#ClutterPerspective"/>
+    <function name="clutter_stage_set_perspective ()" link="ClutterStage.html#clutter-stage-set-perspective"/>
+    <function name="clutter_stage_set_perspectivex ()" link="ClutterStage.html#clutter-stage-set-perspectivex"/>
+    <function name="clutter_stage_get_perspective ()" link="ClutterStage.html#clutter-stage-get-perspective"/>
+    <function name="clutter_stage_get_perspectivex ()" link="ClutterStage.html#clutter-stage-get-perspectivex"/>
+    <function name="clutter_stage_set_title ()" link="ClutterStage.html#clutter-stage-set-title"/>
+    <function name="clutter_stage_get_title ()" link="ClutterStage.html#clutter-stage-get-title"/>
+    <function name="clutter_stage_set_user_resizable ()" link="ClutterStage.html#clutter-stage-set-user-resizable"/>
+    <function name="clutter_stage_get_user_resizable ()" link="ClutterStage.html#clutter-stage-get-user-resizable"/>
+    <function name="ClutterFog" link="ClutterStage.html#ClutterFog"/>
+    <function name="clutter_stage_set_use_fog ()" link="ClutterStage.html#clutter-stage-set-use-fog"/>
+    <function name="clutter_stage_get_use_fog ()" link="ClutterStage.html#clutter-stage-get-use-fog"/>
+    <function name="clutter_stage_set_fog ()" link="ClutterStage.html#clutter-stage-set-fog"/>
+    <function name="clutter_stage_get_fog ()" link="ClutterStage.html#clutter-stage-get-fog"/>
+    <function name="clutter_stage_set_fogx ()" link="ClutterStage.html#clutter-stage-set-fogx"/>
+    <function name="clutter_stage_get_fogx ()" link="ClutterStage.html#clutter-stage-get-fogx"/>
+    <function name="The &quot;color&quot; property" link="ClutterStage.html#ClutterStage--color"/>
+    <function name="The &quot;cursor-visible&quot; property" link="ClutterStage.html#ClutterStage--cursor-visible"/>
+    <function name="The &quot;fullscreen&quot; property" link="ClutterStage.html#ClutterStage--fullscreen"/>
+    <function name="The &quot;offscreen&quot; property" link="ClutterStage.html#ClutterStage--offscreen"/>
+    <function name="The &quot;perspective&quot; property" link="ClutterStage.html#ClutterStage--perspective"/>
+    <function name="The &quot;title&quot; property" link="ClutterStage.html#ClutterStage--title"/>
+    <function name="The &quot;use-fog&quot; property" link="ClutterStage.html#ClutterStage--use-fog"/>
+    <function name="The &quot;user-resizable&quot; property" link="ClutterStage.html#ClutterStage--user-resizable"/>
+    <function name="The &quot;activate&quot; signal" link="ClutterStage.html#ClutterStage-activate"/>
+    <function name="The &quot;deactivate&quot; signal" link="ClutterStage.html#ClutterStage-deactivate"/>
+    <function name="The &quot;fullscreen&quot; signal" link="ClutterStage.html#ClutterStage-fullscreen"/>
+    <function name="The &quot;unfullscreen&quot; signal" link="ClutterStage.html#ClutterStage-unfullscreen"/>
+    <function name="ClutterTimeline" link="ClutterTimeline.html#ClutterTimeline-struct"/>
+    <function name="ClutterTimelineClass" link="ClutterTimeline.html#ClutterTimelineClass"/>
+    <function name="clutter_timeline_new ()" link="ClutterTimeline.html#clutter-timeline-new"/>
+    <function name="clutter_timeline_new_for_duration ()" link="ClutterTimeline.html#clutter-timeline-new-for-duration"/>
+    <function name="clutter_timeline_clone ()" link="ClutterTimeline.html#clutter-timeline-clone"/>
+    <function name="clutter_timeline_set_speed ()" link="ClutterTimeline.html#clutter-timeline-set-speed"/>
+    <function name="clutter_timeline_get_speed ()" link="ClutterTimeline.html#clutter-timeline-get-speed"/>
+    <function name="clutter_timeline_set_duration ()" link="ClutterTimeline.html#clutter-timeline-set-duration"/>
+    <function name="clutter_timeline_get_duration ()" link="ClutterTimeline.html#clutter-timeline-get-duration"/>
+    <function name="clutter_timeline_set_loop ()" link="ClutterTimeline.html#clutter-timeline-set-loop"/>
+    <function name="clutter_timeline_get_loop ()" link="ClutterTimeline.html#clutter-timeline-get-loop"/>
+    <function name="clutter_timeline_set_n_frames ()" link="ClutterTimeline.html#clutter-timeline-set-n-frames"/>
+    <function name="clutter_timeline_get_n_frames ()" link="ClutterTimeline.html#clutter-timeline-get-n-frames"/>
+    <function name="clutter_timeline_set_delay ()" link="ClutterTimeline.html#clutter-timeline-set-delay"/>
+    <function name="clutter_timeline_get_delay ()" link="ClutterTimeline.html#clutter-timeline-get-delay"/>
+    <function name="enum ClutterTimelineDirection" link="ClutterTimeline.html#ClutterTimelineDirection"/>
+    <function name="clutter_timeline_set_direction ()" link="ClutterTimeline.html#clutter-timeline-set-direction"/>
+    <function name="clutter_timeline_get_direction ()" link="ClutterTimeline.html#clutter-timeline-get-direction"/>
+    <function name="clutter_timeline_start ()" link="ClutterTimeline.html#clutter-timeline-start"/>
+    <function name="clutter_timeline_pause ()" link="ClutterTimeline.html#clutter-timeline-pause"/>
+    <function name="clutter_timeline_stop ()" link="ClutterTimeline.html#clutter-timeline-stop"/>
+    <function name="clutter_timeline_rewind ()" link="ClutterTimeline.html#clutter-timeline-rewind"/>
+    <function name="clutter_timeline_skip ()" link="ClutterTimeline.html#clutter-timeline-skip"/>
+    <function name="clutter_timeline_advance ()" link="ClutterTimeline.html#clutter-timeline-advance"/>
+    <function name="clutter_timeline_get_current_frame ()" link="ClutterTimeline.html#clutter-timeline-get-current-frame"/>
+    <function name="clutter_timeline_get_delta ()" link="ClutterTimeline.html#clutter-timeline-get-delta"/>
+    <function name="clutter_timeline_get_progress ()" link="ClutterTimeline.html#clutter-timeline-get-progress"/>
+    <function name="clutter_timeline_get_progressx ()" link="ClutterTimeline.html#clutter-timeline-get-progressx"/>
+    <function name="clutter_timeline_is_playing ()" link="ClutterTimeline.html#clutter-timeline-is-playing"/>
+    <function name="clutter_timeline_add_marker_at_frame ()" link="ClutterTimeline.html#clutter-timeline-add-marker-at-frame"/>
+    <function name="clutter_timeline_add_marker_at_time ()" link="ClutterTimeline.html#clutter-timeline-add-marker-at-time"/>
+    <function name="clutter_timeline_has_marker ()" link="ClutterTimeline.html#clutter-timeline-has-marker"/>
+    <function name="clutter_timeline_list_markers ()" link="ClutterTimeline.html#clutter-timeline-list-markers"/>
+    <function name="clutter_timeline_remove_marker ()" link="ClutterTimeline.html#clutter-timeline-remove-marker"/>
+    <function name="clutter_timeline_advance_to_marker ()" link="ClutterTimeline.html#clutter-timeline-advance-to-marker"/>
+    <function name="The &quot;delay&quot; property" link="ClutterTimeline.html#ClutterTimeline--delay"/>
+    <function name="The &quot;direction&quot; property" link="ClutterTimeline.html#ClutterTimeline--direction"/>
+    <function name="The &quot;duration&quot; property" link="ClutterTimeline.html#ClutterTimeline--duration"/>
+    <function name="The &quot;fps&quot; property" link="ClutterTimeline.html#ClutterTimeline--fps"/>
+    <function name="The &quot;loop&quot; property" link="ClutterTimeline.html#ClutterTimeline--loop"/>
+    <function name="The &quot;num-frames&quot; property" link="ClutterTimeline.html#ClutterTimeline--num-frames"/>
+    <function name="The &quot;completed&quot; signal" link="ClutterTimeline.html#ClutterTimeline-completed"/>
+    <function name="The &quot;marker-reached&quot; signal" link="ClutterTimeline.html#ClutterTimeline-marker-reached"/>
+    <function name="The &quot;new-frame&quot; signal" link="ClutterTimeline.html#ClutterTimeline-new-frame"/>
+    <function name="The &quot;paused&quot; signal" link="ClutterTimeline.html#ClutterTimeline-paused"/>
+    <function name="The &quot;started&quot; signal" link="ClutterTimeline.html#ClutterTimeline-started"/>
+    <function name="ClutterScore" link="ClutterScore.html#ClutterScore-struct"/>
+    <function name="ClutterScoreClass" link="ClutterScore.html#ClutterScoreClass"/>
+    <function name="clutter_score_new ()" link="ClutterScore.html#clutter-score-new"/>
+    <function name="clutter_score_set_loop ()" link="ClutterScore.html#clutter-score-set-loop"/>
+    <function name="clutter_score_get_loop ()" link="ClutterScore.html#clutter-score-get-loop"/>
+    <function name="clutter_score_append ()" link="ClutterScore.html#clutter-score-append"/>
+    <function name="clutter_score_append_at_marker ()" link="ClutterScore.html#clutter-score-append-at-marker"/>
+    <function name="clutter_score_remove ()" link="ClutterScore.html#clutter-score-remove"/>
+    <function name="clutter_score_remove_all ()" link="ClutterScore.html#clutter-score-remove-all"/>
+    <function name="clutter_score_get_timeline ()" link="ClutterScore.html#clutter-score-get-timeline"/>
+    <function name="clutter_score_list_timelines ()" link="ClutterScore.html#clutter-score-list-timelines"/>
+    <function name="clutter_score_start ()" link="ClutterScore.html#clutter-score-start"/>
+    <function name="clutter_score_pause ()" link="ClutterScore.html#clutter-score-pause"/>
+    <function name="clutter_score_stop ()" link="ClutterScore.html#clutter-score-stop"/>
+    <function name="clutter_score_is_playing ()" link="ClutterScore.html#clutter-score-is-playing"/>
+    <function name="clutter_score_rewind ()" link="ClutterScore.html#clutter-score-rewind"/>
+    <function name="The &quot;loop&quot; property" link="ClutterScore.html#ClutterScore--loop"/>
+    <function name="The &quot;completed&quot; signal" link="ClutterScore.html#ClutterScore-completed"/>
+    <function name="The &quot;paused&quot; signal" link="ClutterScore.html#ClutterScore-paused"/>
+    <function name="The &quot;started&quot; signal" link="ClutterScore.html#ClutterScore-started"/>
+    <function name="The &quot;timeline-completed&quot; signal" link="ClutterScore.html#ClutterScore-timeline-completed"/>
+    <function name="The &quot;timeline-started&quot; signal" link="ClutterScore.html#ClutterScore-timeline-started"/>
+    <function name="ClutterAlpha" link="ClutterAlpha.html#ClutterAlpha-struct"/>
+    <function name="ClutterAlphaClass" link="ClutterAlpha.html#ClutterAlphaClass"/>
+    <function name="clutter_alpha_new ()" link="ClutterAlpha.html#clutter-alpha-new"/>
+    <function name="clutter_alpha_new_full ()" link="ClutterAlpha.html#clutter-alpha-new-full"/>
+    <function name="clutter_alpha_get_alpha ()" link="ClutterAlpha.html#clutter-alpha-get-alpha"/>
+    <function name="CLUTTER_ALPHA_MAX_ALPHA" link="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS"/>
+    <function name="ClutterAlphaFunc ()" link="ClutterAlpha.html#ClutterAlphaFunc"/>
+    <function name="clutter_alpha_set_func ()" link="ClutterAlpha.html#clutter-alpha-set-func"/>
+    <function name="clutter_alpha_set_closure ()" link="ClutterAlpha.html#clutter-alpha-set-closure"/>
+    <function name="clutter_alpha_set_timeline ()" link="ClutterAlpha.html#clutter-alpha-set-timeline"/>
+    <function name="clutter_alpha_get_timeline ()" link="ClutterAlpha.html#clutter-alpha-get-timeline"/>
+    <function name="CLUTTER_ALPHA_RAMP_INC" link="ClutterAlpha.html#CLUTTER-ALPHA-RAMP-INC:CAPS"/>
+    <function name="clutter_ramp_inc_func ()" link="ClutterAlpha.html#clutter-ramp-inc-func"/>
+    <function name="CLUTTER_ALPHA_RAMP_DEC" link="ClutterAlpha.html#CLUTTER-ALPHA-RAMP-DEC:CAPS"/>
+    <function name="clutter_ramp_dec_func ()" link="ClutterAlpha.html#clutter-ramp-dec-func"/>
+    <function name="CLUTTER_ALPHA_RAMP" link="ClutterAlpha.html#CLUTTER-ALPHA-RAMP:CAPS"/>
+    <function name="clutter_ramp_func ()" link="ClutterAlpha.html#clutter-ramp-func"/>
+    <function name="CLUTTER_ALPHA_SINE" link="ClutterAlpha.html#CLUTTER-ALPHA-SINE:CAPS"/>
+    <function name="clutter_sine_func ()" link="ClutterAlpha.html#clutter-sine-func"/>
+    <function name="CLUTTER_ALPHA_SINE_INC" link="ClutterAlpha.html#CLUTTER-ALPHA-SINE-INC:CAPS"/>
+    <function name="clutter_sine_inc_func ()" link="ClutterAlpha.html#clutter-sine-inc-func"/>
+    <function name="CLUTTER_ALPHA_SINE_DEC" link="ClutterAlpha.html#CLUTTER-ALPHA-SINE-DEC:CAPS"/>
+    <function name="clutter_sine_dec_func ()" link="ClutterAlpha.html#clutter-sine-dec-func"/>
+    <function name="CLUTTER_ALPHA_SINE_HALF" link="ClutterAlpha.html#CLUTTER-ALPHA-SINE-HALF:CAPS"/>
+    <function name="clutter_sine_half_func ()" link="ClutterAlpha.html#clutter-sine-half-func"/>
+    <function name="CLUTTER_ALPHA_SQUARE" link="ClutterAlpha.html#CLUTTER-ALPHA-SQUARE:CAPS"/>
+    <function name="clutter_square_func ()" link="ClutterAlpha.html#clutter-square-func"/>
+    <function name="CLUTTER_ALPHA_SMOOTHSTEP_INC" link="ClutterAlpha.html#CLUTTER-ALPHA-SMOOTHSTEP-INC:CAPS"/>
+    <function name="clutter_smoothstep_inc_func ()" link="ClutterAlpha.html#clutter-smoothstep-inc-func"/>
+    <function name="CLUTTER_ALPHA_SMOOTHSTEP_DEC" link="ClutterAlpha.html#CLUTTER-ALPHA-SMOOTHSTEP-DEC:CAPS"/>
+    <function name="clutter_smoothstep_dec_func ()" link="ClutterAlpha.html#clutter-smoothstep-dec-func"/>
+    <function name="CLUTTER_ALPHA_EXP_INC" link="ClutterAlpha.html#CLUTTER-ALPHA-EXP-INC:CAPS"/>
+    <function name="clutter_exp_inc_func ()" link="ClutterAlpha.html#clutter-exp-inc-func"/>
+    <function name="CLUTTER_ALPHA_EXP_DEC" link="ClutterAlpha.html#CLUTTER-ALPHA-EXP-DEC:CAPS"/>
+    <function name="clutter_exp_dec_func ()" link="ClutterAlpha.html#clutter-exp-dec-func"/>
+    <function name="The &quot;alpha&quot; property" link="ClutterAlpha.html#ClutterAlpha--alpha"/>
+    <function name="The &quot;timeline&quot; property" link="ClutterAlpha.html#ClutterAlpha--timeline"/>
+    <function name="ClutterBehaviour" link="ClutterBehaviour.html#ClutterBehaviour-struct"/>
+    <function name="ClutterBehaviourClass" link="ClutterBehaviour.html#ClutterBehaviourClass"/>
+    <function name="clutter_behaviour_apply ()" link="ClutterBehaviour.html#clutter-behaviour-apply"/>
+    <function name="clutter_behaviour_remove ()" link="ClutterBehaviour.html#clutter-behaviour-remove"/>
+    <function name="clutter_behaviour_remove_all ()" link="ClutterBehaviour.html#clutter-behaviour-remove-all"/>
+    <function name="clutter_behaviour_is_applied ()" link="ClutterBehaviour.html#clutter-behaviour-is-applied"/>
+    <function name="ClutterBehaviourForeachFunc ()" link="ClutterBehaviour.html#ClutterBehaviourForeachFunc"/>
+    <function name="clutter_behaviour_actors_foreach ()" link="ClutterBehaviour.html#clutter-behaviour-actors-foreach"/>
+    <function name="clutter_behaviour_get_actors ()" link="ClutterBehaviour.html#clutter-behaviour-get-actors"/>
+    <function name="clutter_behaviour_get_n_actors ()" link="ClutterBehaviour.html#clutter-behaviour-get-n-actors"/>
+    <function name="clutter_behaviour_get_nth_actor ()" link="ClutterBehaviour.html#clutter-behaviour-get-nth-actor"/>
+    <function name="clutter_behaviour_get_alpha ()" link="ClutterBehaviour.html#clutter-behaviour-get-alpha"/>
+    <function name="clutter_behaviour_set_alpha ()" link="ClutterBehaviour.html#clutter-behaviour-set-alpha"/>
+    <function name="The &quot;alpha&quot; property" link="ClutterBehaviour.html#ClutterBehaviour--alpha"/>
+    <function name="The &quot;applied&quot; signal" link="ClutterBehaviour.html#ClutterBehaviour-applied"/>
+    <function name="The &quot;removed&quot; signal" link="ClutterBehaviour.html#ClutterBehaviour-removed"/>
+    <function name="ClutterBehaviourBspline" link="ClutterBehaviourBspline.html#ClutterBehaviourBspline-struct"/>
+    <function name="ClutterBehaviourBsplineClass" link="ClutterBehaviourBspline.html#ClutterBehaviourBsplineClass"/>
+    <function name="clutter_behaviour_bspline_new ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-new"/>
+    <function name="clutter_behaviour_bspline_append_knot ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-append-knot"/>
+    <function name="clutter_behaviour_bspline_append_knots ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-append-knots"/>
+    <function name="clutter_behaviour_bspline_truncate ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-truncate"/>
+    <function name="clutter_behaviour_bspline_join ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-join"/>
+    <function name="clutter_behaviour_bspline_split ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-split"/>
+    <function name="clutter_behaviour_bspline_clear ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-clear"/>
+    <function name="clutter_behaviour_bspline_adjust ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-adjust"/>
+    <function name="clutter_behaviour_bspline_set_origin ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-set-origin"/>
+    <function name="clutter_behaviour_bspline_get_origin ()" link="ClutterBehaviourBspline.html#clutter-behaviour-bspline-get-origin"/>
+    <function name="The &quot;knot-reached&quot; signal" link="ClutterBehaviourBspline.html#ClutterBehaviourBspline-knot-reached"/>
+    <function name="ClutterBehaviourDepth" link="ClutterBehaviourDepth.html#ClutterBehaviourDepth-struct"/>
+    <function name="ClutterBehaviourDepthClass" link="ClutterBehaviourDepth.html#ClutterBehaviourDepthClass"/>
+    <function name="clutter_behaviour_depth_new ()" link="ClutterBehaviourDepth.html#clutter-behaviour-depth-new"/>
+    <function name="clutter_behaviour_depth_set_bounds ()" link="ClutterBehaviourDepth.html#clutter-behaviour-depth-set-bounds"/>
+    <function name="clutter_behaviour_depth_get_bounds ()" link="ClutterBehaviourDepth.html#clutter-behaviour-depth-get-bounds"/>
+    <function name="The &quot;depth-end&quot; property" link="ClutterBehaviourDepth.html#ClutterBehaviourDepth--depth-end"/>
+    <function name="The &quot;depth-start&quot; property" link="ClutterBehaviourDepth.html#ClutterBehaviourDepth--depth-start"/>
+    <function name="ClutterBehaviourEllipse" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse-struct"/>
+    <function name="ClutterBehaviourEllipseClass" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipseClass"/>
+    <function name="clutter_behaviour_ellipse_new ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-new"/>
+    <function name="clutter_behaviour_ellipse_newx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-newx"/>
+    <function name="clutter_behaviour_ellipse_set_center ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-center"/>
+    <function name="clutter_behaviour_ellipse_get_center ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-center"/>
+    <function name="clutter_behaviour_ellipse_set_angle_start ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-start"/>
+    <function name="clutter_behaviour_ellipse_get_angle_start ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-start"/>
+    <function name="clutter_behaviour_ellipse_set_angle_startx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-startx"/>
+    <function name="clutter_behaviour_ellipse_get_angle_startx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-startx"/>
+    <function name="clutter_behaviour_ellipse_set_angle_end ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-end"/>
+    <function name="clutter_behaviour_ellipse_get_angle_end ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-end"/>
+    <function name="clutter_behaviour_ellipse_set_angle_endx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-endx"/>
+    <function name="clutter_behaviour_ellipse_get_angle_endx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-endx"/>
+    <function name="clutter_behaviour_ellipse_set_angle_tilt ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-tilt"/>
+    <function name="clutter_behaviour_ellipse_get_angle_tilt ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-tilt"/>
+    <function name="clutter_behaviour_ellipse_set_angle_tiltx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-angle-tiltx"/>
+    <function name="clutter_behaviour_ellipse_get_angle_tiltx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-angle-tiltx"/>
+    <function name="clutter_behaviour_ellipse_set_height ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-height"/>
+    <function name="clutter_behaviour_ellipse_get_height ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-height"/>
+    <function name="clutter_behaviour_ellipse_set_width ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-width"/>
+    <function name="clutter_behaviour_ellipse_get_width ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-width"/>
+    <function name="clutter_behaviour_ellipse_set_tilt ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-tilt"/>
+    <function name="clutter_behaviour_ellipse_get_tilt ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-tilt"/>
+    <function name="clutter_behaviour_ellipse_set_tiltx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-tiltx"/>
+    <function name="clutter_behaviour_ellipse_get_tiltx ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-tiltx"/>
+    <function name="clutter_behaviour_ellipse_set_direction ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-set-direction"/>
+    <function name="clutter_behaviour_ellipse_get_direction ()" link="ClutterBehaviourEllipse.html#clutter-behaviour-ellipse-get-direction"/>
+    <function name="The &quot;angle-end&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-end"/>
+    <function name="The &quot;angle-start&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-start"/>
+    <function name="The &quot;angle-tilt-x&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-x"/>
+    <function name="The &quot;angle-tilt-y&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-y"/>
+    <function name="The &quot;angle-tilt-z&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--angle-tilt-z"/>
+    <function name="The &quot;center&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--center"/>
+    <function name="The &quot;direction&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--direction"/>
+    <function name="The &quot;height&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--height"/>
+    <function name="The &quot;width&quot; property" link="ClutterBehaviourEllipse.html#ClutterBehaviourEllipse--width"/>
+    <function name="ClutterBehaviourOpacity" link="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity-struct"/>
+    <function name="ClutterBehaviourOpacityClass" link="ClutterBehaviourOpacity.html#ClutterBehaviourOpacityClass"/>
+    <function name="clutter_behaviour_opacity_new ()" link="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-new"/>
+    <function name="clutter_behaviour_opacity_set_bounds ()" link="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-set-bounds"/>
+    <function name="clutter_behaviour_opacity_get_bounds ()" link="ClutterBehaviourOpacity.html#clutter-behaviour-opacity-get-bounds"/>
+    <function name="The &quot;opacity-end&quot; property" link="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity--opacity-end"/>
+    <function name="The &quot;opacity-start&quot; property" link="ClutterBehaviourOpacity.html#ClutterBehaviourOpacity--opacity-start"/>
+    <function name="ClutterBehaviourPath" link="ClutterBehaviourPath.html#ClutterBehaviourPath-struct"/>
+    <function name="ClutterBehaviourPathClass" link="ClutterBehaviourPath.html#ClutterBehaviourPathClass"/>
+    <function name="clutter_behaviour_path_new ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-new"/>
+    <function name="clutter_behaviour_path_get_knots ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-get-knots"/>
+    <function name="clutter_behaviour_path_append_knot ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-append-knot"/>
+    <function name="clutter_behaviour_path_append_knots ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-append-knots"/>
+    <function name="clutter_behaviour_path_insert_knot ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-insert-knot"/>
+    <function name="clutter_behaviour_path_remove_knot ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-remove-knot"/>
+    <function name="clutter_behaviour_path_clear ()" link="ClutterBehaviourPath.html#clutter-behaviour-path-clear"/>
+    <function name="ClutterKnot" link="ClutterBehaviourPath.html#ClutterKnot"/>
+    <function name="clutter_knot_copy ()" link="ClutterBehaviourPath.html#clutter-knot-copy"/>
+    <function name="clutter_knot_free ()" link="ClutterBehaviourPath.html#clutter-knot-free"/>
+    <function name="clutter_knot_equal ()" link="ClutterBehaviourPath.html#clutter-knot-equal"/>
+    <function name="The &quot;knot&quot; property" link="ClutterBehaviourPath.html#ClutterBehaviourPath--knot"/>
+    <function name="The &quot;knot-reached&quot; signal" link="ClutterBehaviourPath.html#ClutterBehaviourPath-knot-reached"/>
+    <function name="enum ClutterRotateAxis" link="ClutterBehaviourRotate.html#ClutterRotateAxis"/>
+    <function name="enum ClutterRotateDirection" link="ClutterBehaviourRotate.html#ClutterRotateDirection"/>
+    <function name="ClutterBehaviourRotate" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate-struct"/>
+    <function name="ClutterBehaviourRotateClass" link="ClutterBehaviourRotate.html#ClutterBehaviourRotateClass"/>
+    <function name="clutter_behaviour_rotate_new ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-new"/>
+    <function name="clutter_behaviour_rotate_newx ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-newx"/>
+    <function name="clutter_behaviour_rotate_set_axis ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-axis"/>
+    <function name="clutter_behaviour_rotate_get_axis ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-axis"/>
+    <function name="clutter_behaviour_rotate_set_direction ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-direction"/>
+    <function name="clutter_behaviour_rotate_get_direction ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-direction"/>
+    <function name="clutter_behaviour_rotate_set_bounds ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-bounds"/>
+    <function name="clutter_behaviour_rotate_set_boundsx ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-boundsx"/>
+    <function name="clutter_behaviour_rotate_get_bounds ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-bounds"/>
+    <function name="clutter_behaviour_rotate_get_boundsx ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-boundsx"/>
+    <function name="clutter_behaviour_rotate_set_center ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-center"/>
+    <function name="clutter_behaviour_rotate_get_center ()" link="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-center"/>
+    <function name="The &quot;angle-end&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--angle-end"/>
+    <function name="The &quot;angle-start&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--angle-start"/>
+    <function name="The &quot;axis&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--axis"/>
+    <function name="The &quot;center-x&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-x"/>
+    <function name="The &quot;center-y&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-y"/>
+    <function name="The &quot;center-z&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-z"/>
+    <function name="The &quot;direction&quot; property" link="ClutterBehaviourRotate.html#ClutterBehaviourRotate--direction"/>
+    <function name="enum ClutterGravity" link="ClutterBehaviourScale.html#ClutterGravity"/>
+    <function name="ClutterBehaviourScale" link="ClutterBehaviourScale.html#ClutterBehaviourScale-struct"/>
+    <function name="ClutterBehaviourScaleClass" link="ClutterBehaviourScale.html#ClutterBehaviourScaleClass"/>
+    <function name="clutter_behaviour_scale_new ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-new"/>
+    <function name="clutter_behaviour_scale_newx ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-newx"/>
+    <function name="clutter_behaviour_scale_set_bounds ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-set-bounds"/>
+    <function name="clutter_behaviour_scale_get_bounds ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-get-bounds"/>
+    <function name="clutter_behaviour_scale_set_boundsx ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-set-boundsx"/>
+    <function name="clutter_behaviour_scale_get_boundsx ()" link="ClutterBehaviourScale.html#clutter-behaviour-scale-get-boundsx"/>
+    <function name="The &quot;x-scale-end&quot; property" link="ClutterBehaviourScale.html#ClutterBehaviourScale--x-scale-end"/>
+    <function name="The &quot;x-scale-start&quot; property" link="ClutterBehaviourScale.html#ClutterBehaviourScale--x-scale-start"/>
+    <function name="The &quot;y-scale-end&quot; property" link="ClutterBehaviourScale.html#ClutterBehaviourScale--y-scale-end"/>
+    <function name="The &quot;y-scale-start&quot; property" link="ClutterBehaviourScale.html#ClutterBehaviourScale--y-scale-start"/>
+    <function name="ClutterEffectTemplate" link="clutter-Clutter-Effects.html#ClutterEffectTemplate"/>
+    <function name="ClutterEffectTemplateClass" link="clutter-Clutter-Effects.html#ClutterEffectTemplateClass"/>
+    <function name="clutter_effect_template_new ()" link="clutter-Clutter-Effects.html#clutter-effect-template-new"/>
+    <function name="clutter_effect_template_new_full ()" link="clutter-Clutter-Effects.html#clutter-effect-template-new-full"/>
+    <function name="clutter_effect_template_new_for_duration ()" link="clutter-Clutter-Effects.html#clutter-effect-template-new-for-duration"/>
+    <function name="clutter_effect_template_construct ()" link="clutter-Clutter-Effects.html#clutter-effect-template-construct"/>
+    <function name="clutter_effect_template_get_timeline_clone ()" link="clutter-Clutter-Effects.html#clutter-effect-template-get-timeline-clone"/>
+    <function name="clutter_effect_template_set_timeline_clone ()" link="clutter-Clutter-Effects.html#clutter-effect-template-set-timeline-clone"/>
+    <function name="ClutterEffectCompleteFunc ()" link="clutter-Clutter-Effects.html#ClutterEffectCompleteFunc"/>
+    <function name="clutter_effect_fade ()" link="clutter-Clutter-Effects.html#clutter-effect-fade"/>
+    <function name="clutter_effect_move ()" link="clutter-Clutter-Effects.html#clutter-effect-move"/>
+    <function name="clutter_effect_path ()" link="clutter-Clutter-Effects.html#clutter-effect-path"/>
+    <function name="clutter_effect_scale ()" link="clutter-Clutter-Effects.html#clutter-effect-scale"/>
+    <function name="clutter_effect_depth ()" link="clutter-Clutter-Effects.html#clutter-effect-depth"/>
+    <function name="clutter_effect_rotate ()" link="clutter-Clutter-Effects.html#clutter-effect-rotate"/>
+    <function name="ClutterColor" link="clutter-Colors.html#ClutterColor"/>
+    <function name="clutter_color_copy ()" link="clutter-Colors.html#clutter-color-copy"/>
+    <function name="clutter_color_free ()" link="clutter-Colors.html#clutter-color-free"/>
+    <function name="clutter_color_parse ()" link="clutter-Colors.html#clutter-color-parse"/>
+    <function name="clutter_color_from_hls ()" link="clutter-Colors.html#clutter-color-from-hls"/>
+    <function name="clutter_color_from_hlsx ()" link="clutter-Colors.html#clutter-color-from-hlsx"/>
+    <function name="clutter_color_from_pixel ()" link="clutter-Colors.html#clutter-color-from-pixel"/>
+    <function name="clutter_color_add ()" link="clutter-Colors.html#clutter-color-add"/>
+    <function name="clutter_color_subtract ()" link="clutter-Colors.html#clutter-color-subtract"/>
+    <function name="clutter_color_equal ()" link="clutter-Colors.html#clutter-color-equal"/>
+    <function name="clutter_color_lighten ()" link="clutter-Colors.html#clutter-color-lighten"/>
+    <function name="clutter_color_darken ()" link="clutter-Colors.html#clutter-color-darken"/>
+    <function name="clutter_color_shade ()" link="clutter-Colors.html#clutter-color-shade"/>
+    <function name="clutter_color_shadex ()" link="clutter-Colors.html#clutter-color-shadex"/>
+    <function name="clutter_color_to_hls ()" link="clutter-Colors.html#clutter-color-to-hls"/>
+    <function name="clutter_color_to_hlsx ()" link="clutter-Colors.html#clutter-color-to-hlsx"/>
+    <function name="clutter_color_to_pixel ()" link="clutter-Colors.html#clutter-color-to-pixel"/>
+    <function name="clutter_color_to_string ()" link="clutter-Colors.html#clutter-color-to-string"/>
+    <function name="CLUTTER_CURRENT_TIME" link="clutter-Events.html#CLUTTER-CURRENT-TIME:CAPS"/>
+    <function name="CLUTTER_PRIORITY_EVENTS" link="clutter-Events.html#CLUTTER-PRIORITY-EVENTS:CAPS"/>
+    <function name="enum ClutterModifierType" link="clutter-Events.html#ClutterModifierType"/>
+    <function name="enum ClutterScrollDirection" link="clutter-Events.html#ClutterScrollDirection"/>
+    <function name="enum ClutterStageState" link="clutter-Events.html#ClutterStageState"/>
+    <function name="enum ClutterEventType" link="clutter-Events.html#ClutterEventType"/>
+    <function name="union ClutterEvent" link="clutter-Events.html#ClutterEvent"/>
+    <function name="enum ClutterEventFlags" link="clutter-Events.html#ClutterEventFlags"/>
+    <function name="ClutterButtonEvent" link="clutter-Events.html#ClutterButtonEvent"/>
+    <function name="ClutterKeyEvent" link="clutter-Events.html#ClutterKeyEvent"/>
+    <function name="ClutterMotionEvent" link="clutter-Events.html#ClutterMotionEvent"/>
+    <function name="ClutterScrollEvent" link="clutter-Events.html#ClutterScrollEvent"/>
+    <function name="ClutterStageStateEvent" link="clutter-Events.html#ClutterStageStateEvent"/>
+    <function name="ClutterCrossingEvent" link="clutter-Events.html#ClutterCrossingEvent"/>
+    <function name="ClutterInputDevice" link="clutter-Events.html#ClutterInputDevice"/>
+    <function name="clutter_event_new ()" link="clutter-Events.html#clutter-event-new"/>
+    <function name="clutter_event_copy ()" link="clutter-Events.html#clutter-event-copy"/>
+    <function name="clutter_event_free ()" link="clutter-Events.html#clutter-event-free"/>
+    <function name="clutter_event_type ()" link="clutter-Events.html#clutter-event-type"/>
+    <function name="clutter_event_get_coords ()" link="clutter-Events.html#clutter-event-get-coords"/>
+    <function name="clutter_event_get_state ()" link="clutter-Events.html#clutter-event-get-state"/>
+    <function name="clutter_event_get_time ()" link="clutter-Events.html#clutter-event-get-time"/>
+    <function name="clutter_event_get_source ()" link="clutter-Events.html#clutter-event-get-source"/>
+    <function name="clutter_event_get_stage ()" link="clutter-Events.html#clutter-event-get-stage"/>
+    <function name="clutter_event_get ()" link="clutter-Events.html#clutter-event-get"/>
+    <function name="clutter_event_peek ()" link="clutter-Events.html#clutter-event-peek"/>
+    <function name="clutter_event_put ()" link="clutter-Events.html#clutter-event-put"/>
+    <function name="clutter_events_pending ()" link="clutter-Events.html#clutter-events-pending"/>
+    <function name="clutter_button_event_button ()" link="clutter-Events.html#clutter-button-event-button"/>
+    <function name="clutter_key_event_symbol ()" link="clutter-Events.html#clutter-key-event-symbol"/>
+    <function name="clutter_key_event_code ()" link="clutter-Events.html#clutter-key-event-code"/>
+    <function name="clutter_key_event_unicode ()" link="clutter-Events.html#clutter-key-event-unicode"/>
+    <function name="clutter_keysym_to_unicode ()" link="clutter-Events.html#clutter-keysym-to-unicode"/>
+    <function name="clutter_event_get_device_id ()" link="clutter-Events.html#clutter-event-get-device-id"/>
+    <function name="clutter_get_input_device_for_id ()" link="clutter-Events.html#clutter-get-input-device-for-id"/>
+    <function name="ClutterFixed" link="clutter-Fixed-Point-Support.html#ClutterFixed"/>
+    <function name="CFX_Q" link="clutter-Fixed-Point-Support.html#CFX-Q:CAPS"/>
+    <function name="CFX_ONE" link="clutter-Fixed-Point-Support.html#CFX-ONE:CAPS"/>
+    <function name="CFX_HALF" link="clutter-Fixed-Point-Support.html#CFX-HALF:CAPS"/>
+    <function name="CFX_MAX" link="clutter-Fixed-Point-Support.html#CFX-MAX:CAPS"/>
+    <function name="CFX_MIN" link="clutter-Fixed-Point-Support.html#CFX-MIN:CAPS"/>
+    <function name="CFX_PI" link="clutter-Fixed-Point-Support.html#CFX-PI:CAPS"/>
+    <function name="CFX_2PI" link="clutter-Fixed-Point-Support.html#CFX-2PI:CAPS"/>
+    <function name="CFX_PI_2" link="clutter-Fixed-Point-Support.html#CFX-PI-2:CAPS"/>
+    <function name="CFX_PI_4" link="clutter-Fixed-Point-Support.html#CFX-PI-4:CAPS"/>
+    <function name="CFX_120" link="clutter-Fixed-Point-Support.html#CFX-120:CAPS"/>
+    <function name="CFX_180" link="clutter-Fixed-Point-Support.html#CFX-180:CAPS"/>
+    <function name="CFX_240" link="clutter-Fixed-Point-Support.html#CFX-240:CAPS"/>
+    <function name="CFX_360" link="clutter-Fixed-Point-Support.html#CFX-360:CAPS"/>
+    <function name="CFX_60" link="clutter-Fixed-Point-Support.html#CFX-60:CAPS"/>
+    <function name="CFX_255" link="clutter-Fixed-Point-Support.html#CFX-255:CAPS"/>
+    <function name="CLUTTER_FIXED_TO_INT()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-INT:CAPS"/>
+    <function name="CLUTTER_FIXED_TO_FLOAT()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-FLOAT:CAPS"/>
+    <function name="CLUTTER_FIXED_TO_DOUBLE()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-TO-DOUBLE:CAPS"/>
+    <function name="CLUTTER_FLOAT_TO_FIXED()" link="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-FIXED:CAPS"/>
+    <function name="CLUTTER_FLOAT_TO_INT()" link="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-INT:CAPS"/>
+    <function name="CLUTTER_FLOAT_TO_UINT()" link="clutter-Fixed-Point-Support.html#CLUTTER-FLOAT-TO-UINT:CAPS"/>
+    <function name="CLUTTER_INT_TO_FIXED()" link="clutter-Fixed-Point-Support.html#CLUTTER-INT-TO-FIXED:CAPS"/>
+    <function name="CLUTTER_FIXED_INT()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-INT:CAPS"/>
+    <function name="CLUTTER_FIXED_FRACTION()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-FRACTION:CAPS"/>
+    <function name="CLUTTER_FIXED_FLOOR()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-FLOOR:CAPS"/>
+    <function name="CLUTTER_FIXED_CEIL()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-CEIL:CAPS"/>
+    <function name="CLUTTER_FIXED_MUL()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-MUL:CAPS"/>
+    <function name="CLUTTER_FIXED_DIV()" link="clutter-Fixed-Point-Support.html#CLUTTER-FIXED-DIV:CAPS"/>
+    <function name="ClutterAngle" link="clutter-Fixed-Point-Support.html#ClutterAngle"/>
+    <function name="CLUTTER_ANGLE_FROM_DEG()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEG:CAPS"/>
+    <function name="CLUTTER_ANGLE_FROM_DEGF()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEGF:CAPS"/>
+    <function name="CLUTTER_ANGLE_FROM_DEGX()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-FROM-DEGX:CAPS"/>
+    <function name="CLUTTER_ANGLE_TO_DEGF()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEGF:CAPS"/>
+    <function name="CLUTTER_ANGLE_TO_DEG()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEG:CAPS"/>
+    <function name="CLUTTER_ANGLE_TO_DEGX()" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-TO-DEGX:CAPS"/>
+    <function name="CLUTTER_ANGLE_MAX_DEG" link="clutter-Fixed-Point-Support.html#CLUTTER-ANGLE-MAX-DEG:CAPS"/>
+    <function name="CFX_RADIANS_TO_DEGREES" link="clutter-Fixed-Point-Support.html#CFX-RADIANS-TO-DEGREES:CAPS"/>
+    <function name="clutter_cosi()" link="clutter-Fixed-Point-Support.html#clutter-cosi"/>
+    <function name="clutter_cosx()" link="clutter-Fixed-Point-Support.html#clutter-cosx"/>
+    <function name="clutter_sini ()" link="clutter-Fixed-Point-Support.html#clutter-sini"/>
+    <function name="clutter_sinx ()" link="clutter-Fixed-Point-Support.html#clutter-sinx"/>
+    <function name="CLUTTER_SQRTI_ARG_10_PERCENT" link="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-10-PERCENT:CAPS"/>
+    <function name="CLUTTER_SQRTI_ARG_5_PERCENT" link="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-5-PERCENT:CAPS"/>
+    <function name="CLUTTER_SQRTI_ARG_MAX" link="clutter-Fixed-Point-Support.html#CLUTTER-SQRTI-ARG-MAX:CAPS"/>
+    <function name="clutter_sqrti ()" link="clutter-Fixed-Point-Support.html#clutter-sqrti"/>
+    <function name="clutter_sqrtx ()" link="clutter-Fixed-Point-Support.html#clutter-sqrtx"/>
+    <function name="clutter_log2x ()" link="clutter-Fixed-Point-Support.html#clutter-log2x"/>
+    <function name="clutter_pow2x ()" link="clutter-Fixed-Point-Support.html#clutter-pow2x"/>
+    <function name="clutter_powx ()" link="clutter-Fixed-Point-Support.html#clutter-powx"/>
+    <function name="clutter_qmulx ()" link="clutter-Fixed-Point-Support.html#clutter-qmulx"/>
+    <function name="clutter_qdivx ()" link="clutter-Fixed-Point-Support.html#clutter-qdivx"/>
+    <function name="clutter_tani ()" link="clutter-Fixed-Point-Support.html#clutter-tani"/>
+    <function name="clutter_atani ()" link="clutter-Fixed-Point-Support.html#clutter-atani"/>
+    <function name="clutter_atan2i ()" link="clutter-Fixed-Point-Support.html#clutter-atan2i"/>
+    <function name="CLUTTER_MAXFIXED" link="clutter-Fixed-Point-Support.html#CLUTTER-MAXFIXED:CAPS"/>
+    <function name="CLUTTER_MINFIXED" link="clutter-Fixed-Point-Support.html#CLUTTER-MINFIXED:CAPS"/>
+    <function name="ClutterParamSpecFixed" link="clutter-Fixed-Point-Support.html#ClutterParamSpecFixed"/>
+    <function name="clutter_param_spec_fixed ()" link="clutter-Fixed-Point-Support.html#clutter-param-spec-fixed"/>
+    <function name="CLUTTER_VALUE_HOLDS_FIXED()" link="clutter-Fixed-Point-Support.html#CLUTTER-VALUE-HOLDS-FIXED:CAPS"/>
+    <function name="clutter_value_set_fixed ()" link="clutter-Fixed-Point-Support.html#clutter-value-set-fixed"/>
+    <function name="clutter_value_get_fixed ()" link="clutter-Fixed-Point-Support.html#clutter-value-get-fixed"/>
+    <function name="CLUTTER_PRIORITY_REDRAW" link="clutter-General.html#CLUTTER-PRIORITY-REDRAW:CAPS"/>
+    <function name="CLUTTER_PRIORITY_TIMELINE" link="clutter-General.html#CLUTTER-PRIORITY-TIMELINE:CAPS"/>
+    <function name="enum ClutterInitError" link="clutter-General.html#ClutterInitError"/>
+    <function name="clutter_init ()" link="clutter-General.html#clutter-init"/>
+    <function name="clutter_init_with_args ()" link="clutter-General.html#clutter-init-with-args"/>
+    <function name="clutter_get_option_group ()" link="clutter-General.html#clutter-get-option-group"/>
+    <function name="clutter_get_option_group_without_init ()" link="clutter-General.html#clutter-get-option-group-without-init"/>
+    <function name="clutter_main ()" link="clutter-General.html#clutter-main"/>
+    <function name="clutter_main_quit ()" link="clutter-General.html#clutter-main-quit"/>
+    <function name="clutter_main_level ()" link="clutter-General.html#clutter-main-level"/>
+    <function name="clutter_get_debug_enabled ()" link="clutter-General.html#clutter-get-debug-enabled"/>
+    <function name="clutter_get_show_fps ()" link="clutter-General.html#clutter-get-show-fps"/>
+    <function name="clutter_get_timestamp ()" link="clutter-General.html#clutter-get-timestamp"/>
+    <function name="clutter_get_actor_by_gid ()" link="clutter-General.html#clutter-get-actor-by-gid"/>
+    <function name="clutter_set_default_frame_rate ()" link="clutter-General.html#clutter-set-default-frame-rate"/>
+    <function name="clutter_get_default_frame_rate ()" link="clutter-General.html#clutter-get-default-frame-rate"/>
+    <function name="clutter_set_motion_events_enabled ()" link="clutter-General.html#clutter-set-motion-events-enabled"/>
+    <function name="clutter_get_motion_events_enabled ()" link="clutter-General.html#clutter-get-motion-events-enabled"/>
+    <function name="clutter_set_motion_events_frequency ()" link="clutter-General.html#clutter-set-motion-events-frequency"/>
+    <function name="clutter_get_motion_events_frequency ()" link="clutter-General.html#clutter-get-motion-events-frequency"/>
+    <function name="clutter_clear_glyph_cache ()" link="clutter-General.html#clutter-clear-glyph-cache"/>
+    <function name="clutter_set_use_mipmapped_text ()" link="clutter-General.html#clutter-set-use-mipmapped-text"/>
+    <function name="clutter_get_use_mipmapped_text ()" link="clutter-General.html#clutter-get-use-mipmapped-text"/>
+    <function name="clutter_threads_set_lock_functions ()" link="clutter-General.html#clutter-threads-set-lock-functions"/>
+    <function name="clutter_threads_init ()" link="clutter-General.html#clutter-threads-init"/>
+    <function name="clutter_threads_enter ()" link="clutter-General.html#clutter-threads-enter"/>
+    <function name="clutter_threads_leave ()" link="clutter-General.html#clutter-threads-leave"/>
+    <function name="clutter_threads_add_idle ()" link="clutter-General.html#clutter-threads-add-idle"/>
+    <function name="clutter_threads_add_idle_full ()" link="clutter-General.html#clutter-threads-add-idle-full"/>
+    <function name="clutter_threads_add_timeout ()" link="clutter-General.html#clutter-threads-add-timeout"/>
+    <function name="clutter_threads_add_timeout_full ()" link="clutter-General.html#clutter-threads-add-timeout-full"/>
+    <function name="clutter_threads_add_frame_source ()" link="clutter-General.html#clutter-threads-add-frame-source"/>
+    <function name="clutter_threads_add_frame_source_full ()" link="clutter-General.html#clutter-threads-add-frame-source-full"/>
+    <function name="clutter_get_keyboard_grab ()" link="clutter-General.html#clutter-get-keyboard-grab"/>
+    <function name="clutter_get_pointer_grab ()" link="clutter-General.html#clutter-get-pointer-grab"/>
+    <function name="clutter_grab_keyboard ()" link="clutter-General.html#clutter-grab-keyboard"/>
+    <function name="clutter_grab_pointer ()" link="clutter-General.html#clutter-grab-pointer"/>
+    <function name="clutter_ungrab_keyboard ()" link="clutter-General.html#clutter-ungrab-keyboard"/>
+    <function name="clutter_ungrab_pointer ()" link="clutter-General.html#clutter-ungrab-pointer"/>
+    <function name="clutter_grab_pointer_for_device ()" link="clutter-General.html#clutter-grab-pointer-for-device"/>
+    <function name="clutter_ungrab_pointer_for_device ()" link="clutter-General.html#clutter-ungrab-pointer-for-device"/>
+    <function name="clutter_do_event ()" link="clutter-General.html#clutter-do-event"/>
+    <function name="enum ClutterShaderError" link="ClutterShader.html#ClutterShaderError"/>
+    <function name="ClutterShader" link="ClutterShader.html#ClutterShader-struct"/>
+    <function name="ClutterShaderClass" link="ClutterShader.html#ClutterShaderClass"/>
+    <function name="clutter_shader_new ()" link="ClutterShader.html#clutter-shader-new"/>
+    <function name="clutter_shader_set_vertex_source ()" link="ClutterShader.html#clutter-shader-set-vertex-source"/>
+    <function name="clutter_shader_get_vertex_source ()" link="ClutterShader.html#clutter-shader-get-vertex-source"/>
+    <function name="clutter_shader_set_fragment_source ()" link="ClutterShader.html#clutter-shader-set-fragment-source"/>
+    <function name="clutter_shader_get_fragment_source ()" link="ClutterShader.html#clutter-shader-get-fragment-source"/>
+    <function name="clutter_shader_compile ()" link="ClutterShader.html#clutter-shader-compile"/>
+    <function name="clutter_shader_release ()" link="ClutterShader.html#clutter-shader-release"/>
+    <function name="clutter_shader_is_compiled ()" link="ClutterShader.html#clutter-shader-is-compiled"/>
+    <function name="clutter_shader_set_is_enabled ()" link="ClutterShader.html#clutter-shader-set-is-enabled"/>
+    <function name="clutter_shader_get_is_enabled ()" link="ClutterShader.html#clutter-shader-get-is-enabled"/>
+    <function name="clutter_shader_set_uniform_1f ()" link="ClutterShader.html#clutter-shader-set-uniform-1f"/>
+    <function name="The &quot;compiled&quot; property" link="ClutterShader.html#ClutterShader--compiled"/>
+    <function name="The &quot;enabled&quot; property" link="ClutterShader.html#ClutterShader--enabled"/>
+    <function name="The &quot;fragment-source&quot; property" link="ClutterShader.html#ClutterShader--fragment-source"/>
+    <function name="The &quot;vertex-source&quot; property" link="ClutterShader.html#ClutterShader--vertex-source"/>
+    <function name="ClutterUnit" link="clutter-Unit-conversion.html#ClutterUnit"/>
+    <function name="CLUTTER_UNITS_FROM_DEVICE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-DEVICE:CAPS"/>
+    <function name="CLUTTER_UNITS_TO_DEVICE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-DEVICE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_FIXED()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-FIXED:CAPS"/>
+    <function name="CLUTTER_UNITS_TO_FIXED()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-FIXED:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_FLOAT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-FLOAT:CAPS"/>
+    <function name="CLUTTER_UNITS_TO_FLOAT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-FLOAT:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_INT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-INT:CAPS"/>
+    <function name="CLUTTER_UNITS_TO_INT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-INT:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_PANGO_UNIT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS"/>
+    <function name="CLUTTER_UNITS_TO_PANGO_UNIT()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-PANGO-UNIT:CAPS"/>
+    <function name="CLUTTER_UNITS_TMP_FROM_DEVICE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS"/>
+    <function name="CLUTTER_UNITS_TMP_TO_DEVICE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-TMP-TO-DEVICE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_MM()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-MM:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_MMX()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-MMX:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_POINTS()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-POINTS:CAPS"/>
+    <function name="CLUTTER_UNITS_FROM_POINTSX()" link="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-POINTSX:CAPS"/>
+    <function name="CLUTTER_MAXUNIT" link="clutter-Unit-conversion.html#CLUTTER-MAXUNIT:CAPS"/>
+    <function name="CLUTTER_MINUNIT" link="clutter-Unit-conversion.html#CLUTTER-MINUNIT:CAPS"/>
+    <function name="ClutterParamSpecUnit" link="clutter-Unit-conversion.html#ClutterParamSpecUnit"/>
+    <function name="clutter_param_spec_unit ()" link="clutter-Unit-conversion.html#clutter-param-spec-unit"/>
+    <function name="CLUTTER_VALUE_HOLDS_UNIT()" link="clutter-Unit-conversion.html#CLUTTER-VALUE-HOLDS-UNIT:CAPS"/>
+    <function name="clutter_value_set_unit ()" link="clutter-Unit-conversion.html#clutter-value-set-unit"/>
+    <function name="clutter_value_get_unit ()" link="clutter-Unit-conversion.html#clutter-value-get-unit"/>
+    <function name="clutter_util_next_p2 ()" link="clutter-Utilities.html#clutter-util-next-p2"/>
+    <function name="clutter_timeout_pool_new ()" link="clutter-Utilities.html#clutter-timeout-pool-new"/>
+    <function name="clutter_timeout_pool_add ()" link="clutter-Utilities.html#clutter-timeout-pool-add"/>
+    <function name="clutter_timeout_pool_remove ()" link="clutter-Utilities.html#clutter-timeout-pool-remove"/>
+    <function name="clutter_frame_source_add ()" link="clutter-Utilities.html#clutter-frame-source-add"/>
+    <function name="clutter_frame_source_add_full ()" link="clutter-Utilities.html#clutter-frame-source-add-full"/>
+    <function name="CLUTTER_MAJOR_VERSION" link="clutter-Versioning-Macros.html#CLUTTER-MAJOR-VERSION:CAPS"/>
+    <function name="CLUTTER_MINOR_VERSION" link="clutter-Versioning-Macros.html#CLUTTER-MINOR-VERSION:CAPS"/>
+    <function name="CLUTTER_MICRO_VERSION" link="clutter-Versioning-Macros.html#CLUTTER-MICRO-VERSION:CAPS"/>
+    <function name="CLUTTER_VERSION" link="clutter-Versioning-Macros.html#CLUTTER-VERSION:CAPS"/>
+    <function name="CLUTTER_VERSION_S" link="clutter-Versioning-Macros.html#CLUTTER-VERSION-S:CAPS"/>
+    <function name="CLUTTER_VERSION_HEX" link="clutter-Versioning-Macros.html#CLUTTER-VERSION-HEX:CAPS"/>
+    <function name="CLUTTER_CHECK_VERSION()" link="clutter-Versioning-Macros.html#CLUTTER-CHECK-VERSION:CAPS"/>
+    <function name="CLUTTER_FLAVOUR" link="clutter-Versioning-Macros.html#CLUTTER-FLAVOUR:CAPS"/>
+    <function name="CLUTTER_COGL" link="clutter-Versioning-Macros.html#CLUTTER-COGL:CAPS"/>
+    <function name="CLUTTER_NO_FPU" link="clutter-Versioning-Macros.html#CLUTTER-NO-FPU:CAPS"/>
+    <function name="ClutterScript" link="ClutterScript.html#ClutterScript-struct"/>
+    <function name="ClutterScriptClass" link="ClutterScript.html#ClutterScriptClass"/>
+    <function name="clutter_script_new ()" link="ClutterScript.html#clutter-script-new"/>
+    <function name="enum ClutterScriptError" link="ClutterScript.html#ClutterScriptError"/>
+    <function name="clutter_script_load_from_data ()" link="ClutterScript.html#clutter-script-load-from-data"/>
+    <function name="clutter_script_load_from_file ()" link="ClutterScript.html#clutter-script-load-from-file"/>
+    <function name="clutter_script_add_search_paths ()" link="ClutterScript.html#clutter-script-add-search-paths"/>
+    <function name="clutter_script_lookup_filename ()" link="ClutterScript.html#clutter-script-lookup-filename"/>
+    <function name="clutter_script_get_object ()" link="ClutterScript.html#clutter-script-get-object"/>
+    <function name="clutter_script_get_objects ()" link="ClutterScript.html#clutter-script-get-objects"/>
+    <function name="clutter_script_unmerge_objects ()" link="ClutterScript.html#clutter-script-unmerge-objects"/>
+    <function name="clutter_script_ensure_objects ()" link="ClutterScript.html#clutter-script-ensure-objects"/>
+    <function name="clutter_script_list_objects ()" link="ClutterScript.html#clutter-script-list-objects"/>
+    <function name="ClutterScriptConnectFunc ()" link="ClutterScript.html#ClutterScriptConnectFunc"/>
+    <function name="clutter_script_connect_signals ()" link="ClutterScript.html#clutter-script-connect-signals"/>
+    <function name="clutter_script_connect_signals_full ()" link="ClutterScript.html#clutter-script-connect-signals-full"/>
+    <function name="clutter_script_get_type_from_name ()" link="ClutterScript.html#clutter-script-get-type-from-name"/>
+    <function name="clutter_get_script_id ()" link="ClutterScript.html#clutter-get-script-id"/>
+    <function name="The &quot;filename&quot; property" link="ClutterScript.html#ClutterScript--filename"/>
+    <function name="The &quot;filename-set&quot; property" link="ClutterScript.html#ClutterScript--filename-set"/>
+    <function name="ClutterScriptable" link="clutter-ClutterScriptable.html#ClutterScriptable"/>
+    <function name="ClutterScriptableIface" link="clutter-ClutterScriptable.html#ClutterScriptableIface"/>
+    <function name="clutter_scriptable_set_id ()" link="clutter-ClutterScriptable.html#clutter-scriptable-set-id"/>
+    <function name="clutter_scriptable_get_id ()" link="clutter-ClutterScriptable.html#clutter-scriptable-get-id"/>
+    <function name="clutter_scriptable_parse_custom_node ()" link="clutter-ClutterScriptable.html#clutter-scriptable-parse-custom-node"/>
+    <function name="clutter_scriptable_set_custom_property ()" link="clutter-ClutterScriptable.html#clutter-scriptable-set-custom-property"/>
+    <function name="ClutterModel" link="ClutterModel.html#ClutterModel-struct"/>
+    <function name="ClutterModelClass" link="ClutterModel.html#ClutterModelClass"/>
+    <function name="clutter_model_set_names ()" link="ClutterModel.html#clutter-model-set-names"/>
+    <function name="clutter_model_set_types ()" link="ClutterModel.html#clutter-model-set-types"/>
+    <function name="clutter_model_get_column_name ()" link="ClutterModel.html#clutter-model-get-column-name"/>
+    <function name="clutter_model_get_column_type ()" link="ClutterModel.html#clutter-model-get-column-type"/>
+    <function name="clutter_model_get_n_columns ()" link="ClutterModel.html#clutter-model-get-n-columns"/>
+    <function name="clutter_model_get_n_rows ()" link="ClutterModel.html#clutter-model-get-n-rows"/>
+    <function name="clutter_model_append ()" link="ClutterModel.html#clutter-model-append"/>
+    <function name="clutter_model_appendv ()" link="ClutterModel.html#clutter-model-appendv"/>
+    <function name="clutter_model_prepend ()" link="ClutterModel.html#clutter-model-prepend"/>
+    <function name="clutter_model_prependv ()" link="ClutterModel.html#clutter-model-prependv"/>
+    <function name="clutter_model_insert ()" link="ClutterModel.html#clutter-model-insert"/>
+    <function name="clutter_model_insertv ()" link="ClutterModel.html#clutter-model-insertv"/>
+    <function name="clutter_model_insert_value ()" link="ClutterModel.html#clutter-model-insert-value"/>
+    <function name="clutter_model_remove ()" link="ClutterModel.html#clutter-model-remove"/>
+    <function name="ClutterModelForeachFunc ()" link="ClutterModel.html#ClutterModelForeachFunc"/>
+    <function name="clutter_model_foreach ()" link="ClutterModel.html#clutter-model-foreach"/>
+    <function name="clutter_model_set_sorting_column ()" link="ClutterModel.html#clutter-model-set-sorting-column"/>
+    <function name="clutter_model_get_sorting_column ()" link="ClutterModel.html#clutter-model-get-sorting-column"/>
+    <function name="ClutterModelSortFunc ()" link="ClutterModel.html#ClutterModelSortFunc"/>
+    <function name="clutter_model_set_sort ()" link="ClutterModel.html#clutter-model-set-sort"/>
+    <function name="clutter_model_resort ()" link="ClutterModel.html#clutter-model-resort"/>
+    <function name="ClutterModelFilterFunc ()" link="ClutterModel.html#ClutterModelFilterFunc"/>
+    <function name="clutter_model_set_filter ()" link="ClutterModel.html#clutter-model-set-filter"/>
+    <function name="clutter_model_filter_iter ()" link="ClutterModel.html#clutter-model-filter-iter"/>
+    <function name="clutter_model_filter_row ()" link="ClutterModel.html#clutter-model-filter-row"/>
+    <function name="clutter_model_get_first_iter ()" link="ClutterModel.html#clutter-model-get-first-iter"/>
+    <function name="clutter_model_get_last_iter ()" link="ClutterModel.html#clutter-model-get-last-iter"/>
+    <function name="clutter_model_get_iter_at_row ()" link="ClutterModel.html#clutter-model-get-iter-at-row"/>
+    <function name="The &quot;filter-changed&quot; signal" link="ClutterModel.html#ClutterModel-filter-changed"/>
+    <function name="The &quot;row-added&quot; signal" link="ClutterModel.html#ClutterModel-row-added"/>
+    <function name="The &quot;row-changed&quot; signal" link="ClutterModel.html#ClutterModel-row-changed"/>
+    <function name="The &quot;row-removed&quot; signal" link="ClutterModel.html#ClutterModel-row-removed"/>
+    <function name="The &quot;sort-changed&quot; signal" link="ClutterModel.html#ClutterModel-sort-changed"/>
+    <function name="ClutterModelIter" link="ClutterModelIter.html#ClutterModelIter-struct"/>
+    <function name="ClutterModelIterClass" link="ClutterModelIter.html#ClutterModelIterClass"/>
+    <function name="clutter_model_iter_copy ()" link="ClutterModelIter.html#clutter-model-iter-copy"/>
+    <function name="clutter_model_iter_get ()" link="ClutterModelIter.html#clutter-model-iter-get"/>
+    <function name="clutter_model_iter_get_valist ()" link="ClutterModelIter.html#clutter-model-iter-get-valist"/>
+    <function name="clutter_model_iter_get_value ()" link="ClutterModelIter.html#clutter-model-iter-get-value"/>
+    <function name="clutter_model_iter_set ()" link="ClutterModelIter.html#clutter-model-iter-set"/>
+    <function name="clutter_model_iter_set_valist ()" link="ClutterModelIter.html#clutter-model-iter-set-valist"/>
+    <function name="clutter_model_iter_set_value ()" link="ClutterModelIter.html#clutter-model-iter-set-value"/>
+    <function name="clutter_model_iter_is_first ()" link="ClutterModelIter.html#clutter-model-iter-is-first"/>
+    <function name="clutter_model_iter_is_last ()" link="ClutterModelIter.html#clutter-model-iter-is-last"/>
+    <function name="clutter_model_iter_next ()" link="ClutterModelIter.html#clutter-model-iter-next"/>
+    <function name="clutter_model_iter_prev ()" link="ClutterModelIter.html#clutter-model-iter-prev"/>
+    <function name="clutter_model_iter_get_model ()" link="ClutterModelIter.html#clutter-model-iter-get-model"/>
+    <function name="clutter_model_iter_get_row ()" link="ClutterModelIter.html#clutter-model-iter-get-row"/>
+    <function name="The &quot;model&quot; property" link="ClutterModelIter.html#ClutterModelIter--model"/>
+    <function name="The &quot;row&quot; property" link="ClutterModelIter.html#ClutterModelIter--row"/>
+    <function name="ClutterListModel" link="ClutterListModel.html#ClutterListModel-struct"/>
+    <function name="clutter_list_model_new ()" link="ClutterListModel.html#clutter-list-model-new"/>
+    <function name="clutter_list_model_newv ()" link="ClutterListModel.html#clutter-list-model-newv"/>
+    <function name="clutter_get_default_backend ()" link="clutter-ClutterBackend.html#clutter-get-default-backend"/>
+    <function name="clutter_backend_get_resolution ()" link="clutter-ClutterBackend.html#clutter-backend-get-resolution"/>
+    <function name="clutter_backend_set_resolution ()" link="clutter-ClutterBackend.html#clutter-backend-set-resolution"/>
+    <function name="clutter_backend_get_double_click_time ()" link="clutter-ClutterBackend.html#clutter-backend-get-double-click-time"/>
+    <function name="clutter_backend_set_double_click_time ()" link="clutter-ClutterBackend.html#clutter-backend-set-double-click-time"/>
+    <function name="clutter_backend_get_double_click_distance ()" link="clutter-ClutterBackend.html#clutter-backend-get-double-click-distance"/>
+    <function name="clutter_backend_set_double_click_distance ()" link="clutter-ClutterBackend.html#clutter-backend-set-double-click-distance"/>
+    <function name="clutter_backend_set_font_options ()" link="clutter-ClutterBackend.html#clutter-backend-set-font-options"/>
+    <function name="clutter_backend_get_font_options ()" link="clutter-ClutterBackend.html#clutter-backend-get-font-options"/>
+    <function name="clutter_x11_set_display ()" link="clutter-X11-Specific-Support.html#clutter-x11-set-display"/>
+    <function name="clutter_x11_disable_event_retrieval ()" link="clutter-X11-Specific-Support.html#clutter-x11-disable-event-retrieval"/>
+    <function name="clutter_x11_has_event_retrieval ()" link="clutter-X11-Specific-Support.html#clutter-x11-has-event-retrieval"/>
+    <function name="clutter_x11_get_stage_from_window ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-stage-from-window"/>
+    <function name="clutter_x11_handle_event ()" link="clutter-X11-Specific-Support.html#clutter-x11-handle-event"/>
+    <function name="clutter_x11_get_default_display ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-default-display"/>
+    <function name="clutter_x11_get_default_screen ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-default-screen"/>
+    <function name="clutter_x11_get_root_window ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-root-window"/>
+    <function name="clutter_x11_get_stage_visual ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-stage-visual"/>
+    <function name="clutter_x11_get_stage_window ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-stage-window"/>
+    <function name="clutter_x11_set_stage_foreign ()" link="clutter-X11-Specific-Support.html#clutter-x11-set-stage-foreign"/>
+    <function name="clutter_x11_trap_x_errors ()" link="clutter-X11-Specific-Support.html#clutter-x11-trap-x-errors"/>
+    <function name="clutter_x11_untrap_x_errors ()" link="clutter-X11-Specific-Support.html#clutter-x11-untrap-x-errors"/>
+    <function name="clutter_x11_has_composite_extension ()" link="clutter-X11-Specific-Support.html#clutter-x11-has-composite-extension"/>
+    <function name="ClutterX11FilterFunc ()" link="clutter-X11-Specific-Support.html#ClutterX11FilterFunc"/>
+    <function name="enum ClutterX11FilterReturn" link="clutter-X11-Specific-Support.html#ClutterX11FilterReturn"/>
+    <function name="clutter_x11_add_filter ()" link="clutter-X11-Specific-Support.html#clutter-x11-add-filter"/>
+    <function name="clutter_x11_remove_filter ()" link="clutter-X11-Specific-Support.html#clutter-x11-remove-filter"/>
+    <function name="enum ClutterX11InputDeviceType" link="clutter-X11-Specific-Support.html#ClutterX11InputDeviceType"/>
+    <function name="ClutterX11XInputDevice" link="clutter-X11-Specific-Support.html#ClutterX11XInputDevice"/>
+    <function name="enum ClutterX11XInputEventTypes" link="clutter-X11-Specific-Support.html#ClutterX11XInputEventTypes"/>
+    <function name="clutter_x11_get_input_device_type ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-input-device-type"/>
+    <function name="clutter_x11_get_input_devices ()" link="clutter-X11-Specific-Support.html#clutter-x11-get-input-devices"/>
+    <function name="clutter_x11_has_xinput ()" link="clutter-X11-Specific-Support.html#clutter-x11-has-xinput"/>
+    <function name="clutter_x11_enable_xinput ()" link="clutter-X11-Specific-Support.html#clutter-x11-enable-xinput"/>
+    <function name="clutter_win32_disable_event_retrieval ()" link="clutter-Win32-Specific-Support.html#clutter-win32-disable-event-retrieval"/>
+    <function name="clutter_win32_set_stage_foreign ()" link="clutter-Win32-Specific-Support.html#clutter-win32-set-stage-foreign"/>
+    <function name="clutter_win32_get_stage_from_window ()" link="clutter-Win32-Specific-Support.html#clutter-win32-get-stage-from-window"/>
+    <function name="clutter_win32_get_stage_window ()" link="clutter-Win32-Specific-Support.html#clutter-win32-get-stage-window"/>
+  </functions>
+</book>

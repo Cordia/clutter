@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourBspline</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ch05.html" title="Behaviours">
+<link rel="next" href="ClutterBehaviourDepth.html" title="ClutterBehaviourDepth">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch05.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviourDepth.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourBspline.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourBspline.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourBspline.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourBspline.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterBehaviourBspline.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourBspline"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourBspline.top_of_page"></a>ClutterBehaviourBspline</span></h2>
+<p>ClutterBehaviourBspline — A behaviour interpolating position along a B-Spline</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourBspline.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterBehaviourBspline.html#ClutterBehaviourBspline-struct" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a>;
+                    <a class="link" href="ClutterBehaviourBspline.html#ClutterBehaviourBsplineClass" title="ClutterBehaviourBsplineClass">ClutterBehaviourBsplineClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-new" title="clutter_behaviour_bspline_new ()">clutter_behaviour_bspline_new</a>       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knots,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_knots);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-append-knot" title="clutter_behaviour_bspline_append_knot ()">clutter_behaviour_bspline_append_knot</a>
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-append-knots" title="clutter_behaviour_bspline_append_knots ()">clutter_behaviour_bspline_append_knots</a>
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *first_knot,
+                                                         ...);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-truncate" title="clutter_behaviour_bspline_truncate ()">clutter_behaviour_bspline_truncate</a>  (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-join" title="clutter_behaviour_bspline_join ()">clutter_behaviour_bspline_join</a>      (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs1,
+                                                         <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs2);
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-split" title="clutter_behaviour_bspline_split ()">clutter_behaviour_bspline_split</a>     (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-clear" title="clutter_behaviour_bspline_clear ()">clutter_behaviour_bspline_clear</a>     (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-adjust" title="clutter_behaviour_bspline_adjust ()">clutter_behaviour_bspline_adjust</a>    (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-set-origin" title="clutter_behaviour_bspline_set_origin ()">clutter_behaviour_bspline_set_origin</a>
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-get-origin" title="clutter_behaviour_bspline_get_origin ()">clutter_behaviour_bspline_get_origin</a>
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourBspline
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterBehaviourBspline implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourBspline.html#ClutterBehaviourBspline-knot-reached" title='The "knot-reached" signal'>knot-reached</a>"                                   : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a> interpolates actors along a defined B-Spline path.
+</p>
+<p>
+A bezier spline is a set of cubic bezier curves defined by a sequence of
+control points given when creating a new <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a> instance.
+</p>
+<p>
+Additional bezier curves can be added to the end of the bspline using
+clutter_behaviour_bspline_append_* family of functions, control points can
+be moved using <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-adjust" title="clutter_behaviour_bspline_adjust ()"><code class="function">clutter_behaviour_bspline_adjust()</code></a>. The bspline can be split
+into two with <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-split" title="clutter_behaviour_bspline_split ()"><code class="function">clutter_behaviour_bspline_split()</code></a>, and bsplines can be
+concatenated using <a class="link" href="ClutterBehaviourBspline.html#clutter-behaviour-bspline-join" title="clutter_behaviour_bspline_join ()"><code class="function">clutter_behaviour_bspline_join()</code></a>.
+</p>
+<p>
+Each time the behaviour reaches a point on the path, the "knot-reached"
+signal is emitted.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourBspline-struct"></a><h3>ClutterBehaviourBspline</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourBspline ClutterBehaviourBspline;</pre>
+<p>
+<a class="link" href="ClutterBehaviourBspline.html#ClutterBehaviourBspline-struct" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a> contains only private data and
+should be accessed using the functions below.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourBsplineClass"></a><h3>ClutterBehaviourBsplineClass</h3>
+<pre class="programlisting">typedef struct {
+  void (*knot_reached) (ClutterBehaviourBspline *bsplineb,
+                        const ClutterKnot       *knot);
+} ClutterBehaviourBsplineClass;
+</pre>
+<p>
+<span class="type">ClutterBehaviourBsplineClass</span> contains only private data
+and should be accessed using the functions below.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="structfield"><code>knot_reached</code></em> ()</span></p></td>
+<td> class handler for the <a class="link" href="ClutterBehaviourBspline.html#ClutterBehaviourBspline-knot-reached" title='The "knot-reached" signal'><span class="type">"knot-reached"</span></a>
+  signal
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-new"></a><h3>clutter_behaviour_bspline_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_bspline_new       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knots,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_knots);</pre>
+<p>
+Creates a new bezier spline behaviour. You can use this behaviour to drive
+actors along the bezier spline, described by the <em class="parameter"><code>knots</code></em> control points.
+</p>
+<p>
+Bspline is defined by 3n + 1 points, n &gt;=1; any trailing points passed
+into this function are stored internally and used during any subsequent
+clutter_behaviour_bspline_append_* operations.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knots</code></em> :</span></p></td>
+<td> a list of <span class="type">ClutterKnots</span> representing individual control points
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_knots</code></em> :</span></p></td>
+<td> the number of control points
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-append-knot"></a><h3>clutter_behaviour_bspline_append_knot ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_append_knot
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Appends a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> control point to the bezier spline bs. Note, that
+since a bezier is defined by 4 control points, the point gets stored in
+a temporary chache, and only when there are enough control points to
+create a new bezier curve will the bspline extended.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td>      a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td>    a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> control point to append.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-append-knots"></a><h3>clutter_behaviour_bspline_append_knots ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_append_knots
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *first_knot,
+                                                         ...);</pre>
+<p>
+Appends a bezier spline defined by the last control point of bezier spline
+bs and the array of <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> control points to the orginal bezier spline
+bs.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_knot</code></em> :</span></p></td>
+<td> first <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> a NULL-terminated array of <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> control points.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-truncate"></a><h3>clutter_behaviour_bspline_truncate ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_truncate  (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);</pre>
+<p>
+Truncates the bezier spline at the control point; if the control point at
+offset is not one of the on-curve points, the bspline will be
+truncated at the nearest preceeding on-curve point.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td>      a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td>  offset of control where the bspline should be truncated  
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-join"></a><h3>clutter_behaviour_bspline_join ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_join      (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs1,
+                                                         <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs2);</pre>
+<p>
+Joins a copy of bezier spline bs2 onto the end of bezier spline bs1; bs2 is
+not modified.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs1</code></em> :</span></p></td>
+<td>      a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs2</code></em> :</span></p></td>
+<td>      a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-split"></a><h3>clutter_behaviour_bspline_split ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_bspline_split     (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);</pre>
+<p>
+Splits a bezier spline into two at the control point at offset; if the
+control point at offset is not one of the on-curve bezier points, the
+bspline will be split at the nearest on-curve point before the offset.
+The original bspline is shortened appropriately.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td> an offset of the control point at which to split the spline.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> new ClutterBehaviourBspline.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-clear"></a><h3>clutter_behaviour_bspline_clear ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_clear     (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs);</pre>
+<p>
+Empties a bspline.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td>      a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-adjust"></a><h3>clutter_behaviour_bspline_adjust ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_adjust    (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Change the coordinaces of control point at index to those represented by
+the knot.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td> an index of control point to ajdust
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> with new coordinances for the control point.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-set-origin"></a><h3>clutter_behaviour_bspline_set_origin ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_set_origin
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Sets the origin of the bezier to the point represented by knot. (Initially
+the origin of a bspline is given by the position of the first control point
+of the first bezier curve.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td>   a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> origin for the bezier
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-bspline-get-origin"></a><h3>clutter_behaviour_bspline_get_origin ()</h3>
+<pre class="programlisting">void                clutter_behaviour_bspline_get_origin
+                                                        (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *bs,
+                                                         <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Gets the origin of the bezier.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bs</code></em> :</span></p></td>
+<td>   a <a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline"><span class="type">ClutterBehaviourBspline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> where to store the origin of the bezier
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourBspline.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourBspline-knot-reached"></a><h3>The <code class="literal">"knot-reached"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a> *pathb,
+                                                        <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>             *knot,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>                 user_data)      : Run Last</pre>
+<p>
+This signal is emitted at the end of each frame.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> the object which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> reached
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.2
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

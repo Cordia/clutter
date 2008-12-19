@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourPath</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">
+<link rel="next" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterBehaviourOpacity.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviourRotate.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourPath.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourPath.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourPath.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourPath.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterBehaviourPath.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterBehaviourPath.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourPath"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourPath.top_of_page"></a>ClutterBehaviourPath</span></h2>
+<p>ClutterBehaviourPath — A behaviour interpolating position along a path</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourPath.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterBehaviourPath.html#ClutterBehaviourPath-struct" title="ClutterBehaviourPath">ClutterBehaviourPath</a>;
+                    <a class="link" href="ClutterBehaviourPath.html#ClutterBehaviourPathClass" title="ClutterBehaviourPathClass">ClutterBehaviourPathClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-new" title="clutter_behaviour_path_new ()">clutter_behaviour_path_new</a>          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knots,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_knots);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-get-knots" title="clutter_behaviour_path_get_knots ()">clutter_behaviour_path_get_knots</a>    (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-append-knot" title="clutter_behaviour_path_append_knot ()">clutter_behaviour_path_append_knot</a>  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-append-knots" title="clutter_behaviour_path_append_knots ()">clutter_behaviour_path_append_knots</a> (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *first_knot,
+                                                         ...);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-insert-knot" title="clutter_behaviour_path_insert_knot ()">clutter_behaviour_path_insert_knot</a>  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-remove-knot" title="clutter_behaviour_path_remove_knot ()">clutter_behaviour_path_remove_knot</a>  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-clear" title="clutter_behaviour_path_clear ()">clutter_behaviour_path_clear</a>        (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb);
+
+                    <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>;
+<a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*        <a class="link" href="ClutterBehaviourPath.html#clutter-knot-copy" title="clutter_knot_copy ()">clutter_knot_copy</a>                   (const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+void                <a class="link" href="ClutterBehaviourPath.html#clutter-knot-free" title="clutter_knot_free ()">clutter_knot_free</a>                   (<a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterBehaviourPath.html#clutter-knot-equal" title="clutter_knot_equal ()">clutter_knot_equal</a>                  (const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot_a,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot_b);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourPath
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterBehaviourPath implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourPath.html#ClutterBehaviourPath--knot" title='The "knot" property'>knot</a>"                     <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*          : Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourPath.html#ClutterBehaviourPath-knot-reached" title='The "knot-reached" signal'>knot-reached</a>"                                   : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath"><span class="type">ClutterBehaviourPath</span></a> interpolates actors along a defined path.
+</p>
+<p>
+A path is a set of <span class="type">ClutterKnots</span> object given when creating a new
+<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath"><span class="type">ClutterBehaviourPath</span></a> instance.  Knots can be also added to the path
+using <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-append-knot" title="clutter_behaviour_path_append_knot ()"><code class="function">clutter_behaviour_path_append_knot()</code></a>.  The whole path can be
+cleared using <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-clear" title="clutter_behaviour_path_clear ()"><code class="function">clutter_behaviour_path_clear()</code></a>.  Each time the behaviour
+reaches a knot in the path, the "knot-reached" signal is emitted.
+</p>
+<p>
+This first knot in the path is reached with the lower bound value
+provided by the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> objectused by the behaviour; the last
+knot in the path is reached with the upper bound value provided by
+the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object used by the behaviour.
+</p>
+<p>
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>If the alpha function is a periodic function, i.e. it returns to
+0 after reaching <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-MAX-ALPHA:CAPS" title="CLUTTER_ALPHA_MAX_ALPHA"><code class="literal">CLUTTER_ALPHA_MAX_ALPHA</code></a>, then the actors will walk
+the path back to the starting <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a>.</div>
+<p>
+</p>
+<p>
+<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath"><span class="type">ClutterBehaviourPath</span></a> is available since Clutter 0.2</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourPath-struct"></a><h3>ClutterBehaviourPath</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourPath ClutterBehaviourPath;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourPathClass"></a><h3>ClutterBehaviourPathClass</h3>
+<pre class="programlisting">typedef struct {
+  void (*knot_reached) (ClutterBehaviourPath *pathb,
+                        const ClutterKnot    *knot);
+} ClutterBehaviourPathClass;
+</pre>
+<p>
+Since 0.2</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="structfield"><code>knot_reached</code></em> ()</span></p></td>
+<td> signal class handler for the
+  ClutterBehaviourPath::knot_reached signal
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-new"></a><h3>clutter_behaviour_path_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_path_new          (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knots,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> n_knots);</pre>
+<p>
+Creates a new path behaviour. You can use this behaviour to drive
+actors along the nodes of a path, described by the <em class="parameter"><code>knots</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knots</code></em> :</span></p></td>
+<td> a list of <span class="type">ClutterKnots</span>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for an empty path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_knots</code></em> :</span></p></td>
+<td> the number of nodes in the path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-get-knots"></a><h3>clutter_behaviour_path_get_knots ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             clutter_behaviour_path_get_knots    (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb);</pre>
+<p>
+Returns a copy of the list of knots contained by <em class="parameter"><code>pathb</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+><span class="type">GSList</span></a> of the paths knots.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-append-knot"></a><h3>clutter_behaviour_path_append_knot ()</h3>
+<pre class="programlisting">void                clutter_behaviour_path_append_knot  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Appends a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> to the path</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td>  a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> to append.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-append-knots"></a><h3>clutter_behaviour_path_append_knots ()</h3>
+<pre class="programlisting">void                clutter_behaviour_path_append_knots (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *first_knot,
+                                                         ...);</pre>
+<p>
+Adds a NULL-terminated list of knots to a path.  This function is
+equivalent to calling <a class="link" href="ClutterBehaviourPath.html#clutter-behaviour-path-append-knot" title="clutter_behaviour_path_append_knot ()"><code class="function">clutter_behaviour_path_append_knot()</code></a> for each
+member of the list.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_knot</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> knot to add to the path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> additional knots to add to the path
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-insert-knot"></a><h3>clutter_behaviour_path_insert_knot ()</h3>
+<pre class="programlisting">void                clutter_behaviour_path_insert_knot  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Inserts a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> in the path at specified position. Values greater
+than total number of knots will append the knot at the end of path.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td> position in path to insert knot.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td>  a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> to append.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-remove-knot"></a><h3>clutter_behaviour_path_remove_knot ()</h3>
+<pre class="programlisting">void                clutter_behaviour_path_remove_knot  (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> offset);</pre>
+<p>
+Removes a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> in the path at specified offset.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offset</code></em> :</span></p></td>
+<td> position in path to remove knot.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-path-clear"></a><h3>clutter_behaviour_path_clear ()</h3>
+<pre class="programlisting">void                clutter_behaviour_path_clear        (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb);</pre>
+<p>
+Removes all knots from a path</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> a <span class="type">ClutterBehvaiourPath</span>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterKnot"></a><h3>ClutterKnot</h3>
+<pre class="programlisting">typedef struct {
+  gint x;
+  gint y;
+} ClutterKnot;
+</pre>
+<p>
+Point in a path behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> <em class="structfield"><code>x</code></em>;</span></p></td>
+<td> X coordinate of the knot
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> <em class="structfield"><code>y</code></em>;</span></p></td>
+<td> Y coordinate of the knot
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-knot-copy"></a><h3>clutter_knot_copy ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*        clutter_knot_copy                   (const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Makes an allocated copy of a knot.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the copied knot.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-knot-free"></a><h3>clutter_knot_free ()</h3>
+<pre class="programlisting">void                clutter_knot_free                   (<a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot);</pre>
+<p>
+Frees the memory of an allocated knot.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-knot-equal"></a><h3>clutter_knot_equal ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_knot_equal                  (const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot_a,
+                                                         const <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a> *knot_b);</pre>
+<p>
+Compares to knot and checks if the point to the same location.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot_a</code></em> :</span></p></td>
+<td> First knot
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot_b</code></em> :</span></p></td>
+<td> Second knot
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the knots point to the same location.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourPath--knot"></a><h3>The <code class="literal">"knot"</code> property</h3>
+<pre class="programlisting">  "knot"                     <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>*          : Write</pre>
+<p>
+This property can be used to append a new knot to the path.</p>
+<p>
+
+</p>
+<p>Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourPath.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourPath-knot-reached"></a><h3>The <code class="literal">"knot-reached"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a> *pathb,
+                                                        <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot">ClutterKnot</a>          *knot,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              user_data)      : Run Last</pre>
+<p>
+This signal is emitted each time a node defined inside the path
+is reached.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pathb</code></em> :</span></p></td>
+<td> the object which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>knot</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviourPath.html#ClutterKnot" title="ClutterKnot"><span class="type">ClutterKnot</span></a> reached
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.2
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

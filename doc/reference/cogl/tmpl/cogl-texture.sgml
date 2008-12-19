@@ -1,0 +1,266 @@
+<!-- ##### SECTION Title ##### -->
+Textures
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT CoglTextureVertex ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@z: 
+@tx: 
+@ty: 
+@color: 
+
+<!-- ##### FUNCTION cogl_texture_new_with_size ##### -->
+<para>
+
+</para>
+
+@width: 
+@height: 
+@max_waste: 
+@auto_mipmap: 
+@internal_format: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_new_from_file ##### -->
+<para>
+
+</para>
+
+@filename: 
+@max_waste: 
+@auto_mipmap: 
+@internal_format: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_new_from_data ##### -->
+<para>
+
+</para>
+
+@width: 
+@height: 
+@max_waste: 
+@auto_mipmap: 
+@format: 
+@internal_format: 
+@rowstride: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_new_from_foreign ##### -->
+<para>
+
+</para>
+
+@gl_handle: 
+@gl_target: 
+@width: 
+@height: 
+@x_pot_waste: 
+@y_pot_waste: 
+@format: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_is_texture ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_width ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_height ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_format ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_rowstride ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_max_waste ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_min_filter ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_mag_filter ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_is_sliced ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_gl_texture ##### -->
+<para>
+
+</para>
+
+@handle: 
+@out_gl_handle: 
+@out_gl_target: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_get_data ##### -->
+<para>
+
+</para>
+
+@handle: 
+@format: 
+@rowstride: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_set_filters ##### -->
+<para>
+
+</para>
+
+@handle: 
+@min_filter: 
+@mag_filter: 
+
+
+<!-- ##### FUNCTION cogl_texture_set_region ##### -->
+<para>
+
+</para>
+
+@handle: 
+@src_x: 
+@src_y: 
+@dst_x: 
+@dst_y: 
+@dst_width: 
+@dst_height: 
+@width: 
+@height: 
+@format: 
+@rowstride: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_ref ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_texture_unref ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_texture_rectangle ##### -->
+<para>
+
+</para>
+
+@handle: 
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@tx1: 
+@ty1: 
+@tx2: 
+@ty2: 
+
+
+<!-- ##### FUNCTION cogl_texture_polygon ##### -->
+<para>
+
+</para>
+
+@handle: 
+@n_vertices: 
+@vertices: 
+@use_color: 
+
+

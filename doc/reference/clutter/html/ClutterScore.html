@@ -1,0 +1,868 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterScore</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch04.html" title="Base classes">
+<link rel="prev" href="ClutterTimeline.html" title="ClutterTimeline">
+<link rel="next" href="ClutterAlpha.html" title="ClutterAlpha">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterTimeline.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterAlpha.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterScore.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterScore.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterScore.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterScore.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterScore.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterScore"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterScore.top_of_page"></a>ClutterScore</span></h2>
+<p>ClutterScore — Controller for multiple timelines</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterScore.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterScore.html#ClutterScore-struct" title="ClutterScore">ClutterScore</a>;
+                    <a class="link" href="ClutterScore.html#ClutterScoreClass" title="ClutterScoreClass">ClutterScoreClass</a>;
+<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a>*       <a class="link" href="ClutterScore.html#clutter-score-new" title="clutter_score_new ()">clutter_score_new</a>                   (void);
+void                <a class="link" href="ClutterScore.html#clutter-score-set-loop" title="clutter_score_set_loop ()">clutter_score_set_loop</a>              (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> loop);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterScore.html#clutter-score-get-loop" title="clutter_score_get_loop ()">clutter_score_get_loop</a>              (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="ClutterScore.html#clutter-score-append" title="clutter_score_append ()">clutter_score_append</a>                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *parent,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="ClutterScore.html#clutter-score-append-at-marker" title="clutter_score_append_at_marker ()">clutter_score_append_at_marker</a>      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *parent,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);
+void                <a class="link" href="ClutterScore.html#clutter-score-remove" title="clutter_score_remove ()">clutter_score_remove</a>                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> id);
+void                <a class="link" href="ClutterScore.html#clutter-score-remove-all" title="clutter_score_remove_all ()">clutter_score_remove_all</a>            (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    <a class="link" href="ClutterScore.html#clutter-score-get-timeline" title="clutter_score_get_timeline ()">clutter_score_get_timeline</a>          (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> id);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             <a class="link" href="ClutterScore.html#clutter-score-list-timelines" title="clutter_score_list_timelines ()">clutter_score_list_timelines</a>        (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+
+void                <a class="link" href="ClutterScore.html#clutter-score-start" title="clutter_score_start ()">clutter_score_start</a>                 (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+void                <a class="link" href="ClutterScore.html#clutter-score-pause" title="clutter_score_pause ()">clutter_score_pause</a>                 (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+void                <a class="link" href="ClutterScore.html#clutter-score-stop" title="clutter_score_stop ()">clutter_score_stop</a>                  (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterScore.html#clutter-score-is-playing" title="clutter_score_is_playing ()">clutter_score_is_playing</a>            (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+void                <a class="link" href="ClutterScore.html#clutter-score-rewind" title="clutter_score_rewind ()">clutter_score_rewind</a>                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterScore
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterScore.html#ClutterScore--loop" title='The "loop" property'>loop</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterScore.html#ClutterScore-completed" title='The "completed" signal'>completed</a>"                                      : Run Last
+  "<a class="link" href="ClutterScore.html#ClutterScore-paused" title='The "paused" signal'>paused</a>"                                         : Run Last
+  "<a class="link" href="ClutterScore.html#ClutterScore-started" title='The "started" signal'>started</a>"                                        : Run Last
+  "<a class="link" href="ClutterScore.html#ClutterScore-timeline-completed" title='The "timeline-completed" signal'>timeline-completed</a>"                             : Run Last
+  "<a class="link" href="ClutterScore.html#ClutterScore-timeline-started" title='The "timeline-started" signal'>timeline-started</a>"                               : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> is a base class for sequencing multiple timelines in order.
+Using <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> it is possible to start multiple timelines at the
+same time or launch multiple timelines when a particular timeline has
+emitted the ClutterTimeline::completed signal.
+</p>
+<p>
+Each time a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> is started and completed, a signal will be
+emitted.
+</p>
+<p>
+For example, this code will start two <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>s after
+a third timeline terminates:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  ClutterTimeline *timeline_1, *timeline_2, *timeline_3;
+  ClutterScore *score;
+
+  timeline_1 = clutter_timeline_new_for_duration (1000);
+  timeline_2 = clutter_timeline_new_for_duration (500);
+  timeline_3 = clutter_timeline_new_for_duration (500);
+
+  score = clutter_score_new ();
+
+  clutter_score_append (score, NULL,       timeline_1);
+  clutter_score_append (score, timeline_1, timeline_2);
+  clutter_score_append (score, timeline_1, timeline_3);
+
+  clutter_score_start (score);
+</pre></div>
+<p>
+</p>
+<p>
+A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> takes a reference on the timelines it manages,
+so timelines can be safely unreferenced after being appended.
+</p>
+<p>
+New timelines can be appended to the <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> using
+<a class="link" href="ClutterScore.html#clutter-score-append" title="clutter_score_append ()"><code class="function">clutter_score_append()</code></a> and removed using <a class="link" href="ClutterScore.html#clutter-score-remove" title="clutter_score_remove ()"><code class="function">clutter_score_remove()</code></a>.
+</p>
+<p>
+Timelines can also be appended to a specific marker on the
+parent timeline, using <a class="link" href="ClutterScore.html#clutter-score-append-at-marker" title="clutter_score_append_at_marker ()"><code class="function">clutter_score_append_at_marker()</code></a>.
+</p>
+<p>
+The score can be cleared using <a class="link" href="ClutterScore.html#clutter-score-remove-all" title="clutter_score_remove_all ()"><code class="function">clutter_score_remove_all()</code></a>.
+</p>
+<p>
+The list of timelines can be retrieved using
+<a class="link" href="ClutterScore.html#clutter-score-list-timelines" title="clutter_score_list_timelines ()"><code class="function">clutter_score_list_timelines()</code></a>.
+</p>
+<p>
+The score state is controlled using <a class="link" href="ClutterScore.html#clutter-score-start" title="clutter_score_start ()"><code class="function">clutter_score_start()</code></a>,
+<a class="link" href="ClutterScore.html#clutter-score-pause" title="clutter_score_pause ()"><code class="function">clutter_score_pause()</code></a>, <a class="link" href="ClutterScore.html#clutter-score-stop" title="clutter_score_stop ()"><code class="function">clutter_score_stop()</code></a> and <a class="link" href="ClutterScore.html#clutter-score-rewind" title="clutter_score_rewind ()"><code class="function">clutter_score_rewind()</code></a>.
+The state can be queried using <a class="link" href="ClutterScore.html#clutter-score-is-playing" title="clutter_score_is_playing ()"><code class="function">clutter_score_is_playing()</code></a>.
+</p>
+<p>
+<a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-struct"></a><h3>ClutterScore</h3>
+<pre class="programlisting">typedef struct _ClutterScore ClutterScore;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScoreClass"></a><h3>ClutterScoreClass</h3>
+<pre class="programlisting">typedef struct {
+  void (* timeline_started)   (ClutterScore    *score,
+                               ClutterTimeline *timeline);
+  void (* timeline_completed) (ClutterScore    *score,
+                               ClutterTimeline *timeline);
+
+  void (* started)            (ClutterScore    *score);
+  void (* completed)          (ClutterScore    *score);
+  void (* paused)             (ClutterScore    *score);
+} ClutterScoreClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-new"></a><h3>clutter_score_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a>*       clutter_score_new                   (void);</pre>
+<p>
+Creates a new <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>. A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> is an object that can
+hold multiple <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>s in a sequential order.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>. Use <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a>
+  when done.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-set-loop"></a><h3>clutter_score_set_loop ()</h3>
+<pre class="programlisting">void                clutter_score_set_loop              (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> loop);</pre>
+<p>
+Sets whether <em class="parameter"><code>score</code></em> should loop. A looping <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> will start
+from its initial state after the ::complete signal has been fired.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loop</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> for enable looping
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-get-loop"></a><h3>clutter_score_get_loop ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_score_get_loop              (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Gets whether <em class="parameter"><code>score</code></em> is looping</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the score is looping
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-append"></a><h3>clutter_score_append ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              clutter_score_append                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *parent,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Appends a timeline to another one existing in the score; the newly
+appended timeline will be started when <em class="parameter"><code>parent</code></em> is complete.
+</p>
+<p>
+If <em class="parameter"><code>parent</code></em> is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>, the new <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> will be started when
+<a class="link" href="ClutterScore.html#clutter-score-start" title="clutter_score_start ()"><code class="function">clutter_score_start()</code></a> is called.
+</p>
+<p>
+<a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> will take a reference on <em class="parameter"><code>timeline</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> in the score, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the id of the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> inside the score, or
+  0 on failure. The returned id can be used with <a class="link" href="ClutterScore.html#clutter-score-remove" title="clutter_score_remove ()"><code class="function">clutter_score_remove()</code></a>
+  or <a class="link" href="ClutterScore.html#clutter-score-get-timeline" title="clutter_score_get_timeline ()"><code class="function">clutter_score_get_timeline()</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-append-at-marker"></a><h3>clutter_score_append_at_marker ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              clutter_score_append_at_marker      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *parent,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *marker_name,
+                                                         <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline);</pre>
+<p>
+Appends <em class="parameter"><code>timeline</code></em> at the given <em class="parameter"><code>marker_name</code></em> on the <em class="parameter"><code>parent</code></em>
+<a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>.
+</p>
+<p>
+If you want to append <em class="parameter"><code>timeline</code></em> at the end of <em class="parameter"><code>parent</code></em>, use
+<a class="link" href="ClutterScore.html#clutter-score-append" title="clutter_score_append ()"><code class="function">clutter_score_append()</code></a>.
+</p>
+<p>
+The <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> will take a reference on <em class="parameter"><code>timeline</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td> the parent <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>marker_name</code></em> :</span></p></td>
+<td> the name of the marker to use
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> to append
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the id of the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> inside the score, or
+  0 on failure. The returned id can be used with <a class="link" href="ClutterScore.html#clutter-score-remove" title="clutter_score_remove ()"><code class="function">clutter_score_remove()</code></a>
+  or <a class="link" href="ClutterScore.html#clutter-score-get-timeline" title="clutter_score_get_timeline ()"><code class="function">clutter_score_get_timeline()</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-remove"></a><h3>clutter_score_remove ()</h3>
+<pre class="programlisting">void                clutter_score_remove                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> id);</pre>
+<p>
+Removes the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> with the given id inside <em class="parameter"><code>score</code></em>. If
+the timeline has other timelines attached to it, those are removed
+as well.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the id of the timeline to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-remove-all"></a><h3>clutter_score_remove_all ()</h3>
+<pre class="programlisting">void                clutter_score_remove_all            (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Removes all the timelines inside <em class="parameter"><code>score</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-get-timeline"></a><h3>clutter_score_get_timeline ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a>*    clutter_score_get_timeline          (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a> id);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> for <em class="parameter"><code>id</code></em> inside <em class="parameter"><code>score</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the id of the timeline
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the requested timeline, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. This function does
+  not increase the reference count on the returned <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-list-timelines"></a><h3>clutter_score_list_timelines ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             clutter_score_list_timelines        (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Retrieves a list of all the <span class="type">ClutterTimelines</span> managed by <em class="parameter"><code>score</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+><span class="type">GSList</span></a> containing all the timelines in the score.
+  This function does not increase the reference count of the
+  returned timelines. Use <a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#g-slist-free"
+><code class="function">g_slist_free()</code></a> on the returned list to
+  deallocate its resources.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-start"></a><h3>clutter_score_start ()</h3>
+<pre class="programlisting">void                clutter_score_start                 (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Starts the score.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-pause"></a><h3>clutter_score_pause ()</h3>
+<pre class="programlisting">void                clutter_score_pause                 (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Pauses a playing score <em class="parameter"><code>score</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-stop"></a><h3>clutter_score_stop ()</h3>
+<pre class="programlisting">void                clutter_score_stop                  (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Stops and rewinds a playing <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-is-playing"></a><h3>clutter_score_is_playing ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_score_is_playing            (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Query state of a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if score is currently playing
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-score-rewind"></a><h3>clutter_score_rewind ()</h3>
+<pre class="programlisting">void                clutter_score_rewind                (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score);</pre>
+<p>
+Rewinds a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> to its initial state.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScore--loop"></a><h3>The <code class="literal">"loop"</code> property</h3>
+<pre class="programlisting">  "loop"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> should restart once finished.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScore.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-completed"></a><h3>The <code class="literal">"completed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::completed signal is emitted each time a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> terminates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> the score which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-paused"></a><h3>The <code class="literal">"paused"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::paused signal is emitted each time a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a>
+is paused.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> the score which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-started"></a><h3>The <code class="literal">"started"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a> *score,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::started signal is emitted each time a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> starts playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> the score which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-timeline-completed"></a><h3>The <code class="literal">"timeline-completed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a>    *score,
+                                                        <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::timeline-completed signal is emitted each time a timeline
+inside a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> terminates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> the score which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the completed timeline
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScore-timeline-started"></a><h3>The <code class="literal">"timeline-started"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterScore.html" title="ClutterScore">ClutterScore</a>    *score,
+                                                        <a class="link" href="ClutterTimeline.html" title="ClutterTimeline">ClutterTimeline</a> *timeline,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::timeline-started signal is emitted each time a new timeline
+inside a <a class="link" href="ClutterScore.html" title="ClutterScore"><span class="type">ClutterScore</span></a> starts playing.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>score</code></em> :</span></p></td>
+<td> the score which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timeline</code></em> :</span></p></td>
+<td> the current timeline
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

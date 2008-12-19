@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterEntry">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterEntry.top_of_page">ClutterEntry</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterEntry</refname>
+<refpurpose>A single line text entry actor</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterEntry.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterEntry-struct">ClutterEntry</link>;
+                    <link linkend="ClutterEntryClass">ClutterEntryClass</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-entry-new">clutter_entry_new</link>                   (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-entry-new-with-text">clutter_entry_new_with_text</link>         (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-entry-new-full">clutter_entry_new_full</link>              (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-text">clutter_entry_set_text</link>              (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *text);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-entry-get-text">clutter_entry_get_text</link>              (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-font-name">clutter_entry_set_font_name</link>         (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *font_name);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-entry-get-font-name">clutter_entry_get_font_name</link>         (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-color">clutter_entry_set_color</link>             (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-entry-get-color">clutter_entry_get_color</link>             (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="PangoLayout">PangoLayout</link>*        <link linkend="clutter-entry-get-layout">clutter_entry_get_layout</link>            (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-alignment">clutter_entry_set_alignment</link>         (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="PangoAlignment">PangoAlignment</link> alignment);
+<link linkend="PangoAlignment">PangoAlignment</link>      <link linkend="clutter-entry-get-alignment">clutter_entry_get_alignment</link>         (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-cursor-position">clutter_entry_set_cursor_position</link>   (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gint">gint</link> position);
+<link linkend="gint">gint</link>                <link linkend="clutter-entry-get-cursor-position">clutter_entry_get_cursor_position</link>   (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-handle-key-event">clutter_entry_handle_key_event</link>      (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *kev);
+<link linkend="void">void</link>                <link linkend="clutter-entry-insert-unichar">clutter_entry_insert_unichar</link>        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gunichar">gunichar</link> wc);
+<link linkend="void">void</link>                <link linkend="clutter-entry-delete-chars">clutter_entry_delete_chars</link>          (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="guint">guint</link> len);
+<link linkend="void">void</link>                <link linkend="clutter-entry-insert-text">clutter_entry_insert_text</link>           (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         <link linkend="gssize">gssize</link> position);
+<link linkend="void">void</link>                <link linkend="clutter-entry-delete-text">clutter_entry_delete_text</link>           (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gssize">gssize</link> start_pos,
+                                                         <link linkend="gssize">gssize</link> end_pos);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-visible-cursor">clutter_entry_set_visible_cursor</link>    (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gboolean">gboolean</link> visible);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-entry-get-visible-cursor">clutter_entry_get_visible_cursor</link>    (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-visibility">clutter_entry_set_visibility</link>        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gboolean">gboolean</link> visible);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-entry-get-visibility">clutter_entry_get_visibility</link>        (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-invisible-char">clutter_entry_set_invisible_char</link>    (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gunichar">gunichar</link> wc);
+<link linkend="gunichar">gunichar</link>            <link linkend="clutter-entry-get-invisible-char">clutter_entry_get_invisible_char</link>    (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+<link linkend="void">void</link>                <link linkend="clutter-entry-set-max-length">clutter_entry_set_max_length</link>        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gint">gint</link> max);
+<link linkend="gint">gint</link>                <link linkend="clutter-entry-get-max-length">clutter_entry_get_max_length</link>        (<link linkend="ClutterEntry">ClutterEntry</link> *entry);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterEntry.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterEntry
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterEntry.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterEntry implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterEntry.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterEntry--alignment">alignment</link>&quot;                <link linkend="PangoAlignment">PangoAlignment</link>        : Read / Write
+  &quot;<link linkend="ClutterEntry--color">color</link>&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write
+  &quot;<link linkend="ClutterEntry--cursor-visible">cursor-visible</link>&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterEntry--entry-padding">entry-padding</link>&quot;            <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterEntry--font-name">font-name</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterEntry--max-length">max-length</link>&quot;               <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterEntry--position">position</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterEntry--text">text</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterEntry--text-visible">text-visible</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterEntry--x-align">x-align</link>&quot;                  <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterEntry.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterEntry-activate">activate</link>&quot;                                       : Run Last
+  &quot;<link linkend="ClutterEntry-cursor-event">cursor-event</link>&quot;                                   : Run Last
+  &quot;<link linkend="ClutterEntry-text-changed">text-changed</link>&quot;                                   : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterEntry.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterEntry"><type>ClutterEntry</type></link> is a <link linkend="ClutterTexture"><type>ClutterTexture</type></link> that allows single line text entry.
+</para>
+<para>
+<link linkend="ClutterEntry"><type>ClutterEntry</type></link> is available since Clutter 0.4.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterEntry.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterEntry-struct" role="struct">
+<title>ClutterEntry</title>
+<indexterm zone="ClutterEntry-struct"><primary>ClutterEntry</primary></indexterm><programlisting>typedef struct _ClutterEntry ClutterEntry;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterEntryClass" role="struct" condition="since:0.4">
+<title>ClutterEntryClass</title>
+<indexterm zone="ClutterEntryClass" role="0.4"><primary>ClutterEntryClass</primary></indexterm><programlisting>typedef struct {
+  /* vfuncs, not signals */
+  void (* paint_cursor) (ClutterEntry    *entry);
+  
+  /* signals */
+  void (* text_changed) (ClutterEntry    *entry);
+  void (* cursor_event) (ClutterEntry    *entry,
+                         ClutterGeometry *geometry);
+  void (* activate)     (ClutterEntry    *entry);
+} ClutterEntryClass;
+</programlisting>
+<para>
+Class fo entry actors.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>paint_cursor</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for subclasses to use to draw a custom
+  cursor instead of the default one
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>text_changed</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterEntry::text-changed
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>cursor_event</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterEntry::cursor-event
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>activate</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for ClutterEntry::activate
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-new" role="function">
+<title>clutter_entry_new ()</title>
+<indexterm zone="clutter-entry-new"><primary>clutter_entry_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_entry_new                   (void);</programlisting>
+<para>
+Creates a new, empty <link linkend="ClutterEntry"><type>ClutterEntry</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-entry-new-with-text" role="function" condition="since:0.4">
+<title>clutter_entry_new_with_text ()</title>
+<indexterm zone="clutter-entry-new-with-text" role="0.4"><primary>clutter_entry_new_with_text</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_entry_new_with_text         (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEntry"><type>ClutterEntry</type></link> displaying <parameter>text</parameter> using <parameter>font_name</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name (and size) of the font to be used
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-new-full" role="function" condition="since:0.4">
+<title>clutter_entry_new_full ()</title>
+<indexterm zone="clutter-entry-new-full" role="0.4"><primary>clutter_entry_new_full</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_entry_new_full              (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEntry"><type>ClutterEntry</type></link> displaying <parameter>text</parameter> with <parameter>color</parameter>
+using <parameter>font_name</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name (and size) of the font to be used
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterColor"><type>ClutterColor</type></link> for text
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-text" role="function" condition="since:0.4">
+<title>clutter_entry_set_text ()</title>
+<indexterm zone="clutter-entry-set-text" role="0.4"><primary>clutter_entry_set_text</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_text              (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *text);</programlisting>
+<para>
+Sets <parameter>text</parameter> as the text to be displayed by <parameter>entry</parameter>. The
+ClutterEntry::text-changed signal is emitted.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-text" role="function" condition="since:0.4">
+<title>clutter_entry_get_text ()</title>
+<indexterm zone="clutter-entry-get-text" role="0.4"><primary>clutter_entry_get_text</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_entry_get_text              (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Retrieves the text displayed by <parameter>entry</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the text of the entry.  The returned string is
+  owned by <link linkend="ClutterEntry"><type>ClutterEntry</type></link> and should not be modified or freed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-font-name" role="function" condition="since:0.4">
+<title>clutter_entry_set_font_name ()</title>
+<indexterm zone="clutter-entry-set-font-name" role="0.4"><primary>clutter_entry_set_font_name</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_font_name         (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *font_name);</programlisting>
+<para>
+Sets <parameter>font_name</parameter> as the font used by <parameter>entry</parameter>.
+</para>
+<para>
+<parameter>font_name</parameter> must be a string containing the font name and its
+size, similarly to what you would feed to the
+<link linkend="pango-font-description-from-string"><function>pango_font_description_from_string()</function></link> function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> a font name and size, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for the default font
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-font-name" role="function" condition="since:0.4">
+<title>clutter_entry_get_font_name ()</title>
+<indexterm zone="clutter-entry-get-font-name" role="0.4"><primary>clutter_entry_get_font_name</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_entry_get_font_name         (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Retrieves the font used by <parameter>entry</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a string containing the font name, in a format
+  understandable by <link linkend="pango-font-description-from-string"><function>pango_font_description_from_string()</function></link>.  The
+  string is owned by <link linkend="ClutterEntry"><type>ClutterEntry</type></link> and should not be modified
+  or freed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-color" role="function" condition="since:0.4">
+<title>clutter_entry_set_color ()</title>
+<indexterm zone="clutter-entry-set-color" role="0.4"><primary>clutter_entry_set_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_color             (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Sets the color of <parameter>entry</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-color" role="function" condition="since:0.4">
+<title>clutter_entry_get_color ()</title>
+<indexterm zone="clutter-entry-get-color" role="0.4"><primary>clutter_entry_get_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_get_color             (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Retrieves the color of <parameter>entry</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-layout" role="function" condition="since:0.4">
+<title>clutter_entry_get_layout ()</title>
+<indexterm zone="clutter-entry-get-layout" role="0.4"><primary>clutter_entry_get_layout</primary></indexterm><programlisting><link linkend="PangoLayout">PangoLayout</link>*        clutter_entry_get_layout            (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Gets the <link linkend="PangoLayout"><type>PangoLayout</type></link> used to display the entry.
+The layout is useful to e.g. convert text positions to
+pixel positions.
+The returned layout is owned by the entry so need not be
+freed by the caller.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="PangoLayout"><type>PangoLayout</type></link> for this entry
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-alignment" role="function" condition="since:0.4">
+<title>clutter_entry_set_alignment ()</title>
+<indexterm zone="clutter-entry-set-alignment" role="0.4"><primary>clutter_entry_set_alignment</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_alignment         (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="PangoAlignment">PangoAlignment</link> alignment);</programlisting>
+<para>
+Sets text alignment of the entry.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alignment</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="PangoAlignment"><type>PangoAlignment</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-alignment" role="function">
+<title>clutter_entry_get_alignment ()</title>
+<indexterm zone="clutter-entry-get-alignment"><primary>clutter_entry_get_alignment</primary></indexterm><programlisting><link linkend="PangoAlignment">PangoAlignment</link>      clutter_entry_get_alignment         (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Returns the entry's text alignment</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The entry's <link linkend="PangoAlignment"><type>PangoAlignment</type></link>
+
+Since 0.4
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-entry-set-cursor-position" role="function" condition="since:0.6">
+<title>clutter_entry_set_cursor_position ()</title>
+<indexterm zone="clutter-entry-set-cursor-position" role="0.6"><primary>clutter_entry_set_cursor_position</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_cursor_position   (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gint">gint</link> position);</programlisting>
+<para>
+Sets the position of the cursor. The <parameter>position</parameter> must be less than or
+equal to the number of characters in the entry. A value of -1 indicates
+that the position should be set after the last character in the entry.
+Note that this position is in characters, not in bytes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>position</parameter>&nbsp;:</term>
+<listitem><simpara> the position of the cursor.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-entry-get-cursor-position" role="function" condition="since:0.6">
+<title>clutter_entry_get_cursor_position ()</title>
+<indexterm zone="clutter-entry-get-cursor-position" role="0.6"><primary>clutter_entry_get_cursor_position</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_entry_get_cursor_position   (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Gets the position, in characters, of the cursor in <parameter>entry</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the position of the cursor.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-entry-handle-key-event" role="function" condition="deprecated|since:0.4">
+<title>clutter_entry_handle_key_event ()</title>
+<indexterm zone="clutter-entry-handle-key-event" role="deprecated"><primary>clutter_entry_handle_key_event</primary></indexterm><indexterm zone="clutter-entry-handle-key-event" role="0.4"><primary>clutter_entry_handle_key_event</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_handle_key_event      (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="ClutterKeyEvent">ClutterKeyEvent</link> *kev);</programlisting>
+<warning><para><literal>clutter_entry_handle_key_event</literal> has been deprecated since version 0.8 and should not be used in newly-written code. The key events will automatically be handled when
+  giving the key focus to an entry using <link linkend="clutter-stage-set-key-focus"><function>clutter_stage_set_key_focus()</function></link>.</para></warning>
+<para>
+This function will handle a <link linkend="ClutterKeyEvent"><type>ClutterKeyEvent</type></link>, like those returned in a
+key-press/release-event, and will translate it for the <parameter>entry</parameter>. This includes
+non-alphanumeric keys, such as the arrows keys, which will move the
+input cursor. You should use this function inside a handler for the
+ClutterStage::key-press-event or ClutterStage::key-release-event.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>kev</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKeyEvent"><type>ClutterKeyEvent</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+
+</para></refsect2>
+<refsect2 id="clutter-entry-insert-unichar" role="function" condition="since:0.4">
+<title>clutter_entry_insert_unichar ()</title>
+<indexterm zone="clutter-entry-insert-unichar" role="0.4"><primary>clutter_entry_insert_unichar</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_insert_unichar        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gunichar">gunichar</link> wc);</programlisting>
+<para>
+Insert a character to the right of the current position of the cursor,
+and updates the position of the cursor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>wc</parameter>&nbsp;:</term>
+<listitem><simpara> a Unicode character
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-delete-chars" role="function" condition="since:0.4">
+<title>clutter_entry_delete_chars ()</title>
+<indexterm zone="clutter-entry-delete-chars" role="0.4"><primary>clutter_entry_delete_chars</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_delete_chars          (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="guint">guint</link> len);</programlisting>
+<para>
+Characters are removed from before the current postion of the cursor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> the number of characters to remove.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-insert-text" role="function" condition="since:0.4">
+<title>clutter_entry_insert_text ()</title>
+<indexterm zone="clutter-entry-insert-text" role="0.4"><primary>clutter_entry_insert_text</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_insert_text           (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         <link linkend="gssize">gssize</link> position);</programlisting>
+<para>
+Insert text at a specifc position.
+</para>
+<para>
+A value of 0 indicates  that the text will be inserted before the first
+character in the entry's text, and a value of -1 indicates that the text
+will be inserted after the last character in the entry's text.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to insert
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>position</parameter>&nbsp;:</term>
+<listitem><simpara> the position at which to insert the text.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-delete-text" role="function" condition="since:0.4">
+<title>clutter_entry_delete_text ()</title>
+<indexterm zone="clutter-entry-delete-text" role="0.4"><primary>clutter_entry_delete_text</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_delete_text           (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gssize">gssize</link> start_pos,
+                                                         <link linkend="gssize">gssize</link> end_pos);</programlisting>
+<para>
+Deletes a sequence of characters. The characters that are deleted are
+those characters at positions from <parameter>start_pos</parameter> up to, but not including,
+<parameter>end_pos</parameter>. If <parameter>end_pos</parameter> is negative, then the characters deleted will be
+those characters from <parameter>start_pos</parameter> to the end of the text.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start_pos</parameter>&nbsp;:</term>
+<listitem><simpara> the starting position.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>end_pos</parameter>&nbsp;:</term>
+<listitem><simpara> the end position.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-visible-cursor" role="function" condition="since:0.4">
+<title>clutter_entry_set_visible_cursor ()</title>
+<indexterm zone="clutter-entry-set-visible-cursor" role="0.4"><primary>clutter_entry_set_visible_cursor</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_visible_cursor    (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gboolean">gboolean</link> visible);</programlisting>
+<para>
+Sets the visibility of the input cursor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>visible</parameter>&nbsp;:</term>
+<listitem><simpara> whether the input cursor should be visible
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-visible-cursor" role="function" condition="since:0.4">
+<title>clutter_entry_get_visible_cursor ()</title>
+<indexterm zone="clutter-entry-get-visible-cursor" role="0.4"><primary>clutter_entry_get_visible_cursor</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_entry_get_visible_cursor    (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Returns the input cursor's visibility</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> whether the input cursor is visible
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-visibility" role="function" condition="since:0.4">
+<title>clutter_entry_set_visibility ()</title>
+<indexterm zone="clutter-entry-set-visibility" role="0.4"><primary>clutter_entry_set_visibility</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_visibility        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gboolean">gboolean</link> visible);</programlisting>
+<para>
+Sets whether the contents of the entry are visible or not. When visibility
+is set to <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>, characters are displayed as the invisible char, and will
+also appear that way when the text in the entry widget is copied elsewhere.
+</para>
+<para>
+The default invisible char is the asterisk '*', but it can be changed with
+<link linkend="clutter-entry-set-invisible-char"><function>clutter_entry_set_invisible_char()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>visible</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the contents of the entry are displayed as plaintext.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-visibility" role="function" condition="since:0.4">
+<title>clutter_entry_get_visibility ()</title>
+<indexterm zone="clutter-entry-get-visibility" role="0.4"><primary>clutter_entry_get_visibility</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_entry_get_visibility        (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Returns the entry text visibility.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the contents of the entry are displayed as plaintext.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-set-invisible-char" role="function" condition="since:0.4">
+<title>clutter_entry_set_invisible_char ()</title>
+<indexterm zone="clutter-entry-set-invisible-char" role="0.4"><primary>clutter_entry_set_invisible_char</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_invisible_char    (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gunichar">gunichar</link> wc);</programlisting>
+<para>
+Sets the character to use in place of the actual text when
+<link linkend="clutter-entry-set-visibility"><function>clutter_entry_set_visibility()</function></link> has been called to set text visibility
+to <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>. i.e. this is the character used in "password mode" to show the
+user how many characters have been typed. The default invisible char is an
+asterisk ('*'). If you set the invisible char to 0, then the user will get
+no feedback at all; there will be no text on the screen as they type.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>wc</parameter>&nbsp;:</term>
+<listitem><simpara> a Unicode character
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-invisible-char" role="function">
+<title>clutter_entry_get_invisible_char ()</title>
+<indexterm zone="clutter-entry-get-invisible-char"><primary>clutter_entry_get_invisible_char</primary></indexterm><programlisting><link linkend="gunichar">gunichar</link>            clutter_entry_get_invisible_char    (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Returns the character to use in place of the actual text when text-visibility
+is set to <link linkend="FALSE:CAPS"><literal>FALSE</literal></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a Unicode character
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-entry-set-max-length" role="function" condition="since:0.4">
+<title>clutter_entry_set_max_length ()</title>
+<indexterm zone="clutter-entry-set-max-length" role="0.4"><primary>clutter_entry_set_max_length</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_entry_set_max_length        (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                         <link linkend="gint">gint</link> max);</programlisting>
+<para>
+Sets the maximum allowed length of the contents of the actor. If the
+current contents are longer than the given length, then they will be
+truncated to fit.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max</parameter>&nbsp;:</term>
+<listitem><simpara> the maximum number of characters allowed in the entry; 0
+  to disable or -1 to set the length of the current string
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-entry-get-max-length" role="function" condition="since:0.4">
+<title>clutter_entry_get_max_length ()</title>
+<indexterm zone="clutter-entry-get-max-length" role="0.4"><primary>clutter_entry_get_max_length</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_entry_get_max_length        (<link linkend="ClutterEntry">ClutterEntry</link> *entry);</programlisting>
+<para>
+Gets the maximum length of text that can be set into <parameter>entry</parameter>.
+See <link linkend="clutter-entry-set-max-length"><function>clutter_entry_set_max_length()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEntry"><type>ClutterEntry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the maximum number of characters.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterEntry.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterEntry--alignment"><title>The <literal>&quot;alignment&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--alignment" role="0.4"><primary>ClutterEntry:alignment</primary></indexterm><programlisting>  &quot;alignment&quot;                <link linkend="PangoAlignment">PangoAlignment</link>        : Read / Write</programlisting>
+<para>
+The preferred alignment for the string.</para>
+<para>
+
+</para><para>Default value: PANGO_ALIGN_LEFT</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--color"><title>The <literal>&quot;color&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--color" role="0.4"><primary>ClutterEntry:color</primary></indexterm><programlisting>  &quot;color&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write</programlisting>
+<para>
+The color of the text inside the entry.</para>
+<para>
+
+</para><para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--cursor-visible"><title>The <literal>&quot;cursor-visible&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--cursor-visible" role="0.4"><primary>ClutterEntry:cursor-visible</primary></indexterm><programlisting>  &quot;cursor-visible&quot;           <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the input cursor is visible or not.</para>
+<para>
+
+</para><para>Default value: TRUE</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--entry-padding"><title>The <literal>&quot;entry-padding&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--entry-padding" role="0.4"><primary>ClutterEntry:entry-padding</primary></indexterm><programlisting>  &quot;entry-padding&quot;            <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+The padding space between the text and the entry right and left borders.</para>
+<para>
+
+</para><para>Default value: 5</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--font-name"><title>The <literal>&quot;font-name&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--font-name" role="0.4"><primary>ClutterEntry:font-name</primary></indexterm><programlisting>  &quot;font-name&quot;                <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>
+The font to be used by the entry, expressed in a string that
+can be parsed by <link linkend="pango-font-description-from-string"><function>pango_font_description_from_string()</function></link>.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--max-length"><title>The <literal>&quot;max-length&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--max-length" role="0.4"><primary>ClutterEntry:max-length</primary></indexterm><programlisting>  &quot;max-length&quot;               <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+The maximum length of the entry text.</para>
+<para>
+
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--position"><title>The <literal>&quot;position&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--position" role="0.4"><primary>ClutterEntry:position</primary></indexterm><programlisting>  &quot;position&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+The current input cursor position. -1 is taken to be the end of the text</para>
+<para>
+
+</para><para>Allowed values: &gt;= -1</para>
+<para>Default value: -1</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--text"><title>The <literal>&quot;text&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--text" role="0.4"><primary>ClutterEntry:text</primary></indexterm><programlisting>  &quot;text&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>
+The text inside the entry.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--text-visible"><title>The <literal>&quot;text-visible&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--text-visible" role="0.4"><primary>ClutterEntry:text-visible</primary></indexterm><programlisting>  &quot;text-visible&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the text is visible in plain form, or replaced by the
+character set by <link linkend="clutter-entry-set-invisible-char"><function>clutter_entry_set_invisible_char()</function></link>.</para>
+<para>
+
+</para><para>Default value: TRUE</para>
+<para>Since  0.4
+</para>
+</refsect2>
+<refsect2 id="ClutterEntry--x-align"><title>The <literal>&quot;x-align&quot;</literal> property</title>
+<indexterm zone="ClutterEntry--x-align" role="0.6"><primary>ClutterEntry:x-align</primary></indexterm><programlisting>  &quot;x-align&quot;                  <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>
+Horizontal alignment to be used for the text (0.0 for left alignment,
+1.0 for right alignment).</para>
+<para>
+
+</para><para>Allowed values: [0,1]</para>
+<para>Default value: 0</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterEntry.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterEntry-activate"><title>The <literal>&quot;activate&quot;</literal> signal</title>
+<indexterm zone="ClutterEntry-activate" role="0.4"><primary>ClutterEntry::activate</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::activate signal is emitted each time the entry is 'activated'
+by the user, normally by pressing the 'Enter' key.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> the actor which received the event
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.4
+</para></refsect2><refsect2 id="ClutterEntry-cursor-event"><title>The <literal>&quot;cursor-event&quot;</literal> signal</title>
+<indexterm zone="ClutterEntry-cursor-event" role="0.4"><primary>ClutterEntry::cursor-event</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterEntry">ClutterEntry</link>    *entry,
+                                                        <link linkend="ClutterGeometry">ClutterGeometry</link> *geometry,
+                                                        <link linkend="gpointer">gpointer</link>         user_data)      : Run Last</programlisting>
+<para>
+The ::cursor-event signal is emitted each time the input cursor's geometry
+changes, this could be a positional or size change. If you would like to
+implement your own input cursor, set the cursor-visible property to <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>,
+and connect to this signal to position and size your own cursor.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> the actor which received the event
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>geometry</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterGeometry"><type>ClutterGeometry</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.4
+</para></refsect2><refsect2 id="ClutterEntry-text-changed"><title>The <literal>&quot;text-changed&quot;</literal> signal</title>
+<indexterm zone="ClutterEntry-text-changed"><primary>ClutterEntry::text-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterEntry">ClutterEntry</link> *entry,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::text-changed signal is emitted after <parameter>entry</parameter>'s text changes</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> the actor which received the event
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

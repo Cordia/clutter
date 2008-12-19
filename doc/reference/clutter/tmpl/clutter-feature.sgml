@@ -1,0 +1,52 @@
+<!-- ##### SECTION Title ##### -->
+GL Features
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM ClutterFeatureFlags ##### -->
+<para>
+
+</para>
+
+@CLUTTER_FEATURE_TEXTURE_NPOT: 
+@CLUTTER_FEATURE_SYNC_TO_VBLANK: 
+@CLUTTER_FEATURE_TEXTURE_YUV: 
+@CLUTTER_FEATURE_TEXTURE_READ_PIXELS: 
+@CLUTTER_FEATURE_STAGE_STATIC: 
+@CLUTTER_FEATURE_STAGE_USER_RESIZE: 
+@CLUTTER_FEATURE_STAGE_CURSOR: 
+@CLUTTER_FEATURE_SHADERS_GLSL: 
+@CLUTTER_FEATURE_OFFSCREEN: 
+@CLUTTER_FEATURE_STAGE_MULTIPLE: 
+
+<!-- ##### FUNCTION clutter_feature_available ##### -->
+<para>
+
+</para>
+
+@feature: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_feature_get_all ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

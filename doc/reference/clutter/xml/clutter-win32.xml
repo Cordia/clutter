@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Win32-Specific-Support">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Win32-Specific-Support.top_of_page">Win32 Specific Support</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Win32 Specific Support</refname>
+<refpurpose>Win32 specific API</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Win32-Specific-Support.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                <link linkend="clutter-win32-disable-event-retrieval">clutter_win32_disable_event_retrieval</link>
+                                                        (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-win32-set-stage-foreign">clutter_win32_set_stage_foreign</link>     (<link linkend="ClutterStage">ClutterStage</link> *stage,
+                                                         <link linkend="HWND:CAPS">HWND</link> hwnd);
+<link linkend="ClutterStage">ClutterStage</link>*       <link linkend="clutter-win32-get-stage-from-window">clutter_win32_get_stage_from_window</link> (<link linkend="HWND:CAPS">HWND</link> hwnd);
+<link linkend="HWND:CAPS">HWND</link>                <link linkend="clutter-win32-get-stage-window">clutter_win32_get_stage_window</link>      (<link linkend="ClutterStage">ClutterStage</link> *stage);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Win32-Specific-Support.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The Win32 backend for Clutter provides some specific API, allowing
+integration with the Win32 API for embedding and manipulating the
+stage window.
+</para>
+<para>
+The ClutterWin32 API is available since Clutter 0.8</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Win32-Specific-Support.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="clutter-win32-disable-event-retrieval" role="function" condition="since:0.8">
+<title>clutter_win32_disable_event_retrieval ()</title>
+<indexterm zone="clutter-win32-disable-event-retrieval" role="0.8"><primary>clutter_win32_disable_event_retrieval</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_win32_disable_event_retrieval
+                                                        (void);</programlisting>
+<para>
+Disables retrieval of Windows messages in the main loop. Use to
+create event-less canvas.
+</para>
+<para>
+This function can only be called before calling <link linkend="clutter-init"><function>clutter_init()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-win32-set-stage-foreign" role="function" condition="since:0.8">
+<title>clutter_win32_set_stage_foreign ()</title>
+<indexterm zone="clutter-win32-set-stage-foreign" role="0.8"><primary>clutter_win32_set_stage_foreign</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_win32_set_stage_foreign     (<link linkend="ClutterStage">ClutterStage</link> *stage,
+                                                         <link linkend="HWND:CAPS">HWND</link> hwnd);</programlisting>
+<para>
+Target the <link linkend="ClutterStage"><type>ClutterStage</type></link> to use an existing external window handle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stage</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterStage"><type>ClutterStage</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hwnd</parameter>&nbsp;:</term>
+<listitem><simpara> an existing window handle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if foreign window is valid
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-win32-get-stage-from-window" role="function" condition="since:0.8">
+<title>clutter_win32_get_stage_from_window ()</title>
+<indexterm zone="clutter-win32-get-stage-from-window" role="0.8"><primary>clutter_win32_get_stage_from_window</primary></indexterm><programlisting><link linkend="ClutterStage">ClutterStage</link>*       clutter_win32_get_stage_from_window (<link linkend="HWND:CAPS">HWND</link> hwnd);</programlisting>
+<para>
+Gets the stage for a particular window.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hwnd</parameter>&nbsp;:</term>
+<listitem><simpara> a window handle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The stage or NULL if a stage does not exist for the
+window.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-win32-get-stage-window" role="function" condition="since:0.8">
+<title>clutter_win32_get_stage_window ()</title>
+<indexterm zone="clutter-win32-get-stage-window" role="0.8"><primary>clutter_win32_get_stage_window</primary></indexterm><programlisting><link linkend="HWND:CAPS">HWND</link>                clutter_win32_get_stage_window      (<link linkend="ClutterStage">ClutterStage</link> *stage);</programlisting>
+<para>
+Gets the stage's window handle</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stage</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterStage"><type>ClutterStage</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> An HWND for the stage window.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

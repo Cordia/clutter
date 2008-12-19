@@ -1,0 +1,1713 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>General</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="clutter-Fixed-Point-Support.html" title="Fixed Point Support">
+<link rel="next" href="ClutterShader.html" title="ClutterShader">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-Fixed-Point-Support.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterShader.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-General.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-General.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-General"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-General.top_of_page"></a>General</span></h2>
+<p>General — Various 'global' clutter functions.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-General.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#define             <a class="link" href="clutter-General.html#CLUTTER-PRIORITY-REDRAW:CAPS" title="CLUTTER_PRIORITY_REDRAW">CLUTTER_PRIORITY_REDRAW</a>
+#define             <a class="link" href="clutter-General.html#CLUTTER-PRIORITY-TIMELINE:CAPS" title="CLUTTER_PRIORITY_TIMELINE">CLUTTER_PRIORITY_TIMELINE</a>
+
+enum                <a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError">ClutterInitError</a>;
+<a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError">ClutterInitError</a>    <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()">clutter_init</a>                        (int *argc,
+                                                         char ***argv);
+<a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError">ClutterInitError</a>    <a class="link" href="clutter-General.html#clutter-init-with-args" title="clutter_init_with_args ()">clutter_init_with_args</a>              (int *argc,
+                                                         char ***argv,
+                                                         char *parameter_string,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionEntry"
+>GOptionEntry</a> *entries,
+                                                         char *translation_domain,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+>GOptionGroup</a>*       <a class="link" href="clutter-General.html#clutter-get-option-group" title="clutter_get_option_group ()">clutter_get_option_group</a>            (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+>GOptionGroup</a>*       <a class="link" href="clutter-General.html#clutter-get-option-group-without-init" title="clutter_get_option_group_without_init ()">clutter_get_option_group_without_init</a>
+                                                        (void);
+
+void                <a class="link" href="clutter-General.html#clutter-main" title="clutter_main ()">clutter_main</a>                        (void);
+void                <a class="link" href="clutter-General.html#clutter-main-quit" title="clutter_main_quit ()">clutter_main_quit</a>                   (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="clutter-General.html#clutter-main-level" title="clutter_main_level ()">clutter_main_level</a>                  (void);
+
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-General.html#clutter-get-debug-enabled" title="clutter_get_debug_enabled ()">clutter_get_debug_enabled</a>           (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-General.html#clutter-get-show-fps" title="clutter_get_show_fps ()">clutter_get_show_fps</a>                (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="clutter-General.html#clutter-get-timestamp" title="clutter_get_timestamp ()">clutter_get_timestamp</a>               (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="clutter-General.html#clutter-get-actor-by-gid" title="clutter_get_actor_by_gid ()">clutter_get_actor_by_gid</a>            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a> id);
+void                <a class="link" href="clutter-General.html#clutter-set-default-frame-rate" title="clutter_set_default_frame_rate ()">clutter_set_default_frame_rate</a>      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frames_per_sec);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-get-default-frame-rate" title="clutter_get_default_frame_rate ()">clutter_get_default_frame_rate</a>      (void);
+void                <a class="link" href="clutter-General.html#clutter-set-motion-events-enabled" title="clutter_set_motion_events_enabled ()">clutter_set_motion_events_enabled</a>   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enable);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-General.html#clutter-get-motion-events-enabled" title="clutter_get_motion_events_enabled ()">clutter_get_motion_events_enabled</a>   (void);
+void                <a class="link" href="clutter-General.html#clutter-set-motion-events-frequency" title="clutter_set_motion_events_frequency ()">clutter_set_motion_events_frequency</a> (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frequency);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-get-motion-events-frequency" title="clutter_get_motion_events_frequency ()">clutter_get_motion_events_frequency</a> (void);
+void                <a class="link" href="clutter-General.html#clutter-clear-glyph-cache" title="clutter_clear_glyph_cache ()">clutter_clear_glyph_cache</a>           (void);
+void                <a class="link" href="clutter-General.html#clutter-set-use-mipmapped-text" title="clutter_set_use_mipmapped_text ()">clutter_set_use_mipmapped_text</a>      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-General.html#clutter-get-use-mipmapped-text" title="clutter_get_use_mipmapped_text ()">clutter_get_use_mipmapped_text</a>      (void);
+
+void                <a class="link" href="clutter-General.html#clutter-threads-set-lock-functions" title="clutter_threads_set_lock_functions ()">clutter_threads_set_lock_functions</a>  (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GCallback"
+>GCallback</a> enter_fn,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GCallback"
+>GCallback</a> leave_fn);
+void                <a class="link" href="clutter-General.html#clutter-threads-init" title="clutter_threads_init ()">clutter_threads_init</a>                (void);
+void                <a class="link" href="clutter-General.html#clutter-threads-enter" title="clutter_threads_enter ()">clutter_threads_enter</a>               (void);
+void                <a class="link" href="clutter-General.html#clutter-threads-leave" title="clutter_threads_leave ()">clutter_threads_leave</a>               (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-idle" title="clutter_threads_add_idle ()">clutter_threads_add_idle</a>            (<a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-idle-full" title="clutter_threads_add_idle_full ()">clutter_threads_add_idle_full</a>       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-timeout" title="clutter_threads_add_timeout ()">clutter_threads_add_timeout</a>         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-timeout-full" title="clutter_threads_add_timeout_full ()">clutter_threads_add_timeout_full</a>    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-frame-source" title="clutter_threads_add_frame_source ()">clutter_threads_add_frame_source</a>    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-General.html#clutter-threads-add-frame-source-full" title="clutter_threads_add_frame_source_full ()">clutter_threads_add_frame_source_full</a>
+                                                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="clutter-General.html#clutter-get-keyboard-grab" title="clutter_get_keyboard_grab ()">clutter_get_keyboard_grab</a>           (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="clutter-General.html#clutter-get-pointer-grab" title="clutter_get_pointer_grab ()">clutter_get_pointer_grab</a>            (void);
+void                <a class="link" href="clutter-General.html#clutter-grab-keyboard" title="clutter_grab_keyboard ()">clutter_grab_keyboard</a>               (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="clutter-General.html#clutter-grab-pointer" title="clutter_grab_pointer ()">clutter_grab_pointer</a>                (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="clutter-General.html#clutter-ungrab-keyboard" title="clutter_ungrab_keyboard ()">clutter_ungrab_keyboard</a>             (void);
+void                <a class="link" href="clutter-General.html#clutter-ungrab-pointer" title="clutter_ungrab_pointer ()">clutter_ungrab_pointer</a>              (void);
+void                <a class="link" href="clutter-General.html#clutter-grab-pointer-for-device" title="clutter_grab_pointer_for_device ()">clutter_grab_pointer_for_device</a>     (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> id);
+void                <a class="link" href="clutter-General.html#clutter-ungrab-pointer-for-device" title="clutter_ungrab_pointer_for_device ()">clutter_ungrab_pointer_for_device</a>   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> id);
+
+void                <a class="link" href="clutter-General.html#clutter-do-event" title="clutter_do_event ()">clutter_do_event</a>                    (<a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *event);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-General.description"></a><h2>Description</h2>
+<p>
+Functions to retrieve various global Clutter resources and other utility
+functions for mainloops, events and threads</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-General.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-PRIORITY-REDRAW:CAPS"></a><h3>CLUTTER_PRIORITY_REDRAW</h3>
+<pre class="programlisting">#define CLUTTER_PRIORITY_REDRAW         (G_PRIORITY_DEFAULT + 10)
+</pre>
+<p>
+Priority of the redraws.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-PRIORITY-TIMELINE:CAPS"></a><h3>CLUTTER_PRIORITY_TIMELINE</h3>
+<pre class="programlisting">#define CLUTTER_PRIORITY_TIMELINE       (G_PRIORITY_DEFAULT + 30)
+</pre>
+<p>
+Priority of the timelines.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterInitError"></a><h3>enum ClutterInitError</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_INIT_SUCCESS        =  1,
+  CLUTTER_INIT_ERROR_UNKNOWN  =  0,
+  CLUTTER_INIT_ERROR_THREADS  = -1,
+  CLUTTER_INIT_ERROR_BACKEND  = -2,
+  CLUTTER_INIT_ERROR_INTERNAL = -3
+} ClutterInitError;
+</pre>
+<p>
+Error conditions returned by <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a> and <a class="link" href="clutter-General.html#clutter-init-with-args" title="clutter_init_with_args ()"><code class="function">clutter_init_with_args()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-INIT-SUCCESS:CAPS"></a><span class="term"><code class="literal">CLUTTER_INIT_SUCCESS</code></span></p></td>
+<td> Initialisation successful
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-INIT-ERROR-UNKNOWN:CAPS"></a><span class="term"><code class="literal">CLUTTER_INIT_ERROR_UNKNOWN</code></span></p></td>
+<td> Unknown error
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-INIT-ERROR-THREADS:CAPS"></a><span class="term"><code class="literal">CLUTTER_INIT_ERROR_THREADS</code></span></p></td>
+<td> Thread initialisation failed
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-INIT-ERROR-BACKEND:CAPS"></a><span class="term"><code class="literal">CLUTTER_INIT_ERROR_BACKEND</code></span></p></td>
+<td> Backend initialisation failed
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-INIT-ERROR-INTERNAL:CAPS"></a><span class="term"><code class="literal">CLUTTER_INIT_ERROR_INTERNAL</code></span></p></td>
+<td> Internal error
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-init"></a><h3>clutter_init ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError">ClutterInitError</a>    clutter_init                        (int *argc,
+                                                         char ***argv);</pre>
+<p>
+It will initialise everything needed to operate with Clutter and
+parses some standard command line options. <em class="parameter"><code>argc</code></em> and <em class="parameter"><code>argv</code></em> are
+adjusted accordingly so your own code will never see those standard
+arguments.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> The number of arguments in <em class="parameter"><code>argv</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> A pointer to an array of arguments.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 1 on success, &lt; 0 on failure.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-init-with-args"></a><h3>clutter_init_with_args ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError">ClutterInitError</a>    clutter_init_with_args              (int *argc,
+                                                         char ***argv,
+                                                         char *parameter_string,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionEntry"
+>GOptionEntry</a> *entries,
+                                                         char *translation_domain,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+This function does the same work as <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>. Additionally,
+it allows you to add your own command line options, and it
+automatically generates nicely formatted <code class="option">--help</code>
+output. Note that your program will be terminated after writing
+out the help output. Also note that, in case of error, the
+error message will be placed inside <em class="parameter"><code>error</code></em> instead of being
+printed on the display.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argc</code></em> :</span></p></td>
+<td> a pointer to the number of command line arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>argv</code></em> :</span></p></td>
+<td> a pointer to the array of command line arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parameter_string</code></em> :</span></p></td>
+<td> a string which is displayed in the
+  first line of <code class="option">--help</code> output, after
+  <code class="literal"><em class="replaceable"><code>programname</code></em> [OPTION...]</code>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entries</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated array of <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionEntry"
+><span class="type">GOptionEntry</span></a>s
+  describing the options of your program
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>translation_domain</code></em> :</span></p></td>
+<td> a translation domain to use for translating
+  the <code class="option">--help</code> output for the options in <em class="parameter"><code>entries</code></em>
+  with <code class="function">gettext()</code>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> a return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a class="link" href="clutter-General.html#CLUTTER-INIT-SUCCESS:CAPS"><code class="literal">CLUTTER_INIT_SUCCESS</code></a> if Clutter has been successfully
+  initialised, or other values or <a class="link" href="clutter-General.html#ClutterInitError" title="enum ClutterInitError"><span class="type">ClutterInitError</span></a> in case of
+  error.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-option-group"></a><h3>clutter_get_option_group ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+>GOptionGroup</a>*       clutter_get_option_group            (void);</pre>
+<p>
+Returns a <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> for the command line arguments recognized
+by Clutter. You should add this group to your <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionContext"
+><span class="type">GOptionContext</span></a> with
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-add-group"
+><code class="function">g_option_context_add_group()</code></a>, if you are using <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a>
+to parse your commandline arguments.
+</p>
+<p>
+Calling <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a> with Clutter's <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> will result
+in Clutter's initialization. That is, the following code:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  g_option_context_set_main_group (context, clutter_get_option_group ());
+  res = g_option_context_parse (context, &amp;argc, &amp;argc, NULL);
+</pre></div>
+<p>
+</p>
+<p>
+is functionally equivalent to:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  clutter_init (&amp;argc, &amp;argv);
+</pre></div>
+<p>
+</p>
+<p>
+After <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a> on a <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionContext"
+><span class="type">GOptionContext</span></a> containing the
+Clutter <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> has returned <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>, Clutter is guaranteed to be
+initialized.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> for the commandline arguments
+  recognized by Clutter
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-option-group-without-init"></a><h3>clutter_get_option_group_without_init ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+>GOptionGroup</a>*       clutter_get_option_group_without_init
+                                                        (void);</pre>
+<p>
+Returns a <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> for the command line arguments recognized
+by Clutter. You should add this group to your <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionContext"
+><span class="type">GOptionContext</span></a> with
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-add-group"
+><code class="function">g_option_context_add_group()</code></a>, if you are using <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a>
+to parse your commandline arguments. Unlike <a class="link" href="clutter-General.html#clutter-get-option-group" title="clutter_get_option_group ()"><code class="function">clutter_get_option_group()</code></a>,
+calling <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#g-option-context-parse"
+><code class="function">g_option_context_parse()</code></a> with the <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> returned by this
+function requires a subsequent explicit call to <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>; use this
+function when needing to set foreign display connection with
+<a class="link" href="clutter-X11-Specific-Support.html#clutter-x11-set-display" title="clutter_x11_set_display ()"><code class="function">clutter_x11_set_display()</code></a>, or with <a
+href="../clutter-gtk/clutter-gtk-Utility-Functions.html#gtk-clutter-init"
+><code class="function">gtk_clutter_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Commandline-option-parser.html#GOptionGroup"
+><span class="type">GOptionGroup</span></a> for the commandline arguments
+  recognized by Clutter
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-main"></a><h3>clutter_main ()</h3>
+<pre class="programlisting">void                clutter_main                        (void);</pre>
+<p>
+Starts the Clutter mainloop.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-main-quit"></a><h3>clutter_main_quit ()</h3>
+<pre class="programlisting">void                clutter_main_quit                   (void);</pre>
+<p>
+Terminates the Clutter mainloop.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-main-level"></a><h3>clutter_main_level ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_main_level                  (void);</pre>
+<p>
+Retrieves the depth of the Clutter mainloop.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The level of the mainloop.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-debug-enabled"></a><h3>clutter_get_debug_enabled ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_get_debug_enabled           (void);</pre>
+<p>
+Check if clutter has debugging turned on.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if debugging is turned on, FALSE otherwise.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-show-fps"></a><h3>clutter_get_show_fps ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_get_show_fps                (void);</pre>
+<p>
+Returns whether Clutter should print out the frames per second on the
+console. You can enable this setting either using the
+<code class="literal">CLUTTER_SHOW_FPS</code> environment variable or passing
+the <code class="literal">--clutter-show-fps</code> command line argument. *</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if Clutter should show the FPS.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-timestamp"></a><h3>clutter_get_timestamp ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gulong"
+>gulong</a>              clutter_get_timestamp               (void);</pre>
+<p>
+Returns the approximate number of microseconds passed since clutter was
+intialised.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Number of microseconds since <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a> was called.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-actor-by-gid"></a><h3>clutter_get_actor_by_gid ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_get_actor_by_gid            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint32"
+>guint32</a> id);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> with <em class="parameter"><code>id</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> ID.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actor with the passed id or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. The returned
+  actor does not have its reference count increased.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-set-default-frame-rate"></a><h3>clutter_set_default_frame_rate ()</h3>
+<pre class="programlisting">void                clutter_set_default_frame_rate      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frames_per_sec);</pre>
+<p>
+Sets the default frame rate to be used when creating <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>s</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>frames_per_sec</code></em> :</span></p></td>
+<td> the new default frame rate
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-default-frame-rate"></a><h3>clutter_get_default_frame_rate ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_get_default_frame_rate      (void);</pre>
+<p>
+Retrieves the default frame rate used when creating <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>s.
+</p>
+<p>
+This value is also used to compute the default frequency of motion
+events.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the default frame rate
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-set-motion-events-enabled"></a><h3>clutter_set_motion_events_enabled ()</h3>
+<pre class="programlisting">void                clutter_set_motion_events_enabled   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enable);</pre>
+<p>
+Sets whether per-actor motion events should be enabled or not (the
+default is to enable them).
+</p>
+<p>
+If <em class="parameter"><code>enable</code></em> is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> the following events will not work:
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>ClutterActor::motion-event, unless on the
+    <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a></p></li>
+<li><p>ClutterActor::enter-event</p></li>
+<li><p>ClutterActor::leave-event</p></li>
+</ul></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>enable</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to enable per-actor motion events
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-motion-events-enabled"></a><h3>clutter_get_motion_events_enabled ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_get_motion_events_enabled   (void);</pre>
+<p>
+Gets whether the per-actor motion events are enabled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the motion events are enabled
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-set-motion-events-frequency"></a><h3>clutter_set_motion_events_frequency ()</h3>
+<pre class="programlisting">void                clutter_set_motion_events_frequency (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> frequency);</pre>
+<p>
+Sets the motion events frequency. Setting this to a non-zero value
+will override the default setting, so it should be rarely used.
+</p>
+<p>
+Motion events are delivered from the default backend to the stage
+and are used to generate the enter/leave events pair. This might lead
+to a performance penalty due to the way the actors are identified.
+Using this function is possible to reduce the frequency of the motion
+events delivery to the stage.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>frequency</code></em> :</span></p></td>
+<td> the number of motion events per second, or 0 for the
+  default value
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-motion-events-frequency"></a><h3>clutter_get_motion_events_frequency ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_get_motion_events_frequency (void);</pre>
+<p>
+Retrieves the number of motion events per second that are delivered
+to the stage.
+</p>
+<p>
+See <a class="link" href="clutter-General.html#clutter-set-motion-events-frequency" title="clutter_set_motion_events_frequency ()"><code class="function">clutter_set_motion_events_frequency()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of motion events per second
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-clear-glyph-cache"></a><h3>clutter_clear_glyph_cache ()</h3>
+<pre class="programlisting">void                clutter_clear_glyph_cache           (void);</pre>
+<p>
+Clears the internal cache of glyphs used by the Pango
+renderer. This will free up some memory and GL texture
+resources. The cache will be automatically refilled as more text is
+drawn.</p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-set-use-mipmapped-text"></a><h3>clutter_set_use_mipmapped_text ()</h3>
+<pre class="programlisting">void                clutter_set_use_mipmapped_text      (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);</pre>
+<p>
+Sets whether subsequent text rendering operations will use
+mipmapped textures or not. Using mipmapped textures will improve
+the quality for scaled down text but will use more texture memory.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> to enable mipmapping or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> to disable.
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-use-mipmapped-text"></a><h3>clutter_get_use_mipmapped_text ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_get_use_mipmapped_text      (void);</pre>
+<p>
+Gets whether mipmapped textures are used in text operations.
+See <a class="link" href="clutter-General.html#clutter-set-use-mipmapped-text" title="clutter_set_use_mipmapped_text ()"><code class="function">clutter_set_use_mipmapped_text()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if text operations should use mipmapped
+  textures
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-set-lock-functions"></a><h3>clutter_threads_set_lock_functions ()</h3>
+<pre class="programlisting">void                clutter_threads_set_lock_functions  (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GCallback"
+>GCallback</a> enter_fn,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Closures.html#GCallback"
+>GCallback</a> leave_fn);</pre>
+<p>
+Allows the application to replace the standard method that
+Clutter uses to protect its data structures. Normally, Clutter
+creates a single <a
+href="/usr/share/gtk-doc/html/glib/glib-Threads.html#GMutex"
+><span class="type">GMutex</span></a> that is locked by <a class="link" href="clutter-General.html#clutter-threads-enter" title="clutter_threads_enter ()"><code class="function">clutter_threads_enter()</code></a>,
+and released by <a class="link" href="clutter-General.html#clutter-threads-leave" title="clutter_threads_leave ()"><code class="function">clutter_threads_leave()</code></a>; using this function an
+application provides, instead, a function <em class="parameter"><code>enter_fn</code></em> that is
+called by <a class="link" href="clutter-General.html#clutter-threads-enter" title="clutter_threads_enter ()"><code class="function">clutter_threads_enter()</code></a> and a function <em class="parameter"><code>leave_fn</code></em> that is
+called by <a class="link" href="clutter-General.html#clutter-threads-leave" title="clutter_threads_leave ()"><code class="function">clutter_threads_leave()</code></a>.
+</p>
+<p>
+The functions must provide at least same locking functionality
+as the default implementation, but can also do extra application
+specific processing.
+</p>
+<p>
+As an example, consider an application that has its own recursive
+lock that when held, holds the Clutter lock as well. When Clutter
+unlocks the Clutter lock when entering a recursive main loop, the
+application must temporarily release its lock as well.
+</p>
+<p>
+Most threaded Clutter apps won't need to use this method.
+</p>
+<p>
+This method must be called before <a class="link" href="clutter-General.html#clutter-threads-init" title="clutter_threads_init ()"><code class="function">clutter_threads_init()</code></a>, and cannot
+be called multiple times.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>enter_fn</code></em> :</span></p></td>
+<td> function called when aquiring the Clutter main lock
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>leave_fn</code></em> :</span></p></td>
+<td> function called when releasing the Clutter main lock
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-init"></a><h3>clutter_threads_init ()</h3>
+<pre class="programlisting">void                clutter_threads_init                (void);</pre>
+<p>
+Initialises the Clutter threading mechanism, so that Clutter API can be
+called by multiple threads, using <a class="link" href="clutter-General.html#clutter-threads-enter" title="clutter_threads_enter ()"><code class="function">clutter_threads_enter()</code></a> and
+<a class="link" href="clutter-General.html#clutter-threads-leave" title="clutter_threads_leave ()"><code class="function">clutter_threads_leave()</code></a> to mark the critical sections.
+</p>
+<p>
+You must call <a
+href="/usr/share/gtk-doc/html/glib/glib-Threads.html#g-thread-init"
+><code class="function">g_thread_init()</code></a> before this function.
+</p>
+<p>
+This function must be called before <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-enter"></a><h3>clutter_threads_enter ()</h3>
+<pre class="programlisting">void                clutter_threads_enter               (void);</pre>
+<p>
+Locks the Clutter thread lock.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-leave"></a><h3>clutter_threads_leave ()</h3>
+<pre class="programlisting">void                clutter_threads_leave               (void);</pre>
+<p>
+Unlocks the Clutter thread lock.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-idle"></a><h3>clutter_threads_add_idle ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_idle            (<a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Simple wrapper around <a class="link" href="clutter-General.html#clutter-threads-add-idle-full" title="clutter_threads_add_idle_full ()"><code class="function">clutter_threads_add_idle_full()</code></a> using the
+default priority.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-idle-full"></a><h3>clutter_threads_add_idle_full ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_idle_full       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Adds a function to be called whenever there are no higher priority
+events pending. If the function returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> it is automatically
+removed from the list of event sources and will not be called again.
+</p>
+<p>
+This function can be considered a thread-safe variant of <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#g-idle-add-full"
+><code class="function">g_idle_add_full()</code></a>:
+it will call <em class="parameter"><code>function</code></em> while holding the Clutter lock. It is logically
+equivalent to the following implementation:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+static gboolean
+idle_safe_callback (gpointer data)
+{
+   SafeClosure *closure = data;
+   gboolean res = FALSE;
+
+   /* mark the critical section */
+
+   clutter_threads_enter();
+
+   /* the callback does not need to acquire the Clutter
+    * lock itself, as it is held by the this proxy handler
+    */
+   res = closure-&gt;callback (closure-&gt;data);
+
+   clutter_threads_leave();
+
+   return res;
+}
+static gulong
+add_safe_idle (GSourceFunc callback,
+               gpointer    data)
+{
+  SafeClosure *closure = g_new0 (SafeClosure, 1);
+
+  closure-&gt;callback = callback;
+  closure-&gt;data = data;
+
+  return g_add_idle_full (G_PRIORITY_DEFAULT_IDLE,
+                          idle_safe_callback,
+                          closure,
+                          g_free)
+}
+</pre></div>
+<p>
+</p>
+<p>
+This function should be used by threaded applications to make sure
+that <em class="parameter"><code>func</code></em> is emitted under the Clutter threads lock and invoked
+from the same thread that started the Clutter main loop. For instance,
+it can be used to update the UI using the results from a worker
+thread:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+static gboolean
+update_ui (gpointer data)
+{
+  SomeClosure *closure = data;
+
+  /* it is safe to call Clutter API from this function because
+   * it is invoked from the same thread that started the main
+   * loop and under the Clutter thread lock
+   */
+  clutter_label_set_text (CLUTTER_LABEL (closure-&gt;label),
+                          closure-&gt;text);
+
+  g_object_unref (closure-&gt;label);
+  g_free (closure);
+
+  return FALSE;
+}
+
+  /* within another thread */
+  closure = g_new0 (SomeClosure, 1);
+  /* always take a reference on GObject instances */
+  closure-&gt;label = g_object_ref (my_application-&gt;label);
+  closure-&gt;text = g_strdup (processed_text_to_update_the_label);
+
+  clutter_threads_add_idle_full (G_PRIORITY_HIGH_IDLE,
+                                 update_ui,
+                                 closure,
+                                 NULL);
+</pre></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priority</code></em> :</span></p></td>
+<td> the priority of the timeout source. Typically this will be in the
+   range between <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT-IDLE:CAPS"
+><span class="type">G_PRIORITY_DEFAULT_IDLE</span></a> and <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-HIGH-IDLE:CAPS"
+><span class="type">G_PRIORITY_HIGH_IDLE</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> functio to call when the idle source is removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-timeout"></a><h3>clutter_threads_add_timeout ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_timeout         (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Simple wrapper around <a class="link" href="clutter-General.html#clutter-threads-add-timeout-full" title="clutter_threads_add_timeout_full ()"><code class="function">clutter_threads_add_timeout_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-timeout-full"></a><h3>clutter_threads_add_timeout_full ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_timeout_full    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Sets a function to be called at regular intervals holding the Clutter
+threads lock, with the given priority. The function is called repeatedly
+until it returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>, at which point the timeout is automatically
+removed and the function will not be called again. The <em class="parameter"><code>notify</code></em> function
+is called when the timeout is removed.
+</p>
+<p>
+The first call to the function will be at the end of the first <em class="parameter"><code>interval</code></em>.
+</p>
+<p>
+It is important to note that, due to how the Clutter main loop is
+implemented, the timing will not be accurate and it will not try to
+"keep up" with the interval. A more reliable source is available
+using <a class="link" href="clutter-General.html#clutter-threads-add-frame-source-full" title="clutter_threads_add_frame_source_full ()"><code class="function">clutter_threads_add_frame_source_full()</code></a>, which is also internally
+used by <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>.
+</p>
+<p>
+See also <a class="link" href="clutter-General.html#clutter-threads-add-idle-full" title="clutter_threads_add_idle_full ()"><code class="function">clutter_threads_add_idle_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priority</code></em> :</span></p></td>
+<td> the priority of the timeout source. Typically this will be in the
+           range between <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT:CAPS"
+><span class="type">G_PRIORITY_DEFAULT</span></a> and <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-HIGH:CAPS"
+><span class="type">G_PRIORITY_HIGH</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> function to call when the timeout source is removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-frame-source"></a><h3>clutter_threads_add_frame_source ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_frame_source    (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Simple wrapper around <a class="link" href="clutter-General.html#clutter-threads-add-frame-source-full" title="clutter_threads_add_frame_source_full ()"><code class="function">clutter_threads_add_frame_source_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-threads-add-frame-source-full"></a><h3>clutter_threads_add_frame_source_full ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_threads_add_frame_source_full
+                                                        (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Sets a function to be called at regular intervals holding the Clutter
+threads lock, with the given priority. The function is called repeatedly
+until it returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>, at which point the timeout is automatically
+removed and the function will not be called again. The <em class="parameter"><code>notify</code></em> function
+is called when the timeout is removed.
+</p>
+<p>
+This function is similar to <a class="link" href="clutter-General.html#clutter-threads-add-timeout-full" title="clutter_threads_add_timeout_full ()"><code class="function">clutter_threads_add_timeout_full()</code></a>
+except that it will try to compensate for delays. For example, if
+<em class="parameter"><code>func</code></em> takes half the interval time to execute then the function
+will be called again half the interval time after it finished. In
+contrast <a class="link" href="clutter-General.html#clutter-threads-add-timeout-full" title="clutter_threads_add_timeout_full ()"><code class="function">clutter_threads_add_timeout_full()</code></a> would not fire until a
+full interval after the function completes so the delay between
+calls would be <em class="parameter"><code>interval</code></em> * 1.5. This function does not however try
+to invoke the function multiple times to catch up missing frames if
+<em class="parameter"><code>func</code></em> takes more than <em class="parameter"><code>interval</code></em> ms to execute.
+</p>
+<p>
+See also <a class="link" href="clutter-General.html#clutter-threads-add-idle-full" title="clutter_threads_add_idle_full ()"><code class="function">clutter_threads_add_idle_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priority</code></em> :</span></p></td>
+<td> the priority of the frame source. Typically this will be in the
+           range between <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT:CAPS"
+><span class="type">G_PRIORITY_DEFAULT</span></a> and <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-HIGH:CAPS"
+><span class="type">G_PRIORITY_HIGH</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> function to call when the timeout source is removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-keyboard-grab"></a><h3>clutter_get_keyboard_grab ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_get_keyboard_grab           (void);</pre>
+<p>
+Queries the current keyboard grab of clutter.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actor currently holding the keyboard grab, or NULL if there is no grab.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-pointer-grab"></a><h3>clutter_get_pointer_grab ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_get_pointer_grab            (void);</pre>
+<p>
+Queries the current pointer grab of clutter.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actor currently holding the pointer grab, or NULL if there is no grab.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-grab-keyboard"></a><h3>clutter_grab_keyboard ()</h3>
+<pre class="programlisting">void                clutter_grab_keyboard               (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Grabs keyboard events, after the grab is done keyboard events ("key-press-event"
+and "key-release-event") are delivered to this actor directly. The source
+set in the event will be the actor that would have received the event if the
+keyboard grab was not in effect.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-grab-pointer"></a><h3>clutter_grab_pointer ()</h3>
+<pre class="programlisting">void                clutter_grab_pointer                (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Grabs pointer events, after the grab is done all pointer related events
+(press, motion, release, enter, leave and scroll) are delivered to this
+actor directly. The source set in the event will be the actor that would
+have received the event if the pointer grab was not in effect.
+</p>
+<p>
+If you wish to grab all the pointer events for a specific input device,
+you should use <a class="link" href="clutter-General.html#clutter-grab-pointer-for-device" title="clutter_grab_pointer_for_device ()"><code class="function">clutter_grab_pointer_for_device()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ungrab-keyboard"></a><h3>clutter_ungrab_keyboard ()</h3>
+<pre class="programlisting">void                clutter_ungrab_keyboard             (void);</pre>
+<p>
+Removes an existing grab of the keyboard.</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ungrab-pointer"></a><h3>clutter_ungrab_pointer ()</h3>
+<pre class="programlisting">void                clutter_ungrab_pointer              (void);</pre>
+<p>
+Removes an existing grab of the pointer.</p>
+<p>
+
+</p>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-grab-pointer-for-device"></a><h3>clutter_grab_pointer_for_device ()</h3>
+<pre class="programlisting">void                clutter_grab_pointer_for_device     (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> id);</pre>
+<p>
+Grabs all the pointer events coming from the device <em class="parameter"><code>id</code></em> for <em class="parameter"><code>actor</code></em>.
+</p>
+<p>
+If <em class="parameter"><code>id</code></em> is -1 then this function is equivalent to <a class="link" href="clutter-General.html#clutter-grab-pointer" title="clutter_grab_pointer ()"><code class="function">clutter_grab_pointer()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> a device id, or -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-ungrab-pointer-for-device"></a><h3>clutter_ungrab_pointer_for_device ()</h3>
+<pre class="programlisting">void                clutter_ungrab_pointer_for_device   (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> id);</pre>
+<p>
+Removes an existing grab of the pointer events for device <em class="parameter"><code>id</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> a device id
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-do-event"></a><h3>clutter_do_event ()</h3>
+<pre class="programlisting">void                clutter_do_event                    (<a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *event);</pre>
+<p>
+Processes an event. This function should never be called by applications.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent"><span class="type">ClutterEvent</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-ClutterScriptable">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-ClutterScriptable.top_of_page">ClutterScriptable</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterScriptable</refname>
+<refpurpose>Override the UI definition parsing</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-ClutterScriptable.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterScriptable">ClutterScriptable</link>;
+                    <link linkend="ClutterScriptableIface">ClutterScriptableIface</link>;
+<link linkend="void">void</link>                <link linkend="clutter-scriptable-set-id">clutter_scriptable_set_id</link>           (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         const <link linkend="gchar">gchar</link> *id);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-scriptable-get-id">clutter_scriptable_get_id</link>           (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-scriptable-parse-custom-node">clutter_scriptable_parse_custom_node</link>
+                                                        (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         <link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="GValue">GValue</link> *value,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="JsonNode">JsonNode</link> *node);
+<link linkend="void">void</link>                <link linkend="clutter-scriptable-set-custom-property">clutter_scriptable_set_custom_property</link>
+                                                        (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         <link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="GValue">GValue</link> *value);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-ClutterScriptable.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="ClutterScriptableIface"><type>ClutterScriptableIface</type></link> interface exposes the UI definition parsing
+process to external classes. By implementing this interface, a class can
+override the UI definition parsing and transform complex data types into
+GObject properties, or allow custom properties.
+</para>
+<para>
+<link linkend="ClutterScriptable"><type>ClutterScriptable</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-ClutterScriptable.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterScriptable" role="struct">
+<title>ClutterScriptable</title>
+<indexterm zone="ClutterScriptable"><primary>ClutterScriptable</primary></indexterm><programlisting>typedef struct _ClutterScriptable ClutterScriptable;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterScriptableIface" role="struct" condition="since:0.6">
+<title>ClutterScriptableIface</title>
+<indexterm zone="ClutterScriptableIface" role="0.6"><primary>ClutterScriptableIface</primary></indexterm><programlisting>typedef struct {
+  void         (* set_id)              (ClutterScriptable *scriptable,
+                                        const gchar       *name);
+  const gchar *(* get_id)              (ClutterScriptable *scriptable);
+
+  gboolean     (* parse_custom_node)   (ClutterScriptable *scriptable,
+                                        ClutterScript     *script,
+                                        GValue            *value,
+                                        const gchar       *name,
+                                        JsonNode          *node);
+  void         (* set_custom_property) (ClutterScriptable *scriptable,
+                                        ClutterScript     *script,
+                                        const gchar       *name,
+                                        const GValue      *value);
+} ClutterScriptableIface;
+</programlisting>
+<para>
+Interface for implementing "scriptable" objects. An object implementing
+this interface can override the parsing and properties setting sequence
+when loading a UI definition data with <link linkend="ClutterScript"><type>ClutterScript</type></link></para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>set_id</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for setting the id of a scriptable object
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_id</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for getting the id of a scriptable object
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>parse_custom_node</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for parsing complex data containers
+  into GObject properties
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>set_custom_property</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for setting a custom property
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-scriptable-set-id" role="function" condition="since:0.6">
+<title>clutter_scriptable_set_id ()</title>
+<indexterm zone="clutter-scriptable-set-id" role="0.6"><primary>clutter_scriptable_set_id</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_scriptable_set_id           (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         const <link linkend="gchar">gchar</link> *id);</programlisting>
+<para>
+Sets <parameter>id</parameter> as the unique Clutter script it for this instance of
+<link linkend="ClutterScriptableIface"><type>ClutterScriptableIface</type></link>.
+</para>
+<para>
+This name can be used by user interface designer applications to
+define a unique name for an object constructable using the UI
+definition language parsed by <link linkend="ClutterScript"><type>ClutterScript</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scriptable</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScriptable"><type>ClutterScriptable</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterScript"><type>ClutterScript</type></link> id of the object
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-scriptable-get-id" role="function" condition="since:0.6">
+<title>clutter_scriptable_get_id ()</title>
+<indexterm zone="clutter-scriptable-get-id" role="0.6"><primary>clutter_scriptable_get_id</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_scriptable_get_id           (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable);</programlisting>
+<para>
+Retrieves the id of <parameter>scriptable</parameter> set using <link linkend="clutter-scriptable-set-id"><function>clutter_scriptable_set_id()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scriptable</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScriptable"><type>ClutterScriptable</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the id of the object. The returned string is owned by
+  the scriptable object and should never be modified of freed
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-scriptable-parse-custom-node" role="function" condition="since:0.6">
+<title>clutter_scriptable_parse_custom_node ()</title>
+<indexterm zone="clutter-scriptable-parse-custom-node" role="0.6"><primary>clutter_scriptable_parse_custom_node</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_scriptable_parse_custom_node
+                                                        (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         <link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         <link linkend="GValue">GValue</link> *value,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="JsonNode">JsonNode</link> *node);</programlisting>
+<para>
+Parses the passed JSON node. The implementation must set the type
+of the passed <link linkend="GValue"><type>GValue</type></link> pointer using <link linkend="g-value-init"><function>g_value_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scriptable</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScriptable"><type>ClutterScriptable</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterScript"><type>ClutterScript</type></link> creating the scriptable instance
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the generic value to be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the node
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>node</parameter>&nbsp;:</term>
+<listitem><simpara> the JSON node to be parsed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the node was successfully parsed, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-scriptable-set-custom-property" role="function" condition="since:0.6">
+<title>clutter_scriptable_set_custom_property ()</title>
+<indexterm zone="clutter-scriptable-set-custom-property" role="0.6"><primary>clutter_scriptable_set_custom_property</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_scriptable_set_custom_property
+                                                        (<link linkend="ClutterScriptable">ClutterScriptable</link> *scriptable,
+                                                         <link linkend="ClutterScript">ClutterScript</link> *script,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Overrides the common properties setting. The underlying virtual
+function should be used when implementing custom properties.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>scriptable</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterScriptable"><type>ClutterScriptable</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>script</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterScript"><type>ClutterScript</type></link> creating the scriptable instance
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the property
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value of the property
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

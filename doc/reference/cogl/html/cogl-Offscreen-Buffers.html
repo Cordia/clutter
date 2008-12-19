@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Offscreen Buffers</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="COGL 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="prev" href="cogl-Shaders-and-Programmable-Pipeline.html" title="Shaders and Programmable Pipeline">
+<link rel="next" href="ix01.html" title="Index">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="COGL - GL Abstraction API">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="cogl-Shaders-and-Programmable-Pipeline.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">COGL 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ix01.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#cogl-Offscreen-Buffers.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#cogl-Offscreen-Buffers.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="cogl-Offscreen-Buffers"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="cogl-Offscreen-Buffers.top_of_page"></a>Offscreen Buffers</span></h2>
+<p>Offscreen Buffers — Fuctions for creating and manipulating offscreen
+  frame buffer objects</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="cogl-Offscreen-Buffers.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-new-to-texture" title="cogl_offscreen_new_to_texture ()">cogl_offscreen_new_to_texture</a>       (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> texhandle);
+<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-new-multisample" title="cogl_offscreen_new_multisample ()">cogl_offscreen_new_multisample</a>      (void);
+<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-ref" title="cogl_offscreen_ref ()">cogl_offscreen_ref</a>                  (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);
+void                <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-unref" title="cogl_offscreen_unref ()">cogl_offscreen_unref</a>                (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="cogl-Offscreen-Buffers.html#cogl-is-offscreen" title="cogl_is_offscreen ()">cogl_is_offscreen</a>                   (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);
+void                <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-blit" title="cogl_offscreen_blit ()">cogl_offscreen_blit</a>                 (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> src_buffer,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> dst_buffer);
+void                <a class="link" href="cogl-Offscreen-Buffers.html#cogl-offscreen-blit-region" title="cogl_offscreen_blit_region ()">cogl_offscreen_blit_region</a>          (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> src_buffer,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> dst_buffer,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_w,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_h,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_w,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_h);
+void                <a class="link" href="cogl-Offscreen-Buffers.html#cogl-draw-buffer" title="cogl_draw_buffer ()">cogl_draw_buffer</a>                    (<a class="link" href="cogl-General-API.html#CoglBufferTarget" title="enum CoglBufferTarget">CoglBufferTarget</a> target,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> offscreen);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Offscreen-Buffers.description"></a><h2>Description</h2>
+<p>
+COGL allows creating and operating on FBOs (Framebuffer Objects).</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="cogl-Offscreen-Buffers.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-new-to-texture"></a><h3>cogl_offscreen_new_to_texture ()</h3>
+<pre class="programlisting"><a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          cogl_offscreen_new_to_texture       (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> texhandle);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texhandle</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-new-multisample"></a><h3>cogl_offscreen_new_multisample ()</h3>
+<pre class="programlisting"><a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          cogl_offscreen_new_multisample      (void);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-ref"></a><h3>cogl_offscreen_ref ()</h3>
+<pre class="programlisting"><a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a>          cogl_offscreen_ref                  (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handle</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-unref"></a><h3>cogl_offscreen_unref ()</h3>
+<pre class="programlisting">void                cogl_offscreen_unref                (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>handle</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-is-offscreen"></a><h3>cogl_is_offscreen ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            cogl_is_offscreen                   (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> handle);</pre>
+<p>
+Gets whether the given handle references an existing offscreen
+buffer object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handle</code></em> :</span></p></td>
+<td> A CoglHandle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the handle references an offscreen buffer,
+  <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-blit"></a><h3>cogl_offscreen_blit ()</h3>
+<pre class="programlisting">void                cogl_offscreen_blit                 (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> src_buffer,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> dst_buffer);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_buffer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_buffer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-offscreen-blit-region"></a><h3>cogl_offscreen_blit_region ()</h3>
+<pre class="programlisting">void                cogl_offscreen_blit_region          (<a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> src_buffer,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> dst_buffer,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_w,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> src_h,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_w,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> dst_h);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_buffer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_buffer</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_x</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_y</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_w</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src_h</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_x</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_y</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_w</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dst_h</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="cogl-draw-buffer"></a><h3>cogl_draw_buffer ()</h3>
+<pre class="programlisting">void                cogl_draw_buffer                    (<a class="link" href="cogl-General-API.html#CoglBufferTarget" title="enum CoglBufferTarget">CoglBufferTarget</a> target,
+                                                         <a class="link" href="cogl-Utility-API.html#CoglHandle" title="CoglHandle">CoglHandle</a> offscreen);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>target</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>offscreen</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

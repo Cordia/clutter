@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterGroup</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch03.html" title="Container actors">
+<link rel="prev" href="ch03.html" title="Container actors">
+<link rel="next" href="ClutterStage.html" title="ClutterStage">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterStage.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterGroup.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterGroup.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterGroup.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterGroup.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterGroup.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterGroup"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterGroup.top_of_page"></a>ClutterGroup</span></h2>
+<p>ClutterGroup — Actor class containing multiple children.
+actors.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterGroup.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterGroup.html#ClutterGroup-struct" title="ClutterGroup">ClutterGroup</a>;
+                    <a class="link" href="ClutterGroup.html#ClutterGroupClass" title="ClutterGroupClass">ClutterGroupClass</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterGroup.html#clutter-group-new" title="clutter_group_new ()">clutter_group_new</a>                   (void);
+void                <a class="link" href="ClutterGroup.html#clutter-group-add-many" title="clutter_group_add_many ()">clutter_group_add_many</a>              (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);
+void                <a class="link" href="ClutterGroup.html#clutter-group-add-many-valist" title="clutter_group_add_many_valist ()">clutter_group_add_many_valist</a>       (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);
+void                <a class="link" href="ClutterGroup.html#clutter-group-remove" title="clutter_group_remove ()">clutter_group_remove</a>                (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="ClutterGroup.html#clutter-group-remove-all" title="clutter_group_remove_all ()">clutter_group_remove_all</a>            (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterGroup.html#clutter-group-get-n-children" title="clutter_group_get_n_children ()">clutter_group_get_n_children</a>        (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterGroup.html#clutter-group-get-nth-child" title="clutter_group_get_nth_child ()">clutter_group_get_nth_child</a>         (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> index_);
+void                <a class="link" href="ClutterGroup.html#clutter-group-raise" title="clutter_group_raise ()">clutter_group_raise</a>                 (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);
+void                <a class="link" href="ClutterGroup.html#clutter-group-lower" title="clutter_group_lower ()">clutter_group_lower</a>                 (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);
+void                <a class="link" href="ClutterGroup.html#clutter-group-sort-depth-order" title="clutter_group_sort_depth_order ()">clutter_group_sort_depth_order</a>      (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterGroup
+                     +----<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterGroup implements
+ <a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterGroup.html#ClutterGroup-add" title='The "add" signal'>add</a>"                                            : Run First
+  "<a class="link" href="ClutterGroup.html#ClutterGroup-remove" title='The "remove" signal'>remove</a>"                                         : Run First
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a> is an Actor which contains multiple child actors positioned
+relative to the <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a> position. Other operations such as scaling,
+rotating and clipping of the group will apply to the child actors.
+</p>
+<p>
+A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>'s size is defined by the size and position of its children.
+Resize requests via the <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> API will be ignored.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterGroup-struct"></a><h3>ClutterGroup</h3>
+<pre class="programlisting">typedef struct _ClutterGroup ClutterGroup;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterGroupClass"></a><h3>ClutterGroupClass</h3>
+<pre class="programlisting">typedef struct {
+} ClutterGroupClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-new"></a><h3>clutter_group_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_group_new                   (void);</pre>
+<p>
+Create a new  <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a> actor
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-add-many"></a><h3>clutter_group_add_many ()</h3>
+<pre class="programlisting">void                clutter_group_add_many              (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_add_many</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+Adds a <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>-terminated list of actors to a group.  This function is
+equivalent to calling <code class="function">clutter_group_add()</code> for each member of the list.
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.4: This function is obsolete, use <a class="link" href="ClutterContainer.html#clutter-container-add" title="clutter_container_add ()"><code class="function">clutter_container_add()</code></a>
+  instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> actor to add to the group
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> additional actors to add to the group
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-add-many-valist"></a><h3>clutter_group_add_many_valist ()</h3>
+<pre class="programlisting">void                clutter_group_add_many_valist       (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_add_many_valist</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+Similar to <a class="link" href="ClutterGroup.html#clutter-group-add-many" title="clutter_group_add_many ()"><code class="function">clutter_group_add_many()</code></a> but using a va_list.  Use this
+function inside bindings.
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.4: This function is obsolete, use
+  <a class="link" href="ClutterContainer.html#clutter-container-add-valist" title="clutter_container_add_valist ()"><code class="function">clutter_container_add_valist()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> actor to add to the group
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>var_args</code></em> :</span></p></td>
+<td> the actors to be added
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-remove"></a><h3>clutter_group_remove ()</h3>
+<pre class="programlisting">void                clutter_group_remove                (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_remove</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+Removes a child <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> from the parent <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>.
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.4: This function is obsolete, use
+  <a class="link" href="ClutterContainer.html#clutter-container-remove-actor" title="clutter_container_remove_actor ()"><code class="function">clutter_container_remove_actor()</code></a> instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-remove-all"></a><h3>clutter_group_remove_all ()</h3>
+<pre class="programlisting">void                clutter_group_remove_all            (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group);</pre>
+<p>
+Removes all children actors from the <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-get-n-children"></a><h3>clutter_group_get_n_children ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_group_get_n_children        (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self);</pre>
+<p>
+Gets the number of actors held in the group.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The number of child actors held in the group.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-get-nth-child"></a><h3>clutter_group_get_nth_child ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_group_get_nth_child         (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> index_);</pre>
+<p>
+Gets a groups child held at <em class="parameter"><code>index_</code></em> in stack.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index_</code></em> :</span></p></td>
+<td> the position of the requested actor.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A Clutter actor or NULL if <em class="parameter"><code>index_</code></em> is invalid.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-raise"></a><h3>clutter_group_raise ()</h3>
+<pre class="programlisting">void                clutter_group_raise                 (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_raise</code> has been deprecated since version 0.6 and should not be used in newly-written code. Use <a class="link" href="ClutterContainer.html#clutter-container-raise-child" title="clutter_container_raise_child ()"><code class="function">clutter_container_raise_child()</code></a> instead.</p>
+</div>
+<p>
+Raises <em class="parameter"><code>actor</code></em> to <em class="parameter"><code>sibling</code></em> level in the depth ordering.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sibling</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-lower"></a><h3>clutter_group_lower ()</h3>
+<pre class="programlisting">void                clutter_group_lower                 (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_lower</code> has been deprecated since version 0.6 and should not be used in newly-written code. Use <a class="link" href="ClutterContainer.html#clutter-container-lower-child" title="clutter_container_lower_child ()"><code class="function">clutter_container_lower_child()</code></a> instead</p>
+</div>
+<p>
+Lowers <em class="parameter"><code>actor</code></em> to <em class="parameter"><code>sibling</code></em> level in the depth ordering.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sibling</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-group-sort-depth-order"></a><h3>clutter_group_sort_depth_order ()</h3>
+<pre class="programlisting">void                clutter_group_sort_depth_order      (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *self);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_group_sort_depth_order</code> has been deprecated since version 0.6 and should not be used in newly-written code. Use <a class="link" href="ClutterContainer.html#clutter-container-sort-depth-order" title="clutter_container_sort_depth_order ()"><code class="function">clutter_container_sort_depth_order()</code></a> instead.</p>
+</div>
+<p>
+Sorts a <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>'s children by their depth value.
+This function should not be used by applications.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterGroup.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterGroup-add"></a><h3>The <code class="literal">"add"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                        <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run First</pre>
+<p>
+The ::add signal is emitted each time an actor has been added
+to the group.
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.4: This signal is deprecated, you should connect
+  to the ClutterContainer::actor-added signal instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a> that received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor added to the group
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterGroup-remove"></a><h3>The <code class="literal">"remove"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a> *group,
+                                                        <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run First</pre>
+<p>
+The ::remove signal is emitted each time an actor has been removed
+from the group
+</p>
+<p>
+<em class="parameter"><code>Deprecated</code></em>: 0.4: This signal is deprecated, you should connect
+  to the ClutterContainer::actor-removed signal instead</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a> that received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor added to the group
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

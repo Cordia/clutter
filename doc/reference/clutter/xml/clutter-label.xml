@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterLabel">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterLabel.top_of_page">ClutterLabel</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterLabel</refname>
+<refpurpose>Actor for displaying text</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterLabel.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterLabel-struct">ClutterLabel</link>;
+                    <link linkend="ClutterLabelClass">ClutterLabelClass</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-label-new">clutter_label_new</link>                   (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-label-new-with-text">clutter_label_new_with_text</link>         (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-label-new-full">clutter_label_new_full</link>              (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-text">clutter_label_set_text</link>              (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="gchar">gchar</link> *text);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-label-get-text">clutter_label_get_text</link>              (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-font-name">clutter_label_set_font_name</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="gchar">gchar</link> *font_name);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-label-get-font-name">clutter_label_get_font_name</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-color">clutter_label_set_color</link>             (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-label-get-color">clutter_label_get_color</link>             (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-ellipsize">clutter_label_set_ellipsize</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link> mode);
+<link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link>  <link linkend="clutter-label-get-ellipsize">clutter_label_get_ellipsize</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-line-wrap">clutter_label_set_line_wrap</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> wrap);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-label-get-line-wrap">clutter_label_get_line_wrap</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-line-wrap-mode">clutter_label_set_line_wrap_mode</link>    (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoWrapMode">PangoWrapMode</link> wrap_mode);
+<link linkend="PangoWrapMode">PangoWrapMode</link>       <link linkend="clutter-label-get-line-wrap-mode">clutter_label_get_line_wrap_mode</link>    (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="PangoLayout">PangoLayout</link>*        <link linkend="clutter-label-get-layout">clutter_label_get_layout</link>            (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-attributes">clutter_label_set_attributes</link>        (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoAttrList">PangoAttrList</link> *attrs);
+<link linkend="PangoAttrList">PangoAttrList</link>*      <link linkend="clutter-label-get-attributes">clutter_label_get_attributes</link>        (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-use-markup">clutter_label_set_use_markup</link>        (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> setting);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-label-get-use-markup">clutter_label_get_use_markup</link>        (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-alignment">clutter_label_set_alignment</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoAlignment">PangoAlignment</link> alignment);
+<link linkend="PangoAlignment">PangoAlignment</link>      <link linkend="clutter-label-get-alignment">clutter_label_get_alignment</link>         (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-label-get-justify">clutter_label_get_justify</link>           (<link linkend="ClutterLabel">ClutterLabel</link> *label);
+<link linkend="void">void</link>                <link linkend="clutter-label-set-justify">clutter_label_set_justify</link>           (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> justify);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterLabel.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterLabel
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterLabel.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterLabel implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterLabel.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterLabel--alignment">alignment</link>&quot;                <link linkend="PangoAlignment">PangoAlignment</link>        : Read / Write
+  &quot;<link linkend="ClutterLabel--attributes">attributes</link>&quot;               <link linkend="PangoAttrList">PangoAttrList</link>*        : Read / Write
+  &quot;<link linkend="ClutterLabel--color">color</link>&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write
+  &quot;<link linkend="ClutterLabel--ellipsize">ellipsize</link>&quot;                <link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link>    : Read / Write
+  &quot;<link linkend="ClutterLabel--font-name">font-name</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterLabel--justify">justify</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterLabel--text">text</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterLabel--use-markup">use-markup</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterLabel--wrap">wrap</link>&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterLabel--wrap-mode">wrap-mode</link>&quot;                <link linkend="PangoWrapMode">PangoWrapMode</link>         : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterLabel.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterLabel"><type>ClutterLabel</type></link> is a <link linkend="ClutterActor"><type>ClutterActor</type></link> that displays text using Pango.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterLabel.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterLabel-struct" role="struct">
+<title>ClutterLabel</title>
+<indexterm zone="ClutterLabel-struct"><primary>ClutterLabel</primary></indexterm><programlisting>typedef struct _ClutterLabel ClutterLabel;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterLabelClass" role="struct">
+<title>ClutterLabelClass</title>
+<indexterm zone="ClutterLabelClass"><primary>ClutterLabelClass</primary></indexterm><programlisting>typedef struct {
+} ClutterLabelClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-label-new" role="function">
+<title>clutter_label_new ()</title>
+<indexterm zone="clutter-label-new"><primary>clutter_label_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_label_new                   (void);</programlisting>
+<para>
+Creates a new, empty <link linkend="ClutterLabel"><type>ClutterLabel</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-new-with-text" role="function">
+<title>clutter_label_new_with_text ()</title>
+<indexterm zone="clutter-label-new-with-text"><primary>clutter_label_new_with_text</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_label_new_with_text         (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text);</programlisting>
+<para>
+Creates a new <link linkend="ClutterLabel"><type>ClutterLabel</type></link> displaying <parameter>text</parameter> using <parameter>font_name</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name (and size) of the font to be used
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-new-full" role="function">
+<title>clutter_label_new_full ()</title>
+<indexterm zone="clutter-label-new-full"><primary>clutter_label_new_full</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_label_new_full              (const <link linkend="gchar">gchar</link> *font_name,
+                                                         const <link linkend="gchar">gchar</link> *text,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Creates a new <link linkend="ClutterLabel"><type>ClutterLabel</type></link> displaying <parameter>text</parameter> with <parameter>color</parameter> 
+using <parameter>font_name</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name (and size) of the font to be used
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterColor"><type>ClutterColor</type></link> for text
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-set-text" role="function">
+<title>clutter_label_set_text ()</title>
+<indexterm zone="clutter-label-set-text"><primary>clutter_label_set_text</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_text              (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="gchar">gchar</link> *text);</programlisting>
+<para>
+Sets <parameter>text</parameter> as the text to be displayed by <parameter>label</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>text</parameter>&nbsp;:</term>
+<listitem><simpara> the text to be displayed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-text" role="function">
+<title>clutter_label_get_text ()</title>
+<indexterm zone="clutter-label-get-text"><primary>clutter_label_get_text</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_label_get_text              (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Retrieves the text displayed by <parameter>label</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the text of the label.  The returned string is
+owned by <link linkend="ClutterLabel"><type>ClutterLabel</type></link> and should not be modified or freed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-set-font-name" role="function">
+<title>clutter_label_set_font_name ()</title>
+<indexterm zone="clutter-label-set-font-name"><primary>clutter_label_set_font_name</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_font_name         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="gchar">gchar</link> *font_name);</programlisting>
+<para>
+Sets <parameter>font_name</parameter> as the font used by <parameter>label</parameter>.
+</para>
+<para>
+<parameter>font_name</parameter> must be a string containing the font name and its
+size, similarly to what you would feed to the
+<link linkend="pango-font-description-from-string"><function>pango_font_description_from_string()</function></link> function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>font_name</parameter>&nbsp;:</term>
+<listitem><simpara> a font name and size, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for the default font
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-font-name" role="function">
+<title>clutter_label_get_font_name ()</title>
+<indexterm zone="clutter-label-get-font-name"><primary>clutter_label_get_font_name</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_label_get_font_name         (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Retrieves the font used by <parameter>label</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a string containing the font name, in a format
+  understandable by <link linkend="pango-font-description-from-string"><function>pango_font_description_from_string()</function></link>.  The
+  string is owned by <parameter>label</parameter> and should not be modified
+  or freed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-set-color" role="function">
+<title>clutter_label_set_color ()</title>
+<indexterm zone="clutter-label-set-color"><primary>clutter_label_set_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_color             (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Sets the color of <parameter>label</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-color" role="function">
+<title>clutter_label_get_color ()</title>
+<indexterm zone="clutter-label-get-color"><primary>clutter_label_get_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_get_color             (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Retrieves the color of <parameter>label</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-set-ellipsize" role="function" condition="since:0.2">
+<title>clutter_label_set_ellipsize ()</title>
+<indexterm zone="clutter-label-set-ellipsize" role="0.2"><primary>clutter_label_set_ellipsize</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_ellipsize         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link> mode);</programlisting>
+<para>
+Sets the mode used to ellipsize (add an ellipsis: "...") to the text 
+if there is not enough space to render the entire string.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mode</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="PangoEllipsizeMode"><type>PangoEllipsizeMode</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-get-ellipsize" role="function" condition="since:0.2">
+<title>clutter_label_get_ellipsize ()</title>
+<indexterm zone="clutter-label-get-ellipsize" role="0.2"><primary>clutter_label_get_ellipsize</primary></indexterm><programlisting><link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link>  clutter_label_get_ellipsize         (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Returns the ellipsizing position of the label. 
+See <link linkend="clutter-label-set-ellipsize"><function>clutter_label_set_ellipsize()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="PangoEllipsizeMode"><type>PangoEllipsizeMode</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-set-line-wrap" role="function" condition="since:0.2">
+<title>clutter_label_set_line_wrap ()</title>
+<indexterm zone="clutter-label-set-line-wrap" role="0.2"><primary>clutter_label_set_line_wrap</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_line_wrap         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> wrap);</programlisting>
+<para>
+Toggles line wrapping within the <link linkend="ClutterLabel"><type>ClutterLabel</type></link> widget.  <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> makes
+it break lines if text exceeds the widget's size.  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> lets the
+text get cut off by the edge of the widget if it exceeds the widget
+size.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>wrap</parameter>&nbsp;:</term>
+<listitem><simpara> the setting
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-get-line-wrap" role="function" condition="since:0.2">
+<title>clutter_label_get_line_wrap ()</title>
+<indexterm zone="clutter-label-get-line-wrap" role="0.2"><primary>clutter_label_get_line_wrap</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_label_get_line_wrap         (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Returns whether lines in the label are automatically wrapped. 
+See <link linkend="clutter-label-set-line-wrap"><function>clutter_label_set_line_wrap()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the lines of the label are automatically wrapped.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-set-line-wrap-mode" role="function" condition="since:0.2">
+<title>clutter_label_set_line_wrap_mode ()</title>
+<indexterm zone="clutter-label-set-line-wrap-mode" role="0.2"><primary>clutter_label_set_line_wrap_mode</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_line_wrap_mode    (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoWrapMode">PangoWrapMode</link> wrap_mode);</programlisting>
+<para>
+If line wrapping is on (see <link linkend="clutter-label-set-line-wrap"><function>clutter_label_set_line_wrap()</function></link>) this controls how
+the line wrapping is done. The default is <link linkend="PANGO-WRAP-WORD:CAPS"><literal>PANGO_WRAP_WORD</literal></link> which means
+wrap on word boundaries.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>wrap_mode</parameter>&nbsp;:</term>
+<listitem><simpara> the line wrapping mode
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-get-line-wrap-mode" role="function" condition="since:0.2">
+<title>clutter_label_get_line_wrap_mode ()</title>
+<indexterm zone="clutter-label-get-line-wrap-mode" role="0.2"><primary>clutter_label_get_line_wrap_mode</primary></indexterm><programlisting><link linkend="PangoWrapMode">PangoWrapMode</link>       clutter_label_get_line_wrap_mode    (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Returns line wrap mode used by the label.
+See <link linkend="clutter-label-set-line-wrap-mode"><function>clutter_label_set_line_wrap_mode()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the lines of the label are automatically wrapped.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-get-layout" role="function" condition="since:0.2">
+<title>clutter_label_get_layout ()</title>
+<indexterm zone="clutter-label-get-layout" role="0.2"><primary>clutter_label_get_layout</primary></indexterm><programlisting><link linkend="PangoLayout">PangoLayout</link>*        clutter_label_get_layout            (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Gets the <link linkend="PangoLayout"><type>PangoLayout</type></link> used to display the label.
+The layout is useful to e.g. convert text positions to
+pixel positions.
+The returned layout is owned by the label so need not be
+freed by the caller.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="PangoLayout"><type>PangoLayout</type></link> for this label
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-set-attributes" role="function" condition="since:0.2">
+<title>clutter_label_set_attributes ()</title>
+<indexterm zone="clutter-label-set-attributes" role="0.2"><primary>clutter_label_set_attributes</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_attributes        (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoAttrList">PangoAttrList</link> *attrs);</programlisting>
+<para>
+Sets a <link linkend="PangoAttrList"><type>PangoAttrList</type></link>; the attributes in the list are applied to the
+label text. The attributes set with this function will be ignored
+if the "use_markup" property
+is <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="PangoAttrList"><type>PangoAttrList</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-get-attributes" role="function" condition="since:0.2">
+<title>clutter_label_get_attributes ()</title>
+<indexterm zone="clutter-label-get-attributes" role="0.2"><primary>clutter_label_get_attributes</primary></indexterm><programlisting><link linkend="PangoAttrList">PangoAttrList</link>*      clutter_label_get_attributes        (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Gets the attribute list that was set on the label using
+<link linkend="clutter-label-set-attributes"><function>clutter_label_set_attributes()</function></link>, if any.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the attribute list, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if none was set.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-label-set-use-markup" role="function">
+<title>clutter_label_set_use_markup ()</title>
+<indexterm zone="clutter-label-set-use-markup"><primary>clutter_label_set_use_markup</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_use_markup        (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> setting);</programlisting>
+<para>
+Sets whether the text of the label contains markup in <link
+linkend="PangoMarkupFormat">Pango's text markup
+language</link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>setting</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the label's text should be parsed for markup.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-use-markup" role="function">
+<title>clutter_label_get_use_markup ()</title>
+<indexterm zone="clutter-label-get-use-markup"><primary>clutter_label_get_use_markup</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_label_get_use_markup        (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Returns whether the label's text is interpreted as marked up with
+the <link linkend="PangoMarkupFormat">Pango text markup
+language</link>. See <link linkend="clutter-label-set-use-markup"><function>clutter_label_set_use_markup()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the label's text will be parsed for markup.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-set-alignment" role="function">
+<title>clutter_label_set_alignment ()</title>
+<indexterm zone="clutter-label-set-alignment"><primary>clutter_label_set_alignment</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_alignment         (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="PangoAlignment">PangoAlignment</link> alignment);</programlisting>
+<para>
+Sets text alignment of the label.
+</para>
+<para>
+The alignment will only be used when the contents of the
+label are enough to wrap, and the <link linkend="ClutterLabel--wrap"><type>"wrap"</type></link>
+property is set to <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alignment</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="PangoAlignment"><type>PangoAlignment</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-alignment" role="function">
+<title>clutter_label_get_alignment ()</title>
+<indexterm zone="clutter-label-get-alignment"><primary>clutter_label_get_alignment</primary></indexterm><programlisting><link linkend="PangoAlignment">PangoAlignment</link>      clutter_label_get_alignment         (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Returns the label's text alignment</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The label's <link linkend="PangoAlignment"><type>PangoAlignment</type></link>
+
+Since 0.2
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-label-get-justify" role="function" condition="since:0.6">
+<title>clutter_label_get_justify ()</title>
+<indexterm zone="clutter-label-get-justify" role="0.6"><primary>clutter_label_get_justify</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_label_get_justify           (<link linkend="ClutterLabel">ClutterLabel</link> *label);</programlisting>
+<para>
+Retrieves whether the label should justify the text on both margins.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the text should be justified
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-label-set-justify" role="function" condition="since:0.6">
+<title>clutter_label_set_justify ()</title>
+<indexterm zone="clutter-label-set-justify" role="0.6"><primary>clutter_label_set_justify</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_label_set_justify           (<link linkend="ClutterLabel">ClutterLabel</link> *label,
+                                                         <link linkend="gboolean">gboolean</link> justify);</programlisting>
+<para>
+Sets whether the text of the <parameter>label</parameter> actor should be justified
+on both margins. This setting is ignored if Clutter is compiled
+against Pango &lt; 1.18.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>label</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterLabel"><type>ClutterLabel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>justify</parameter>&nbsp;:</term>
+<listitem><simpara> whether the text should be justified
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterLabel.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterLabel--alignment"><title>The <literal>&quot;alignment&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--alignment"><primary>ClutterLabel:alignment</primary></indexterm><programlisting>  &quot;alignment&quot;                <link linkend="PangoAlignment">PangoAlignment</link>        : Read / Write</programlisting>
+<para>The preferred alignment for the string.</para><para>Default value: PANGO_ALIGN_LEFT</para>
+</refsect2>
+<refsect2 id="ClutterLabel--attributes"><title>The <literal>&quot;attributes&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--attributes"><primary>ClutterLabel:attributes</primary></indexterm><programlisting>  &quot;attributes&quot;               <link linkend="PangoAttrList">PangoAttrList</link>*        : Read / Write</programlisting>
+<para>A list of style attributes to apply to the text of the label.</para></refsect2>
+<refsect2 id="ClutterLabel--color"><title>The <literal>&quot;color&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--color"><primary>ClutterLabel:color</primary></indexterm><programlisting>  &quot;color&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write</programlisting>
+<para>Font Colour.</para></refsect2>
+<refsect2 id="ClutterLabel--ellipsize"><title>The <literal>&quot;ellipsize&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--ellipsize"><primary>ClutterLabel:ellipsize</primary></indexterm><programlisting>  &quot;ellipsize&quot;                <link linkend="PangoEllipsizeMode">PangoEllipsizeMode</link>    : Read / Write</programlisting>
+<para>The preferred place to ellipsize the string, if the label does not have enough room to display the entire string.</para><para>Default value: PANGO_ELLIPSIZE_NONE</para>
+</refsect2>
+<refsect2 id="ClutterLabel--font-name"><title>The <literal>&quot;font-name&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--font-name"><primary>ClutterLabel:font-name</primary></indexterm><programlisting>  &quot;font-name&quot;                <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>Pango font description.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="ClutterLabel--justify"><title>The <literal>&quot;justify&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--justify" role="0.6"><primary>ClutterLabel:justify</primary></indexterm><programlisting>  &quot;justify&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the contents of the label should be justified on both
+margins.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterLabel--text"><title>The <literal>&quot;text&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--text"><primary>ClutterLabel:text</primary></indexterm><programlisting>  &quot;text&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>Text to render.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="ClutterLabel--use-markup"><title>The <literal>&quot;use-markup&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--use-markup"><primary>ClutterLabel:use-markup</primary></indexterm><programlisting>  &quot;use-markup&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>The text of the label includes XML markup. See pango_parse_markup().</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterLabel--wrap"><title>The <literal>&quot;wrap&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--wrap"><primary>ClutterLabel:wrap</primary></indexterm><programlisting>  &quot;wrap&quot;                     <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>If set, wrap lines if the text becomes too wide.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterLabel--wrap-mode"><title>The <literal>&quot;wrap-mode&quot;</literal> property</title>
+<indexterm zone="ClutterLabel--wrap-mode"><primary>ClutterLabel:wrap-mode</primary></indexterm><programlisting>  &quot;wrap-mode&quot;                <link linkend="PangoWrapMode">PangoWrapMode</link>         : Read / Write</programlisting>
+<para>If wrap is set, controls how line-wrapping is done.</para><para>Default value: PANGO_WRAP_WORD</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

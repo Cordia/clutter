@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Part II. Building Clutter</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="prev" href="clutter-overview.html" title="Part I. Overview">
+<link rel="next" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="clutter-overview.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutterbase.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="part" lang="en">
+<div class="titlepage"><div>
+<div><h1 class="title">
+<a name="building-clutter"></a>Part II. Building Clutter</h1></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">Emmanuele</span> <span class="surname">Bassi</span>
+</h3>
+<div class="affiliation"><div class="address"><p><br>
+          <code class="email">&lt;<a class="email" href="mailto:ebassiopenedhand.com">ebassi<em class="parameter"><code>openedhand.com</code></em></a>&gt;</code><br>
+        </p></div></div>
+</div></div>
+</div></div>
+<div class="partintro" lang="en">
+<div></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="dependencies"></a>Clutter Dependencies</h2></div></div></div>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">GLib</span></p></td>
+<td><p>A general-purpose utility library, not specific to
+            graphical user interfaces. GLib provides many useful data
+            types, macros, type conversions, string utilities, file
+            utilities, a main loop abstraction, and so on.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">GObject</span></p></td>
+<td><p>The GLib Object System provides the required
+            implementations of a flexible, extensible and intentionally
+            easy to map (into other languages) object-oriented framework
+            for C.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Pango</span></p></td>
+<td><p>Pango is a library for laying out and rendering
+            text, with an emphasis on internationalization.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Backend Windowing System Library</span></p></td>
+<td><p>GLX, EGL (1.1), SDL, Cocoa (OS X) and WGL (Windows)</p></td>
+</tr>
+<tr>
+<td><p><span class="term">Graphics Rendering </span></p></td>
+<td><p>Open GL (1.4+) or Open GL ES (1.1 or 2.0) </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="building-instructions"></a>Platform-specific instructions</h2></div></div></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="building-linux"></a>Linux</h3></div></div></div>
+<p>If you are using Debian or Ubuntu, you can install pre-compiled
+        binary packages the normal Debian way following the instructions at
+        <a class="ulink" href="http://debian.o-hand.com/" target="_top">
+        http://debian.o-hand.com/</a>.
+        </p>
+<p>To build Clutter clutter from sources, get the latest source
+        archives from <a class="ulink" href="http://www.clutter-project.org/sources/" target="_top">
+        http://www.clutter-project.org/sources/</a>. Once you have extracted
+        the sources from the archive execute the following commands in the
+        top-level directory:
+        </p>
+<div class="literallayout"><p><br>
+    $ ./configure<br>
+    $ make<br>
+    # make install<br>
+        </p></div>
+<p>You can configure the build with number of additional arguments
+        passed to the configure script, the full list of which can be obtained
+        by running ./configure --help. The following arguments are specific to
+        Clutter:
+
+            </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">--enable-debug=[no/minimum/yes]</span></p></td>
+<td><p>Turns on debugging. Possible values are: yes -  all
+                  glib asserts, checks and runtime clutter verbose messages;
+                 minimum - just glib cast checks and runtime clutter verbose
+                 messagaes; no - no glib asserts or checks and no runtime
+                 clutter verbose messages; default=yes.
+                 </p></td>
+</tr>
+<tr>
+<td><p><span class="term">--enable-maintainer-flags=[no/yes]</span></p></td>
+<td><p>Use strict compiler flags; default=no.
+                  </p></td>
+</tr>
+<tr>
+<td><p><span class="term">--enable-gtk-doc</span></p></td>
+<td><p>Use gtk-doc to build documentation; default=no.
+                  </p></td>
+</tr>
+<tr>
+<td><p><span class="term">--enable-manual=[no/yes]</span></p></td>
+<td><p>Build application developers manual; requires jw and
+                  xmlto binaries; default=no.
+                  </p></td>
+</tr>
+<tr>
+<td><p><span class="term">--with-flavour=[glx/eglx/eglnative/sdl]</span></p></td>
+<td><p>Select the Clutter backend; default=glx.
+                  </p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+        </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="building-windows"></a>Windows</h3></div></div></div>
+<p>
+            The recommended way of building Clutter for Windows is using the
+            <a class="ulink" href="http://www.mingw.org/" target="_top">mingw</a> tool
+            chain. One option is to cross-compile Clutter under Linux -- you
+            can use the script found in the <code class="filename">build/mingw/</code>
+            directory to simplify the process (the script takes care of setting
+            up the necessary dependencies).
+          </p>
+<p>
+            If you wish to build Clutter using mingw direcly under Windows, you
+            can do so the normal *nix way (described above) using the mingw
+            POSIX shell. Should you prefer to use Microsoft Visual Studio, a
+            project file for MSVC 2005 is located in the
+            <code class="filename">build/msvc_2k5/</code> directory. In either case, you
+            will need to first install the required dependencies.
+            </p>
+<p>
+            There are currently two backends that are supported on
+            Windows. One uses the Win32 and WGL APIs directly and the
+            other is built on top of SDL. You must choose one of the
+            backends when running the configure script using the
+            following argument:
+            </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term">--with-flavour=[win32/sdl]</span></p></td>
+<td><p>Select the Clutter backend; default=glx.
+                  </p></td>
+</tr></tbody>
+</table></div>
+<p>
+            </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="building-osx"></a>OSX</h3></div></div></div>
+<p>For developing an application with Clutter, the recommended
+          way of installing it using the <a class="ulink" href="" target="_top">MacPorts</a>
+          project, by simply invoking:</p>
+<div class="informalexample"><pre class="programlisting">
+            $ sudo port install clutter
+          </pre></div>
+<p>on a terminal, after installing and updating MacPorts.</p>
+<p>For developing Clutter itself, the recommended way of building
+          it OSX is to use <a class="ulink" href="" target="_top">Jhbuild</a>,
+          following the documentation for building the GTK+ stack as shown
+          <a class="ulink" href="" target="_top">here</a>.</p>
+<p>
+            Jhbuild depends on SVN, which can be installed on OSX by using
+            the <a class="ulink" href="" target="_top">MacPorts</a>
+            project.
+          </p>
+<p>
+            XCode should also be installed, either from the OSX installation
+            disk or downloading it from the Apple website. It is recommended
+            to also install the X11 development files, even though Clutter
+            does not strictly depend on them.
+          </p>
+<p>
+            The Clutter Quartz backend is built by passing the
+            <code class="literal">--with-flavour=osx</code> command line argument
+            to the configure script. If not passed, the GLX backend will
+            be built. By default, the Quartz backend depends on CoreGraphics
+            in order to load images into textures, but it can also depend
+            on GDK-Pixbuf or an internal, highly experimental PNG and JPEG
+            loader.
+          </p>
+<p>
+            GTK-Doc is not working on OSX, so API reference generation
+            should also be disabled when building Clutter, by using
+            the <code class="literal">--disable-docs</code> and
+            <code class="literal">--disable-gtk-doc</code> command line argument
+            to the configure script.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

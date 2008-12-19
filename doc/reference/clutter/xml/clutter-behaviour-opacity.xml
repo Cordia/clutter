@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourOpacity">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourOpacity.top_of_page">ClutterBehaviourOpacity</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourOpacity</refname>
+<refpurpose>Behaviour controlling the opacity</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourOpacity.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviourOpacity-struct">ClutterBehaviourOpacity</link>;
+                    <link linkend="ClutterBehaviourOpacityClass">ClutterBehaviourOpacityClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-opacity-new">clutter_behaviour_opacity_new</link>       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="guint8">guint8</link> opacity_start,
+                                                         <link linkend="guint8">guint8</link> opacity_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-opacity-set-bounds">clutter_behaviour_opacity_set_bounds</link>
+                                                        (<link linkend="ClutterBehaviourOpacity">ClutterBehaviourOpacity</link> *behaviour,
+                                                         <link linkend="guint8">guint8</link> opacity_start,
+                                                         <link linkend="guint8">guint8</link> opacity_end);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-opacity-get-bounds">clutter_behaviour_opacity_get_bounds</link>
+                                                        (<link linkend="ClutterBehaviourOpacity">ClutterBehaviourOpacity</link> *behaviour,
+                                                         <link linkend="guint8">guint8</link> *opacity_start,
+                                                         <link linkend="guint8">guint8</link> *opacity_end);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourOpacity.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourOpacity
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterBehaviourOpacity.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourOpacity--opacity-end">opacity-end</link>&quot;              <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterBehaviourOpacity--opacity-start">opacity-start</link>&quot;            <link linkend="guint">guint</link>                 : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourOpacity.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link> controls the opacity of a set of actors.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourOpacity.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviourOpacity-struct" role="struct">
+<title>ClutterBehaviourOpacity</title>
+<indexterm zone="ClutterBehaviourOpacity-struct"><primary>ClutterBehaviourOpacity</primary></indexterm><programlisting>typedef struct _ClutterBehaviourOpacity ClutterBehaviourOpacity;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourOpacityClass" role="struct">
+<title>ClutterBehaviourOpacityClass</title>
+<indexterm zone="ClutterBehaviourOpacityClass"><primary>ClutterBehaviourOpacityClass</primary></indexterm><programlisting>typedef struct {
+  ClutterBehaviourClass   parent_class;
+} ClutterBehaviourOpacityClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-behaviour-opacity-new" role="function" condition="since:0.2">
+<title>clutter_behaviour_opacity_new ()</title>
+<indexterm zone="clutter-behaviour-opacity-new" role="0.2"><primary>clutter_behaviour_opacity_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_opacity_new       (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         <link linkend="guint8">guint8</link> opacity_start,
+                                                         <link linkend="guint8">guint8</link> opacity_end);</programlisting>
+<para>
+Creates a new <link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link> object, driven by <parameter>alpha</parameter>
+which controls the opacity property of every actor, making it
+change in the interval between <parameter>opacity_start</parameter> and <parameter>opacity_end</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> instance, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_start</parameter>&nbsp;:</term>
+<listitem><simpara> minimum level of opacity
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_end</parameter>&nbsp;:</term>
+<listitem><simpara> maximum level of opacity
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-opacity-set-bounds" role="function" condition="since:0.6">
+<title>clutter_behaviour_opacity_set_bounds ()</title>
+<indexterm zone="clutter-behaviour-opacity-set-bounds" role="0.6"><primary>clutter_behaviour_opacity_set_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_opacity_set_bounds
+                                                        (<link linkend="ClutterBehaviourOpacity">ClutterBehaviourOpacity</link> *behaviour,
+                                                         <link linkend="guint8">guint8</link> opacity_start,
+                                                         <link linkend="guint8">guint8</link> opacity_end);</programlisting>
+<para>
+Sets the initial and final levels of the opacity applied by <parameter>behaviour</parameter>
+on each actor it controls.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_start</parameter>&nbsp;:</term>
+<listitem><simpara> minimum level of opacity
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_end</parameter>&nbsp;:</term>
+<listitem><simpara> maximum level of opacity
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-behaviour-opacity-get-bounds" role="function" condition="since:0.6">
+<title>clutter_behaviour_opacity_get_bounds ()</title>
+<indexterm zone="clutter-behaviour-opacity-get-bounds" role="0.6"><primary>clutter_behaviour_opacity_get_bounds</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_opacity_get_bounds
+                                                        (<link linkend="ClutterBehaviourOpacity">ClutterBehaviourOpacity</link> *behaviour,
+                                                         <link linkend="guint8">guint8</link> *opacity_start,
+                                                         <link linkend="guint8">guint8</link> *opacity_end);</programlisting>
+<para>
+Gets the initial and final levels of the opacity applied by <parameter>behaviour</parameter>
+on each actor it controls.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>behaviour</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehaviourOpacity"><type>ClutterBehaviourOpacity</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_start</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the minimum level of opacity, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_end</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the maximum level of opacity, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourOpacity.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourOpacity--opacity-end"><title>The <literal>&quot;opacity-end&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourOpacity--opacity-end" role="0.2"><primary>ClutterBehaviourOpacity:opacity-end</primary></indexterm><programlisting>  &quot;opacity-end&quot;              <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+Final opacity level of the behaviour.</para>
+<para>
+
+</para><para>Allowed values: &lt;= 255</para>
+<para>Default value: 0</para>
+<para>Since  0.2
+</para>
+</refsect2>
+<refsect2 id="ClutterBehaviourOpacity--opacity-start"><title>The <literal>&quot;opacity-start&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourOpacity--opacity-start" role="0.2"><primary>ClutterBehaviourOpacity:opacity-start</primary></indexterm><programlisting>  &quot;opacity-start&quot;            <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+Initial opacity level of the behaviour.</para>
+<para>
+
+</para><para>Allowed values: &lt;= 255</para>
+<para>Default value: 0</para>
+<para>Since  0.2
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

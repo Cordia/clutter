@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Clutter-Effects">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Clutter-Effects.top_of_page">Clutter Effects</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Clutter Effects</refname>
+<refpurpose>Utility Class for basic visual effects</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Clutter-Effects.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>;
+                    <link linkend="ClutterEffectTemplateClass">ClutterEffectTemplateClass</link>;
+<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* <link linkend="clutter-effect-template-new">clutter_effect_template_new</link>      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func);
+<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* <link linkend="clutter-effect-template-new-full">clutter_effect_template_new_full</link> (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* <link linkend="clutter-effect-template-new-for-duration">clutter_effect_template_new_for_duration</link>
+                                                        (<link linkend="guint">guint</link> msecs,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func);
+<link linkend="void">void</link>                <link linkend="clutter-effect-template-construct">clutter_effect_template_construct</link>   (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-effect-template-get-timeline-clone">clutter_effect_template_get_timeline_clone</link>
+                                                        (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_);
+<link linkend="void">void</link>                <link linkend="clutter-effect-template-set-timeline-clone">clutter_effect_template_set_timeline_clone</link>
+                                                        (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="gboolean">gboolean</link> setting);
+
+<link linkend="void">void</link>                (<link linkend="ClutterEffectCompleteFunc">*ClutterEffectCompleteFunc</link>)        (<link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-fade">clutter_effect_fade</link>                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="guint8">guint8</link> opacity_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-move">clutter_effect_move</link>                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-path">clutter_effect_path</link>                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-scale">clutter_effect_scale</link>                (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-depth">clutter_effect_depth</link>                (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> depth_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="ClutterTimeline">ClutterTimeline</link>*    <link linkend="clutter-effect-rotate">clutter_effect_rotate</link>               (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="gdouble">gdouble</link> angle,
+                                                         <link linkend="gint">gint</link> center_x,
+                                                         <link linkend="gint">gint</link> center_y,
+                                                         <link linkend="gint">gint</link> center_z,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Clutter-Effects.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> class provides a simple API for applying
+pre-defined effects to a single actor. It works as a wrapper around
+the <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> objects</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Clutter-Effects.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterEffectTemplate" role="struct">
+<title>ClutterEffectTemplate</title>
+<indexterm zone="ClutterEffectTemplate"><primary>ClutterEffectTemplate</primary></indexterm><programlisting>typedef struct {
+} ClutterEffectTemplate;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterEffectTemplateClass" role="struct">
+<title>ClutterEffectTemplateClass</title>
+<indexterm zone="ClutterEffectTemplateClass"><primary>ClutterEffectTemplateClass</primary></indexterm><programlisting>typedef struct {
+} ClutterEffectTemplateClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-effect-template-new" role="function" condition="since:0.4">
+<title>clutter_effect_template_new ()</title>
+<indexterm zone="clutter-effect-template-new" role="0.4"><primary>clutter_effect_template_new</primary></indexterm><programlisting><link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* clutter_effect_template_new      (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>, to be used with the effects API.
+</para>
+<para>
+A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> binds a timeline and an alpha function and can
+be used as a template for multiple calls of <link linkend="clutter-effect-fade"><function>clutter_effect_fade()</function></link>,
+<link linkend="clutter-effect-move"><function>clutter_effect_move()</function></link> and <link linkend="clutter-effect-scale"><function>clutter_effect_scale()</function></link>.
+</para>
+<para>
+This API is intended for simple animations involving a single actor;
+for more complex animations, you should see <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> and the
+derived classes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara>  A <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the template (will be cloned)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha_func</parameter>&nbsp;:</term>
+<listitem><simpara> An alpha func to use for the template.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-effect-template-new-full" role="function" condition="since:0.4">
+<title>clutter_effect_template_new_full ()</title>
+<indexterm zone="clutter-effect-template-new-full" role="0.4"><primary>clutter_effect_template_new_full</primary></indexterm><programlisting><link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* clutter_effect_template_new_full (<link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>, to be used with the effects API.
+</para>
+<para>
+A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> binds a timeline and an alpha function and can
+be used as a template for multiple calls of <link linkend="clutter-effect-fade"><function>clutter_effect_fade()</function></link>,
+<link linkend="clutter-effect-move"><function>clutter_effect_move()</function></link> and <link linkend="clutter-effect-scale"><function>clutter_effect_scale()</function></link>.
+</para>
+<para>
+This API is intended for simple animations involving a single actor;
+for more complex animations, you should see <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> and the
+derived classes.
+</para>
+<para>
+This function is intended for language bindings only: if <parameter>notify</parameter> is
+not <link linkend="NULL:CAPS"><literal>NULL</literal></link> it will be called to dispose of <parameter>user_data</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha_func</parameter>&nbsp;:</term>
+<listitem><simpara> an alpha function to use for the template
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the alpha function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to be called when disposing the alpha function's use
+  data, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> object
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-effect-template-new-for-duration" role="function" condition="since:0.6">
+<title>clutter_effect_template_new_for_duration ()</title>
+<indexterm zone="clutter-effect-template-new-for-duration" role="0.6"><primary>clutter_effect_template_new_for_duration</primary></indexterm><programlisting><link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link>* clutter_effect_template_new_for_duration
+                                                        (<link linkend="guint">guint</link> msecs,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func);</programlisting>
+<para>
+Creates a new <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>, to be used with the effects API.
+</para>
+<para>
+A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> binds a timeline and an alpha function and can
+be used as a template for multiple calls of <link linkend="clutter-effect-fade"><function>clutter_effect_fade()</function></link>,
+<link linkend="clutter-effect-move"><function>clutter_effect_move()</function></link> and <link linkend="clutter-effect-scale"><function>clutter_effect_scale()</function></link>.
+</para>
+<para>
+This API is intended for simple animations involving a single actor;
+for more complex animations, you should see <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> and the
+derived classes.
+</para>
+<para>
+This function creates a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> with a duration of <parameter>msecs</parameter>
+milliseconds and transfers ownership of the timeline object to the
+returned <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>msecs</parameter>&nbsp;:</term>
+<listitem><simpara> the duration of the effects, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha_func</parameter>&nbsp;:</term>
+<listitem><simpara> an alpha function to use for the template
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link> object
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-template-construct" role="function" condition="since:0.6">
+<title>clutter_effect_template_construct ()</title>
+<indexterm zone="clutter-effect-template-construct" role="0.6"><primary>clutter_effect_template_construct</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_effect_template_construct   (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterTimeline">ClutterTimeline</link> *timeline,
+                                                         <link linkend="ClutterAlphaFunc">ClutterAlphaFunc</link> alpha_func,
+                                                         <link linkend="gpointer">gpointer</link> user_data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Constructs a <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>, to be used with the effects API.
+</para>
+<para>
+This function can only be called once after the creation of <parameter>template_</parameter>
+and is only useful for language bindings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>timeline</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>alpha_func</parameter>&nbsp;:</term>
+<listitem><simpara> an alpha function to use for the template
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the alpha function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to be called when disposing the alpha function's use
+  data, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-template-get-timeline-clone" role="function" condition="since:0.6">
+<title>clutter_effect_template_get_timeline_clone ()</title>
+<indexterm zone="clutter-effect-template-get-timeline-clone" role="0.6"><primary>clutter_effect_template_get_timeline_clone</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_effect_template_get_timeline_clone
+                                                        (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_);</programlisting>
+<para>
+Gets whether timelines should be cloned when creating a new
+effect or just referenced.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara>  A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the templates timeline is to be cloned.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-template-set-timeline-clone" role="function" condition="since:0.6">
+<title>clutter_effect_template_set_timeline_clone ()</title>
+<indexterm zone="clutter-effect-template-set-timeline-clone" role="0.6"><primary>clutter_effect_template_set_timeline_clone</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_effect_template_set_timeline_clone
+                                                        (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="gboolean">gboolean</link> setting);</programlisting>
+<para>
+Sets if effects using this template should make a copy of the
+templates timeline (default) or reference the effects timeline.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara>  A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>setting</parameter>&nbsp;:</term>
+<listitem><simpara> A boolean indicating if effects should clone the timeline.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterEffectCompleteFunc" role="function" condition="since:0.4">
+<title>ClutterEffectCompleteFunc ()</title>
+<indexterm zone="ClutterEffectCompleteFunc" role="0.4"><primary>ClutterEffectCompleteFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*ClutterEffectCompleteFunc)        (<link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Callback function invoked when an effect is complete.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-effect-fade" role="function" condition="since:0.6">
+<title>clutter_effect_fade ()</title>
+<indexterm zone="clutter-effect-fade" role="0.6"><primary>clutter_effect_fade</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_fade                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="guint8">guint8</link> opacity_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for fading a single <link linkend="ClutterActor"><type>ClutterActor</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>opacity_end</parameter>&nbsp;:</term>
+<listitem><simpara> Final opacity value to apply to actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to pass to supplied  <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link>
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unrefed by
+the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-move" role="function" condition="since:0.6">
+<title>clutter_effect_move ()</title>
+<indexterm zone="clutter-effect-move" role="0.6"><primary>clutter_effect_move</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_move                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for moving a single <link linkend="ClutterActor"><type>ClutterActor</type></link> along to a
+destination point.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the destination
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the destination
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to pass to supplied  <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link>
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unreferenced by
+  the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-path" role="function" condition="since:0.6">
+<title>clutter_effect_path ()</title>
+<indexterm zone="clutter-effect-path" role="0.6"><primary>clutter_effect_path</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_path                 (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for moving a single <link linkend="ClutterActor"><type>ClutterActor</type></link> along a path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knots</parameter>&nbsp;:</term>
+<listitem><simpara> An array of <link linkend="ClutterKnots"><type>ClutterKnots</type></link> representing path for the actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_knots</parameter>&nbsp;:</term>
+<listitem><simpara> Number of <link linkend="ClutterKnots"><type>ClutterKnots</type></link> in passed array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to pass to supplied  <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link>
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unreferenced by
+  the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-scale" role="function" condition="since:0.6">
+<title>clutter_effect_scale ()</title>
+<indexterm zone="clutter-effect-scale" role="0.6"><primary>clutter_effect_scale</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_scale                (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gdouble">gdouble</link> x_scale_end,
+                                                         <link linkend="gdouble">gdouble</link> y_scale_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for scaling a single <link linkend="ClutterActor"><type>ClutterActor</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> Final X axis scale factor to apply to actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_scale_end</parameter>&nbsp;:</term>
+<listitem><simpara> Final Y axis scale factor to apply to actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or NULL
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to pass to supplied  <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link>
+  or NULL
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unreferenced by
+  the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-depth" role="function" condition="since:0.6">
+<title>clutter_effect_depth ()</title>
+<indexterm zone="clutter-effect-depth" role="0.6"><primary>clutter_effect_depth</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_depth                (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="gint">gint</link> depth_end,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for changing the depth of a single <link linkend="ClutterActor"><type>ClutterActor</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>depth_end</parameter>&nbsp;:</term>
+<listitem><simpara> Final depth value to apply to actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to pass to supplied  <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link>
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unrefed by
+the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-effect-rotate" role="function" condition="since:0.6">
+<title>clutter_effect_rotate ()</title>
+<indexterm zone="clutter-effect-rotate" role="0.6"><primary>clutter_effect_rotate</primary></indexterm><programlisting><link linkend="ClutterTimeline">ClutterTimeline</link>*    clutter_effect_rotate               (<link linkend="ClutterEffectTemplate">ClutterEffectTemplate</link> *template_,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterRotateAxis">ClutterRotateAxis</link> axis,
+                                                         <link linkend="gdouble">gdouble</link> angle,
+                                                         <link linkend="gint">gint</link> center_x,
+                                                         <link linkend="gint">gint</link> center_y,
+                                                         <link linkend="gint">gint</link> center_z,
+                                                         <link linkend="ClutterRotateDirection">ClutterRotateDirection</link> direction,
+                                                         <link linkend="ClutterEffectCompleteFunc">ClutterEffectCompleteFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple effect for rotating a single <link linkend="ClutterActor"><type>ClutterActor</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>template_</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEffectTemplate"><type>ClutterEffectTemplate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> to apply the effect to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>axis</parameter>&nbsp;:</term>
+<listitem><simpara> axis of rotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> final angle to apply to actor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>center_x</parameter>&nbsp;:</term>
+<listitem><simpara> position on X axis to rotate about.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>center_y</parameter>&nbsp;:</term>
+<listitem><simpara> position on Y axis to rotate about.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>center_z</parameter>&nbsp;:</term>
+<listitem><simpara> position on Z axis to rotate about.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>direction</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRotateDirection"><type>ClutterRotateDirection</type></link> for the rotation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterEffectCompleteFunc"><type>ClutterEffectCompleteFunc</type></link> to call on effect
+  completion or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to supplied <parameter>func</parameter> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> for the effect. Will be unreferenced by
+  the effect when completed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

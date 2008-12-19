@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterRectangle">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterRectangle.top_of_page">ClutterRectangle</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterRectangle</refname>
+<refpurpose>An actor that displays a simple rectangle.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterRectangle.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterRectangle-struct">ClutterRectangle</link>;
+                    <link linkend="ClutterRectangleClass">ClutterRectangleClass</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-rectangle-new">clutter_rectangle_new</link>               (void);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-rectangle-new-with-color">clutter_rectangle_new_with_color</link>    (const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-rectangle-get-color">clutter_rectangle_get_color</link>         (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-rectangle-set-color">clutter_rectangle_set_color</link>         (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-rectangle-get-border-color">clutter_rectangle_get_border_color</link>  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="clutter-rectangle-set-border-color">clutter_rectangle_set_border_color</link>  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="guint">guint</link>               <link linkend="clutter-rectangle-get-border-width">clutter_rectangle_get_border_width</link>  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle);
+<link linkend="void">void</link>                <link linkend="clutter-rectangle-set-border-width">clutter_rectangle_set_border_width</link>  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="guint">guint</link> width);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterRectangle.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterRectangle
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterRectangle.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterRectangle implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterRectangle.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterRectangle--border-color">border-color</link>&quot;             <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write
+  &quot;<link linkend="ClutterRectangle--border-width">border-width</link>&quot;             <link linkend="guint">guint</link>                 : Read / Write
+  &quot;<link linkend="ClutterRectangle--color">color</link>&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write
+  &quot;<link linkend="ClutterRectangle--has-border">has-border</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterRectangle.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterRectangle"><type>ClutterRectangle</type></link> is a <link linkend="ClutterActor"><type>ClutterActor</type></link> which draws a simple filled rectangle.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterRectangle.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterRectangle-struct" role="struct">
+<title>ClutterRectangle</title>
+<indexterm zone="ClutterRectangle-struct"><primary>ClutterRectangle</primary></indexterm><programlisting>typedef struct _ClutterRectangle ClutterRectangle;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterRectangleClass" role="struct">
+<title>ClutterRectangleClass</title>
+<indexterm zone="ClutterRectangleClass"><primary>ClutterRectangleClass</primary></indexterm><programlisting>typedef struct {
+  ClutterActorClass parent_class;
+
+  /* padding for future expansion */
+  void (*_clutter_rectangle1) (void);
+  void (*_clutter_rectangle2) (void);
+  void (*_clutter_rectangle3) (void);
+  void (*_clutter_rectangle4) (void);
+} ClutterRectangleClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-rectangle-new" role="function">
+<title>clutter_rectangle_new ()</title>
+<indexterm zone="clutter-rectangle-new"><primary>clutter_rectangle_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_rectangle_new               (void);</programlisting>
+<para>
+Creates a new <link linkend="ClutterActor"><type>ClutterActor</type></link> with a rectangular shape.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-rectangle-new-with-color" role="function">
+<title>clutter_rectangle_new_with_color ()</title>
+<indexterm zone="clutter-rectangle-new-with-color"><primary>clutter_rectangle_new_with_color</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_rectangle_new_with_color    (const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Creates a new <link linkend="ClutterActor"><type>ClutterActor</type></link> with a rectangular shape
+and of the given <parameter>color</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-rectangle-get-color" role="function">
+<title>clutter_rectangle_get_color ()</title>
+<indexterm zone="clutter-rectangle-get-color"><primary>clutter_rectangle_get_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_rectangle_get_color         (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Retrieves the color of <parameter>rectangle</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-rectangle-set-color" role="function">
+<title>clutter_rectangle_set_color ()</title>
+<indexterm zone="clutter-rectangle-set-color"><primary>clutter_rectangle_set_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_rectangle_set_color         (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Sets the color of <parameter>rectangle</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-rectangle-get-border-color" role="function" condition="since:0.2">
+<title>clutter_rectangle_get_border_color ()</title>
+<indexterm zone="clutter-rectangle-get-border-color" role="0.2"><primary>clutter_rectangle_get_border_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_rectangle_get_border_color  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Gets the color of the border used by <parameter>rectangle</parameter> and places
+it into <parameter>color</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="ClutterColor"><type>ClutterColor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-rectangle-set-border-color" role="function">
+<title>clutter_rectangle_set_border_color ()</title>
+<indexterm zone="clutter-rectangle-set-border-color"><primary>clutter_rectangle_set_border_color</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_rectangle_set_border_color  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Sets the color of the border used by <parameter>rectangle</parameter> using <parameter>color</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> the color of the border
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-rectangle-get-border-width" role="function" condition="since:0.2">
+<title>clutter_rectangle_get_border_width ()</title>
+<indexterm zone="clutter-rectangle-get-border-width" role="0.2"><primary>clutter_rectangle_get_border_width</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_rectangle_get_border_width  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle);</programlisting>
+<para>
+Gets the width (in pixels) of the border used by <parameter>rectangle</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the border's width
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-rectangle-set-border-width" role="function" condition="since:0.2">
+<title>clutter_rectangle_set_border_width ()</title>
+<indexterm zone="clutter-rectangle-set-border-width" role="0.2"><primary>clutter_rectangle_set_border_width</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_rectangle_set_border_width  (<link linkend="ClutterRectangle">ClutterRectangle</link> *rectangle,
+                                                         <link linkend="guint">guint</link> width);</programlisting>
+<para>
+Sets the width (in pixel) of the border used by <parameter>rectangle</parameter>.
+A <parameter>width</parameter> of 0 will unset the border.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rectangle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> the width of the border
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterRectangle.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterRectangle--border-color"><title>The <literal>&quot;border-color&quot;</literal> property</title>
+<indexterm zone="ClutterRectangle--border-color" role="0.2"><primary>ClutterRectangle:border-color</primary></indexterm><programlisting>  &quot;border-color&quot;             <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write</programlisting>
+<para>
+The color of the border of the rectangle.</para>
+<para>
+
+</para><para>Since  0.2
+</para>
+</refsect2>
+<refsect2 id="ClutterRectangle--border-width"><title>The <literal>&quot;border-width&quot;</literal> property</title>
+<indexterm zone="ClutterRectangle--border-width" role="0.2"><primary>ClutterRectangle:border-width</primary></indexterm><programlisting>  &quot;border-width&quot;             <link linkend="guint">guint</link>                 : Read / Write</programlisting>
+<para>
+The width of the border of the rectangle, in pixels.</para>
+<para>
+
+</para><para>Default value: 0</para>
+<para>Since  0.2
+</para>
+</refsect2>
+<refsect2 id="ClutterRectangle--color"><title>The <literal>&quot;color&quot;</literal> property</title>
+<indexterm zone="ClutterRectangle--color"><primary>ClutterRectangle:color</primary></indexterm><programlisting>  &quot;color&quot;                    <link linkend="ClutterColor">ClutterColor</link>*         : Read / Write</programlisting>
+<para>
+The color of the rectangle.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterRectangle--has-border"><title>The <literal>&quot;has-border&quot;</literal> property</title>
+<indexterm zone="ClutterRectangle--has-border" role="0.2"><primary>ClutterRectangle:has-border</primary></indexterm><programlisting>  &quot;has-border&quot;               <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link> should be displayed with a border.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.2
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

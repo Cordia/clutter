@@ -1,0 +1,517 @@
+<!-- ##### SECTION Title ##### -->
+Fixed Point Support
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF ClutterFixed ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO CFX_Q ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_ONE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_HALF ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_MAX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_MIN ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_PI ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_2PI ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_PI_2 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_PI_4 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_120 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_180 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_240 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_360 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_60 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_255 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_FIXED_TO_INT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_TO_FLOAT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_TO_DOUBLE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FLOAT_TO_FIXED ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FLOAT_TO_INT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FLOAT_TO_UINT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_INT_TO_FIXED ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_INT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_FRACTION ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_FLOOR ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_CEIL ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_MUL ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### MACRO CLUTTER_FIXED_DIV ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### TYPEDEF ClutterAngle ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_FROM_DEG ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_FROM_DEGF ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_FROM_DEGX ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_TO_DEGF ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_TO_DEG ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_TO_DEGX ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_ANGLE_MAX_DEG ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CFX_RADIANS_TO_DEGREES ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO clutter_cosi ##### -->
+<para>
+
+</para>
+
+@angle: 
+
+
+<!-- ##### MACRO clutter_cosx ##### -->
+<para>
+
+</para>
+
+@angle: 
+
+
+<!-- ##### FUNCTION clutter_sini ##### -->
+<para>
+
+</para>
+
+@angle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_sinx ##### -->
+<para>
+
+</para>
+
+@angle: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_SQRTI_ARG_10_PERCENT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_SQRTI_ARG_5_PERCENT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_SQRTI_ARG_MAX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_sqrti ##### -->
+<para>
+
+</para>
+
+@x: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_sqrtx ##### -->
+<para>
+
+</para>
+
+@x: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_log2x ##### -->
+<para>
+
+</para>
+
+@x: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_pow2x ##### -->
+<para>
+
+</para>
+
+@x: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_powx ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_qmulx ##### -->
+<para>
+
+</para>
+
+@op1: 
+@op2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_qdivx ##### -->
+<para>
+
+</para>
+
+@op1: 
+@op2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_tani ##### -->
+<para>
+
+</para>
+
+@angle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_atani ##### -->
+<para>
+
+</para>
+
+@x: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_atan2i ##### -->
+<para>
+
+</para>
+
+@y: 
+@x: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_MAXFIXED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_MINFIXED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT ClutterParamSpecFixed ##### -->
+<para>
+
+</para>
+
+@minimum: 
+@maximum: 
+@default_value: 
+
+<!-- ##### FUNCTION clutter_param_spec_fixed ##### -->
+<para>
+
+</para>
+
+@name: 
+@nick: 
+@blurb: 
+@minimum: 
+@maximum: 
+@default_value: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_VALUE_HOLDS_FIXED ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### FUNCTION clutter_value_set_fixed ##### -->
+<para>
+
+</para>
+
+@value: 
+@fixed_: 
+
+
+<!-- ##### FUNCTION clutter_value_get_fixed ##### -->
+<para>
+
+</para>
+
+@value: 
+@Returns: 
+
+

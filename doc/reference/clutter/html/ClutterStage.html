@@ -1,0 +1,1746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterStage</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch03.html" title="Container actors">
+<link rel="prev" href="ClutterGroup.html" title="ClutterGroup">
+<link rel="next" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterGroup.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutteranimation.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterStage.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterStage.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterStage.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterStage.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterStage.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterStage.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterStage"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterStage.top_of_page"></a>ClutterStage</span></h2>
+<p>ClutterStage — Top level visual element to which actors are placed.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterStage.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterStage.html#ClutterStage-struct" title="ClutterStage">ClutterStage</a>;
+                    <a class="link" href="ClutterStage.html#ClutterStageClass" title="ClutterStageClass">ClutterStageClass</a>;
+#define             <a class="link" href="ClutterStage.html#CLUTTER-STAGE-WIDTH:CAPS" title="CLUTTER_STAGE_WIDTH()">CLUTTER_STAGE_WIDTH</a>                 ()
+#define             <a class="link" href="ClutterStage.html#CLUTTER-STAGE-HEIGHT:CAPS" title="CLUTTER_STAGE_HEIGHT()">CLUTTER_STAGE_HEIGHT</a>                ()
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterStage.html#clutter-stage-get-default" title="clutter_stage_get_default ()">clutter_stage_get_default</a>           (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterStage.html#clutter-stage-new" title="clutter_stage_new ()">clutter_stage_new</a>                   (void);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterStage.html#clutter-stage-is-default" title="clutter_stage_is_default ()">clutter_stage_is_default</a>            (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-color" title="clutter_stage_set_color ()">clutter_stage_set_color</a>             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterStage.html#clutter-stage-get-color" title="clutter_stage_get_color ()">clutter_stage_get_color</a>             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterStage.html#clutter-stage-fullscreen" title="clutter_stage_fullscreen ()">clutter_stage_fullscreen</a>            (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-unfullscreen" title="clutter_stage_unfullscreen ()">clutter_stage_unfullscreen</a>          (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-show-cursor" title="clutter_stage_show_cursor ()">clutter_stage_show_cursor</a>           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-hide-cursor" title="clutter_stage_hide_cursor ()">clutter_stage_hide_cursor</a>           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterStage.html#clutter-stage-get-actor-at-pos" title="clutter_stage_get_actor_at_pos ()">clutter_stage_get_actor_at_pos</a>      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y);
+void                <a class="link" href="ClutterStage.html#clutter-stage-ensure-current" title="clutter_stage_ensure_current ()">clutter_stage_ensure_current</a>        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-queue-redraw" title="clutter_stage_queue_redraw ()">clutter_stage_queue_redraw</a>          (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterStage.html#clutter-stage-event" title="clutter_stage_event ()">clutter_stage_event</a>                 (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *event);
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-key-focus" title="clutter_stage_set_key_focus ()">clutter_stage_set_key_focus</a>         (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterStage.html#clutter-stage-get-key-focus" title="clutter_stage_get_key_focus ()">clutter_stage_get_key_focus</a>         (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="ClutterStage.html#clutter-stage-get-resolution" title="clutter_stage_get_resolution ()">clutter_stage_get_resolution</a>        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        <a class="link" href="ClutterStage.html#clutter-stage-get-resolutionx" title="clutter_stage_get_resolutionx ()">clutter_stage_get_resolutionx</a>       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="ClutterStage.html#clutter-stage-read-pixels" title="clutter_stage_read_pixels ()">clutter_stage_read_pixels</a>           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height);
+
+                    <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a>;
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-perspective" title="clutter_stage_set_perspective ()">clutter_stage_set_perspective</a>       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> z_far);
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-perspectivex" title="clutter_stage_set_perspectivex ()">clutter_stage_set_perspectivex</a>      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a> *perspective);
+void                <a class="link" href="ClutterStage.html#clutter-stage-get-perspective" title="clutter_stage_get_perspective ()">clutter_stage_get_perspective</a>       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *z_far);
+void                <a class="link" href="ClutterStage.html#clutter-stage-get-perspectivex" title="clutter_stage_get_perspectivex ()">clutter_stage_get_perspectivex</a>      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a> *perspective);
+
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-title" title="clutter_stage_set_title ()">clutter_stage_set_title</a>             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *title);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterStage.html#clutter-stage-get-title" title="clutter_stage_get_title ()">clutter_stage_get_title</a>             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-user-resizable" title="clutter_stage_set_user_resizable ()">clutter_stage_set_user_resizable</a>    (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> resizable);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterStage.html#clutter-stage-get-user-resizable" title="clutter_stage_get_user_resizable ()">clutter_stage_get_user_resizable</a>    (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+
+                    <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog">ClutterFog</a>;
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-use-fog" title="clutter_stage_set_use_fog ()">clutter_stage_set_use_fog</a>           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> fog);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterStage.html#clutter-stage-get-use-fog" title="clutter_stage_get_use_fog ()">clutter_stage_get_use_fog</a>           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-fog" title="clutter_stage_set_fog ()">clutter_stage_set_fog</a>               (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> density,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> z_far);
+void                <a class="link" href="ClutterStage.html#clutter-stage-get-fog" title="clutter_stage_get_fog ()">clutter_stage_get_fog</a>               (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *density,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *z_far);
+void                <a class="link" href="ClutterStage.html#clutter-stage-set-fogx" title="clutter_stage_set_fogx ()">clutter_stage_set_fogx</a>              (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog">ClutterFog</a> *fog);
+void                <a class="link" href="ClutterStage.html#clutter-stage-get-fogx" title="clutter_stage_get_fogx ()">clutter_stage_get_fogx</a>              (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog">ClutterFog</a> *fog);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----<a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a>
+                     +----ClutterStage
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterStage implements
+ <a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterStage.html#ClutterStage--color" title='The "color" property'>color</a>"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write
+  "<a class="link" href="ClutterStage.html#ClutterStage--cursor-visible" title='The "cursor-visible" property'>cursor-visible</a>"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct
+  "<a class="link" href="ClutterStage.html#ClutterStage--fullscreen" title='The "fullscreen" property'>fullscreen</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct
+  "<a class="link" href="ClutterStage.html#ClutterStage--offscreen" title='The "offscreen" property'>offscreen</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct
+  "<a class="link" href="ClutterStage.html#ClutterStage--perspective" title='The "perspective" property'>perspective</a>"              <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a>*   : Read / Write
+  "<a class="link" href="ClutterStage.html#ClutterStage--title" title='The "title" property'>title</a>"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterStage.html#ClutterStage--use-fog" title='The "use-fog" property'>use-fog</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterStage.html#ClutterStage--user-resizable" title='The "user-resizable" property'>user-resizable</a>"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterStage.html#ClutterStage-activate" title='The "activate" signal'>activate</a>"                                       : Run Last
+  "<a class="link" href="ClutterStage.html#ClutterStage-deactivate" title='The "deactivate" signal'>deactivate</a>"                                     : Run Last
+  "<a class="link" href="ClutterStage.html#ClutterStage-fullscreen" title='The "fullscreen" signal'>fullscreen</a>"                                     : Run First
+  "<a class="link" href="ClutterStage.html#ClutterStage-unfullscreen" title='The "unfullscreen" signal'>unfullscreen</a>"                                   : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> is a top level 'window' on which child actors are placed
+and manipulated.
+</p>
+<p>
+Clutter creates a default stage upon initialization, which can be retrieved
+using <a class="link" href="ClutterStage.html#clutter-stage-get-default" title="clutter_stage_get_default ()"><code class="function">clutter_stage_get_default()</code></a>. Clutter always provides the default
+stage, unless the backend is unable to create one. The stage returned
+by <a class="link" href="ClutterStage.html#clutter-stage-get-default" title="clutter_stage_get_default ()"><code class="function">clutter_stage_get_default()</code></a> is guaranteed to always be the same.
+</p>
+<p>
+Backends might provide support for multiple stages. The support for this
+feature can be checked at run-time using the <code class="function">clutter_feature_available()</code>
+function and the <code class="literal">CLUTTER_FEATURE_STAGE_MULTIPLE</code> flag. If the backend used
+supports multiple stages, new <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> instances can be created
+using <a class="link" href="ClutterStage.html#clutter-stage-new" title="clutter_stage_new ()"><code class="function">clutter_stage_new()</code></a>. These stages must be managed by the developer
+using <a class="link" href="ClutterActor.html#clutter-actor-destroy" title="clutter_actor_destroy ()"><code class="function">clutter_actor_destroy()</code></a>, which will take care of destroying all the
+actors contained inside them.
+</p>
+<p>
+<a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> is a proxy actor, wrapping the backend-specific
+implementation of the windowing system. It is possible to subclass
+<a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>, as long as every overridden virtual function chains up to
+the parent class corresponding function.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterStage-struct"></a><h3>ClutterStage</h3>
+<pre class="programlisting">typedef struct _ClutterStage ClutterStage;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStageClass"></a><h3>ClutterStageClass</h3>
+<pre class="programlisting">typedef struct {
+  /* signals */
+  void (* fullscreen)   (ClutterStage *stage);
+  void (* unfullscreen) (ClutterStage *stage);
+  void (* activate)     (ClutterStage *stage);
+  void (* deactivate)   (ClutterStage *stage);
+} ClutterStageClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-STAGE-WIDTH:CAPS"></a><h3>CLUTTER_STAGE_WIDTH()</h3>
+<pre class="programlisting">#define             CLUTTER_STAGE_WIDTH()</pre>
+<p>
+Macro that evaluates to the current stage width</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-STAGE-HEIGHT:CAPS"></a><h3>CLUTTER_STAGE_HEIGHT()</h3>
+<pre class="programlisting">#define             CLUTTER_STAGE_HEIGHT()</pre>
+<p>
+Macro that evaluates to the current stage height</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-default"></a><h3>clutter_stage_get_default ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_stage_get_default           (void);</pre>
+<p>
+Returns the main stage. The default <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> is a singleton,
+so the stage will be created the first time this function is
+called (typically, inside <a class="link" href="clutter-General.html#clutter-init" title="clutter_init ()"><code class="function">clutter_init()</code></a>); all the subsequent
+calls to <a class="link" href="ClutterStage.html#clutter-stage-get-default" title="clutter_stage_get_default ()"><code class="function">clutter_stage_get_default()</code></a> will return the same instance.
+</p>
+<p>
+Clutter guarantess the existence of the default stage.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the main <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>.  You should never
+  destroy or unref the returned actor.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-new"></a><h3>clutter_stage_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_stage_new                   (void);</pre>
+<p>
+Creates a new, non-default stage. A non-default stage is a new
+top-level actor which can be used as another container. It works
+exactly like the default stage, but while <a class="link" href="ClutterStage.html#clutter-stage-get-default" title="clutter_stage_get_default ()"><code class="function">clutter_stage_get_default()</code></a>
+will always return the same instance, you will have to keep a pointer
+to any <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a> returned by <code class="function">clutter_stage_create()</code>.
+</p>
+<p>
+The ability to support multiple stages depends on the current
+backend. Use <code class="function">clutter_feature_available()</code> and
+<code class="literal">CLUTTER_FEATURE_STAGE_MULTIPLE</code> to check at runtime whether a
+backend supports multiple stages.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new stage, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the default backend does
+  not support multiple stages. Use <a class="link" href="ClutterActor.html#clutter-actor-destroy" title="clutter_actor_destroy ()"><code class="function">clutter_actor_destroy()</code></a> to
+  programmatically close the returned stage.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-is-default"></a><h3>clutter_stage_is_default ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_stage_is_default            (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Checks if <em class="parameter"><code>stage</code></em> is the default stage, or an instance created using
+<a class="link" href="ClutterStage.html#clutter-stage-new" title="clutter_stage_new ()"><code class="function">clutter_stage_new()</code></a> but internally using the same implementation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the passed stage is the default one
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-color"></a><h3>clutter_stage_set_color ()</h3>
+<pre class="programlisting">void                clutter_stage_set_color             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Set the stage color.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> A <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-color"></a><h3>clutter_stage_get_color ()</h3>
+<pre class="programlisting">void                clutter_stage_get_color             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Retrieves the stage color.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-fullscreen"></a><h3>clutter_stage_fullscreen ()</h3>
+<pre class="programlisting">void                clutter_stage_fullscreen            (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Asks to place the stage window in the fullscreen state. Note that you
+shouldn't assume the window is definitely full screen afterward, because
+other entities (e.g. the user or window manager) could unfullscreen it
+again, and not all window managers honor requests to fullscreen windows.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-unfullscreen"></a><h3>clutter_stage_unfullscreen ()</h3>
+<pre class="programlisting">void                clutter_stage_unfullscreen          (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Asks to toggle off the fullscreen state for the stage window. Note that
+you shouldn't assume the window is definitely not full screen afterward,
+because other entities (e.g. the user or window manager) could fullscreen
+it again, and not all window managers honor requests to unfullscreen
+windows.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-show-cursor"></a><h3>clutter_stage_show_cursor ()</h3>
+<pre class="programlisting">void                clutter_stage_show_cursor           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Shows the cursor on the stage window</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-hide-cursor"></a><h3>clutter_stage_hide_cursor ()</h3>
+<pre class="programlisting">void                clutter_stage_hide_cursor           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Makes the cursor invisible on the stage window</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-actor-at-pos"></a><h3>clutter_stage_get_actor_at_pos ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_stage_get_actor_at_pos      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y);</pre>
+<p>
+Checks the scene at the coordinates <em class="parameter"><code>x</code></em> and <em class="parameter"><code>y</code></em> and returns a pointer
+to the <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> at those coordinates.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actor at the specified coordinates, if any
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-ensure-current"></a><h3>clutter_stage_ensure_current ()</h3>
+<pre class="programlisting">void                clutter_stage_ensure_current        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+This function essentially makes sure the right GL context is
+current for the passed stage. It is not intended to
+be used by applications.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-queue-redraw"></a><h3>clutter_stage_queue_redraw ()</h3>
+<pre class="programlisting">void                clutter_stage_queue_redraw          (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Queues a redraw for the passed stage.
+</p>
+<p>
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>Applications should call <a class="link" href="ClutterActor.html#clutter-actor-queue-redraw" title="clutter_actor_queue_redraw ()"><code class="function">clutter_actor_queue_redraw()</code></a> and not
+this function.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-event"></a><h3>clutter_stage_event ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_stage_event                 (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent">ClutterEvent</a> *event);</pre>
+<p>
+This function is used to emit an event on the main stage.
+</p>
+<p>
+You should rarely need to use this function, except for
+synthetised events.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Events.html#ClutterEvent" title="union ClutterEvent"><span class="type">ClutterEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the return value from the signal emission
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-key-focus"></a><h3>clutter_stage_set_key_focus ()</h3>
+<pre class="programlisting">void                clutter_stage_set_key_focus         (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Sets the key focus on <em class="parameter"><code>actor</code></em>. An actor with key focus will receive
+all the key events. If <em class="parameter"><code>actor</code></em> is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>, the stage will receive
+focus.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor to set key focus to, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-key-focus"></a><h3>clutter_stage_get_key_focus ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_stage_get_key_focus         (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Retrieves the actor that is currently under key focus.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the actor with key focus, or the stage
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-resolution"></a><h3>clutter_stage_get_resolution ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>             clutter_stage_get_resolution        (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Retrieves the resolution (in DPI) of the stage from the default
+backend.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the resolution of the stage
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-resolutionx"></a><h3>clutter_stage_get_resolutionx ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a>        clutter_stage_get_resolutionx       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Fixed point version of <a class="link" href="ClutterStage.html#clutter-stage-get-resolution" title="clutter_stage_get_resolution ()"><code class="function">clutter_stage_get_resolution()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the resolution of the stage
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-read-pixels"></a><h3>clutter_stage_read_pixels ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a>*             clutter_stage_read_pixels           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height);</pre>
+<p>
+Makes a screenshot of the stage in RGBA 8bit data, returns a
+linear buffer with <em class="parameter"><code>width</code></em> * 4 as rowstride.
+</p>
+<p>
+The alpha data contained in the returned buffer is driver-dependent,
+and not guaranteed to hold any sensible value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> x coordinate of the first pixel that is read from stage
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> y coordinate of the first pixel that is read from stage
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width dimention of pixels to be read, or -1 for the
+  entire stage width
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height dimention of pixels to be read, or -1 for the
+  entire stage height
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a pointer to newly allocated memory with the buffer
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the read failed. Use <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a> on the returned data
+  to release the resources it has allocated.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterPerspective"></a><h3>ClutterPerspective</h3>
+<pre class="programlisting">typedef struct {
+  ClutterFixed fovy;
+  ClutterFixed aspect;
+  ClutterFixed z_near;
+  ClutterFixed z_far;
+} ClutterPerspective;
+</pre>
+<p>
+Stage perspective definition. <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective"><span class="type">ClutterPerspective</span></a> is only used by
+the fixed point version of <a class="link" href="ClutterStage.html#clutter-stage-set-perspective" title="clutter_stage_set_perspective ()"><code class="function">clutter_stage_set_perspective()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>fovy</code></em>;</span></p></td>
+<td> the field of view angle, in degrees, in the y direction
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>aspect</code></em>;</span></p></td>
+<td> the aspect ratio that determines the field of view in the x
+  direction. The aspect ratio is the ratio of x (width) to y (height)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>z_near</code></em>;</span></p></td>
+<td> the distance from the viewer to the near clipping
+  plane (always positive)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>z_far</code></em>;</span></p></td>
+<td> the distance from the viewer to the far clipping
+  plane (always positive)
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-perspective"></a><h3>clutter_stage_set_perspective ()</h3>
+<pre class="programlisting">void                clutter_stage_set_perspective       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> z_far);</pre>
+<p>
+Sets the stage perspective.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fovy</code></em> :</span></p></td>
+<td> the field of view angle, in degrees, in the y direction
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>aspect</code></em> :</span></p></td>
+<td> the aspect ratio that determines the field of view in the x
+  direction. The aspect ratio is the ratio of x (width) to y (height)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> the distance from the viewer to the near clipping
+  plane (always positive)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> the  distance from the viewer to the far clipping
+  plane (always positive)
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-perspectivex"></a><h3>clutter_stage_set_perspectivex ()</h3>
+<pre class="programlisting">void                clutter_stage_set_perspectivex      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a> *perspective);</pre>
+<p>
+Set the stage perspective. This is the fixed point version of
+<a class="link" href="ClutterStage.html#clutter-stage-set-perspective" title="clutter_stage_set_perspective ()"><code class="function">clutter_stage_set_perspective()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>perspective</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective"><span class="type">ClutterPerspective</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-perspective"></a><h3>clutter_stage_get_perspective ()</h3>
+<pre class="programlisting">void                clutter_stage_get_perspective       (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *fovy,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *aspect,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> *z_far);</pre>
+<p>
+Retrieves the stage perspective.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fovy</code></em> :</span></p></td>
+<td> return location for the field of view, in degrees, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>aspect</code></em> :</span></p></td>
+<td> return location for the aspect ratio, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> return location for the distance of the viewer from the
+  near clipping plane, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> return location for the distance of the viewer from the
+  far clipping plane, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-perspectivex"></a><h3>clutter_stage_get_perspectivex ()</h3>
+<pre class="programlisting">void                clutter_stage_get_perspectivex      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a> *perspective);</pre>
+<p>
+Retrieves the stage perspective. This is the fixed point version of
+<a class="link" href="ClutterStage.html#clutter-stage-get-perspective" title="clutter_stage_get_perspective ()"><code class="function">clutter_stage_get_perspective()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>perspective</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective"><span class="type">ClutterPerspective</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-title"></a><h3>clutter_stage_set_title ()</h3>
+<pre class="programlisting">void                clutter_stage_set_title             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *title);</pre>
+<p>
+Sets the stage title.
+</p>
+<p>
+Since 0.4</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>title</code></em> :</span></p></td>
+<td> A utf8 string for the stage windows title.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-title"></a><h3>clutter_stage_get_title ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_stage_get_title             (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Gets the stage title.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the title string for the stage. The
+returned string is owned by the actor and should not
+be modified or freed.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-user-resizable"></a><h3>clutter_stage_set_user_resizable ()</h3>
+<pre class="programlisting">void                clutter_stage_set_user_resizable    (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> resizable);</pre>
+<p>
+Sets if the stage is resizable by user interaction (e.g. via
+window manager controls)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>resizable</code></em> :</span></p></td>
+<td> whether the stage should be user resizable.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-user-resizable"></a><h3>clutter_stage_get_user_resizable ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_stage_get_user_resizable    (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Retrieves the value set with <a class="link" href="ClutterStage.html#clutter-stage-set-user-resizable" title="clutter_stage_set_user_resizable ()"><code class="function">clutter_stage_set_user_resizable()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the stage is resizable by the user.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterFog"></a><h3>ClutterFog</h3>
+<pre class="programlisting">typedef struct {
+  ClutterFixed density;
+  ClutterFixed z_near;
+  ClutterFixed z_far;
+} ClutterFog;
+</pre>
+<p>
+Fog settings used to create the depth cueing effect. <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog"><span class="type">ClutterFog</span></a> is
+useful only when using the fixed point API.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>density</code></em>;</span></p></td>
+<td> density of the fog
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>z_near</code></em>;</span></p></td>
+<td> starting distance from the viewer to the near clipping
+  plane (always positive)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> <em class="structfield"><code>z_far</code></em>;</span></p></td>
+<td> final distance from the viewer to the far clipping
+  plane (always positive)
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-use-fog"></a><h3>clutter_stage_set_use_fog ()</h3>
+<pre class="programlisting">void                clutter_stage_set_use_fog           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> fog);</pre>
+<p>
+Sets whether the depth cueing effect on the stage should be enabled
+or not.
+</p>
+<p>
+Depth cueing is a 3D effect that makes actors farther away from the
+viewing point less opaque, by fading them with the stage color.
+</p>
+<p>
+The parameters of the GL fog used can be changed using the
+<a class="link" href="ClutterStage.html#clutter-stage-set-fog" title="clutter_stage_set_fog ()"><code class="function">clutter_stage_set_fog()</code></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fog</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> for enabling the depth cueing effect
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-use-fog"></a><h3>clutter_stage_get_use_fog ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_stage_get_use_fog           (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage);</pre>
+<p>
+Gets whether the depth cueing effect is enabled on <em class="parameter"><code>stage</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the the depth cueing effect is enabled
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-fog"></a><h3>clutter_stage_set_fog ()</h3>
+<pre class="programlisting">void                clutter_stage_set_fog               (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> density,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> z_far);</pre>
+<p>
+Sets the GL fog settings used to create the depth cueing effect
+on the <em class="parameter"><code>stage</code></em>.
+</p>
+<p>
+If the actors are all near the view point you will need a higher <em class="parameter"><code>density</code></em>
+and a smaller interval between <em class="parameter"><code>z_near</code></em> and <em class="parameter"><code>z_far</code></em>. On the other hand, if
+actors are placed far away from the view point you will need a lower
+<em class="parameter"><code>density</code></em> but a bigger interval between <em class="parameter"><code>z_near</code></em> and <em class="parameter"><code>z_far</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>density</code></em> :</span></p></td>
+<td> density of the intensity dampening
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> starting point of the depth cueing
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> ending point of the depth cueing
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-fog"></a><h3>clutter_stage_get_fog ()</h3>
+<pre class="programlisting">void                clutter_stage_get_fog               (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *density,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *z_near,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *z_far);</pre>
+<p>
+Retrieves the settings used by the GL fog to create the
+depth cueing effect on the <em class="parameter"><code>stage</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>density</code></em> :</span></p></td>
+<td> return location for the intensity dampening
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_near</code></em> :</span></p></td>
+<td> return location for the starting point of the depth cueing
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z_far</code></em> :</span></p></td>
+<td> return location for the ending point of the depth cueing
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-set-fogx"></a><h3>clutter_stage_set_fogx ()</h3>
+<pre class="programlisting">void                clutter_stage_set_fogx              (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog">ClutterFog</a> *fog);</pre>
+<p>
+Sets the depth cueing settings for the <em class="parameter"><code>stage</code></em>. This is the fixed point
+version of <a class="link" href="ClutterStage.html#clutter-stage-set-fog" title="clutter_stage_set_fog ()"><code class="function">clutter_stage_set_fog()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fog</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog"><span class="type">ClutterFog</span></a> structure
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-stage-get-fogx"></a><h3>clutter_stage_get_fogx ()</h3>
+<pre class="programlisting">void                clutter_stage_get_fogx              (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                         <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog">ClutterFog</a> *fog);</pre>
+<p>
+Retrieves the current depth cueing settings from the stage. This is the
+fixed point version of <a class="link" href="ClutterStage.html#clutter-stage-get-fog" title="clutter_stage_get_fog ()"><code class="function">clutter_stage_get_fog()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterStage.html" title="ClutterStage"><span class="type">ClutterStage</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fog</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="ClutterStage.html#ClutterFog" title="ClutterFog"><span class="type">ClutterFog</span></a> structure
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--color"></a><h3>The <code class="literal">"color"</code> property</h3>
+<pre class="programlisting">  "color"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write</pre>
+<p>
+The color of the main stage.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--cursor-visible"></a><h3>The <code class="literal">"cursor-visible"</code> property</h3>
+<pre class="programlisting">  "cursor-visible"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct</pre>
+<p>
+Whether the mouse pointer should be visible</p>
+<p>
+
+</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--fullscreen"></a><h3>The <code class="literal">"fullscreen"</code> property</h3>
+<pre class="programlisting">  "fullscreen"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct</pre>
+<p>
+Whether the stage should be fullscreen or not.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--offscreen"></a><h3>The <code class="literal">"offscreen"</code> property</h3>
+<pre class="programlisting">  "offscreen"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct</pre>
+<p>
+Whether the stage should be rendered in an offscreen buffer.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--perspective"></a><h3>The <code class="literal">"perspective"</code> property</h3>
+<pre class="programlisting">  "perspective"              <a class="link" href="ClutterStage.html#ClutterPerspective" title="ClutterPerspective">ClutterPerspective</a>*   : Read / Write</pre>
+<p>
+The parameters used for the perspective projection from 3D
+coordinates to 2D</p>
+<p>
+
+</p>
+<p>Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--title"></a><h3>The <code class="literal">"title"</code> property</h3>
+<pre class="programlisting">  "title"                    <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>
+The stage's title - usually displayed in stage windows title decorations.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--use-fog"></a><h3>The <code class="literal">"use-fog"</code> property</h3>
+<pre class="programlisting">  "use-fog"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the stage should use a linear GL "fog" in creating the
+depth-cueing effect, to enhance the perception of depth by fading
+actors farther from the viewpoint.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage--user-resizable"></a><h3>The <code class="literal">"user-resizable"</code> property</h3>
+<pre class="programlisting">  "user-resizable"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct</pre>
+<p>
+Whether the stage is resizable via user interaction.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterStage.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterStage-activate"></a><h3>The <code class="literal">"activate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::activate signal is emitted when the stage receives key focus
+from the underlying window system.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the stage which was activated
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage-deactivate"></a><h3>The <code class="literal">"deactivate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::activate signal is emitted when the stage loses key focus
+from the underlying window system.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the stage which was deactivated
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage-fullscreen"></a><h3>The <code class="literal">"fullscreen"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run First</pre>
+<p>
+The ::fullscreen signal is emitted when the stage is made fullscreen.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the stage which was fullscreened
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterStage-unfullscreen"></a><h3>The <code class="literal">"unfullscreen"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> *stage,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::unfullscreen signal is emitted when the stage leaves a fullscreen
+state.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stage</code></em> :</span></p></td>
+<td> the stage which has left a fullscreen state.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

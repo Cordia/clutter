@@ -1,0 +1,201 @@
+<!-- ##### SECTION Title ##### -->
+ClutterScript
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterScript ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterScript:filename ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterScript:filename-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterScriptClass ##### -->
+<para>
+
+</para>
+
+@get_type_from_name: 
+
+<!-- ##### FUNCTION clutter_script_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### ENUM ClutterScriptError ##### -->
+<para>
+
+</para>
+
+@CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION: 
+@CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY: 
+@CLUTTER_SCRIPT_ERROR_INVALID_VALUE: 
+
+<!-- ##### FUNCTION clutter_script_load_from_data ##### -->
+<para>
+
+</para>
+
+@script: 
+@data: 
+@length: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_script_load_from_file ##### -->
+<para>
+
+</para>
+
+@script: 
+@filename: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_script_add_search_paths ##### -->
+<para>
+
+</para>
+
+@script: 
+@paths: 
+@n_paths: 
+
+
+<!-- ##### FUNCTION clutter_script_lookup_filename ##### -->
+<para>
+
+</para>
+
+@script: 
+@filename: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_script_get_object ##### -->
+<para>
+
+</para>
+
+@script: 
+@name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_script_get_objects ##### -->
+<para>
+
+</para>
+
+@script: 
+@first_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_script_unmerge_objects ##### -->
+<para>
+
+</para>
+
+@script: 
+@merge_id: 
+
+
+<!-- ##### FUNCTION clutter_script_ensure_objects ##### -->
+<para>
+
+</para>
+
+@script: 
+
+
+<!-- ##### FUNCTION clutter_script_list_objects ##### -->
+<para>
+
+</para>
+
+@script: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION ClutterScriptConnectFunc ##### -->
+<para>
+
+</para>
+
+@script: 
+@object: 
+@signal_name: 
+@handler_name: 
+@connect_object: 
+@flags: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_script_connect_signals ##### -->
+<para>
+
+</para>
+
+@script: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_script_connect_signals_full ##### -->
+<para>
+
+</para>
+
+@script: 
+@func: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_script_get_type_from_name ##### -->
+<para>
+
+</para>
+
+@script: 
+@type_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_get_script_id ##### -->
+<para>
+
+</para>
+
+@gobject: 
+@Returns: 
+
+

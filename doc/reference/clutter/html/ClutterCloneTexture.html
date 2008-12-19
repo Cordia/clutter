@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterCloneTexture</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch02.html" title="Base actors">
+<link rel="prev" href="ClutterTexture.html" title="ClutterTexture">
+<link rel="next" href="ClutterLabel.html" title="ClutterLabel">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterTexture.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterLabel.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterCloneTexture.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterCloneTexture.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterCloneTexture.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterCloneTexture.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterCloneTexture.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterCloneTexture"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterCloneTexture.top_of_page"></a>ClutterCloneTexture</span></h2>
+<p>ClutterCloneTexture — Actor for cloning existing textures in an 
+efficient way.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterCloneTexture.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterCloneTexture.html#ClutterCloneTexture-struct" title="ClutterCloneTexture">ClutterCloneTexture</a>;
+                    <a class="link" href="ClutterCloneTexture.html#ClutterCloneTextureClass" title="ClutterCloneTextureClass">ClutterCloneTextureClass</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterCloneTexture.html#clutter-clone-texture-new" title="clutter_clone_texture_new ()">clutter_clone_texture_new</a>           (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);
+<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a>*     <a class="link" href="ClutterCloneTexture.html#clutter-clone-texture-get-parent-texture" title="clutter_clone_texture_get_parent_texture ()">clutter_clone_texture_get_parent_texture</a>
+                                                        (<a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture">ClutterCloneTexture</a> *clone);
+void                <a class="link" href="ClutterCloneTexture.html#clutter-clone-texture-set-parent-texture" title="clutter_clone_texture_set_parent_texture ()">clutter_clone_texture_set_parent_texture</a>
+                                                        (<a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture">ClutterCloneTexture</a> *clone,
+                                                         <a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterCloneTexture
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterCloneTexture implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterCloneTexture.html#ClutterCloneTexture--parent-texture" title='The "parent-texture" property'>parent-texture</a>"           <a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a>*       : Read / Write
+  "<a class="link" href="ClutterCloneTexture.html#ClutterCloneTexture--repeat-x" title='The "repeat-x" property'>repeat-x</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterCloneTexture.html#ClutterCloneTexture--repeat-y" title='The "repeat-y" property'>repeat-y</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture"><span class="type">ClutterCloneTexture</span></a> allows the cloning of existing <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> based
+actors whilst saving underlying graphics resources.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterCloneTexture-struct"></a><h3>ClutterCloneTexture</h3>
+<pre class="programlisting">typedef struct _ClutterCloneTexture ClutterCloneTexture;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterCloneTextureClass"></a><h3>ClutterCloneTextureClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterActorClass parent_class;
+
+  /* padding for future expansion */
+  void (*_clutter_clone_1) (void);
+  void (*_clutter_clone_2) (void);
+  void (*_clutter_clone_3) (void);
+  void (*_clutter_clone_4) (void);
+} ClutterCloneTextureClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-clone-texture-new"></a><h3>clutter_clone_texture_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_clone_texture_new           (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);</pre>
+<p>
+Creates an efficient 'clone' of a pre-existing texture with which it 
+shares the underlying pixbuf data.
+</p>
+<p>
+You can use <a class="link" href="ClutterCloneTexture.html#clutter-clone-texture-set-parent-texture" title="clutter_clone_texture_set_parent_texture ()"><code class="function">clutter_clone_texture_set_parent_texture()</code></a> to change the
+cloned texture.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture"><span class="type">ClutterCloneTexture</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-clone-texture-get-parent-texture"></a><h3>clutter_clone_texture_get_parent_texture ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a>*     clutter_clone_texture_get_parent_texture
+                                                        (<a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture">ClutterCloneTexture</a> *clone);</pre>
+<p>
+Retrieves the parent <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> used by <em class="parameter"><code>clone</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>clone</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture"><span class="type">ClutterCloneTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> actor, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-clone-texture-set-parent-texture"></a><h3>clutter_clone_texture_set_parent_texture ()</h3>
+<pre class="programlisting">void                clutter_clone_texture_set_parent_texture
+                                                        (<a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture">ClutterCloneTexture</a> *clone,
+                                                         <a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);</pre>
+<p>
+Sets the parent texture cloned by the <a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture"><span class="type">ClutterCloneTexture</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>clone</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterCloneTexture.html" title="ClutterCloneTexture"><span class="type">ClutterCloneTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterCloneTexture.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterCloneTexture--parent-texture"></a><h3>The <code class="literal">"parent-texture"</code> property</h3>
+<pre class="programlisting">  "parent-texture"           <a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a>*       : Read / Write</pre>
+<p>The parent texture to clone.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterCloneTexture--repeat-x"></a><h3>The <code class="literal">"repeat-x"</code> property</h3>
+<pre class="programlisting">  "repeat-x"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Reapeat underlying pixbuf rather than scale in x direction.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterCloneTexture--repeat-y"></a><h3>The <code class="literal">"repeat-y"</code> property</h3>
+<pre class="programlisting">  "repeat-y"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Reapeat underlying pixbuf rather than scale in y direction.</p>
+<p>Default value: FALSE</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

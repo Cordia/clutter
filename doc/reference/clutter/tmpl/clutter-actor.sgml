@@ -1,0 +1,1567 @@
+<!-- ##### SECTION Title ##### -->
+ClutterActor
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_SET_FLAGS ##### -->
+<para>
+
+</para>
+
+@a: 
+@f: 
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_UNSET_FLAGS ##### -->
+<para>
+
+</para>
+
+@a: 
+@f: 
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_IS_MAPPED ##### -->
+<para>
+
+</para>
+
+@e: 
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_IS_REALIZED ##### -->
+<para>
+
+</para>
+
+@e: 
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_IS_VISIBLE ##### -->
+<para>
+
+</para>
+
+@e: 
+
+
+<!-- ##### MACRO CLUTTER_ACTOR_IS_REACTIVE ##### -->
+<para>
+
+</para>
+
+@e: 
+
+
+<!-- ##### STRUCT ClutterActorBox ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+
+<!-- ##### ENUM ClutterActorFlags ##### -->
+<para>
+
+</para>
+
+@CLUTTER_ACTOR_MAPPED: 
+@CLUTTER_ACTOR_REALIZED: 
+@CLUTTER_ACTOR_REACTIVE: 
+
+<!-- ##### ENUM ClutterRequestMode ##### -->
+<para>
+
+</para>
+
+@CLUTTER_REQUEST_HEIGHT_FOR_WIDTH: 
+@CLUTTER_REQUEST_WIDTH_FOR_HEIGHT: 
+
+<!-- ##### STRUCT ClutterGeometry ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+
+<!-- ##### MACRO CLUTTER_CALLBACK ##### -->
+<para>
+
+</para>
+
+@f: 
+
+
+<!-- ##### USER_FUNCTION ClutterCallback ##### -->
+<para>
+
+</para>
+
+@actor: 
+@data: 
+
+
+<!-- ##### STRUCT ClutterActor ##### -->
+<para>
+
+</para>
+
+@flags: 
+
+<!-- ##### SIGNAL ClutterActor::button-press-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::button-release-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::captured-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::destroy ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::enter-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::focus-in ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::focus-out ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::hide ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::key-press-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::key-release-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::leave-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::motion-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::paint ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::parent-set ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterActor::realize ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::scroll-event ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+@arg1: 
+@Returns: 
+
+<!-- ##### SIGNAL ClutterActor::show ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterActor::unrealize ##### -->
+<para>
+
+</para>
+
+@clutteractor: the object which received the signal.
+
+<!-- ##### ARG ClutterActor:allocation ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:anchor-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:anchor-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:clip ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:depth ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:fixed-position-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:fixed-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:fixed-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:has-clip ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:min-height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:min-height-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:min-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:min-width-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:natural-height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:natural-height-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:natural-width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:natural-width-set ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:opacity ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:reactive ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:request-mode ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-angle-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-angle-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-angle-z ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-center-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-center-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:rotation-center-z ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:scale-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:scale-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:show-on-set-parent ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:visible ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterActor:y ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterActorClass ##### -->
+<para>
+
+</para>
+
+@show: 
+@show_all: 
+@hide: 
+@hide_all: 
+@realize: 
+@unrealize: 
+@paint: 
+@parent_set: 
+@destroy: 
+@pick: 
+@get_preferred_width: 
+@get_preferred_height: 
+@allocate: 
+@event: 
+@button_press_event: 
+@button_release_event: 
+@scroll_event: 
+@key_press_event: 
+@key_release_event: 
+@motion_event: 
+@enter_event: 
+@leave_event: 
+@captured_event: 
+@focus_in: 
+@focus_out: 
+
+<!-- ##### FUNCTION clutter_actor_show ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_show_all ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_hide ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_hide_all ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_realize ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_unrealize ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_paint ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_queue_redraw ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_queue_relayout ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_destroy ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_event ##### -->
+<para>
+
+</para>
+
+@actor: 
+@event: 
+@capture: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_pick ##### -->
+<para>
+
+</para>
+
+@self: 
+@color: 
+
+
+<!-- ##### FUNCTION clutter_actor_should_pick_paint ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_allocate ##### -->
+<para>
+
+</para>
+
+@self: 
+@box: 
+@absolute_origin_changed: 
+
+
+<!-- ##### FUNCTION clutter_actor_allocate_preferred_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@absolute_origin_changed: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_allocation_coords ##### -->
+<para>
+
+</para>
+
+@self: 
+@x_1: 
+@y_1: 
+@x_2: 
+@y_2: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_allocation_box ##### -->
+<para>
+
+</para>
+
+@self: 
+@box: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_allocation_geometry ##### -->
+<para>
+
+</para>
+
+@self: 
+@geom: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_allocation_vertices ##### -->
+<para>
+
+</para>
+
+@self: 
+@ancestor: 
+@verts: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_preferred_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@min_width_p: 
+@min_height_p: 
+@natural_width_p: 
+@natural_height_p: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_preferred_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@for_height: 
+@min_width_p: 
+@natural_width_p: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_preferred_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@for_width: 
+@min_height_p: 
+@natural_height_p: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_fixed_position_set ##### -->
+<para>
+
+</para>
+
+@self: 
+@is_set: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_fixed_position_set ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_geometry ##### -->
+<para>
+
+</para>
+
+@self: 
+@geometry: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_geometry ##### -->
+<para>
+
+</para>
+
+@self: 
+@geometry: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_position ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_position ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_x ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_x ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_y ##### -->
+<para>
+
+</para>
+
+@self: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_y ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_move_by ##### -->
+<para>
+
+</para>
+
+@self: 
+@dx: 
+@dy: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_rotation ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@angle: 
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_rotation ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@x: 
+@y: 
+@z: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_is_rotated ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_opacity ##### -->
+<para>
+
+</para>
+
+@self: 
+@opacity: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_opacity ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@name: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_name ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_gid ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_clip ##### -->
+<para>
+
+</para>
+
+@self: 
+@xoff: 
+@yoff: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_remove_clip ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_has_clip ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_clip ##### -->
+<para>
+
+</para>
+
+@self: 
+@xoff: 
+@yoff: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_parent ##### -->
+<para>
+
+</para>
+
+@self: 
+@parent: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_parent ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_reparent ##### -->
+<para>
+
+</para>
+
+@self: 
+@new_parent: 
+
+
+<!-- ##### FUNCTION clutter_actor_unparent ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_raise ##### -->
+<para>
+
+</para>
+
+@self: 
+@below: 
+
+
+<!-- ##### FUNCTION clutter_actor_lower ##### -->
+<para>
+
+</para>
+
+@self: 
+@above: 
+
+
+<!-- ##### FUNCTION clutter_actor_raise_top ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_lower_bottom ##### -->
+<para>
+
+</para>
+
+@self: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_stage ##### -->
+<para>
+
+</para>
+
+@actor: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_depth ##### -->
+<para>
+
+</para>
+
+@self: 
+@depth: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_depth ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_scale ##### -->
+<para>
+
+</para>
+
+@self: 
+@scale_x: 
+@scale_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_scale ##### -->
+<para>
+
+</para>
+
+@self: 
+@scale_x: 
+@scale_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_is_scaled ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_apply_transform_to_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@point: 
+@vertex: 
+
+
+<!-- ##### FUNCTION clutter_actor_transform_stage_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+@x_out: 
+@y_out: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_apply_relative_transform_to_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@ancestor: 
+@point: 
+@vertex: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_transformed_position ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_transformed_size ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_paint_opacity ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_abs_allocation_vertices ##### -->
+<para>
+
+</para>
+
+@self: 
+@verts: 
+
+
+<!-- ##### STRUCT ClutterVertex ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@z: 
+
+<!-- ##### FUNCTION clutter_actor_box_get_from_vertices ##### -->
+<para>
+
+</para>
+
+@vtx: 
+@box: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_anchor_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_anchor_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_anchor_point_from_gravity ##### -->
+<para>
+
+</para>
+
+@self: 
+@gravity: 
+
+
+<!-- ##### FUNCTION clutter_actor_move_anchor_point ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_move_anchor_point_from_gravity ##### -->
+<para>
+
+</para>
+
+@self: 
+@gravity: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_reactive ##### -->
+<para>
+
+</para>
+
+@actor: 
+@reactive: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_reactive ##### -->
+<para>
+
+</para>
+
+@actor: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_shader ##### -->
+<para>
+
+</para>
+
+@self: 
+@shader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_shader ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_shader_param ##### -->
+<para>
+
+</para>
+
+@self: 
+@param: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_depthu ##### -->
+<para>
+
+</para>
+
+@self: 
+@depth: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_depthu ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_heightu ##### -->
+<para>
+
+</para>
+
+@self: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_heightu ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_widthu ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_widthu ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_xu ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_xu ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_yu ##### -->
+<para>
+
+</para>
+
+@self: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_yu ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_positionu ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_positionu ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_sizeu ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_sizeu ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_anchor_pointu ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_anchor_pointu ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_move_anchor_pointu ##### -->
+<para>
+
+</para>
+
+@self: 
+@anchor_x: 
+@anchor_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_clipu ##### -->
+<para>
+
+</para>
+
+@self: 
+@xoff: 
+@yoff: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_clipu ##### -->
+<para>
+
+</para>
+
+@self: 
+@xoff: 
+@yoff: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_rotationu ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@angle: 
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_rotationu ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@x: 
+@y: 
+@z: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_actor_move_byu ##### -->
+<para>
+
+</para>
+
+@self: 
+@dx: 
+@dy: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_transformed_positionu ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_transformed_sizeu ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_scalex ##### -->
+<para>
+
+</para>
+
+@self: 
+@scale_x: 
+@scale_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_scalex ##### -->
+<para>
+
+</para>
+
+@self: 
+@scale_x: 
+@scale_y: 
+
+
+<!-- ##### FUNCTION clutter_actor_set_rotationx ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@angle: 
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION clutter_actor_get_rotationx ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@x: 
+@y: 
+@z: 
+@Returns: 
+
+

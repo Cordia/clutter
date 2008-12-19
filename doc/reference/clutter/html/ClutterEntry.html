@@ -1,0 +1,1472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterEntry</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch02.html" title="Base actors">
+<link rel="prev" href="ClutterLabel.html" title="ClutterLabel">
+<link rel="next" href="ch03.html" title="Container actors">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterLabel.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ch03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterEntry.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterEntry.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterEntry.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterEntry.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterEntry.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterEntry.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterEntry"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterEntry.top_of_page"></a>ClutterEntry</span></h2>
+<p>ClutterEntry — A single line text entry actor</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterEntry.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterEntry.html#ClutterEntry-struct" title="ClutterEntry">ClutterEntry</a>;
+                    <a class="link" href="ClutterEntry.html#ClutterEntryClass" title="ClutterEntryClass">ClutterEntryClass</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterEntry.html#clutter-entry-new" title="clutter_entry_new ()">clutter_entry_new</a>                   (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterEntry.html#clutter-entry-new-with-text" title="clutter_entry_new_with_text ()">clutter_entry_new_with_text</a>         (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterEntry.html#clutter-entry-new-full" title="clutter_entry_new_full ()">clutter_entry_new_full</a>              (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-text" title="clutter_entry_set_text ()">clutter_entry_set_text</a>              (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterEntry.html#clutter-entry-get-text" title="clutter_entry_get_text ()">clutter_entry_get_text</a>              (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-font-name" title="clutter_entry_set_font_name ()">clutter_entry_set_font_name</a>         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterEntry.html#clutter-entry-get-font-name" title="clutter_entry_get_font_name ()">clutter_entry_get_font_name</a>         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-color" title="clutter_entry_set_color ()">clutter_entry_set_color</a>             (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-get-color" title="clutter_entry_get_color ()">clutter_entry_get_color</a>             (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+>PangoLayout</a>*        <a class="link" href="ClutterEntry.html#clutter-entry-get-layout" title="clutter_entry_get_layout ()">clutter_entry_get_layout</a>            (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-alignment" title="clutter_entry_set_alignment ()">clutter_entry_set_alignment</a>         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a> alignment);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>      <a class="link" href="ClutterEntry.html#clutter-entry-get-alignment" title="clutter_entry_get_alignment ()">clutter_entry_get_alignment</a>         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-cursor-position" title="clutter_entry_set_cursor_position ()">clutter_entry_set_cursor_position</a>   (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> position);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterEntry.html#clutter-entry-get-cursor-position" title="clutter_entry_get_cursor_position ()">clutter_entry_get_cursor_position</a>   (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-handle-key-event" title="clutter_entry_handle_key_event ()">clutter_entry_handle_key_event</a>      (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a class="link" href="clutter-Events.html#ClutterKeyEvent" title="ClutterKeyEvent">ClutterKeyEvent</a> *kev);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-insert-unichar" title="clutter_entry_insert_unichar ()">clutter_entry_insert_unichar</a>        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a> wc);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-delete-chars" title="clutter_entry_delete_chars ()">clutter_entry_delete_chars</a>          (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> len);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-insert-text" title="clutter_entry_insert_text ()">clutter_entry_insert_text</a>           (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> position);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-delete-text" title="clutter_entry_delete_text ()">clutter_entry_delete_text</a>           (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> start_pos,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> end_pos);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-visible-cursor" title="clutter_entry_set_visible_cursor ()">clutter_entry_set_visible_cursor</a>    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterEntry.html#clutter-entry-get-visible-cursor" title="clutter_entry_get_visible_cursor ()">clutter_entry_get_visible_cursor</a>    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-visibility" title="clutter_entry_set_visibility ()">clutter_entry_set_visibility</a>        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterEntry.html#clutter-entry-get-visibility" title="clutter_entry_get_visibility ()">clutter_entry_get_visibility</a>        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-invisible-char" title="clutter_entry_set_invisible_char ()">clutter_entry_set_invisible_char</a>    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a> wc);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a>            <a class="link" href="ClutterEntry.html#clutter-entry-get-invisible-char" title="clutter_entry_get_invisible_char ()">clutter_entry_get_invisible_char</a>    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+void                <a class="link" href="ClutterEntry.html#clutter-entry-set-max-length" title="clutter_entry_set_max_length ()">clutter_entry_set_max_length</a>        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> max);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterEntry.html#clutter-entry-get-max-length" title="clutter_entry_get_max_length ()">clutter_entry_get_max_length</a>        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterEntry
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterEntry implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--alignment" title='The "alignment" property'>alignment</a>"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>        : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--color" title='The "color" property'>color</a>"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--cursor-visible" title='The "cursor-visible" property'>cursor-visible</a>"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--entry-padding" title='The "entry-padding" property'>entry-padding</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--font-name" title='The "font-name" property'>font-name</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--max-length" title='The "max-length" property'>max-length</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--position" title='The "position" property'>position</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--text" title='The "text" property'>text</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--text-visible" title='The "text-visible" property'>text-visible</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterEntry.html#ClutterEntry--x-align" title='The "x-align" property'>x-align</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterEntry.html#ClutterEntry-activate" title='The "activate" signal'>activate</a>"                                       : Run Last
+  "<a class="link" href="ClutterEntry.html#ClutterEntry-cursor-event" title='The "cursor-event" signal'>cursor-event</a>"                                   : Run Last
+  "<a class="link" href="ClutterEntry.html#ClutterEntry-text-changed" title='The "text-changed" signal'>text-changed</a>"                                   : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> is a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> that allows single line text entry.
+</p>
+<p>
+<a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> is available since Clutter 0.4.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry-struct"></a><h3>ClutterEntry</h3>
+<pre class="programlisting">typedef struct _ClutterEntry ClutterEntry;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntryClass"></a><h3>ClutterEntryClass</h3>
+<pre class="programlisting">typedef struct {
+  /* vfuncs, not signals */
+  void (* paint_cursor) (ClutterEntry    *entry);
+  
+  /* signals */
+  void (* text_changed) (ClutterEntry    *entry);
+  void (* cursor_event) (ClutterEntry    *entry,
+                         ClutterGeometry *geometry);
+  void (* activate)     (ClutterEntry    *entry);
+} ClutterEntryClass;
+</pre>
+<p>
+Class fo entry actors.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>paint_cursor</code></em> ()</span></p></td>
+<td> virtual function for subclasses to use to draw a custom
+  cursor instead of the default one
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>text_changed</code></em> ()</span></p></td>
+<td> signal class handler for ClutterEntry::text-changed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>cursor_event</code></em> ()</span></p></td>
+<td> signal class handler for ClutterEntry::cursor-event
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>activate</code></em> ()</span></p></td>
+<td> signal class handler for ClutterEntry::activate
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-new"></a><h3>clutter_entry_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_entry_new                   (void);</pre>
+<p>
+Creates a new, empty <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-new-with-text"></a><h3>clutter_entry_new_with_text ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_entry_new_with_text         (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);</pre>
+<p>
+Creates a new <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> displaying <em class="parameter"><code>text</code></em> using <em class="parameter"><code>font_name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> the name (and size) of the font to be used
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-new-full"></a><h3>clutter_entry_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_entry_new_full              (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Creates a new <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> displaying <em class="parameter"><code>text</code></em> with <em class="parameter"><code>color</code></em>
+using <em class="parameter"><code>font_name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> the name (and size) of the font to be used
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a> for text
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-text"></a><h3>clutter_entry_set_text ()</h3>
+<pre class="programlisting">void                clutter_entry_set_text              (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);</pre>
+<p>
+Sets <em class="parameter"><code>text</code></em> as the text to be displayed by <em class="parameter"><code>entry</code></em>. The
+ClutterEntry::text-changed signal is emitted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-text"></a><h3>clutter_entry_get_text ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_entry_get_text              (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Retrieves the text displayed by <em class="parameter"><code>entry</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the text of the entry.  The returned string is
+  owned by <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> and should not be modified or freed.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-font-name"></a><h3>clutter_entry_set_font_name ()</h3>
+<pre class="programlisting">void                clutter_entry_set_font_name         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name);</pre>
+<p>
+Sets <em class="parameter"><code>font_name</code></em> as the font used by <em class="parameter"><code>entry</code></em>.
+</p>
+<p>
+<em class="parameter"><code>font_name</code></em> must be a string containing the font name and its
+size, similarly to what you would feed to the
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string"
+><code class="function">pango_font_description_from_string()</code></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> a font name and size, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for the default font
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-font-name"></a><h3>clutter_entry_get_font_name ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_entry_get_font_name         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Retrieves the font used by <em class="parameter"><code>entry</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string containing the font name, in a format
+  understandable by <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string"
+><code class="function">pango_font_description_from_string()</code></a>.  The
+  string is owned by <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a> and should not be modified
+  or freed.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-color"></a><h3>clutter_entry_set_color ()</h3>
+<pre class="programlisting">void                clutter_entry_set_color             (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Sets the color of <em class="parameter"><code>entry</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-color"></a><h3>clutter_entry_get_color ()</h3>
+<pre class="programlisting">void                clutter_entry_get_color             (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Retrieves the color of <em class="parameter"><code>entry</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-layout"></a><h3>clutter_entry_get_layout ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+>PangoLayout</a>*        clutter_entry_get_layout            (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Gets the <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a> used to display the entry.
+The layout is useful to e.g. convert text positions to
+pixel positions.
+The returned layout is owned by the entry so need not be
+freed by the caller.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a> for this entry
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-alignment"></a><h3>clutter_entry_set_alignment ()</h3>
+<pre class="programlisting">void                clutter_entry_set_alignment         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a> alignment);</pre>
+<p>
+Sets text alignment of the entry.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alignment</code></em> :</span></p></td>
+<td> A <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+><span class="type">PangoAlignment</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-alignment"></a><h3>clutter_entry_get_alignment ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>      clutter_entry_get_alignment         (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Returns the entry's text alignment</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The entry's <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+><span class="type">PangoAlignment</span></a>
+
+Since 0.4
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-cursor-position"></a><h3>clutter_entry_set_cursor_position ()</h3>
+<pre class="programlisting">void                clutter_entry_set_cursor_position   (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> position);</pre>
+<p>
+Sets the position of the cursor. The <em class="parameter"><code>position</code></em> must be less than or
+equal to the number of characters in the entry. A value of -1 indicates
+that the position should be set after the last character in the entry.
+Note that this position is in characters, not in bytes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
+<td> the position of the cursor.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-cursor-position"></a><h3>clutter_entry_get_cursor_position ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_entry_get_cursor_position   (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Gets the position, in characters, of the cursor in <em class="parameter"><code>entry</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the position of the cursor.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-handle-key-event"></a><h3>clutter_entry_handle_key_event ()</h3>
+<pre class="programlisting">void                clutter_entry_handle_key_event      (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a class="link" href="clutter-Events.html#ClutterKeyEvent" title="ClutterKeyEvent">ClutterKeyEvent</a> *kev);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">clutter_entry_handle_key_event</code> has been deprecated since version 0.8 and should not be used in newly-written code. The key events will automatically be handled when
+  giving the key focus to an entry using <a class="link" href="ClutterStage.html#clutter-stage-set-key-focus" title="clutter_stage_set_key_focus ()"><code class="function">clutter_stage_set_key_focus()</code></a>.</p>
+</div>
+<p>
+This function will handle a <a class="link" href="clutter-Events.html#ClutterKeyEvent" title="ClutterKeyEvent"><span class="type">ClutterKeyEvent</span></a>, like those returned in a
+key-press/release-event, and will translate it for the <em class="parameter"><code>entry</code></em>. This includes
+non-alphanumeric keys, such as the arrows keys, which will move the
+input cursor. You should use this function inside a handler for the
+ClutterStage::key-press-event or ClutterStage::key-release-event.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>kev</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Events.html#ClutterKeyEvent" title="ClutterKeyEvent"><span class="type">ClutterKeyEvent</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-insert-unichar"></a><h3>clutter_entry_insert_unichar ()</h3>
+<pre class="programlisting">void                clutter_entry_insert_unichar        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a> wc);</pre>
+<p>
+Insert a character to the right of the current position of the cursor,
+and updates the position of the cursor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wc</code></em> :</span></p></td>
+<td> a Unicode character
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-delete-chars"></a><h3>clutter_entry_delete_chars ()</h3>
+<pre class="programlisting">void                clutter_entry_delete_chars          (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> len);</pre>
+<p>
+Characters are removed from before the current postion of the cursor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em> :</span></p></td>
+<td> the number of characters to remove.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-insert-text"></a><h3>clutter_entry_insert_text ()</h3>
+<pre class="programlisting">void                clutter_entry_insert_text           (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> position);</pre>
+<p>
+Insert text at a specifc position.
+</p>
+<p>
+A value of 0 indicates  that the text will be inserted before the first
+character in the entry's text, and a value of -1 indicates that the text
+will be inserted after the last character in the entry's text.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to insert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>position</code></em> :</span></p></td>
+<td> the position at which to insert the text.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-delete-text"></a><h3>clutter_entry_delete_text ()</h3>
+<pre class="programlisting">void                clutter_entry_delete_text           (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> start_pos,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> end_pos);</pre>
+<p>
+Deletes a sequence of characters. The characters that are deleted are
+those characters at positions from <em class="parameter"><code>start_pos</code></em> up to, but not including,
+<em class="parameter"><code>end_pos</code></em>. If <em class="parameter"><code>end_pos</code></em> is negative, then the characters deleted will be
+those characters from <em class="parameter"><code>start_pos</code></em> to the end of the text.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>start_pos</code></em> :</span></p></td>
+<td> the starting position.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>end_pos</code></em> :</span></p></td>
+<td> the end position.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-visible-cursor"></a><h3>clutter_entry_set_visible_cursor ()</h3>
+<pre class="programlisting">void                clutter_entry_set_visible_cursor    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);</pre>
+<p>
+Sets the visibility of the input cursor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>visible</code></em> :</span></p></td>
+<td> whether the input cursor should be visible
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-visible-cursor"></a><h3>clutter_entry_get_visible_cursor ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_entry_get_visible_cursor    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Returns the input cursor's visibility</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> whether the input cursor is visible
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-visibility"></a><h3>clutter_entry_set_visibility ()</h3>
+<pre class="programlisting">void                clutter_entry_set_visibility        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);</pre>
+<p>
+Sets whether the contents of the entry are visible or not. When visibility
+is set to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>, characters are displayed as the invisible char, and will
+also appear that way when the text in the entry widget is copied elsewhere.
+</p>
+<p>
+The default invisible char is the asterisk '*', but it can be changed with
+<a class="link" href="ClutterEntry.html#clutter-entry-set-invisible-char" title="clutter_entry_set_invisible_char ()"><code class="function">clutter_entry_set_invisible_char()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>visible</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the contents of the entry are displayed as plaintext.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-visibility"></a><h3>clutter_entry_get_visibility ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_entry_get_visibility        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Returns the entry text visibility.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the contents of the entry are displayed as plaintext.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-invisible-char"></a><h3>clutter_entry_set_invisible_char ()</h3>
+<pre class="programlisting">void                clutter_entry_set_invisible_char    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a> wc);</pre>
+<p>
+Sets the character to use in place of the actual text when
+<a class="link" href="ClutterEntry.html#clutter-entry-set-visibility" title="clutter_entry_set_visibility ()"><code class="function">clutter_entry_set_visibility()</code></a> has been called to set text visibility
+to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>. i.e. this is the character used in "password mode" to show the
+user how many characters have been typed. The default invisible char is an
+asterisk ('*'). If you set the invisible char to 0, then the user will get
+no feedback at all; there will be no text on the screen as they type.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wc</code></em> :</span></p></td>
+<td> a Unicode character
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-invisible-char"></a><h3>clutter_entry_get_invisible_char ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Unicode-Manipulation.html#gunichar"
+>gunichar</a>            clutter_entry_get_invisible_char    (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Returns the character to use in place of the actual text when text-visibility
+is set to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a Unicode character
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-set-max-length"></a><h3>clutter_entry_set_max_length ()</h3>
+<pre class="programlisting">void                clutter_entry_set_max_length        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> max);</pre>
+<p>
+Sets the maximum allowed length of the contents of the actor. If the
+current contents are longer than the given length, then they will be
+truncated to fit.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max</code></em> :</span></p></td>
+<td> the maximum number of characters allowed in the entry; 0
+  to disable or -1 to set the length of the current string
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-entry-get-max-length"></a><h3>clutter_entry_get_max_length ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_entry_get_max_length        (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry);</pre>
+<p>
+Gets the maximum length of text that can be set into <em class="parameter"><code>entry</code></em>.
+See <a class="link" href="ClutterEntry.html#clutter-entry-set-max-length" title="clutter_entry_set_max_length ()"><code class="function">clutter_entry_set_max_length()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterEntry.html" title="ClutterEntry"><span class="type">ClutterEntry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the maximum number of characters.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--alignment"></a><h3>The <code class="literal">"alignment"</code> property</h3>
+<pre class="programlisting">  "alignment"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>        : Read / Write</pre>
+<p>
+The preferred alignment for the string.</p>
+<p>
+
+</p>
+<p>Default value: PANGO_ALIGN_LEFT</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--color"></a><h3>The <code class="literal">"color"</code> property</h3>
+<pre class="programlisting">  "color"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write</pre>
+<p>
+The color of the text inside the entry.</p>
+<p>
+
+</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--cursor-visible"></a><h3>The <code class="literal">"cursor-visible"</code> property</h3>
+<pre class="programlisting">  "cursor-visible"           <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the input cursor is visible or not.</p>
+<p>
+
+</p>
+<p>Default value: TRUE</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--entry-padding"></a><h3>The <code class="literal">"entry-padding"</code> property</h3>
+<pre class="programlisting">  "entry-padding"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>
+The padding space between the text and the entry right and left borders.</p>
+<p>
+
+</p>
+<p>Default value: 5</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--font-name"></a><h3>The <code class="literal">"font-name"</code> property</h3>
+<pre class="programlisting">  "font-name"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>
+The font to be used by the entry, expressed in a string that
+can be parsed by <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string"
+><code class="function">pango_font_description_from_string()</code></a>.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--max-length"></a><h3>The <code class="literal">"max-length"</code> property</h3>
+<pre class="programlisting">  "max-length"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+The maximum length of the entry text.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--position"></a><h3>The <code class="literal">"position"</code> property</h3>
+<pre class="programlisting">  "position"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+The current input cursor position. -1 is taken to be the end of the text</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: -1</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--text"></a><h3>The <code class="literal">"text"</code> property</h3>
+<pre class="programlisting">  "text"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>
+The text inside the entry.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--text-visible"></a><h3>The <code class="literal">"text-visible"</code> property</h3>
+<pre class="programlisting">  "text-visible"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the text is visible in plain form, or replaced by the
+character set by <a class="link" href="ClutterEntry.html#clutter-entry-set-invisible-char" title="clutter_entry_set_invisible_char ()"><code class="function">clutter_entry_set_invisible_char()</code></a>.</p>
+<p>
+
+</p>
+<p>Default value: TRUE</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry--x-align"></a><h3>The <code class="literal">"x-align"</code> property</h3>
+<pre class="programlisting">  "x-align"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+Horizontal alignment to be used for the text (0.0 for left alignment,
+1.0 for right alignment).</p>
+<p>
+
+</p>
+<p>Allowed values: [0,1]</p>
+<p>Default value: 0</p>
+<p>Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterEntry.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry-activate"></a><h3>The <code class="literal">"activate"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::activate signal is emitted each time the entry is 'activated'
+by the user, normally by pressing the 'Enter' key.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> the actor which received the event
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry-cursor-event"></a><h3>The <code class="literal">"cursor-event"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a>    *entry,
+                                                        <a class="link" href="ClutterActor.html#ClutterGeometry" title="ClutterGeometry">ClutterGeometry</a> *geometry,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>         user_data)      : Run Last</pre>
+<p>
+The ::cursor-event signal is emitted each time the input cursor's geometry
+changes, this could be a positional or size change. If you would like to
+implement your own input cursor, set the cursor-visible property to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>,
+and connect to this signal to position and size your own cursor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> the actor which received the event
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>geometry</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html#ClutterGeometry" title="ClutterGeometry"><span class="type">ClutterGeometry</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterEntry-text-changed"></a><h3>The <code class="literal">"text-changed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterEntry.html" title="ClutterEntry">ClutterEntry</a> *entry,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>      user_data)      : Run Last</pre>
+<p>
+The ::text-changed signal is emitted after <em class="parameter"><code>entry</code></em>'s text changes</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em> :</span></p></td>
+<td> the actor which received the event
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

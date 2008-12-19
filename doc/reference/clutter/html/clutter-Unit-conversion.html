@@ -1,0 +1,859 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unit conversion</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="ClutterShader.html" title="ClutterShader">
+<link rel="next" href="clutter-Utilities.html" title="Utilities">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterShader.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-Utilities.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-Unit-conversion.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-Unit-conversion.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-Unit-conversion"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-Unit-conversion.top_of_page"></a>Unit conversion</span></h2>
+<p>Unit conversion — A logical distance unit.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-Unit-conversion.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+typedef             <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a>;
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-DEVICE:CAPS" title="CLUTTER_UNITS_FROM_DEVICE()">CLUTTER_UNITS_FROM_DEVICE</a>           (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-DEVICE:CAPS" title="CLUTTER_UNITS_TO_DEVICE()">CLUTTER_UNITS_TO_DEVICE</a>             (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-FIXED:CAPS" title="CLUTTER_UNITS_FROM_FIXED()">CLUTTER_UNITS_FROM_FIXED</a>            (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-FIXED:CAPS" title="CLUTTER_UNITS_TO_FIXED()">CLUTTER_UNITS_TO_FIXED</a>              (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-FLOAT:CAPS" title="CLUTTER_UNITS_FROM_FLOAT()">CLUTTER_UNITS_FROM_FLOAT</a>            (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-FLOAT:CAPS" title="CLUTTER_UNITS_TO_FLOAT()">CLUTTER_UNITS_TO_FLOAT</a>              (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-INT:CAPS" title="CLUTTER_UNITS_FROM_INT()">CLUTTER_UNITS_FROM_INT</a>              (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-INT:CAPS" title="CLUTTER_UNITS_TO_INT()">CLUTTER_UNITS_TO_INT</a>                (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS" title="CLUTTER_UNITS_FROM_PANGO_UNIT()">CLUTTER_UNITS_FROM_PANGO_UNIT</a>       (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-PANGO-UNIT:CAPS" title="CLUTTER_UNITS_TO_PANGO_UNIT()">CLUTTER_UNITS_TO_PANGO_UNIT</a>         (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS" title="CLUTTER_UNITS_TMP_FROM_DEVICE()">CLUTTER_UNITS_TMP_FROM_DEVICE</a>       (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TMP-TO-DEVICE:CAPS" title="CLUTTER_UNITS_TMP_TO_DEVICE()">CLUTTER_UNITS_TMP_TO_DEVICE</a>         (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS" title="CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE()">CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE</a>(x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS" title="CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE()">CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE</a>(x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS" title="CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE()">CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE</a>(a, x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS" title="CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE()">CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE</a>(a, x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-MM:CAPS" title="CLUTTER_UNITS_FROM_MM()">CLUTTER_UNITS_FROM_MM</a>               (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-MMX:CAPS" title="CLUTTER_UNITS_FROM_MMX()">CLUTTER_UNITS_FROM_MMX</a>              (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-POINTS:CAPS" title="CLUTTER_UNITS_FROM_POINTS()">CLUTTER_UNITS_FROM_POINTS</a>           (x)
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-POINTSX:CAPS" title="CLUTTER_UNITS_FROM_POINTSX()">CLUTTER_UNITS_FROM_POINTSX</a>          (x)
+
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-MAXUNIT:CAPS" title="CLUTTER_MAXUNIT">CLUTTER_MAXUNIT</a>
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-MINUNIT:CAPS" title="CLUTTER_MINUNIT">CLUTTER_MINUNIT</a>
+                    <a class="link" href="clutter-Unit-conversion.html#ClutterParamSpecUnit" title="ClutterParamSpecUnit">ClutterParamSpecUnit</a>;
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         <a class="link" href="clutter-Unit-conversion.html#clutter-param-spec-unit" title="clutter_param_spec_unit ()">clutter_param_spec_unit</a>             (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *nick,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *blurb,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> minimum,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> maximum,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> default_value,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamFlags"
+>GParamFlags</a> flags);
+#define             <a class="link" href="clutter-Unit-conversion.html#CLUTTER-VALUE-HOLDS-UNIT:CAPS" title="CLUTTER_VALUE_HOLDS_UNIT()">CLUTTER_VALUE_HOLDS_UNIT</a>            (x)
+void                <a class="link" href="clutter-Unit-conversion.html#clutter-value-set-unit" title="clutter_value_set_unit ()">clutter_value_set_unit</a>              (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> units);
+<a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a>         <a class="link" href="clutter-Unit-conversion.html#clutter-value-get-unit" title="clutter_value_get_unit ()">clutter_value_get_unit</a>              (const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Unit-conversion.description"></a><h2>Description</h2>
+<p>
+Clutter units are logical units with granularity greater than that of the
+device units; they are used by <a class="link" href="ClutterActor.html#ClutterActorBox" title="ClutterActorBox"><span class="type">ClutterActorBox</span></a> and the units-based family
+of <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> functions. To convert between Clutter units and device
+units, use <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-FROM-DEVICE:CAPS" title="CLUTTER_UNITS_FROM_DEVICE()"><code class="literal">CLUTTER_UNITS_FROM_DEVICE</code></a> and <a class="link" href="clutter-Unit-conversion.html#CLUTTER-UNITS-TO-DEVICE:CAPS" title="CLUTTER_UNITS_TO_DEVICE()"><code class="literal">CLUTTER_UNITS_TO_DEVICE</code></a> macros.
+</p>
+<p>
+<a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s can be converted from other units like millimeters,
+typographic points (at the current resolution) and percentages. It is
+also possible to convert fixed point values to and from <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>
+values.
+</p>
+<p>
+In order to register a <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a> property, the <a class="link" href="clutter-Unit-conversion.html#ClutterParamSpecUnit" title="ClutterParamSpecUnit"><span class="type">ClutterParamSpecUnit</span></a>
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> sub-class should be used:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  GParamSpec *pspec;
+
+  pspec = clutter_param_spec_unit ("width",
+                                   "Width",
+                                   "Width of the actor, in units",
+                                   0, CLUTTER_MAXUNIT,
+                                   0,
+                                   G_PARAM_READWRITE);
+  g_object_class_install_property (gobject_class, PROP_WIDTH, pspec);
+</pre></div>
+<p>
+</p>
+<p>
+A <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> holding units can be manipulated using <a class="link" href="clutter-Unit-conversion.html#clutter-value-set-unit" title="clutter_value_set_unit ()"><code class="function">clutter_value_set_unit()</code></a>
+and <a class="link" href="clutter-Unit-conversion.html#clutter-value-get-unit" title="clutter_value_get_unit ()"><code class="function">clutter_value_get_unit()</code></a>. <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>s containing a <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>
+value can also be transformed to <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>s containing integer
+values - with a loss of precision:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  static gboolean
+  units_to_int (const GValue *src,
+                GValue       *dest)
+  {
+    g_return_val_if_fail (CLUTTER_VALUE_HOLDS_UNIT (src), FALSE);
+
+    g_value_init (dest, G_TYPE_INT);
+    return g_value_transform (src, &amp;dest);
+  }
+</pre></div>
+<p>
+</p>
+<p>
+The code above is equivalent to:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  static gboolean
+  units_to_int (const GValue *src,
+                GValue       *dest)
+  {
+    g_return_val_if_fail (CLUTTER_VALUE_HOLDS_UNIT (src), FALSE);
+
+    g_value_init (dest, G_TYPE_INT);
+    g_value_set_int (dest,
+                     CLUTTER_UNITS_TO_INT (clutter_value_get_unit (src)));
+
+    return TRUE;
+  }
+</pre></div>
+<p>
+</p>
+<p>
+<a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a> is available since Clutter 0.4</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Unit-conversion.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterUnit"></a><h3>ClutterUnit</h3>
+<pre class="programlisting">typedef gint32 ClutterUnit;
+</pre>
+<p>
+Device independent unit used by Clutter. The value held can be transformed
+into other units, likes pixels.</p>
+<p>
+
+</p>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-DEVICE:CAPS"></a><h3>CLUTTER_UNITS_FROM_DEVICE()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_FROM_DEVICE(x)     CLUTTER_UNITS_FROM_INT ((x))
+</pre>
+<p>
+Converts <em class="parameter"><code>x</code></em> from pixels to <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> value in pixels
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TO-DEVICE:CAPS"></a><h3>CLUTTER_UNITS_TO_DEVICE()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TO_DEVICE(x)       CLUTTER_UNITS_TO_INT ((x))
+</pre>
+<p>
+Converts <em class="parameter"><code>x</code></em> from <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s to pixels</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> value in <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-FIXED:CAPS"></a><h3>CLUTTER_UNITS_FROM_FIXED()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_FROM_FIXED(x)      (x)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TO-FIXED:CAPS"></a><h3>CLUTTER_UNITS_TO_FIXED()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TO_FIXED(x)        (x)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-FLOAT:CAPS"></a><h3>CLUTTER_UNITS_FROM_FLOAT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_FROM_FLOAT(x)      CLUTTER_FLOAT_TO_FIXED ((x))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TO-FLOAT:CAPS"></a><h3>CLUTTER_UNITS_TO_FLOAT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TO_FLOAT(x)        CLUTTER_FIXED_TO_FLOAT ((x))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-INT:CAPS"></a><h3>CLUTTER_UNITS_FROM_INT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_FROM_INT(x)        CLUTTER_INT_TO_FIXED ((x))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TO-INT:CAPS"></a><h3>CLUTTER_UNITS_TO_INT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TO_INT(x)          CLUTTER_FIXED_TO_INT ((x))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-PANGO-UNIT:CAPS"></a><h3>CLUTTER_UNITS_FROM_PANGO_UNIT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_FROM_PANGO_UNIT(x) ((x) &lt;&lt; 6)
+</pre>
+<p>
+Converts a value in Pango units to <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> value in Pango units
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TO-PANGO-UNIT:CAPS"></a><h3>CLUTTER_UNITS_TO_PANGO_UNIT()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TO_PANGO_UNIT(x)   ((x) &gt;&gt; 6)
+</pre>
+<p>
+Converts a value in <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s to Pango units</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> value in <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TMP-FROM-DEVICE:CAPS"></a><h3>CLUTTER_UNITS_TMP_FROM_DEVICE()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TMP_FROM_DEVICE(x) (x)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-TMP-TO-DEVICE:CAPS"></a><h3>CLUTTER_UNITS_TMP_TO_DEVICE()</h3>
+<pre class="programlisting">#define CLUTTER_UNITS_TMP_TO_DEVICE(x)   (x)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-STAGE-WIDTH-PERCENTAGE:CAPS"></a><h3>CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE(x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-STAGE-HEIGHT-PERCENTAGE:CAPS"></a><h3>CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE(x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-PARENT-WIDTH-PERCENTAGE:CAPS"></a><h3>CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE(a, x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-PARENT-HEIGHT-PERCENTAGE:CAPS"></a><h3>CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE(a, x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-MM:CAPS"></a><h3>CLUTTER_UNITS_FROM_MM()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_MM(x)</pre>
+<p>
+Converts a value in millimeters into <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a value in millimeters
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-MMX:CAPS"></a><h3>CLUTTER_UNITS_FROM_MMX()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_MMX(x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-POINTS:CAPS"></a><h3>CLUTTER_UNITS_FROM_POINTS()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_POINTS(x)</pre>
+<p>
+Converts a value in typographic points into <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a value in typographic points
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-UNITS-FROM-POINTSX:CAPS"></a><h3>CLUTTER_UNITS_FROM_POINTSX()</h3>
+<pre class="programlisting">#define             CLUTTER_UNITS_FROM_POINTSX(x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MAXUNIT:CAPS"></a><h3>CLUTTER_MAXUNIT</h3>
+<pre class="programlisting">#define CLUTTER_MAXUNIT         (0x7fffffff)
+</pre>
+<p>
+Higher boundary for a <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-MINUNIT:CAPS"></a><h3>CLUTTER_MINUNIT</h3>
+<pre class="programlisting">#define CLUTTER_MINUNIT         (0x80000000)
+</pre>
+<p>
+Lower boundary for a <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a></p>
+<p>
+
+</p>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterParamSpecUnit"></a><h3>ClutterParamSpecUnit</h3>
+<pre class="programlisting">typedef struct {
+  ClutterUnit   minimum;
+  ClutterUnit   maximum;
+  ClutterUnit   default_value;
+} ClutterParamSpecUnit;
+</pre>
+<p>
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> subclass for unit based properties.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> <em class="structfield"><code>minimum</code></em>;</span></p></td>
+<td> lower boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> <em class="structfield"><code>maximum</code></em>;</span></p></td>
+<td> higher boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> <em class="structfield"><code>default_value</code></em>;</span></p></td>
+<td> default value
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-param-spec-unit"></a><h3>clutter_param_spec_unit ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         clutter_param_spec_unit             (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *nick,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *blurb,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> minimum,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> maximum,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> default_value,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamFlags"
+>GParamFlags</a> flags);</pre>
+<p>
+Creates a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> for properties using <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of the property
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>nick</code></em> :</span></p></td>
+<td> short name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>blurb</code></em> :</span></p></td>
+<td> description (can be translatable)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>minimum</code></em> :</span></p></td>
+<td> lower boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>maximum</code></em> :</span></p></td>
+<td> higher boundary
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>default_value</code></em> :</span></p></td>
+<td> default value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> flags for the param spec
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-VALUE-HOLDS-UNIT:CAPS"></a><h3>CLUTTER_VALUE_HOLDS_UNIT()</h3>
+<pre class="programlisting">#define CLUTTER_VALUE_HOLDS_UNIT(x)       (G_VALUE_HOLDS ((x), CLUTTER_TYPE_UNIT))
+</pre>
+<p>
+Evaluates to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>x</code></em> holds <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-value-set-unit"></a><h3>clutter_value_set_unit ()</h3>
+<pre class="programlisting">void                clutter_value_set_unit              (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a> units);</pre>
+<p>
+Sets <em class="parameter"><code>value</code></em> to <em class="parameter"><code>units</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> initialized to <span class="type">CLUTTER_TYPE_UNIT</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>units</code></em> :</span></p></td>
+<td> the units to set
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-value-get-unit"></a><h3>clutter_value_get_unit ()</h3>
+<pre class="programlisting"><a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit">ClutterUnit</a>         clutter_value_get_unit              (const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Gets the <a class="link" href="clutter-Unit-conversion.html#ClutterUnit" title="ClutterUnit"><span class="type">ClutterUnit</span></a>s contained in <em class="parameter"><code>value</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> initialized to <span class="type">CLUTTER_TYPE_UNIT</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the units inside the passed <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

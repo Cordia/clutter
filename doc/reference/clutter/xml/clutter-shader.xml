@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterShader">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterShader.top_of_page">ClutterShader</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterShader</refname>
+<refpurpose>Programmable pipeline abstraction</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterShader.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="ClutterShaderError">ClutterShaderError</link>;
+                    <link linkend="ClutterShader-struct">ClutterShader</link>;
+                    <link linkend="ClutterShaderClass">ClutterShaderClass</link>;
+<link linkend="ClutterShader">ClutterShader</link>*      <link linkend="clutter-shader-new">clutter_shader_new</link>                  (void);
+<link linkend="void">void</link>                <link linkend="clutter-shader-set-vertex-source">clutter_shader_set_vertex_source</link>    (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-shader-get-vertex-source">clutter_shader_get_vertex_source</link>    (<link linkend="ClutterShader">ClutterShader</link> *shader);
+<link linkend="void">void</link>                <link linkend="clutter-shader-set-fragment-source">clutter_shader_set_fragment_source</link>  (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length);
+const <link linkend="gchar">gchar</link>*        <link linkend="clutter-shader-get-fragment-source">clutter_shader_get_fragment_source</link>  (<link linkend="ClutterShader">ClutterShader</link> *shader);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-shader-compile">clutter_shader_compile</link>              (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="clutter-shader-release">clutter_shader_release</link>              (<link linkend="ClutterShader">ClutterShader</link> *shader);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-shader-is-compiled">clutter_shader_is_compiled</link>          (<link linkend="ClutterShader">ClutterShader</link> *shader);
+<link linkend="void">void</link>                <link linkend="clutter-shader-set-is-enabled">clutter_shader_set_is_enabled</link>       (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         <link linkend="gboolean">gboolean</link> enabled);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-shader-get-is-enabled">clutter_shader_get_is_enabled</link>       (<link linkend="ClutterShader">ClutterShader</link> *shader);
+<link linkend="void">void</link>                <link linkend="clutter-shader-set-uniform-1f">clutter_shader_set_uniform_1f</link>       (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="gfloat">gfloat</link> value);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterShader.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----ClutterShader
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterShader.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterShader--compiled">compiled</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="ClutterShader--enabled">enabled</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterShader--fragment-source">fragment-source</link>&quot;          <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterShader--vertex-source">vertex-source</link>&quot;            <link linkend="gchar">gchar</link>*                : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterShader.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterShader"><type>ClutterShader</type></link> is an object providing an abstraction over the
+OpenGL programmable pipeline. By using <link linkend="ClutterShader"><type>ClutterShader</type></link><!-- -->s is
+possible to override the drawing pipeline by using small programs
+also known as "shaders".
+</para>
+<para>
+<link linkend="ClutterShader"><type>ClutterShader</type></link> is available since Clutter 0.6</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterShader.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterShaderError" role="enum" condition="since:0.6">
+<title>enum ClutterShaderError</title>
+<indexterm zone="ClutterShaderError" role="0.6"><primary>ClutterShaderError</primary></indexterm><programlisting>typedef enum {
+  CLUTTER_SHADER_ERROR_NO_ASM,
+  CLUTTER_SHADER_ERROR_NO_GLSL,
+  CLUTTER_SHADER_ERROR_COMPILE
+} ClutterShaderError;
+</programlisting>
+<para>
+<link linkend="ClutterShader"><type>ClutterShader</type></link> error enumeration</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-SHADER-ERROR-NO-ASM:CAPS" role="constant">
+<term><literal>CLUTTER_SHADER_ERROR_NO_ASM</literal></term>
+<listitem><simpara> No ASM shaders support
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SHADER-ERROR-NO-GLSL:CAPS" role="constant">
+<term><literal>CLUTTER_SHADER_ERROR_NO_GLSL</literal></term>
+<listitem><simpara> No GLSL shaders support
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-SHADER-ERROR-COMPILE:CAPS" role="constant">
+<term><literal>CLUTTER_SHADER_ERROR_COMPILE</literal></term>
+<listitem><simpara> Compilation error
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="ClutterShader-struct" role="struct">
+<title>ClutterShader</title>
+<indexterm zone="ClutterShader-struct"><primary>ClutterShader</primary></indexterm><programlisting>typedef struct _ClutterShader ClutterShader;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterShaderClass" role="struct">
+<title>ClutterShaderClass</title>
+<indexterm zone="ClutterShaderClass"><primary>ClutterShaderClass</primary></indexterm><programlisting>typedef struct {
+} ClutterShaderClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-shader-new" role="function" condition="since:0.6">
+<title>clutter_shader_new ()</title>
+<indexterm zone="clutter-shader-new" role="0.6"><primary>clutter_shader_new</primary></indexterm><programlisting><link linkend="ClutterShader">ClutterShader</link>*      clutter_shader_new                  (void);</programlisting>
+<para>
+Create a new <link linkend="ClutterShader"><type>ClutterShader</type></link> instance.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="ClutterShader"><type>ClutterShader</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-set-vertex-source" role="function" condition="since:0.6">
+<title>clutter_shader_set_vertex_source ()</title>
+<indexterm zone="clutter-shader-set-vertex-source" role="0.6"><primary>clutter_shader_set_vertex_source</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_shader_set_vertex_source    (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length);</programlisting>
+<para>
+Sets the GLSL source code to be used by a <link linkend="ClutterShader"><type>ClutterShader</type></link> for the vertex
+program.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> GLSL source code.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> length of source buffer (currently ignored)
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-get-vertex-source" role="function" condition="since:0.6">
+<title>clutter_shader_get_vertex_source ()</title>
+<indexterm zone="clutter-shader-get-vertex-source" role="0.6"><primary>clutter_shader_get_vertex_source</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_shader_get_vertex_source    (<link linkend="ClutterShader">ClutterShader</link> *shader);</programlisting>
+<para>
+Query the current GLSL vertex source set on <parameter>shader</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the source of the vertex shader for this
+ClutterShader object or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. The returned string is owned by the
+shader object and should never be modified or freed
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-set-fragment-source" role="function" condition="since:0.6">
+<title>clutter_shader_set_fragment_source ()</title>
+<indexterm zone="clutter-shader-set-fragment-source" role="0.6"><primary>clutter_shader_set_fragment_source</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_shader_set_fragment_source  (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *data,
+                                                         <link linkend="gssize">gssize</link> length);</programlisting>
+<para>
+Sets the GLSL source code to be used by a <link linkend="ClutterShader"><type>ClutterShader</type></link> for the fragment
+program.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> GLSL source code.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> length of source buffer (currently ignored)
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-get-fragment-source" role="function" condition="since:0.6">
+<title>clutter_shader_get_fragment_source ()</title>
+<indexterm zone="clutter-shader-get-fragment-source" role="0.6"><primary>clutter_shader_get_fragment_source</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        clutter_shader_get_fragment_source  (<link linkend="ClutterShader">ClutterShader</link> *shader);</programlisting>
+<para>
+Query the current GLSL fragment source set on <parameter>shader</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the source of the fragment shader for this
+ClutterShader object or <link linkend="NULL:CAPS"><literal>NULL</literal></link>. The returned string is owned by the
+shader object and should never be modified or freed
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-compile" role="function" condition="since:0.8">
+<title>clutter_shader_compile ()</title>
+<indexterm zone="clutter-shader-compile" role="0.8"><primary>clutter_shader_compile</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_shader_compile              (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Compiles and links GLSL sources set for vertex and fragment shaders for
+a <link linkend="ClutterShader"><type>ClutterShader</type></link>. If the compilation fails and a <link linkend="GError"><type>GError</type></link> return location is
+provided the error will contain the errors from the compiler, if any.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for a <link linkend="GError"><type>GError</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> returns TRUE if the shader was succesfully compiled.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-shader-release" role="function" condition="since:0.6">
+<title>clutter_shader_release ()</title>
+<indexterm zone="clutter-shader-release" role="0.6"><primary>clutter_shader_release</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_shader_release              (<link linkend="ClutterShader">ClutterShader</link> *shader);</programlisting>
+<para>
+Frees up any GL context resources held by the shader.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-is-compiled" role="function" condition="since:0.8">
+<title>clutter_shader_is_compiled ()</title>
+<indexterm zone="clutter-shader-is-compiled" role="0.8"><primary>clutter_shader_is_compiled</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_shader_is_compiled          (<link linkend="ClutterShader">ClutterShader</link> *shader);</programlisting>
+<para>
+Checks whether <parameter>shader</parameter> is is currently compiled, linked and bound
+to the GL context.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the shader is compiled, linked and ready for use.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-shader-set-is-enabled" role="function" condition="since:0.6">
+<title>clutter_shader_set_is_enabled ()</title>
+<indexterm zone="clutter-shader-set-is-enabled" role="0.6"><primary>clutter_shader_set_is_enabled</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_shader_set_is_enabled       (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         <link linkend="gboolean">gboolean</link> enabled);</programlisting>
+<para>
+Enables a shader. This function will attempt to compile and link
+the shader, if it isn't already.
+</para>
+<para>
+When <parameter>enabled</parameter> is <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> the default state of the GL pipeline will be
+used instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>enabled</parameter>&nbsp;:</term>
+<listitem><simpara> The new state of the shader.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-get-is-enabled" role="function" condition="since:0.6">
+<title>clutter_shader_get_is_enabled ()</title>
+<indexterm zone="clutter-shader-get-is-enabled" role="0.6"><primary>clutter_shader_get_is_enabled</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_shader_get_is_enabled       (<link linkend="ClutterShader">ClutterShader</link> *shader);</programlisting>
+<para>
+Checks whether <parameter>shader</parameter> is enabled.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the shader is enabled.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-shader-set-uniform-1f" role="function" condition="since:0.6">
+<title>clutter_shader_set_uniform_1f ()</title>
+<indexterm zone="clutter-shader-set-uniform-1f" role="0.6"><primary>clutter_shader_set_uniform_1f</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_shader_set_uniform_1f       (<link linkend="ClutterShader">ClutterShader</link> *shader,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="gfloat">gfloat</link> value);</programlisting>
+<para>
+Sets a user configurable variable in the shader programs attached
+to a <link linkend="ClutterShader"><type>ClutterShader</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterShader"><type>ClutterShader</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> name of uniform in vertex or fragment program to set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the new value of the uniform.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterShader.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterShader--compiled"><title>The <literal>&quot;compiled&quot;</literal> property</title>
+<indexterm zone="ClutterShader--compiled" role="0.8"><primary>ClutterShader:compiled</primary></indexterm><programlisting>  &quot;compiled&quot;                 <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether the shader is compiled and linked, ready for use
+in the GL context.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.8
+</para>
+</refsect2>
+<refsect2 id="ClutterShader--enabled"><title>The <literal>&quot;enabled&quot;</literal> property</title>
+<indexterm zone="ClutterShader--enabled" role="0.6"><primary>ClutterShader:enabled</primary></indexterm><programlisting>  &quot;enabled&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether the shader is currently used in the GL rendering pipeline.</para>
+<para>
+
+</para><para>Default value: FALSE</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterShader--fragment-source"><title>The <literal>&quot;fragment-source&quot;</literal> property</title>
+<indexterm zone="ClutterShader--fragment-source" role="0.6"><primary>ClutterShader:fragment-source</primary></indexterm><programlisting>  &quot;fragment-source&quot;          <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>
+GLSL source code for the fragment shader part of the shader program.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+<para>Since  0.6
+</para>
+</refsect2>
+<refsect2 id="ClutterShader--vertex-source"><title>The <literal>&quot;vertex-source&quot;</literal> property</title>
+<indexterm zone="ClutterShader--vertex-source" role="0.6"><primary>ClutterShader:vertex-source</primary></indexterm><programlisting>  &quot;vertex-source&quot;            <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>
+GLSL source code for the vertex shader part of the shader program, if any.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+<para>Since  0.6
+</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

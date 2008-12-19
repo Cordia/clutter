@@ -1,0 +1,304 @@
+<!-- ##### SECTION Title ##### -->
+General API
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO COGL_PIXEL_FORMAT_24 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_PIXEL_FORMAT_32 ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_A_BIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_BGR_BIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_AFIRST_BIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_PREMULT_BIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_UNORDERED_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO COGL_UNPREMULT_MASK ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM CoglPixelFormat ##### -->
+<para>
+
+</para>
+
+@COGL_PIXEL_FORMAT_ANY: 
+@COGL_PIXEL_FORMAT_A_8: 
+@COGL_PIXEL_FORMAT_RGB_565: 
+@COGL_PIXEL_FORMAT_RGBA_4444: 
+@COGL_PIXEL_FORMAT_RGBA_5551: 
+@COGL_PIXEL_FORMAT_YUV: 
+@COGL_PIXEL_FORMAT_G_8: 
+@COGL_PIXEL_FORMAT_RGB_888: 
+@COGL_PIXEL_FORMAT_BGR_888: 
+@COGL_PIXEL_FORMAT_RGBA_8888: 
+@COGL_PIXEL_FORMAT_BGRA_8888: 
+@COGL_PIXEL_FORMAT_ARGB_8888: 
+@COGL_PIXEL_FORMAT_ABGR_8888: 
+@COGL_PIXEL_FORMAT_RGBA_8888_PRE: 
+@COGL_PIXEL_FORMAT_BGRA_8888_PRE: 
+@COGL_PIXEL_FORMAT_ARGB_8888_PRE: 
+@COGL_PIXEL_FORMAT_ABGR_8888_PRE: 
+@COGL_PIXEL_FORMAT_RGBA_4444_PRE: 
+@COGL_PIXEL_FORMAT_RGBA_5551_PRE: 
+
+<!-- ##### ENUM CoglBufferTarget ##### -->
+<para>
+
+</para>
+
+@COGL_WINDOW_BUFFER: 
+@COGL_MASK_BUFFER: 
+@COGL_OFFSCREEN_BUFFER: 
+
+<!-- ##### FUNCTION cogl_perspective ##### -->
+<para>
+
+</para>
+
+@fovy: 
+@aspect: 
+@z_near: 
+@z_far: 
+
+
+<!-- ##### FUNCTION cogl_frustum ##### -->
+<para>
+
+</para>
+
+@left: 
+@right: 
+@bottom: 
+@top: 
+@z_near: 
+@z_far: 
+
+
+<!-- ##### FUNCTION cogl_setup_viewport ##### -->
+<para>
+
+</para>
+
+@width: 
+@height: 
+@fovy: 
+@aspect: 
+@z_near: 
+@z_far: 
+
+
+<!-- ##### FUNCTION cogl_viewport ##### -->
+<para>
+
+</para>
+
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION cogl_get_modelview_matrix ##### -->
+<para>
+
+</para>
+
+@m: 
+
+
+<!-- ##### FUNCTION cogl_get_projection_matrix ##### -->
+<para>
+
+</para>
+
+@m: 
+
+
+<!-- ##### FUNCTION cogl_get_viewport ##### -->
+<para>
+
+</para>
+
+@v: 
+
+
+<!-- ##### FUNCTION cogl_push_matrix ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_pop_matrix ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_scale ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cogl_translatex ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION cogl_translate ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION cogl_rotatex ##### -->
+<para>
+
+</para>
+
+@angle: 
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION cogl_rotate ##### -->
+<para>
+
+</para>
+
+@angle: 
+@x: 
+@y: 
+@z: 
+
+
+<!-- ##### FUNCTION cogl_clip_set ##### -->
+<para>
+
+</para>
+
+@x_offset: 
+@y_offset: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION cogl_clip_unset ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_clip_stack_save ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_clip_stack_restore ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_enable_depth_test ##### -->
+<para>
+
+</para>
+
+@setting: 
+
+
+<!-- ##### FUNCTION cogl_alpha_func ##### -->
+<para>
+
+</para>
+
+@func: 
+@ref: 
+
+
+<!-- ##### FUNCTION cogl_fog_set ##### -->
+<para>
+
+</para>
+
+@fog_color: 
+@density: 
+@z_near: 
+@z_far: 
+
+

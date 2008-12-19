@@ -1,0 +1,698 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterContainer">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterContainer.top_of_page">ClutterContainer</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterContainer</refname>
+<refpurpose>An interface for implementing container actors</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterContainer.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterContainer-struct">ClutterContainer</link>;
+                    <link linkend="ClutterContainerIface">ClutterContainerIface</link>;
+<link linkend="void">void</link>                <link linkend="clutter-container-add-actor">clutter_container_add_actor</link>         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-container-add">clutter_container_add</link>               (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-container-add-valist">clutter_container_add_valist</link>        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);
+<link linkend="void">void</link>                <link linkend="clutter-container-remove-actor">clutter_container_remove_actor</link>      (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-container-remove">clutter_container_remove</link>            (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-container-remove-valist">clutter_container_remove_valist</link>     (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);
+<link linkend="GList">GList</link>*              <link linkend="clutter-container-get-children">clutter_container_get_children</link>      (<link linkend="ClutterContainer">ClutterContainer</link> *container);
+<link linkend="void">void</link>                <link linkend="clutter-container-foreach">clutter_container_foreach</link>           (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterCallback">ClutterCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-container-find-child-by-name">clutter_container_find_child_by_name</link>
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         const <link linkend="gchar">gchar</link> *child_name);
+<link linkend="void">void</link>                <link linkend="clutter-container-raise-child">clutter_container_raise_child</link>       (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);
+<link linkend="void">void</link>                <link linkend="clutter-container-lower-child">clutter_container_lower_child</link>       (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);
+<link linkend="void">void</link>                <link linkend="clutter-container-sort-depth-order">clutter_container_sort_depth_order</link>  (<link linkend="ClutterContainer">ClutterContainer</link> *container);
+
+<link linkend="GParamSpec">GParamSpec</link>*         <link linkend="clutter-container-class-find-child-property">clutter_container_class_find_child_property</link>
+                                                        (<link linkend="GObjectClass">GObjectClass</link> *klass,
+                                                         const <link linkend="gchar">gchar</link> *property_name);
+<link linkend="GParamSpec">GParamSpec</link>**        <link linkend="clutter-container-class-list-child-properties">clutter_container_class_list_child_properties</link>
+                                                        (<link linkend="GObjectClass">GObjectClass</link> *klass,
+                                                         <link linkend="guint">guint</link> *n_properties);
+<link linkend="void">void</link>                <link linkend="clutter-container-child-set-property">clutter_container_child_set_property</link>
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *child,
+                                                         const <link linkend="gchar">gchar</link> *property,
+                                                         const <link linkend="GValue">GValue</link> *value);
+<link linkend="void">void</link>                <link linkend="clutter-container-child-get-property">clutter_container_child_get_property</link>
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *child,
+                                                         const <link linkend="gchar">gchar</link> *property,
+                                                         <link linkend="GValue">GValue</link> *value);
+<link linkend="void">void</link>                <link linkend="clutter-container-child-set">clutter_container_child_set</link>         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="gchar">gchar</link> *first_prop,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-container-child-get">clutter_container_child_get</link>         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="gchar">gchar</link> *first_prop,
+                                                         ...);
+
+<link linkend="ClutterChildMeta">ClutterChildMeta</link>*   <link linkend="clutter-container-get-child-meta">clutter_container_get_child_meta</link>    (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterContainer.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----ClutterContainer
+</synopsis>
+
+</refsect1>
+
+<refsect1 id="ClutterContainer.prerequisites" role="prerequisites">
+<title role="prerequisites.title">Prerequisites</title>
+<para>
+ClutterContainer requires
+ <link linkend="GObject">GObject</link>.</para>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterContainer.implementations" role="implementations">
+<title role="implementations.title">Known Implementations</title>
+<para>
+ClutterContainer is implemented by
+ <link linkend="ClutterStage">ClutterStage</link> and  <link linkend="ClutterGroup">ClutterGroup</link>.</para>
+
+</refsect1>
+
+
+
+
+<refsect1 id="ClutterContainer.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterContainer"><type>ClutterContainer</type></link> is an interface for writing actors containing other
+<link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s. It provides a standard API for adding, removing
+and iterating on every contained actor.
+</para>
+<para>
+An actor implementing <link linkend="ClutterContainer"><type>ClutterContainer</type></link> is <link linkend="ClutterGroup"><type>ClutterGroup</type></link>.
+</para>
+<para>
+<link linkend="ClutterContainer"><type>ClutterContainer</type></link> is available since Clutter 0.4</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterContainer.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterContainer-struct" role="struct">
+<title>ClutterContainer</title>
+<indexterm zone="ClutterContainer-struct"><primary>ClutterContainer</primary></indexterm><programlisting>typedef struct _ClutterContainer ClutterContainer;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterContainerIface" role="struct" condition="since:0.4">
+<title>ClutterContainerIface</title>
+<indexterm zone="ClutterContainerIface" role="0.4"><primary>ClutterContainerIface</primary></indexterm><programlisting>typedef struct {
+  void (* add)              (ClutterContainer *container,
+                             ClutterActor     *actor);
+  void (* remove)           (ClutterContainer *container,
+                             ClutterActor     *actor);
+  void (* foreach)          (ClutterContainer *container,
+                             ClutterCallback   callback,
+                             gpointer          user_data);
+  void (* raise)            (ClutterContainer *container,
+                             ClutterActor     *actor,
+                             ClutterActor     *sibling);
+  void (* lower)            (ClutterContainer *container,
+                             ClutterActor     *actor,
+                             ClutterActor     *sibling);
+  void (* sort_depth_order) (ClutterContainer *container);
+
+  /* ClutterChildMeta management */
+
+  GType                child_meta_type;
+  void              (* create_child_meta)  (ClutterContainer *container,
+                                            ClutterActor     *actor);
+  void              (* destroy_child_meta) (ClutterContainer *container,
+                                            ClutterActor     *actor);
+  ClutterChildMeta *(* get_child_meta)     (ClutterContainer *container,
+                                            ClutterActor     *actor);
+
+  /* signals */
+  void (* actor_added)   (ClutterContainer *container,
+                          ClutterActor     *actor);
+  void (* actor_removed) (ClutterContainer *container,
+                          ClutterActor     *actor);
+
+  void (* child_notify)  (ClutterContainer *container,
+                          ClutterActor     *actor,
+                          GParamSpec       *pspec);
+} ClutterContainerIface;
+</programlisting>
+<para>
+Base interface for container actors.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>add</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for adding an actor to the container
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>remove</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for removing an actor from the container
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>foreach</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for iterating over the container's children
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>raise</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for raising a child
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>lower</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for lowering a child
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>sort_depth_order</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function for sorting the children of a
+  container depending on their depth
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="GType">GType</link>&nbsp;<structfield>child_meta_type</structfield>;</term>
+<listitem><simpara> The GType used for storing auxiliary information about
+  each of the containers children.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>create_child_meta</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function that gets called for each added
+  child, the function should instantiate an object of type
+  <link linkend="ClutterContainerIface-child-meta-type"><type>"child_meta_type"</type></link>, set the container and actor
+  fields in the instance and add the record to a data structure for
+  subsequent access for <link linkend="ClutterContainerIface-get-child-meta"><type>"get_child_meta"</type></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>destroy_child_meta</structfield>&nbsp;()</term>
+<listitem><simpara> virtual function that gets called when a child is
+  removed; it shuld release all resources held by the record
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_child_meta</structfield>&nbsp;()</term>
+<listitem><simpara> return the record for a container child
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>actor_added</structfield>&nbsp;()</term>
+<listitem><simpara> class handler for <link linkend="ClutterContainer-actor-added"><type>"actor_added"</type></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>actor_removed</structfield>&nbsp;()</term>
+<listitem><simpara> class handler for <link linkend="ClutterContainer-actor-removed"><type>"actor_removed"</type></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>child_notify</structfield>&nbsp;()</term>
+<listitem><simpara> class handler for <link linkend="ClutterContainer-child-notify"><type>"child-notify"</type></link>
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-add-actor" role="function" condition="since:0.4">
+<title>clutter_container_add_actor ()</title>
+<indexterm zone="clutter-container-add-actor" role="0.4"><primary>clutter_container_add_actor</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_add_actor         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Adds a <link linkend="ClutterActor"><type>ClutterActor</type></link> to <parameter>container</parameter>. This function will emit the
+"actor-added" signal. The actor should be parented to
+<parameter>container</parameter>. You cannot add a <link linkend="ClutterActor"><type>ClutterActor</type></link> to more than one
+<link linkend="ClutterContainer"><type>ClutterContainer</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the first <link linkend="ClutterActor"><type>ClutterActor</type></link> to add
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-add" role="function" condition="since:0.4">
+<title>clutter_container_add ()</title>
+<indexterm zone="clutter-container-add" role="0.4"><primary>clutter_container_add</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_add               (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);</programlisting>
+<para>
+Adds a list of <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s to <parameter>container</parameter>. Each time and
+actor is added, the "actor-added" signal is emitted. Each actor should
+be parented to <parameter>container</parameter>, which takes a reference on the actor. You
+cannot add a <link linkend="ClutterActor"><type>ClutterActor</type></link> to more than one <link linkend="ClutterContainer"><type>ClutterContainer</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> the first <link linkend="ClutterActor"><type>ClutterActor</type></link> to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated list of actors to add
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-add-valist" role="function" condition="since:0.4">
+<title>clutter_container_add_valist ()</title>
+<indexterm zone="clutter-container-add-valist" role="0.4"><primary>clutter_container_add_valist</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_add_valist        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);</programlisting>
+<para>
+Alternative va_list version of <link linkend="clutter-container-add"><function>clutter_container_add()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> the first <link linkend="ClutterActor"><type>ClutterActor</type></link> to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>var_args</parameter>&nbsp;:</term>
+<listitem><simpara> list of actors to add, followed by <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-remove-actor" role="function" condition="since:0.4">
+<title>clutter_container_remove_actor ()</title>
+<indexterm zone="clutter-container-remove-actor" role="0.4"><primary>clutter_container_remove_actor</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_remove_actor      (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Removes <parameter>actor</parameter> from <parameter>container</parameter>. The actor should be unparented, so
+if you want to keep it around you must hold a reference to it
+yourself, using <link linkend="g-object-ref"><function>g_object_ref()</function></link>. When the actor has been removed,
+the "actor-removed" signal is emitted by <parameter>container</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-remove" role="function" condition="since:0.4">
+<title>clutter_container_remove ()</title>
+<indexterm zone="clutter-container-remove" role="0.4"><primary>clutter_container_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_remove            (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);</programlisting>
+<para>
+Removes a <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated list of <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s from
+<parameter>container</parameter>. Each actor should be unparented, so if you want to keep it
+around you must hold a reference to it yourself, using <link linkend="g-object-ref"><function>g_object_ref()</function></link>.
+Each time an actor is removed, the "actor-removed" signal is
+emitted by <parameter>container</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> first <link linkend="ClutterActor"><type>ClutterActor</type></link> to remove
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="NULL:CAPS"><literal>NULL</literal></link>-terminated list of actors to remove
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-remove-valist" role="function" condition="since:0.4">
+<title>clutter_container_remove_valist ()</title>
+<indexterm zone="clutter-container-remove-valist" role="0.4"><primary>clutter_container_remove_valist</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_remove_valist     (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);</programlisting>
+<para>
+Alternative va_list version of <link linkend="clutter-container-remove"><function>clutter_container_remove()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> the first <link linkend="ClutterActor"><type>ClutterActor</type></link> to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>var_args</parameter>&nbsp;:</term>
+<listitem><simpara> list of actors to remove, followed by <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-get-children" role="function" condition="since:0.4">
+<title>clutter_container_get_children ()</title>
+<indexterm zone="clutter-container-get-children" role="0.4"><primary>clutter_container_get_children</primary></indexterm><programlisting><link linkend="GList">GList</link>*              clutter_container_get_children      (<link linkend="ClutterContainer">ClutterContainer</link> *container);</programlisting>
+<para>
+Retrieves all the children of <parameter>container</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a list of <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s. Use <link linkend="g-list-free"><function>g_list_free()</function></link>
+  on the returned list when done.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-foreach" role="function" condition="since:0.4">
+<title>clutter_container_foreach ()</title>
+<indexterm zone="clutter-container-foreach" role="0.4"><primary>clutter_container_foreach</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_foreach           (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterCallback">ClutterCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Calls <parameter>callback</parameter> for each child of <parameter>container</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&nbsp;:</term>
+<listitem><simpara> a function to be called for each child
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> data to be passed to the function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-container-find-child-by-name" role="function" condition="since:0.6">
+<title>clutter_container_find_child_by_name ()</title>
+<indexterm zone="clutter-container-find-child-by-name" role="0.6"><primary>clutter_container_find_child_by_name</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_container_find_child_by_name
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         const <link linkend="gchar">gchar</link> *child_name);</programlisting>
+<para>
+Finds a child actor of a container by its name. Search recurses
+into any child container.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the requested child.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The child actor with the requested name, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if no
+  actor with that name was found.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-container-raise-child" role="function" condition="since:0.6">
+<title>clutter_container_raise_child ()</title>
+<indexterm zone="clutter-container-raise-child" role="0.6"><primary>clutter_container_raise_child</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_raise_child       (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);</programlisting>
+<para>
+Raises <parameter>actor</parameter> to <parameter>sibling</parameter> level, in the depth ordering.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the actor to raise
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sibling</parameter>&nbsp;:</term>
+<listitem><simpara> the sibling to raise to, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to raise to the top
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-container-lower-child" role="function" condition="since:0.6">
+<title>clutter_container_lower_child ()</title>
+<indexterm zone="clutter-container-lower-child" role="0.6"><primary>clutter_container_lower_child</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_lower_child       (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);</programlisting>
+<para>
+Lowers <parameter>actor</parameter> to <parameter>sibling</parameter> level, in the depth ordering.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the actor to raise
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sibling</parameter>&nbsp;:</term>
+<listitem><simpara> the sibling to lower to, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> to lower to the bottom
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-container-sort-depth-order" role="function" condition="since:0.6">
+<title>clutter_container_sort_depth_order ()</title>
+<indexterm zone="clutter-container-sort-depth-order" role="0.6"><primary>clutter_container_sort_depth_order</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_sort_depth_order  (<link linkend="ClutterContainer">ClutterContainer</link> *container);</programlisting>
+<para>
+Sorts a container's children using their depth. This function should not
+be normally used by applications.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.6
+</para></refsect2>
+<refsect2 id="clutter-container-class-find-child-property" role="function" condition="since:0.8">
+<title>clutter_container_class_find_child_property ()</title>
+<indexterm zone="clutter-container-class-find-child-property" role="0.8"><primary>clutter_container_class_find_child_property</primary></indexterm><programlisting><link linkend="GParamSpec">GParamSpec</link>*         clutter_container_class_find_child_property
+                                                        (<link linkend="GObjectClass">GObjectClass</link> *klass,
+                                                         const <link linkend="gchar">gchar</link> *property_name);</programlisting>
+<para>
+Looks up the <link linkend="GParamSpec"><type>GParamSpec</type></link> for a child property of <parameter>klass</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>klass</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GObjectClass"><type>GObjectClass</type></link> implementing the <link linkend="ClutterContainer"><type>ClutterContainer</type></link> interface.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>property_name</parameter>&nbsp;:</term>
+<listitem><simpara> a property name.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The <link linkend="GParamSpec"><type>GParamSpec</type></link> for the property or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if no such
+  property exist.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-class-list-child-properties" role="function" condition="since:0.8">
+<title>clutter_container_class_list_child_properties ()</title>
+<indexterm zone="clutter-container-class-list-child-properties" role="0.8"><primary>clutter_container_class_list_child_properties</primary></indexterm><programlisting><link linkend="GParamSpec">GParamSpec</link>**        clutter_container_class_list_child_properties
+                                                        (<link linkend="GObjectClass">GObjectClass</link> *klass,
+                                                         <link linkend="guint">guint</link> *n_properties);</programlisting>
+<para>
+Returns an array of <link linkend="GParamSpec"><type>GParamSpec</type></link> for all child properties.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>klass</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GObjectClass"><type>GObjectClass</type></link> implementing the <link linkend="ClutterContainer"><type>ClutterContainer</type></link> interface.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_properties</parameter>&nbsp;:</term>
+<listitem><simpara> return location for length of returned array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an array of <link linkend="GParamSpec"><type>GParamSpec</type></link><!-- -->s which should be freed
+  after use.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-child-set-property" role="function" condition="since:0.8">
+<title>clutter_container_child_set_property ()</title>
+<indexterm zone="clutter-container-child-set-property" role="0.8"><primary>clutter_container_child_set_property</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_child_set_property
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *child,
+                                                         const <link linkend="gchar">gchar</link> *property,
+                                                         const <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Sets a container-specific property on a child of <parameter>container</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> that is a child of <parameter>container</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>property</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the property to set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-child-get-property" role="function" condition="since:0.8">
+<title>clutter_container_child_get_property ()</title>
+<indexterm zone="clutter-container-child-get-property" role="0.8"><primary>clutter_container_child_get_property</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_child_get_property
+                                                        (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *child,
+                                                         const <link linkend="gchar">gchar</link> *property,
+                                                         <link linkend="GValue">GValue</link> *value);</programlisting>
+<para>
+Gets a container specific property of a child of <parameter>container</parameter>, In general,
+a copy is made of the property contents and the caller is responsible for
+freeing the memory by calling <link linkend="g-value-unset"><function>g_value_unset()</function></link>.
+</para>
+<para>
+Note that <link linkend="clutter-container-child-set-property"><function>clutter_container_child_set_property()</function></link> is really intended for
+language bindings, <link linkend="clutter-container-child-set"><function>clutter_container_child_set()</function></link> is much more convenient
+for C programming.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>child</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> that is a child of <parameter>container</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>property</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the property to set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-child-set" role="function" condition="since:0.8">
+<title>clutter_container_child_set ()</title>
+<indexterm zone="clutter-container-child-set" role="0.8"><primary>clutter_container_child_set</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_child_set         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="gchar">gchar</link> *first_prop,
+                                                         ...);</programlisting>
+<para>
+Sets container specific properties on the child of a container.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> that is a child of <parameter>container</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_prop</parameter>&nbsp;:</term>
+<listitem><simpara> name of the first property to be set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> value for the first property, followed optionally by more name/value
+pairs terminated with NULL.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-child-get" role="function" condition="since:0.8">
+<title>clutter_container_child_get ()</title>
+<indexterm zone="clutter-container-child-get" role="0.8"><primary>clutter_container_child_get</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_container_child_get         (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         const <link linkend="gchar">gchar</link> *first_prop,
+                                                         ...);</programlisting>
+<para>
+Gets <parameter>container</parameter> specific properties of an actor.
+</para>
+<para>
+In general, a copy is made of the property contents and the caller is
+responsible for freeing the memory in the appropriate manner for the type, for
+instance by calling <link linkend="g-free"><function>g_free()</function></link> or <link linkend="g-object-unref"><function>g_object_unref()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> that is a child of <parameter>container</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_prop</parameter>&nbsp;:</term>
+<listitem><simpara> name of the first property to be set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> value for the first property, followed optionally by more name/value
+pairs terminated with NULL.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-container-get-child-meta" role="function" condition="since:0.8">
+<title>clutter_container_get_child_meta ()</title>
+<indexterm zone="clutter-container-get-child-meta" role="0.8"><primary>clutter_container_get_child_meta</primary></indexterm><programlisting><link linkend="ClutterChildMeta">ClutterChildMeta</link>*   clutter_container_get_child_meta    (<link linkend="ClutterContainer">ClutterContainer</link> *container,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<para>
+Retrieves the <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> which contains the data about the
+<parameter>container</parameter> specific state for <parameter>actor</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterContainer"><type>ClutterContainer</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link> that is a child of <parameter>container</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link> for the <parameter>actor</parameter> child of <parameter>container</parameter>
+  or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the specifiec actor does not exist or the container is not
+  configured to provide <link linkend="ClutterChildMeta"><type>ClutterChildMeta</type></link><!-- -->s
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

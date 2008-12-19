@@ -1,0 +1,157 @@
+clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 18 Dec 2008 12:44:52 +0000
+
+clutter (0.8.2-0maemo12) unstable; urgency=low
+
+  * Added clutter_actor_set_allow_redraw to stop certain actors forcing redraw
+  * Added clutter_stage_set_damaged_area to allow redraw of only damaged areas
+  * Added clutter_actor_set_visibility_detect to skip visibility detection on
+    stuff that doesn't play fair - like h-d task navigator
+  * Added clutter_actor_queue_redraw_damage to allow a redraw to be queued
+    without the whole screen being marked as damaged.
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 18 Dec 2008 12:44:52 +0000
+
+clutter (0.8.2-0maemo11) unstable; urgency=low
+
+  * Added PVRTC4 Texture compressor + decompressor
+  * Added PVR decompressor fallback for loading PVRs on GL
+  * Removed optional PVR loading code from clutter-texture
+  * Made cogl-texture understand and load .pvr files
+  * added cogl_bitmap_save_pvrtc4 to save compressed pvr file 
+    so it can be used for h-d backgrounds
+  * added extra 1 byte per pixel texture formats to 
+    clutter_texture_set_from_rgb_data for gaussian shadows in
+    matchbox
+  * Removed visibility check for redraw as I think it adds more trouble
+    than it solves
+  * Added null-pointer check for container sort
+  * Exposed cogl_blend_func to let tidy-blur-group work properly
+    with transparent textures
+  * Removed 'updating texture' messages fom EGL TFP
+  * Fixed several warnings throughout the code
+  * added more useful debug message to EGL TFP
+  * Kimmo: Add check before queuing a paint in update_area in EGL TFP.
+  * Kimmo: Use new libgles2 and libgles2-dev packages. 
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 28 Nov 2008 16:24:30 +0000
+
+clutter (0.8.2-0maemo10) unstable; urgency=low
+
+  * Added cogl-pvr-texture file to allow GLES to load PVR compressed textures
+    if they exist
+  * Replaced stencil-based clipping with WAY faster scissor-based clipping
+    for the case where we're clipping to rectangles
+  * Removed instantiation of surfaces with a stencil buffer for GLES
+    as we won't need it now
+  * Moved matrix functions from clutter-actor to cogl-util (+ added unproject)
+  * Added stencil area to visibility detection so we don't even ask
+    GLES to draw outside clipping regions (eg. for lists)
+  * Modified pixel shaders to use lowp (int10) where possible instead of
+    mediump (float16)
+  * Now compile with Werror and modified some code accordingly
+  * Added code to allow notification of modification of children to parent
+    containers - used when a texture is used in a container to cache the 
+    state of its children (specifically tidy-blur-group in h-d)
+  * Modified COGL to add cogl_texture_triangles to allow fast drawing on GLES
+  * Modified Pango Renderer to use one call to cogl_texture_triangles rather
+    than many calls to cogl_texture_rectangle
+  * Modified cogl-bitmap-pixbuf to only use a single memcpy on load rather than
+    one per scanline
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 21 Nov 2008 11:25:48 +0000
+
+clutter (0.8.2-0maemo9) unstable; urgency=low
+
+  * Added visibility checking for actors
+  * Added more useful Clutter debug prints for [PAINT]
+  * Added automatic naming of textures (if created with new_file) for [PAINT]
+
+  * Added short-cut to stop matrix multiply for scale 1,1,1 and translate 0,0,0
+  * Removed GL_LIGHTING which caused invalid_enum for GLES2
+  * Re-arranged CoglPixelFormat so it works now and has more obvious macros
+  * Removed error-prone lookup table in cogl-bitmap
+  * Added more fast paths for pixel format conversion
+  * Added PIXEL_FORMAT_ANY_16 to select the best 16 bit pixel format for a texture
+  * MAEMO SPECIFIC: MADE clutter-texture ALWAYS USE 16 BIT
+
+  * Fixed fixed-point issues for FBOs as well as normal buffers
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 14 Nov 2008 13:53:00 +0000
+
+clutter (0.8.2-0maemo8) unstable; urgency=low
+
+  * Style changes to EGLX backend.
+  * Fixed scaling to screen inaccuracy causing hildon-desktop not to fit screen
+  * Fix bug in EGLX pixmap_paint: don't call eglReleaseTexImage if
+    eglBindTexImage had failed.
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 11 Nov 2008 15:21:45 +0000
+
+clutter (0.8.2-0maemo7) unstable; urgency=low
+
+  * Revert to old test-pixmap.c to  enable x86 building.
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Thu,  6 Nov 2008 16:59:17 +0200
+
+clutter (0.8.2-0maemo6) unstable; urgency=low
+
+  * Added XInput.h temporarily to make building succeed.
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Thu,  6 Nov 2008 16:11:43 +0200
+
+clutter (0.8.2-0maemo5) unstable; urgency=low
+
+  * Initial support for EGL texture from pixmap extension in the EGLX backend.
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed,  5 Nov 2008 16:39:03 +0200
+
+clutter (0.8.2-0maemo4) unstable; urgency=low
+
+  [ Gordon Williams ]
+  * EGLX Stage now requests EGL_PIXMAP if possible, but falls back if not
+  * Bug 90522 fixed - 'clipping not working' - EGLX Stage needed to request a stencil buffer
+
+  [ Rodrigo Novo ]
+  * Applied patch to eglx/clutter-stage-egl.c, by Sami Kyöstilä, to allow
+    Clutter to run properly with the "new" sgx driver
+
+ -- Rodrigo Novo <novo@wakko.research.nokia.com>  Fri, 31 Oct 2008 15:25:57 +0200
+
+clutter (0.8.2-0maemo3) unstable; urgency=low
+
+  [ Gordon Williams ]
+  * Added format conversion for RGB/BGR565 within cogl
+  * Added faster special case for BGR565 -> BGR888 conversion
+  * Removed non-GLES2 specific conversions in X11-pixmap
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 23 Oct 2008 18:04:00 +0000
+
+clutter (0.8.2-0maemo2) unstable; urgency=low
+
+  [ Kimmo Hämälainen ]
+  * Added texture_from_pixmap support to the EGLX backend.
+
+  [ Gordon Williams ]
+  * Added Kimmo's as yet unused EGLX X11 pixmap patch
+  * Removed 32 bit format conversion for x11-pixmap
+  * Stopped clutter slicing GLES2 textures when there was no need
+
+ -- Claudio Saavedra <csaavedra@igalia.com>  Thu, 23 Oct 2008 09:18:44 +0200
+
+clutter (0.8.2-0maemo1) unstable; urgency=low
+
+  * New upstream version 0.8.2
+
+ -- Claudio Saavedra <csaavedra@igalia.com>  Fri, 26 Sep 2008 09:36:52 +0300
+
+clutter (0.8.0-0maemo1) unstable; urgency=low
+
+  * Upstream version 0.8
+  * Disabled gtk-docs for now.
+  * Added Neil Roberts' FBO patch for GLES2 backend.
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue, 29 Jul 2008 15:58:49 +0300

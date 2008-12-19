@@ -1,0 +1,169 @@
+<!-- ##### SECTION Title ##### -->
+Shaders and Programmable Pipeline
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION cogl_create_shader ##### -->
+<para>
+
+</para>
+
+@shader_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_shader_ref ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_shader_unref ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_is_shader ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_shader_source ##### -->
+<para>
+
+</para>
+
+@shader: 
+@source: 
+
+
+<!-- ##### FUNCTION cogl_shader_compile ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_shader_get_info_log ##### -->
+<para>
+
+</para>
+
+@handle: 
+@size: 
+@buffer: 
+
+
+<!-- ##### FUNCTION cogl_shader_get_parameteriv ##### -->
+<para>
+
+</para>
+
+@handle: 
+@pname: 
+@dest: 
+
+
+<!-- ##### FUNCTION cogl_create_program ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_program_ref ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_program_unref ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_is_program ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_program_attach_shader ##### -->
+<para>
+
+</para>
+
+@program_handle: 
+@shader_handle: 
+
+
+<!-- ##### FUNCTION cogl_program_link ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_program_use ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+
+<!-- ##### FUNCTION cogl_program_get_uniform_location ##### -->
+<para>
+
+</para>
+
+@handle: 
+@uniform_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION cogl_program_uniform_1f ##### -->
+<para>
+
+</para>
+
+@uniform_no: 
+@value: 
+
+

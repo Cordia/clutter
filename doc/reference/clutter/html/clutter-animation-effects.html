@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Effects</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="prev" href="clutter-animation-behaviours.html" title="Behaviours">
+<link rel="next" href="clutter-animation-conclusion.html" title="Conclusion">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="clutter-animation-behaviours.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="clutter-animations.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-animation-conclusion.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="clutter-animation-effects"></a>Effects</h2></div></div></div>
+<p>
+  
+   Clutter effects API provide a simplified abstraction for firing simple
+   transitions from code. Clutter effects are created from a
+   #ClutterEffectTemplate which is an abstraction of a timeline and
+   an alpha function. An effect template can be created with:
+
+  </p>
+<pre class="programlisting">
+ClutterEffectTemplate *etemplate =
+  clutter_effect_template_new_for_duration (2000, CLUTTER_ALPHA_RAMP_INC);
+  </pre>
+<p>
+
+  This will create an effect template lasting 2000 milliseconds (2
+  seconds) and use an alpha function of %CLUTTER_ALPHA_RAMP_INC, there
+  are other more advanced forms for creating effect templates from
+  existing timelines, as well as attaching a callback to be called
+  with user_data when the effect template is destroyed.
+
+  </p>
+<p>
+
+  When we have an effect template we can create a temporary behaviour
+  animating an actor simply by issuing:
+
+  </p>
+<pre class="programlisting">
+clutter_effect_move (etemplate, actor, 23, 42, NULL, NULL);
+  </pre>
+<p>
+and the actor will move from its current position to the coordinates
+(23, 42) in 2 seconds. Effects can also be stacked, so calling:
+  </p>
+<pre class="programlisting">
+clutter_effect_move (etemplate, actor, 23, 42, NULL, NULL);
+clutter_effect_fade (etemplate, actor, 0, NULL, NULL);
+  </pre>
+<p>
+The actor will move and fade out at the same time.
+  </p>
+<p>
+
+  Since effects return a #ClutterTimeline, you can stop an effect from
+  immediatly happening by calling clutter_timeline_stop () on the
+  returned timeline.
+  
+  </p>
+<p>
+
+  The timeline and all the effect infrastructure is unreferenced as soon
+  as the timeline emits the ClutterTimeline::completed signal.
+
+  </p>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="cogl-General-API">
+<refmeta>
+<refentrytitle role="top_of_page" id="cogl-General-API.top_of_page">General API</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>COGL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>General API</refname>
+<refpurpose>General purpose API</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="cogl-General-API.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="COGL-PIXEL-FORMAT-24:CAPS">COGL_PIXEL_FORMAT_24</link>
+#define             <link linkend="COGL-PIXEL-FORMAT-32:CAPS">COGL_PIXEL_FORMAT_32</link>
+#define             <link linkend="COGL-A-BIT:CAPS">COGL_A_BIT</link>
+#define             <link linkend="COGL-BGR-BIT:CAPS">COGL_BGR_BIT</link>
+#define             <link linkend="COGL-AFIRST-BIT:CAPS">COGL_AFIRST_BIT</link>
+#define             <link linkend="COGL-PREMULT-BIT:CAPS">COGL_PREMULT_BIT</link>
+#define             <link linkend="COGL-UNORDERED-MASK:CAPS">COGL_UNORDERED_MASK</link>
+#define             <link linkend="COGL-UNPREMULT-MASK:CAPS">COGL_UNPREMULT_MASK</link>
+enum                <link linkend="CoglPixelFormat">CoglPixelFormat</link>;
+enum                <link linkend="CoglBufferTarget">CoglBufferTarget</link>;
+
+<link linkend="void">void</link>                <link linkend="cogl-perspective">cogl_perspective</link>                    (<link linkend="ClutterFixed">ClutterFixed</link> fovy,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> aspect,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);
+<link linkend="void">void</link>                <link linkend="cogl-frustum">cogl_frustum</link>                        (<link linkend="ClutterFixed">ClutterFixed</link> left,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> right,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> bottom,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> top,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);
+<link linkend="void">void</link>                <link linkend="cogl-setup-viewport">cogl_setup_viewport</link>                 (<link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> fovy,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> aspect,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);
+<link linkend="void">void</link>                <link linkend="cogl-viewport">cogl_viewport</link>                       (<link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height);
+<link linkend="void">void</link>                <link linkend="cogl-get-modelview-matrix">cogl_get_modelview_matrix</link>           (<link linkend="ClutterFixed">ClutterFixed</link> m[16]);
+<link linkend="void">void</link>                <link linkend="cogl-get-projection-matrix">cogl_get_projection_matrix</link>          (<link linkend="ClutterFixed">ClutterFixed</link> m[16]);
+<link linkend="void">void</link>                <link linkend="cogl-get-viewport">cogl_get_viewport</link>                   (<link linkend="ClutterFixed">ClutterFixed</link> v[4]);
+
+<link linkend="void">void</link>                <link linkend="cogl-push-matrix">cogl_push_matrix</link>                    (void);
+<link linkend="void">void</link>                <link linkend="cogl-pop-matrix">cogl_pop_matrix</link>                     (void);
+<link linkend="void">void</link>                <link linkend="cogl-scale">cogl_scale</link>                          (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="void">void</link>                <link linkend="cogl-translatex">cogl_translatex</link>                     (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z);
+<link linkend="void">void</link>                <link linkend="cogl-translate">cogl_translate</link>                      (<link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);
+<link linkend="void">void</link>                <link linkend="cogl-rotatex">cogl_rotatex</link>                        (<link linkend="ClutterFixed">ClutterFixed</link> angle,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);
+<link linkend="void">void</link>                <link linkend="cogl-rotate">cogl_rotate</link>                         (<link linkend="gint">gint</link> angle,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);
+
+<link linkend="void">void</link>                <link linkend="cogl-clip-set">cogl_clip_set</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> x_offset,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_offset,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);
+<link linkend="void">void</link>                <link linkend="cogl-clip-unset">cogl_clip_unset</link>                     (void);
+<link linkend="void">void</link>                <link linkend="cogl-clip-stack-save">cogl_clip_stack_save</link>                (void);
+<link linkend="void">void</link>                <link linkend="cogl-clip-stack-restore">cogl_clip_stack_restore</link>             (void);
+
+<link linkend="void">void</link>                <link linkend="cogl-enable-depth-test">cogl_enable_depth_test</link>              (<link linkend="gboolean">gboolean</link> setting);
+<link linkend="void">void</link>                <link linkend="cogl-alpha-func">cogl_alpha_func</link>                     (<link linkend="COGLenum">COGLenum</link> func,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> ref);
+<link linkend="void">void</link>                <link linkend="cogl-fog-set">cogl_fog_set</link>                        (const <link linkend="ClutterColor">ClutterColor</link> *fog_color,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> density,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="cogl-General-API.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+General utility functions for COGL.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="cogl-General-API.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="COGL-PIXEL-FORMAT-24:CAPS" role="macro">
+<title>COGL_PIXEL_FORMAT_24</title>
+<indexterm zone="COGL-PIXEL-FORMAT-24:CAPS"><primary>COGL_PIXEL_FORMAT_24</primary></indexterm><programlisting>#define COGL_PIXEL_FORMAT_24    2
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-PIXEL-FORMAT-32:CAPS" role="macro">
+<title>COGL_PIXEL_FORMAT_32</title>
+<indexterm zone="COGL-PIXEL-FORMAT-32:CAPS"><primary>COGL_PIXEL_FORMAT_32</primary></indexterm><programlisting>#define COGL_PIXEL_FORMAT_32    3
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-A-BIT:CAPS" role="macro">
+<title>COGL_A_BIT</title>
+<indexterm zone="COGL-A-BIT:CAPS"><primary>COGL_A_BIT</primary></indexterm><programlisting>#define COGL_A_BIT              (1 &lt;&lt; 4)
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-BGR-BIT:CAPS" role="macro">
+<title>COGL_BGR_BIT</title>
+<indexterm zone="COGL-BGR-BIT:CAPS"><primary>COGL_BGR_BIT</primary></indexterm><programlisting>#define COGL_BGR_BIT            (1 &lt;&lt; 5)
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-AFIRST-BIT:CAPS" role="macro">
+<title>COGL_AFIRST_BIT</title>
+<indexterm zone="COGL-AFIRST-BIT:CAPS"><primary>COGL_AFIRST_BIT</primary></indexterm><programlisting>#define COGL_AFIRST_BIT         (1 &lt;&lt; 6)
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-PREMULT-BIT:CAPS" role="macro">
+<title>COGL_PREMULT_BIT</title>
+<indexterm zone="COGL-PREMULT-BIT:CAPS"><primary>COGL_PREMULT_BIT</primary></indexterm><programlisting>#define COGL_PREMULT_BIT        (1 &lt;&lt; 7)
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-UNORDERED-MASK:CAPS" role="macro">
+<title>COGL_UNORDERED_MASK</title>
+<indexterm zone="COGL-UNORDERED-MASK:CAPS"><primary>COGL_UNORDERED_MASK</primary></indexterm><programlisting>#define COGL_UNORDERED_MASK     0x0F
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="COGL-UNPREMULT-MASK:CAPS" role="macro">
+<title>COGL_UNPREMULT_MASK</title>
+<indexterm zone="COGL-UNPREMULT-MASK:CAPS"><primary>COGL_UNPREMULT_MASK</primary></indexterm><programlisting>#define COGL_UNPREMULT_MASK     0x7F
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="CoglPixelFormat" role="enum">
+<title>enum CoglPixelFormat</title>
+<indexterm zone="CoglPixelFormat"><primary>CoglPixelFormat</primary></indexterm><programlisting>typedef enum
+{
+  COGL_PIXEL_FORMAT_ANY           = 0,
+  COGL_PIXEL_FORMAT_A_8           = 1 | COGL_A_BIT,
+
+  COGL_PIXEL_FORMAT_RGB_565       = 4,
+  COGL_PIXEL_FORMAT_RGBA_4444     = 5 | COGL_A_BIT,
+  COGL_PIXEL_FORMAT_RGBA_5551     = 6 | COGL_A_BIT,
+  COGL_PIXEL_FORMAT_YUV           = 7,
+  COGL_PIXEL_FORMAT_G_8           = 8,
+  
+  COGL_PIXEL_FORMAT_RGB_888       =  COGL_PIXEL_FORMAT_24,
+
+  COGL_PIXEL_FORMAT_BGR_888       = (COGL_PIXEL_FORMAT_24 |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_8888     =  COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT,
+
+  COGL_PIXEL_FORMAT_BGRA_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_ARGB_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_ABGR_8888     = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_BGR_BIT         |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT),
+
+  COGL_PIXEL_FORMAT_BGRA_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_BGR_BIT),
+
+  COGL_PIXEL_FORMAT_ARGB_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_AFIRST_BIT),
+
+  COGL_PIXEL_FORMAT_ABGR_8888_PRE = (COGL_PIXEL_FORMAT_32 |
+                                     COGL_A_BIT           |
+                                     COGL_PREMULT_BIT     |
+                                     COGL_BGR_BIT         |
+                                     COGL_AFIRST_BIT),
+  
+  COGL_PIXEL_FORMAT_RGBA_4444_PRE = (COGL_PIXEL_FORMAT_RGBA_4444 |
+                                     COGL_A_BIT                  |
+                                     COGL_PREMULT_BIT),
+
+  COGL_PIXEL_FORMAT_RGBA_5551_PRE = (COGL_PIXEL_FORMAT_RGBA_5551 |
+                                     COGL_A_BIT                  |
+                                     COGL_PREMULT_BIT),
+  
+  
+} CoglPixelFormat;
+</programlisting>
+<para>
+Pixel formats used by COGL.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CoglBufferTarget" role="enum">
+<title>enum CoglBufferTarget</title>
+<indexterm zone="CoglBufferTarget"><primary>CoglBufferTarget</primary></indexterm><programlisting>typedef enum
+{
+  COGL_WINDOW_BUFFER      = (1 &lt;&lt; 1),
+  COGL_MASK_BUFFER        = (1 &lt;&lt; 2),
+  COGL_OFFSCREEN_BUFFER   = (1 &lt;&lt; 3)
+  
+} CoglBufferTarget;
+</programlisting>
+<para>
+</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-perspective" role="function">
+<title>cogl_perspective ()</title>
+<indexterm zone="cogl-perspective"><primary>cogl_perspective</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_perspective                    (<link linkend="ClutterFixed">ClutterFixed</link> fovy,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> aspect,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);</programlisting>
+<para>
+Replaces the current projection matrix with a perspective matrix
+based on the provided values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>fovy</parameter>&nbsp;:</term>
+<listitem><simpara> Vertical of view angle in degrees.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>aspect</parameter>&nbsp;:</term>
+<listitem><simpara> Aspect ratio of diesplay
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_near</parameter>&nbsp;:</term>
+<listitem><simpara> Nearest visible point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_far</parameter>&nbsp;:</term>
+<listitem><simpara> Furthest visible point along the z-axis
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-frustum" role="function" condition="since:0.8.2">
+<title>cogl_frustum ()</title>
+<indexterm zone="cogl-frustum" role="0.8.2"><primary>cogl_frustum</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_frustum                        (<link linkend="ClutterFixed">ClutterFixed</link> left,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> right,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> bottom,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> top,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);</programlisting>
+<para>
+Replaces the current projection matrix with a perspective matrix
+for the given viewing frustum.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>left</parameter>&nbsp;:</term>
+<listitem><simpara> Left clipping plane
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>right</parameter>&nbsp;:</term>
+<listitem><simpara> Right clipping plane
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bottom</parameter>&nbsp;:</term>
+<listitem><simpara> Bottom clipping plane
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>top</parameter>&nbsp;:</term>
+<listitem><simpara> Top clipping plane
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_near</parameter>&nbsp;:</term>
+<listitem><simpara> Nearest visible point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_far</parameter>&nbsp;:</term>
+<listitem><simpara> Furthest visible point along the z-axis
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="cogl-setup-viewport" role="function">
+<title>cogl_setup_viewport ()</title>
+<indexterm zone="cogl-setup-viewport"><primary>cogl_setup_viewport</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_setup_viewport                 (<link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> fovy,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> aspect,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);</programlisting>
+<para>
+Replaces the current viewport and projection matrix with the given
+values. The viewport is placed at the top left corner of the window
+with the given width and height. The projection matrix is replaced
+with one that has a viewing angle of <parameter>fovy</parameter> along the y-axis and a
+view scaled according to <parameter>aspect</parameter> along the x-axis. The view is
+clipped according to <parameter>z_near</parameter> and <parameter>z_far</parameter> on the z-axis.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width of the viewport
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height of the viewport
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fovy</parameter>&nbsp;:</term>
+<listitem><simpara> Field of view angle in degrees
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>aspect</parameter>&nbsp;:</term>
+<listitem><simpara> Aspect ratio to determine the field of view along the x-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_near</parameter>&nbsp;:</term>
+<listitem><simpara> Nearest visible point along the z-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_far</parameter>&nbsp;:</term>
+<listitem><simpara> Furthest visible point along the z-axis
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-viewport" role="function" condition="since:0.8.2">
+<title>cogl_viewport ()</title>
+<indexterm zone="cogl-viewport" role="0.8.2"><primary>cogl_viewport</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_viewport                       (<link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height);</programlisting>
+<para>
+Replace the current viewport with the given values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width of the viewport
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height of the viewport
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="cogl-get-modelview-matrix" role="function">
+<title>cogl_get_modelview_matrix ()</title>
+<indexterm zone="cogl-get-modelview-matrix"><primary>cogl_get_modelview_matrix</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_get_modelview_matrix           (<link linkend="ClutterFixed">ClutterFixed</link> m[16]);</programlisting>
+<para>
+Stores the current model-view matrix in <parameter>m</parameter>. The matrix is in
+column-major order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>m</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a 4x4 array of <link linkend="ClutterFixed"><type>ClutterFixed</type></link><!-- -->s to receive the matrix
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-get-projection-matrix" role="function">
+<title>cogl_get_projection_matrix ()</title>
+<indexterm zone="cogl-get-projection-matrix"><primary>cogl_get_projection_matrix</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_get_projection_matrix          (<link linkend="ClutterFixed">ClutterFixed</link> m[16]);</programlisting>
+<para>
+Stores the current projection matrix in <parameter>m</parameter>. The matrix is in
+column-major order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>m</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a 4x4 array of <link linkend="ClutterFixed"><type>ClutterFixed</type></link><!-- -->s to receive the matrix
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-get-viewport" role="function">
+<title>cogl_get_viewport ()</title>
+<indexterm zone="cogl-get-viewport"><primary>cogl_get_viewport</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_get_viewport                   (<link linkend="ClutterFixed">ClutterFixed</link> v[4]);</programlisting>
+<para>
+Stores the current viewport in <parameter>v</parameter>. <parameter>v</parameter>[0] and <parameter>v</parameter>[1] get the x and y
+position of the viewport and <parameter>v</parameter>[2] and <parameter>v</parameter>[3] get the width and
+height.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>v</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a 4 element array of <link linkend="ClutterFixed"><type>ClutterFixed</type></link><!-- -->s to
+receive the viewport dimensions.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-push-matrix" role="function">
+<title>cogl_push_matrix ()</title>
+<indexterm zone="cogl-push-matrix"><primary>cogl_push_matrix</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_push_matrix                    (void);</programlisting>
+<para>
+Store the current model-view matrix on the matrix stack. The matrix
+can later be restored with <link linkend="cogl-pop-matrix"><function>cogl_pop_matrix()</function></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-pop-matrix" role="function">
+<title>cogl_pop_matrix ()</title>
+<indexterm zone="cogl-pop-matrix"><primary>cogl_pop_matrix</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_pop_matrix                     (void);</programlisting>
+<para>
+Restore the current model-view matrix from the matrix stack.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-scale" role="function">
+<title>cogl_scale ()</title>
+<indexterm zone="cogl-scale"><primary>cogl_scale</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_scale                          (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Multiplies the current model-view matrix by one that scales the x
+and y axes by the given values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> Amount to scale along the x-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Amount to scale along the y-axis
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-translatex" role="function">
+<title>cogl_translatex ()</title>
+<indexterm zone="cogl-translatex"><primary>cogl_translatex</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_translatex                     (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z);</programlisting>
+<para>
+Multiplies the current model-view matrix by one that translates the
+model along all three axes according to the given values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the x-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the y-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the z-axis
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-translate" role="function">
+<title>cogl_translate ()</title>
+<indexterm zone="cogl-translate"><primary>cogl_translate</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_translate                      (<link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);</programlisting>
+<para>
+Integer version of <link linkend="cogl-translatex"><function>cogl_translatex()</function></link>. Multiplies the current
+model-view matrix by one that translates the model along all three
+axes according to the given values.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the x-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the y-axis
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> Distance to translate along the z-axis
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-rotatex" role="function">
+<title>cogl_rotatex ()</title>
+<indexterm zone="cogl-rotatex"><primary>cogl_rotatex</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_rotatex                        (<link linkend="ClutterFixed">ClutterFixed</link> angle,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);</programlisting>
+<para>
+Multiplies the current model-view matrix by one that rotates the
+model around the vertex specified by <parameter>x</parameter>, <parameter>y</parameter> and <parameter>z</parameter>. The rotation
+follows the right-hand thumb rule so for example rotating by 10
+degrees about the vertex (0, 0, 1) causes a small counter-clockwise
+rotation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> Angle in degrees to rotate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> Z-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-rotate" role="function">
+<title>cogl_rotate ()</title>
+<indexterm zone="cogl-rotate"><primary>cogl_rotate</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_rotate                         (<link linkend="gint">gint</link> angle,
+                                                         <link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="gint">gint</link> z);</programlisting>
+<para>
+Integer version of <link linkend="cogl-rotatex"><function>cogl_rotatex()</function></link>. Multiplies the current
+model-view matrix by one that rotates the model around the vertex
+specified by <parameter>x</parameter>, <parameter>y</parameter> and <parameter>z</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>angle</parameter>&nbsp;:</term>
+<listitem><simpara> Angle in degrees to rotate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z</parameter>&nbsp;:</term>
+<listitem><simpara> Z-component of vertex to rotate around.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-clip-set" role="function">
+<title>cogl_clip_set ()</title>
+<indexterm zone="cogl-clip-set"><primary>cogl_clip_set</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_clip_set                       (<link linkend="ClutterFixed">ClutterFixed</link> x_offset,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y_offset,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);</programlisting>
+<para>
+Specifies a rectangular clipping area for all subsequent drawing
+operations. Any drawing commands that extend outside the rectangle
+will be clipped so that only the portion inside the rectangle will
+be displayed. The rectangle dimensions are transformed by the
+current model-view matrix.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x_offset</parameter>&nbsp;:</term>
+<listitem><simpara> left edge of the clip rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y_offset</parameter>&nbsp;:</term>
+<listitem><simpara> top edge of the clip rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> width of the clip rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> height of the clip rectangle
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-clip-unset" role="function">
+<title>cogl_clip_unset ()</title>
+<indexterm zone="cogl-clip-unset"><primary>cogl_clip_unset</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_clip_unset                     (void);</programlisting>
+<para>
+Removes the current clipping rectangle so that all drawing
+operations extend to full size of the viewport again.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-clip-stack-save" role="function" condition="since:0.8.2">
+<title>cogl_clip_stack_save ()</title>
+<indexterm zone="cogl-clip-stack-save" role="0.8.2"><primary>cogl_clip_stack_save</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_clip_stack_save                (void);</programlisting>
+<para>
+Save the entire state of the clipping stack and then clear all
+clipping. The previous state can be returned to with
+<link linkend="cogl-clip-stack-restore"><function>cogl_clip_stack_restore()</function></link>. Each call to <link linkend="cogl-clip-set"><function>cogl_clip_set()</function></link> after this
+must be matched by a call to <link linkend="cogl-clip-unset"><function>cogl_clip_unset()</function></link> before calling
+<link linkend="cogl-clip-stack-restore"><function>cogl_clip_stack_restore()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="cogl-clip-stack-restore" role="function" condition="since:0.8.2">
+<title>cogl_clip_stack_restore ()</title>
+<indexterm zone="cogl-clip-stack-restore" role="0.8.2"><primary>cogl_clip_stack_restore</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_clip_stack_restore             (void);</programlisting>
+<para>
+Restore the state of the clipping stack that was previously saved
+by <link linkend="cogl-clip-stack-save"><function>cogl_clip_stack_save()</function></link>.</para>
+<para>
+
+</para><para role="since">Since  0.8.2
+</para></refsect2>
+<refsect2 id="cogl-enable-depth-test" role="function">
+<title>cogl_enable_depth_test ()</title>
+<indexterm zone="cogl-enable-depth-test"><primary>cogl_enable_depth_test</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_enable_depth_test              (<link linkend="gboolean">gboolean</link> setting);</programlisting>
+<para>
+Sets whether depth testing is enabled. If it is disabled then the
+order that actors are layered on the screen depends solely on the
+order specified using <link linkend="clutter-actor-raise"><function>clutter_actor_raise()</function></link> and
+<link linkend="clutter-actor-lower"><function>clutter_actor_lower()</function></link>, otherwise it will also take into account the
+actor's depth. Depth testing is disabled by default.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>setting</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to enable depth testing or <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> to disable.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-alpha-func" role="function">
+<title>cogl_alpha_func ()</title>
+<indexterm zone="cogl-alpha-func"><primary>cogl_alpha_func</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_alpha_func                     (<link linkend="COGLenum">COGLenum</link> func,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> ref);</programlisting>
+<para>
+Changes the alpha test to use the specified function specified in <parameter>func</parameter>,
+comparing with the value in <parameter>ref</parameter>. The default function is CGL_ALWAYS the
+initial reference value is 1.0.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> the comparison function to use, one of CGL_NEVER, CGL_LESS,
+CGL_EQUAL, CGL_LEQUAL, CGL_GREATER, CGL_NOTEQUAL, CGL_GEQUAL and GL_ALWAYS.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ref</parameter>&nbsp;:</term>
+<listitem><simpara> reference value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-fog-set" role="function">
+<title>cogl_fog_set ()</title>
+<indexterm zone="cogl-fog-set"><primary>cogl_fog_set</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_fog_set                        (const <link linkend="ClutterColor">ClutterColor</link> *fog_color,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> density,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_near,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> z_far);</programlisting>
+<para>
+Enables fogging. Fogging causes vertices that are further away from
+the eye to be rendered with a different color. The color is
+linearly interpolated so that vertices at <parameter>z_near</parameter> are drawn fully
+with their original color and vertices at <parameter>z_far</parameter> are drawn fully
+with <parameter>fog_color</parameter>. Fogging will remain enabled until the next call to
+<link linkend="cogl-paint-init"><function>cogl_paint_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>fog_color</parameter>&nbsp;:</term>
+<listitem><simpara> The color of the fog
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>density</parameter>&nbsp;:</term>
+<listitem><simpara> Ignored
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_near</parameter>&nbsp;:</term>
+<listitem><simpara> Position along z-axis where no fogging should be applied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>z_far</parameter>&nbsp;:</term>
+<listitem><simpara> Position along z-axes where full fogging should be applied
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

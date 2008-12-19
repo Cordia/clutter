@@ -1,0 +1,77 @@
+<!-- ##### SECTION Title ##### -->
+ClutterScriptable
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterScriptable ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT ClutterScriptableIface ##### -->
+<para>
+
+</para>
+
+@set_id: 
+@get_id: 
+@parse_custom_node: 
+@set_custom_property: 
+
+<!-- ##### FUNCTION clutter_scriptable_set_id ##### -->
+<para>
+
+</para>
+
+@scriptable: 
+@id: 
+
+
+<!-- ##### FUNCTION clutter_scriptable_get_id ##### -->
+<para>
+
+</para>
+
+@scriptable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_scriptable_parse_custom_node ##### -->
+<para>
+
+</para>
+
+@scriptable: 
+@script: 
+@value: 
+@name: 
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_scriptable_set_custom_property ##### -->
+<para>
+
+</para>
+
+@scriptable: 
+@script: 
+@name: 
+@value: 
+
+

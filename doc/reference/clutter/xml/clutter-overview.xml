@@ -1,0 +1,53 @@
+<part id="clutter-overview">
+  <partinfo>
+    <author>
+      <firstname>Emmanuele</firstname>
+      <surname>Bassi</surname>
+      <affiliation>
+        <address>
+          <email>ebassi<parameter>openedhand.com</parameter></email>
+        </address>
+      </affiliation>
+    </author>
+  </partinfo>
+
+  <title>Overview</title>
+
+  <partintro>
+
+    <para>Clutter is a GObject based library for creating fast, visually
+    rich, graphical user interfaces.</para>
+
+    <para>Clutter works by manipulating a scene-graph of 2D surfaces, or
+    'actors', inside a 3D space.</para>
+
+    <para><link linkend="ClutterActor"><type>ClutterActor</type></link> is the base class for such surfaces. All
+    <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s can be positioned, scaled and rotated in 3D space.
+    In addition, other properties can be set, such as 2D clipping, children and
+    opacity. Tranforms applied to a parent actor also apply to any children.
+    Actors are also able to receive events.</para>
+
+    <para>Subclasses of <link linkend="ClutterActor"><type>ClutterActor</type></link> include <link linkend="ClutterStage"><type>ClutterStage</type></link>, <link linkend="ClutterTexture"><type>ClutterTexture</type></link>,
+    <link linkend="ClutterLabel"><type>ClutterLabel</type></link>, <link linkend="ClutterRectangle"><type>ClutterRectangle</type></link>, <link linkend="ClutterEntry"><type>ClutterEntry</type></link> and
+    <link linkend="ClutterGroup"><type>ClutterGroup</type></link>. <link linkend="ClutterActor"><type>ClutterActor</type></link><!-- -->s are added to a parent, transformed
+    and then made visible.</para>
+
+    <para><link linkend="ClutterStage"><type>ClutterStage</type></link> is the top level <link linkend="ClutterActor"><type>ClutterActor</type></link> - it's the
+    representation of a window, or framebuffer. It is created automatically
+    when Clutter is initialised. <link linkend="ClutterStage"><type>ClutterStage</type></link> is a <link linkend="ClutterGroup"><type>ClutterGroup</type></link>, a class
+    implementing the <link linkend="ClutterCointainer"><type>ClutterCointainer</type></link> interface.</para>
+
+    <para><link linkend="ClutterTimeline"><type>ClutterTimeline</type></link><!-- -->s provide the basis for Clutter's animation
+    utilities. Multiple timelines can be synchronised using <link linkend="ClutterScore"><type>ClutterScore</type></link>,
+    and <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link> and <link linkend="ClutterEffect"><type>ClutterEffect</type></link> allow for the creation of
+    animation effects such as transitions.</para>
+
+    <para>Clutter further contains a number of utilities, including;
+    <link linkend="ClutterScript"><type>ClutterScript</type></link> - for loading 'UI definition' files formatted in
+    <ulink type="http" url="http://json.org">JSON</ulink>, <link linkend="ClutterShader"><type>ClutterShader</type></link> - a
+    class for applying GPU shaders to actors, <link linkend="ClutterModel"><type>ClutterModel</type></link> - a utility class
+    for MVC list type implementations, and fixed point math utilities.</para>
+
+  </partintro>
+
+</part>

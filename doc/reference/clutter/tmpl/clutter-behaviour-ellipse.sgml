@@ -1,0 +1,339 @@
+<!-- ##### SECTION Title ##### -->
+ClutterBehaviourEllipse
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterBehaviourEllipse ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterBehaviourEllipse:angle-end ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:angle-start ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:angle-tilt-x ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:angle-tilt-y ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:angle-tilt-z ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:center ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:direction ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:height ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterBehaviourEllipse:width ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterBehaviourEllipseClass ##### -->
+<para>
+
+</para>
+
+@knot_reached: 
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_new ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@x: 
+@y: 
+@width: 
+@height: 
+@direction: 
+@start: 
+@end: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_newx ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@x: 
+@y: 
+@width: 
+@height: 
+@direction: 
+@start: 
+@end: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_center ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_center ##### -->
+<para>
+
+</para>
+
+@self: 
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_start ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_start: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_start ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_startx ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_start: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_startx ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_end ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_end: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_end ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_endx ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_end: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_endx ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_tilt ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@angle_tilt: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_tilt ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_angle_tiltx ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@angle_tilt: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_angle_tiltx ##### -->
+<para>
+
+</para>
+
+@self: 
+@axis: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@height: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_height ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@width: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_width ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_tilt ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_tilt_x: 
+@angle_tilt_y: 
+@angle_tilt_z: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_tilt ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_tilt_x: 
+@angle_tilt_y: 
+@angle_tilt_z: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_tiltx ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_tilt_x: 
+@angle_tilt_y: 
+@angle_tilt_z: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_tiltx ##### -->
+<para>
+
+</para>
+
+@self: 
+@angle_tilt_x: 
+@angle_tilt_y: 
+@angle_tilt_z: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_set_direction ##### -->
+<para>
+
+</para>
+
+@self: 
+@direction: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_ellipse_get_direction ##### -->
+<para>
+
+</para>
+
+@self: 
+@Returns: 
+
+

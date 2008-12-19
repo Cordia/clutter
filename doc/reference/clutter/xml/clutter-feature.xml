@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-GL-Features">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-GL-Features.top_of_page">GL Features</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GL Features</refname>
+<refpurpose>Query GL features at runtime</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-GL-Features.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-feature-available">clutter_feature_available</link>           (<link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> feature);
+<link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> <link linkend="clutter-feature-get-all">clutter_feature_get_all</link>             (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-GL-Features.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions to query available GL features ay runtime</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-GL-Features.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterFeatureFlags" role="enum" condition="since:0.4">
+<title>enum ClutterFeatureFlags</title>
+<indexterm zone="ClutterFeatureFlags" role="0.4"><primary>ClutterFeatureFlags</primary></indexterm><programlisting>typedef enum 
+{
+  CLUTTER_FEATURE_TEXTURE_NPOT           = (1 &lt;&lt; 2),
+  CLUTTER_FEATURE_SYNC_TO_VBLANK         = (1 &lt;&lt; 3),
+  CLUTTER_FEATURE_TEXTURE_YUV            = (1 &lt;&lt; 4),
+  CLUTTER_FEATURE_TEXTURE_READ_PIXELS    = (1 &lt;&lt; 5),
+  CLUTTER_FEATURE_STAGE_STATIC           = (1 &lt;&lt; 6),
+  CLUTTER_FEATURE_STAGE_USER_RESIZE      = (1 &lt;&lt; 7),
+  CLUTTER_FEATURE_STAGE_CURSOR           = (1 &lt;&lt; 8),
+  CLUTTER_FEATURE_SHADERS_GLSL           = (1 &lt;&lt; 9),
+  CLUTTER_FEATURE_OFFSCREEN              = (1 &lt;&lt; 10),
+  CLUTTER_FEATURE_STAGE_MULTIPLE         = (1 &lt;&lt; 11)
+} ClutterFeatureFlags;
+</programlisting>
+<para>
+Runtime flags indicating specific features available via Clutter window
+sysytem and graphics backend.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="CLUTTER-FEATURE-TEXTURE-NPOT:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_TEXTURE_NPOT</literal></term>
+<listitem><simpara> Set if NPOTS textures supported.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-SYNC-TO-VBLANK:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_SYNC_TO_VBLANK</literal></term>
+<listitem><simpara> Set if vblank syncing supported.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-TEXTURE-YUV:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_TEXTURE_YUV</literal></term>
+<listitem><simpara> Set if YUV based textures supported.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-TEXTURE-READ-PIXELS:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_TEXTURE_READ_PIXELS</literal></term>
+<listitem><simpara> Set if texture pixels can be read.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-STAGE-STATIC:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_STAGE_STATIC</literal></term>
+<listitem><simpara> Set if stage size if fixed (i.e framebuffer)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-STAGE-USER-RESIZE:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_STAGE_USER_RESIZE</literal></term>
+<listitem><simpara> Set if stage is able to be user resized.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-STAGE-CURSOR:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_STAGE_CURSOR</literal></term>
+<listitem><simpara> Set if stage has a graphical cursor.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-SHADERS-GLSL:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_SHADERS_GLSL</literal></term>
+<listitem><simpara> Set if the backend supports GLSL shaders.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-OFFSCREEN:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_OFFSCREEN</literal></term>
+<listitem><simpara> Set if the backend supports offscreen rendering.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="CLUTTER-FEATURE-STAGE-MULTIPLE:CAPS" role="constant">
+<term><literal>CLUTTER_FEATURE_STAGE_MULTIPLE</literal></term>
+<listitem><simpara> Set if multiple stages are supported.
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-feature-available" role="function" condition="since:0.1.1">
+<title>clutter_feature_available ()</title>
+<indexterm zone="clutter-feature-available" role="0.1.1"><primary>clutter_feature_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_feature_available           (<link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> feature);</programlisting>
+<para>
+Checks whether <parameter>feature</parameter> is available.  <parameter>feature</parameter> can be a logical
+OR of <link linkend="ClutterFeatureFlags"><type>ClutterFeatureFlags</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>feature</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterFeatureFlags"><type>ClutterFeatureFlags</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if a feature is available
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.1.1
+</para></refsect2>
+<refsect2 id="clutter-feature-get-all" role="function" condition="since:0.1.1">
+<title>clutter_feature_get_all ()</title>
+<indexterm zone="clutter-feature-get-all" role="0.1.1"><primary>clutter_feature_get_all</primary></indexterm><programlisting><link linkend="ClutterFeatureFlags">ClutterFeatureFlags</link> clutter_feature_get_all             (void);</programlisting>
+<para>
+Returns all the supported features.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a logical OR of all the supported features.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.1.1
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

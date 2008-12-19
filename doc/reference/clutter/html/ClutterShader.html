@@ -1,0 +1,658 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterShader</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="clutter-General.html" title="General">
+<link rel="next" href="clutter-Unit-conversion.html" title="Unit conversion">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-General.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-Unit-conversion.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterShader.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterShader.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterShader.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterShader.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterShader"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterShader.top_of_page"></a>ClutterShader</span></h2>
+<p>ClutterShader — Programmable pipeline abstraction</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterShader.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="ClutterShader.html#ClutterShaderError" title="enum ClutterShaderError">ClutterShaderError</a>;
+                    <a class="link" href="ClutterShader.html#ClutterShader-struct" title="ClutterShader">ClutterShader</a>;
+                    <a class="link" href="ClutterShader.html#ClutterShaderClass" title="ClutterShaderClass">ClutterShaderClass</a>;
+<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a>*      <a class="link" href="ClutterShader.html#clutter-shader-new" title="clutter_shader_new ()">clutter_shader_new</a>                  (void);
+void                <a class="link" href="ClutterShader.html#clutter-shader-set-vertex-source" title="clutter_shader_set_vertex_source ()">clutter_shader_set_vertex_source</a>    (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterShader.html#clutter-shader-get-vertex-source" title="clutter_shader_get_vertex_source ()">clutter_shader_get_vertex_source</a>    (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);
+void                <a class="link" href="ClutterShader.html#clutter-shader-set-fragment-source" title="clutter_shader_set_fragment_source ()">clutter_shader_set_fragment_source</a>  (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterShader.html#clutter-shader-get-fragment-source" title="clutter_shader_get_fragment_source ()">clutter_shader_get_fragment_source</a>  (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterShader.html#clutter-shader-compile" title="clutter_shader_compile ()">clutter_shader_compile</a>              (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+void                <a class="link" href="ClutterShader.html#clutter-shader-release" title="clutter_shader_release ()">clutter_shader_release</a>              (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterShader.html#clutter-shader-is-compiled" title="clutter_shader_is_compiled ()">clutter_shader_is_compiled</a>          (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);
+void                <a class="link" href="ClutterShader.html#clutter-shader-set-is-enabled" title="clutter_shader_set_is_enabled ()">clutter_shader_set_is_enabled</a>       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enabled);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterShader.html#clutter-shader-get-is-enabled" title="clutter_shader_get_is_enabled ()">clutter_shader_get_is_enabled</a>       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);
+void                <a class="link" href="ClutterShader.html#clutter-shader-set-uniform-1f" title="clutter_shader_set_uniform_1f ()">clutter_shader_set_uniform_1f</a>       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterShader.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterShader
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterShader.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterShader.html#ClutterShader--compiled" title='The "compiled" property'>compiled</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+  "<a class="link" href="ClutterShader.html#ClutterShader--enabled" title='The "enabled" property'>enabled</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterShader.html#ClutterShader--fragment-source" title='The "fragment-source" property'>fragment-source</a>"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterShader.html#ClutterShader--vertex-source" title='The "vertex-source" property'>vertex-source</a>"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterShader.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> is an object providing an abstraction over the
+OpenGL programmable pipeline. By using <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>s is
+possible to override the drawing pipeline by using small programs
+also known as "shaders".
+</p>
+<p>
+<a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterShader.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterShaderError"></a><h3>enum ClutterShaderError</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_SHADER_ERROR_NO_ASM,
+  CLUTTER_SHADER_ERROR_NO_GLSL,
+  CLUTTER_SHADER_ERROR_COMPILE
+} ClutterShaderError;
+</pre>
+<p>
+<a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> error enumeration</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-SHADER-ERROR-NO-ASM:CAPS"></a><span class="term"><code class="literal">CLUTTER_SHADER_ERROR_NO_ASM</code></span></p></td>
+<td> No ASM shaders support
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-SHADER-ERROR-NO-GLSL:CAPS"></a><span class="term"><code class="literal">CLUTTER_SHADER_ERROR_NO_GLSL</code></span></p></td>
+<td> No GLSL shaders support
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-SHADER-ERROR-COMPILE:CAPS"></a><span class="term"><code class="literal">CLUTTER_SHADER_ERROR_COMPILE</code></span></p></td>
+<td> Compilation error
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterShader-struct"></a><h3>ClutterShader</h3>
+<pre class="programlisting">typedef struct _ClutterShader ClutterShader;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterShaderClass"></a><h3>ClutterShaderClass</h3>
+<pre class="programlisting">typedef struct {
+} ClutterShaderClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-new"></a><h3>clutter_shader_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a>*      clutter_shader_new                  (void);</pre>
+<p>
+Create a new <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> instance.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a new <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-set-vertex-source"></a><h3>clutter_shader_set_vertex_source ()</h3>
+<pre class="programlisting">void                clutter_shader_set_vertex_source    (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length);</pre>
+<p>
+Sets the GLSL source code to be used by a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> for the vertex
+program.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> GLSL source code.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> length of source buffer (currently ignored)
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-get-vertex-source"></a><h3>clutter_shader_get_vertex_source ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_shader_get_vertex_source    (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);</pre>
+<p>
+Query the current GLSL vertex source set on <em class="parameter"><code>shader</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the source of the vertex shader for this
+ClutterShader object or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. The returned string is owned by the
+shader object and should never be modified or freed
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-set-fragment-source"></a><h3>clutter_shader_set_fragment_source ()</h3>
+<pre class="programlisting">void                clutter_shader_set_fragment_source  (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length);</pre>
+<p>
+Sets the GLSL source code to be used by a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a> for the fragment
+program.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> GLSL source code.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> length of source buffer (currently ignored)
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-get-fragment-source"></a><h3>clutter_shader_get_fragment_source ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_shader_get_fragment_source  (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);</pre>
+<p>
+Query the current GLSL fragment source set on <em class="parameter"><code>shader</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the source of the fragment shader for this
+ClutterShader object or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. The returned string is owned by the
+shader object and should never be modified or freed
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-compile"></a><h3>clutter_shader_compile ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_shader_compile              (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Compiles and links GLSL sources set for vertex and fragment shaders for
+a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>. If the compilation fails and a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a> return location is
+provided the error will contain the errors from the compiler, if any.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> returns TRUE if the shader was succesfully compiled.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-release"></a><h3>clutter_shader_release ()</h3>
+<pre class="programlisting">void                clutter_shader_release              (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);</pre>
+<p>
+Frees up any GL context resources held by the shader.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-is-compiled"></a><h3>clutter_shader_is_compiled ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_shader_is_compiled          (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);</pre>
+<p>
+Checks whether <em class="parameter"><code>shader</code></em> is is currently compiled, linked and bound
+to the GL context.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the shader is compiled, linked and ready for use.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-set-is-enabled"></a><h3>clutter_shader_set_is_enabled ()</h3>
+<pre class="programlisting">void                clutter_shader_set_is_enabled       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> enabled);</pre>
+<p>
+Enables a shader. This function will attempt to compile and link
+the shader, if it isn't already.
+</p>
+<p>
+When <em class="parameter"><code>enabled</code></em> is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> the default state of the GL pipeline will be
+used instead.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>enabled</code></em> :</span></p></td>
+<td> The new state of the shader.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-get-is-enabled"></a><h3>clutter_shader_get_is_enabled ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_shader_get_is_enabled       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader);</pre>
+<p>
+Checks whether <em class="parameter"><code>shader</code></em> is enabled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the shader is enabled.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-shader-set-uniform-1f"></a><h3>clutter_shader_set_uniform_1f ()</h3>
+<pre class="programlisting">void                clutter_shader_set_uniform_1f       (<a class="link" href="ClutterShader.html" title="ClutterShader">ClutterShader</a> *shader,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gfloat"
+>gfloat</a> value);</pre>
+<p>
+Sets a user configurable variable in the shader programs attached
+to a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>shader</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterShader.html" title="ClutterShader"><span class="type">ClutterShader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> name of uniform in vertex or fragment program to set.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the new value of the uniform.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterShader.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterShader--compiled"></a><h3>The <code class="literal">"compiled"</code> property</h3>
+<pre class="programlisting">  "compiled"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>
+Whether the shader is compiled and linked, ready for use
+in the GL context.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterShader--enabled"></a><h3>The <code class="literal">"enabled"</code> property</h3>
+<pre class="programlisting">  "enabled"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the shader is currently used in the GL rendering pipeline.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterShader--fragment-source"></a><h3>The <code class="literal">"fragment-source"</code> property</h3>
+<pre class="programlisting">  "fragment-source"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>
+GLSL source code for the fragment shader part of the shader program.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterShader--vertex-source"></a><h3>The <code class="literal">"vertex-source"</code> property</h3>
+<pre class="programlisting">  "vertex-source"            <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>
+GLSL source code for the vertex shader part of the shader program, if any.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

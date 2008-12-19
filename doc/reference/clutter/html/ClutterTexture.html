@@ -1,0 +1,1338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterTexture</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch02.html" title="Base actors">
+<link rel="prev" href="ClutterRectangle.html" title="ClutterRectangle">
+<link rel="next" href="ClutterCloneTexture.html" title="ClutterCloneTexture">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterRectangle.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterCloneTexture.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterTexture.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterTexture.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterTexture.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterTexture.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterTexture.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterTexture.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterTexture"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterTexture.top_of_page"></a>ClutterTexture</span></h2>
+<p>ClutterTexture — An actor for displaying and manipulating images.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterTexture.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterTexture.html#ClutterTexture-struct" title="ClutterTexture">ClutterTexture</a>;
+                    <a class="link" href="ClutterTexture.html#ClutterTextureClass" title="ClutterTextureClass">ClutterTextureClass</a>;
+enum                <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a>;
+enum                <a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterTexture.html#clutter-texture-new" title="clutter_texture_new ()">clutter_texture_new</a>                 (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterTexture.html#clutter-texture-new-from-file" title="clutter_texture_new_from_file ()">clutter_texture_new_from_file</a>       (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterTexture.html#clutter-texture-new-from-actor" title="clutter_texture_new_from_actor ()">clutter_texture_new_from_actor</a>      (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+#define             <a class="link" href="ClutterTexture.html#CLUTTER-TEXTURE-ERROR:CAPS" title="CLUTTER_TEXTURE_ERROR">CLUTTER_TEXTURE_ERROR</a>
+enum                <a class="link" href="ClutterTexture.html#ClutterTextureError" title="enum ClutterTextureError">ClutterTextureError</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTexture.html#clutter-texture-set-from-file" title="clutter_texture_set_from_file ()">clutter_texture_set_from_file</a>       (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTexture.html#clutter-texture-set-from-rgb-data" title="clutter_texture_set_from_rgb_data ()">clutter_texture_set_from_rgb_data</a>   (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> has_alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> rowstride,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> bpp,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTexture.html#clutter-texture-set-from-yuv-data" title="clutter_texture_set_from_yuv_data ()">clutter_texture_set_from_yuv_data</a>   (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterTexture.html#clutter-texture-set-area-from-rgb-data" title="clutter_texture_set_area_from_rgb_data ()">clutter_texture_set_area_from_rgb_data</a>
+                                                        (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> has_alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> rowstride,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> bpp,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+void                <a class="link" href="ClutterTexture.html#clutter-texture-get-base-size" title="clutter_texture_get_base_size ()">clutter_texture_get_base_size</a>       (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *height);
+<a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a> <a class="link" href="ClutterTexture.html#clutter-texture-get-filter-quality" title="clutter_texture_get_filter_quality ()">clutter_texture_get_filter_quality</a>
+                                                        (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);
+void                <a class="link" href="ClutterTexture.html#clutter-texture-set-filter-quality" title="clutter_texture_set_filter_quality ()">clutter_texture_set_filter_quality</a>  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a> filter_quality);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterTexture.html#clutter-texture-get-max-tile-waste" title="clutter_texture_get_max_tile_waste ()">clutter_texture_get_max_tile_waste</a>  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);
+void                <a class="link" href="ClutterTexture.html#clutter-texture-set-max-tile-waste" title="clutter_texture_set_max_tile_waste ()">clutter_texture_set_max_tile_waste</a>  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> max_tile_waste);
+<a
+href="../cogl/cogl-Utility-API.html#CoglHandle"
+>CoglHandle</a>          <a class="link" href="ClutterTexture.html#clutter-texture-get-cogl-texture" title="clutter_texture_get_cogl_texture ()">clutter_texture_get_cogl_texture</a>    (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);
+void                <a class="link" href="ClutterTexture.html#clutter-texture-set-cogl-texture" title="clutter_texture_set_cogl_texture ()">clutter_texture_set_cogl_texture</a>    (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="../cogl/cogl-Utility-API.html#CoglHandle"
+>CoglHandle</a> cogl_tex);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterTexture
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterTexture implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--cogl-texture" title='The "cogl-texture" property'>cogl-texture</a>"             ClutterTextureHandle*  : Read / Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--disable-slicing" title='The "disable-slicing" property'>disable-slicing</a>"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct Only
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--filename" title='The "filename" property'>filename</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--filter-quality" title='The "filter-quality" property'>filter-quality</a>"           <a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a>  : Read / Write / Construct
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--keep-aspect-ratio" title='The "keep-aspect-ratio" property'>keep-aspect-ratio</a>"        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--pixel-format" title='The "pixel-format" property'>pixel-format</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--repeat-x" title='The "repeat-x" property'>repeat-x</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--repeat-y" title='The "repeat-y" property'>repeat-y</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--sync-size" title='The "sync-size" property'>sync-size</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterTexture.html#ClutterTexture--tile-waste" title='The "tile-waste" property'>tile-waste</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterTexture.html#ClutterTexture-pixbuf-change" title='The "pixbuf-change" signal'>pixbuf-change</a>"                                  : Run Last
+  "<a class="link" href="ClutterTexture.html#ClutterTexture-size-change" title='The "size-change" signal'>size-change</a>"                                    : Run Last
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> is a base class for displaying and manipulating pixel
+buffer type data.
+</p>
+<p>
+The <a class="link" href="ClutterTexture.html#clutter-texture-set-from-rgb-data" title="clutter_texture_set_from_rgb_data ()"><code class="function">clutter_texture_set_from_rgb_data()</code></a> and
+<a class="link" href="ClutterTexture.html#clutter-texture-set-from-file" title="clutter_texture_set_from_file ()"><code class="function">clutter_texture_set_from_file()</code></a> functions are used to copy image
+data into texture memory and subsequently realize the texture.
+</p>
+<p>
+If texture reads are supported by underlying GL implementation,
+unrealizing frees image data from texture memory moving to main
+system memory. Re-realizing then performs the opposite operation.
+This process allows basic management of commonly limited available
+texture memory.
+</p>
+<p>
+Note: a ClutterTexture will scale its contents to fit the bounding
+box requested using <a class="link" href="ClutterActor.html#clutter-actor-set-size" title="clutter_actor_set_size ()"><code class="function">clutter_actor_set_size()</code></a>. To display an area of
+a texture without scaling, you should set the clip area using
+<a class="link" href="ClutterActor.html#clutter-actor-set-clip" title="clutter_actor_set_clip ()"><code class="function">clutter_actor_set_clip()</code></a>.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture-struct"></a><h3>ClutterTexture</h3>
+<pre class="programlisting">typedef struct _ClutterTexture ClutterTexture;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTextureClass"></a><h3>ClutterTextureClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterActorClass parent_class;
+
+  void (*size_change)   (ClutterTexture *texture, 
+		         gint            width, 
+		         gint            height);
+  void (*pixbuf_change) (ClutterTexture *texture);
+} ClutterTextureClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTextureFlags"></a><h3>enum ClutterTextureFlags</h3>
+<pre class="programlisting">typedef enum { /*&lt; prefix=CLUTTER_TEXTURE &gt;*/
+    CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 &lt;&lt; 1,
+    CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 &lt;&lt; 2, /* FIXME: not handled */
+    CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 &lt;&lt; 3
+
+    /* FIXME: add compressed types ? */
+} ClutterTextureFlags;
+</pre>
+<p>
+Flags for <a class="link" href="ClutterTexture.html#clutter-texture-set-from-rgb-data" title="clutter_texture_set_from_rgb_data ()"><code class="function">clutter_texture_set_from_rgb_data()</code></a> and
+<a class="link" href="ClutterTexture.html#clutter-texture-set-from-yuv-data" title="clutter_texture_set_from_yuv_data ()"><code class="function">clutter_texture_set_from_yuv_data()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-RGB-FLAG-BGR:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_RGB_FLAG_BGR</code></span></p></td>
+<td> FIXME
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-RGB-FLAG-PREMULT:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_RGB_FLAG_PREMULT</code></span></p></td>
+<td> FIXME
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-YUV-FLAG-YUV2:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_YUV_FLAG_YUV2</code></span></p></td>
+<td> FIXME
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTextureQuality"></a><h3>enum ClutterTextureQuality</h3>
+<pre class="programlisting">typedef enum { /*&lt; prefix=CLUTTER_TEXTURE_QUALITY &gt;*/
+  CLUTTER_TEXTURE_QUALITY_LOW = 0,
+  CLUTTER_TEXTURE_QUALITY_MEDIUM,
+  CLUTTER_TEXTURE_QUALITY_HIGH
+} ClutterTextureQuality;
+</pre>
+<p>
+Enumaration controlling the texture quality.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-QUALITY-LOW:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_QUALITY_LOW</code></span></p></td>
+<td> fastest rendering will use nearest neighbour
+  interpolation when rendering. good setting.
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_QUALITY_MEDIUM</code></span></p></td>
+<td> higher quality rendering without using
+  extra resources.
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-QUALITY-HIGH:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_QUALITY_HIGH</code></span></p></td>
+<td> render the texture with the best quality
+  available using extra memory.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-new"></a><h3>clutter_texture_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_texture_new                 (void);</pre>
+<p>
+Creates a new empty <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly created <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> object.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-new-from-file"></a><h3>clutter_texture_new_from_file ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_texture_new_from_file       (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Creates a new ClutterTexture actor to display the image contained a
+file. If the image failed to load then NULL is returned and <em class="parameter"><code>error</code></em>
+is set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> The name of an image file to load.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return locatoin for an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly created <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> object or NULL on
+error.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-new-from-actor"></a><h3>clutter_texture_new_from_actor ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_texture_new_from_actor      (<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Creates a new <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> object with its source a prexisting
+actor (and associated children). The textures content will contain
+'live' redirected output of the actors scene.
+</p>
+<p>
+Note this function is intented as a utility call for uniformly applying
+shaders to groups and other potential visual effects. It requires that
+the <code class="literal">CLUTTER_FEATURE_OFFSCREEN</code> feature is supported by the current backend 
+and the target system.
+</p>
+<p>
+Some tips on usage:
+</p>
+<p>
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>The source actor must be made visible (i.e by calling
+    <a class="link" href="ClutterActor.html#clutter-actor-show" title="clutter_actor_show ()"><span class="type">clutter_actor_show</span></a>).</p></li>
+<li><p>The source actor must have a parent in order for it to be
+    allocated a size from the layouting mechanism. If the source
+    actor does not have a parent when this function is called then
+    the ClutterTexture will adopt it and allocate it at its
+    preferred size. Using this you can clone an actor that is
+    otherwise not displayed. Because of this feature if you do
+    intend to display the source actor then you must make sure that
+    the actor is parented before calling
+    <a class="link" href="ClutterTexture.html#clutter-texture-new-from-actor" title="clutter_texture_new_from_actor ()"><code class="function">clutter_texture_new_from_actor()</code></a> or that you unparent it before
+    adding it to a container.</p></li>
+<li><p>When getting the image for the clone texture, Clutter
+    will attempt to render the source actor exactly as it would
+    appear if it was rendered on screen. The source actor's parent
+    transformations are taken into account. Therefore if your
+    source actor is rotated along the X or Y axes so that it has
+    some depth, the texture will appear differently depending on
+    the on-screen location of the source actor. While painting the
+    source actor, Clutter will set up a temporary asymmetric
+    perspective matrix as the projection matrix so that the source
+    actor will be projected as if a small section of the screen was
+    being viewed. Before version 0.8.2, an orthogonal identity
+    projection was used which meant that the source actor would be
+    clipped if any part of it was not on the zero Z-plane.</p></li>
+<li><p>Avoid reparenting the source with the created texture.</p></li>
+<li><p>A group can be padded with a transparent rectangle as to
+    provide a border to contents for shader output (blurring text
+    for example).</p></li>
+<li><p>The texture will automatically resize to contain a further
+    transformed source. However, this involves overhead and can be
+    avoided by placing the source actor in a bounding group
+    sized large enough to contain any child tranformations.</p></li>
+<li><p>Uploading pixel data to the texture (e.g by using
+    <code class="function">clutter_actor_set_from_file()</code>) will destroy the offscreen texture data
+    and end redirection.</p></li>
+<li><p><a
+href="../cogl/cogl-Textures.html#cogl-texture-get-data"
+><code class="function">cogl_texture_get_data()</code></a> with the handle returned by
+    <a class="link" href="ClutterTexture.html#clutter-texture-get-cogl-texture" title="clutter_texture_get_cogl_texture ()"><code class="function">clutter_texture_get_cogl_texture()</code></a> can be used to read the
+    offscreen texture pixels into a pixbuf.</p></li>
+</ul></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> A source <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly created <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> object, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> on failure.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="CLUTTER-TEXTURE-ERROR:CAPS"></a><h3>CLUTTER_TEXTURE_ERROR</h3>
+<pre class="programlisting">#define CLUTTER_TEXTURE_ERROR   (clutter_texture_error_quark ())
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTextureError"></a><h3>enum ClutterTextureError</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
+  CLUTTER_TEXTURE_ERROR_NO_YUV,
+  CLUTTER_TEXTURE_ERROR_BAD_FORMAT
+} ClutterTextureError;
+</pre>
+<p>
+Error enumeration for <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-ERROR-OUT-OF-MEMORY:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY</code></span></p></td>
+<td> OOM condition
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-ERROR-NO-YUV:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_ERROR_NO_YUV</code></span></p></td>
+<td> YUV operation attempted but no YUV support
+  found
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-TEXTURE-ERROR-BAD-FORMAT:CAPS"></a><span class="term"><code class="literal">CLUTTER_TEXTURE_ERROR_BAD_FORMAT</code></span></p></td>
+<td> The requested format for
+clutter_texture_set_from_rgb_data or
+clutter_texture_set_from_yuv_data is unsupported.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-from-file"></a><h3>clutter_texture_set_from_file ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_texture_set_from_file       (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Sets the <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> image data from an image file. In case of
+failure, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> is returned and <em class="parameter"><code>error</code></em> is set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> The filename of the image in GLib file name encoding
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the image was successfully loaded and set
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-from-rgb-data"></a><h3>clutter_texture_set_from_rgb_data ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_texture_set_from_rgb_data   (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> has_alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> rowstride,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> bpp,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Sets <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> image data.
+</p>
+<p>
+Note: This function is likely to change in future versions.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> Image data in RGBA type colorspace.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>has_alpha</code></em> :</span></p></td>
+<td> Set to TRUE if image data has an alpha channel.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width in pixels of image data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height in pixels of image data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rowstride</code></em> :</span></p></td>
+<td> Distance in bytes between row starts.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bpp</code></em> :</span></p></td>
+<td> bytes per pixel (Currently only 3 and 4 supported, 
+                       depending on <em class="parameter"><code>has_alpha</code></em>)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags"><span class="type">ClutterTextureFlags</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> on success, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> on failure.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-from-yuv-data"></a><h3>clutter_texture_set_from_yuv_data ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_texture_set_from_yuv_data   (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Sets a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a> from YUV image data. If an error occurred,
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> is returned and <em class="parameter"><code>error</code></em> is set.
+</p>
+<p>
+This function is likely to change in future versions.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> Image data in YUV type colorspace.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width in pixels of image data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height in pixels of image data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags"><span class="type">ClutterTextureFlags</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the texture was successfully updated
+
+Since 0.4.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-area-from-rgb-data"></a><h3>clutter_texture_set_area_from_rgb_data ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_texture_set_area_from_rgb_data
+                                                        (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> has_alpha,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> height,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> rowstride,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> bpp,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags">ClutterTextureFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Updates a sub-region of the pixel data in a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> Image data in RGB type colorspace.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>has_alpha</code></em> :</span></p></td>
+<td> Set to TRUE if image data has an alpha channel.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X coordinate of upper left corner of region to update.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y coordinate of upper left corner of region to update.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> Width in pixels of region to update.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> Height in pixels of region to update.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rowstride</code></em> :</span></p></td>
+<td> Distance in bytes between row starts on source buffer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bpp</code></em> :</span></p></td>
+<td> bytes per pixel (Currently only 3 and 4 supported, 
+                       depending on <em class="parameter"><code>has_alpha</code></em>)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> <a class="link" href="ClutterTexture.html#ClutterTextureFlags" title="enum ClutterTextureFlags"><span class="type">ClutterTextureFlags</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> on success, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> on failure.
+
+Since 0.6.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-get-base-size"></a><h3>clutter_texture_get_base_size ()</h3>
+<pre class="programlisting">void                clutter_texture_get_base_size       (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *width,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *height);</pre>
+<p>
+Gets the size in pixels of the untransformed underlying texture pixbuf data.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td>   Pointer to gint to be populated with width value if non NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td>  Pointer to gint to be populated with height value if non NULL.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-get-filter-quality"></a><h3>clutter_texture_get_filter_quality ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a> clutter_texture_get_filter_quality
+                                                        (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);</pre>
+<p>
+Gets the filter quality used when scaling a texture.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The filter quality value.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-filter-quality"></a><h3>clutter_texture_set_filter_quality ()</h3>
+<pre class="programlisting">void                clutter_texture_set_filter_quality  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a> filter_quality);</pre>
+<p>
+Sets the filter quality when scaling a texture. The quality is an
+enumeration currently the following values are supported:
+<a class="link" href="ClutterTexture.html#CLUTTER-TEXTURE-QUALITY-LOW:CAPS"><code class="literal">CLUTTER_TEXTURE_QUALITY_LOW</code></a> which is fast but only uses nearest neighbour
+interpolation. <a class="link" href="ClutterTexture.html#CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS"><code class="literal">CLUTTER_TEXTURE_QUALITY_MEDIUM</code></a> which is computationally a
+bit more expensive (bilinear interpolation), and
+<a class="link" href="ClutterTexture.html#CLUTTER-TEXTURE-QUALITY-HIGH:CAPS"><code class="literal">CLUTTER_TEXTURE_QUALITY_HIGH</code></a> which uses extra texture memory resources to
+improve scaled down rendering as well (by using mipmaps). The default value
+is <a class="link" href="ClutterTexture.html#CLUTTER-TEXTURE-QUALITY-MEDIUM:CAPS"><code class="literal">CLUTTER_TEXTURE_QUALITY_MEDIUM</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filter_quality</code></em> :</span></p></td>
+<td> new filter quality value
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-get-max-tile-waste"></a><h3>clutter_texture_get_max_tile_waste ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_texture_get_max_tile_waste  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);</pre>
+<p>
+Gets the maximum waste that will be used when creating a texture or
+-1 if slicing is disabled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The maximum waste or -1 if the texture waste is
+unlimited.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-max-tile-waste"></a><h3>clutter_texture_set_max_tile_waste ()</h3>
+<pre class="programlisting">void                clutter_texture_set_max_tile_waste  (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> max_tile_waste);</pre>
+<p>
+Sets the maximum number of pixels in either axis that can be wasted
+for an individual texture slice. If -1 is specified then the
+texture is forced not to be sliced and the texture creation will
+fail if the hardware can't create a texture large enough.
+</p>
+<p>
+The value is only used when first creating a texture so changing it
+after the texture data has been set has no effect.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_tile_waste</code></em> :</span></p></td>
+<td> Maximum amount of waste in pixels or -1
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-get-cogl-texture"></a><h3>clutter_texture_get_cogl_texture ()</h3>
+<pre class="programlisting"><a
+href="../cogl/cogl-Utility-API.html#CoglHandle"
+>CoglHandle</a>          clutter_texture_get_cogl_texture    (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture);</pre>
+<p>
+Returns a handle to the underlying COGL texture used for drawing
+the actor. No extra reference is taken so if you need to keep the
+handle then you should call cogl_texture_ref on it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> COGL texture handle
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-texture-set-cogl-texture"></a><h3>clutter_texture_set_cogl_texture ()</h3>
+<pre class="programlisting">void                clutter_texture_set_cogl_texture    (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                         <a
+href="../cogl/cogl-Utility-API.html#CoglHandle"
+>CoglHandle</a> cogl_tex);</pre>
+<p>
+Replaces the underlying COGL texture drawn by this actor with
+<em class="parameter"><code>cogl_tex</code></em>. A reference to the texture is taken so if the handle is
+no longer needed it should be deref'd with cogl_texture_unref.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> A <a class="link" href="ClutterTexture.html" title="ClutterTexture"><span class="type">ClutterTexture</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cogl_tex</code></em> :</span></p></td>
+<td> A CoglHandle for a texture
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--cogl-texture"></a><h3>The <code class="literal">"cogl-texture"</code> property</h3>
+<pre class="programlisting">  "cogl-texture"             ClutterTextureHandle*  : Read / Write</pre>
+<p>The underlying COGL texture handle used to draw this actor.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--disable-slicing"></a><h3>The <code class="literal">"disable-slicing"</code> property</h3>
+<pre class="programlisting">  "disable-slicing"          <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write / Construct Only</pre>
+<p>Force the underlying texture to be singlularand not made of of smaller space saving inidivual textures.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--filename"></a><h3>The <code class="literal">"filename"</code> property</h3>
+<pre class="programlisting">  "filename"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Write</pre>
+<p>The full path of the file containing the texture.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--filter-quality"></a><h3>The <code class="literal">"filter-quality"</code> property</h3>
+<pre class="programlisting">  "filter-quality"           <a class="link" href="ClutterTexture.html#ClutterTextureQuality" title="enum ClutterTextureQuality">ClutterTextureQuality</a>  : Read / Write / Construct</pre>
+<p>Rendering quality used when drawing the texture.</p>
+<p>Default value: CLUTTER_TEXTURE_QUALITY_MEDIUM</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--keep-aspect-ratio"></a><h3>The <code class="literal">"keep-aspect-ratio"</code> property</h3>
+<pre class="programlisting">  "keep-aspect-ratio"        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Keep the aspect ratio of the texture when requesting the preferred width or height.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--pixel-format"></a><h3>The <code class="literal">"pixel-format"</code> property</h3>
+<pre class="programlisting">  "pixel-format"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read</pre>
+<p>CoglPixelFormat to use.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 19</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--repeat-x"></a><h3>The <code class="literal">"repeat-x"</code> property</h3>
+<pre class="programlisting">  "repeat-x"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Repeat underlying pixbuf rather than scale in x direction.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--repeat-y"></a><h3>The <code class="literal">"repeat-y"</code> property</h3>
+<pre class="programlisting">  "repeat-y"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Repeat underlying pixbuf rather than scale in y direction.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--sync-size"></a><h3>The <code class="literal">"sync-size"</code> property</h3>
+<pre class="programlisting">  "sync-size"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Auto sync size of actor to underlying pixbuf dimensions.</p>
+<p>Default value: TRUE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture--tile-waste"></a><h3>The <code class="literal">"tile-waste"</code> property</h3>
+<pre class="programlisting">  "tile-waste"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write / Construct Only</pre>
+<p>Max wastage dimension of a texture when using sliced textures or -1 to disable slicing. Bigger values use less textures, smaller values less texture memory.</p>
+<p>Allowed values: &gt;= -1</p>
+<p>Default value: 64</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterTexture.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture-pixbuf-change"></a><h3>The <code class="literal">"pixbuf-change"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>        user_data)      : Run Last</pre>
+<p>
+The ::pixbuf-change signal is emitted each time the pixbuf
+used by <em class="parameter"><code>texture</code></em> changes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> the texture which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterTexture-size-change"></a><h3>The <code class="literal">"size-change"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterTexture.html" title="ClutterTexture">ClutterTexture</a> *texture,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>            width,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>            height,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>        user_data)      : Run Last</pre>
+<p>
+The ::size-change signal is emitted each time the size of the
+pixbuf used by <em class="parameter"><code>texture</code></em> changes.  The new size is given as
+argument to the callback.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>texture</code></em> :</span></p></td>
+<td> the texture which received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>width</code></em> :</span></p></td>
+<td> the width of the new texture
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>height</code></em> :</span></p></td>
+<td> the height of the new texture
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,1098 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterContainer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="prev" href="ClutterActor.html" title="ClutterActor">
+<link rel="next" href="ClutterChildMeta.html" title="ClutterChildMeta">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterActor.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterChildMeta.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterContainer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterContainer.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterContainer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterContainer.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#ClutterContainer.implementations" class="shortcut">Known Implementations</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterContainer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterContainer.top_of_page"></a>ClutterContainer</span></h2>
+<p>ClutterContainer — An interface for implementing container actors</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterContainer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterContainer.html#ClutterContainer-struct" title="ClutterContainer">ClutterContainer</a>;
+                    <a class="link" href="ClutterContainer.html#ClutterContainerIface" title="ClutterContainerIface">ClutterContainerIface</a>;
+void                <a class="link" href="ClutterContainer.html#clutter-container-add-actor" title="clutter_container_add_actor ()">clutter_container_add_actor</a>         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="ClutterContainer.html#clutter-container-add" title="clutter_container_add ()">clutter_container_add</a>               (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);
+void                <a class="link" href="ClutterContainer.html#clutter-container-add-valist" title="clutter_container_add_valist ()">clutter_container_add_valist</a>        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);
+void                <a class="link" href="ClutterContainer.html#clutter-container-remove-actor" title="clutter_container_remove_actor ()">clutter_container_remove_actor</a>      (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="ClutterContainer.html#clutter-container-remove" title="clutter_container_remove ()">clutter_container_remove</a>            (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);
+void                <a class="link" href="ClutterContainer.html#clutter-container-remove-valist" title="clutter_container_remove_valist ()">clutter_container_remove_valist</a>     (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              <a class="link" href="ClutterContainer.html#clutter-container-get-children" title="clutter_container_get_children ()">clutter_container_get_children</a>      (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container);
+void                <a class="link" href="ClutterContainer.html#clutter-container-foreach" title="clutter_container_foreach ()">clutter_container_foreach</a>           (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html#ClutterCallback" title="ClutterCallback ()">ClutterCallback</a> callback,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterContainer.html#clutter-container-find-child-by-name" title="clutter_container_find_child_by_name ()">clutter_container_find_child_by_name</a>
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *child_name);
+void                <a class="link" href="ClutterContainer.html#clutter-container-raise-child" title="clutter_container_raise_child ()">clutter_container_raise_child</a>       (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);
+void                <a class="link" href="ClutterContainer.html#clutter-container-lower-child" title="clutter_container_lower_child ()">clutter_container_lower_child</a>       (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);
+void                <a class="link" href="ClutterContainer.html#clutter-container-sort-depth-order" title="clutter_container_sort_depth_order ()">clutter_container_sort_depth_order</a>  (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container);
+
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         <a class="link" href="ClutterContainer.html#clutter-container-class-find-child-property" title="clutter_container_class_find_child_property ()">clutter_container_class_find_child_property</a>
+                                                        (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+>GObjectClass</a> *klass,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property_name);
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>**        <a class="link" href="ClutterContainer.html#clutter-container-class-list-child-properties" title="clutter_container_class_list_child_properties ()">clutter_container_class_list_child_properties</a>
+                                                        (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+>GObjectClass</a> *klass,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *n_properties);
+void                <a class="link" href="ClutterContainer.html#clutter-container-child-set-property" title="clutter_container_child_set_property ()">clutter_container_child_set_property</a>
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *child,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+void                <a class="link" href="ClutterContainer.html#clutter-container-child-get-property" title="clutter_container_child_get_property ()">clutter_container_child_get_property</a>
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *child,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+void                <a class="link" href="ClutterContainer.html#clutter-container-child-set" title="clutter_container_child_set ()">clutter_container_child_set</a>         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_prop,
+                                                         ...);
+void                <a class="link" href="ClutterContainer.html#clutter-container-child-get" title="clutter_container_child_get ()">clutter_container_child_get</a>         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_prop,
+                                                         ...);
+
+<a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a>*   <a class="link" href="ClutterContainer.html#clutter-container-get-child-meta" title="clutter_container_get_child_meta ()">clutter_container_get_child_meta</a>    (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterContainer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GInterface
+   +----ClutterContainer
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterContainer.prerequisites"></a><h2>Prerequisites</h2>
+<p>
+ClutterContainer requires
+ <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterContainer.implementations"></a><h2>Known Implementations</h2>
+<p>
+ClutterContainer is implemented by
+ <a class="link" href="ClutterStage.html" title="ClutterStage">ClutterStage</a> and  <a class="link" href="ClutterGroup.html" title="ClutterGroup">ClutterGroup</a>.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterContainer.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> is an interface for writing actors containing other
+<a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s. It provides a standard API for adding, removing
+and iterating on every contained actor.
+</p>
+<p>
+An actor implementing <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> is <a class="link" href="ClutterGroup.html" title="ClutterGroup"><span class="type">ClutterGroup</span></a>.
+</p>
+<p>
+<a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> is available since Clutter 0.4</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterContainer.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterContainer-struct"></a><h3>ClutterContainer</h3>
+<pre class="programlisting">typedef struct _ClutterContainer ClutterContainer;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterContainerIface"></a><h3>ClutterContainerIface</h3>
+<pre class="programlisting">typedef struct {
+  void (* add)              (ClutterContainer *container,
+                             ClutterActor     *actor);
+  void (* remove)           (ClutterContainer *container,
+                             ClutterActor     *actor);
+  void (* foreach)          (ClutterContainer *container,
+                             ClutterCallback   callback,
+                             gpointer          user_data);
+  void (* raise)            (ClutterContainer *container,
+                             ClutterActor     *actor,
+                             ClutterActor     *sibling);
+  void (* lower)            (ClutterContainer *container,
+                             ClutterActor     *actor,
+                             ClutterActor     *sibling);
+  void (* sort_depth_order) (ClutterContainer *container);
+
+  /* ClutterChildMeta management */
+
+  GType                child_meta_type;
+  void              (* create_child_meta)  (ClutterContainer *container,
+                                            ClutterActor     *actor);
+  void              (* destroy_child_meta) (ClutterContainer *container,
+                                            ClutterActor     *actor);
+  ClutterChildMeta *(* get_child_meta)     (ClutterContainer *container,
+                                            ClutterActor     *actor);
+
+  /* signals */
+  void (* actor_added)   (ClutterContainer *container,
+                          ClutterActor     *actor);
+  void (* actor_removed) (ClutterContainer *container,
+                          ClutterActor     *actor);
+
+  void (* child_notify)  (ClutterContainer *container,
+                          ClutterActor     *actor,
+                          GParamSpec       *pspec);
+} ClutterContainerIface;
+</pre>
+<p>
+Base interface for container actors.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>add</code></em> ()</span></p></td>
+<td> virtual function for adding an actor to the container
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>remove</code></em> ()</span></p></td>
+<td> virtual function for removing an actor from the container
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>foreach</code></em> ()</span></p></td>
+<td> virtual function for iterating over the container's children
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>raise</code></em> ()</span></p></td>
+<td> virtual function for raising a child
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>lower</code></em> ()</span></p></td>
+<td> virtual function for lowering a child
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>sort_depth_order</code></em> ()</span></p></td>
+<td> virtual function for sorting the children of a
+  container depending on their depth
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a> <em class="structfield"><code>child_meta_type</code></em>;</span></p></td>
+<td> The GType used for storing auxiliary information about
+  each of the containers children.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>create_child_meta</code></em> ()</span></p></td>
+<td> virtual function that gets called for each added
+  child, the function should instantiate an object of type
+  <span class="type">"child_meta_type"</span>, set the container and actor
+  fields in the instance and add the record to a data structure for
+  subsequent access for <span class="type">"get_child_meta"</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>destroy_child_meta</code></em> ()</span></p></td>
+<td> virtual function that gets called when a child is
+  removed; it shuld release all resources held by the record
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_child_meta</code></em> ()</span></p></td>
+<td> return the record for a container child
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>actor_added</code></em> ()</span></p></td>
+<td> class handler for <span class="type">"actor_added"</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>actor_removed</code></em> ()</span></p></td>
+<td> class handler for <span class="type">"actor_removed"</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>child_notify</code></em> ()</span></p></td>
+<td> class handler for <span class="type">"child-notify"</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-add-actor"></a><h3>clutter_container_add_actor ()</h3>
+<pre class="programlisting">void                clutter_container_add_actor         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Adds a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to <em class="parameter"><code>container</code></em>. This function will emit the
+"actor-added" signal. The actor should be parented to
+<em class="parameter"><code>container</code></em>. You cannot add a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to more than one
+<a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the first <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to add
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-add"></a><h3>clutter_container_add ()</h3>
+<pre class="programlisting">void                clutter_container_add               (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);</pre>
+<p>
+Adds a list of <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s to <em class="parameter"><code>container</code></em>. Each time and
+actor is added, the "actor-added" signal is emitted. Each actor should
+be parented to <em class="parameter"><code>container</code></em>, which takes a reference on the actor. You
+cannot add a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to more than one <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> the first <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated list of actors to add
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-add-valist"></a><h3>clutter_container_add_valist ()</h3>
+<pre class="programlisting">void                clutter_container_add_valist        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);</pre>
+<p>
+Alternative va_list version of <a class="link" href="ClutterContainer.html#clutter-container-add" title="clutter_container_add ()"><code class="function">clutter_container_add()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> the first <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>var_args</code></em> :</span></p></td>
+<td> list of actors to add, followed by <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-remove-actor"></a><h3>clutter_container_remove_actor ()</h3>
+<pre class="programlisting">void                clutter_container_remove_actor      (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Removes <em class="parameter"><code>actor</code></em> from <em class="parameter"><code>container</code></em>. The actor should be unparented, so
+if you want to keep it around you must hold a reference to it
+yourself, using <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"
+><code class="function">g_object_ref()</code></a>. When the actor has been removed,
+the "actor-removed" signal is emitted by <em class="parameter"><code>container</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-remove"></a><h3>clutter_container_remove ()</h3>
+<pre class="programlisting">void                clutter_container_remove            (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         ...);</pre>
+<p>
+Removes a <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated list of <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s from
+<em class="parameter"><code>container</code></em>. Each actor should be unparented, so if you want to keep it
+around you must hold a reference to it yourself, using <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"
+><code class="function">g_object_ref()</code></a>.
+Each time an actor is removed, the "actor-removed" signal is
+emitted by <em class="parameter"><code>container</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> first <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to remove
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>-terminated list of actors to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-remove-valist"></a><h3>clutter_container_remove_valist ()</h3>
+<pre class="programlisting">void                clutter_container_remove_valist     (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *first_actor,
+                                                         va_list var_args);</pre>
+<p>
+Alternative va_list version of <a class="link" href="ClutterContainer.html#clutter-container-remove" title="clutter_container_remove ()"><code class="function">clutter_container_remove()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_actor</code></em> :</span></p></td>
+<td> the first <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>var_args</code></em> :</span></p></td>
+<td> list of actors to remove, followed by <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-get-children"></a><h3>clutter_container_get_children ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              clutter_container_get_children      (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container);</pre>
+<p>
+Retrieves all the children of <em class="parameter"><code>container</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a list of <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s. Use <a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#g-list-free"
+><code class="function">g_list_free()</code></a>
+  on the returned list when done.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-foreach"></a><h3>clutter_container_foreach ()</h3>
+<pre class="programlisting">void                clutter_container_foreach           (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html#ClutterCallback" title="ClutterCallback ()">ClutterCallback</a> callback,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Calls <em class="parameter"><code>callback</code></em> for each child of <em class="parameter"><code>container</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> a function to be called for each child
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to be passed to the function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-find-child-by-name"></a><h3>clutter_container_find_child_by_name ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_container_find_child_by_name
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *child_name);</pre>
+<p>
+Finds a child actor of a container by its name. Search recurses
+into any child container.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child_name</code></em> :</span></p></td>
+<td> the name of the requested child.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The child actor with the requested name, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if no
+  actor with that name was found.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-raise-child"></a><h3>clutter_container_raise_child ()</h3>
+<pre class="programlisting">void                clutter_container_raise_child       (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);</pre>
+<p>
+Raises <em class="parameter"><code>actor</code></em> to <em class="parameter"><code>sibling</code></em> level, in the depth ordering.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor to raise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sibling</code></em> :</span></p></td>
+<td> the sibling to raise to, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to raise to the top
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-lower-child"></a><h3>clutter_container_lower_child ()</h3>
+<pre class="programlisting">void                clutter_container_lower_child       (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *sibling);</pre>
+<p>
+Lowers <em class="parameter"><code>actor</code></em> to <em class="parameter"><code>sibling</code></em> level, in the depth ordering.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor to raise
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sibling</code></em> :</span></p></td>
+<td> the sibling to lower to, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to lower to the bottom
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-sort-depth-order"></a><h3>clutter_container_sort_depth_order ()</h3>
+<pre class="programlisting">void                clutter_container_sort_depth_order  (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container);</pre>
+<p>
+Sorts a container's children using their depth. This function should not
+be normally used by applications.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-class-find-child-property"></a><h3>clutter_container_class_find_child_property ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>*         clutter_container_class_find_child_property
+                                                        (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+>GObjectClass</a> *klass,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property_name);</pre>
+<p>
+Looks up the <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> for a child property of <em class="parameter"><code>klass</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>klass</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+><span class="type">GObjectClass</span></a> implementing the <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> interface.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>property_name</code></em> :</span></p></td>
+<td> a property name.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> for the property or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if no such
+  property exist.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-class-list-child-properties"></a><h3>clutter_container_class_list_child_properties ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+>GParamSpec</a>**        clutter_container_class_list_child_properties
+                                                        (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+>GObjectClass</a> *klass,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> *n_properties);</pre>
+<p>
+Returns an array of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a> for all child properties.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>klass</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"
+><span class="type">GObjectClass</span></a> implementing the <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a> interface.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_properties</code></em> :</span></p></td>
+<td> return location for length of returned array.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> an array of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-GParamSpec.html#GParamSpec"
+><span class="type">GParamSpec</span></a>s which should be freed
+  after use.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-child-set-property"></a><h3>clutter_container_child_set_property ()</h3>
+<pre class="programlisting">void                clutter_container_child_set_property
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *child,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Sets a container-specific property on a child of <em class="parameter"><code>container</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that is a child of <em class="parameter"><code>container</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>property</code></em> :</span></p></td>
+<td> the name of the property to set.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the value.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-child-get-property"></a><h3>clutter_container_child_get_property ()</h3>
+<pre class="programlisting">void                clutter_container_child_get_property
+                                                        (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *child,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *property,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Gets a container specific property of a child of <em class="parameter"><code>container</code></em>, In general,
+a copy is made of the property contents and the caller is responsible for
+freeing the memory by calling <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#g-value-unset"
+><code class="function">g_value_unset()</code></a>.
+</p>
+<p>
+Note that <a class="link" href="ClutterContainer.html#clutter-container-child-set-property" title="clutter_container_child_set_property ()"><code class="function">clutter_container_child_set_property()</code></a> is really intended for
+language bindings, <a class="link" href="ClutterContainer.html#clutter-container-child-set" title="clutter_container_child_set ()"><code class="function">clutter_container_child_set()</code></a> is much more convenient
+for C programming.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>child</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that is a child of <em class="parameter"><code>container</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>property</code></em> :</span></p></td>
+<td> the name of the property to set.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the value.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-child-set"></a><h3>clutter_container_child_set ()</h3>
+<pre class="programlisting">void                clutter_container_child_set         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_prop,
+                                                         ...);</pre>
+<p>
+Sets container specific properties on the child of a container.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that is a child of <em class="parameter"><code>container</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_prop</code></em> :</span></p></td>
+<td> name of the first property to be set.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> value for the first property, followed optionally by more name/value
+pairs terminated with NULL.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-child-get"></a><h3>clutter_container_child_get ()</h3>
+<pre class="programlisting">void                clutter_container_child_get         (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_prop,
+                                                         ...);</pre>
+<p>
+Gets <em class="parameter"><code>container</code></em> specific properties of an actor.
+</p>
+<p>
+In general, a copy is made of the property contents and the caller is
+responsible for freeing the memory in the appropriate manner for the type, for
+instance by calling <a
+href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a> or <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that is a child of <em class="parameter"><code>container</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_prop</code></em> :</span></p></td>
+<td> name of the first property to be set.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> value for the first property, followed optionally by more name/value
+pairs terminated with NULL.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-container-get-child-meta"></a><h3>clutter_container_get_child_meta ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta">ClutterChildMeta</a>*   clutter_container_get_child_meta    (<a class="link" href="ClutterContainer.html" title="ClutterContainer">ClutterContainer</a> *container,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> which contains the data about the
+<em class="parameter"><code>container</code></em> specific state for <em class="parameter"><code>actor</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>container</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterContainer.html" title="ClutterContainer"><span class="type">ClutterContainer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that is a child of <em class="parameter"><code>container</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a> for the <em class="parameter"><code>actor</code></em> child of <em class="parameter"><code>container</code></em>
+  or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if the specifiec actor does not exist or the container is not
+  configured to provide <a class="link" href="ClutterChildMeta.html" title="ClutterChildMeta"><span class="type">ClutterChildMeta</span></a>s
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

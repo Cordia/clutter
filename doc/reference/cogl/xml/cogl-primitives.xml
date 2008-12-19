@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="cogl-Primitives">
+<refmeta>
+<refentrytitle role="top_of_page" id="cogl-Primitives.top_of_page">Primitives</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>COGL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Primitives</refname>
+<refpurpose>Functions that draw various primitive shapes and
+allow for construction of more complex paths.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="cogl-Primitives.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                <link linkend="cogl-color">cogl_color</link>                          (const <link linkend="ClutterColor">ClutterColor</link> *color);
+<link linkend="void">void</link>                <link linkend="cogl-path-fill">cogl_path_fill</link>                      (void);
+<link linkend="void">void</link>                <link linkend="cogl-path-stroke">cogl_path_stroke</link>                    (void);
+<link linkend="void">void</link>                <link linkend="cogl-path-move-to">cogl_path_move_to</link>                   (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="void">void</link>                <link linkend="cogl-path-close">cogl_path_close</link>                     (void);
+<link linkend="void">void</link>                <link linkend="cogl-path-line-to">cogl_path_line_to</link>                   (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="void">void</link>                <link linkend="cogl-path-curve-to">cogl_path_curve_to</link>                  (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x3,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y3);
+<link linkend="void">void</link>                <link linkend="cogl-path-arc">cogl_path_arc</link>                       (<link linkend="ClutterFixed">ClutterFixed</link> center_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> center_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_y,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> angle_1,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> angle_2);
+<link linkend="void">void</link>                <link linkend="cogl-path-rel-move-to">cogl_path_rel_move_to</link>               (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="void">void</link>                <link linkend="cogl-path-rel-line-to">cogl_path_rel_line_to</link>               (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);
+<link linkend="void">void</link>                <link linkend="cogl-path-rel-curve-to">cogl_path_rel_curve_to</link>              (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x3,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y3);
+<link linkend="void">void</link>                <link linkend="cogl-path-line">cogl_path_line</link>                      (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2);
+<link linkend="void">void</link>                <link linkend="cogl-path-polyline">cogl_path_polyline</link>                  (<link linkend="ClutterFixed">ClutterFixed</link> *coords,
+                                                         <link linkend="gint">gint</link> num_points);
+<link linkend="void">void</link>                <link linkend="cogl-path-polygon">cogl_path_polygon</link>                   (<link linkend="ClutterFixed">ClutterFixed</link> *coords,
+                                                         <link linkend="gint">gint</link> num_points);
+<link linkend="void">void</link>                <link linkend="cogl-path-rectangle">cogl_path_rectangle</link>                 (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);
+<link linkend="void">void</link>                <link linkend="cogl-path-round-rectangle">cogl_path_round_rectangle</link>           (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> arc_step);
+<link linkend="void">void</link>                <link linkend="cogl-path-ellipse">cogl_path_ellipse</link>                   (<link linkend="ClutterFixed">ClutterFixed</link> center_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> center_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_y);
+<link linkend="void">void</link>                <link linkend="cogl-rectangle">cogl_rectangle</link>                      (<link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height);
+<link linkend="void">void</link>                <link linkend="cogl-rectanglex">cogl_rectanglex</link>                     (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="cogl-Primitives.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+There are three levels on which drawing with cogl can be used. The
+highest level functions construct various simple primitive shapes
+to be either filled or stroked. Using a lower-level set of functions
+more complex and arbitrary paths can be constructed by concatenating
+straight line, bezier curve and arc segments. Additionally there
+are utility functions that draw the most common primitives - rectangles
+and trapezoids - in a maximaly optimized fashion.
+</para>
+<para>
+When constructing arbitrary paths, the current pen location is
+initialized using the move_to command. The subsequent path segments
+implicitly use the last pen location as their first vertex and move
+the pen location to the last vertex they produce at the end. Also
+there are special versions of functions that allow specifying the
+vertices of the path segments relative to the last pen location
+rather then in the absolute coordinates.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="cogl-Primitives.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="cogl-color" role="function">
+<title>cogl_color ()</title>
+<indexterm zone="cogl-color"><primary>cogl_color</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_color                          (const <link linkend="ClutterColor">ClutterColor</link> *color);</programlisting>
+<para>
+Changes the color of cogl's current paint, which is used for filling and stroking
+primitives.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>color</parameter>&nbsp;:</term>
+<listitem><simpara> new current <parameter>ClutterColor</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-fill" role="function">
+<title>cogl_path_fill ()</title>
+<indexterm zone="cogl-path-fill"><primary>cogl_path_fill</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_fill                      (void);</programlisting>
+<para>
+Fills the constructed shape using the current drawing color.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-path-stroke" role="function">
+<title>cogl_path_stroke ()</title>
+<indexterm zone="cogl-path-stroke"><primary>cogl_path_stroke</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_stroke                    (void);</programlisting>
+<para>
+Strokes the constructed shape using the current drawing color
+and a width of 1 pixel (regardless of the current transformation
+matrix).</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-path-move-to" role="function">
+<title>cogl_path_move_to ()</title>
+<indexterm zone="cogl-path-move-to"><primary>cogl_path_move_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_move_to                   (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Clears the previously constructed shape and begins a new path
+contour by moving the pen to the given coordinates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the pen location to move to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the pen location to move to.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-close" role="function">
+<title>cogl_path_close ()</title>
+<indexterm zone="cogl-path-close"><primary>cogl_path_close</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_close                     (void);</programlisting>
+<para>
+Closes the path being constructed by adding a straight line segment
+to it that ends at the first vertex of the path.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="cogl-path-line-to" role="function">
+<title>cogl_path_line_to ()</title>
+<indexterm zone="cogl-path-line-to"><primary>cogl_path_line_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_line_to                   (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Adds a straight line segment to the current path that ends at the
+given coordinates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the end line vertex
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the end line vertex
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-curve-to" role="function">
+<title>cogl_path_curve_to ()</title>
+<indexterm zone="cogl-path-curve-to"><primary>cogl_path_curve_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_curve_to                  (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x3,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y3);</programlisting>
+<para>
+Adds a cubic bezier curve segment to the current path with the given
+second, third and fourth control points and using current pen location
+as the first control point.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x1</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the second bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the second bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the third bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the third bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x3</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the fourth bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y3</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the fourth bezier control point
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-arc" role="function">
+<title>cogl_path_arc ()</title>
+<indexterm zone="cogl-path-arc"><primary>cogl_path_arc</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_arc                       (<link linkend="ClutterFixed">ClutterFixed</link> center_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> center_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_y,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> angle_1,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> angle_2);</programlisting>
+<para>
+Adds an elliptical arc segment to the current path. A straight line
+segment will link the current pen location with the first vertex
+of the arc. If you perform a move_to to the arcs start just before
+drawing it you create a free standing arc.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>center_x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the elliptical arc center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>center_y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the elliptical arc center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>radius_x</parameter>&nbsp;:</term>
+<listitem><simpara> X radius of the elliptical arc
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>radius_y</parameter>&nbsp;:</term>
+<listitem><simpara> Y radious of the elliptical arc
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_1</parameter>&nbsp;:</term>
+<listitem><simpara> Angle in the unit-circle at which the arc begin
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>angle_2</parameter>&nbsp;:</term>
+<listitem><simpara> Angle in the unit-circle at which the arc ends
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-rel-move-to" role="function">
+<title>cogl_path_rel_move_to ()</title>
+<indexterm zone="cogl-path-rel-move-to"><primary>cogl_path_rel_move_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_rel_move_to               (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Clears the previously constructed shape and begins a new path
+contour by moving the pen to the given coordinates relative
+to the current pen location.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X offset from the current pen location to move the pen to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y offset from the current pen location to move the pen to.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-rel-line-to" role="function">
+<title>cogl_path_rel_line_to ()</title>
+<indexterm zone="cogl-path-rel-line-to"><primary>cogl_path_rel_line_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_rel_line_to               (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y);</programlisting>
+<para>
+Adds a straight line segment to the current path that ends at the
+given coordinates relative to the current pen location.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X offset from the current pen location of the end line vertex
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y offset from the current pen location of the end line vertex
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-rel-curve-to" role="function">
+<title>cogl_path_rel_curve_to ()</title>
+<indexterm zone="cogl-path-rel-curve-to"><primary>cogl_path_rel_curve_to</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_rel_curve_to              (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x3,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y3);</programlisting>
+<para>
+Adds a cubic bezier curve segment to the current path with the given
+second, third and fourth control points and using current pen location
+as the first control point. The given coordinates are relative to the
+current pen location.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x1</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the second bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the second bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the third bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the third bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x3</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the fourth bezier control point
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y3</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the fourth bezier control point
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-line" role="function">
+<title>cogl_path_line ()</title>
+<indexterm zone="cogl-path-line"><primary>cogl_path_line</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_line                      (<link linkend="ClutterFixed">ClutterFixed</link> x1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y1,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> x2,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y2);</programlisting>
+<para>
+Clears the previously constructed shape and constructs a straight
+line shape start and ending at the given coordinates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x1</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the start line vertex
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y1</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the start line vertex
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>x2</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the end line vertex
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y2</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the end line vertex
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-polyline" role="function">
+<title>cogl_path_polyline ()</title>
+<indexterm zone="cogl-path-polyline"><primary>cogl_path_polyline</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_polyline                  (<link linkend="ClutterFixed">ClutterFixed</link> *coords,
+                                                         <link linkend="gint">gint</link> num_points);</programlisting>
+<para>
+Clears the previously constructed shape and constructs a series of straight
+line segments, starting from the first given vertex coordinate. Each
+subsequent segment stars where the previous one ended and ends at the next
+given vertex coordinate.
+</para>
+<para>
+The coords array must contain 2 * num_points values. The first value
+represents the X coordinate of the first vertex, the second value
+represents the Y coordinate of the first vertex, continuing in the same
+fashion for the rest of the vertices. (num_points - 1) segments will
+be constructed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>coords</parameter>&nbsp;:</term>
+<listitem><simpara> A pointer to the first element of an array of fixed-point
+values that specify the vertex coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_points</parameter>&nbsp;:</term>
+<listitem><simpara> The total number of vertices.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-polygon" role="function">
+<title>cogl_path_polygon ()</title>
+<indexterm zone="cogl-path-polygon"><primary>cogl_path_polygon</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_polygon                   (<link linkend="ClutterFixed">ClutterFixed</link> *coords,
+                                                         <link linkend="gint">gint</link> num_points);</programlisting>
+<para>
+Clears the previously constructed shape and constructs a polygonal
+shape of the given number of vertices.
+</para>
+<para>
+The coords array must contain 2 * num_points values. The first value
+represents the X coordinate of the first vertex, the second value
+represents the Y coordinate of the first vertex, continuing in the same
+fashion for the rest of the vertices.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>coords</parameter>&nbsp;:</term>
+<listitem><simpara> A pointer to the first element of an array of fixed-point
+values that specify the vertex coordinates.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_points</parameter>&nbsp;:</term>
+<listitem><simpara> The total number of vertices.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-rectangle" role="function">
+<title>cogl_path_rectangle ()</title>
+<indexterm zone="cogl-path-rectangle"><primary>cogl_path_rectangle</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_rectangle                 (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);</programlisting>
+<para>
+Clears the previously constructed shape and constructs a rectangular
+shape at the given coordinates.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the top-left corner.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the top-left corner.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Rectangle width.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Rectangle height.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-round-rectangle" role="function">
+<title>cogl_path_round_rectangle ()</title>
+<indexterm zone="cogl-path-round-rectangle"><primary>cogl_path_round_rectangle</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_round_rectangle           (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius,
+                                                         <link linkend="ClutterAngle">ClutterAngle</link> arc_step);</programlisting>
+<para>
+Clears the previously constructed shape and constructs a rectangular
+shape with rounded corners.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width of the rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height of the rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>radius</parameter>&nbsp;:</term>
+<listitem><simpara> Radius of the corner arcs.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arc_step</parameter>&nbsp;:</term>
+<listitem><simpara> Angle increment resolution for subdivision of
+the corner arcs.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-path-ellipse" role="function">
+<title>cogl_path_ellipse ()</title>
+<indexterm zone="cogl-path-ellipse"><primary>cogl_path_ellipse</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_path_ellipse                   (<link linkend="ClutterFixed">ClutterFixed</link> center_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> center_y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> radius_y);</programlisting>
+<para>
+Clears the previously constructed shape and constructs an ellipse
+shape.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>center_x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the ellipse center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>center_y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the ellipse center
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>radius_x</parameter>&nbsp;:</term>
+<listitem><simpara> X radius of the ellipse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>radius_y</parameter>&nbsp;:</term>
+<listitem><simpara> Y radius of the ellipse
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-rectangle" role="function">
+<title>cogl_rectangle ()</title>
+<indexterm zone="cogl-rectangle"><primary>cogl_rectangle</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_rectangle                      (<link linkend="gint">gint</link> x,
+                                                         <link linkend="gint">gint</link> y,
+                                                         <link linkend="guint">guint</link> width,
+                                                         <link linkend="guint">guint</link> height);</programlisting>
+<para>
+Fills a rectangle at the given coordinates with the current
+drawing color in a highly optimizied fashion.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width of the rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height of the rectangle
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-rectanglex" role="function">
+<title>cogl_rectanglex ()</title>
+<indexterm zone="cogl-rectanglex"><primary>cogl_rectanglex</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_rectanglex                     (<link linkend="ClutterFixed">ClutterFixed</link> x,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> y,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> width,
+                                                         <link linkend="ClutterFixed">ClutterFixed</link> height);</programlisting>
+<para>
+A fixed-point version of cogl_fast_fill_rectangle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>x</parameter>&nbsp;:</term>
+<listitem><simpara> X coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>y</parameter>&nbsp;:</term>
+<listitem><simpara> Y coordinate of the top-left corner
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>width</parameter>&nbsp;:</term>
+<listitem><simpara> Width of the rectangle
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>height</parameter>&nbsp;:</term>
+<listitem><simpara> Height of the rectangle
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviourRotate</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch05.html" title="Behaviours">
+<link rel="prev" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">
+<link rel="next" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterBehaviourPath.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch05.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterBehaviourScale.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviourRotate.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviourRotate.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviourRotate.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviourRotate.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviourRotate"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviourRotate.top_of_page"></a>ClutterBehaviourRotate</span></h2>
+<p>ClutterBehaviourRotate — A behaviour controlling rotation</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviourRotate.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a>;
+enum                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a>;
+                    <a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate-struct" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a>;
+                    <a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotateClass" title="ClutterBehaviourRotateClass">ClutterBehaviourRotateClass</a>;
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-new" title="clutter_behaviour_rotate_new ()">clutter_behaviour_rotate_new</a>        (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-newx" title="clutter_behaviour_rotate_newx ()">clutter_behaviour_rotate_newx</a>       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-axis" title="clutter_behaviour_rotate_set_axis ()">clutter_behaviour_rotate_set_axis</a>   (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);
+<a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a>   <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-axis" title="clutter_behaviour_rotate_get_axis ()">clutter_behaviour_rotate_get_axis</a>   (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-direction" title="clutter_behaviour_rotate_set_direction ()">clutter_behaviour_rotate_set_direction</a>
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction);
+<a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-direction" title="clutter_behaviour_rotate_get_direction ()">clutter_behaviour_rotate_get_direction</a>
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-bounds" title="clutter_behaviour_rotate_set_bounds ()">clutter_behaviour_rotate_set_bounds</a> (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-boundsx" title="clutter_behaviour_rotate_set_boundsx ()">clutter_behaviour_rotate_set_boundsx</a>
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-bounds" title="clutter_behaviour_rotate_get_bounds ()">clutter_behaviour_rotate_get_bounds</a> (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_end);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-boundsx" title="clutter_behaviour_rotate_get_boundsx ()">clutter_behaviour_rotate_get_boundsx</a>
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_end);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-center" title="clutter_behaviour_rotate_set_center ()">clutter_behaviour_rotate_set_center</a> (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);
+void                <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-center" title="clutter_behaviour_rotate_get_center ()">clutter_behaviour_rotate_get_center</a> (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *z);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourRotate.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>
+         +----ClutterBehaviourRotate
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourRotate.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--angle-end" title='The "angle-end" property'>angle-end</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--angle-start" title='The "angle-start" property'>angle-start</a>"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--axis" title='The "axis" property'>axis</a>"                     <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a>     : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-x" title='The "center-x" property'>center-x</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-y" title='The "center-y" property'>center-y</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--center-z" title='The "center-z" property'>center-z</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a class="link" href="ClutterBehaviourRotate.html#ClutterBehaviourRotate--direction" title='The "direction" property'>direction</a>"                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a>  : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourRotate.description"></a><h2>Description</h2>
+<p>
+A <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a> rotate actors between a starting and ending
+angle on a given axis.
+</p>
+<p>
+The <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a> is available since version 0.4.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourRotate.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterRotateAxis"></a><h3>enum ClutterRotateAxis</h3>
+<pre class="programlisting">typedef enum { /*&lt; prefix=CLUTTER &gt;*/
+  CLUTTER_X_AXIS,
+  CLUTTER_Y_AXIS,
+  CLUTTER_Z_AXIS
+} ClutterRotateAxis;
+</pre>
+<p>
+Axis of a rotation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-X-AXIS:CAPS"></a><span class="term"><code class="literal">CLUTTER_X_AXIS</code></span></p></td>
+<td> Rotate around the X axis
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-Y-AXIS:CAPS"></a><span class="term"><code class="literal">CLUTTER_Y_AXIS</code></span></p></td>
+<td> Rotate around the Y axis
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-Z-AXIS:CAPS"></a><span class="term"><code class="literal">CLUTTER_Z_AXIS</code></span></p></td>
+<td> Rotate around the Z axis
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterRotateDirection"></a><h3>enum ClutterRotateDirection</h3>
+<pre class="programlisting">typedef enum { /*&lt; prefix=CLUTTER_ROTATE &gt;*/
+  CLUTTER_ROTATE_CW,
+  CLUTTER_ROTATE_CCW
+} ClutterRotateDirection;
+</pre>
+<p>
+Direction of a rotation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-ROTATE-CW:CAPS"></a><span class="term"><code class="literal">CLUTTER_ROTATE_CW</code></span></p></td>
+<td> Clockwise rotation
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-ROTATE-CCW:CAPS"></a><span class="term"><code class="literal">CLUTTER_ROTATE_CCW</code></span></p></td>
+<td> Counter-clockwise rotation
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate-struct"></a><h3>ClutterBehaviourRotate</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviourRotate ClutterBehaviourRotate;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotateClass"></a><h3>ClutterBehaviourRotateClass</h3>
+<pre class="programlisting">typedef struct {
+  ClutterBehaviourClass parent_class;
+} ClutterBehaviourRotateClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-new"></a><h3>clutter_behaviour_rotate_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_rotate_new        (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);</pre>
+<p>
+Creates a new <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>. This behaviour will rotate actors
+bound to it on <em class="parameter"><code>axis</code></em>, following <em class="parameter"><code>direction</code></em>, between <em class="parameter"><code>angle_start</code></em> and
+<em class="parameter"><code>angle_end</code></em>. Angles &gt;= 360 degrees will be clamped to the canonical interval
+&lt;0, 360), if angle_start == angle_end, the behaviour will carry out a
+single rotation of 360 degrees.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> the rotation axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> the rotation direction
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> the starting angle in degrees, between 0 and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> the final angle in degrees, between 0 and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-newx"></a><h3>clutter_behaviour_rotate_newx ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a>*   clutter_behaviour_rotate_newx       (<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);</pre>
+<p>
+Creates a new <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>. This is the fixed point version
+of <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-new" title="clutter_behaviour_rotate_new ()"><code class="function">clutter_behaviour_rotate_new()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> the rotation axis
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> the rotation direction
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> the starting angle, in fixed point notation in degrees,
+between 0 and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> the final angle, in fixed point notation in degrees, between 0
+and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-set-axis"></a><h3>clutter_behaviour_rotate_set_axis ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_set_axis   (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a> axis);</pre>
+<p>
+Sets the axis used by the rotate behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>axis</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis"><span class="type">ClutterRotateAxis</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-get-axis"></a><h3>clutter_behaviour_rotate_get_axis ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a>   clutter_behaviour_rotate_get_axis   (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis"><span class="type">ClutterRotateAxis</span></a> used by the rotate behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the rotation axis
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-set-direction"></a><h3>clutter_behaviour_rotate_set_direction ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_set_direction
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> direction);</pre>
+<p>
+Sets the rotation direction used by the rotate behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>direction</code></em> :</span></p></td>
+<td> the rotation direction
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-get-direction"></a><h3>clutter_behaviour_rotate_get_direction ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a> clutter_behaviour_rotate_get_direction
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection"><span class="type">ClutterRotateDirection</span></a> used by the rotate behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the rotation direction
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-set-bounds"></a><h3>clutter_behaviour_rotate_set_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_set_bounds (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> angle_end);</pre>
+<p>
+Sets the initial and final angles of a rotation behaviour; angles &gt;= 360
+degrees get clamped to the canonical interval &lt;0, 360).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> initial angle in degrees, between 0 and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> final angle in degrees, between 0 and 360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-set-boundsx"></a><h3>clutter_behaviour_rotate_set_boundsx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_set_boundsx
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> angle_end);</pre>
+<p>
+Fixed point version of <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-bounds" title="clutter_behaviour_rotate_set_bounds ()"><code class="function">clutter_behaviour_rotate_set_bounds()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> initial angle, in fixed point notation in degrees, between 0
+and 360.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> final angle, in fixed point notation in degress, between 0 and
+360.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-get-bounds"></a><h3>clutter_behaviour_rotate_get_bounds ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_get_bounds (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_start,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a> *angle_end);</pre>
+<p>
+Retrieves the rotation boundaries of the rotate behaviour.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> return value for the initial angle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> return value for the final angle
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-get-boundsx"></a><h3>clutter_behaviour_rotate_get_boundsx ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_get_boundsx
+                                                        (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_start,
+                                                         <a class="link" href="clutter-Fixed-Point-Support.html#ClutterFixed" title="ClutterFixed">ClutterFixed</a> *angle_end);</pre>
+<p>
+Retrieves the rotation boundaries of the rotate behaviour. This is
+the fixed point notation version of <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-get-bounds" title="clutter_behaviour_rotate_get_bounds ()"><code class="function">clutter_behaviour_rotate_get_bounds()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_start</code></em> :</span></p></td>
+<td> return value for the initial angle
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>angle_end</code></em> :</span></p></td>
+<td> return value for the final angle
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-set-center"></a><h3>clutter_behaviour_rotate_set_center ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_set_center (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> z);</pre>
+<p>
+Sets the center of rotation. The coordinates are relative to the plane
+normal to the rotation axis set with <a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-axis" title="clutter_behaviour_rotate_set_axis ()"><code class="function">clutter_behaviour_rotate_set_axis()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> X axis center of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> Y axis center of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> Z axis center of rotation
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-rotate-get-center"></a><h3>clutter_behaviour_rotate_get_center ()</h3>
+<pre class="programlisting">void                clutter_behaviour_rotate_get_center (<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a> *rotate,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *x,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *y,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> *z);</pre>
+<p>
+Retrieves the center of rotation set using
+<a class="link" href="ClutterBehaviourRotate.html#clutter-behaviour-rotate-set-center" title="clutter_behaviour_rotate_set_center ()"><code class="function">clutter_behaviour_rotate_set_center()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>rotate</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate"><span class="type">ClutterBehaviourRotate</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>x</code></em> :</span></p></td>
+<td> return location for the X center of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>y</code></em> :</span></p></td>
+<td> return location for the Y center of rotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>z</code></em> :</span></p></td>
+<td> return location for the Z center of rotation
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviourRotate.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--angle-end"></a><h3>The <code class="literal">"angle-end"</code> property</h3>
+<pre class="programlisting">  "angle-end"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The final angle to where the rotation should end.</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--angle-start"></a><h3>The <code class="literal">"angle-start"</code> property</h3>
+<pre class="programlisting">  "angle-start"              <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"
+>gdouble</a>               : Read / Write</pre>
+<p>
+The initial angle from whence the rotation should start.</p>
+<p>
+
+</p>
+<p>Allowed values: [0,360]</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--axis"></a><h3>The <code class="literal">"axis"</code> property</h3>
+<pre class="programlisting">  "axis"                     <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateAxis" title="enum ClutterRotateAxis">ClutterRotateAxis</a>     : Read / Write</pre>
+<p>
+The axis of rotation.</p>
+<p>
+
+</p>
+<p>Default value: CLUTTER_Z_AXIS</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--center-x"></a><h3>The <code class="literal">"center-x"</code> property</h3>
+<pre class="programlisting">  "center-x"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+The x center of rotation.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= -2147483647</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--center-y"></a><h3>The <code class="literal">"center-y"</code> property</h3>
+<pre class="programlisting">  "center-y"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+The y center of rotation.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= -2147483647</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--center-z"></a><h3>The <code class="literal">"center-z"</code> property</h3>
+<pre class="programlisting">  "center-z"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>
+The z center of rotation.</p>
+<p>
+
+</p>
+<p>Allowed values: &gt;= -2147483647</p>
+<p>Default value: 0</p>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourRotate--direction"></a><h3>The <code class="literal">"direction"</code> property</h3>
+<pre class="programlisting">  "direction"                <a class="link" href="ClutterBehaviourRotate.html#ClutterRotateDirection" title="enum ClutterRotateDirection">ClutterRotateDirection</a>  : Read / Write</pre>
+<p>
+The direction of the rotation.</p>
+<p>
+
+</p>
+<p>Default value: CLUTTER_ROTATE_CW</p>
+<p>Since  0.4
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

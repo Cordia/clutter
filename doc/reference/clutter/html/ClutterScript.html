@@ -1,0 +1,1146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterScript</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch08.html" title="User interface definition">
+<link rel="prev" href="ch08.html" title="User interface definition">
+<link rel="next" href="clutter-ClutterScriptable.html" title="ClutterScriptable">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch08.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch08.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-ClutterScriptable.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterScript.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterScript.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterScript.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterScript.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterScript"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterScript.top_of_page"></a>ClutterScript</span></h2>
+<p>ClutterScript — Loads a scene from UI definition data</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterScript.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterScript.html#ClutterScript-struct" title="ClutterScript">ClutterScript</a>;
+                    <a class="link" href="ClutterScript.html#ClutterScriptClass" title="ClutterScriptClass">ClutterScriptClass</a>;
+<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a>*      <a class="link" href="ClutterScript.html#clutter-script-new" title="clutter_script_new ()">clutter_script_new</a>                  (void);
+enum                <a class="link" href="ClutterScript.html#ClutterScriptError" title="enum ClutterScriptError">ClutterScriptError</a>;
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterScript.html#clutter-script-load-from-data" title="clutter_script_load_from_data ()">clutter_script_load_from_data</a>       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="ClutterScript.html#clutter-script-load-from-file" title="clutter_script_load_from_file ()">clutter_script_load_from_file</a>       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+void                <a class="link" href="ClutterScript.html#clutter-script-add-search-paths" title="clutter_script_add_search_paths ()">clutter_script_add_search_paths</a>     (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const paths[],
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_paths);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*              <a class="link" href="ClutterScript.html#clutter-script-lookup-filename" title="clutter_script_lookup_filename ()">clutter_script_lookup_filename</a>      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename);
+
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>*            <a class="link" href="ClutterScript.html#clutter-script-get-object" title="clutter_script_get_object ()">clutter_script_get_object</a>           (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterScript.html#clutter-script-get-objects" title="clutter_script_get_objects ()">clutter_script_get_objects</a>          (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_name,
+                                                         ...);
+void                <a class="link" href="ClutterScript.html#clutter-script-unmerge-objects" title="clutter_script_unmerge_objects ()">clutter_script_unmerge_objects</a>      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> merge_id);
+void                <a class="link" href="ClutterScript.html#clutter-script-ensure-objects" title="clutter_script_ensure_objects ()">clutter_script_ensure_objects</a>       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              <a class="link" href="ClutterScript.html#clutter-script-list-objects" title="clutter_script_list_objects ()">clutter_script_list_objects</a>         (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script);
+
+void                (<a class="link" href="ClutterScript.html#ClutterScriptConnectFunc" title="ClutterScriptConnectFunc ()">*ClutterScriptConnectFunc</a>)         (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *object,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *signal_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *handler_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *connect_object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#GConnectFlags"
+>GConnectFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterScript.html#clutter-script-connect-signals" title="clutter_script_connect_signals ()">clutter_script_connect_signals</a>      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="ClutterScript.html#clutter-script-connect-signals-full" title="clutter_script_connect_signals_full ()">clutter_script_connect_signals_full</a> (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a class="link" href="ClutterScript.html#ClutterScriptConnectFunc" title="ClutterScriptConnectFunc ()">ClutterScriptConnectFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>               <a class="link" href="ClutterScript.html#clutter-script-get-type-from-name" title="clutter_script_get_type_from_name ()">clutter_script_get_type_from_name</a>   (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *type_name);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterScript.html#clutter-get-script-id" title="clutter_get_script_id ()">clutter_get_script_id</a>               (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *gobject);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScript.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterScript
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScript.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterScript.html#ClutterScript--filename" title='The "filename" property'>filename</a>"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read
+  "<a class="link" href="ClutterScript.html#ClutterScript--filename-set" title='The "filename-set" property'>filename-set</a>"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScript.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> is an object used for loading and building parts or a
+complete scenegraph from external definition data in forms of string
+buffers or files.
+</p>
+<p>
+The UI definition format is JSON, the JavaScript Object Notation as
+described by RFC 4627. <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> can load a JSON data stream,
+parse it and build all the objects defined into it. Each object must
+have an "id" and a "type" properties defining the name to be used
+to retrieve it from <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> with <a class="link" href="ClutterScript.html#clutter-script-get-object" title="clutter_script_get_object ()"><code class="function">clutter_script_get_object()</code></a>,
+and the class type to be instanciated. Every other attribute will
+be mapped to the class properties.
+</p>
+<p>
+A <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> holds a reference on every object it creates from
+the definition data, except for the stage. Every non-actor object
+will be finalized when the <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> instance holding it will
+be finalized, so they need to be referenced using <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"
+><code class="function">g_object_ref()</code></a> in
+order for them to survive.
+</p>
+<p>
+A simple object might be defined as:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+{
+  "id"     : "red-button",
+  "type"   : "ClutterRectangle",
+  "width"  : 100,
+  "height" : 100,
+  "color"  : "#ff0000ff"
+}
+</pre></div>
+<p>
+</p>
+<p>
+This will produce a red <a class="link" href="ClutterRectangle.html" title="ClutterRectangle"><span class="type">ClutterRectangle</span></a>, 100x100 pixels wide, and
+with a ClutterScript id of "red-button"; it can be retrieved by calling:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+ClutterActor *red_button;
+
+red_button = CLUTTER_ACTOR (clutter_script_get_object (script, "red-button"));
+</pre></div>
+<p>
+</p>
+<p>
+and then manipulated with the Clutter API. For every object created
+using ClutterScript it is possible to check the id by calling
+<a class="link" href="ClutterScript.html#clutter-get-script-id" title="clutter_get_script_id ()"><code class="function">clutter_get_script_id()</code></a>.
+</p>
+<p>
+Packing can be represented using the "children" member, and passing an
+array of objects or ids of objects already defined (but not packed: the
+packing rules of Clutter still apply, and an actor cannot be packed
+in multiple containers without unparenting it in between).
+</p>
+<p>
+Behaviours and timelines can also be defined inside a UI definition
+buffer:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+{
+  "id"          : "rotate-behaviour",
+  "type"        : "ClutterBehaviourRotate",
+  "angle-start" : 0.0,
+  "angle-end"   : 360.0,
+  "axis"        : "z-axis",
+  "alpha"       : {
+    "timeline" : { "duration" : 4000, "fps" : 60, "loop" : true },
+    "function" : "sine"
+  }
+}
+</pre></div>
+<p>
+</p>
+<p>
+And then to apply a defined behaviour to an actor defined inside the
+definition of an actor, the "behaviour" member can be used:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+{
+  "id" : "my-rotating-actor",
+  "type" : "ClutterTexture",
+  ...
+  "behaviours" : [ "rotate-behaviour" ]
+}
+</pre></div>
+<p>
+</p>
+<p>
+A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> belonging to a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> can only be defined
+implicitely. A <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> belonging to a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> can be
+either defined implicitely or explicitely. Implicitely defined
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>s and <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a>s can omit the
+<code class="varname">id</code> member, as well as the <code class="varname">type</code> member,
+but will not be available using <a class="link" href="ClutterScript.html#clutter-script-get-object" title="clutter_script_get_object ()"><code class="function">clutter_script_get_object()</code></a> (they can,
+however, be extracted using the <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> and <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+API respectively).
+</p>
+<p>
+Signal handlers can be defined inside a Clutter UI definition file and
+then autoconnected to their respective signals using the
+<a class="link" href="ClutterScript.html#clutter-script-connect-signals" title="clutter_script_connect_signals ()"><code class="function">clutter_script_connect_signals()</code></a> function:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  ...
+  "signals" : [
+    { "name" : "button-press-event", "handler" : "on_button_press" },
+    {
+      "name" : "foo-signal",
+      "handler" : "after_foo",
+      "after" : true
+    },
+  ],
+  ...
+</pre></div>
+<p>
+</p>
+<p>
+Signal handler definitions must have a "name" and a "handler" members;
+they can also have the "after" and "swapped" boolean members (for the
+signal connection flags <code class="literal">G_CONNECT_AFTER</code> and <code class="literal">G_CONNECT_SWAPPED</code>
+respectively) and the "object" string member for calling
+<a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#g-signal-connect-object"
+><code class="function">g_signal_connect_object()</code></a> instead of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#g-signal-connect"
+><code class="function">g_signal_connect()</code></a>.
+</p>
+<p>
+Clutter reserves the following names, so classes defining properties
+through the usual GObject registration process should avoid using these
+names to avoid collisions:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+  "id"         := the unique name of a ClutterScript object
+  "type"       := the class literal name, also used to infer the type function
+  "type_func"  := the GType function name, for non-standard classes
+  "children"   := an array of names or objects to add as children
+  "behaviours" := an array of names or objects to apply to an actor
+  "signals"    := an array of signal definitions to connect to an object
+</pre>
+<p>
+</p>
+<p>
+<a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScript.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScript-struct"></a><h3>ClutterScript</h3>
+<pre class="programlisting">typedef struct _ClutterScript ClutterScript;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScriptClass"></a><h3>ClutterScriptClass</h3>
+<pre class="programlisting">typedef struct {
+  GType (* get_type_from_name) (ClutterScript *script,
+                                const gchar   *type_name);
+} ClutterScriptClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-new"></a><h3>clutter_script_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a>*      clutter_script_new                  (void);</pre>
+<p>
+Creates a new <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> instance. <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> can be used
+to load objects definitions for scenegraph elements, like actors,
+or behavioural elements, like behaviours and timelines. The
+definitions must be encoded using the JavaScript Object Notation (JSON)
+language.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> instance. Use
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a> when done.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScriptError"></a><h3>enum ClutterScriptError</h3>
+<pre class="programlisting">typedef enum {
+  CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION,
+  CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY,
+  CLUTTER_SCRIPT_ERROR_INVALID_VALUE
+} ClutterScriptError;
+</pre>
+<p>
+<a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> error enumeration.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="CLUTTER-SCRIPT-ERROR-INVALID-TYPE-FUNCTION:CAPS"></a><span class="term"><code class="literal">CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION</code></span></p></td>
+<td> Type function not found
+  or invalid
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-SCRIPT-ERROR-INVALID-PROPERTY:CAPS"></a><span class="term"><code class="literal">CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY</code></span></p></td>
+<td> Property not found or invalid
+</td>
+</tr>
+<tr>
+<td><p><a name="CLUTTER-SCRIPT-ERROR-INVALID-VALUE:CAPS"></a><span class="term"><code class="literal">CLUTTER_SCRIPT_ERROR_INVALID_VALUE</code></span></p></td>
+<td> Invalid value
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-load-from-data"></a><h3>clutter_script_load_from_data ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_script_load_from_data       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gssize"
+>gssize</a> length,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Loads the definitions from <em class="parameter"><code>data</code></em> into <em class="parameter"><code>script</code></em> and merges with
+the currently loaded ones, if any.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> a buffer containing the definitions
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> the length of the buffer, or -1 if <em class="parameter"><code>data</code></em> is a NUL-terminated
+  buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> on error, zero is returned and <em class="parameter"><code>error</code></em> is set
+  accordingly. On success, the merge id for the UI definitions is
+  returned. You can use the merge id with <code class="function">clutter_script_unmerge()</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-load-from-file"></a><h3>clutter_script_load_from_file ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_script_load_from_file       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Loads the definitions from <em class="parameter"><code>filename</code></em> into <em class="parameter"><code>script</code></em> and merges with
+the currently loaded ones, if any.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> the full path to the definition file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> on error, zero is returned and <em class="parameter"><code>error</code></em> is set
+  accordingly. On success, the merge id for the UI definitions is
+  returned. You can use the merge id with <code class="function">clutter_script_unmerge()</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-add-search-paths"></a><h3>clutter_script_add_search_paths ()</h3>
+<pre class="programlisting">void                clutter_script_add_search_paths     (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> * const paths[],
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gsize"
+>gsize</a> n_paths);</pre>
+<p>
+Adds <em class="parameter"><code>paths</code></em> to the list of search paths held by <em class="parameter"><code>script</code></em>.
+</p>
+<p>
+The search paths are used by <a class="link" href="ClutterScript.html#clutter-script-lookup-filename" title="clutter_script_lookup_filename ()"><code class="function">clutter_script_lookup_filename()</code></a>, which
+can be used to define search paths for the textures source file name
+or other custom, file-based properties.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>paths</code></em> :</span></p></td>
+<td> an array of strings containing different search paths
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_paths</code></em> :</span></p></td>
+<td> the length of the passed array
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-lookup-filename"></a><h3>clutter_script_lookup_filename ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*              clutter_script_lookup_filename      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *filename);</pre>
+<p>
+Looks up <em class="parameter"><code>filename</code></em> inside the search paths of <em class="parameter"><code>script</code></em>. If <em class="parameter"><code>filename</code></em>
+is found, its full path will be returned .</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> the name of the file to lookup
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the full path of <em class="parameter"><code>filename</code></em> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if no path was
+  found.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-get-object"></a><h3>clutter_script_get_object ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>*            clutter_script_get_object           (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name);</pre>
+<p>
+Retrieves the object bound to <em class="parameter"><code>name</code></em>. This function does not increment
+the reference count of the returned object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> the name of the object to retrieve
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the named object, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if no object with the
+  given name was available
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-get-objects"></a><h3>clutter_script_get_objects ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_script_get_objects          (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *first_name,
+                                                         ...);</pre>
+<p>
+Retrieves a list of objects for the given names. After <em class="parameter"><code>script</code></em>, object
+names/return location pairs should be listed, with a <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> pointer
+ending the list, like:
+</p>
+<p>
+</p>
+<div class="informalexample"><pre class="programlisting">
+  GObject *my_label, *a_button, *main_timeline;
+
+  clutter_script_get_objects (script,
+                              "my-label", &amp;my_label,
+                              "a-button", &amp;a_button,
+                              "main-timeline", &amp;main_timeline,
+                              NULL);
+</pre></div>
+<p>
+</p>
+<p>
+Note: This function does not increment the reference count of the
+returned objects.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>first_name</code></em> :</span></p></td>
+<td> the name of the first object to retrieve
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em> :</span></p></td>
+<td> return location for a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+><span class="type">GObject</span></a>, then additional names, ending
+  with <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of objects returned.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-unmerge-objects"></a><h3>clutter_script_unmerge_objects ()</h3>
+<pre class="programlisting">void                clutter_script_unmerge_objects      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> merge_id);</pre>
+<p>
+Unmerges the objects identified by <em class="parameter"><code>merge_id</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>merge_id</code></em> :</span></p></td>
+<td> merge id returned when loading a UI definition
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-ensure-objects"></a><h3>clutter_script_ensure_objects ()</h3>
+<pre class="programlisting">void                clutter_script_ensure_objects       (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script);</pre>
+<p>
+Ensure that every object defined inside <em class="parameter"><code>script</code></em> is correctly
+constructed. You should rarely need to use this function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-list-objects"></a><h3>clutter_script_list_objects ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              clutter_script_list_objects         (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script);</pre>
+<p>
+Retrieves all the objects created by <em class="parameter"><code>script</code></em>.
+</p>
+<p>
+Note: this function does not increment the reference count of the
+objects it returns.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a list of <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+><span class="type">GObject</span></a>s, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. The objects are
+  owned by the <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> instance. Use <a
+href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#g-list-free"
+><code class="function">g_list_free()</code></a> on the
+  returned value when done.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScriptConnectFunc"></a><h3>ClutterScriptConnectFunc ()</h3>
+<pre class="programlisting">void                (*ClutterScriptConnectFunc)         (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *object,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *signal_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *handler_name,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *connect_object,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#GConnectFlags"
+>GConnectFlags</a> flags,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+This is the signature of a function used to connect signals.  It is used
+by the <a class="link" href="ClutterScript.html#clutter-script-connect-signals-full" title="clutter_script_connect_signals_full ()"><code class="function">clutter_script_connect_signals_full()</code></a> function.  It is mainly
+intended for interpreted language bindings, but could be useful where the
+programmer wants more control over the signal connection process.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> the object to connect
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>signal_name</code></em> :</span></p></td>
+<td> the name of the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handler_name</code></em> :</span></p></td>
+<td> the name of the signal handler
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>connect_object</code></em> :</span></p></td>
+<td> the object to connect the signal to, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td> signal connection flags
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> user data to pass to the signal handler
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-connect-signals"></a><h3>clutter_script_connect_signals ()</h3>
+<pre class="programlisting">void                clutter_script_connect_signals      (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Connects all the signals defined into a UI definition file to their
+handlers.
+</p>
+<p>
+This method invokes <a class="link" href="ClutterScript.html#clutter-script-connect-signals-full" title="clutter_script_connect_signals_full ()"><code class="function">clutter_script_connect_signals_full()</code></a> internally
+and uses  <a
+href="/usr/share/gtk-doc/html/glib/glib-Dynamic-Loading-of-Modules.html#GModule"
+><span class="type">GModule</span></a>'s introspective features (by opening the current
+module's scope) to look at the application's symbol table.
+</p>
+<p>
+Note that this function will not work if <a
+href="/usr/share/gtk-doc/html/glib/glib-Dynamic-Loading-of-Modules.html#GModule"
+><span class="type">GModule</span></a> is not supported by
+the platform Clutter is running on.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to be passed to the signal handlers, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-connect-signals-full"></a><h3>clutter_script_connect_signals_full ()</h3>
+<pre class="programlisting">void                clutter_script_connect_signals_full (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a class="link" href="ClutterScript.html#ClutterScriptConnectFunc" title="ClutterScriptConnectFunc ()">ClutterScriptConnectFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Connects all the signals defined into a UI definition file to their
+handlers.
+</p>
+<p>
+This function allows to control how the signal handlers are
+going to be connected to their respective signals. It is meant
+primarily for language bindings to allow resolving the function
+names using the native API.
+</p>
+<p>
+Applications should use <a class="link" href="ClutterScript.html#clutter-script-connect-signals" title="clutter_script_connect_signals ()"><code class="function">clutter_script_connect_signals()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> signal connection function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> data to be passed to the signal handlers, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-script-get-type-from-name"></a><h3>clutter_script_get_type_from_name ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GType"
+>GType</a>               clutter_script_get_type_from_name   (<a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *type_name);</pre>
+<p>
+Looks up a type by name, using the virtual function that 
+<a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> has for that purpose. This function should
+rarely be used.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type_name</code></em> :</span></p></td>
+<td> name of the type to look up
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the type for the requested type name, or
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INVALID:CAPS"
+><code class="literal">G_TYPE_INVALID</code></a> if not corresponding type was found.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-get-script-id"></a><h3>clutter_get_script_id ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_get_script_id               (<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a> *gobject);</pre>
+<p>
+Retrieves the Clutter script id, if any.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>gobject</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+><span class="type">GObject</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the script id, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>object</code></em> was not defined inside
+  a UI definition file. The returned string is owned by the object and
+  should never be modified or freed.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterScript.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScript--filename"></a><h3>The <code class="literal">"filename"</code> property</h3>
+<pre class="programlisting">  "filename"                 <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read</pre>
+<p>
+The path of the currently parsed file. If ClutterScript:filename-set
+is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> then the value of this property is undefined.</p>
+<p>
+
+</p>
+<p>Default value: NULL</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScript--filename-set"></a><h3>The <code class="literal">"filename-set"</code> property</h3>
+<pre class="programlisting">  "filename-set"             <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read</pre>
+<p>
+Whether the ClutterScript:filename property is set. If this property
+is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> then the currently parsed data comes from a file, and the
+file name is stored inside the ClutterScript:filename property.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!-- ##### SECTION Title ##### -->
+ClutterScore
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterScore ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL ClutterScore::completed ##### -->
+<para>
+
+</para>
+
+@clutterscore: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterScore::paused ##### -->
+<para>
+
+</para>
+
+@clutterscore: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterScore::started ##### -->
+<para>
+
+</para>
+
+@clutterscore: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterScore::timeline-completed ##### -->
+<para>
+
+</para>
+
+@clutterscore: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterScore::timeline-started ##### -->
+<para>
+
+</para>
+
+@clutterscore: the object which received the signal.
+@arg1: 
+
+<!-- ##### ARG ClutterScore:loop ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterScoreClass ##### -->
+<para>
+
+</para>
+
+@timeline_started: 
+@timeline_completed: 
+@started: 
+@completed: 
+@paused: 
+
+<!-- ##### FUNCTION clutter_score_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_set_loop ##### -->
+<para>
+
+</para>
+
+@score: 
+@loop: 
+
+
+<!-- ##### FUNCTION clutter_score_get_loop ##### -->
+<para>
+
+</para>
+
+@score: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_append ##### -->
+<para>
+
+</para>
+
+@score: 
+@parent: 
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_append_at_marker ##### -->
+<para>
+
+</para>
+
+@score: 
+@parent: 
+@marker_name: 
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_remove ##### -->
+<para>
+
+</para>
+
+@score: 
+@id: 
+
+
+<!-- ##### FUNCTION clutter_score_remove_all ##### -->
+<para>
+
+</para>
+
+@score: 
+
+
+<!-- ##### FUNCTION clutter_score_get_timeline ##### -->
+<para>
+
+</para>
+
+@score: 
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_list_timelines ##### -->
+<para>
+
+</para>
+
+@score: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_start ##### -->
+<para>
+
+</para>
+
+@score: 
+
+
+<!-- ##### FUNCTION clutter_score_pause ##### -->
+<para>
+
+</para>
+
+@score: 
+
+
+<!-- ##### FUNCTION clutter_score_stop ##### -->
+<para>
+
+</para>
+
+@score: 
+
+
+<!-- ##### FUNCTION clutter_score_is_playing ##### -->
+<para>
+
+</para>
+
+@score: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_score_rewind ##### -->
+<para>
+
+</para>
+
+@score: 
+
+

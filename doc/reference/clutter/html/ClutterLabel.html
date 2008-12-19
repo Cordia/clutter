@@ -1,0 +1,1122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterLabel</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch02.html" title="Base actors">
+<link rel="prev" href="ClutterCloneTexture.html" title="ClutterCloneTexture">
+<link rel="next" href="ClutterEntry.html" title="ClutterEntry">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterCloneTexture.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ClutterEntry.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterLabel.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterLabel.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterLabel.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterLabel.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ClutterLabel.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterLabel"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterLabel.top_of_page"></a>ClutterLabel</span></h2>
+<p>ClutterLabel — Actor for displaying text</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterLabel.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterLabel.html#ClutterLabel-struct" title="ClutterLabel">ClutterLabel</a>;
+                    <a class="link" href="ClutterLabel.html#ClutterLabelClass" title="ClutterLabelClass">ClutterLabelClass</a>;
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterLabel.html#clutter-label-new" title="clutter_label_new ()">clutter_label_new</a>                   (void);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterLabel.html#clutter-label-new-with-text" title="clutter_label_new_with_text ()">clutter_label_new_with_text</a>         (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterLabel.html#clutter-label-new-full" title="clutter_label_new_full ()">clutter_label_new_full</a>              (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-text" title="clutter_label_set_text ()">clutter_label_set_text</a>              (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterLabel.html#clutter-label-get-text" title="clutter_label_get_text ()">clutter_label_get_text</a>              (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-font-name" title="clutter_label_set_font_name ()">clutter_label_set_font_name</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="ClutterLabel.html#clutter-label-get-font-name" title="clutter_label_get_font_name ()">clutter_label_get_font_name</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-color" title="clutter_label_set_color ()">clutter_label_set_color</a>             (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterLabel.html#clutter-label-get-color" title="clutter_label_get_color ()">clutter_label_get_color</a>             (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-ellipsize" title="clutter_label_set_ellipsize ()">clutter_label_set_ellipsize</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a> mode);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a>  <a class="link" href="ClutterLabel.html#clutter-label-get-ellipsize" title="clutter_label_get_ellipsize ()">clutter_label_get_ellipsize</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-line-wrap" title="clutter_label_set_line_wrap ()">clutter_label_set_line_wrap</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> wrap);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterLabel.html#clutter-label-get-line-wrap" title="clutter_label_get_line_wrap ()">clutter_label_get_line_wrap</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-line-wrap-mode" title="clutter_label_set_line_wrap_mode ()">clutter_label_set_line_wrap_mode</a>    (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a> wrap_mode);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a>       <a class="link" href="ClutterLabel.html#clutter-label-get-line-wrap-mode" title="clutter_label_get_line_wrap_mode ()">clutter_label_get_line_wrap_mode</a>    (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+>PangoLayout</a>*        <a class="link" href="ClutterLabel.html#clutter-label-get-layout" title="clutter_label_get_layout ()">clutter_label_get_layout</a>            (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-attributes" title="clutter_label_set_attributes ()">clutter_label_set_attributes</a>        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a> *attrs);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a>*      <a class="link" href="ClutterLabel.html#clutter-label-get-attributes" title="clutter_label_get_attributes ()">clutter_label_get_attributes</a>        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-use-markup" title="clutter_label_set_use_markup ()">clutter_label_set_use_markup</a>        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> setting);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterLabel.html#clutter-label-get-use-markup" title="clutter_label_get_use_markup ()">clutter_label_get_use_markup</a>        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-alignment" title="clutter_label_set_alignment ()">clutter_label_set_alignment</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a> alignment);
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>      <a class="link" href="ClutterLabel.html#clutter-label-get-alignment" title="clutter_label_get_alignment ()">clutter_label_get_alignment</a>         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterLabel.html#clutter-label-get-justify" title="clutter_label_get_justify ()">clutter_label_get_justify</a>           (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);
+void                <a class="link" href="ClutterLabel.html#clutter-label-set-justify" title="clutter_label_set_justify ()">clutter_label_set_justify</a>           (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> justify);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>
+               +----ClutterLabel
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ClutterLabel implements
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--alignment" title='The "alignment" property'>alignment</a>"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>        : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--attributes" title='The "attributes" property'>attributes</a>"               <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a>*        : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--color" title='The "color" property'>color</a>"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--ellipsize" title='The "ellipsize" property'>ellipsize</a>"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a>    : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--font-name" title='The "font-name" property'>font-name</a>"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--justify" title='The "justify" property'>justify</a>"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--text" title='The "text" property'>text</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--use-markup" title='The "use-markup" property'>use-markup</a>"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--wrap" title='The "wrap" property'>wrap</a>"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+  "<a class="link" href="ClutterLabel.html#ClutterLabel--wrap-mode" title='The "wrap-mode" property'>wrap-mode</a>"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a>         : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a> is a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a> that displays text using Pango.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel-struct"></a><h3>ClutterLabel</h3>
+<pre class="programlisting">typedef struct _ClutterLabel ClutterLabel;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabelClass"></a><h3>ClutterLabelClass</h3>
+<pre class="programlisting">typedef struct {
+} ClutterLabelClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-new"></a><h3>clutter_label_new ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_label_new                   (void);</pre>
+<p>
+Creates a new, empty <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-new-with-text"></a><h3>clutter_label_new_with_text ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_label_new_with_text         (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);</pre>
+<p>
+Creates a new <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a> displaying <em class="parameter"><code>text</code></em> using <em class="parameter"><code>font_name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> the name (and size) of the font to be used
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-new-full"></a><h3>clutter_label_new_full ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_label_new_full              (const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Creates a new <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a> displaying <em class="parameter"><code>text</code></em> with <em class="parameter"><code>color</code></em> 
+using <em class="parameter"><code>font_name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> the name (and size) of the font to be used
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a> for text
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-text"></a><h3>clutter_label_set_text ()</h3>
+<pre class="programlisting">void                clutter_label_set_text              (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *text);</pre>
+<p>
+Sets <em class="parameter"><code>text</code></em> as the text to be displayed by <em class="parameter"><code>label</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text</code></em> :</span></p></td>
+<td> the text to be displayed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-text"></a><h3>clutter_label_get_text ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_label_get_text              (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Retrieves the text displayed by <em class="parameter"><code>label</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the text of the label.  The returned string is
+owned by <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a> and should not be modified or freed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-font-name"></a><h3>clutter_label_set_font_name ()</h3>
+<pre class="programlisting">void                clutter_label_set_font_name         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *font_name);</pre>
+<p>
+Sets <em class="parameter"><code>font_name</code></em> as the font used by <em class="parameter"><code>label</code></em>.
+</p>
+<p>
+<em class="parameter"><code>font_name</code></em> must be a string containing the font name and its
+size, similarly to what you would feed to the
+<a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string"
+><code class="function">pango_font_description_from_string()</code></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>font_name</code></em> :</span></p></td>
+<td> a font name and size, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> for the default font
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-font-name"></a><h3>clutter_label_get_font_name ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_label_get_font_name         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Retrieves the font used by <em class="parameter"><code>label</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string containing the font name, in a format
+  understandable by <a
+href="/usr/share/gtk-doc/html/pango/pango-Fonts.html#pango-font-description-from-string"
+><code class="function">pango_font_description_from_string()</code></a>.  The
+  string is owned by <em class="parameter"><code>label</code></em> and should not be modified
+  or freed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-color"></a><h3>clutter_label_set_color ()</h3>
+<pre class="programlisting">void                clutter_label_set_color             (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         const <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Sets the color of <em class="parameter"><code>label</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-color"></a><h3>clutter_label_get_color ()</h3>
+<pre class="programlisting">void                clutter_label_get_color             (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a> *color);</pre>
+<p>
+Retrieves the color of <em class="parameter"><code>label</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>color</code></em> :</span></p></td>
+<td> return location for a <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor"><span class="type">ClutterColor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-ellipsize"></a><h3>clutter_label_set_ellipsize ()</h3>
+<pre class="programlisting">void                clutter_label_set_ellipsize         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a> mode);</pre>
+<p>
+Sets the mode used to ellipsize (add an ellipsis: "...") to the text 
+if there is not enough space to render the entire string.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mode</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+><span class="type">PangoEllipsizeMode</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-ellipsize"></a><h3>clutter_label_get_ellipsize ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a>  clutter_label_get_ellipsize         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Returns the ellipsizing position of the label. 
+See <a class="link" href="ClutterLabel.html#clutter-label-set-ellipsize" title="clutter_label_set_ellipsize ()"><code class="function">clutter_label_set_ellipsize()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+><span class="type">PangoEllipsizeMode</span></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-line-wrap"></a><h3>clutter_label_set_line_wrap ()</h3>
+<pre class="programlisting">void                clutter_label_set_line_wrap         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> wrap);</pre>
+<p>
+Toggles line wrapping within the <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a> widget.  <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> makes
+it break lines if text exceeds the widget's size.  <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> lets the
+text get cut off by the edge of the widget if it exceeds the widget
+size.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wrap</code></em> :</span></p></td>
+<td> the setting
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-line-wrap"></a><h3>clutter_label_get_line_wrap ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_label_get_line_wrap         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Returns whether lines in the label are automatically wrapped. 
+See <a class="link" href="ClutterLabel.html#clutter-label-set-line-wrap" title="clutter_label_set_line_wrap ()"><code class="function">clutter_label_set_line_wrap()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the lines of the label are automatically wrapped.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-line-wrap-mode"></a><h3>clutter_label_set_line_wrap_mode ()</h3>
+<pre class="programlisting">void                clutter_label_set_line_wrap_mode    (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a> wrap_mode);</pre>
+<p>
+If line wrapping is on (see <a class="link" href="ClutterLabel.html#clutter-label-set-line-wrap" title="clutter_label_set_line_wrap ()"><code class="function">clutter_label_set_line_wrap()</code></a>) this controls how
+the line wrapping is done. The default is <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PANGO-WRAP-WORD:CAPS"
+><code class="literal">PANGO_WRAP_WORD</code></a> which means
+wrap on word boundaries.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>wrap_mode</code></em> :</span></p></td>
+<td> the line wrapping mode
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-line-wrap-mode"></a><h3>clutter_label_get_line_wrap_mode ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a>       clutter_label_get_line_wrap_mode    (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Returns line wrap mode used by the label.
+See <a class="link" href="ClutterLabel.html#clutter-label-set-line-wrap-mode" title="clutter_label_set_line_wrap_mode ()"><code class="function">clutter_label_set_line_wrap_mode()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the lines of the label are automatically wrapped.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-layout"></a><h3>clutter_label_get_layout ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+>PangoLayout</a>*        clutter_label_get_layout            (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Gets the <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a> used to display the label.
+The layout is useful to e.g. convert text positions to
+pixel positions.
+The returned layout is owned by the label so need not be
+freed by the caller.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"
+><span class="type">PangoLayout</span></a> for this label
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-attributes"></a><h3>clutter_label_set_attributes ()</h3>
+<pre class="programlisting">void                clutter_label_set_attributes        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a> *attrs);</pre>
+<p>
+Sets a <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+><span class="type">PangoAttrList</span></a>; the attributes in the list are applied to the
+label text. The attributes set with this function will be ignored
+if the "use_markup" property
+is <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attrs</code></em> :</span></p></td>
+<td> a <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+><span class="type">PangoAttrList</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-attributes"></a><h3>clutter_label_get_attributes ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a>*      clutter_label_get_attributes        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Gets the attribute list that was set on the label using
+<a class="link" href="ClutterLabel.html#clutter-label-set-attributes" title="clutter_label_set_attributes ()"><code class="function">clutter_label_set_attributes()</code></a>, if any.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the attribute list, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if none was set.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-use-markup"></a><h3>clutter_label_set_use_markup ()</h3>
+<pre class="programlisting">void                clutter_label_set_use_markup        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> setting);</pre>
+<p>
+Sets whether the text of the label contains markup in <a
+href="/usr/share/gtk-doc/html/pango/PangoMarkupFormat.html"
+>Pango's text markup
+language</a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>setting</code></em> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the label's text should be parsed for markup.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-use-markup"></a><h3>clutter_label_get_use_markup ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_label_get_use_markup        (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Returns whether the label's text is interpreted as marked up with
+the <a
+href="/usr/share/gtk-doc/html/pango/PangoMarkupFormat.html"
+>Pango text markup
+language</a>. See <a class="link" href="ClutterLabel.html#clutter-label-set-use-markup" title="clutter_label_set_use_markup ()"><code class="function">clutter_label_set_use_markup()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the label's text will be parsed for markup.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-alignment"></a><h3>clutter_label_set_alignment ()</h3>
+<pre class="programlisting">void                clutter_label_set_alignment         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a> alignment);</pre>
+<p>
+Sets text alignment of the label.
+</p>
+<p>
+The alignment will only be used when the contents of the
+label are enough to wrap, and the <a class="link" href="ClutterLabel.html#ClutterLabel--wrap" title='The "wrap" property'><span class="type">"wrap"</span></a>
+property is set to <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alignment</code></em> :</span></p></td>
+<td> A <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+><span class="type">PangoAlignment</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-alignment"></a><h3>clutter_label_get_alignment ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>      clutter_label_get_alignment         (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Returns the label's text alignment</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The label's <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+><span class="type">PangoAlignment</span></a>
+
+Since 0.2
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-get-justify"></a><h3>clutter_label_get_justify ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_label_get_justify           (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label);</pre>
+<p>
+Retrieves whether the label should justify the text on both margins.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the text should be justified
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-label-set-justify"></a><h3>clutter_label_set_justify ()</h3>
+<pre class="programlisting">void                clutter_label_set_justify           (<a class="link" href="ClutterLabel.html" title="ClutterLabel">ClutterLabel</a> *label,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> justify);</pre>
+<p>
+Sets whether the text of the <em class="parameter"><code>label</code></em> actor should be justified
+on both margins. This setting is ignored if Clutter is compiled
+against Pango &lt; 1.18.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>label</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterLabel.html" title="ClutterLabel"><span class="type">ClutterLabel</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>justify</code></em> :</span></p></td>
+<td> whether the text should be justified
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterLabel.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--alignment"></a><h3>The <code class="literal">"alignment"</code> property</h3>
+<pre class="programlisting">  "alignment"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoAlignment"
+>PangoAlignment</a>        : Read / Write</pre>
+<p>The preferred alignment for the string.</p>
+<p>Default value: PANGO_ALIGN_LEFT</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--attributes"></a><h3>The <code class="literal">"attributes"</code> property</h3>
+<pre class="programlisting">  "attributes"               <a
+href="/usr/share/gtk-doc/html/pango/pango-Text-Attributes.html#PangoAttrList"
+>PangoAttrList</a>*        : Read / Write</pre>
+<p>A list of style attributes to apply to the text of the label.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--color"></a><h3>The <code class="literal">"color"</code> property</h3>
+<pre class="programlisting">  "color"                    <a class="link" href="clutter-Colors.html#ClutterColor" title="ClutterColor">ClutterColor</a>*         : Read / Write</pre>
+<p>Font Colour.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--ellipsize"></a><h3>The <code class="literal">"ellipsize"</code> property</h3>
+<pre class="programlisting">  "ellipsize"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoEllipsizeMode"
+>PangoEllipsizeMode</a>    : Read / Write</pre>
+<p>The preferred place to ellipsize the string, if the label does not have enough room to display the entire string.</p>
+<p>Default value: PANGO_ELLIPSIZE_NONE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--font-name"></a><h3>The <code class="literal">"font-name"</code> property</h3>
+<pre class="programlisting">  "font-name"                <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>Pango font description.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--justify"></a><h3>The <code class="literal">"justify"</code> property</h3>
+<pre class="programlisting">  "justify"                  <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>
+Whether the contents of the label should be justified on both
+margins.</p>
+<p>
+
+</p>
+<p>Default value: FALSE</p>
+<p>Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--text"></a><h3>The <code class="literal">"text"</code> property</h3>
+<pre class="programlisting">  "text"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read / Write</pre>
+<p>Text to render.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--use-markup"></a><h3>The <code class="literal">"use-markup"</code> property</h3>
+<pre class="programlisting">  "use-markup"               <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>The text of the label includes XML markup. See pango_parse_markup().</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--wrap"></a><h3>The <code class="literal">"wrap"</code> property</h3>
+<pre class="programlisting">  "wrap"                     <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>If set, wrap lines if the text becomes too wide.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterLabel--wrap-mode"></a><h3>The <code class="literal">"wrap-mode"</code> property</h3>
+<pre class="programlisting">  "wrap-mode"                <a
+href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoWrapMode"
+>PangoWrapMode</a>         : Read / Write</pre>
+<p>If wrap is set, controls how line-wrapping is done.</p>
+<p>Default value: PANGO_WRAP_WORD</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

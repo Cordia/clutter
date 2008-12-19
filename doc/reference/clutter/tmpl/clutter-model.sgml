@@ -1,0 +1,363 @@
+<!-- ##### SECTION Title ##### -->
+ClutterModel
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterModel ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL ClutterModel::filter-changed ##### -->
+<para>
+
+</para>
+
+@cluttermodel: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterModel::row-added ##### -->
+<para>
+
+</para>
+
+@cluttermodel: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterModel::row-changed ##### -->
+<para>
+
+</para>
+
+@cluttermodel: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterModel::row-removed ##### -->
+<para>
+
+</para>
+
+@cluttermodel: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterModel::sort-changed ##### -->
+<para>
+
+</para>
+
+@cluttermodel: the object which received the signal.
+
+<!-- ##### STRUCT ClutterModelClass ##### -->
+<para>
+
+</para>
+
+@get_n_rows: 
+@get_n_columns: 
+@get_column_name: 
+@get_column_type: 
+@insert_row: 
+@remove_row: 
+@get_iter_at_row: 
+@resort: 
+@row_added: 
+@row_removed: 
+@row_changed: 
+@sort_changed: 
+@filter_changed: 
+
+<!-- ##### FUNCTION clutter_model_set_names ##### -->
+<para>
+
+</para>
+
+@model: 
+@n_columns: 
+@names: 
+
+
+<!-- ##### FUNCTION clutter_model_set_types ##### -->
+<para>
+
+</para>
+
+@model: 
+@n_columns: 
+@types: 
+
+
+<!-- ##### FUNCTION clutter_model_get_column_name ##### -->
+<para>
+
+</para>
+
+@model: 
+@column: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_column_type ##### -->
+<para>
+
+</para>
+
+@model: 
+@column: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_n_columns ##### -->
+<para>
+
+</para>
+
+@model: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_n_rows ##### -->
+<para>
+
+</para>
+
+@model: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_append ##### -->
+<para>
+
+</para>
+
+@model: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_model_appendv ##### -->
+<para>
+
+</para>
+
+@model: 
+@n_columns: 
+@columns: 
+@values: 
+
+
+<!-- ##### FUNCTION clutter_model_prepend ##### -->
+<para>
+
+</para>
+
+@model: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_model_prependv ##### -->
+<para>
+
+</para>
+
+@model: 
+@n_columns: 
+@columns: 
+@values: 
+
+
+<!-- ##### FUNCTION clutter_model_insert ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION clutter_model_insertv ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+@n_columns: 
+@columns: 
+@values: 
+
+
+<!-- ##### FUNCTION clutter_model_insert_value ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+@column: 
+@value: 
+
+
+<!-- ##### FUNCTION clutter_model_remove ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+
+
+<!-- ##### USER_FUNCTION ClutterModelForeachFunc ##### -->
+<para>
+
+</para>
+
+@model: 
+@iter: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_foreach ##### -->
+<para>
+
+</para>
+
+@model: 
+@func: 
+@user_data: 
+
+
+<!-- ##### FUNCTION clutter_model_set_sorting_column ##### -->
+<para>
+
+</para>
+
+@model: 
+@column: 
+
+
+<!-- ##### FUNCTION clutter_model_get_sorting_column ##### -->
+<para>
+
+</para>
+
+@model: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION ClutterModelSortFunc ##### -->
+<para>
+
+</para>
+
+@model: 
+@a: 
+@b: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_set_sort ##### -->
+<para>
+
+</para>
+
+@model: 
+@column: 
+@func: 
+@user_data: 
+@notify: 
+
+
+<!-- ##### FUNCTION clutter_model_resort ##### -->
+<para>
+
+</para>
+
+@model: 
+
+
+<!-- ##### USER_FUNCTION ClutterModelFilterFunc ##### -->
+<para>
+
+</para>
+
+@model: 
+@iter: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_set_filter ##### -->
+<para>
+
+</para>
+
+@model: 
+@func: 
+@user_data: 
+@notify: 
+
+
+<!-- ##### FUNCTION clutter_model_filter_iter ##### -->
+<para>
+
+</para>
+
+@model: 
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_filter_row ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_first_iter ##### -->
+<para>
+
+</para>
+
+@model: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_last_iter ##### -->
+<para>
+
+</para>
+
+@model: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_model_get_iter_at_row ##### -->
+<para>
+
+</para>
+
+@model: 
+@row: 
+@Returns: 
+
+

@@ -1,0 +1,161 @@
+<!-- ##### SECTION Title ##### -->
+ClutterShader
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM ClutterShaderError ##### -->
+<para>
+
+</para>
+
+@CLUTTER_SHADER_ERROR_NO_ASM: 
+@CLUTTER_SHADER_ERROR_NO_GLSL: 
+@CLUTTER_SHADER_ERROR_COMPILE: 
+
+<!-- ##### STRUCT ClutterShader ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterShader:compiled ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterShader:enabled ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterShader:fragment-source ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterShader:vertex-source ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterShaderClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION clutter_shader_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_set_vertex_source ##### -->
+<para>
+
+</para>
+
+@shader: 
+@data: 
+@length: 
+
+
+<!-- ##### FUNCTION clutter_shader_get_vertex_source ##### -->
+<para>
+
+</para>
+
+@shader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_set_fragment_source ##### -->
+<para>
+
+</para>
+
+@shader: 
+@data: 
+@length: 
+
+
+<!-- ##### FUNCTION clutter_shader_get_fragment_source ##### -->
+<para>
+
+</para>
+
+@shader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_compile ##### -->
+<para>
+
+</para>
+
+@shader: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_release ##### -->
+<para>
+
+</para>
+
+@shader: 
+
+
+<!-- ##### FUNCTION clutter_shader_is_compiled ##### -->
+<para>
+
+</para>
+
+@shader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_set_is_enabled ##### -->
+<para>
+
+</para>
+
+@shader: 
+@enabled: 
+
+
+<!-- ##### FUNCTION clutter_shader_get_is_enabled ##### -->
+<para>
+
+</para>
+
+@shader: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_shader_set_uniform_1f ##### -->
+<para>
+
+</para>
+
+@shader: 
+@name: 
+@value: 
+
+

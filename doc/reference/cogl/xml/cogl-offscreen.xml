@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="cogl-Offscreen-Buffers">
+<refmeta>
+<refentrytitle role="top_of_page" id="cogl-Offscreen-Buffers.top_of_page">Offscreen Buffers</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>COGL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Offscreen Buffers</refname>
+<refpurpose>Fuctions for creating and manipulating offscreen
+  frame buffer objects</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="cogl-Offscreen-Buffers.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-offscreen-new-to-texture">cogl_offscreen_new_to_texture</link>       (<link linkend="CoglHandle">CoglHandle</link> texhandle);
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-offscreen-new-multisample">cogl_offscreen_new_multisample</link>      (void);
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-offscreen-ref">cogl_offscreen_ref</link>                  (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-offscreen-unref">cogl_offscreen_unref</link>                (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-is-offscreen">cogl_is_offscreen</link>                   (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-offscreen-blit">cogl_offscreen_blit</link>                 (<link linkend="CoglHandle">CoglHandle</link> src_buffer,
+                                                         <link linkend="CoglHandle">CoglHandle</link> dst_buffer);
+<link linkend="void">void</link>                <link linkend="cogl-offscreen-blit-region">cogl_offscreen_blit_region</link>          (<link linkend="CoglHandle">CoglHandle</link> src_buffer,
+                                                         <link linkend="CoglHandle">CoglHandle</link> dst_buffer,
+                                                         <link linkend="gint">gint</link> src_x,
+                                                         <link linkend="gint">gint</link> src_y,
+                                                         <link linkend="gint">gint</link> src_w,
+                                                         <link linkend="gint">gint</link> src_h,
+                                                         <link linkend="gint">gint</link> dst_x,
+                                                         <link linkend="gint">gint</link> dst_y,
+                                                         <link linkend="gint">gint</link> dst_w,
+                                                         <link linkend="gint">gint</link> dst_h);
+<link linkend="void">void</link>                <link linkend="cogl-draw-buffer">cogl_draw_buffer</link>                    (<link linkend="CoglBufferTarget">CoglBufferTarget</link> target,
+                                                         <link linkend="CoglHandle">CoglHandle</link> offscreen);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="cogl-Offscreen-Buffers.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+COGL allows creating and operating on FBOs (Framebuffer Objects).</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="cogl-Offscreen-Buffers.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="cogl-offscreen-new-to-texture" role="function">
+<title>cogl_offscreen_new_to_texture ()</title>
+<indexterm zone="cogl-offscreen-new-to-texture"><primary>cogl_offscreen_new_to_texture</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_offscreen_new_to_texture       (<link linkend="CoglHandle">CoglHandle</link> texhandle);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texhandle</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-offscreen-new-multisample" role="function">
+<title>cogl_offscreen_new_multisample ()</title>
+<indexterm zone="cogl-offscreen-new-multisample"><primary>cogl_offscreen_new_multisample</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_offscreen_new_multisample      (void);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-offscreen-ref" role="function">
+<title>cogl_offscreen_ref ()</title>
+<indexterm zone="cogl-offscreen-ref"><primary>cogl_offscreen_ref</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_offscreen_ref                  (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-offscreen-unref" role="function">
+<title>cogl_offscreen_unref ()</title>
+<indexterm zone="cogl-offscreen-unref"><primary>cogl_offscreen_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_offscreen_unref                (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-is-offscreen" role="function">
+<title>cogl_is_offscreen ()</title>
+<indexterm zone="cogl-is-offscreen"><primary>cogl_is_offscreen</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_is_offscreen                   (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Gets whether the given handle references an existing offscreen
+buffer object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A CoglHandle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the handle references an offscreen buffer,
+  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-offscreen-blit" role="function">
+<title>cogl_offscreen_blit ()</title>
+<indexterm zone="cogl-offscreen-blit"><primary>cogl_offscreen_blit</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_offscreen_blit                 (<link linkend="CoglHandle">CoglHandle</link> src_buffer,
+                                                         <link linkend="CoglHandle">CoglHandle</link> dst_buffer);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>src_buffer</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_buffer</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-offscreen-blit-region" role="function">
+<title>cogl_offscreen_blit_region ()</title>
+<indexterm zone="cogl-offscreen-blit-region"><primary>cogl_offscreen_blit_region</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_offscreen_blit_region          (<link linkend="CoglHandle">CoglHandle</link> src_buffer,
+                                                         <link linkend="CoglHandle">CoglHandle</link> dst_buffer,
+                                                         <link linkend="gint">gint</link> src_x,
+                                                         <link linkend="gint">gint</link> src_y,
+                                                         <link linkend="gint">gint</link> src_w,
+                                                         <link linkend="gint">gint</link> src_h,
+                                                         <link linkend="gint">gint</link> dst_x,
+                                                         <link linkend="gint">gint</link> dst_y,
+                                                         <link linkend="gint">gint</link> dst_w,
+                                                         <link linkend="gint">gint</link> dst_h);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>src_buffer</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_buffer</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src_x</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src_y</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src_w</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src_h</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_x</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_y</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_w</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst_h</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-draw-buffer" role="function">
+<title>cogl_draw_buffer ()</title>
+<indexterm zone="cogl-draw-buffer"><primary>cogl_draw_buffer</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_draw_buffer                    (<link linkend="CoglBufferTarget">CoglBufferTarget</link> target,
+                                                         <link linkend="CoglHandle">CoglHandle</link> offscreen);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>target</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offscreen</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

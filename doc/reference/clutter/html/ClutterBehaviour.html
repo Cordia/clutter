@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterBehaviour</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch04.html" title="Base classes">
+<link rel="prev" href="ClutterAlpha.html" title="ClutterAlpha">
+<link rel="next" href="ch05.html" title="Behaviours">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterAlpha.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch04.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ch05.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#ClutterBehaviour.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ClutterBehaviour.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ClutterBehaviour.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ClutterBehaviour.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ClutterBehaviour.signals" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="ClutterBehaviour"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ClutterBehaviour.top_of_page"></a>ClutterBehaviour</span></h2>
+<p>ClutterBehaviour — Class for providing behaviours to actors</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ClutterBehaviour.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="ClutterBehaviour.html#ClutterBehaviour-struct" title="ClutterBehaviour">ClutterBehaviour</a>;
+                    <a class="link" href="ClutterBehaviour.html#ClutterBehaviourClass" title="ClutterBehaviourClass">ClutterBehaviourClass</a>;
+void                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-apply" title="clutter_behaviour_apply ()">clutter_behaviour_apply</a>             (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-remove" title="clutter_behaviour_remove ()">clutter_behaviour_remove</a>            (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-remove-all" title="clutter_behaviour_remove_all ()">clutter_behaviour_remove_all</a>        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="ClutterBehaviour.html#clutter-behaviour-is-applied" title="clutter_behaviour_is_applied ()">clutter_behaviour_is_applied</a>        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);
+void                (<a class="link" href="ClutterBehaviour.html#ClutterBehaviourForeachFunc" title="ClutterBehaviourForeachFunc ()">*ClutterBehaviourForeachFunc</a>)      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behaviour,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+void                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-actors-foreach" title="clutter_behaviour_actors_foreach ()">clutter_behaviour_actors_foreach</a>    (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterBehaviour.html#ClutterBehaviourForeachFunc" title="ClutterBehaviourForeachFunc ()">ClutterBehaviourForeachFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             <a class="link" href="ClutterBehaviour.html#clutter-behaviour-get-actors" title="clutter_behaviour_get_actors ()">clutter_behaviour_get_actors</a>        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-get-n-actors" title="clutter_behaviour_get_n_actors ()">clutter_behaviour_get_n_actors</a>      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);
+<a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       <a class="link" href="ClutterBehaviour.html#clutter-behaviour-get-nth-actor" title="clutter_behaviour_get_nth_actor ()">clutter_behaviour_get_nth_actor</a>     (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> index_);
+<a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       <a class="link" href="ClutterBehaviour.html#clutter-behaviour-get-alpha" title="clutter_behaviour_get_alpha ()">clutter_behaviour_get_alpha</a>         (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);
+void                <a class="link" href="ClutterBehaviour.html#clutter-behaviour-set-alpha" title="clutter_behaviour_set_alpha ()">clutter_behaviour_set_alpha</a>         (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----ClutterBehaviour
+         +----<a class="link" href="ClutterBehaviourBspline.html" title="ClutterBehaviourBspline">ClutterBehaviourBspline</a>
+         +----<a class="link" href="ClutterBehaviourDepth.html" title="ClutterBehaviourDepth">ClutterBehaviourDepth</a>
+         +----<a class="link" href="ClutterBehaviourEllipse.html" title="ClutterBehaviourEllipse">ClutterBehaviourEllipse</a>
+         +----<a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity">ClutterBehaviourOpacity</a>
+         +----<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath">ClutterBehaviourPath</a>
+         +----<a class="link" href="ClutterBehaviourRotate.html" title="ClutterBehaviourRotate">ClutterBehaviourRotate</a>
+         +----<a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale">ClutterBehaviourScale</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviour.html#ClutterBehaviour--alpha" title='The "alpha" property'>alpha</a>"                    <a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*         : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ClutterBehaviour.html#ClutterBehaviour-applied" title='The "applied" signal'>applied</a>"                                        : Run First
+  "<a class="link" href="ClutterBehaviour.html#ClutterBehaviour-removed" title='The "removed" signal'>removed</a>"                                        : Run First
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> is the base class for implementing behaviours.  A
+behaviour is a controller object for <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s; you can
+use a behaviour to control one or more properties of an actor (such
+as its opacity, or its position).  A <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> is driven by
+an "alpha function" stored inside a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object; an alpha
+function is a function depending solely on time.  The alpha function
+computes a value which is then applied to the properties of the
+actors driven by a behaviour.
+</p>
+<p>
+Clutter provides some pre-defined behaviours, like <a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath"><span class="type">ClutterBehaviourPath</span></a>,
+which controls the position of a set of actors making them "walk" along
+a set of nodes; <a class="link" href="ClutterBehaviourOpacity.html" title="ClutterBehaviourOpacity"><span class="type">ClutterBehaviourOpacity</span></a>, which controls the opacity
+of a set of actors; <a class="link" href="ClutterBehaviourScale.html" title="ClutterBehaviourScale"><span class="type">ClutterBehaviourScale</span></a>, which controls the width
+and height of a set of actors.
+</p>
+<p>
+To visualize the effects of different alpha functions on a
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> implementation it is possible to take the
+<a class="link" href="ClutterBehaviourPath.html" title="ClutterBehaviourPath"><span class="type">ClutterBehaviourPath</span></a> as an example:
+</p>
+<p>
+</p>
+<div class="figure">
+<a name="behaviour-path-alpha"></a><p class="title"><b>Figure 4. Effects of alpha functions on a path</b></p>
+<div class="figure-contents"><div><img src="path-alpha-func.png" alt="Effects of alpha functions on a path"></div></div>
+</div>
+<p><br class="figure-break">
+</p>
+<p>
+The actors position between the path's end points directly correlates
+to the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>'s current alpha value driving the behaviour. With
+the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>'s function set to <a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-RAMP-INC:CAPS" title="CLUTTER_ALPHA_RAMP_INC"><code class="literal">CLUTTER_ALPHA_RAMP_INC</code></a> the actor
+will follow the path at a constant velocity, but when changing to
+<a class="link" href="ClutterAlpha.html#CLUTTER-ALPHA-SINE-INC:CAPS" title="CLUTTER_ALPHA_SINE_INC"><code class="literal">CLUTTER_ALPHA_SINE_INC</code></a> the actor initially accelerates before quickly
+decelerating.
+</p>
+<p>
+In order to implement a new behaviour you should subclass <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+and override the "alpha_notify" virtual function; inside the overridden
+function you should obtain the alpha value from the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+instance bound to the behaviour and apply it to the desiderd property
+(or properties) of every actor controlled by the behaviour.
+</p>
+<p>
+<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> is available since Clutter 0.2</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviour-struct"></a><h3>ClutterBehaviour</h3>
+<pre class="programlisting">typedef struct _ClutterBehaviour ClutterBehaviour;</pre>
+<p>
+<a class="link" href="ClutterBehaviour.html#ClutterBehaviour-struct" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> contains only private data and should
+be accessed with the functions below.</p>
+<p>
+
+</p>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourClass"></a><h3>ClutterBehaviourClass</h3>
+<pre class="programlisting">typedef struct {
+  /* vfunc, not signal */
+  void (*alpha_notify) (ClutterBehaviour *behave,
+                        guint32           alpha_value);
+
+  /* signals */
+  void (*applied)  (ClutterBehaviour *behave,
+		    ClutterActor     *actor);
+  void (*removed)  (ClutterBehaviour *behave,
+		    ClutterActor     *actor);
+} ClutterBehaviourClass;
+</pre>
+<p>
+Base class for behaviours.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>alpha_notify</code></em> ()</span></p></td>
+<td> virtual function, called each time the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+  computes a new alpha value; the actors to which the behaviour applies
+  should be changed in this function. Every subclass of <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+  must implement this virtual function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>applied</code></em> ()</span></p></td>
+<td> signal class handler for the ClutterBehaviour::applied signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>removed</code></em> ()</span></p></td>
+<td> signal class handler for the ClutterBehaviour::removed signal
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-apply"></a><h3>clutter_behaviour_apply ()</h3>
+<pre class="programlisting">void                clutter_behaviour_apply             (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Applies <em class="parameter"><code>behave</code></em> to <em class="parameter"><code>actor</code></em>.  This function adds a reference on
+the actor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-remove"></a><h3>clutter_behaviour_remove ()</h3>
+<pre class="programlisting">void                clutter_behaviour_remove            (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Removes <em class="parameter"><code>actor</code></em> from the list of <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>s to which
+<em class="parameter"><code>behave</code></em> applies.  This function removes a reference on the actor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-remove-all"></a><h3>clutter_behaviour_remove_all ()</h3>
+<pre class="programlisting">void                clutter_behaviour_remove_all        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);</pre>
+<p>
+Removes every actor from the list that <em class="parameter"><code>behave</code></em> holds.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-is-applied"></a><h3>clutter_behaviour_is_applied ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_behaviour_is_applied        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor);</pre>
+<p>
+Check if <em class="parameter"><code>behave</code></em> applied to  <em class="parameter"><code>actor</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterActor.html" title="ClutterActor"><span class="type">ClutterActor</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if actor has behaviour. FALSE otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviourForeachFunc"></a><h3>ClutterBehaviourForeachFunc ()</h3>
+<pre class="programlisting">void                (*ClutterBehaviourForeachFunc)      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behaviour,
+                                                         <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a> *actor,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+This function is passed to <code class="function">clutter_behaviour_foreach_actor()</code> and
+will be called for each actor driven by <em class="parameter"><code>behaviour</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behaviour</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> an actor driven by <em class="parameter"><code>behaviour</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> optional data passed to the function
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-actors-foreach"></a><h3>clutter_behaviour_actors_foreach ()</h3>
+<pre class="programlisting">void                clutter_behaviour_actors_foreach    (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterBehaviour.html#ClutterBehaviourForeachFunc" title="ClutterBehaviourForeachFunc ()">ClutterBehaviourForeachFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Calls <em class="parameter"><code>func</code></em> for every actor driven by <em class="parameter"><code>behave</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> a function called for each actor
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> optional data to be passed to the function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-get-actors"></a><h3>clutter_behaviour_get_actors ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>*             clutter_behaviour_get_actors        (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);</pre>
+<p>
+Retrieves all the actors to which <em class="parameter"><code>behave</code></em> applies. It is not recommended
+for derived classes to use this in there alpha notify method but use 
+<a class="link" href="ClutterBehaviour.html#clutter-behaviour-actors-foreach" title="clutter_behaviour_actors_foreach ()"><span class="type">clutter_behaviour_actors_foreach</span></a> as it avoids alot of needless allocations.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a list of actors. You should free the returned list
+  with <a
+href="/usr/share/gtk-doc/html/glib/glib-Singly-Linked-Lists.html#g-slist-free"
+><code class="function">g_slist_free()</code></a> when finished using it.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-get-n-actors"></a><h3>clutter_behaviour_get_n_actors ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a>                clutter_behaviour_get_n_actors      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);</pre>
+<p>
+Gets the number of actors this behaviour is applied too.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The number of applied actors 
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-get-nth-actor"></a><h3>clutter_behaviour_get_nth_actor ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>*       clutter_behaviour_get_nth_actor     (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> index_);</pre>
+<p>
+Gets an actor the behaviour was applied to referenced by index num.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>index_</code></em> :</span></p></td>
+<td> the index of an actor this behaviour is applied too. 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A Clutter actor or NULL if <em class="parameter"><code>index_</code></em> is invalid.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-get-alpha"></a><h3>clutter_behaviour_get_alpha ()</h3>
+<pre class="programlisting"><a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*       clutter_behaviour_get_alpha         (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave);</pre>
+<p>
+Retrieves the <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object bound to <em class="parameter"><code>behave</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if no alpha
+  object has been bound to this behaviour.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-behaviour-set-alpha"></a><h3>clutter_behaviour_set_alpha ()</h3>
+<pre class="programlisting">void                clutter_behaviour_set_alpha         (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behave,
+                                                         <a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a> *alpha);</pre>
+<p>
+Binds <em class="parameter"><code>alpha</code></em> to a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>.  The <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object
+is what makes a behaviour work: for each tick of the timeline
+used by <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> a new value of the alpha parameter is
+computed by the alpha function; the value should be used by
+the <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> to update one or more properties of the
+actors to which the behaviour applies.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behave</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>alpha</code></em> :</span></p></td>
+<td> a <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> to unset a previously set alpha
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviour--alpha"></a><h3>The <code class="literal">"alpha"</code> property</h3>
+<pre class="programlisting">  "alpha"                    <a class="link" href="ClutterAlpha.html" title="ClutterAlpha">ClutterAlpha</a>*         : Read / Write</pre>
+<p>
+The <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a> object used to drive this behaviour. A <a class="link" href="ClutterAlpha.html" title="ClutterAlpha"><span class="type">ClutterAlpha</span></a>
+object binds a <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> and a function which computes a value
+(the "alpha") depending on the time. Each time the alpha value changes
+the alpha-notify virtual function is called.</p>
+<p>
+
+</p>
+<p>Since  0.2
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="ClutterBehaviour.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviour-applied"></a><h3>The <code class="literal">"applied"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behaviour,
+                                                        <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>     *actor,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>          user_data)      : Run First</pre>
+<p>
+The ::apply signal is emitted each time the behaviour is applied
+to an actor.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behaviour</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> that received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the actor the behaviour was applied to.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterBehaviour-removed"></a><h3>The <code class="literal">"removed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour">ClutterBehaviour</a> *behaviour,
+                                                        <a class="link" href="ClutterActor.html" title="ClutterActor">ClutterActor</a>     *actor,
+                                                        <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>          user_data)      : Run First</pre>
+<p>
+The ::removed signal is emitted each time a behaviour is not applied
+to an actor anymore.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>behaviour</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterBehaviour.html" title="ClutterBehaviour"><span class="type">ClutterBehaviour</span></a> that received the signal
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>actor</code></em> :</span></p></td>
+<td> the removed actor
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

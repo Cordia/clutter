@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterGroup">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterGroup.top_of_page">ClutterGroup</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterGroup</refname>
+<refpurpose>Actor class containing multiple children.
+actors.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterGroup.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterGroup-struct">ClutterGroup</link>;
+                    <link linkend="ClutterGroupClass">ClutterGroupClass</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-group-new">clutter_group_new</link>                   (void);
+<link linkend="void">void</link>                <link linkend="clutter-group-add-many">clutter_group_add_many</link>              (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-group-add-many-valist">clutter_group_add_many_valist</link>       (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);
+<link linkend="void">void</link>                <link linkend="clutter-group-remove">clutter_group_remove</link>                (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);
+<link linkend="void">void</link>                <link linkend="clutter-group-remove-all">clutter_group_remove_all</link>            (<link linkend="ClutterGroup">ClutterGroup</link> *group);
+<link linkend="gint">gint</link>                <link linkend="clutter-group-get-n-children">clutter_group_get_n_children</link>        (<link linkend="ClutterGroup">ClutterGroup</link> *self);
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-group-get-nth-child">clutter_group_get_nth_child</link>         (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="gint">gint</link> index_);
+<link linkend="void">void</link>                <link linkend="clutter-group-raise">clutter_group_raise</link>                 (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);
+<link linkend="void">void</link>                <link linkend="clutter-group-lower">clutter_group_lower</link>                 (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);
+<link linkend="void">void</link>                <link linkend="clutter-group-sort-depth-order">clutter_group_sort_depth_order</link>      (<link linkend="ClutterGroup">ClutterGroup</link> *self);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterGroup.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterGroup
+                     +----<link linkend="ClutterStage">ClutterStage</link>
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterGroup.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterGroup implements
+ <link linkend="ClutterContainer">ClutterContainer</link>.</para>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterGroup.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterGroup-add">add</link>&quot;                                            : Run First
+  &quot;<link linkend="ClutterGroup-remove">remove</link>&quot;                                         : Run First
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterGroup.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A <link linkend="ClutterGroup"><type>ClutterGroup</type></link> is an Actor which contains multiple child actors positioned
+relative to the <link linkend="ClutterGroup"><type>ClutterGroup</type></link> position. Other operations such as scaling,
+rotating and clipping of the group will apply to the child actors.
+</para>
+<para>
+A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>'s size is defined by the size and position of its children.
+Resize requests via the <link linkend="ClutterActor"><type>ClutterActor</type></link> API will be ignored.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterGroup.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterGroup-struct" role="struct">
+<title>ClutterGroup</title>
+<indexterm zone="ClutterGroup-struct"><primary>ClutterGroup</primary></indexterm><programlisting>typedef struct _ClutterGroup ClutterGroup;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterGroupClass" role="struct">
+<title>ClutterGroupClass</title>
+<indexterm zone="ClutterGroupClass"><primary>ClutterGroupClass</primary></indexterm><programlisting>typedef struct {
+} ClutterGroupClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-group-new" role="function">
+<title>clutter_group_new ()</title>
+<indexterm zone="clutter-group-new"><primary>clutter_group_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_group_new                   (void);</programlisting>
+<para>
+Create a new  <link linkend="ClutterGroup"><type>ClutterGroup</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterGroup"><type>ClutterGroup</type></link> actor
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-add-many" role="function" condition="deprecated:">
+<title>clutter_group_add_many ()</title>
+<indexterm zone="clutter-group-add-many" role="deprecated"><primary>clutter_group_add_many</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_add_many              (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         ...);</programlisting>
+<warning><para><literal>clutter_group_add_many</literal> is deprecated and should not be used in newly-written code.</para></warning>
+<para>
+Adds a <link linkend="NULL:CAPS"><literal>NULL</literal></link>-terminated list of actors to a group.  This function is
+equivalent to calling <link linkend="clutter-group-add"><function>clutter_group_add()</function></link> for each member of the list.
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.4: This function is obsolete, use <link linkend="clutter-container-add"><function>clutter_container_add()</function></link>
+  instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterActor"><type>ClutterActor</type></link> actor to add to the group
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> additional actors to add to the group
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-add-many-valist" role="function" condition="deprecated:">
+<title>clutter_group_add_many_valist ()</title>
+<indexterm zone="clutter-group-add-many-valist" role="deprecated"><primary>clutter_group_add_many_valist</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_add_many_valist       (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *first_actor,
+                                                         <link linkend="va-list">va_list</link> var_args);</programlisting>
+<warning><para><literal>clutter_group_add_many_valist</literal> is deprecated and should not be used in newly-written code.</para></warning>
+<para>
+Similar to <link linkend="clutter-group-add-many"><function>clutter_group_add_many()</function></link> but using a va_list.  Use this
+function inside bindings.
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.4: This function is obsolete, use
+  <link linkend="clutter-container-add-valist"><function>clutter_container_add_valist()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_actor</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterActor"><type>ClutterActor</type></link> actor to add to the group
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>var_args</parameter>&nbsp;:</term>
+<listitem><simpara> the actors to be added
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-remove" role="function" condition="deprecated:">
+<title>clutter_group_remove ()</title>
+<indexterm zone="clutter-group-remove" role="deprecated"><primary>clutter_group_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_remove                (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor);</programlisting>
+<warning><para><literal>clutter_group_remove</literal> is deprecated and should not be used in newly-written code.</para></warning>
+<para>
+Removes a child <link linkend="ClutterActor"><type>ClutterActor</type></link> from the parent <link linkend="ClutterGroup"><type>ClutterGroup</type></link>.
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.4: This function is obsolete, use
+  <link linkend="clutter-container-remove-actor"><function>clutter_container_remove_actor()</function></link> instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-remove-all" role="function">
+<title>clutter_group_remove_all ()</title>
+<indexterm zone="clutter-group-remove-all"><primary>clutter_group_remove_all</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_remove_all            (<link linkend="ClutterGroup">ClutterGroup</link> *group);</programlisting>
+<para>
+Removes all children actors from the <link linkend="ClutterGroup"><type>ClutterGroup</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-get-n-children" role="function" condition="since:0.2">
+<title>clutter_group_get_n_children ()</title>
+<indexterm zone="clutter-group-get-n-children" role="0.2"><primary>clutter_group_get_n_children</primary></indexterm><programlisting><link linkend="gint">gint</link>                clutter_group_get_n_children        (<link linkend="ClutterGroup">ClutterGroup</link> *self);</programlisting>
+<para>
+Gets the number of actors held in the group.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The number of child actors held in the group.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-group-get-nth-child" role="function" condition="since:0.2">
+<title>clutter_group_get_nth_child ()</title>
+<indexterm zone="clutter-group-get-nth-child" role="0.2"><primary>clutter_group_get_nth_child</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_group_get_nth_child         (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="gint">gint</link> index_);</programlisting>
+<para>
+Gets a groups child held at <parameter>index_</parameter> in stack.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index_</parameter>&nbsp;:</term>
+<listitem><simpara> the position of the requested actor.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A Clutter actor or NULL if <parameter>index_</parameter> is invalid.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-group-raise" role="function" condition="deprecated:0.6: Use clutter_container_raise_child() instead.">
+<title>clutter_group_raise ()</title>
+<indexterm zone="clutter-group-raise" role="deprecated"><primary>clutter_group_raise</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_raise                 (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);</programlisting>
+<warning><para><literal>clutter_group_raise</literal> has been deprecated since version 0.6 and should not be used in newly-written code. Use <link linkend="clutter-container-raise-child"><function>clutter_container_raise_child()</function></link> instead.</para></warning>
+<para>
+Raises <parameter>actor</parameter> to <parameter>sibling</parameter> level in the depth ordering.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sibling</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-lower" role="function" condition="deprecated:0.6: Use clutter_container_lower_child() instead">
+<title>clutter_group_lower ()</title>
+<indexterm zone="clutter-group-lower" role="deprecated"><primary>clutter_group_lower</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_lower                 (<link linkend="ClutterGroup">ClutterGroup</link> *self,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                         <link linkend="ClutterActor">ClutterActor</link> *sibling);</programlisting>
+<warning><para><literal>clutter_group_lower</literal> has been deprecated since version 0.6 and should not be used in newly-written code. Use <link linkend="clutter-container-lower-child"><function>clutter_container_lower_child()</function></link> instead</para></warning>
+<para>
+Lowers <parameter>actor</parameter> to <parameter>sibling</parameter> level in the depth ordering.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sibling</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterActor"><type>ClutterActor</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-group-sort-depth-order" role="function" condition="deprecated:0.6: Use clutter_container_sort_depth_order() instead.">
+<title>clutter_group_sort_depth_order ()</title>
+<indexterm zone="clutter-group-sort-depth-order" role="deprecated"><primary>clutter_group_sort_depth_order</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_group_sort_depth_order      (<link linkend="ClutterGroup">ClutterGroup</link> *self);</programlisting>
+<warning><para><literal>clutter_group_sort_depth_order</literal> has been deprecated since version 0.6 and should not be used in newly-written code. Use <link linkend="clutter-container-sort-depth-order"><function>clutter_container_sort_depth_order()</function></link> instead.</para></warning>
+<para>
+Sorts a <link linkend="ClutterGroup"><type>ClutterGroup</type></link>'s children by their depth value.
+This function should not be used by applications.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterGroup"><type>ClutterGroup</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterGroup.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterGroup-add"><title>The <literal>&quot;add&quot;</literal> signal</title>
+<indexterm zone="ClutterGroup-add"><primary>ClutterGroup::add</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                        <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run First</programlisting>
+<para>
+The ::add signal is emitted each time an actor has been added
+to the group.
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.4: This signal is deprecated, you should connect
+  to the ClutterContainer::actor-added signal instead.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterGroup"><type>ClutterGroup</type></link> that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the actor added to the group
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="ClutterGroup-remove"><title>The <literal>&quot;remove&quot;</literal> signal</title>
+<indexterm zone="ClutterGroup-remove"><primary>ClutterGroup::remove</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterGroup">ClutterGroup</link> *group,
+                                                        <link linkend="ClutterActor">ClutterActor</link> *actor,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run First</programlisting>
+<para>
+The ::remove signal is emitted each time an actor has been removed
+from the group
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.4: This signal is deprecated, you should connect
+  to the ClutterContainer::actor-removed signal instead</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>group</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterGroup"><type>ClutterGroup</type></link> that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>actor</parameter>&nbsp;:</term>
+<listitem><simpara> the actor added to the group
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

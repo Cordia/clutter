@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterBehaviourPath">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterBehaviourPath.top_of_page">ClutterBehaviourPath</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterBehaviourPath</refname>
+<refpurpose>A behaviour interpolating position along a path</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterBehaviourPath.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterBehaviourPath-struct">ClutterBehaviourPath</link>;
+                    <link linkend="ClutterBehaviourPathClass">ClutterBehaviourPathClass</link>;
+<link linkend="ClutterBehaviour">ClutterBehaviour</link>*   <link linkend="clutter-behaviour-path-new">clutter_behaviour_path_new</link>          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots);
+<link linkend="GSList">GSList</link>*             <link linkend="clutter-behaviour-path-get-knots">clutter_behaviour_path_get_knots</link>    (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-path-append-knot">clutter_behaviour_path_append_knot</link>  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-path-append-knots">clutter_behaviour_path_append_knots</link> (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *first_knot,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-path-insert-knot">clutter_behaviour_path_insert_knot</link>  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         <link linkend="guint">guint</link> offset,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-path-remove-knot">clutter_behaviour_path_remove_knot</link>  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         <link linkend="guint">guint</link> offset);
+<link linkend="void">void</link>                <link linkend="clutter-behaviour-path-clear">clutter_behaviour_path_clear</link>        (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb);
+
+                    <link linkend="ClutterKnot">ClutterKnot</link>;
+<link linkend="ClutterKnot">ClutterKnot</link>*        <link linkend="clutter-knot-copy">clutter_knot_copy</link>                   (const <link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="void">void</link>                <link linkend="clutter-knot-free">clutter_knot_free</link>                   (<link linkend="ClutterKnot">ClutterKnot</link> *knot);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-knot-equal">clutter_knot_equal</link>                  (const <link linkend="ClutterKnot">ClutterKnot</link> *knot_a,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot_b);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterBehaviourPath.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="ClutterBehaviour">ClutterBehaviour</link>
+         +----ClutterBehaviourPath
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterBehaviourPath.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterBehaviourPath implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterBehaviourPath.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourPath--knot">knot</link>&quot;                     <link linkend="ClutterKnot">ClutterKnot</link>*          : Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourPath.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterBehaviourPath-knot-reached">knot-reached</link>&quot;                                   : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterBehaviourPath.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterBehaviourPath"><type>ClutterBehaviourPath</type></link> interpolates actors along a defined path.
+</para>
+<para>
+A path is a set of <link linkend="ClutterKnots"><type>ClutterKnots</type></link> object given when creating a new
+<link linkend="ClutterBehaviourPath"><type>ClutterBehaviourPath</type></link> instance.  Knots can be also added to the path
+using <link linkend="clutter-behaviour-path-append-knot"><function>clutter_behaviour_path_append_knot()</function></link>.  The whole path can be
+cleared using <link linkend="clutter-behaviour-path-clear"><function>clutter_behaviour_path_clear()</function></link>.  Each time the behaviour
+reaches a knot in the path, the "knot-reached" signal is emitted.
+</para>
+<para>
+This first knot in the path is reached with the lower bound value
+provided by the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> objectused by the behaviour; the last
+knot in the path is reached with the upper bound value provided by
+the <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link> object used by the behaviour.
+</para>
+<para>
+<note>If the alpha function is a periodic function, i.e. it returns to
+0 after reaching <link linkend="CLUTTER-ALPHA-MAX-ALPHA:CAPS"><literal>CLUTTER_ALPHA_MAX_ALPHA</literal></link>, then the actors will walk
+the path back to the starting <link linkend="ClutterKnot"><type>ClutterKnot</type></link>.</note>
+</para>
+<para>
+<link linkend="ClutterBehaviourPath"><type>ClutterBehaviourPath</type></link> is available since Clutter 0.2</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterBehaviourPath.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterBehaviourPath-struct" role="struct">
+<title>ClutterBehaviourPath</title>
+<indexterm zone="ClutterBehaviourPath-struct"><primary>ClutterBehaviourPath</primary></indexterm><programlisting>typedef struct _ClutterBehaviourPath ClutterBehaviourPath;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterBehaviourPathClass" role="struct">
+<title>ClutterBehaviourPathClass</title>
+<indexterm zone="ClutterBehaviourPathClass"><primary>ClutterBehaviourPathClass</primary></indexterm><programlisting>typedef struct {
+  void (*knot_reached) (ClutterBehaviourPath *pathb,
+                        const ClutterKnot    *knot);
+} ClutterBehaviourPathClass;
+</programlisting>
+<para>
+Since 0.2</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>knot_reached</structfield>&nbsp;()</term>
+<listitem><simpara> signal class handler for the
+  ClutterBehaviourPath::knot_reached signal
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-behaviour-path-new" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_new ()</title>
+<indexterm zone="clutter-behaviour-path-new" role="0.2"><primary>clutter_behaviour_path_new</primary></indexterm><programlisting><link linkend="ClutterBehaviour">ClutterBehaviour</link>*   clutter_behaviour_path_new          (<link linkend="ClutterAlpha">ClutterAlpha</link> *alpha,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knots,
+                                                         <link linkend="guint">guint</link> n_knots);</programlisting>
+<para>
+Creates a new path behaviour. You can use this behaviour to drive
+actors along the nodes of a path, described by the <parameter>knots</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>alpha</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterAlpha"><type>ClutterAlpha</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knots</parameter>&nbsp;:</term>
+<listitem><simpara> a list of <link linkend="ClutterKnots"><type>ClutterKnots</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> for an empty path
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_knots</parameter>&nbsp;:</term>
+<listitem><simpara> the number of nodes in the path
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterBehaviour"><type>ClutterBehaviour</type></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-get-knots" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_get_knots ()</title>
+<indexterm zone="clutter-behaviour-path-get-knots" role="0.2"><primary>clutter_behaviour_path_get_knots</primary></indexterm><programlisting><link linkend="GSList">GSList</link>*             clutter_behaviour_path_get_knots    (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb);</programlisting>
+<para>
+Returns a copy of the list of knots contained by <parameter>pathb</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="GSList"><type>GSList</type></link> of the paths knots.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-append-knot" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_append_knot ()</title>
+<indexterm zone="clutter-behaviour-path-append-knot" role="0.2"><primary>clutter_behaviour_path_append_knot</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_path_append_knot  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Appends a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> to the path</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara>  a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> to append.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-append-knots" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_append_knots ()</title>
+<indexterm zone="clutter-behaviour-path-append-knots" role="0.2"><primary>clutter_behaviour_path_append_knots</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_path_append_knots (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *first_knot,
+                                                         ...);</programlisting>
+<para>
+Adds a NULL-terminated list of knots to a path.  This function is
+equivalent to calling <link linkend="clutter-behaviour-path-append-knot"><function>clutter_behaviour_path_append_knot()</function></link> for each
+member of the list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_knot</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterKnot"><type>ClutterKnot</type></link> knot to add to the path
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> additional knots to add to the path
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-insert-knot" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_insert_knot ()</title>
+<indexterm zone="clutter-behaviour-path-insert-knot" role="0.2"><primary>clutter_behaviour_path_insert_knot</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_path_insert_knot  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         <link linkend="guint">guint</link> offset,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Inserts a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> in the path at specified position. Values greater
+than total number of knots will append the knot at the end of path.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> position in path to insert knot.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara>  a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> to append.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-remove-knot" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_remove_knot ()</title>
+<indexterm zone="clutter-behaviour-path-remove-knot" role="0.2"><primary>clutter_behaviour_path_remove_knot</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_path_remove_knot  (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                         <link linkend="guint">guint</link> offset);</programlisting>
+<para>
+Removes a <link linkend="ClutterKnot"><type>ClutterKnot</type></link> in the path at specified offset.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> position in path to remove knot.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-behaviour-path-clear" role="function" condition="since:0.2">
+<title>clutter_behaviour_path_clear ()</title>
+<indexterm zone="clutter-behaviour-path-clear" role="0.2"><primary>clutter_behaviour_path_clear</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_behaviour_path_clear        (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb);</programlisting>
+<para>
+Removes all knots from a path</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterBehvaiourPath"><type>ClutterBehvaiourPath</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="ClutterKnot" role="struct" condition="since:0.2">
+<title>ClutterKnot</title>
+<indexterm zone="ClutterKnot" role="0.2"><primary>ClutterKnot</primary></indexterm><programlisting>typedef struct {
+  gint x;
+  gint y;
+} ClutterKnot;
+</programlisting>
+<para>
+Point in a path behaviour.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>x</structfield>;</term>
+<listitem><simpara> X coordinate of the knot
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint">gint</link>&nbsp;<structfield>y</structfield>;</term>
+<listitem><simpara> Y coordinate of the knot
+</simpara></listitem>
+</varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-knot-copy" role="function" condition="since:0.2">
+<title>clutter_knot_copy ()</title>
+<indexterm zone="clutter-knot-copy" role="0.2"><primary>clutter_knot_copy</primary></indexterm><programlisting><link linkend="ClutterKnot">ClutterKnot</link>*        clutter_knot_copy                   (const <link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Makes an allocated copy of a knot.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKnot"><type>ClutterKnot</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the copied knot.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-knot-free" role="function" condition="since:0.2">
+<title>clutter_knot_free ()</title>
+<indexterm zone="clutter-knot-free" role="0.2"><primary>clutter_knot_free</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_knot_free                   (<link linkend="ClutterKnot">ClutterKnot</link> *knot);</programlisting>
+<para>
+Frees the memory of an allocated knot.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterKnot"><type>ClutterKnot</type></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-knot-equal" role="function" condition="since:0.2">
+<title>clutter_knot_equal ()</title>
+<indexterm zone="clutter-knot-equal" role="0.2"><primary>clutter_knot_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_knot_equal                  (const <link linkend="ClutterKnot">ClutterKnot</link> *knot_a,
+                                                         const <link linkend="ClutterKnot">ClutterKnot</link> *knot_b);</programlisting>
+<para>
+Compares to knot and checks if the point to the same location.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>knot_a</parameter>&nbsp;:</term>
+<listitem><simpara> First knot
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot_b</parameter>&nbsp;:</term>
+<listitem><simpara> Second knot
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the knots point to the same location.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterBehaviourPath.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterBehaviourPath--knot"><title>The <literal>&quot;knot&quot;</literal> property</title>
+<indexterm zone="ClutterBehaviourPath--knot" role="0.2"><primary>ClutterBehaviourPath:knot</primary></indexterm><programlisting>  &quot;knot&quot;                     <link linkend="ClutterKnot">ClutterKnot</link>*          : Write</programlisting>
+<para>
+This property can be used to append a new knot to the path.</para>
+<para>
+
+</para><para>Since  0.2
+</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterBehaviourPath.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterBehaviourPath-knot-reached"><title>The <literal>&quot;knot-reached&quot;</literal> signal</title>
+<indexterm zone="ClutterBehaviourPath-knot-reached" role="0.2"><primary>ClutterBehaviourPath::knot-reached</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterBehaviourPath">ClutterBehaviourPath</link> *pathb,
+                                                        <link linkend="ClutterKnot">ClutterKnot</link>          *knot,
+                                                        <link linkend="gpointer">gpointer</link>              user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted each time a node defined inside the path
+is reached.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pathb</parameter>&nbsp;:</term>
+<listitem><simpara> the object which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>knot</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterKnot"><type>ClutterKnot</type></link> reached
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.2
+</para></refsect2>
+</refsect1>
+
+
+
+</refentry>

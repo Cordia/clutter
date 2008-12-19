@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Utilities</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch07.html" title="General purpose API">
+<link rel="prev" href="clutter-Unit-conversion.html" title="Unit conversion">
+<link rel="next" href="clutter-Versioning-Macros.html" title="Versioning Macros">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="clutter-Unit-conversion.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-Versioning-Macros.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-Utilities.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-Utilities.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-Utilities"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-Utilities.top_of_page"></a>Utilities</span></h2>
+<p>Utilities — Misc utility functions.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-Utilities.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+int                 <a class="link" href="clutter-Utilities.html#clutter-util-next-p2" title="clutter_util_next_p2 ()">clutter_util_next_p2</a>                (int a);
+
+ClutterTimeoutPool* <a class="link" href="clutter-Utilities.html#clutter-timeout-pool-new" title="clutter_timeout_pool_new ()">clutter_timeout_pool_new</a>            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-Utilities.html#clutter-timeout-pool-add" title="clutter_timeout_pool_add ()">clutter_timeout_pool_add</a>            (ClutterTimeoutPool *pool,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+void                <a class="link" href="clutter-Utilities.html#clutter-timeout-pool-remove" title="clutter_timeout_pool_remove ()">clutter_timeout_pool_remove</a>         (ClutterTimeoutPool *pool,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> id);
+
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-Utilities.html#clutter-frame-source-add" title="clutter_frame_source_add ()">clutter_frame_source_add</a>            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="clutter-Utilities.html#clutter-frame-source-add-full" title="clutter_frame_source_add_full ()">clutter_frame_source_add_full</a>       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Utilities.description"></a><h2>Description</h2>
+<p>
+Various misc utilility functions.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-Utilities.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="clutter-util-next-p2"></a><h3>clutter_util_next_p2 ()</h3>
+<pre class="programlisting">int                 clutter_util_next_p2                (int a);</pre>
+<p>
+Calculates the nearest power of two, greater than or equal to <em class="parameter"><code>a</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td> Value to get the next power
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The nearest power of two, greater or equal to <em class="parameter"><code>a</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeout-pool-new"></a><h3>clutter_timeout_pool_new ()</h3>
+<pre class="programlisting">ClutterTimeoutPool* clutter_timeout_pool_new            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority);</pre>
+<p>
+Creates a new timeout pool source. A timeout pool should be used when
+multiple timeout functions, running at the same priority, are needed and
+the <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#g-timeout-add"
+><code class="function">g_timeout_add()</code></a> API might lead to starvation of the time slice of
+the main loop. A timeout pool allocates a single time slice of the main
+loop and runs every timeout function inside it. The timeout pool is
+always sorted, so that the extraction of the next timeout function is
+a constant time operation.
+</p>
+<p>
+Inside Clutter, every <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> share the same timeout pool, unless
+the CLUTTER_TIMELINE=no-pool environment variable is set.
+</p>
+<p>
+<span class="type">ClutterTimeoutPool</span> is part of the <a class="link" href="ClutterTimeline.html" title="ClutterTimeline"><span class="type">ClutterTimeline</span></a> implementation
+and should not be used by application developers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priority</code></em> :</span></p></td>
+<td> the priority of the timeout pool. Typically this will
+  be <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT:CAPS"
+><span class="type">G_PRIORITY_DEFAULT</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the newly created <span class="type">ClutterTimeoutPool</span>. The created pool
+  is owned by the GLib default context and will be automatically
+  destroyed when the context is destroyed. It is possible to force
+  the destruction of the timeout pool using <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#g-source-destroy"
+><code class="function">g_source_destroy()</code></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeout-pool-add"></a><h3>clutter_timeout_pool_add ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_timeout_pool_add            (ClutterTimeoutPool *pool,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Sets a function to be called at regular intervals, and puts it inside
+the <em class="parameter"><code>pool</code></em>. The function is repeatedly called until it returns <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>,
+at which point the timeout is automatically destroyed and the function
+won't be called again. If <em class="parameter"><code>notify</code></em> is not <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>, the <em class="parameter"><code>notify</code></em> function
+will be called. The first call to <em class="parameter"><code>func</code></em> will be at the end of <em class="parameter"><code>interval</code></em>.
+</p>
+<p>
+Since version 0.8 this will try to compensate for delays. For
+example, if <em class="parameter"><code>func</code></em> takes half the interval time to execute then the
+function will be called again half the interval time after it
+finished. Before version 0.8 it would not fire until a full
+interval after the function completes so the delay between calls
+would be <em class="parameter"><code>interval</code></em> * 1.5. This function does not however try to
+invoke the function multiple times to catch up missing frames if
+<em class="parameter"><code>func</code></em> takes more than <em class="parameter"><code>interval</code></em> ms to execute.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> a <span class="type">ClutterTimeoutPool</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> function to call when the timeout is removed, or <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the timeout inside the pool.
+  Use <a class="link" href="clutter-Utilities.html#clutter-timeout-pool-remove" title="clutter_timeout_pool_remove ()"><code class="function">clutter_timeout_pool_remove()</code></a> to stop the timeout.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-timeout-pool-remove"></a><h3>clutter_timeout_pool_remove ()</h3>
+<pre class="programlisting">void                clutter_timeout_pool_remove         (ClutterTimeoutPool *pool,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> id);</pre>
+<p>
+Removes a timeout function with <em class="parameter"><code>id</code></em> from the timeout pool. The id
+is the same returned when adding a function to the timeout pool with
+<a class="link" href="clutter-Utilities.html#clutter-timeout-pool-add" title="clutter_timeout_pool_add ()"><code class="function">clutter_timeout_pool_add()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> a <span class="type">ClutterTimeoutPool</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the id of the timeout to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.4
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-frame-source-add"></a><h3>clutter_frame_source_add ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_frame_source_add            (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data);</pre>
+<p>
+Simple wrapper around <a class="link" href="clutter-Utilities.html#clutter-frame-source-add-full" title="clutter_frame_source_add_full ()"><code class="function">clutter_frame_source_add_full()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-frame-source-add-full"></a><h3>clutter_frame_source_add_full ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a>               clutter_frame_source_add_full       (<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"
+>gint</a> priority,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"
+>guint</a> interval,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#GSourceFunc"
+>GSourceFunc</a> func,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="/usr/share/gtk-doc/html/glib/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> notify);</pre>
+<p>
+Sets a function to be called at regular intervals with the given
+priority.  The function is called repeatedly until it returns
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>, at which point the timeout is automatically destroyed and
+the function will not be called again.  The <em class="parameter"><code>notify</code></em> function is
+called when the timeout is destroyed.  The first call to the
+function will be at the end of the first <em class="parameter"><code>interval</code></em>.
+</p>
+<p>
+This function is similar to <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#g-timeout-add-full"
+><code class="function">g_timeout_add_full()</code></a> except that it
+will try to compensate for delays. For example, if <em class="parameter"><code>func</code></em> takes half
+the interval time to execute then the function will be called again
+half the interval time after it finished. In contrast
+<a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#g-timeout-add-full"
+><code class="function">g_timeout_add_full()</code></a> would not fire until a full interval after the
+function completes so the delay between calls would be <em class="parameter"><code>interval</code></em> *
+1.5. This function does not however try to invoke the function
+multiple times to catch up missing frames if <em class="parameter"><code>func</code></em> takes more than
+<em class="parameter"><code>interval</code></em> ms to execute.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>priority</code></em> :</span></p></td>
+<td> the priority of the frame source. Typically this will be in the
+           range between <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-DEFAULT:CAPS"
+><span class="type">G_PRIORITY_DEFAULT</span></a> and <a
+href="/usr/share/gtk-doc/html/glib/glib-The-Main-Event-Loop.html#G-PRIORITY-HIGH:CAPS"
+><span class="type">G_PRIORITY_HIGH</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>interval</code></em> :</span></p></td>
+<td> the time between calls to the function, in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> function to call
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> data to pass to the function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>notify</code></em> :</span></p></td>
+<td> function to call when the timeout source is removed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the ID (greater than 0) of the event source.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

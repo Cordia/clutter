@@ -1,0 +1,403 @@
+<!-- ##### SECTION Title ##### -->
+ClutterTimeline
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterTimeline ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL ClutterTimeline::completed ##### -->
+<para>
+
+</para>
+
+@cluttertimeline: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterTimeline::marker-reached ##### -->
+<para>
+
+</para>
+
+@cluttertimeline: the object which received the signal.
+@arg1: 
+@arg2: 
+
+<!-- ##### SIGNAL ClutterTimeline::new-frame ##### -->
+<para>
+
+</para>
+
+@cluttertimeline: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterTimeline::paused ##### -->
+<para>
+
+</para>
+
+@cluttertimeline: the object which received the signal.
+
+<!-- ##### SIGNAL ClutterTimeline::started ##### -->
+<para>
+
+</para>
+
+@cluttertimeline: the object which received the signal.
+
+<!-- ##### ARG ClutterTimeline:delay ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterTimeline:direction ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterTimeline:duration ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterTimeline:fps ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterTimeline:loop ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterTimeline:num-frames ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterTimelineClass ##### -->
+<para>
+
+</para>
+
+@started: 
+@completed: 
+@paused: 
+@new_frame: 
+@marker_reached: 
+
+<!-- ##### FUNCTION clutter_timeline_new ##### -->
+<para>
+
+</para>
+
+@n_frames: 
+@fps: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_new_for_duration ##### -->
+<para>
+
+</para>
+
+@msecs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_clone ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_set_speed ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@fps: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_speed ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_set_duration ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@msecs: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_duration ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_set_loop ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@loop: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_loop ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_set_n_frames ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@n_frames: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_n_frames ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_set_delay ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@msecs: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_delay ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### ENUM ClutterTimelineDirection ##### -->
+<para>
+
+</para>
+
+@CLUTTER_TIMELINE_FORWARD: 
+@CLUTTER_TIMELINE_BACKWARD: 
+
+<!-- ##### FUNCTION clutter_timeline_set_direction ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@direction: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_direction ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_start ##### -->
+<para>
+
+</para>
+
+@timeline: 
+
+
+<!-- ##### FUNCTION clutter_timeline_pause ##### -->
+<para>
+
+</para>
+
+@timeline: 
+
+
+<!-- ##### FUNCTION clutter_timeline_stop ##### -->
+<para>
+
+</para>
+
+@timeline: 
+
+
+<!-- ##### FUNCTION clutter_timeline_rewind ##### -->
+<para>
+
+</para>
+
+@timeline: 
+
+
+<!-- ##### FUNCTION clutter_timeline_skip ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@n_frames: 
+
+
+<!-- ##### FUNCTION clutter_timeline_advance ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@frame_num: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_current_frame ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_delta ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@msecs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_progress ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_get_progressx ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_is_playing ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_add_marker_at_frame ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@marker_name: 
+@frame_num: 
+
+
+<!-- ##### FUNCTION clutter_timeline_add_marker_at_time ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@marker_name: 
+@msecs: 
+
+
+<!-- ##### FUNCTION clutter_timeline_has_marker ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@marker_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_list_markers ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@frame_num: 
+@n_markers: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_timeline_remove_marker ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@marker_name: 
+
+
+<!-- ##### FUNCTION clutter_timeline_advance_to_marker ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@marker_name: 
+
+

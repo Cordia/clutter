@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterCloneTexture">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterCloneTexture.top_of_page">ClutterCloneTexture</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterCloneTexture</refname>
+<refpurpose>Actor for cloning existing textures in an 
+efficient way.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterCloneTexture.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterCloneTexture-struct">ClutterCloneTexture</link>;
+                    <link linkend="ClutterCloneTextureClass">ClutterCloneTextureClass</link>;
+<link linkend="ClutterActor">ClutterActor</link>*       <link linkend="clutter-clone-texture-new">clutter_clone_texture_new</link>           (<link linkend="ClutterTexture">ClutterTexture</link> *texture);
+<link linkend="ClutterTexture">ClutterTexture</link>*     <link linkend="clutter-clone-texture-get-parent-texture">clutter_clone_texture_get_parent_texture</link>
+                                                        (<link linkend="ClutterCloneTexture">ClutterCloneTexture</link> *clone);
+<link linkend="void">void</link>                <link linkend="clutter-clone-texture-set-parent-texture">clutter_clone_texture_set_parent_texture</link>
+                                                        (<link linkend="ClutterCloneTexture">ClutterCloneTexture</link> *clone,
+                                                         <link linkend="ClutterTexture">ClutterTexture</link> *texture);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterCloneTexture.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="ClutterActor">ClutterActor</link>
+               +----ClutterCloneTexture
+</synopsis>
+
+</refsect1>
+
+
+
+<refsect1 id="ClutterCloneTexture.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+ClutterCloneTexture implements
+</para>
+
+</refsect1>
+
+
+<refsect1 id="ClutterCloneTexture.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterCloneTexture--parent-texture">parent-texture</link>&quot;           <link linkend="ClutterTexture">ClutterTexture</link>*       : Read / Write
+  &quot;<link linkend="ClutterCloneTexture--repeat-x">repeat-x</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterCloneTexture--repeat-y">repeat-y</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="ClutterCloneTexture.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterCloneTexture"><type>ClutterCloneTexture</type></link> allows the cloning of existing <link linkend="ClutterTexture"><type>ClutterTexture</type></link> based
+actors whilst saving underlying graphics resources.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterCloneTexture.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterCloneTexture-struct" role="struct">
+<title>ClutterCloneTexture</title>
+<indexterm zone="ClutterCloneTexture-struct"><primary>ClutterCloneTexture</primary></indexterm><programlisting>typedef struct _ClutterCloneTexture ClutterCloneTexture;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterCloneTextureClass" role="struct">
+<title>ClutterCloneTextureClass</title>
+<indexterm zone="ClutterCloneTextureClass"><primary>ClutterCloneTextureClass</primary></indexterm><programlisting>typedef struct {
+  ClutterActorClass parent_class;
+
+  /* padding for future expansion */
+  void (*_clutter_clone_1) (void);
+  void (*_clutter_clone_2) (void);
+  void (*_clutter_clone_3) (void);
+  void (*_clutter_clone_4) (void);
+} ClutterCloneTextureClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-clone-texture-new" role="function">
+<title>clutter_clone_texture_new ()</title>
+<indexterm zone="clutter-clone-texture-new"><primary>clutter_clone_texture_new</primary></indexterm><programlisting><link linkend="ClutterActor">ClutterActor</link>*       clutter_clone_texture_new           (<link linkend="ClutterTexture">ClutterTexture</link> *texture);</programlisting>
+<para>
+Creates an efficient 'clone' of a pre-existing texture with which it 
+shares the underlying pixbuf data.
+</para>
+<para>
+You can use <link linkend="clutter-clone-texture-set-parent-texture"><function>clutter_clone_texture_set_parent_texture()</function></link> to change the
+cloned texture.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTexture"><type>ClutterTexture</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterCloneTexture"><type>ClutterCloneTexture</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-clone-texture-get-parent-texture" role="function" condition="since:0.2">
+<title>clutter_clone_texture_get_parent_texture ()</title>
+<indexterm zone="clutter-clone-texture-get-parent-texture" role="0.2"><primary>clutter_clone_texture_get_parent_texture</primary></indexterm><programlisting><link linkend="ClutterTexture">ClutterTexture</link>*     clutter_clone_texture_get_parent_texture
+                                                        (<link linkend="ClutterCloneTexture">ClutterCloneTexture</link> *clone);</programlisting>
+<para>
+Retrieves the parent <link linkend="ClutterTexture"><type>ClutterTexture</type></link> used by <parameter>clone</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>clone</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterCloneTexture"><type>ClutterCloneTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a <link linkend="ClutterTexture"><type>ClutterTexture</type></link> actor, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+<refsect2 id="clutter-clone-texture-set-parent-texture" role="function" condition="since:0.2">
+<title>clutter_clone_texture_set_parent_texture ()</title>
+<indexterm zone="clutter-clone-texture-set-parent-texture" role="0.2"><primary>clutter_clone_texture_set_parent_texture</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_clone_texture_set_parent_texture
+                                                        (<link linkend="ClutterCloneTexture">ClutterCloneTexture</link> *clone,
+                                                         <link linkend="ClutterTexture">ClutterTexture</link> *texture);</programlisting>
+<para>
+Sets the parent texture cloned by the <link linkend="ClutterCloneTexture"><type>ClutterCloneTexture</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>clone</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterCloneTexture"><type>ClutterCloneTexture</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>texture</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTexture"><type>ClutterTexture</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.2
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterCloneTexture.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterCloneTexture--parent-texture"><title>The <literal>&quot;parent-texture&quot;</literal> property</title>
+<indexterm zone="ClutterCloneTexture--parent-texture"><primary>ClutterCloneTexture:parent-texture</primary></indexterm><programlisting>  &quot;parent-texture&quot;           <link linkend="ClutterTexture">ClutterTexture</link>*       : Read / Write</programlisting>
+<para>The parent texture to clone.</para></refsect2>
+<refsect2 id="ClutterCloneTexture--repeat-x"><title>The <literal>&quot;repeat-x&quot;</literal> property</title>
+<indexterm zone="ClutterCloneTexture--repeat-x"><primary>ClutterCloneTexture:repeat-x</primary></indexterm><programlisting>  &quot;repeat-x&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Reapeat underlying pixbuf rather than scale in x direction.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterCloneTexture--repeat-y"><title>The <literal>&quot;repeat-y&quot;</literal> property</title>
+<indexterm zone="ClutterCloneTexture--repeat-y"><primary>ClutterCloneTexture:repeat-y</primary></indexterm><programlisting>  &quot;repeat-y&quot;                 <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Reapeat underlying pixbuf rather than scale in y direction.</para><para>Default value: FALSE</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

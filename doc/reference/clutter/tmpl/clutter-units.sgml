@@ -1,0 +1,251 @@
+<!-- ##### SECTION Title ##### -->
+Unit conversion
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF ClutterUnit ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_DEVICE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TO_DEVICE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_FIXED ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TO_FIXED ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_FLOAT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TO_FLOAT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_INT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TO_INT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_PANGO_UNIT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TO_PANGO_UNIT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TMP_FROM_DEVICE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_TMP_TO_DEVICE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE ##### -->
+<para>
+
+</para>
+
+@a: 
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE ##### -->
+<para>
+
+</para>
+
+@a: 
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_MM ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_MMX ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_POINTS ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_UNITS_FROM_POINTSX ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### MACRO CLUTTER_MAXUNIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO CLUTTER_MINUNIT ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT ClutterParamSpecUnit ##### -->
+<para>
+
+</para>
+
+@minimum: 
+@maximum: 
+@default_value: 
+
+<!-- ##### FUNCTION clutter_param_spec_unit ##### -->
+<para>
+
+</para>
+
+@name: 
+@nick: 
+@blurb: 
+@minimum: 
+@maximum: 
+@default_value: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_VALUE_HOLDS_UNIT ##### -->
+<para>
+
+</para>
+
+@x: 
+
+
+<!-- ##### FUNCTION clutter_value_set_unit ##### -->
+<para>
+
+</para>
+
+@value: 
+@units: 
+
+
+<!-- ##### FUNCTION clutter_value_get_unit ##### -->
+<para>
+
+</para>
+
+@value: 
+@Returns: 
+
+

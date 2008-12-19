@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Utilities">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Utilities.top_of_page">Utilities</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Utilities</refname>
+<refpurpose>Misc utility functions.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Utilities.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="int">int</link>                 <link linkend="clutter-util-next-p2">clutter_util_next_p2</link>                (<link linkend="int">int</link> a);
+
+<link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link>* <link linkend="clutter-timeout-pool-new">clutter_timeout_pool_new</link>            (<link linkend="gint">gint</link> priority);
+<link linkend="guint">guint</link>               <link linkend="clutter-timeout-pool-add">clutter_timeout_pool_add</link>            (<link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link> *pool,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+<link linkend="void">void</link>                <link linkend="clutter-timeout-pool-remove">clutter_timeout_pool_remove</link>         (<link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link> *pool,
+                                                         <link linkend="guint">guint</link> id);
+
+<link linkend="guint">guint</link>               <link linkend="clutter-frame-source-add">clutter_frame_source_add</link>            (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="guint">guint</link>               <link linkend="clutter-frame-source-add-full">clutter_frame_source_add_full</link>       (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Utilities.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various misc utilility functions.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Utilities.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="clutter-util-next-p2" role="function">
+<title>clutter_util_next_p2 ()</title>
+<indexterm zone="clutter-util-next-p2"><primary>clutter_util_next_p2</primary></indexterm><programlisting><link linkend="int">int</link>                 clutter_util_next_p2                (<link linkend="int">int</link> a);</programlisting>
+<para>
+Calculates the nearest power of two, greater than or equal to <parameter>a</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> Value to get the next power
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The nearest power of two, greater or equal to <parameter>a</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-timeout-pool-new" role="function" condition="since:0.4">
+<title>clutter_timeout_pool_new ()</title>
+<indexterm zone="clutter-timeout-pool-new" role="0.4"><primary>clutter_timeout_pool_new</primary></indexterm><programlisting><link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link>* clutter_timeout_pool_new            (<link linkend="gint">gint</link> priority);</programlisting>
+<para>
+Creates a new timeout pool source. A timeout pool should be used when
+multiple timeout functions, running at the same priority, are needed and
+the <link linkend="g-timeout-add"><function>g_timeout_add()</function></link> API might lead to starvation of the time slice of
+the main loop. A timeout pool allocates a single time slice of the main
+loop and runs every timeout function inside it. The timeout pool is
+always sorted, so that the extraction of the next timeout function is
+a constant time operation.
+</para>
+<para>
+Inside Clutter, every <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> share the same timeout pool, unless
+the CLUTTER_TIMELINE=no-pool environment variable is set.
+</para>
+<para>
+<link linkend="ClutterTimeoutPool"><type>ClutterTimeoutPool</type></link> is part of the <link linkend="ClutterTimeline"><type>ClutterTimeline</type></link> implementation
+and should not be used by application developers.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priority</parameter>&nbsp;:</term>
+<listitem><simpara> the priority of the timeout pool. Typically this will
+  be <link linkend="G-PRIORITY-DEFAULT:CAPS"><type>G_PRIORITY_DEFAULT</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the newly created <link linkend="ClutterTimeoutPool"><type>ClutterTimeoutPool</type></link>. The created pool
+  is owned by the GLib default context and will be automatically
+  destroyed when the context is destroyed. It is possible to force
+  the destruction of the timeout pool using <link linkend="g-source-destroy"><function>g_source_destroy()</function></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-timeout-pool-add" role="function" condition="since:0.4">
+<title>clutter_timeout_pool_add ()</title>
+<indexterm zone="clutter-timeout-pool-add" role="0.4"><primary>clutter_timeout_pool_add</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_timeout_pool_add            (<link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link> *pool,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Sets a function to be called at regular intervals, and puts it inside
+the <parameter>pool</parameter>. The function is repeatedly called until it returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link>,
+at which point the timeout is automatically destroyed and the function
+won't be called again. If <parameter>notify</parameter> is not <link linkend="NULL:CAPS"><literal>NULL</literal></link>, the <parameter>notify</parameter> function
+will be called. The first call to <parameter>func</parameter> will be at the end of <parameter>interval</parameter>.
+</para>
+<para>
+Since version 0.8 this will try to compensate for delays. For
+example, if <parameter>func</parameter> takes half the interval time to execute then the
+function will be called again half the interval time after it
+finished. Before version 0.8 it would not fire until a full
+interval after the function completes so the delay between calls
+would be <parameter>interval</parameter> * 1.5. This function does not however try to
+invoke the function multiple times to catch up missing frames if
+<parameter>func</parameter> takes more than <parameter>interval</parameter> ms to execute.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeoutPool"><type>ClutterTimeoutPool</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to call when the timeout is removed, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the timeout inside the pool.
+  Use <link linkend="clutter-timeout-pool-remove"><function>clutter_timeout_pool_remove()</function></link> to stop the timeout.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-timeout-pool-remove" role="function" condition="since:0.4">
+<title>clutter_timeout_pool_remove ()</title>
+<indexterm zone="clutter-timeout-pool-remove" role="0.4"><primary>clutter_timeout_pool_remove</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_timeout_pool_remove         (<link linkend="ClutterTimeoutPool">ClutterTimeoutPool</link> *pool,
+                                                         <link linkend="guint">guint</link> id);</programlisting>
+<para>
+Removes a timeout function with <parameter>id</parameter> from the timeout pool. The id
+is the same returned when adding a function to the timeout pool with
+<link linkend="clutter-timeout-pool-add"><function>clutter_timeout_pool_add()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="ClutterTimeoutPool"><type>ClutterTimeoutPool</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> the id of the timeout to remove
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="clutter-frame-source-add" role="function" condition="since:0.8">
+<title>clutter_frame_source_add ()</title>
+<indexterm zone="clutter-frame-source-add" role="0.8"><primary>clutter_frame_source_add</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_frame_source_add            (<link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+Simple wrapper around <link linkend="clutter-frame-source-add-full"><function>clutter_frame_source_add_full()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="clutter-frame-source-add-full" role="function" condition="since:0.8">
+<title>clutter_frame_source_add_full ()</title>
+<indexterm zone="clutter-frame-source-add-full" role="0.8"><primary>clutter_frame_source_add_full</primary></indexterm><programlisting><link linkend="guint">guint</link>               clutter_frame_source_add_full       (<link linkend="gint">gint</link> priority,
+                                                         <link linkend="guint">guint</link> interval,
+                                                         <link linkend="GSourceFunc">GSourceFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> notify);</programlisting>
+<para>
+Sets a function to be called at regular intervals with the given
+priority.  The function is called repeatedly until it returns
+<link linkend="FALSE:CAPS"><literal>FALSE</literal></link>, at which point the timeout is automatically destroyed and
+the function will not be called again.  The <parameter>notify</parameter> function is
+called when the timeout is destroyed.  The first call to the
+function will be at the end of the first <parameter>interval</parameter>.
+</para>
+<para>
+This function is similar to <link linkend="g-timeout-add-full"><function>g_timeout_add_full()</function></link> except that it
+will try to compensate for delays. For example, if <parameter>func</parameter> takes half
+the interval time to execute then the function will be called again
+half the interval time after it finished. In contrast
+<link linkend="g-timeout-add-full"><function>g_timeout_add_full()</function></link> would not fire until a full interval after the
+function completes so the delay between calls would be <parameter>interval</parameter> *
+1.5. This function does not however try to invoke the function
+multiple times to catch up missing frames if <parameter>func</parameter> takes more than
+<parameter>interval</parameter> ms to execute.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>priority</parameter>&nbsp;:</term>
+<listitem><simpara> the priority of the frame source. Typically this will be in the
+           range between <link linkend="G-PRIORITY-DEFAULT:CAPS"><type>G_PRIORITY_DEFAULT</type></link> and <link linkend="G-PRIORITY-HIGH:CAPS"><type>G_PRIORITY_HIGH</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interval</parameter>&nbsp;:</term>
+<listitem><simpara> the time between calls to the function, in milliseconds
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> function to call
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>notify</parameter>&nbsp;:</term>
+<listitem><simpara> function to call when the timeout source is removed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the ID (greater than 0) of the event source.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

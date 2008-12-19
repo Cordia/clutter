@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="clutter-Versioning-Macros">
+<refmeta>
+<refentrytitle role="top_of_page" id="clutter-Versioning-Macros.top_of_page">Versioning Macros</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Versioning Macros</refname>
+<refpurpose>Versioning utility macros</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="clutter-Versioning-Macros.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="CLUTTER-MAJOR-VERSION:CAPS">CLUTTER_MAJOR_VERSION</link>
+#define             <link linkend="CLUTTER-MINOR-VERSION:CAPS">CLUTTER_MINOR_VERSION</link>
+#define             <link linkend="CLUTTER-MICRO-VERSION:CAPS">CLUTTER_MICRO_VERSION</link>
+#define             <link linkend="CLUTTER-VERSION:CAPS">CLUTTER_VERSION</link>
+#define             <link linkend="CLUTTER-VERSION-S:CAPS">CLUTTER_VERSION_S</link>
+#define             <link linkend="CLUTTER-VERSION-HEX:CAPS">CLUTTER_VERSION_HEX</link>
+#define             <link linkend="CLUTTER-CHECK-VERSION:CAPS">CLUTTER_CHECK_VERSION</link>               (major,minor,micro)
+#define             <link linkend="CLUTTER-FLAVOUR:CAPS">CLUTTER_FLAVOUR</link>
+#define             <link linkend="CLUTTER-COGL:CAPS">CLUTTER_COGL</link>
+#define             <link linkend="CLUTTER-NO-FPU:CAPS">CLUTTER_NO_FPU</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="clutter-Versioning-Macros.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Clutter offers a set of macros for checking the version of the library
+an application was linked to.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="clutter-Versioning-Macros.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="CLUTTER-MAJOR-VERSION:CAPS" role="macro">
+<title>CLUTTER_MAJOR_VERSION</title>
+<indexterm zone="CLUTTER-MAJOR-VERSION:CAPS"><primary>CLUTTER_MAJOR_VERSION</primary></indexterm><programlisting>#define CLUTTER_MAJOR_VERSION   (0)
+</programlisting>
+<para>
+The major version of the Clutter library (1, if <link linkend="CLUTTER-VERSION:CAPS"><literal>CLUTTER_VERSION</literal></link> is 1.2.3)</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-MINOR-VERSION:CAPS" role="macro">
+<title>CLUTTER_MINOR_VERSION</title>
+<indexterm zone="CLUTTER-MINOR-VERSION:CAPS"><primary>CLUTTER_MINOR_VERSION</primary></indexterm><programlisting>#define CLUTTER_MINOR_VERSION   (8)
+</programlisting>
+<para>
+The minor version of the Clutter library (2, if <link linkend="CLUTTER-VERSION:CAPS"><literal>CLUTTER_VERSION</literal></link> is 1.2.3)</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-MICRO-VERSION:CAPS" role="macro">
+<title>CLUTTER_MICRO_VERSION</title>
+<indexterm zone="CLUTTER-MICRO-VERSION:CAPS"><primary>CLUTTER_MICRO_VERSION</primary></indexterm><programlisting>#define CLUTTER_MICRO_VERSION   (2)
+</programlisting>
+<para>
+The micro version of the Clutter library (3, if <link linkend="CLUTTER-VERSION:CAPS"><literal>CLUTTER_VERSION</literal></link> is 1.2.3)</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-VERSION:CAPS" role="macro">
+<title>CLUTTER_VERSION</title>
+<indexterm zone="CLUTTER-VERSION:CAPS"><primary>CLUTTER_VERSION</primary></indexterm><programlisting>#define CLUTTER_VERSION         0.8.2
+</programlisting>
+<para>
+The full version of the Clutter library, like 1.2.3</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-VERSION-S:CAPS" role="macro">
+<title>CLUTTER_VERSION_S</title>
+<indexterm zone="CLUTTER-VERSION-S:CAPS"><primary>CLUTTER_VERSION_S</primary></indexterm><programlisting>#define CLUTTER_VERSION_S       "0.8.2"
+</programlisting>
+<para>
+The full version of the Clutter library, in string form (suited for
+string concatenation)</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-VERSION-HEX:CAPS" role="macro">
+<title>CLUTTER_VERSION_HEX</title>
+<indexterm zone="CLUTTER-VERSION-HEX:CAPS"><primary>CLUTTER_VERSION_HEX</primary></indexterm><programlisting>#define             CLUTTER_VERSION_HEX</programlisting>
+<para>
+Numerically encoded version of the Clutter library, like 0x010203</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="CLUTTER-CHECK-VERSION:CAPS" role="macro">
+<title>CLUTTER_CHECK_VERSION()</title>
+<indexterm zone="CLUTTER-CHECK-VERSION:CAPS"><primary>CLUTTER_CHECK_VERSION</primary></indexterm><programlisting>#define             CLUTTER_CHECK_VERSION(major,minor,micro)</programlisting>
+<para>
+Evaluates to <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the version of the Clutter library is greater
+than <parameter>major</parameter>, <parameter>minor</parameter> and <parameter>micro</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>major</parameter>&nbsp;:</term>
+<listitem><simpara> major version, like 1 in 1.2.3
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>minor</parameter>&nbsp;:</term>
+<listitem><simpara> minor version, like 2 in 1.2.3
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>micro</parameter>&nbsp;:</term>
+<listitem><simpara> micro version, like 3 in 1.2.3
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CLUTTER-FLAVOUR:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_FLAVOUR</title>
+<indexterm zone="CLUTTER-FLAVOUR:CAPS" role="0.4"><primary>CLUTTER_FLAVOUR</primary></indexterm><programlisting>#define CLUTTER_FLAVOUR         "glx"
+</programlisting>
+<para>
+GL Windowing system used</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-COGL:CAPS" role="macro" condition="since:0.4">
+<title>CLUTTER_COGL</title>
+<indexterm zone="CLUTTER-COGL:CAPS" role="0.4"><primary>CLUTTER_COGL</primary></indexterm><programlisting>#define CLUTTER_COGL            "gl"
+</programlisting>
+<para>
+Cogl (internal GL abstraction utility library) backend. Can be "gl" or
+"gles" currently</para>
+<para>
+
+</para><para role="since">Since  0.4
+</para></refsect2>
+<refsect2 id="CLUTTER-NO-FPU:CAPS" role="macro">
+<title>CLUTTER_NO_FPU</title>
+<indexterm zone="CLUTTER-NO-FPU:CAPS"><primary>CLUTTER_NO_FPU</primary></indexterm><programlisting>#define CLUTTER_NO_FPU          CLUTTER_NO_FPU_MACRO_WAS_REMOVED
+</programlisting>
+<para>
+Set to 1 if Clutter was built without FPU (i.e fixed math), 0 otherwise
+</para>
+<para>
+<parameter>Deprecated</parameter>: 0.6: This macro is no longer defined (identical code is used
+ regardless the presence of FPU).</para>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

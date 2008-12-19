@@ -1,0 +1,209 @@
+<!-- ##### SECTION Title ##### -->
+Primitives
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION cogl_color ##### -->
+<para>
+
+</para>
+
+@color: 
+
+
+<!-- ##### FUNCTION cogl_path_fill ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_path_stroke ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_path_move_to ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cogl_path_close ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION cogl_path_line_to ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cogl_path_curve_to ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@x3: 
+@y3: 
+
+
+<!-- ##### FUNCTION cogl_path_arc ##### -->
+<para>
+
+</para>
+
+@center_x: 
+@center_y: 
+@radius_x: 
+@radius_y: 
+@angle_1: 
+@angle_2: 
+
+
+<!-- ##### FUNCTION cogl_path_rel_move_to ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cogl_path_rel_line_to ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+
+
+<!-- ##### FUNCTION cogl_path_rel_curve_to ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+@x3: 
+@y3: 
+
+
+<!-- ##### FUNCTION cogl_path_line ##### -->
+<para>
+
+</para>
+
+@x1: 
+@y1: 
+@x2: 
+@y2: 
+
+
+<!-- ##### FUNCTION cogl_path_polyline ##### -->
+<para>
+
+</para>
+
+@coords: 
+@num_points: 
+
+
+<!-- ##### FUNCTION cogl_path_polygon ##### -->
+<para>
+
+</para>
+
+@coords: 
+@num_points: 
+
+
+<!-- ##### FUNCTION cogl_path_rectangle ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION cogl_path_round_rectangle ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+@radius: 
+@arc_step: 
+
+
+<!-- ##### FUNCTION cogl_path_ellipse ##### -->
+<para>
+
+</para>
+
+@center_x: 
+@center_y: 
+@radius_x: 
+@radius_y: 
+
+
+<!-- ##### FUNCTION cogl_rectangle ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+
+
+<!-- ##### FUNCTION cogl_rectanglex ##### -->
+<para>
+
+</para>
+
+@x: 
+@y: 
+@width: 
+@height: 
+
+

@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Behaviours</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="prev" href="clutter-animation-timelines.html" title="Timelines">
+<link rel="next" href="clutter-animation-effects.html" title="Effects">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="clutter-animation-timelines.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="clutter-animations.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-animation-effects.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="clutter-animation-behaviours"></a>Behaviours</h2></div></div></div>
+<p>
+
+  With a large application containing many animations, the use of just
+  timelines can become unweldy and difficult to manage with much code
+  duplication in the new-frame handlers that can require over complex
+  code changes for minor animation modifications. To ease these
+  problems the #ClutterAlpha and #ClutterBehaviour classes were created.
+
+  </p>
+<p>
+
+  #ClutterAlpha and #ClutterBehaviour attempt to generalise the
+  new-frame function by defining common actions or behaviours that can
+  be quickly modified, applied to multiple actors or mixed on a single
+  actor.
+
+  </p>
+<p>
+
+  A ClutterAlpha is simply a 'function of time' (not pixel alpha!). It
+  is created by referencing a source timeline and a function which
+  produces a value between 0 and %CLUTTER_ALPHA_MAX dependant on the
+  timeline position. Various prebuilt alpha functions are included
+  with Clutter these include
+
+  </p>
+<p>
+
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_RAMP_INC</span></p></td>
+<td>Increasing ramp function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_RAMP_DEC</span></p></td>
+<td>Decreasing ramp function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_RAMP</span></p></td>
+<td>Full ramp function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SINE_INC</span></p></td>
+<td>Increasing sine function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SINE_DEC</span></p></td>
+<td>Decreasing sine function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SINE_HALF</span></p></td>
+<td>Half sine function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SINE</span></p></td>
+<td>Full sine function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SQUARE</span></p></td>
+<td>Square waveform ("step") function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SMOOTHSTEP_INC</span></p></td>
+<td>Increasing smooth transition step
+        function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_SMOOTHSTEP_DEC</span></p></td>
+<td>Decreasing smooth transition step
+        function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_EXP_INC</span></p></td>
+<td>Increasing exponential function</td>
+</tr>
+<tr>
+<td><p><span class="term">%CLUTTER_ALPHA_EXP_DEC</span></p></td>
+<td>Decreasing exponential function</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+  </p>
+<p>
+
+  A Behaviour is created with a #ClutterAlpha and a set of limits for
+  whatever the behaviour modifys actor wise. The current #ClutterAlpha
+  value is then mapped to a value between these limits and this value
+  set on any applied actors. With the #ClutterAlpha's underlying
+  timeline playing the produced value will change and the behaviour
+  will animate the actor.
+
+  </p>
+<p>
+
+  A #ClutterBehaviour is effectively 'driven' by a supplied #ClutterAlpha and
+  when then applied to an actor it will modify a visual property or
+  feature of the actor dependant on the Alpha's value. For example a
+  path based behaviour applied to an actor will alter its position
+  along the path dependant on the current alpha value over time. The
+  actual motion will depend on the chosen #ClutterAlphaFunc - a
+  #CLUTTER_ALPHA_RAMP_INC making it to move at constant speed along the
+  path, a #CLUTTER_ALPHA_SINE making it alternate from one end of the
+  path to the other with non constant speed.
+
+  </p>
+<p>
+
+  Multiple behaviours can of course be applied to an actor as well as
+  a single behaviour being applied to multiple actors.  The separation
+  of timelines, alphas and behaviours allows for a single timeline to
+  drive many behaviours each potentially using different alpha
+  functions. Behaviour parameters can also be changed on the fly.
+
+  </p>
+<p>
+  
+  </p>
+<div class="figure">
+<a name="behaviour-path-alpha"></a><p class="title"><b>Figure 5. Effects of alpha functions on a path</b></p>
+<div class="figure-contents">
+<div><img src="path-alpha-func.png" alt="Effects of alpha functions on a path"></div>
+<div class="blockquote"><blockquote class="blockquote">
+    The actors position between the path's end points directly correlates
+    to the #ClutterAlpha's current alpha value driving the behaviour. With
+    the #ClutterAlpha's function set to %CLUTTER_ALPHA_RAMP_INC the actor
+    will follow the path at a constant velocity, but when changing to
+    %CLUTTER_ALPHA_SINE_INC the actor initially accelerates before quickly
+    decelerating.
+    </blockquote></div>
+</div>
+</div>
+<p><br class="figure-break">
+
+  </p>
+<p>
+
+  The behaviours included in Clutter are
+
+  </p>
+<p>
+
+  </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">#ClutterBehaviourBspline</span></p></td>
+<td>Moves actors along a B-spline path</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourDepth</span></p></td>
+<td>Changes the depth of actors</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourEllipse</span></p></td>
+<td>Moves actors along an ellipsis</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourOpacity</span></p></td>
+<td>Changes the opacity of actors</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourPath</span></p></td>
+<td>Moves actors along a path</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourRotate</span></p></td>
+<td>Rotates actors along an axis</td>
+</tr>
+<tr>
+<td><p><span class="term">#ClutterBehaviourScale</span></p></td>
+<td>Changes the scaling factors of
+      actors</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+  </p>
+<div class="example">
+<a name="clutter-timeline-example"></a><p class="title"><b>Example 10. </b></p>
+<div class="example-contents">
+<p>
+  The following example demonstrates an ellipse behaviour in action.
+  </p>
+<pre class="programlisting">
+#include &lt;clutter/clutter.h&gt;
+
+int
+main (int argc, char *argv[])
+{
+  ClutterTimeline  *timeline;
+  ClutterBehaviour *behave;
+  ClutterAlpha     *alpha;
+  ClutterActor     *stage, *actor;
+  GdkPixbuf        *pixbuf;
+
+  clutter_init (&amp;argc, &amp;argv);
+
+  stage = clutter_stage_get_default ();
+
+  pixbuf = gdk_pixbuf_new_from_file ("ohpowers.png", NULL);
+
+  actor  = clutter_texture_new_from_pixbuf (pixbuf);
+
+  clutter_container_add_actor (CLUTTER_CONTAINER (stage), actor);
+
+  timeline = clutter_timeline_new_for_duration (4000); /* milliseconds */
+  clutter_timeline_set_loop (timeline, TRUE);
+
+  /* Set an alpha func to power the behaviour */
+  alpha = clutter_alpha_new_full (timeline,
+                                  CLUTTER_ALPHA_SINE,
+                                  NULL, NULL);
+
+  behave = clutter_behaviour_ellipse_new (alpha, 
+					  200,               /* center x */
+					  200,               /* center y */
+					  400,               /* width */
+					  300,               /* height */
+					  CLUTTER_ROTATE_CW, /* direction */
+					  0.0,               /* initial angle */
+					  360.0);            /* final angle */
+
+  clutter_behaviour_apply (behave, actor);
+
+  clutter_actor_show_all (stage);
+
+  clutter_timeline_start (timeline);
+
+  clutter_main();
+
+  /* clean up */
+  g_object_unref (behave);
+  g_object_unref (timeline);
+
+  return 0;
+}
+
+  </pre>
+</div>
+</div>
+<br class="example-break"><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>Behaviour parameters can be changed whilst a animation is running</div>
+<p>
+  There can be many #ClutterAlpha's attached to a single timeline. There
+  can be many behaviours for a #ClutterAlpha. There can be many behaviours
+  applied to an actor. A #ClutterScore can be used to chain many behaviour
+  together.
+  </p>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p>Combining behaviours that effect the same actor properties
+  (i.e two separate paths) will cause unexpected results. The values
+  will not be merged in any way with essentially a the last applied
+  behaviour taking precedence.</p>
+</div>
+<p>
+     Tips for implementing a new behaviour can be found here.
+     </p>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

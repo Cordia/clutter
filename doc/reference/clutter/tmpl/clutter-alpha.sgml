@@ -1,0 +1,329 @@
+<!-- ##### SECTION Title ##### -->
+ClutterAlpha
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterAlpha ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG ClutterAlpha:alpha ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG ClutterAlpha:timeline ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterAlphaClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION clutter_alpha_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_alpha_new_full ##### -->
+<para>
+
+</para>
+
+@timeline: 
+@func: 
+@data: 
+@destroy: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_alpha_get_alpha ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_MAX_ALPHA ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### USER_FUNCTION ClutterAlphaFunc ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_alpha_set_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@func: 
+@data: 
+@destroy: 
+
+
+<!-- ##### FUNCTION clutter_alpha_set_closure ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@closure: 
+
+
+<!-- ##### FUNCTION clutter_alpha_set_timeline ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@timeline: 
+
+
+<!-- ##### FUNCTION clutter_alpha_get_timeline ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_RAMP_INC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_ramp_inc_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_RAMP_DEC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_ramp_dec_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_RAMP ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_ramp_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SINE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_sine_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SINE_INC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_sine_inc_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SINE_DEC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_sine_dec_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SINE_HALF ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_sine_half_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SQUARE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_square_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SMOOTHSTEP_INC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_smoothstep_inc_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_SMOOTHSTEP_DEC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_smoothstep_dec_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_EXP_INC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_exp_inc_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+
+<!-- ##### MACRO CLUTTER_ALPHA_EXP_DEC ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION clutter_exp_dec_func ##### -->
+<para>
+
+</para>
+
+@alpha: 
+@dummy: 
+@Returns: 
+
+

@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ClutterScriptable</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="ch08.html" title="User interface definition">
+<link rel="prev" href="ClutterScript.html" title="ClutterScript">
+<link rel="next" href="ch09.html" title="Generic list model">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ClutterScript.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch08.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="ch09.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#clutter-ClutterScriptable.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#clutter-ClutterScriptable.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="clutter-ClutterScriptable"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="clutter-ClutterScriptable.top_of_page"></a>ClutterScriptable</span></h2>
+<p>ClutterScriptable — Override the UI definition parsing</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="clutter-ClutterScriptable.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a>;
+                    <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptableIface" title="ClutterScriptableIface">ClutterScriptableIface</a>;
+void                <a class="link" href="clutter-ClutterScriptable.html#clutter-scriptable-set-id" title="clutter_scriptable_set_id ()">clutter_scriptable_set_id</a>           (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *id);
+const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="clutter-ClutterScriptable.html#clutter-scriptable-get-id" title="clutter_scriptable_get_id ()">clutter_scriptable_get_id</a>           (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable);
+<a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="clutter-ClutterScriptable.html#clutter-scriptable-parse-custom-node" title="clutter_scriptable_parse_custom_node ()">clutter_scriptable_parse_custom_node</a>
+                                                        (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         <a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/json-glib/json-glib-JsonNode.html#JsonNode"
+>JsonNode</a> *node);
+void                <a class="link" href="clutter-ClutterScriptable.html#clutter-scriptable-set-custom-property" title="clutter_scriptable_set_custom_property ()">clutter_scriptable_set_custom_property</a>
+                                                        (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         <a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-ClutterScriptable.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptableIface" title="ClutterScriptableIface"><span class="type">ClutterScriptableIface</span></a> interface exposes the UI definition parsing
+process to external classes. By implementing this interface, a class can
+override the UI definition parsing and transform complex data types into
+GObject properties, or allow custom properties.
+</p>
+<p>
+<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable"><span class="type">ClutterScriptable</span></a> is available since Clutter 0.6</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="clutter-ClutterScriptable.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="ClutterScriptable"></a><h3>ClutterScriptable</h3>
+<pre class="programlisting">typedef struct _ClutterScriptable ClutterScriptable;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="ClutterScriptableIface"></a><h3>ClutterScriptableIface</h3>
+<pre class="programlisting">typedef struct {
+  void         (* set_id)              (ClutterScriptable *scriptable,
+                                        const gchar       *name);
+  const gchar *(* get_id)              (ClutterScriptable *scriptable);
+
+  gboolean     (* parse_custom_node)   (ClutterScriptable *scriptable,
+                                        ClutterScript     *script,
+                                        GValue            *value,
+                                        const gchar       *name,
+                                        JsonNode          *node);
+  void         (* set_custom_property) (ClutterScriptable *scriptable,
+                                        ClutterScript     *script,
+                                        const gchar       *name,
+                                        const GValue      *value);
+} ClutterScriptableIface;
+</pre>
+<p>
+Interface for implementing "scriptable" objects. An object implementing
+this interface can override the parsing and properties setting sequence
+when loading a UI definition data with <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>set_id</code></em> ()</span></p></td>
+<td> virtual function for setting the id of a scriptable object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_id</code></em> ()</span></p></td>
+<td> virtual function for getting the id of a scriptable object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>parse_custom_node</code></em> ()</span></p></td>
+<td> virtual function for parsing complex data containers
+  into GObject properties
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>set_custom_property</code></em> ()</span></p></td>
+<td> virtual function for setting a custom property
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-scriptable-set-id"></a><h3>clutter_scriptable_set_id ()</h3>
+<pre class="programlisting">void                clutter_scriptable_set_id           (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *id);</pre>
+<p>
+Sets <em class="parameter"><code>id</code></em> as the unique Clutter script it for this instance of
+<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptableIface" title="ClutterScriptableIface"><span class="type">ClutterScriptableIface</span></a>.
+</p>
+<p>
+This name can be used by user interface designer applications to
+define a unique name for an object constructable using the UI
+definition language parsed by <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scriptable</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable"><span class="type">ClutterScriptable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> id of the object
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-scriptable-get-id"></a><h3>clutter_scriptable_get_id ()</h3>
+<pre class="programlisting">const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a>*        clutter_scriptable_get_id           (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable);</pre>
+<p>
+Retrieves the id of <em class="parameter"><code>scriptable</code></em> set using <a class="link" href="clutter-ClutterScriptable.html#clutter-scriptable-set-id" title="clutter_scriptable_set_id ()"><code class="function">clutter_scriptable_set_id()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scriptable</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable"><span class="type">ClutterScriptable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the id of the object. The returned string is owned by
+  the scriptable object and should never be modified of freed
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-scriptable-parse-custom-node"></a><h3>clutter_scriptable_parse_custom_node ()</h3>
+<pre class="programlisting"><a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>            clutter_scriptable_parse_custom_node
+                                                        (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         <a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         <a
+href="/usr/share/gtk-doc/html/json-glib/json-glib-JsonNode.html#JsonNode"
+>JsonNode</a> *node);</pre>
+<p>
+Parses the passed JSON node. The implementation must set the type
+of the passed <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+><span class="type">GValue</span></a> pointer using <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#g-value-init"
+><code class="function">g_value_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scriptable</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable"><span class="type">ClutterScriptable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> creating the scriptable instance
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the generic value to be set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> the name of the node
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>node</code></em> :</span></p></td>
+<td> the JSON node to be parsed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the node was successfully parsed, <a
+href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="clutter-scriptable-set-custom-property"></a><h3>clutter_scriptable_set_custom_property ()</h3>
+<pre class="programlisting">void                clutter_scriptable_set_custom_property
+                                                        (<a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable">ClutterScriptable</a> *scriptable,
+                                                         <a class="link" href="ClutterScript.html" title="ClutterScript">ClutterScript</a> *script,
+                                                         const <a
+href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"
+>gchar</a> *name,
+                                                         const <a
+href="/usr/share/gtk-doc/html/gobject/gobject-Generic-values.html#GValue"
+>GValue</a> *value);</pre>
+<p>
+Overrides the common properties setting. The underlying virtual
+function should be used when implementing custom properties.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scriptable</code></em> :</span></p></td>
+<td> a <a class="link" href="clutter-ClutterScriptable.html#ClutterScriptable" title="ClutterScriptable"><span class="type">ClutterScriptable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>script</code></em> :</span></p></td>
+<td> the <a class="link" href="ClutterScript.html" title="ClutterScript"><span class="type">ClutterScript</span></a> creating the scriptable instance
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> the name of the property
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> the value of the property
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.6
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

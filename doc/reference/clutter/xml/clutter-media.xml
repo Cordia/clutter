@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="ClutterMedia">
+<refmeta>
+<refentrytitle role="top_of_page" id="ClutterMedia.top_of_page">ClutterMedia</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>CLUTTER Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>ClutterMedia</refname>
+<refpurpose>An interface for controlling playback of media data.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="ClutterMedia.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="ClutterMedia-struct">ClutterMedia</link>;
+                    <link linkend="ClutterMediaInterface">ClutterMediaInterface</link>;
+<link linkend="void">void</link>                <link linkend="clutter-media-set-uri">clutter_media_set_uri</link>               (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         const <link linkend="char">char</link> *uri);
+const <link linkend="char">char</link>*         <link linkend="clutter-media-get-uri">clutter_media_get_uri</link>               (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="void">void</link>                <link linkend="clutter-media-set-playing">clutter_media_set_playing</link>           (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="gboolean">gboolean</link> playing);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-media-get-playing">clutter_media_get_playing</link>           (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="void">void</link>                <link linkend="clutter-media-set-position">clutter_media_set_position</link>          (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="int">int</link> position);
+<link linkend="int">int</link>                 <link linkend="clutter-media-get-position">clutter_media_get_position</link>          (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="void">void</link>                <link linkend="clutter-media-set-volume">clutter_media_set_volume</link>            (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="double">double</link> volume);
+<link linkend="double">double</link>              <link linkend="clutter-media-get-volume">clutter_media_get_volume</link>            (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="gboolean">gboolean</link>            <link linkend="clutter-media-get-can-seek">clutter_media_get_can_seek</link>          (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="int">int</link>                 <link linkend="clutter-media-get-buffer-percent">clutter_media_get_buffer_percent</link>    (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="int">int</link>                 <link linkend="clutter-media-get-duration">clutter_media_get_duration</link>          (<link linkend="ClutterMedia">ClutterMedia</link> *media);
+<link linkend="void">void</link>                <link linkend="clutter-media-set-filename">clutter_media_set_filename</link>          (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         const <link linkend="gchar">gchar</link> *filename);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="ClutterMedia.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----ClutterMedia
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="ClutterMedia.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="ClutterMedia--buffer-percent">buffer-percent</link>&quot;           <link linkend="gint">gint</link>                  : Read
+  &quot;<link linkend="ClutterMedia--can-seek">can-seek</link>&quot;                 <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="ClutterMedia--duration">duration</link>&quot;                 <link linkend="gint">gint</link>                  : Read
+  &quot;<link linkend="ClutterMedia--playing">playing</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="ClutterMedia--position">position</link>&quot;                 <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="ClutterMedia--uri">uri</link>&quot;                      <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="ClutterMedia--volume">volume</link>&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="ClutterMedia.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="ClutterMedia-eos">eos</link>&quot;                                            : Run Last
+  &quot;<link linkend="ClutterMedia-error">error</link>&quot;                                          : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="ClutterMedia.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="ClutterMedia"><type>ClutterMedia</type></link> is an interface  for controlling playback of media data.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="ClutterMedia.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="ClutterMedia-struct" role="struct">
+<title>ClutterMedia</title>
+<indexterm zone="ClutterMedia-struct"><primary>ClutterMedia</primary></indexterm><programlisting>typedef struct _ClutterMedia ClutterMedia;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="ClutterMediaInterface" role="struct">
+<title>ClutterMediaInterface</title>
+<indexterm zone="ClutterMediaInterface"><primary>ClutterMediaInterface</primary></indexterm><programlisting>typedef struct {
+  GTypeInterface	    base_iface;
+  void (*set_uri)           (ClutterMedia *media,
+			     const char   *uri);
+  const char *(*get_uri)    (ClutterMedia *media);
+  void (*set_playing)       (ClutterMedia *media,
+			     gboolean      playing);
+  gboolean (*get_playing)   (ClutterMedia *media);
+  void (*set_position)      (ClutterMedia *media,
+			     int           position);
+  int (*get_position)       (ClutterMedia *media);
+  void (*set_volume)        (ClutterMedia *media,
+			     double        volume);
+  double (*get_volume)      (ClutterMedia *media);
+  gboolean (*can_seek)      (ClutterMedia *media);
+  int (*get_buffer_percent) (ClutterMedia *media);
+  int (*get_duration)       (ClutterMedia *media);
+
+  /* signals */
+  void (* eos)                (ClutterMedia *media);
+  void (* error)              (ClutterMedia *media,
+			       GError       *error);
+} ClutterMediaInterface;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="clutter-media-set-uri" role="function">
+<title>clutter_media_set_uri ()</title>
+<indexterm zone="clutter-media-set-uri"><primary>clutter_media_set_uri</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_media_set_uri               (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         const <link linkend="char">char</link> *uri);</programlisting>
+<para>
+Sets the URI of <parameter>media</parameter> to <parameter>uri</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uri</parameter>&nbsp;:</term>
+<listitem><simpara> URI
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-uri" role="function">
+<title>clutter_media_get_uri ()</title>
+<indexterm zone="clutter-media-get-uri"><primary>clutter_media_get_uri</primary></indexterm><programlisting>const <link linkend="char">char</link>*         clutter_media_get_uri               (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the URI from <parameter>media</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The URI as a string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-set-playing" role="function">
+<title>clutter_media_set_playing ()</title>
+<indexterm zone="clutter-media-set-playing"><primary>clutter_media_set_playing</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_media_set_playing           (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="gboolean">gboolean</link> playing);</programlisting>
+<para>
+Starts or stops <parameter>media</parameter> playing.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>playing</parameter>&nbsp;:</term>
+<listitem><simpara> TRUE to start playing, FALSE to stop.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-playing" role="function">
+<title>clutter_media_get_playing ()</title>
+<indexterm zone="clutter-media-get-playing"><primary>clutter_media_get_playing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_media_get_playing           (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the playing status of <parameter>media</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if playing, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if stopped.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-set-position" role="function">
+<title>clutter_media_set_position ()</title>
+<indexterm zone="clutter-media-set-position"><primary>clutter_media_set_position</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_media_set_position          (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="int">int</link> position);</programlisting>
+<para>
+Sets the playback position of <parameter>media</parameter> to <parameter>position</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>position</parameter>&nbsp;:</term>
+<listitem><simpara> The desired position.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-position" role="function">
+<title>clutter_media_get_position ()</title>
+<indexterm zone="clutter-media-get-position"><primary>clutter_media_get_position</primary></indexterm><programlisting><link linkend="int">int</link>                 clutter_media_get_position          (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the position of <parameter>media</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The playback position.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-set-volume" role="function">
+<title>clutter_media_set_volume ()</title>
+<indexterm zone="clutter-media-set-volume"><primary>clutter_media_set_volume</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_media_set_volume            (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         <link linkend="double">double</link> volume);</programlisting>
+<para>
+Sets the playback volume of <parameter>media</parameter> to <parameter>volume</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>volume</parameter>&nbsp;:</term>
+<listitem><simpara> The volume as a double between 0.0 and 1.0
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-volume" role="function">
+<title>clutter_media_get_volume ()</title>
+<indexterm zone="clutter-media-get-volume"><primary>clutter_media_get_volume</primary></indexterm><programlisting><link linkend="double">double</link>              clutter_media_get_volume            (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the playback volume of <parameter>media</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The playback volume between 0.0 and 1.0
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-can-seek" role="function">
+<title>clutter_media_get_can_seek ()</title>
+<indexterm zone="clutter-media-get-can-seek"><primary>clutter_media_get_can_seek</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            clutter_media_get_can_seek          (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves whether <parameter>media</parameter> is seekable or not.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>media</parameter> can seek, <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-buffer-percent" role="function">
+<title>clutter_media_get_buffer_percent ()</title>
+<indexterm zone="clutter-media-get-buffer-percent"><primary>clutter_media_get_buffer_percent</primary></indexterm><programlisting><link linkend="int">int</link>                 clutter_media_get_buffer_percent    (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the amount of the stream that is buffered.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> percentage value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-get-duration" role="function">
+<title>clutter_media_get_duration ()</title>
+<indexterm zone="clutter-media-get-duration"><primary>clutter_media_get_duration</primary></indexterm><programlisting><link linkend="int">int</link>                 clutter_media_get_duration          (<link linkend="ClutterMedia">ClutterMedia</link> *media);</programlisting>
+<para>
+Retrieves the duration of the media stream that <parameter>media</parameter> represents.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The length of the media stream.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="clutter-media-set-filename" role="function">
+<title>clutter_media_set_filename ()</title>
+<indexterm zone="clutter-media-set-filename"><primary>clutter_media_set_filename</primary></indexterm><programlisting><link linkend="void">void</link>                clutter_media_set_filename          (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                         const <link linkend="gchar">gchar</link> *filename);</programlisting>
+<para>
+Sets the filename of the media source.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="ClutterMedia"><type>ClutterMedia</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> A filename to media file.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="ClutterMedia.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="ClutterMedia--buffer-percent"><title>The <literal>&quot;buffer-percent&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--buffer-percent"><primary>ClutterMedia:buffer-percent</primary></indexterm><programlisting>  &quot;buffer-percent&quot;           <link linkend="gint">gint</link>                  : Read</programlisting>
+<para>The percentage the current stream buffer is filled.</para><para>Allowed values: [0,100]</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="ClutterMedia--can-seek"><title>The <literal>&quot;can-seek&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--can-seek"><primary>ClutterMedia:can-seek</primary></indexterm><programlisting>  &quot;can-seek&quot;                 <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>TRUE if the current stream is seekable.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterMedia--duration"><title>The <literal>&quot;duration&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--duration"><primary>ClutterMedia:duration</primary></indexterm><programlisting>  &quot;duration&quot;                 <link linkend="gint">gint</link>                  : Read</programlisting>
+<para>The duration of the current stream in seconds.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="ClutterMedia--playing"><title>The <literal>&quot;playing&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--playing"><primary>ClutterMedia:playing</primary></indexterm><programlisting>  &quot;playing&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>TRUE if playing.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="ClutterMedia--position"><title>The <literal>&quot;position&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--position"><primary>ClutterMedia:position</primary></indexterm><programlisting>  &quot;position&quot;                 <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>The position in the current stream in seconds.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="ClutterMedia--uri"><title>The <literal>&quot;uri&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--uri"><primary>ClutterMedia:uri</primary></indexterm><programlisting>  &quot;uri&quot;                      <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>The loaded URI.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="ClutterMedia--volume"><title>The <literal>&quot;volume&quot;</literal> property</title>
+<indexterm zone="ClutterMedia--volume"><primary>ClutterMedia:volume</primary></indexterm><programlisting>  &quot;volume&quot;                   <link linkend="gdouble">gdouble</link>               : Read / Write</programlisting>
+<para>The audio volume.</para><para>Allowed values: [0,100]</para>
+<para>Default value: 50</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="ClutterMedia.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="ClutterMedia-eos"><title>The <literal>&quot;eos&quot;</literal> signal</title>
+<indexterm zone="ClutterMedia-eos" role="0.2"><primary>ClutterMedia::eos</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::eos signal is emitted each time the media stream ends.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterMedia"><type>ClutterMedia</type></link> instance that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.2
+</para></refsect2><refsect2 id="ClutterMedia-error"><title>The <literal>&quot;error&quot;</literal> signal</title>
+<indexterm zone="ClutterMedia-error" role="0.2"><primary>ClutterMedia::error</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="ClutterMedia">ClutterMedia</link> *media,
+                                                        <link linkend="gpointer">gpointer</link>      error,
+                                                        <link linkend="gpointer">gpointer</link>      user_data)      : Run Last</programlisting>
+<para>
+The ::error signal is emitted each time an error occurred.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>media</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="ClutterMedia"><type>ClutterMedia</type></link> instance that received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="GError"><type>GError</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist><para>Since  0.2
+</para></refsect2>
+</refsect1>
+
+
+
+</refentry>

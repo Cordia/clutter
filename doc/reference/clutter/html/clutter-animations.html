@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Creating Animations with Clutter</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="Clutter 0.8.2 Reference Manual">
+<link rel="up" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="prev" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="next" href="clutter-animation-timelines.html" title="Timelines">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="clutter-overview.html" title="Part I. Overview">
+<link rel="part" href="building-clutter.html" title="Part II. Building Clutter">
+<link rel="part" href="clutterbase.html" title="Part III. Clutter Core Reference">
+<link rel="chapter" href="ch01.html" title="Abstract classes and interfaces">
+<link rel="chapter" href="ch02.html" title="Base actors">
+<link rel="chapter" href="ch03.html" title="Container actors">
+<link rel="part" href="clutteranimation.html" title="Part IV. Clutter Animation Framework">
+<link rel="chapter" href="ch04.html" title="Base classes">
+<link rel="chapter" href="ch05.html" title="Behaviours">
+<link rel="chapter" href="ch06.html" title="Simple effects API">
+<link rel="part" href="pt05.html" title="Part V. Clutter Tools">
+<link rel="chapter" href="ch07.html" title="General purpose API">
+<link rel="chapter" href="ch08.html" title="User interface definition">
+<link rel="chapter" href="ch09.html" title="Generic list model">
+<link rel="part" href="pt06.html" title="Part VI. Clutter Backends">
+<link rel="part" href="pt07.html" title="Part VII. Additional Documentation">
+<link rel="chapter" href="clutter-subclassing-ClutterActor.html" title="Implementing a new actor">
+<link rel="chapter" href="clutter-animations.html" title="Creating Animations with Clutter">
+<link rel="chapter" href="creating-your-own-behaviours.html" title="Creating You Own Behaviours">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="index" href="ix02.html" title="Index of deprecated symbols">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.2">
+<link rel="index" href="ix04.html" title="Index of new symbols in 0.4">
+<link rel="index" href="ix05.html" title="Index of new symbols in 0.6">
+<link rel="index" href="ix06.html" title="Index of new symbols in 0.8">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="clutter-subclassing-ClutterActor.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="pt07.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Clutter 0.8.2 Reference Manual</th>
+<td><a accesskey="n" href="clutter-animation-timelines.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter" lang="en">
+<div class="titlepage"><div>
+<div><h2 class="title">
+<a name="clutter-animations"></a>Creating Animations with Clutter</h2></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">Matthew</span> <span class="surname">Allum</span>
+</h3>
+<div class="affiliation"><div class="address"><p><br>
+          <code class="email">&lt;<a class="email" href="mailto:mallum@openedhand.com">mallum@openedhand.com</a>&gt;</code><br>
+        </p></div></div>
+</div></div>
+</div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="clutter-animations.html#clutter-animation-basic">Basic Animations</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-timelines.html">Timelines</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-behaviours.html">Behaviours</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-effects.html">Effects</a></span></dt>
+<dt><span class="section"><a href="clutter-animation-conclusion.html">Conclusion</a></span></dt>
+</dl></div>
+<p>
+
+  With Clutter using hardware accelration for graphics rendering,
+  complex and fast animations are possible. This chapter describes basic
+  techniques and the utilities Clutter provides in aiding animation
+  creation.
+
+  </p>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="clutter-animation-basic"></a>Basic Animations</h2></div></div></div>
+<p>
+
+   The most basic way to create animations with Clutter is via the use of
+   g_timeout_add(). This enables a callback function to be called at a
+   defined interval. The callback function can then modify actors visual
+   properties as to produce an animation.
+
+  </p>
+<div class="example">
+<a name="clutter-timeout-example"></a><p class="title"><b>Example 8. </b></p>
+<div class="example-contents">
+<p>
+  Simple Rotation...
+  </p>
+<pre class="programlisting">
+struct RotationClosure {
+  ClutterActor *actor;
+  ClutterFixed final_angle;
+  ClutterFixed current_angle;
+};
+
+static gboolean
+rotate_actor (gpointer data)
+{
+  RotationClosure *clos = data;
+
+  clutter_actor_set_rotationx (clos-&gt;actor, clos-&gt;current_angle, 0, 0, 0);
+
+  clos-&gt;current_angle += CFX_ONE;
+
+  if (clos-&gt;current_angle == clos-&gt;final_angle)
+    return FALSE;
+
+  return TRUE;
+}
+
+...
+  RotationClosure clos = { NULL, }
+
+  clos.actor = an_actor;
+  clos.final_angle = CLUTTER_FLOAT_TO_FIXED (360.0);
+  clos.current_angle = 0;
+
+  g_timeout_add (1000 / 360, /* fps to interval in milliseconds */
+                 rotate_actor,
+                 &amp;clos);
+  </pre>
+</div>
+</div>
+<br class="example-break"><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Priorities</h3>
+<p>
+
+  %G_PRIORITY_DEFAULT should always be used as the timeouts priority
+  (in case of g_timeout_add_full()) as not to intefere with Clutter's
+  scheduling of repaints and input event handling.
+
+  </p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="cogl-Shaders-and-Programmable-Pipeline">
+<refmeta>
+<refentrytitle role="top_of_page" id="cogl-Shaders-and-Programmable-Pipeline.top_of_page">Shaders and Programmable Pipeline</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>COGL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Shaders and Programmable Pipeline</refname>
+<refpurpose>Fuctions for accessing the programmable GL pipeline</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="cogl-Shaders-and-Programmable-Pipeline.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-create-shader">cogl_create_shader</link>                  (<link linkend="COGLenum">COGLenum</link> shader_type);
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-shader-ref">cogl_shader_ref</link>                     (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-shader-unref">cogl_shader_unref</link>                   (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-is-shader">cogl_is_shader</link>                      (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-shader-source">cogl_shader_source</link>                  (<link linkend="CoglHandle">CoglHandle</link> shader,
+                                                         const <link linkend="gchar">gchar</link> *source);
+<link linkend="void">void</link>                <link linkend="cogl-shader-compile">cogl_shader_compile</link>                 (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-shader-get-info-log">cogl_shader_get_info_log</link>            (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         <link linkend="guint">guint</link> size,
+                                                         <link linkend="gchar">gchar</link> *buffer);
+<link linkend="void">void</link>                <link linkend="cogl-shader-get-parameteriv">cogl_shader_get_parameteriv</link>         (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         <link linkend="COGLenum">COGLenum</link> pname,
+                                                         <link linkend="COGLint">COGLint</link> *dest);
+
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-create-program">cogl_create_program</link>                 (void);
+<link linkend="CoglHandle">CoglHandle</link>          <link linkend="cogl-program-ref">cogl_program_ref</link>                    (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-program-unref">cogl_program_unref</link>                  (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="gboolean">gboolean</link>            <link linkend="cogl-is-program">cogl_is_program</link>                     (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-program-attach-shader">cogl_program_attach_shader</link>          (<link linkend="CoglHandle">CoglHandle</link> program_handle,
+                                                         <link linkend="CoglHandle">CoglHandle</link> shader_handle);
+<link linkend="void">void</link>                <link linkend="cogl-program-link">cogl_program_link</link>                   (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="void">void</link>                <link linkend="cogl-program-use">cogl_program_use</link>                    (<link linkend="CoglHandle">CoglHandle</link> handle);
+<link linkend="COGLint">COGLint</link>             <link linkend="cogl-program-get-uniform-location">cogl_program_get_uniform_location</link>   (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         const <link linkend="gchar">gchar</link> *uniform_name);
+<link linkend="void">void</link>                <link linkend="cogl-program-uniform-1f">cogl_program_uniform_1f</link>             (<link linkend="COGLint">COGLint</link> uniform_no,
+                                                         <link linkend="gfloat">gfloat</link> value);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="cogl-Shaders-and-Programmable-Pipeline.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+COGL allows accessing the GL programmable pipeline in order to create
+vertex and fragment shaders.
+</para>
+<para>
+The only supported format is GLSL shaders.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="cogl-Shaders-and-Programmable-Pipeline.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="cogl-create-shader" role="function">
+<title>cogl_create_shader ()</title>
+<indexterm zone="cogl-create-shader"><primary>cogl_create_shader</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_create_shader                  (<link linkend="COGLenum">COGLenum</link> shader_type);</programlisting>
+<para>
+Create a new shader handle, use <link linkend="cogl-shader-source"><type>cogl_shader_source</type></link> to set the source code
+to be used on it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader_type</parameter>&nbsp;:</term>
+<listitem><simpara> CGL_VERTEX_SHADER or CGL_FRAGMENT_SHADER.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new shader handle.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-ref" role="function">
+<title>cogl_shader_ref ()</title>
+<indexterm zone="cogl-shader-ref"><primary>cogl_shader_ref</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_shader_ref                     (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Add an extra reference to a shader.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="CoglHandle"><type>CoglHandle</type></link> to a shader.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <parameter>handle</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-unref" role="function">
+<title>cogl_shader_unref ()</title>
+<indexterm zone="cogl-shader-unref"><primary>cogl_shader_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_shader_unref                   (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Removes a reference to a shader. If it was the last reference the
+shader object will be destroyed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="CoglHandle"><type>CoglHandle</type></link> to a shader.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-is-shader" role="function">
+<title>cogl_is_shader ()</title>
+<indexterm zone="cogl-is-shader"><primary>cogl_is_shader</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_is_shader                      (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Gets whether the given handle references an existing shader object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A CoglHandle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the handle references a shader,
+  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-source" role="function">
+<title>cogl_shader_source ()</title>
+<indexterm zone="cogl-shader-source"><primary>cogl_shader_source</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_shader_source                  (<link linkend="CoglHandle">CoglHandle</link> shader,
+                                                         const <link linkend="gchar">gchar</link> *source);</programlisting>
+<para>
+Replaces the current GLSL source associated with a shader with a new
+one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>shader</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>source</parameter>&nbsp;:</term>
+<listitem><simpara> GLSL shader source.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-compile" role="function">
+<title>cogl_shader_compile ()</title>
+<indexterm zone="cogl-shader-compile"><primary>cogl_shader_compile</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_shader_compile                 (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Compiles the shader, no return value, but the shader is now ready for
+linking into a program.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-get-info-log" role="function">
+<title>cogl_shader_get_info_log ()</title>
+<indexterm zone="cogl-shader-get-info-log"><primary>cogl_shader_get_info_log</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_shader_get_info_log            (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         <link linkend="guint">guint</link> size,
+                                                         <link linkend="gchar">gchar</link> *buffer);</programlisting>
+<para>
+Retrieves the information log for a coglobject, can be used in conjunction
+with <link linkend="cogl-shader-get-parameteriv"><type>cogl_shader_get_parameteriv</type></link> to retrieve the compiler warnings/error
+messages that caused a shader to not compile correctly, mainly useful for
+debugging purposes.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> maximum number of bytes to retrieve.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buffer</parameter>&nbsp;:</term>
+<listitem><simpara> location for info log.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-shader-get-parameteriv" role="function">
+<title>cogl_shader_get_parameteriv ()</title>
+<indexterm zone="cogl-shader-get-parameteriv"><primary>cogl_shader_get_parameteriv</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_shader_get_parameteriv         (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         <link linkend="COGLenum">COGLenum</link> pname,
+                                                         <link linkend="COGLint">COGLint</link> *dest);</programlisting>
+<para>
+Retrieve a named parameter from a shader can be used to query to compile
+satus of a shader by passing in CGL_OBJECT_COMPILE_STATUS for <parameter>pname</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pname</parameter>&nbsp;:</term>
+<listitem><simpara> the named COGL parameter to retrieve.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dest</parameter>&nbsp;:</term>
+<listitem><simpara> storage location for COGLint return value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-create-program" role="function">
+<title>cogl_create_program ()</title>
+<indexterm zone="cogl-create-program"><primary>cogl_create_program</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_create_program                 (void);</programlisting>
+<para>
+Create a new cogl program object that can be used to replace parts of the GL
+rendering pipeline with custom code.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new cogl program.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-ref" role="function">
+<title>cogl_program_ref ()</title>
+<indexterm zone="cogl-program-ref"><primary>cogl_program_ref</primary></indexterm><programlisting><link linkend="CoglHandle">CoglHandle</link>          cogl_program_ref                    (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Add an extra reference to a program.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="CoglHandle"><type>CoglHandle</type></link> to a program.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <parameter>handle</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-unref" role="function">
+<title>cogl_program_unref ()</title>
+<indexterm zone="cogl-program-unref"><primary>cogl_program_unref</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_program_unref                  (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Removes a reference to a program. If it was the last reference the
+program object will be destroyed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="CoglHandle"><type>CoglHandle</type></link> to a program.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-is-program" role="function">
+<title>cogl_is_program ()</title>
+<indexterm zone="cogl-is-program"><primary>cogl_is_program</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            cogl_is_program                     (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Gets whether the given handle references an existing program object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> A CoglHandle
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the handle references a program,
+  <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> otherwise
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-attach-shader" role="function">
+<title>cogl_program_attach_shader ()</title>
+<indexterm zone="cogl-program-attach-shader"><primary>cogl_program_attach_shader</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_program_attach_shader          (<link linkend="CoglHandle">CoglHandle</link> program_handle,
+                                                         <link linkend="CoglHandle">CoglHandle</link> shader_handle);</programlisting>
+<para>
+Attaches a shader to a program object, a program can have one vertex shader
+and one fragment shader attached.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>program_handle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shdaer program.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>shader_handle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="CoglHandle"><type>CoglHandle</type></link> for a vertex of fragment shader.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-link" role="function">
+<title>cogl_program_link ()</title>
+<indexterm zone="cogl-program-link"><primary>cogl_program_link</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_program_link                   (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Links a program making it ready for use.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader program.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-use" role="function">
+<title>cogl_program_use ()</title>
+<indexterm zone="cogl-program-use"><primary>cogl_program_use</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_program_use                    (<link linkend="CoglHandle">CoglHandle</link> handle);</programlisting>
+<para>
+Activate a specific shader program replacing that part of the GL
+rendering pipeline, if passed in COGL_INVALID_HANDLE the default
+behavior of GL is reinstated.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader program or COGL_INVALID_HANDLE.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-get-uniform-location" role="function">
+<title>cogl_program_get_uniform_location ()</title>
+<indexterm zone="cogl-program-get-uniform-location"><primary>cogl_program_get_uniform_location</primary></indexterm><programlisting><link linkend="COGLint">COGLint</link>             cogl_program_get_uniform_location   (<link linkend="CoglHandle">CoglHandle</link> handle,
+                                                         const <link linkend="gchar">gchar</link> *uniform_name);</programlisting>
+<para>
+Retrieve the location (offset) of a uniform variable in a shader program, a
+uniform is a variable that is constant for all vertices/fragments for a
+shader object and is possible to modify as an external parameter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="CoglHandle"><type>CoglHandle</type></link> for a shader program.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uniform_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of a uniform.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the offset of a uniform in a specified program, this uniform can be
+set using <link linkend="cogl-program-uniform-1f"><type>cogl_program_uniform_1f</type></link> when the program is in use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="cogl-program-uniform-1f" role="function">
+<title>cogl_program_uniform_1f ()</title>
+<indexterm zone="cogl-program-uniform-1f"><primary>cogl_program_uniform_1f</primary></indexterm><programlisting><link linkend="void">void</link>                cogl_program_uniform_1f             (<link linkend="COGLint">COGLint</link> uniform_no,
+                                                         <link linkend="gfloat">gfloat</link> value);</programlisting>
+<para>
+Changes the value of a uniform in the currently used (see <link linkend="cogl-program-use"><type>cogl_program_use</type></link>)
+shader program.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>uniform_no</parameter>&nbsp;:</term>
+<listitem><simpara> the unform to set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the new value of the uniform.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

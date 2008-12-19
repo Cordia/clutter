@@ -1,0 +1,157 @@
+<!-- ##### SECTION Title ##### -->
+ClutterBehaviour
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT ClutterBehaviour ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL ClutterBehaviour::applied ##### -->
+<para>
+
+</para>
+
+@clutterbehaviour: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL ClutterBehaviour::removed ##### -->
+<para>
+
+</para>
+
+@clutterbehaviour: the object which received the signal.
+@arg1: 
+
+<!-- ##### ARG ClutterBehaviour:alpha ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT ClutterBehaviourClass ##### -->
+<para>
+
+</para>
+
+@alpha_notify: 
+@applied: 
+@removed: 
+
+<!-- ##### FUNCTION clutter_behaviour_apply ##### -->
+<para>
+
+</para>
+
+@behave: 
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_remove ##### -->
+<para>
+
+</para>
+
+@behave: 
+@actor: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_remove_all ##### -->
+<para>
+
+</para>
+
+@behave: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_is_applied ##### -->
+<para>
+
+</para>
+
+@behave: 
+@actor: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION ClutterBehaviourForeachFunc ##### -->
+<para>
+
+</para>
+
+@behaviour: 
+@actor: 
+@data: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_actors_foreach ##### -->
+<para>
+
+</para>
+
+@behave: 
+@func: 
+@data: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_get_actors ##### -->
+<para>
+
+</para>
+
+@behave: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_get_n_actors ##### -->
+<para>
+
+</para>
+
+@behave: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_get_nth_actor ##### -->
+<para>
+
+</para>
+
+@behave: 
+@index_: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_get_alpha ##### -->
+<para>
+
+</para>
+
+@behave: 
+@Returns: 
+
+
+<!-- ##### FUNCTION clutter_behaviour_set_alpha ##### -->
+<para>
+
+</para>
+
+@behave: 
+@alpha: 
+
+
