@@ -180,8 +180,10 @@ clutter_eglx_texture_pixmap_init (ClutterEGLXTexturePixmap *self)
                                         EGL_EXTENSIONS);
 
       g_debug("%s: checking for texture_from_pixmap", __FUNCTION__);
-      /* Check for the texture from pixmap extension */
-      if (cogl_check_extension ("EGL_EXT_texture_from_pixmap", eglx_extensions))
+      /* Check for a texture from pixmap extension.
+       * Note: vendor-specific since there is no TFP in EGL specification. */
+      if (cogl_check_extension ("EGL_NOKIA_texture_from_pixmap",
+                                eglx_extensions))
         {
             _have_tex_from_pixmap_ext = TRUE;
         }
