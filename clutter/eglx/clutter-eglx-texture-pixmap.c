@@ -185,7 +185,8 @@ clutter_eglx_texture_pixmap_init (ClutterEGLXTexturePixmap *self)
       if (cogl_check_extension ("EGL_NOKIA_texture_from_pixmap",
                                 eglx_extensions))
         {
-            _have_tex_from_pixmap_ext = TRUE;
+          g_debug("%s: found EGL_NOKIA_texture_from_pixmap", __FUNCTION__);
+          _have_tex_from_pixmap_ext = TRUE;
         }
 
       _ext_check_done = TRUE;
