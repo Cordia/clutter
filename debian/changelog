@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Dec 2008 15:25:59 +0200
+
 clutter (0.8.2-0maemo12) unstable; urgency=low
 
   * check for EGL_NOKIA_texture_from_pixmap, not EGL_EXT_...
