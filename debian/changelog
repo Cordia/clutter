@@ -1,11 +1,6 @@
-clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
-
-  * check for EGL_NOKIA_texture_from_pixmap, not EGL_EXT_...
-
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 18 Dec 2008 12:44:52 +0000
-
 clutter (0.8.2-0maemo12) unstable; urgency=low
 
+  * check for EGL_NOKIA_texture_from_pixmap, not EGL_EXT_...
   * Added clutter_actor_set_allow_redraw to stop certain actors forcing redraw
   * Added clutter_stage_set_damaged_area to allow redraw of only damaged areas
   * Added clutter_actor_set_visibility_detect to skip visibility detection on
@@ -13,7 +8,7 @@ clutter (0.8.2-0maemo12) unstable; urgency=low
   * Added clutter_actor_queue_redraw_damage to allow a redraw to be queued
     without the whole screen being marked as damaged.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 18 Dec 2008 12:44:52 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Dec 2008 15:21:43 +0200
 
 clutter (0.8.2-0maemo11) unstable; urgency=low
 
