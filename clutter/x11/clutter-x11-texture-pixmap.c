@@ -47,7 +47,9 @@
 
 #include "cogl/cogl.h"
 
+#ifdef XDAMAGE_HANDLING
 #include <X11/extensions/Xdamage.h>
+#endif
 #include <X11/extensions/Xcomposite.h>
 
 #include <sys/ipc.h>
@@ -78,8 +80,10 @@ enum
   LAST_SIGNAL
 };
 
+#ifdef XDAMAGE_HANDLING
 static ClutterX11FilterReturn
 on_x_event_filter (XEvent *xev, ClutterEvent *cev, gpointer data);
+#endif
 
 static void
 clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
@@ -105,8 +109,10 @@ struct _ClutterX11TexturePixmapPrivate
   XShmSegmentInfo shminfo;
 
   gboolean      automatic_updates;
+#ifdef XDAMAGE_HANDLING
   Damage        damage;
   Drawable      damage_drawable;
+#endif
 
   /* FIXME: lots of gbooleans. coalesce into bitfields */
   gboolean	have_shm;
@@ -118,13 +124,16 @@ struct _ClutterX11TexturePixmapPrivate
   gint          window_x, window_y;
 };
 
+#ifdef XDAMAGE_HANDLING
 static int _damage_event_base = 0;
+#endif
 
 /* FIXME: Ultimatly with current cogl we should subclass clutter actor */
 G_DEFINE_TYPE (ClutterX11TexturePixmap, \
                clutter_x11_texture_pixmap, \
                CLUTTER_TYPE_TEXTURE);
 
+#ifdef XDAMAGE_HANDLING
 static gboolean
 check_extensions (ClutterX11TexturePixmap *texture)
 {
@@ -148,6 +157,7 @@ check_extensions (ClutterX11TexturePixmap *texture)
 
   return TRUE;
 }
+#endif
 
 static void
 free_shm_resources (ClutterX11TexturePixmap *texture)
@@ -251,6 +261,7 @@ failed_image_create:
   return FALSE;
 }
 
+#ifdef XDAMAGE_HANDLING
 static ClutterX11FilterReturn
 on_x_event_filter (XEvent *xev, ClutterEvent *cev, gpointer data)
 {
@@ -343,8 +354,10 @@ on_x_event_filter_too (XEvent *xev, ClutterEvent *cev, gpointer data)
 
   return CLUTTER_X11_FILTER_CONTINUE;
 }
+#endif
 
 
+#ifdef XDAMAGE_HANDLING
 static void
 free_damage_resources (ClutterX11TexturePixmap *texture)
 {
@@ -366,7 +379,7 @@ free_damage_resources (ClutterX11TexturePixmap *texture)
 
   clutter_x11_remove_filter (on_x_event_filter, (gpointer)texture);
 }
-
+#endif
 
 static void
 clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
@@ -376,17 +389,21 @@ clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
                                    CLUTTER_X11_TYPE_TEXTURE_PIXMAP,
                                    ClutterX11TexturePixmapPrivate);
 
+#ifdef XDAMAGE_HANDLING
   if (!check_extensions (self))
     {
       /* FIMXE: means display lacks needed extensions for at least auto.
        *        - a _can_autoupdate() method ?
       */
     }
+#endif
 
   self->priv->image = NULL;
   self->priv->automatic_updates = FALSE;
+#ifdef XDAMAGE_HANDLING
   self->priv->damage = None;
   self->priv->damage_drawable = None;
+#endif
   self->priv->window = None;
   self->priv->pixmap = None;
   self->priv->pixmap_height = 0;
@@ -406,9 +423,11 @@ clutter_x11_texture_pixmap_dispose (GObject *object)
   ClutterX11TexturePixmap *texture = CLUTTER_X11_TEXTURE_PIXMAP (object);
   ClutterX11TexturePixmapPrivate *priv = texture->priv;
 
+#ifdef XDAMAGE_HANDLING
   free_damage_resources (texture);
 
   clutter_x11_remove_filter (on_x_event_filter_too, (gpointer)texture);
+#endif
 
   if (priv->owns_pixmap && priv->pixmap)
     {
@@ -1102,6 +1121,7 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
   if (priv->window == window && automatic == priv->window_redirect_automatic)
     return;
 
+#ifdef XDAMAGE_HANDLING
   if (priv->window)
     {
       clutter_x11_remove_filter (on_x_event_filter_too, (gpointer)texture);
@@ -1113,6 +1133,7 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
       XSync (clutter_x11_get_default_display (), False);
       clutter_x11_untrap_x_errors ();
     }
+#endif
 
   priv->window = window;
   priv->window_redirect_automatic = automatic;
@@ -1143,12 +1164,14 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
 
   clutter_x11_untrap_x_errors ();
 
+#ifdef XDAMAGE_HANDLING
   if (priv->window)
     {
       XSelectInput (dpy, priv->window,
                     attr.your_event_mask | StructureNotifyMask);
       clutter_x11_add_filter (on_x_event_filter_too, (gpointer)texture);
     }
+#endif
 
   g_object_ref (texture);
   g_object_notify (G_OBJECT (texture), "window");
@@ -1302,7 +1325,9 @@ clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture,
                                           gboolean                 setting)
 {
   ClutterX11TexturePixmapPrivate *priv;
+#ifdef XDAMAGE_HANDLING
   Display                        *dpy;
+#endif
 
   g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
 
@@ -1311,6 +1336,7 @@ clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture,
   if (setting == priv->automatic_updates)
     return;
 
+#ifdef XDAMAGE_HANDLING
   dpy = clutter_x11_get_default_display();
 
   if (setting == TRUE)
@@ -1333,6 +1359,7 @@ clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture,
     }
   else
     free_damage_resources (texture);
+#endif
 
   priv->automatic_updates = setting;
 
