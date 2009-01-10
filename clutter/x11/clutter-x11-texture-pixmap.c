@@ -1154,11 +1154,13 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
         return;
       }
 
+#ifdef XDAMAGE_HANDLING
     XCompositeRedirectWindow
                        (dpy,
                         window,
                         automatic ?
                         CompositeRedirectAutomatic : CompositeRedirectManual);
+#endif
     XSync (dpy, False);
   }
 

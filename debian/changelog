@@ -3,6 +3,8 @@ clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
   * Set up xevent handlers in clutter-x11-texture-pixmap.c only if
     XDAMAGE_HANDLING is defined. This avoids doing damage handling twice for
     application windows and should avoid some surprises in libmatchbox2 side.
+  * Do not alter XComposite redirections in clutter-x11-texture-pixmap.c, that
+    belongs to the window manager.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Dec 2008 15:25:59 +0200
 
