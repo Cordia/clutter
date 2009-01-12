@@ -274,8 +274,8 @@ clutter_texture_realize (ClutterActor *actor)
       if (priv->texture != COGL_INVALID_HANDLE)
 	cogl_texture_unref (priv->texture);
 
-      priv->texture 
-            = cogl_texture_new_with_size 
+      priv->texture
+            = cogl_texture_new_with_size
                           (priv->width,
                            priv->height,
                            priv->no_slice ? -1 : priv->max_tile_waste,
@@ -398,12 +398,12 @@ clutter_texture_get_preferred_height (ClutterActor *self,
             {
               /* Set the natural height so as to preserve the aspect ratio */
               ClutterFixed ratio, width;
-              
+
               ratio = clutter_qdivx (CLUTTER_INT_TO_FIXED (priv->height),
                                      CLUTTER_INT_TO_FIXED (priv->width));
 
               width = CLUTTER_UNITS_TO_FIXED (for_width);
-              
+
               *natural_height_p =
                 CLUTTER_UNITS_FROM_FIXED (clutter_qmulx (ratio, width));
             }
@@ -951,7 +951,7 @@ clutter_scriptable_iface_init (ClutterScriptableIface *iface)
   parent_scriptable_iface = g_type_interface_peek_parent (iface);
 
   if (!parent_scriptable_iface)
-    parent_scriptable_iface = g_type_default_interface_peek 
+    parent_scriptable_iface = g_type_default_interface_peek
                                           (CLUTTER_TYPE_SCRIPTABLE);
 
   iface->set_custom_property = clutter_texture_set_custom_property;
@@ -1041,7 +1041,7 @@ clutter_texture_load_from_local_data (ClutterTexture *texture)
 				     priv->local_data_rowstride,
 				     priv->local_data_has_alpha ? 4: 3,
 				     0, NULL);
-				     
+
   g_free (priv->local_data);
   priv->local_data = NULL;
 }
@@ -1149,7 +1149,7 @@ clutter_texture_set_from_data (ClutterTexture     *texture,
 
   priv = texture->priv;
 
-  if ((new_texture = cogl_texture_new_from_data 
+  if ((new_texture = cogl_texture_new_from_data
                           (width, height,
                            priv->no_slice ? -1 : priv->max_tile_waste,
                            priv->filter_quality == CLUTTER_TEXTURE_QUALITY_HIGH,
@@ -1184,7 +1184,7 @@ clutter_texture_set_from_data (ClutterTexture     *texture,
  * @width: Width in pixels of image data.
  * @height: Height in pixels of image data
  * @rowstride: Distance in bytes between row starts.
- * @bpp: bytes per pixel (Currently only 2, 3 and 4 supported, 
+ * @bpp: bytes per pixel (Currently only 2, 3 and 4 supported,
  *                        depending on @has_alpha. If 2 and @has_alpha
  *                        RGBA_4444 assumed)
  * @flags: #ClutterTextureFlags
@@ -1230,14 +1230,14 @@ clutter_texture_set_from_rgb_data   (ClutterTexture     *texture,
       else if (bpp == 1)
         {
           source_format = COGL_PIXEL_FORMAT_A_8;
-        }        
+        }
       else
 	{
 	  g_set_error (error, CLUTTER_TEXTURE_ERROR,
 		       CLUTTER_TEXTURE_ERROR_BAD_FORMAT,
 		       "Unsupported BPP");
 	  return FALSE;
-	}      
+	}
     }
   else
     {
@@ -1252,7 +1252,7 @@ clutter_texture_set_from_rgb_data   (ClutterTexture     *texture,
       else if (bpp == 1)
         {
           source_format = COGL_PIXEL_FORMAT_G_8;
-        }        
+        }
       else
 	{
 	  g_set_error (error, CLUTTER_TEXTURE_ERROR,
@@ -1374,14 +1374,14 @@ clutter_texture_set_from_file_f (ClutterTexture *texture,
 			       GError        **error)
 {
   CoglHandle              new_texture = 0;
-  ClutterTexturePrivate  *priv;  
+  ClutterTexturePrivate  *priv;
 
   priv = texture->priv;
 
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
-  
+
   if (!new_texture &&
-      (new_texture = cogl_texture_new_from_file 
+      (new_texture = cogl_texture_new_from_file
                           (filename,
                            priv->no_slice ? -1 : priv->max_tile_waste,
                            priv->filter_quality == CLUTTER_TEXTURE_QUALITY_HIGH,
@@ -1399,7 +1399,7 @@ clutter_texture_set_from_file_f (ClutterTexture *texture,
 
       return FALSE;
     }
-    
+
   clutter_actor_set_name(CLUTTER_ACTOR(texture), filename); /* set a default name */
 
   cogl_texture_set_filters (new_texture,
@@ -1457,7 +1457,7 @@ clutter_texture_set_filter_quality (ClutterTexture        *texture,
           clutter_texture_unrealize (CLUTTER_ACTOR (texture));
           clutter_texture_realize (CLUTTER_ACTOR (texture));
         }
-      
+
       g_object_notify (G_OBJECT (texture), "filter-quality");
 
       if (CLUTTER_ACTOR_IS_VISIBLE (texture))
@@ -1576,7 +1576,7 @@ clutter_texture_new_from_file (const gchar *filename,
 {
   return clutter_texture_new_from_file_f(
                 filename, CLUTTER_DEFAULT_PIXEL_FORMAT, error);
-}                             
+}
 
 /**
  * clutter_texture_new_from_file:
@@ -1585,7 +1585,7 @@ clutter_texture_new_from_file (const gchar *filename,
  *
  * Creates a new ClutterTexture actor to display the image contained a
  * file. If the image failed to load then NULL is returned and @error
- * is set. A pixel format can be supplied that determines how the texture is 
+ * is set. A pixel format can be supplied that determines how the texture is
  * to be stored in OpenGL.
  *
  * Return value: A newly created #ClutterTexture object or NULL on
@@ -1665,7 +1665,7 @@ clutter_texture_get_base_size (ClutterTexture *texture,
  * @width: Width in pixels of region to update.
  * @height: Height in pixels of region to update.
  * @rowstride: Distance in bytes between row starts on source buffer.
- * @bpp: bytes per pixel (Currently only 3 and 4 supported, 
+ * @bpp: bytes per pixel (Currently only 3 and 4 supported,
  *                        depending on @has_alpha)
  * @flags: #ClutterTextureFlags
  * @error: return location for a #GError, or %NULL
@@ -1721,7 +1721,7 @@ clutter_texture_set_area_from_rgb_data (ClutterTexture     *texture,
 		       CLUTTER_TEXTURE_ERROR_BAD_FORMAT,
 		       "Unsupported BPP");
 	  return FALSE;
-	}      
+	}
     }
   if ((flags & CLUTTER_TEXTURE_RGB_FLAG_BGR))
     source_format |= COGL_BGR_BIT;
@@ -1831,7 +1831,7 @@ on_fbo_parent_change (ClutterActor        *actor,
  *
  * Note this function is intented as a utility call for uniformly applying
  * shaders to groups and other potential visual effects. It requires that
- * the %CLUTTER_FEATURE_OFFSCREEN feature is supported by the current backend 
+ * the %CLUTTER_FEATURE_OFFSCREEN feature is supported by the current backend
  * and the target system.
  *
  * Some tips on usage:
@@ -1924,7 +1924,7 @@ clutter_texture_new_from_actor (ClutterActor *actor)
     return NULL;
 
   /* Hopefully now were good.. */
-  texture = g_object_new (CLUTTER_TYPE_TEXTURE, 
+  texture = g_object_new (CLUTTER_TYPE_TEXTURE,
                           "disable-slicing", TRUE,
                           NULL);
 

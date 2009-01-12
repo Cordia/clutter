@@ -312,6 +312,7 @@ on_x_event_filter (XEvent *xev, ClutterEvent *cev, gpointer data)
                                                     r_damage[i].y,
                                                     r_damage[i].width,
                                                     r_damage[i].height);
+          g_debug("XDAMAGE END");
           XFree (r_damage);
         }
 
@@ -340,8 +341,13 @@ on_x_event_filter_too (XEvent *xev, ClutterEvent *cev, gpointer data)
   switch (xev->type) {
   case MapNotify:
   case ConfigureNotify:
-    clutter_x11_texture_pixmap_sync_window (texture);
-    break;
+    {
+      /* Only sync the window pixmap if the size has changed */
+      if (xev->xconfigure.width != priv->pixmap_width ||
+          xev->xconfigure.height != priv->pixmap_height)
+        clutter_x11_texture_pixmap_sync_window (texture);
+      break;
+    }
   case UnmapNotify:
     clutter_x11_texture_pixmap_set_mapped (texture, FALSE);
     break;
@@ -740,7 +746,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
   gboolean                              data_allocated = FALSE;
   int                                   err_code;
   char                                  pixel_bpp;
-  gboolean                              pixel_has_alpha;    
+  gboolean                              pixel_has_alpha;
 
 #if 0
   clock_t start_t = clock();
@@ -816,7 +822,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
       clutter_x11_texture_pixmap_set_pixmap (texture, None);
       return;
     }
-    
+
   if (priv->depth == 24)
     {
       bytes_per_line = image->bytes_per_line;
@@ -825,7 +831,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
       pixel_has_alpha = FALSE;
     }
   else if (priv->depth == 16)
-    {      
+    {
       bytes_per_line = image->bytes_per_line;
       data = first_pixel;
       pixel_bpp = 2;
@@ -899,15 +905,15 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
 
   if (data_allocated)
     g_free (data);
-  
+
 
   if (priv->have_shm)
     XFree (image);
-#if 0    
-  clock_t end_t = clock();  
+#if 0
+  clock_t end_t = clock();
   int time = (int)((double)(end_t - start_t) * (1000.0 / CLOCKS_PER_SEC));
   g_print("clutter-x11-update-area-real(%d,%d,%d,%d) %d bits - %d ms\n",x,y,width,height,priv->depth,time);
-#endif  
+#endif
 }
 
 /**

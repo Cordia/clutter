@@ -753,9 +753,26 @@ cogl_frustum (ClutterFixed        left,
 
 void
 cogl_viewport (guint width,
-	       guint height)
+               guint height)
 {
   GE( glViewport (0, 0, width, height) );
+}
+
+void cogl_modify_clip_viewport(guint x,
+                               guint y,
+                               guint w,
+                               guint h)
+{
+  gint viewport[4];
+
+  GE( glGetIntegerv(GL_VIEWPORT, viewport) );
+  GE( glViewport (x, y, w, h) );
+  GE( cogl_wrap_glScalef ( (float)viewport[2] / (float)w,
+                           (float)viewport[3] / (float)h,
+                           1.0f ));
+  GE( cogl_wrap_glTranslatex (CLUTTER_INT_TO_FIXED(-x),
+                              CLUTTER_INT_TO_FIXED(-(viewport[3]-(y+h))),
+                              0) );
 }
 
 void

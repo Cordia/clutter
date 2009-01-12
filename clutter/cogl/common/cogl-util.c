@@ -44,7 +44,7 @@ cogl_util_next_p2 (int a)
 {
   int rval=1;
 
-  while(rval < a) 
+  while(rval < a)
     rval <<= 1;
 
   return rval;
@@ -61,7 +61,7 @@ cogl_util_next_p2 (int a)
 gboolean
 cogl_util_is_power_2(int a)
 {
-  return !(a & (a - 1)) && a;        
+  return !(a & (a - 1)) && a;
 }
 
 /**
@@ -83,7 +83,7 @@ cogl_util_log_2(guint v)
   shift = (v > 0xF   ) << 2; v >>= shift; r |= shift;
   shift = (v > 0x3   ) << 1; v >>= shift; r |= shift;
                                           r |= (v >> 1);
-  return r;                                                
+  return r;
 }
 
 /*
@@ -125,24 +125,24 @@ cogl_util_mtx_transform (ClutterFixed m[16],
 
 #undef M
 
-ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16], 
-                                     ClutterFixed mtx_p[16], 
+ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16],
+                                     ClutterFixed mtx_p[16],
                                      ClutterFixed viewport[4],
                                      ClutterVertex obj_coord)
-{ 
+{
   ClutterFixed           _w;
   ClutterVertex           res;
-      
+
   res = obj_coord;
-  _w = CFX_ONE;        
-  cogl_util_mtx_transform (mtx, &res.x, &res.y, &res.z, &_w);        
+  _w = CFX_ONE;
+  cogl_util_mtx_transform (mtx, &res.x, &res.y, &res.z, &_w);
   cogl_util_mtx_transform (mtx_p,
                            &res.x,
                            &res.y,
                            &res.z,
-                           &_w);        
+                           &_w);
   res.x = MTX_GL_SCALE_X (res.x, _w, viewport[2], viewport[0]);
-  res.y = viewport[3] - MTX_GL_SCALE_Y (res.y, _w, viewport[3], viewport[1]);
+  res.y = MTX_GL_SCALE_Y2 (res.y, _w, viewport[3], viewport[1]);
   res.z = MTX_GL_SCALE_Z (res.z, _w, viewport[2], viewport[0]);
   return res;
 }

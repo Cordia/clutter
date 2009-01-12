@@ -221,7 +221,7 @@ create_cogl_texture (ClutterTexture *texture,
 
   if (handle)
     {
-      g_debug ("%s: created cogl handle %x", __FUNCTION__, (int)handle);
+      /*g_debug ("%s: created cogl handle %x", __FUNCTION__, (int)handle);*/
       clutter_texture_set_cogl_texture (texture, handle);
       return TRUE;
     }
@@ -280,7 +280,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       g_warning ("%s: Pixmap AND Window defined, using pixmap", __FUNCTION__);
     }
 
-  g_debug("%s: Pixmap depth %d", __FUNCTION__, pixmap_depth);
+  /*g_debug("%s: Pixmap depth %d", __FUNCTION__, pixmap_depth);*/
 
   if (pixmap)
     {
@@ -374,8 +374,8 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       return;
     }
 
-  g_debug ("%s: GL texture %u corresponds to surface %p", __FUNCTION__,
-           priv->texture_id, priv->egl_surface);
+  /*g_debug ("%s: GL texture %u corresponds to surface %p", __FUNCTION__,
+           priv->texture_id, priv->egl_surface);*/
 
   if (!create_cogl_texture (CLUTTER_TEXTURE (actor), priv->texture_id,
                             width, height, format))
@@ -386,7 +386,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       return;
     }
 
-  g_debug ("%s: texture pixmap created", __FUNCTION__);
+  /*g_debug ("%s: texture pixmap created", __FUNCTION__);*/
 }
 
 static void
@@ -471,10 +471,10 @@ clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
        g_debug ("%s: eglChooseConfig failed: %x", __FUNCTION__, eglGetError());
        return NULL;
      }
-   else
+   /*else
      {
        g_debug ("%s: got %d matching configs", __FUNCTION__, nconfigs);
-     }
+     }*/
 
    for (i = 0; i < nconfigs; ++i)
     {

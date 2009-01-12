@@ -69,6 +69,22 @@
 
 #include "cogl/cogl.h"
 
+/* ----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------*/
+/* This is whether we do damage using glViewport or glScissor. glScissor clips
+ * what we render while updating the whole screen, but glViewport actually
+ * renders only the area given, so should be a lot faster on SGX if the
+ * drivers pay attention to it. */
+#define VIEWPORT_DAMAGE 1
+
+/* If we're using double-buffering we want to update the area for this frame
+ * AND the area for the last frame. */
+//#define DOUBLE_BUFFER 1
+/* ----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------*/
+
 G_DEFINE_TYPE (ClutterStage, clutter_stage, CLUTTER_TYPE_GROUP);
 
 #define CLUTTER_STAGE_GET_PRIVATE(obj) \
@@ -225,9 +241,11 @@ clutter_stage_paint (ClutterActor *self)
 
   last_damage = priv->last_damaged_area;
   priv->last_damaged_area = priv->damaged_area;
+#if DOUBLE_BUFFER
   /* Add the damaged area from last frame to this one, as we're double-buffered
    * so will have missed 2 frames worth of changes! */
   clutter_stage_set_damaged_area(self, last_damage);
+#endif
   /* If we only had a small area, redraw that */
   update_area = priv->damaged_area.width>0 && priv->damaged_area.height>0;
   /* Or if it was the whole screen, just skip the small redraw overhead */
@@ -247,11 +265,23 @@ clutter_stage_paint (ClutterActor *self)
                 priv->damaged_area.x, priv->damaged_area.y,
                 priv->damaged_area.width, priv->damaged_area.height );*/
 
+#if VIEWPORT_DAMAGE
+      CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_SYNC_MATRICES);
+      _clutter_stage_maybe_setup_viewport(CLUTTER_STAGE(self));
+      cogl_clip_set(
+          CLUTTER_INT_TO_FIXED( priv->damaged_area.x ),
+          CLUTTER_INT_TO_FIXED( priv->damaged_area.y ),
+          CLUTTER_INT_TO_FIXED( priv->damaged_area.width ),
+          CLUTTER_INT_TO_FIXED( priv->damaged_area.height ));
+      cogl_modify_clip_viewport(priv->damaged_area.x,
+                                height - (priv->damaged_area.y+priv->damaged_area.height),
+                                priv->damaged_area.width,
+                                priv->damaged_area.height );
+#else
       cogl_push_matrix();
       CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_SYNC_MATRICES);
       _clutter_stage_maybe_setup_viewport(CLUTTER_STAGE(self));
 
-      /* We hope that clutter_redraw has set up the matrices correctly */
       cogl_clip_set(
           CLUTTER_INT_TO_FIXED( priv->damaged_area.x ),
           CLUTTER_INT_TO_FIXED( priv->damaged_area.y ),
@@ -259,6 +289,7 @@ clutter_stage_paint (ClutterActor *self)
           CLUTTER_INT_TO_FIXED( priv->damaged_area.height ));
 
       cogl_pop_matrix();
+#endif
     }
 
   /* don't clear the background if just updating the area */
@@ -282,7 +313,14 @@ clutter_stage_paint (ClutterActor *self)
 
   if (update_area)
     {
+#if VIEWPORT_DAMAGE
       cogl_clip_unset();
+      /* return our normal viewport in case it is needed in the future */
+      CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_SYNC_MATRICES);
+      _clutter_stage_maybe_setup_viewport(CLUTTER_STAGE(self));
+#else
+      cogl_clip_unset();
+#endif // VIEWPORT_DAMAGE
     }
   priv->damaged_area.x = 0;
   priv->damaged_area.y = 0;
@@ -294,12 +332,21 @@ static void
 clutter_stage_pick (ClutterActor       *self,
 		    const ClutterColor *color)
 {
+  ClutterStagePrivate *priv = CLUTTER_STAGE (self)->priv;
   /* Paint nothing, cogl_paint_init() effectively paints the stage
    * silhouette for us - see _clutter_do_pick().
    * Chain up to the groups paint howerer so our children get picked
    * - clutter_group_pick
    */
   CLUTTER_ACTOR_CLASS (clutter_stage_parent_class)->paint (self);
+  /* Here we set the damaged area to the whole of the screen, as
+   * the 'pick' will have destroyed it and the next time we render
+   * we'll have to do everything */
+  priv->damaged_area.x = 0;
+  priv->damaged_area.y = 0;
+  clutter_actor_get_size(self,
+              &priv->damaged_area.width,
+              &priv->damaged_area.height);
 }
 
 static void

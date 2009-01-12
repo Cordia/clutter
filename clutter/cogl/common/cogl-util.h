@@ -31,9 +31,10 @@
  */
 #define MTX_GL_SCALE_X(x,w,v1,v2) (CFX_QMUL (((CFX_QDIV ((x), (w)) + CFX_ONE) >> 1), (v1)) + (v2))
 #define MTX_GL_SCALE_Y(y,w,v1,v2) ((v1) - CFX_QMUL (((CFX_QDIV ((y), (w)) + CFX_ONE) >> 1), (v1)) + (v2))
+#define MTX_GL_SCALE_Y2(y,w,v1,v2) (CFX_QMUL (((CFX_QDIV ((y), (w)) + CFX_ONE) >> 1), (v1)) + (v2))
 #define MTX_GL_SCALE_Z(z,w,v1,v2) (MTX_GL_SCALE_X ((z), (w), (v1), (v2)))
 
-int 
+int
 cogl_util_next_p2 (int a);
 
 gboolean
@@ -48,8 +49,8 @@ cogl_util_mtx_transform (ClutterFixed m[16],
                          ClutterFixed *x, ClutterFixed *y, ClutterFixed *z,
                          ClutterFixed *w);
 
-ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16], 
-                                     ClutterFixed mtx_p[16], 
+ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16],
+                                     ClutterFixed mtx_p[16],
                                      ClutterFixed viewport[4],
                                      ClutterVertex obj_coord);
 

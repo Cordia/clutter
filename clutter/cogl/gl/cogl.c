@@ -848,6 +848,21 @@ cogl_viewport (guint width,
   GE( glViewport (0, 0, width, height) );
 }
 
+void cogl_modify_clip_viewport(guint x,
+                               guint y,
+                               guint w,
+                               guint h)
+{
+  guint viewport[4];
+
+  GE( glGetIntegerv(GL_VIEWPORT, viewport) );
+  GE( glViewport (x, y, w, h) );
+  GE( glScalef ( viewport[2] / (float)w,
+                 viewport[3] / (float)h,
+                 1.0f));
+  GE( glTranslatef (-x, -(viewport[3]-(y+h)), 0) );
+}
+
 void
 cogl_setup_viewport (guint        width,
 		     guint        height,

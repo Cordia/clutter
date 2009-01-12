@@ -1,12 +1,20 @@
 clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
 
+  * added cogl_modify_clip_viewport to allow rendering to a specific area (gw)
+  * Modified redraw_damage code to allow redraw using viewport rather than 
+    glScissor (gw)
+  * Stopped eglx-texture-pixmap from creating a new texture on ANY change event, 
+    and instead do it only when width/height/depth changes (gw)
   * Set up xevent handlers in clutter-x11-texture-pixmap.c only if
     XDAMAGE_HANDLING is defined. This avoids doing damage handling twice for
     application windows and should avoid some surprises in libmatchbox2 side.
   * Do not alter XComposite redirections in clutter-x11-texture-pixmap.c, that
     belongs to the window manager.
+  * Removed some un-needed log messages for EGLX textures (gw)
+  * Set damage to update the whole screen after a 'pick' event (as it will have
+    destroyed the buffer)
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Dec 2008 15:25:59 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Jan 2009 12:17:52 +0000
 
 clutter (0.8.2-0maemo12) unstable; urgency=low
 

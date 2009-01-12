@@ -418,6 +418,24 @@ void            cogl_setup_viewport           (guint               width,
 void            cogl_viewport                 (guint               width,
 					       guint               height);
 
+
+/**
+ * cogl_modify_clip_viewport:
+ * @x: X start position of viewport
+ * @y: Y start position of viewport
+ * @w: Width of the viewport
+ * @h: Height of the viewport
+ *
+ * Replace the current viewport with a viewport at the given location
+ * set up to render ONLY to that area.
+ *
+ * Since: 0.8.2-maemo
+ */
+void cogl_modify_clip_viewport(                guint x,
+                                               guint y,
+                                               guint w,
+                                               guint h);
+
 /**
  * cogl_push_matrix:
  *
