@@ -1,8 +1,12 @@
 clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
 
-  * unreleased
+  * It turns out XDamage doesn't work unless explicitly turned on in
+    x11-texture-pixmap using .._set_automatic, so totally removed the #ifdefs
+  * Modified clutter_stage_redraw_damage to set the stage to be redrawn with
+    a delay - which helps get rid of multiple redraws when we get >1 XDamage
+    events within a few ms of each other.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 12 Jan 2009 17:31:48 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 12 Jan 2009 16:21:48 +0000
 
 clutter (0.8.2-0maemo13) unstable; urgency=low
 
@@ -23,7 +27,7 @@ clutter (0.8.2-0maemo13) unstable; urgency=low
   * Commented out extra code that caused clutter to not compile with -Werror
   * Reinstated XDamage and XComposite as something in it reverted bug 95594 
     (and multiple XDamage shouldn't be an issue with the next bunch of work
-    I'm working on)
+    I'm working on).
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Jan 2009 12:17:52 +0000
 

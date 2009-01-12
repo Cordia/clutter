@@ -1950,7 +1950,17 @@ clutter_stage_queue_redraw (ClutterStage *stage)
   clutter_actor_get_geometry(CLUTTER_ACTOR(stage),
       &stage->priv->damaged_area);
 
-  clutter_stage_queue_redraw_damage(stage);
+  if (!stage->priv->update_idle)
+    {
+      CLUTTER_TIMESTAMP (SCHEDULER, "Adding idle source for stage: %p", stage);
+
+      /* FIXME: weak_ref self in case we disappear before paint? */
+      stage->priv->update_idle =
+        clutter_threads_add_idle_full (CLUTTER_PRIORITY_REDRAW,
+                                       redraw_update_idle,
+                                       stage,
+                                       NULL);
+    }
 }
 
 /**
@@ -1977,12 +1987,16 @@ clutter_stage_queue_redraw_damage (ClutterStage *stage)
     {
       CLUTTER_TIMESTAMP (SCHEDULER, "Adding idle source for stage: %p", stage);
 
-      /* FIXME: weak_ref self in case we dissapear before paint? */
+      /* FIXME: weak_ref self in case we disappear before paint? */
       stage->priv->update_idle =
-        clutter_threads_add_idle_full (CLUTTER_PRIORITY_REDRAW,
-                                       redraw_update_idle,
-                                       stage,
-                                       NULL);
+        clutter_threads_add_timeout_full ( CLUTTER_PRIORITY_REDRAW,
+                                           CLUTTER_REDRAW_INTERVAL,
+                                           redraw_update_idle,
+                                           stage,
+                                           NULL);
+      /* we're rendering with a timeout here so we can stop
+       * double-redraws we're doing when we get multiple XDamage events
+       * for what should be a single frame. */
     }
 }
 
