@@ -93,8 +93,10 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                                              gint                     height);
 static void
 clutter_x11_texture_pixmap_set_mapped (ClutterX11TexturePixmap *texture, gboolean mapped);
+#ifdef XDAMAGE_HANDLING
 static void
 clutter_x11_texture_pixmap_destroyed (ClutterX11TexturePixmap *texture);
+#endif
 
 static guint signals[LAST_SIGNAL] = { 0, };
 
@@ -1283,6 +1285,7 @@ clutter_x11_texture_pixmap_set_mapped (ClutterX11TexturePixmap *texture,
     }
 }
 
+#ifdef XDAMAGE_HANDLING
 static void
 clutter_x11_texture_pixmap_destroyed (ClutterX11TexturePixmap *texture)
 {
@@ -1301,6 +1304,7 @@ clutter_x11_texture_pixmap_destroyed (ClutterX11TexturePixmap *texture)
    * be useful e.g. for destroy animations -- app's responsibility.
    */
 }
+#endif
 
 /**
  * clutter_x11_texture_pixmap_update_area:
