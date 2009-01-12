@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo13) unstable; urgency=low
 
   * added cogl_modify_clip_viewport to allow rendering to a specific area (gw)
   * Modified redraw_damage code to allow redraw using viewport rather than 
