@@ -7,12 +7,17 @@ clutter (0.8.2-0maemo13~unreleased) unstable; urgency=low
     and instead do it only when width/height/depth changes (gw)
   * Set up xevent handlers in clutter-x11-texture-pixmap.c only if
     XDAMAGE_HANDLING is defined. This avoids doing damage handling twice for
-    application windows and should avoid some surprises in libmatchbox2 side.
+    application windows and should avoid some surprises in libmatchbox2 side
+    (kh).
   * Do not alter XComposite redirections in clutter-x11-texture-pixmap.c, that
-    belongs to the window manager.
+    belongs to the window manager (kh).
   * Removed some un-needed log messages for EGLX textures (gw)
   * Set damage to update the whole screen after a 'pick' event (as it will have
     destroyed the buffer)
+  * Commented out extra code that caused clutter to not compile with -Werror
+  * Reinstated XDamage and XComposite as something in it reverted bug 95594 
+    (and multiple XDamage shouldn't be an issue with the next bunch of work
+    I'm working on)
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Jan 2009 12:17:52 +0000
 

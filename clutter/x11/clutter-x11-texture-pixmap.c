@@ -47,6 +47,11 @@
 
 #include "cogl/cogl.h"
 
+/* We need this back on because the lack of notifications for Configure causes
+ * textures not to update when they change size, and bug 95594 to revert
+ */
+#define XDAMAGE_HANDLING
+
 #ifdef XDAMAGE_HANDLING
 #include <X11/extensions/Xdamage.h>
 #endif
