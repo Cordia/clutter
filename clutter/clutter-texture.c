@@ -1138,6 +1138,7 @@ static gboolean
 clutter_texture_set_from_data (ClutterTexture     *texture,
 			       const guchar       *data,
 			       CoglPixelFormat     source_format,
+			       CoglPixelFormat     internal_format,
 			       gint                width,
 			       gint                height,
 			       gint                rowstride,
@@ -1154,7 +1155,7 @@ clutter_texture_set_from_data (ClutterTexture     *texture,
                            priv->no_slice ? -1 : priv->max_tile_waste,
                            priv->filter_quality == CLUTTER_TEXTURE_QUALITY_HIGH,
                            source_format,
-                           COGL_PIXEL_FORMAT_ANY,
+                           internal_format,
                            rowstride,
                            data)) == COGL_INVALID_HANDLE)
     {
@@ -1200,17 +1201,18 @@ clutter_texture_set_from_data (ClutterTexture     *texture,
  **/
 gboolean
 clutter_texture_set_from_rgb_data   (ClutterTexture     *texture,
-				     const guchar       *data,
-				     gboolean            has_alpha,
-				     gint                width,
-				     gint                height,
-				     gint                rowstride,
-				     gint                bpp,
-				     ClutterTextureFlags flags,
-				     GError            **error)
+                                     const guchar       *data,
+                                     gboolean            has_alpha,
+                                     gint                width,
+                                     gint                height,
+                                     gint                rowstride,
+                                     gint                bpp,
+                                     ClutterTextureFlags flags,
+                                     GError            **error)
 {
   ClutterTexturePrivate *priv;
   CoglPixelFormat        source_format;
+  CoglPixelFormat        internal_format;
 
   g_return_val_if_fail (CLUTTER_IS_TEXTURE (texture), FALSE);
 
@@ -1265,9 +1267,14 @@ clutter_texture_set_from_rgb_data   (ClutterTexture     *texture,
     source_format |= COGL_BGR_BIT;
   if ((flags & CLUTTER_TEXTURE_RGB_FLAG_PREMULT))
     source_format |= COGL_PREMULT_BIT;
+  if ((flags & CLUTTER_TEXTURE_FLAG_16_BIT))
+    internal_format = COGL_PIXEL_FORMAT_ANY_16;
+  else
+    internal_format = COGL_PIXEL_FORMAT_ANY;
 
   return clutter_texture_set_from_data (texture, data,
 					source_format,
+					internal_format,
 					width, height,
 					rowstride, bpp,
 					error);
@@ -1300,6 +1307,7 @@ clutter_texture_set_from_yuv_data   (ClutterTexture     *texture,
 				     GError            **error)
 {
   ClutterTexturePrivate *priv;
+  CoglPixelFormat        internal_format;
 
   g_return_val_if_fail (CLUTTER_IS_TEXTURE (texture), FALSE);
 
@@ -1322,8 +1330,14 @@ clutter_texture_set_from_yuv_data   (ClutterTexture     *texture,
       return FALSE;
     }
 
+  if ((flags & CLUTTER_TEXTURE_FLAG_16_BIT))
+      internal_format = COGL_PIXEL_FORMAT_ANY_16;
+    else
+      internal_format = COGL_PIXEL_FORMAT_ANY;
+
   return clutter_texture_set_from_data (texture, data,
 					COGL_PIXEL_FORMAT_YUV,
+					internal_format,
 					width, height,
 					width * 3, 3,
 					error);

@@ -76,8 +76,8 @@ struct _ClutterTextureClass
 {
   ClutterActorClass parent_class;
 
-  void (*size_change)   (ClutterTexture *texture, 
-		         gint            width, 
+  void (*size_change)   (ClutterTexture *texture,
+		         gint            width,
 		         gint            height);
   void (*pixbuf_change) (ClutterTexture *texture);
 
@@ -96,6 +96,7 @@ struct _ClutterTextureClass
  * @CLUTTER_TEXTURE_RGB_FLAG_BGR: FIXME
  * @CLUTTER_TEXTURE_RGB_FLAG_PREMULT: FIXME
  * @CLUTTER_TEXTURE_YUV_FLAG_YUV2: FIXME
+ * @CLUTTER_TEXTURE_FLAG_16_BIT: Use 16 bit internal texture format
  *
  * Flags for clutter_texture_set_from_rgb_data() and
  * clutter_texture_set_from_yuv_data().
@@ -105,7 +106,8 @@ struct _ClutterTextureClass
 typedef enum { /*< prefix=CLUTTER_TEXTURE >*/
     CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 << 1,
     CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 << 2, /* FIXME: not handled */
-    CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3
+    CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3,
+    CLUTTER_TEXTURE_FLAG_16_BIT      = 1 << 4
 
     /* FIXME: add compressed types ? */
 } ClutterTextureFlags;
