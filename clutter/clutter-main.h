@@ -85,7 +85,7 @@ GQuark clutter_init_error_quark (void);
  *
  * Since: 0.8.2-maemo
  */
-#define CLUTTER_REDRAW_INTERVAL         (25)
+#define CLUTTER_REDRAW_INTERVAL         (10)
 
 /* Initialisation */
 void             clutter_base_init        (void);
