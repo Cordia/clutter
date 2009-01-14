@@ -1,8 +1,9 @@
 clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
 
-  * Modified clutter_stage_redraw_damage to set the stage to be redrawn with
+  * Modified clutter_stage_redraw_damage so that the stage can be redrawn with
     a delay - which helps get rid of multiple redraws when we get >1 XDamage
-    events within a few ms of each other.
+    events within a few ms of each other. Currently this is set to 0 delay as 
+    we found it didn't help much.
   * Added CLUTTER_TEXTURE_FLAG_16_BIT to force 16 bit textures in 
     set_from_rgb_data
 

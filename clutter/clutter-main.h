@@ -79,13 +79,13 @@ GQuark clutter_init_error_quark (void);
 #define CLUTTER_PRIORITY_TIMELINE       (G_PRIORITY_DEFAULT + 30)
 
 /**
- * CLUTTER_REDRAW_INTERVAL:
+ * CLUTTER_REDRAW_DAMAGE_INTERVAL:
  *
- * The amount of time between a redraw request and the actual redraw.
+ * The amount of time between a damage redraw request and the actual redraw.
  *
  * Since: 0.8.2-maemo
  */
-#define CLUTTER_REDRAW_INTERVAL         (10)
+#define CLUTTER_REDRAW_DAMAGE_INTERVAL         (0)
 
 /* Initialisation */
 void             clutter_base_init        (void);
