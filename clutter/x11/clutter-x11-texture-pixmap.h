@@ -55,6 +55,7 @@ struct _ClutterX11TexturePixmapClass
                                            gint                     y,
                                            gint                     width,
                                            gint                     height);
+  void                  (*overridden_paint)(ClutterActor *actor);
 };
 
 struct _ClutterX11TexturePixmap
@@ -87,6 +88,9 @@ void  clutter_x11_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
 
 void  clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture,
                                                 gboolean                 setting);
+void clutter_x11_texture_pixmap_clear_shapes(ClutterX11TexturePixmap *texture);
+void clutter_x11_texture_pixmap_add_shape(ClutterX11TexturePixmap *texture,
+                                          ClutterGeometry geo);
 
 G_END_DECLS
 

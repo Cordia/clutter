@@ -44,6 +44,7 @@
 #include "clutter-x11-texture-pixmap.h"
 #include "clutter-x11.h"
 #include "clutter-backend-x11.h"
+#include "clutter-debug.h"
 
 #include "cogl/cogl.h"
 
@@ -91,6 +92,8 @@ static void
 clutter_x11_texture_pixmap_set_mapped (ClutterX11TexturePixmap *texture, gboolean mapped);
 static void
 clutter_x11_texture_pixmap_destroyed (ClutterX11TexturePixmap *texture);
+static void
+clutter_x11_texture_pixmap_paint (ClutterActor *self);
 
 static guint signals[LAST_SIGNAL] = { 0, };
 
@@ -117,6 +120,8 @@ struct _ClutterX11TexturePixmapPrivate
   gboolean      owns_pixmap;
   gboolean      override_redirect;
   gint          window_x, window_y;
+
+  GList         *shapes;
 };
 
 static int _damage_event_base = 0;
@@ -403,6 +408,7 @@ clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
   self->priv->override_redirect = FALSE;
   self->priv->window_x = 0;
   self->priv->window_y = 0;
+  self->priv->shapes = 0;
 }
 
 static void
@@ -561,6 +567,9 @@ clutter_x11_texture_pixmap_class_init (ClutterX11TexturePixmapClass *klass)
   actor_class->realize       = clutter_x11_texture_pixmap_realize;
 
   klass->update_area         = clutter_x11_texture_pixmap_update_area_real;
+
+  klass->overridden_paint = actor_class->paint;
+  actor_class->paint = clutter_x11_texture_pixmap_paint;
 
   pspec = g_param_spec_uint ("pixmap",
                              "Pixmap",
@@ -1341,4 +1350,101 @@ clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture,
 
   priv->automatic_updates = setting;
 
+}
+
+static void
+clutter_x11_texture_pixmap_paint (ClutterActor *self)
+{
+  ClutterX11TexturePixmap *texture = CLUTTER_X11_TEXTURE_PIXMAP (self);
+  ClutterX11TexturePixmapPrivate *priv = texture->priv;
+  gint            x_1, y_1, x_2, y_2;
+  ClutterColor    col = { 0xff, 0xff, 0xff, 0xff };
+  ClutterFixed    t_w, t_h;
+  GList           *shape;
+  CoglHandle      cogl_texture;
+
+  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+
+  /* If we have no shapes, just call what we had before */
+  if (priv->shapes==0)
+    {
+      CLUTTER_X11_TEXTURE_PIXMAP_GET_CLASS(self)->overridden_paint(self);
+      return;
+    }
+
+  if (!CLUTTER_ACTOR_IS_REALIZED (CLUTTER_ACTOR(texture)))
+    clutter_actor_realize (CLUTTER_ACTOR(texture));
+
+  CLUTTER_NOTE (PAINT,
+                "painting X11 texture '%s'",
+                clutter_actor_get_name (self) ? clutter_actor_get_name (self)
+                                              : "unknown");
+  col.alpha = clutter_actor_get_paint_opacity (self);
+  cogl_color (&col);
+
+  clutter_actor_get_allocation_coords (self, &x_1, &y_1, &x_2, &y_2);
+
+  CLUTTER_NOTE (PAINT, "paint to x1: %i, y1: %i x2: %i, y2: %i "
+                       "opacity: %i",
+                x_1, y_1, x_2, y_2,
+                clutter_actor_get_opacity (self));
+
+  t_w = CFX_ONE;
+  t_h = CFX_ONE;
+
+  cogl_texture = clutter_texture_get_cogl_texture(CLUTTER_TEXTURE(self));
+
+  /* so now we go through our shapes and render */
+  for (shape = priv->shapes; shape; shape = shape->next)
+    {
+      gint w = x_2 - x_1;
+      gint h = y_2 - y_1;
+      ClutterGeometry *geo = (ClutterGeometry*)shape->data;
+      cogl_texture_rectangle (
+          cogl_texture,
+          CLUTTER_INT_TO_FIXED(w * geo->x / priv->pixmap_width),
+          CLUTTER_INT_TO_FIXED(h * geo->y / priv->pixmap_height),
+          CLUTTER_INT_TO_FIXED(w * (geo->x+geo->width) / priv->pixmap_width),
+          CLUTTER_INT_TO_FIXED(h * (geo->y+geo->height) / priv->pixmap_height),
+          t_w * geo->x / priv->pixmap_width,
+          t_h * geo->y / priv->pixmap_height,
+          t_w * (geo->x+geo->width) / priv->pixmap_width,
+          t_h * (geo->y+geo->height) / priv->pixmap_height);
+    }
+}
+
+/* Remove all shapes and instead render this texture normally. see
+ * clutter_x11_texture_pixmap_add_shape */
+void clutter_x11_texture_pixmap_clear_shapes(ClutterX11TexturePixmap *texture)
+{
+  ClutterX11TexturePixmapPrivate *priv;
+  GList *it;
+
+  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+  priv = texture->priv;
+
+  it = g_list_first(priv->shapes);
+  while (it)
+    {
+      g_free(it->data);
+      it = it->next;
+    }
+  g_list_free(priv->shapes);
+  priv->shapes = 0;
+}
+
+/* Add a shape (as in XShape). When shapes are added, only these bits of
+ * the texture will be rendered. */
+void clutter_x11_texture_pixmap_add_shape(ClutterX11TexturePixmap *texture,
+                                          ClutterGeometry geo)
+{
+  ClutterX11TexturePixmapPrivate *priv;
+  ClutterGeometry *ageo;
+
+  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+  priv = texture->priv;
+
+  ageo = (ClutterGeometry*)g_malloc(sizeof(ClutterGeometry));
+  *ageo = geo;
+  priv->shapes = g_list_append(priv->shapes, ageo);
 }

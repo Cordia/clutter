@@ -6,8 +6,10 @@ clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
     we found it didn't help much.
   * Added CLUTTER_TEXTURE_FLAG_16_BIT to force 16 bit textures in 
     set_from_rgb_data
+  * Added clutter_x11_texture_pixmap_add_shape to deal with transparency in
+    textures via XShapeGetRectangles    
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 12 Jan 2009 16:21:48 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 14 Jan 2009 19:21:48 +0000
 
 clutter (0.8.2-0maemo13) unstable; urgency=low
 
