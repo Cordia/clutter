@@ -1,11 +1,8 @@
 clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
 
-  * It turns out XDamage doesn't work unless explicitly turned on in
-    x11-texture-pixmap using .._set_automatic, so totally removed the #ifdefs
   * Modified clutter_stage_redraw_damage to set the stage to be redrawn with
     a delay - which helps get rid of multiple redraws when we get >1 XDamage
     events within a few ms of each other.
-  * Changed delay down to 10ms as kimmo thought 25ms was too much
   * Added CLUTTER_TEXTURE_FLAG_16_BIT to force 16 bit textures in 
     set_from_rgb_data
 
