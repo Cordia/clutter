@@ -853,7 +853,7 @@ void cogl_modify_clip_viewport(guint x,
                                guint w,
                                guint h)
 {
-  guint viewport[4];
+  gint viewport[4];
 
   GE( glGetIntegerv(GL_VIEWPORT, viewport) );
   GE( glViewport (x, y, w, h) );
