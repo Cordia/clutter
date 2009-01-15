@@ -11,6 +11,7 @@ clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
   * Modified eglx_texture_pixmap to try creating a texture with alpha before
     it creates one without - this solves the transparent window issue on Rover
   * removed warning from GL/cogl.c
+  * quick fix to get update area working on scratchbox
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 14 Jan 2009 19:21:48 +0000
 

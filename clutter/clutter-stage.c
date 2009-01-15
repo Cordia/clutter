@@ -76,7 +76,10 @@
  * what we render while updating the whole screen, but glViewport actually
  * renders only the area given, so should be a lot faster on SGX if the
  * drivers pay attention to it. */
+
+#if CLUTTER_COGL_HAS_GLES
 #define VIEWPORT_DAMAGE 1
+#endif
 
 /* If we're using double-buffering we want to update the area for this frame
  * AND the area for the last frame. */
