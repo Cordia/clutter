@@ -49,6 +49,7 @@
 #endif
 
 #include <X11/extensions/Xcomposite.h>
+#include <string.h>
 
 #include "../x11/clutter-x11-texture-pixmap.h"
 #include "clutter-eglx-texture-pixmap.h"
@@ -452,6 +453,9 @@ clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
                             EGLSurface *surface, EGLNativePixmapType p_or_w)
 {
    EGLConfig configs[20];
+   EGLint creation_config[
+                    MAX(sizeof(pixmap_creation_config),
+                        sizeof(window_creation_config))];
    int i, nconfigs = 0;
    EGLBoolean ret;
 
@@ -459,11 +463,13 @@ clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
      {
        ret = eglChooseConfig (display, pixmap_config, configs,
 		              G_N_ELEMENTS (configs), &nconfigs);
+       memcpy(creation_config, pixmap_creation_config, sizeof(pixmap_creation_config));
      }
    else
      {
        ret = eglChooseConfig (display, window_config, configs,
 		              G_N_ELEMENTS (configs), &nconfigs);
+       memcpy(creation_config, window_creation_config, sizeof(window_creation_config));
      }
 
    if (ret != EGL_TRUE)
@@ -478,26 +484,35 @@ clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
 
    for (i = 0; i < nconfigs; ++i)
     {
-      if (for_pixmap)
-        {
-          *surface = eglCreatePixmapSurface (display, configs[i],
-		                             p_or_w, pixmap_creation_config);
-        }
-      else
-        {
-          *surface = eglCreatePixmapSurface (display, configs[i],
-		                             p_or_w, window_creation_config);
-        }
+      int j;
+      /* we don't seem to be able to find out if we have an alpha channel or
+       * not from the pixmap (depth may be 32, but no alpha) - so we'll
+       * just try once with alpha, and if it fails we try without */
+
+      /* set up texture for alpha and try to create a surface... */
+      for (j=0; creation_config[j]!=EGL_NONE; j+=2)
+        if (creation_config[j] == EGL_TEXTURE_FORMAT)
+          creation_config[j+1] = EGL_TEXTURE_RGBA;
+
+      *surface = eglCreatePixmapSurface (display, configs[i],
+                                         p_or_w, creation_config);
 
       if (*surface == EGL_NO_SURFACE)
-	{
-          g_debug ("%s: eglCreate(Pixmap|Window)Surface failed for config:",
-		   __FUNCTION__);
-	  print_config_info (configs[i]);
-          continue;
-	}
-      else
-	break;
+        {
+          /* set up texture for no alpha and try... */
+          for (j=0; creation_config[j]!=EGL_NONE; j+=2)
+            if (creation_config[j] == EGL_TEXTURE_FORMAT)
+              creation_config[j+1] = EGL_TEXTURE_RGB;
+          *surface = eglCreatePixmapSurface (display, configs[i],
+                                             p_or_w, creation_config);
+        }
+
+      if (*surface != EGL_NO_SURFACE)
+        break;
+
+      g_debug ("%s: eglCreate(Pixmap|Window)Surface failed for config:",
+               __FUNCTION__);
+      print_config_info (configs[i]);
    }
 
    return configs[i];
