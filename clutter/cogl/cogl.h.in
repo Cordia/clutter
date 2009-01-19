@@ -542,6 +542,25 @@ void            cogl_get_modelview_matrix     (ClutterFixed        m[16]);
 void            cogl_get_projection_matrix    (ClutterFixed        m[16]);
 
 /**
+ * cogl_get_modelview_matrix_f:
+ * @m: pointer to a 4x4 array of #float<!-- -->s to receive the matrix
+ *
+ * Stores the current model-view matrix in @m. The matrix is in
+ * column-major order.
+ */
+void            cogl_get_modelview_matrix_f   (float        m[16]);
+
+/**
+ * cogl_get_projection_matrix_f:
+ * @m: pointer to a 4x4 array of #float<!-- -->s to receive the matrix
+ *
+ * Stores the current projection matrix in @m. The matrix is in
+ * column-major order.
+ */
+void            cogl_get_projection_matrix_f  (float        m[16]);
+
+
+/**
  * cogl_get_viewport:
  * @v: pointer to a 4 element array of #ClutterFixed<!-- -->s to
  * receive the viewport dimensions.

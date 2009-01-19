@@ -123,6 +123,31 @@ cogl_util_mtx_transform (ClutterFixed m[16],
      */
 }
 
+/* Transform point (x,y,z) by matrix */
+void
+cogl_util_mtx_transform_f (float m[16],
+                           float *x, float *y, float *z,
+                           float *w)
+{
+    float _x, _y, _z, _w;
+    _x = *x;
+    _y = *y;
+    _z = *z;
+    _w = *w;
+
+    *x = (M (m, 0, 0) * _x) + (M (m, 0, 1) * _y) +
+         (M (m, 0, 2) * _z) + (M (m, 0, 3) * _w);
+
+    *y = (M (m, 1, 0) * _x) + (M (m, 1, 1) * _y) +
+         (M (m, 1, 2) * _z) + (M (m, 1, 3) * _w);
+
+    *z = (M (m, 2, 0) * _x) + (M (m, 2, 1) * _y) +
+         (M (m, 2, 2) * _z) + (M (m, 2, 3) * _w);
+
+    *w = (M (m, 3, 0) * _x) + (M (m, 3, 1) * _y) +
+         (M (m, 3, 2) * _z) + (M (m, 3, 3) * _w);
+}
+
 #undef M
 
 ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16],
@@ -146,3 +171,41 @@ ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16],
   res.z = MTX_GL_SCALE_Z (res.z, _w, viewport[2], viewport[0]);
   return res;
 }
+
+ClutterVertex cogl_util_unproject_f(   float mtx[16],
+                                       float mtx_p[16],
+                                       ClutterFixed viewport[4],
+                                       ClutterVertex obj_coord)
+{
+  float                  res[4];
+  float                  viewport_f[4];
+  ClutterVertex          res_vtx;
+
+  viewport_f[0] = CLUTTER_FIXED_TO_FLOAT(viewport[0]);
+  viewport_f[1] = CLUTTER_FIXED_TO_FLOAT(viewport[1]);
+  viewport_f[2] = CLUTTER_FIXED_TO_FLOAT(viewport[2]);
+  viewport_f[3] = CLUTTER_FIXED_TO_FLOAT(viewport[3]);
+  res[0] = CLUTTER_FIXED_TO_FLOAT(obj_coord.x);
+  res[1] = CLUTTER_FIXED_TO_FLOAT(obj_coord.y);
+  res[2] = CLUTTER_FIXED_TO_FLOAT(obj_coord.z);
+  res[3] = 1.0f;
+  cogl_util_mtx_transform_f (mtx,
+                             &res[0],
+                             &res[1],
+                             &res[2],
+                             &res[3]);
+  cogl_util_mtx_transform_f (mtx_p,
+                             &res[0],
+                             &res[1],
+                             &res[2],
+                             &res[3]);
+  res[0] = MTX_GL_SCALE_X_F  (res[0], res[3], viewport_f[2], viewport_f[0]);
+  res[1] = MTX_GL_SCALE_Y2_F (res[1], res[3], viewport_f[3], viewport_f[1]);
+  res[2] = MTX_GL_SCALE_Z_F  (res[2], res[3], viewport_f[2], viewport_f[0]);
+
+  res_vtx.x = CLUTTER_FLOAT_TO_FIXED(res[0]);
+  res_vtx.y = CLUTTER_FLOAT_TO_FIXED(res[1]);
+  res_vtx.z = CLUTTER_FLOAT_TO_FIXED(res[2]);
+  return res_vtx;
+}
+

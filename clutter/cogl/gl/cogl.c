@@ -180,6 +180,8 @@ cogl_paint_init (const ClutterColor *color)
 
       glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     }
+  else
+    glClear (GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
   glDisable (GL_LIGHTING);
   glDisable (GL_FOG);
 
@@ -699,6 +701,12 @@ _cogl_add_stencil_clip (ClutterFixed x_offset,
 }
 
 void
+_cogl_set_matrix_f (const float *matrix)
+{
+  GE( glLoadMatrixf (matrix) );
+}
+
+void
 _cogl_set_matrix (const ClutterFixed *matrix)
 {
   float float_matrix[16];
@@ -1209,6 +1217,18 @@ cogl_get_projection_matrix (ClutterFixed m[16])
   M(m,3,2) = CLUTTER_FLOAT_TO_FIXED (M(md,3,2));
   M(m,3,3) = CLUTTER_FLOAT_TO_FIXED (M(md,3,3));
 #undef M
+}
+
+void
+cogl_get_modelview_matrix_f (float m[16])
+{
+  glGetFloatv(GL_MODELVIEW_MATRIX, &m[0]);
+}
+
+void
+cogl_get_projection_matrix_f (float m[16])
+{
+  glGetFloatv(GL_PROJECTION_MATRIX, &m[0]);
 }
 
 void

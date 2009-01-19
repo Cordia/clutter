@@ -709,10 +709,12 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
 
   if (priv->egl_surface == EGL_NO_SURFACE)
     {
+      const gchar *name = clutter_actor_get_name(actor);
       g_object_get (actor, "window", &window, NULL);
-      g_debug ("%s: Buffer not created, returning. "
-               "(pixmap %d, window 0x%x, width %d, height %d, depth %d)",
+      g_debug ("%s: Buffer not created "
+               "(name '%s', pixmap %d, window 0x%x, width %d, height %d, depth %d)",
                __FUNCTION__,
+               name ? name : "null",
                pixmap, window, pixmap_width, pixmap_height, pixmap_depth);
       return;
     }

@@ -77,13 +77,19 @@
  * renders only the area given, so should be a lot faster on SGX if the
  * drivers pay attention to it. */
 
-#if CLUTTER_COGL_HAS_GLES
-#define VIEWPORT_DAMAGE 1
-#endif
-
+/* For some reason this doesn't work in scratchbox. It is debatable if it is
+ * faster or not too. The strange error is that after the first viewport
+ * update, clutter never gets called to paint again until a fullscreen
+ * update is made. */
 /* If we're using double-buffering we want to update the area for this frame
  * AND the area for the last frame. */
-//#define DOUBLE_BUFFER 1
+#if CLUTTER_COGL_HAS_GLES
+#define VIEWPORT_DAMAGE 1
+#define DOUBLE_BUFFER 0
+#else
+#define VIEWPORT_DAMAGE 0
+#define DOUBLE_BUFFER 1
+#endif
 /* ----------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------*/
@@ -264,7 +270,7 @@ clutter_stage_paint (ClutterActor *self)
           "Rendering ONLY the area x: %d, y: %d, width: %d, height: %d",
           priv->damaged_area.x, priv->damaged_area.y,
           priv->damaged_area.width, priv->damaged_area.height );
-      /*g_debug("RENDERING ONLY x: %d, y: %d, width: %d, height: %d\n",
+/*      g_debug("RENDERING ONLY x: %d, y: %d, width: %d, height: %d\n",
                 priv->damaged_area.x, priv->damaged_area.y,
                 priv->damaged_area.width, priv->damaged_area.height );*/
 

@@ -203,6 +203,7 @@ void cogl_wrap_glPushMatrix ();
 void cogl_wrap_glPopMatrix ();
 void cogl_wrap_glMatrixMode (GLenum mode);
 void cogl_wrap_glLoadIdentity ();
+void cogl_wrap_glMultMatrix (const GLfloat *m);
 void cogl_wrap_glMultMatrixx (const GLfixed *m);
 void cogl_wrap_glFrustumx (GLfixed left, GLfixed right,
 			   GLfixed bottom, GLfixed top,
@@ -238,6 +239,7 @@ void cogl_wrap_glClipPlanex (GLenum plane, GLfixed *equation);
 
 void cogl_wrap_glGetIntegerv (GLenum pname, GLint *params);
 void cogl_wrap_glGetFixedv (GLenum pname, GLfixed *params);
+void cogl_wrap_glGetFloatv (GLenum pname, GLfloat *params);
 
 void cogl_wrap_glFogx (GLenum pname, GLfixed param);
 void cogl_wrap_glFogxv (GLenum pname, const GLfixed *params);
@@ -271,6 +273,7 @@ void _cogl_gles2_clear_cache_for_program (CoglHandle program);
 #define cogl_wrap_glPopMatrix          glPopMatrix
 #define cogl_wrap_glMatrixMode         glMatrixMode
 #define cogl_wrap_glLoadIdentity       glLoadIdentity
+#define cogl_wrap_glMultMatrix         glMultMatrix
 #define cogl_wrap_glMultMatrixx        glMultMatrixx
 #define cogl_wrap_glFrustumx           glFrustumx
 #define cogl_wrap_glScalex             glScalex
@@ -291,6 +294,7 @@ void _cogl_gles2_clear_cache_for_program (CoglHandle program);
 #define cogl_wrap_glClipPlanex         glClipPlanex
 #define cogl_wrap_glGetIntegerv        glGetIntegerv
 #define cogl_wrap_glGetFixedv          glGetFixedv
+#define cogl_wrap_glGetFloatv          glGetFloatv
 #define cogl_wrap_glFogx               glFogx
 #define cogl_wrap_glFogxv              glFogxv
 #define cogl_wrap_glTexParameteri      glTexParameteri

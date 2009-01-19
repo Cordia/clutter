@@ -619,6 +619,14 @@ _cogl_add_stencil_clip (ClutterFixed x_offset,
 }
 
 void
+_cogl_set_matrix_f (const float *matrix)
+{
+  /* FIXME: why not LoadMatrix */
+  GE( cogl_wrap_glLoadIdentity () );
+  GE( cogl_wrap_glMultMatrix (matrix) );
+}
+
+void
 _cogl_set_matrix (const ClutterFixed *matrix)
 {
   /* FIXME: why not LoadMatrix */
@@ -880,6 +888,18 @@ void
 cogl_get_projection_matrix (ClutterFixed m[16])
 {
   cogl_wrap_glGetFixedv(GL_PROJECTION_MATRIX, &m[0]);
+}
+
+void
+cogl_get_modelview_matrix_f (float m[16])
+{
+  cogl_wrap_glGetFloatv(GL_MODELVIEW_MATRIX, &m[0]);
+}
+
+void
+cogl_get_projection_matrix_f (float m[16])
+{
+  cogl_wrap_glGetFloatv(GL_PROJECTION_MATRIX, &m[0]);
 }
 
 void

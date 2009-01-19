@@ -46,7 +46,7 @@ void _cogl_add_stencil_clip (ClutterFixed x,
 			     gboolean     first);
 void _cogl_disable_clip_planes (void);
 void _cogl_disable_stencil_buffer (void);
-void _cogl_set_matrix (const ClutterFixed *matrix);
+void _cogl_set_matrix_f (const float *matrix);
 
 typedef struct _CoglClipStackEntry CoglClipStackEntry;
 
@@ -65,9 +65,9 @@ struct _CoglClipStackEntry
   ClutterFixed        height;
 
   /* The matrix that was current when the clip was set */
-  ClutterFixed        matrix[16];
+  float               matrix[16];
   ClutterFixed        viewport[4];
-  
+
   /* this is used as a shortcut if the clipping region is rectangular */
   gboolean            is_rectangular;
   gint                scr_x_1;
@@ -87,7 +87,7 @@ gboolean _cogl_clip_stack_scissor_rebuild()
   gint viewport[4];
   gint i;
 
-  /* go through all elements and check they are rectangular. Return if 
+  /* go through all elements and check they are rectangular. Return if
      they're not */
   for (node = cogl_clip_stack_top; node != NULL; node = node->next)
     {
@@ -104,12 +104,12 @@ gboolean _cogl_clip_stack_scissor_rebuild()
    y_1 = viewport[1];
    x_2 = viewport[0] + viewport[2];
    y_2 = viewport[1] + viewport[3];
-   
+
    for (node = cogl_clip_stack_top; node != NULL; node = node->next)
     {
       const CoglClipStackEntry *entry = (CoglClipStackEntry *) node->data;
       if (entry->scr_x_1 > x_1) x_1 = entry->scr_x_1;
-      if (entry->scr_x_2 < x_2) x_2 = entry->scr_x_2; 
+      if (entry->scr_x_2 < x_2) x_2 = entry->scr_x_2;
       if (entry->scr_y_1 > y_1) y_1 = entry->scr_y_1;
       if (entry->scr_y_2 < y_2) y_2 = entry->scr_y_2;
     }
@@ -117,9 +117,9 @@ gboolean _cogl_clip_stack_scissor_rebuild()
    if (x_2 < x_1) x_2 = x_1;
    if (y_2 < y_1) y_2 = y_1;
    /* set scissoring */
-   if ((x_2-x_1)!=viewport[2] || (y_2-y_1)!=viewport[3]) 
+   if ((x_2-x_1)!=viewport[2] || (y_2-y_1)!=viewport[3])
      {
-       GE( glEnable( GL_SCISSOR_TEST ) ); 
+       GE( glEnable( GL_SCISSOR_TEST ) );
        GE( glScissor( x_1-viewport[0], y_1-viewport[1], x_2-x_1, y_2-y_1 ) );
      }
    else
@@ -127,11 +127,11 @@ gboolean _cogl_clip_stack_scissor_rebuild()
        GE( glScissor( 0, 0, viewport[2], viewport[3] ) );
        GE( glDisable( GL_SCISSOR_TEST ) );
      }
-     
+
   // disable in case stencilling/clip planes got turned on...
   _cogl_disable_clip_planes ();
-  _cogl_disable_stencil_buffer ();     
-        
+  _cogl_disable_stencil_buffer ();
+
   return TRUE;
 }
 
@@ -174,9 +174,9 @@ cogl_clip_set (ClutterFixed x_offset,
   entry->width = width;
   entry->height = height;
 
-  cogl_get_modelview_matrix (entry->matrix);
-  
-  
+  cogl_get_modelview_matrix_f (entry->matrix);
+
+
   /* now check for simple (rectangular!) case */
   /* TODO: we don't check for the case where rotated by
    * a multiple of 90 degrees */
@@ -184,26 +184,26 @@ cogl_clip_set (ClutterFixed x_offset,
   if (entry->matrix[1]==0 && entry->matrix[2]==0 &&
       entry->matrix[4]==0 && entry->matrix[6]==0 &&
       entry->matrix[8]==0 && entry->matrix[9]==0)
-    {  
+    {
         ClutterFixed viewport[4];
-        ClutterFixed proj[16];
+        float proj[16];
         ClutterVertex pta,ptb;
-        
+
         entry->is_rectangular = TRUE;
-        
+
         pta.x = entry->x_offset;
         pta.y = entry->y_offset;
         pta.z = 0;
         ptb.x = entry->x_offset + entry->width;
         ptb.y = entry->y_offset + entry->height;
-        ptb.z = 0;        
-      
+        ptb.z = 0;
+
         cogl_get_viewport (viewport);
-        cogl_get_projection_matrix (proj);
-        
-        pta = cogl_util_unproject(entry->matrix, proj, viewport, pta);
-        ptb = cogl_util_unproject(entry->matrix, proj, viewport, ptb);
-          
+        cogl_get_projection_matrix_f (proj);
+
+        pta = cogl_util_unproject_f(entry->matrix, proj, viewport, pta);
+        ptb = cogl_util_unproject_f(entry->matrix, proj, viewport, ptb);
+
         entry->scr_x_1 = CLUTTER_FIXED_TO_INT(pta.x);
         entry->scr_y_1 = CLUTTER_FIXED_TO_INT(pta.y);
         entry->scr_x_2 = CLUTTER_FIXED_TO_INT(ptb.x);
@@ -213,21 +213,21 @@ cogl_clip_set (ClutterFixed x_offset,
           {
             gint t = entry->scr_x_1;
             entry->scr_x_1 = entry->scr_x_2;
-            entry->scr_x_2 = t; 
+            entry->scr_x_2 = t;
           }
         if (entry->scr_y_1 > entry->scr_y_2)
           {
             gint t = entry->scr_y_1;
             entry->scr_y_1 = entry->scr_y_2;
-            entry->scr_y_2 = t; 
+            entry->scr_y_2 = t;
           }
     }
-    
+
   /* Store it in the stack */
   cogl_clip_stack_top = g_list_prepend (cogl_clip_stack_top, entry);
 
   /* Add the entry to the current clip */
-  _cogl_clip_stack_add (entry, ++cogl_clip_stack_depth);  
+  _cogl_clip_stack_add (entry, ++cogl_clip_stack_depth);
 }
 
 void
@@ -251,11 +251,11 @@ _cogl_clip_stack_rebuild (gboolean just_stencil)
   int has_clip_planes = cogl_features_available (COGL_FEATURE_FOUR_CLIP_PLANES);
   GList *node;
   int depth = 0;
-  
+
   /* Attempt to use glScissor to do all our clipping */
   if (_cogl_clip_stack_scissor_rebuild())
     return;
-  
+
   /* Disable clip planes if the stack is empty */
   if (has_clip_planes && cogl_clip_stack_depth < 1)
     _cogl_disable_clip_planes ();
@@ -276,7 +276,7 @@ _cogl_clip_stack_rebuild (gboolean just_stencil)
       {
 	const CoglClipStackEntry *entry = (CoglClipStackEntry *) node->data;
 	cogl_push_matrix ();
-	_cogl_set_matrix (entry->matrix);
+	_cogl_set_matrix_f (entry->matrix);
 	_cogl_clip_stack_add (entry, depth);
 	cogl_pop_matrix ();
       }
@@ -303,7 +303,7 @@ _cogl_clip_stack_merge (void)
 	{
 	  const CoglClipStackEntry *entry = (CoglClipStackEntry *) node->data;
 	  cogl_push_matrix ();
-	  _cogl_set_matrix (entry->matrix);
+	  _cogl_set_matrix_f (entry->matrix);
 	  _cogl_clip_stack_add (entry, 3);
 	  cogl_pop_matrix ();
 

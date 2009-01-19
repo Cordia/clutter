@@ -76,7 +76,7 @@ cogl_gles2_wrapper_create_shader (GLenum type, const char *source)
   GLuint shader;
   GLint source_len = strlen (source);
   GLint status;
-  
+
   /*g_debug("SHADER '%s'", source);*/
 
   shader = glCreateShader (type);
@@ -141,7 +141,7 @@ cogl_gles2_settings_equal (const CoglGles2WrapperSettings *a,
     {
       if (a->texture_2d_enabled != b->texture_2d_enabled)
 	return FALSE;
-      
+
       if (a->texture_2d_enabled && a->alpha_only != b->alpha_only)
 	return FALSE;
 
@@ -184,7 +184,7 @@ cogl_gles2_get_vertex_shader (const CoglGles2WrapperSettings *settings)
     {
       g_string_append (shader_source, cogl_fixed_vertex_shader_header_fog);
     }
-    
+
   g_string_append (shader_source, cogl_fixed_vertex_shader_start);
 
   if (settings->fog_enabled)
@@ -215,10 +215,10 @@ cogl_gles2_get_vertex_shader (const CoglGles2WrapperSettings *settings)
 						 shader_source->str);
 
   g_string_free (shader_source, TRUE);
-  
+
   if (shader_obj == 0)
     return NULL;
-  
+
   shader = g_slice_new (CoglGles2WrapperShader);
   shader->shader = shader_obj;
   shader->settings = *settings;
@@ -249,14 +249,14 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
 
   /* Otherwise create a new shader */
   shader_source = g_string_new (cogl_fixed_fragment_shader_header_start);
-  
+
   if (settings->fog_enabled)
     {
       g_string_append (shader_source, cogl_fixed_fragment_shader_header_fog);
     }
-  
+
   g_string_append (shader_source, cogl_fixed_fragment_shader_start);
-  
+
   if (settings->texture_2d_enabled)
     {
       if (settings->alpha_only)
@@ -310,10 +310,10 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
 						 shader_source->str);
 
   g_string_free (shader_source, TRUE);
-  
+
   if (shader_obj == 0)
     return NULL;
-  
+
   shader = g_slice_new (CoglGles2WrapperShader);
   shader->shader = shader_obj;
   shader->settings = *settings;
@@ -419,16 +419,16 @@ cogl_gles2_wrapper_get_program (const CoglGles2WrapperSettings *settings)
     }
 
   program->settings = *settings;
-      
+
   cogl_gles2_wrapper_get_uniforms (program->program, &program->uniforms);
 
   /* We haven't tried to get a location for any of the custom uniforms
      yet */
   for (i = 0; i < COGL_GLES2_NUM_CUSTOM_UNIFORMS; i++)
     program->custom_uniforms[i] = COGL_GLES2_UNBOUND_CUSTOM_UNIFORM;
-      
+
   w->compiled_programs = g_slist_append (w->compiled_programs, program);
-      
+
   return program;
 }
 
@@ -654,7 +654,7 @@ cogl_gles2_wrapper_mult_matrix (float *dst, const float *a, const float *b)
       }
 }
 
-static void
+void
 cogl_wrap_glMultMatrix (const float *m)
 {
   float new_matrix[16];
@@ -712,7 +712,7 @@ void
 cogl_wrap_glScalex (GLfixed x, GLfixed y, GLfixed z)
 {
   float matrix[16];
-  
+
   if (x==CFX_ONE && y==CFX_ONE && z==CFX_ONE)
     return;
 
@@ -729,7 +729,7 @@ void
 cogl_wrap_glScalef (GLfloat x, GLfloat y, GLfloat z)
 {
   float matrix[16];
-  
+
   if (x==1.0f && y==1.0f && z==1.0f)
     return;
 
@@ -746,7 +746,7 @@ void
 cogl_wrap_glTranslatex (GLfixed x, GLfixed y, GLfixed z)
 {
   float matrix[16];
-  
+
   if (x==0 && y==0 && z==0)
     return;
 
@@ -772,7 +772,7 @@ cogl_wrap_glRotatex (GLfixed angle, GLfixed x, GLfixed y, GLfixed z)
   float anglef = CLUTTER_FIXED_TO_FLOAT (angle) * G_PI / 180.0f;
   float c = cosf (anglef);
   float s = sinf (anglef);
-  
+
   matrix[0]  = xf * xf * (1.0f - c) + c;
   matrix[1]  = yf * xf * (1.0f - c) + zf * s;
   matrix[2]  = xf * zf * (1.0f - c) - yf * s;
@@ -885,7 +885,7 @@ cogl_wrap_glDrawArrays (GLenum mode, GLint first, GLsizei count)
 	  cogl_gles2_wrapper_mult_matrix (mvp_matrix,
 					  w->projection_stack
 					  + w->projection_stack_pos * 16,
-					  modelview_matrix);	  
+					  modelview_matrix);
 
 	  if (program->uniforms.mvp_matrix_uniform != -1)
 	    glUniformMatrix4fv (program->uniforms.mvp_matrix_uniform, 1,
@@ -941,7 +941,7 @@ cogl_wrap_glDrawArrays (GLenum mode, GLint first, GLsizei count)
 			       w->custom_uniforms[i]);
 	      }
 	}
-      
+
       w->dirty_custom_uniforms = 0;
     }
 
@@ -1012,15 +1012,15 @@ cogl_wrap_glDisable (GLenum cap)
     case GL_ALPHA_TEST:
       _COGL_GLES2_CHANGE_SETTING (w, alpha_test_enabled, FALSE);
       break;
-      
+
     case GL_LIGHTING: /* We never did lighting anyway */
-      break; 
+      break;
 
     default:
 #if COGL_DEBUG
-      g_print("glDisable(0x%x) (%s:%u)\n", cap, __FILE__, __LINE__ ); 
+      g_print("glDisable(0x%x) (%s:%u)\n", cap, __FILE__, __LINE__ );
 #endif
-      GE( glDisable (cap) );      
+      GE( glDisable (cap) );
     }
 }
 
@@ -1144,6 +1144,31 @@ cogl_wrap_glGetFixedv (GLenum pname, GLfixed *params)
 }
 
 void
+cogl_wrap_glGetFloatv (GLenum pname, GLfloat *params)
+{
+  _COGL_GET_GLES2_WRAPPER (w, NO_RETVAL);
+
+  switch (pname)
+    {
+    case GL_MODELVIEW_MATRIX:
+      memcpy(params, w->modelview_stack
+          + w->modelview_stack_pos * 16, sizeof(float)*16);
+      break;
+
+    case GL_PROJECTION_MATRIX:
+      memcpy(params, w->projection_stack
+          + w->projection_stack_pos * 16, sizeof(float)*16);
+      break;
+
+    case GL_VIEWPORT:
+      {
+        glGetFloatv (GL_VIEWPORT, params);
+      }
+      break;
+    }
+}
+
+void
 cogl_wrap_glFogx (GLenum pname, GLfixed param)
 {
   _COGL_GET_GLES2_WRAPPER (w, NO_RETVAL);
@@ -1153,7 +1178,7 @@ cogl_wrap_glFogx (GLenum pname, GLfixed param)
     case GL_FOG_MODE:
       _COGL_GLES2_CHANGE_SETTING (w, fog_mode, param);
       break;
-      
+
     case GL_FOG_DENSITY:
       _COGL_GLES2_CHANGE_UNIFORM (w, FOG_DENSITY, fog_density,
 				  CLUTTER_FIXED_TO_FLOAT (param));

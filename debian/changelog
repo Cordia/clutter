@@ -12,8 +12,10 @@ clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
     it creates one without - this solves the transparent window issue on Rover
   * removed warning from GL/cogl.c
   * quick fix to get update area working on scratchbox
+  * Added a whole load of floating point matrix functions to stop the 
+    inaccuracies that were corrupting the screen in update_area calls. 
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 14 Jan 2009 19:21:48 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 19 Jan 2009 16:21:48 +0000
 
 clutter (0.8.2-0maemo13) unstable; urgency=low
 
