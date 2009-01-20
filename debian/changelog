@@ -14,6 +14,8 @@ clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
   * quick fix to get update area working on scratchbox
   * Added a whole load of floating point matrix functions to stop the 
     inaccuracies that were corrupting the screen in update_area calls. 
+  * Added code to draw a black rectangle with a red border for any window that
+    doesn't have a pixmap (as opposed to just spamming stdout)
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 19 Jan 2009 16:21:48 +0000
 

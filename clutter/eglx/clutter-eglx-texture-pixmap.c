@@ -678,11 +678,34 @@ clutter_eglx_texture_pixmap_new (void)
   return actor;
 }
 
+static void
+clutter_eglx_texture_pixmap_paint_fail (ClutterActor *actor)
+{
+  ClutterGeometry          geom;
+  ClutterColor             col_black = {0,0,0,255};
+  ClutterColor             col_red = {255,0,0,255};
+  guint                    w,h;
+
+  clutter_actor_get_allocation_geometry (actor, &geom);
+  w = geom.width;
+  h = geom.height;
+
+  col_black.alpha = col_red.alpha = clutter_actor_get_paint_opacity (actor);
+
+  /* red border on black rectangle */
+  cogl_color (&col_black);
+  cogl_rectangle (10, 10, w-10, h-10);
+  cogl_color (&col_red);
+  cogl_rectangle (0, 0, w, 10);
+  cogl_rectangle (0, h-10, w, 10);
+  cogl_rectangle (0, 10, 10, h-20);
+  cogl_rectangle (w-10, 10, 10, h-20);
+}
+
 void
 clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
 {
   guint         pixmap, pixmap_depth, pixmap_width, pixmap_height;
-  guint         window;
   ClutterEGLXTexturePixmapPrivate       *priv;
   int do_release = 1;
 
@@ -709,13 +732,16 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
 
   if (priv->egl_surface == EGL_NO_SURFACE)
     {
+      /*
+      guint         window;
       const gchar *name = clutter_actor_get_name(actor);
       g_object_get (actor, "window", &window, NULL);
       g_debug ("%s: Buffer not created "
                "(name '%s', pixmap %d, window 0x%x, width %d, height %d, depth %d)",
                __FUNCTION__,
                name ? name : "null",
-               pixmap, window, pixmap_width, pixmap_height, pixmap_depth);
+               pixmap, window, pixmap_width, pixmap_height, pixmap_depth);*/
+      clutter_eglx_texture_pixmap_paint_fail (actor);
       return;
     }
 
