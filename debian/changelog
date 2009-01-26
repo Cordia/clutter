@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo14~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo14) unstable; urgency=low
 
   * Modified clutter_stage_redraw_damage so that the stage can be redrawn with
     a delay - which helps get rid of multiple redraws when we get >1 XDamage
