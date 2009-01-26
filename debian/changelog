@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo15~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 26 Jan 2009 10:06:23 +0200
+
 clutter (0.8.2-0maemo14) unstable; urgency=low
 
   * Modified clutter_stage_redraw_damage so that the stage can be redrawn with
