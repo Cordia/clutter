@@ -329,13 +329,12 @@ on_x_event_filter_too (XEvent *xev, ClutterEvent *cev, gpointer data)
 
   priv = texture->priv;
 
-  if (xev->xany.window != priv->window)
-    return CLUTTER_X11_FILTER_CONTINUE;
-
   switch (xev->type) {
   case MapNotify:
   case ConfigureNotify:
     {
+      if (((XConfigureEvent *)xev)->window != priv->window)
+        break;
       /* Only sync the window pixmap if the size has changed */
       if (xev->xconfigure.width != priv->pixmap_width ||
           xev->xconfigure.height != priv->pixmap_height)
@@ -343,9 +342,13 @@ on_x_event_filter_too (XEvent *xev, ClutterEvent *cev, gpointer data)
       break;
     }
   case UnmapNotify:
+    if (((XUnmapEvent *)xev)->window != priv->window)
+      break;
     clutter_x11_texture_pixmap_set_mapped (texture, FALSE);
     break;
   case DestroyNotify:
+    if (((XDestroyWindowEvent *)xev)->window != priv->window)
+      break;
     clutter_x11_texture_pixmap_destroyed (texture);
     break;
   default:
