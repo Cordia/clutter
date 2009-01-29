@@ -204,10 +204,10 @@ cogl_clip_set (ClutterFixed x_offset,
         pta = cogl_util_unproject_f(entry->matrix, proj, viewport, pta);
         ptb = cogl_util_unproject_f(entry->matrix, proj, viewport, ptb);
 
-        entry->scr_x_1 = CLUTTER_FIXED_TO_INT(pta.x);
-        entry->scr_y_1 = CLUTTER_FIXED_TO_INT(pta.y);
-        entry->scr_x_2 = CLUTTER_FIXED_TO_INT(ptb.x);
-        entry->scr_y_2 = CLUTTER_FIXED_TO_INT(ptb.y);
+        entry->scr_x_1 = CLUTTER_FIXED_TO_INT_ROUND(pta.x);
+        entry->scr_y_1 = CLUTTER_FIXED_TO_INT_ROUND(pta.y);
+        entry->scr_x_2 = CLUTTER_FIXED_TO_INT_ROUND(ptb.x);
+        entry->scr_y_2 = CLUTTER_FIXED_TO_INT_ROUND(ptb.y);
         /* make sure _1 is < _2 for x and y */
         if (entry->scr_x_1 > entry->scr_x_2)
           {

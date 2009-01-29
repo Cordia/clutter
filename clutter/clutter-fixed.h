@@ -217,6 +217,17 @@ typedef gint32 ClutterAngle;    /* angle such that 1024 == 2*PI */
  */
 #define CLUTTER_FIXED_TO_INT(x)         ((x) >> CFX_Q)
 
+/**
+ * CLUTTER_FIXED_TO_INT_ROUND:
+ * @x: a fixed point value
+ *
+ * Converts a fixed point value to integer, rounding it at the same time
+ *
+ * Since: 0.8.2-maemo15
+ */
+#define CLUTTER_FIXED_TO_INT_ROUND(x)         (((x)+CFX_HALF) >> CFX_Q)
+
+
 #ifndef CLUTTER_DISABLE_DEPRECATED
 
 /**

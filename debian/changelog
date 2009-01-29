@@ -2,8 +2,10 @@ clutter (0.8.2-0maemo15~unreleased) unstable; urgency=low
 
   * Added Adam Endrodi's patch for DestroyNotify events causing the pixmap 
     to be destroyed in x11-texture-pixmap
+  * Added FIXED_TO_INT_ROUND to round to the nearest(ish) integer rather than
+    just clipping. Was to fix FP inaccuracies in the set_clip code
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 26 Jan 2009 10:06:23 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Jan 2009 16:06:23 +0000
 
 clutter (0.8.2-0maemo14) unstable; urgency=low
 
