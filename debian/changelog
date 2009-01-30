@@ -4,6 +4,9 @@ clutter (0.8.2-0maemo15~unreleased) unstable; urgency=low
     to be destroyed in x11-texture-pixmap
   * Added FIXED_TO_INT_ROUND to round to the nearest(ish) integer rather than
     just clipping. Was to fix FP inaccuracies in the set_clip code
+  * Modified GLES cogl-texture to skip allocation and copying to an 
+    intermediate bitmap if row strides match properly. Also use glTexImage2D
+    if not copying a sub-area, but the whole image.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Jan 2009 16:06:23 +0000
 
