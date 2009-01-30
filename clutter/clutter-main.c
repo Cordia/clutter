@@ -65,6 +65,7 @@ static gboolean clutter_show_frame_time = FALSE;
 static gboolean clutter_fatal_warnings  = FALSE;
 
 static guint clutter_default_fps        = 60;
+static gboolean clutter_disable_skip_frames = FALSE;
 
 static guint clutter_main_loop_level    = 0;
 static GSList *main_loops               = NULL;
@@ -1176,6 +1177,8 @@ static GOptionEntry clutter_args[] = {
     "Show the amount of time each frame took to render", NULL },
   { "clutter-default-fps", 0, 0, G_OPTION_ARG_INT, &clutter_default_fps,
     "Default frame rate", "FPS" },
+  { "clutter-disable-skip-frames", 0, 0, G_OPTION_ARG_NONE, &clutter_disable_skip_frames,
+    "Disable skipping frames", NULL },
   { "g-fatal-warnings", 0, 0, G_OPTION_ARG_NONE, &clutter_fatal_warnings,
     "Make all warnings fatal", NULL },
 #ifdef CLUTTER_ENABLE_DEBUG
@@ -1243,6 +1246,12 @@ pre_parse_hook (GOptionContext  *context,
       clutter_default_fps = CLAMP (default_fps, 1, 1000);
     }
 
+  env_string = g_getenv ("CLUTTER_DISABLE_SKIP_FRAMES");
+  if (env_string)
+    {
+      clutter_disable_skip_frames = TRUE;
+    }
+
   if (CLUTTER_BACKEND_GET_CLASS (backend)->pre_parse)
     return CLUTTER_BACKEND_GET_CLASS (backend)->pre_parse (backend, error);
 
@@ -1278,6 +1287,7 @@ post_parse_hook (GOptionContext  *context,
     }
 
   clutter_context->frame_rate = clutter_default_fps;
+  clutter_context->disable_skip_frames = clutter_disable_skip_frames;
   clutter_context->options_parsed = TRUE;
 
   /*

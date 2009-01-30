@@ -583,8 +583,10 @@ timeline_timeout_func (gpointer data)
   GTimeVal                timeval;
   guint                   n_frames;
   gulong                  msecs;
+  ClutterMainContext     *context;
 
   priv = timeline->priv;
+  context = clutter_context_get_default ();
 
   g_object_ref (timeline);
 
@@ -608,11 +610,19 @@ timeline_timeout_func (gpointer data)
   msecs = (timeval.tv_sec - priv->prev_frame_timeval.tv_sec) * 1000;
   msecs += (timeval.tv_usec - priv->prev_frame_timeval.tv_usec) / 1000;
   priv->msecs_delta = msecs;
-  n_frames = msecs / (1000 / priv->fps);
-  if (n_frames == 0)
-    n_frames = 1;
+  if (context->disable_skip_frames == FALSE)
+    {
+      n_frames = msecs / (1000 / priv->fps);
+      if (n_frames == 0)
+        n_frames = 1;
 
-  priv->skipped_frames = n_frames - 1;
+      priv->skipped_frames = n_frames - 1;
+    }
+  else
+    {
+      n_frames = 1;
+      priv->skipped_frames = 0;
+    }
 
   if (priv->skipped_frames)
     CLUTTER_TIMESTAMP (SCHEDULER,

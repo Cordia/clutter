@@ -7,6 +7,8 @@ clutter (0.8.2-0maemo15~unreleased) unstable; urgency=low
   * Modified GLES cogl-texture to skip allocation and copying to an 
     intermediate bitmap if row strides match properly. Also use glTexImage2D
     if not copying a sub-area, but the whole image.
+  * Pierre-Luc Beaudoin's patch to disable frame skipping to allow easier
+    profiling of clutter.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Jan 2009 16:06:23 +0000
 

@@ -108,6 +108,7 @@ struct _ClutterMainContext
                                         * and actors 
                                         */
   guint            frame_rate;         /* Default FPS */
+  gboolean         disable_skip_frames;/* Should timeline not skip frames */
 
   ClutterActor    *pointer_grab_actor; /* The actor having the pointer grab
                                         * (or NULL if there is no pointer grab
