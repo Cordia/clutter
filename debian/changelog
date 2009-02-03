@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo16~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  3 Feb 2009 10:33:19 +0200
+
 clutter (0.8.2-0maemo15) unstable; urgency=low
 
   * Added Adam Endrodi's patch for DestroyNotify events causing the pixmap 
