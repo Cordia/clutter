@@ -664,6 +664,7 @@ _clutter_x11_register_xinput ()
       backend_singleton->have_xinput = FALSE;
       return;
     }
+  XFree (ext);
 
   x11b = backend_singleton;
 
@@ -674,6 +675,7 @@ _clutter_x11_register_xinput ()
   if (num_devices == 0)
     {
       backend_singleton->have_xinput = FALSE;
+      XFree (xdevices);
       return;
     }
 

@@ -198,6 +198,7 @@ gboolean        cogl_bitmap_save_pvrtc4       (const gchar *filename,
   if (!cogl_pvr_texture_save_pvrtc4( filename, compressed, compressed_size,
                                      width, height))
     return FALSE;
-    
+
+  g_free (compressed);
   return TRUE; 
 }

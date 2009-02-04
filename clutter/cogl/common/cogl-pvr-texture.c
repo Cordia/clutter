@@ -576,6 +576,7 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
   if (read_count != sizeof(PVR_TEXTURE_HEADER))
     {
       g_warning("%s: File not large enough for header", __FUNCTION__);
+      fclose (texfile);
       return 0;
     }
   
@@ -585,7 +586,9 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
       ((header.dwPVR >> 16) & 0xFF) != 'R' &&
       ((header.dwPVR >> 24) & 0xFF) != '!')
     {
-      g_warning("%s: Invalid PVR magic number 0x%08x", __FUNCTION__, header.dwPVR);
+      g_warning("%s: Invalid PVR magic number 0x%08x", __FUNCTION__,
+                header.dwPVR);
+      fclose (texfile);
       return 0;
     }
     
@@ -594,12 +597,16 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
   if (!texture_data)
     {
       g_warning("%s: Couldn't allocate texture data", __FUNCTION__);
+      fclose (texfile);
       return 0;
     }
   read_count = fread(texture_data, 1, header.dwDataSize, texfile);
   if (read_count != header.dwDataSize)
     {
-      g_warning("%s: File not large enough for image data header describes", __FUNCTION__);
+      g_warning("%s: File not large enough for image data header describes",
+                __FUNCTION__);
+      fclose (texfile);
+      g_free (texture_data);
       return 0;
     }
     
@@ -643,9 +650,8 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
         gl_format = GL_ETC1_RGB8_OES;
     }
   else
-    g_warning("%s: Unknown PVR file format 0x%02x", __FUNCTION__, header.dwpfFlags&0xFF);
-   
-  
+    g_warning("%s: Unknown PVR file format 0x%02x", __FUNCTION__,
+              header.dwpfFlags & 0xFF);
    
   /* load into GL */
   GE( glEnable(GL_TEXTURE_2D) );

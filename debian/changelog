@@ -1,6 +1,17 @@
 clutter (0.8.2-0maemo16~unreleased) unstable; urgency=low
 
-  * unreleased
+  Plugged leaks found by Coverity:
+  * clutter/cogl/common/cogl-bitmap.c (cogl_bitmap_save_pvrtc4): Free
+    pointer 'compressed'.
+  * clutter/cogl/common/cogl-pvr-texture.c (cogl_pvr_texture_load): fclose()
+    'texfile' in case of a return because of an error. Free 'texture_data' in
+    one error return.
+  * clutter/x11/clutter-backend-x11.c (_clutter_x11_register_xinput): Free
+    pointer 'ext' and 'xdevices'.
+  * clutter/x11/clutter-x11-texture-pixmap.c (try_alloc_shm): Free
+    dummy_image.
+    (clutter_x11_texture_pixmap_update_area_real): Added NULL check for
+    an XGetImage call. Free 'image' in case of some error cases.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  3 Feb 2009 10:33:19 +0200
 

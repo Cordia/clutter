@@ -237,6 +237,8 @@ try_alloc_shm (ClutterX11TexturePixmap *texture)
     g_warning ("X Error: Failed to setup XShm");
 
   priv->have_shm = TRUE;
+  if (dummy_image)
+    XFree (dummy_image);
   return TRUE;
 
 failed_xshmattach:
@@ -785,8 +787,11 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                                    priv->pixmap_width, priv->pixmap_height,
                                    AllPlanes,
                                    ZPixmap);
-	  first_pixel  = priv->image->data + priv->image->bytes_per_line * y
+          if (priv->image)
+	    first_pixel = priv->image->data + priv->image->bytes_per_line * y
 			  + x * priv->image->bits_per_pixel/8;
+          else
+            g_warning ("%s: XGetImage() failed", __FUNCTION__);
 	}
       else
 	{
@@ -812,7 +817,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                  priv->pixmap);
       /* safe to assume pixmap has gone away? - therefor reset */
       clutter_x11_texture_pixmap_set_pixmap (texture, None);
-      return;
+      goto free_image_and_return;
     }
 
   if (priv->depth == 24)
@@ -837,7 +842,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
       pixel_has_alpha = TRUE;
     }
   else
-    return;
+    goto free_image_and_return;
 
   /* For debugging purposes, un comment to simply generate dummy
    * pixmap data. (A Green background and Blue cross) */
@@ -898,7 +903,7 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
   if (data_allocated)
     g_free (data);
 
-
+free_image_and_return:
   if (priv->have_shm)
     XFree (image);
 #if 0
