@@ -332,9 +332,11 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
                          == EGL_FALSE)
     return;
   height = value;
+  /*
   g_debug ("%s: got width %u, height %u (X says %u, %u)", __FUNCTION__,
                 width, height,
                 priv->current_pixmap_width, priv->current_pixmap_height);
+                */
 
   /* bind the surface to a GL texture */
   glGenTextures (1, &priv->texture_id);
@@ -358,7 +360,9 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
 
   if (value == EGL_TEXTURE_RGB)
     {
+            /*
       g_debug ("%s: surface format is EGL_TEXTURE_RGB", __FUNCTION__);
+      */
       if (priv->current_pixmap_depth == 16)
         format = COGL_PIXEL_FORMAT_RGB_565;
       else
