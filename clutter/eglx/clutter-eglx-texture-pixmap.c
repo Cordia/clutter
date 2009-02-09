@@ -276,10 +276,12 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       return;
     }
 
+  /*
   if (pixmap && window)
     {
       g_warning ("%s: Pixmap AND Window defined, using pixmap", __FUNCTION__);
     }
+    */
 
   /*g_debug("%s: Pixmap depth %d", __FUNCTION__, pixmap_depth);*/
 
@@ -310,8 +312,6 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
                         (EGLNativePixmapType)pixmap);
       print_config_info (conf);
     }
-
-
 
   if (priv->egl_surface == EGL_NO_SURFACE)
     {
