@@ -12,6 +12,7 @@ clutter (0.8.2-0maemo16~unreleased) unstable; urgency=low
     dummy_image.
     (clutter_x11_texture_pixmap_update_area_real): Added NULL check for
     an XGetImage call. Free 'image' in case of some error cases.
+  * Removed some old debug prints.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  3 Feb 2009 10:33:19 +0200
 
