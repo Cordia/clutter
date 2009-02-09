@@ -573,7 +573,9 @@ clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
 
   if (priv->egl_surface == EGL_NO_SURFACE)
     {
+            /*
       g_debug ("%s: Surface not previously created, creating", __FUNCTION__);
+      */
       clutter_eglx_texture_pixmap_surface_create(CLUTTER_ACTOR(texture));
     }
 
