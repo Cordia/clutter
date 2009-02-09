@@ -142,6 +142,9 @@ cogl_gles2_settings_equal (const CoglGles2WrapperSettings *a,
       if (a->texture_2d_enabled != b->texture_2d_enabled)
 	return FALSE;
 
+      if (a->color_enabled != b->color_enabled)
+          return FALSE;
+
       if (a->texture_2d_enabled && a->alpha_only != b->alpha_only)
 	return FALSE;
 
@@ -180,6 +183,7 @@ cogl_gles2_get_vertex_shader (const CoglGles2WrapperSettings *settings)
 
   /* Otherwise create a new shader */
   shader_source = g_string_new (cogl_fixed_vertex_shader_header_start);
+
   if (settings->fog_enabled)
     {
       g_string_append (shader_source, cogl_fixed_vertex_shader_header_fog);
@@ -250,6 +254,11 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
   /* Otherwise create a new shader */
   shader_source = g_string_new (cogl_fixed_fragment_shader_header_start);
 
+  if (settings->color_enabled ||
+      (!settings->texture_2d_enabled) ||
+      settings->alpha_only)
+    g_string_append (shader_source, cogl_fixed_fragment_shader_header_color);
+
   if (settings->fog_enabled)
     {
       g_string_append (shader_source, cogl_fixed_fragment_shader_header_fog);
@@ -263,8 +272,14 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
 	g_string_append (shader_source,
 			 cogl_fixed_fragment_shader_texture_alpha_only);
       else
-	g_string_append (shader_source,
-			 cogl_fixed_fragment_shader_texture);
+        {
+          if (settings->color_enabled)
+            g_string_append (shader_source,
+                             cogl_fixed_fragment_shader_texture_color);
+          else
+            g_string_append (shader_source,
+                             cogl_fixed_fragment_shader_texture);
+        }
     }
   else
     g_string_append (shader_source, cogl_fixed_fragment_shader_solid_color);
@@ -1075,11 +1090,16 @@ cogl_wrap_glAlphaFunc (GLenum func, GLclampf ref)
 void
 cogl_wrap_glColor4x (GLclampx r, GLclampx g, GLclampx b, GLclampx a)
 {
+  gboolean is_white = (r>=65535) && (g>=65535) & (b>=65535) & (a>=65535);
+  _COGL_GET_GLES2_WRAPPER (w, NO_RETVAL);
+
   glVertexAttrib4f (COGL_GLES2_WRAPPER_COLOR_ATTRIB,
 		    CLUTTER_FIXED_TO_FLOAT (r),
 		    CLUTTER_FIXED_TO_FLOAT (g),
 		    CLUTTER_FIXED_TO_FLOAT (b),
 		    CLUTTER_FIXED_TO_FLOAT (a));
+
+  _COGL_GLES2_CHANGE_SETTING (w, color_enabled, !is_white);
 }
 
 void

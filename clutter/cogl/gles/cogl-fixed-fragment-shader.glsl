@@ -5,7 +5,6 @@
 precision lowp float;
 
 /* Inputs from the vertex shader */
-varying lowp vec4       frag_color;
 varying mediump vec2       tex_coord;
 
 /* Texturing options */
@@ -14,6 +13,8 @@ uniform lowp sampler2D  texture_unit;
 /* Alpha test options */
 uniform lowp float      alpha_test_ref;
 
+/*** cogl_fixed_fragment_shader_header_color ***/
+varying lowp vec4       frag_color;
 /*** cogl_fixed_fragment_shader_header_fog ***/
 
 /* Fogging options */
@@ -35,13 +36,16 @@ main (void)
   gl_FragColor = frag_color;
   gl_FragColor.a *= texture2D (texture_unit, tex_coord).a;
 
-  /*** cogl_fixed_fragment_shader_texture ***/
+  /*** cogl_fixed_fragment_shader_texture_color ***/
 
   /* This pointless extra variable is needed to work around an
      apparent bug in the PowerVR drivers. Without it the alpha
      blending seems to stop working */
   lowp vec4 frag_color_copy = frag_color;
   gl_FragColor = frag_color_copy * texture2D (texture_unit, tex_coord);
+  
+  /*** cogl_fixed_fragment_shader_texture ***/
+  gl_FragColor = texture2D (texture_unit, tex_coord);
 
   /*** cogl_fixed_fragment_shader_solid_color ***/
   gl_FragColor = frag_color;

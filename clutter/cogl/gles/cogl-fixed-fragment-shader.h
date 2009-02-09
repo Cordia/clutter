@@ -27,9 +27,11 @@
 #define __COGL_FIXED_FRAGMENT_SHADER_H
 
 extern const char cogl_fixed_fragment_shader_header_start[];
+extern const char cogl_fixed_fragment_shader_header_color[];
 extern const char cogl_fixed_fragment_shader_header_fog[];
 extern const char cogl_fixed_fragment_shader_start[];
 extern const char cogl_fixed_fragment_shader_texture_alpha_only[];
+extern const char cogl_fixed_fragment_shader_texture_color[];
 extern const char cogl_fixed_fragment_shader_texture[];
 extern const char cogl_fixed_fragment_shader_solid_color[];
 extern const char cogl_fixed_fragment_shader_fog[];

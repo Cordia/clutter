@@ -31,7 +31,6 @@ const char cogl_fixed_fragment_shader_header_start[] =
   "precision lowp float;\n"
   "\n"
   "/* Inputs from the vertex shader */\n"
-  "varying lowp vec4       frag_color;\n"
   "varying mediump vec2       tex_coord;\n"
   "\n"
   "/* Texturing options */\n"
@@ -40,6 +39,9 @@ const char cogl_fixed_fragment_shader_header_start[] =
   "/* Alpha test options */\n"
   "uniform lowp float      alpha_test_ref;\n"
   "\n"
+  ;
+const char cogl_fixed_fragment_shader_header_color[] =
+  "varying lowp vec4       frag_color;\n"
   ;
 const char cogl_fixed_fragment_shader_header_fog[] =
   "\n"
@@ -65,13 +67,17 @@ const char cogl_fixed_fragment_shader_texture_alpha_only[] =
   "  gl_FragColor.a *= texture2D (texture_unit, tex_coord).a;\n"
   "\n"
   ;
-const char cogl_fixed_fragment_shader_texture[] =
+const char cogl_fixed_fragment_shader_texture_color[] =
   "\n"
   "  /* This pointless extra variable is needed to work around an\n"
   "     apparent bug in the PowerVR drivers. Without it the alpha\n"
   "     blending seems to stop working */\n"
   "  lowp vec4 frag_color_copy = frag_color;\n"
   "  gl_FragColor = frag_color_copy * texture2D (texture_unit, tex_coord);\n"
+  "  \n"
+  ;
+const char cogl_fixed_fragment_shader_texture[] =
+  "  gl_FragColor = texture2D (texture_unit, tex_coord);\n"
   "\n"
   ;
 const char cogl_fixed_fragment_shader_solid_color[] =
