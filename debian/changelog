@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo16~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo16) unstable; urgency=low
 
   Plugged leaks found by Coverity:
   * clutter/cogl/common/cogl-bitmap.c (cogl_bitmap_save_pvrtc4): Free
@@ -14,7 +14,7 @@ clutter (0.8.2-0maemo16~unreleased) unstable; urgency=low
     an XGetImage call. Free 'image' in case of some error cases.
   * Removed some old debug prints.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  3 Feb 2009 10:33:19 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 10 Feb 2009 13:28:00 +0200
 
 clutter (0.8.2-0maemo15) unstable; urgency=low
 
