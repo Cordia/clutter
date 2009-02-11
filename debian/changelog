@@ -1,6 +1,6 @@
 clutter (0.8.2-0maemo17~unreleased) unstable; urgency=low
 
-  * unreleased
+  * Removed needless print for scratchbox
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 11 Feb 2009 09:24:53 +0200
 
@@ -19,6 +19,10 @@ clutter (0.8.2-0maemo16) unstable; urgency=low
     (clutter_x11_texture_pixmap_update_area_real): Added NULL check for
     an XGetImage call. Free 'image' in case of some error cases.
   * Removed some old debug prints.
+  * clutter/cogl/gles/cogl-fixed-fragment-shader.glsl (.h/.c genereated), 
+    clutter/cogl/gles/cogl-gles2-wrapper.c:
+    Do to not multiply the texture's colour by the current colour if our
+    colour is white (95% of cases). Gives us ~5% speed increase.	
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 10 Feb 2009 13:28:00 +0200
 

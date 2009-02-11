@@ -1616,7 +1616,6 @@ cogl_texture_set_region (CoglHandle       handle,
   /* If no direct match, convert */
   if (closest_format != format)
     {
-      g_debug("CONVERT %d -> %d", format, closest_format);
       /* Convert to required format */
       success = _cogl_bitmap_convert_and_premult (&source_bmp,
 						  &temp_bmp,
