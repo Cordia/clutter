@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo17~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 11 Feb 2009 09:24:53 +0200
+
 clutter (0.8.2-0maemo16) unstable; urgency=low
 
   Plugged leaks found by Coverity:
