@@ -184,7 +184,7 @@ inline static void
 _cogl_unpremult_alpha_last (const guchar *src, guchar *dst)
 {
   guchar alpha = src[3];
-  
+
   dst[0] = ((((gulong) src[0] >> 16) & 0xff) * 255 ) / alpha;
   dst[1] = ((((gulong) src[1] >> 8) & 0xff) * 255 ) / alpha;
   dst[2] = ((((gulong) src[2] >> 0) & 0xff) * 255 ) / alpha;
@@ -195,7 +195,7 @@ inline static void
 _cogl_unpremult_alpha_first (const guchar *src, guchar *dst)
 {
   guchar alpha = src[0];
-  
+
   dst[0] = alpha;
   dst[1] = ((((gulong) src[1] >> 16) & 0xff) * 255 ) / alpha;
   dst[2] = ((((gulong) src[2] >> 8) & 0xff) * 255 ) / alpha;
@@ -207,24 +207,24 @@ _cogl_bitmap_fallback_can_convert (CoglPixelFormat src, CoglPixelFormat dst)
 {
   if (src == dst)
     return FALSE;
-  
+
   switch (src & COGL_UNORDERED_MASK)
     {
     case COGL_PIXEL_FORMAT_G_8:
     case COGL_PIXEL_FORMAT_RGB_888:
     case COGL_PIXEL_FORMAT_RGBA_8888:
     case COGL_PIXEL_FORMAT_RGB_565:
-      
-      if ((dst & COGL_UNORDERED_MASK) != COGL_PIXEL_FORMAT_24 &&
-	  (dst & COGL_UNORDERED_MASK) != COGL_PIXEL_FORMAT_32 &&
-	  (dst & COGL_UNORDERED_MASK) != COGL_PIXEL_FORMAT_G_8)
+
+      if ((dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_24 &&
+	  (dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_32 &&
+	  (dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_G_8)
 	return FALSE;
       break;
-      
+
     default:
       return FALSE;
     }
-  
+
   return TRUE;
 }
 
@@ -245,11 +245,11 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
   gint     dst_bpp;
   gint     x,y;
   guchar   temp_rgba[4] = {0,0,0,0};
-  
+
   /* Make sure conversion supported */
   if (!_cogl_bitmap_fallback_can_convert (bmp->format, dst_format))
     return FALSE;
-  
+
   src_bpp = _cogl_get_format_bpp (bmp->format);
   dst_bpp = _cogl_get_format_bpp (dst_format);
 
@@ -258,18 +258,18 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
   dst_bmp->rowstride = sizeof(guchar) * dst_bpp * dst_bmp->width;
   dst_bmp->format = ((bmp->format & COGL_PREMULT_BIT) |
 		     (dst_format & COGL_UNPREMULT_MASK));
-  
+
   /* Allocate a new buffer to hold converted data */
   dst_bmp->data = g_malloc (sizeof(guchar)
 			    * dst_bmp->height
 			    * dst_bmp->rowstride);
-  
+
   /* FIXME: Optimize */
   for (y = 0; y < bmp->height; y++)
     {
       src = (guchar*)bmp->data      + y * bmp->rowstride;
       dst = (guchar*)dst_bmp->data  + y * dst_bmp->rowstride;
-      
+
       for (x = 0; x < bmp->width; x++)
 	{
 	  /* FIXME: Would be nice to at least remove this inner
@@ -298,7 +298,7 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
 	    default:
 	      break;
 	    }
-	  
+
 	  switch (dst_format & COGL_UNPREMULT_MASK)
 	    {
 	    case COGL_PIXEL_FORMAT_G_8:
@@ -318,12 +318,12 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
 	    default:
 	      break;
 	    }
-	  
+
 	  src += src_bpp;
 	  dst += dst_bpp;
 	}
     }
-  
+
   return TRUE;
 }
 
@@ -335,28 +335,28 @@ _cogl_bitmap_fallback_unpremult (const CoglBitmap *bmp,
   guchar  *dst;
   gint     bpp;
   gint     x,y;
-  
+
   /* Make sure format supported for un-premultiplication */
   if (!_cogl_bitmap_fallback_can_unpremult (bmp->format))
     return FALSE;
-  
+
   bpp = _cogl_get_format_bpp (bmp->format);
-  
+
   /* Initialize destination bitmap */
   *dst_bmp = *bmp;
   dst_bmp->format = (bmp->format & COGL_UNPREMULT_MASK);
-  
+
   /* Allocate a new buffer to hold converted data */
   dst_bmp->data = g_malloc (sizeof(guchar)
 			    * dst_bmp->height
 			    * dst_bmp->rowstride);
-  
+
   /* FIXME: Optimize */
   for (y = 0; y < bmp->height; y++)
     {
       src = (guchar*)bmp->data      + y * bmp->rowstride;
       dst = (guchar*)dst_bmp->data  + y * dst_bmp->rowstride;
-      
+
       for (x = 0; x < bmp->width; x++)
 	{
 	  /* FIXME: Would be nice to at least remove this inner
@@ -376,12 +376,12 @@ _cogl_bitmap_fallback_unpremult (const CoglBitmap *bmp,
 	      else
 		_cogl_unpremult_alpha_last (src, dst);
 	    }
-	  
+
 	  src += bpp;
 	  dst += bpp;
 	}
     }
-  
+
   return TRUE;
 }
 

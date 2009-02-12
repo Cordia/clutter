@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo17~unreleased) unstable; urgency=low
 
   * Removed needless print for scratchbox
+  * Fixed RGBA texture pixmaps in X11-texture-pixmap (format conversion hell)
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 11 Feb 2009 09:24:53 +0200
 
