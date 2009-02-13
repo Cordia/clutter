@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo17~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo17) unstable; urgency=low
 
   * Removed needless print for scratchbox
   * Fixed RGBA texture pixmaps in X11-texture-pixmap (format conversion hell)
