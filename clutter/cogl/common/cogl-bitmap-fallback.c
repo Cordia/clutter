@@ -33,7 +33,18 @@
 
 #include <string.h>
 
+
+/* we really want everything inlined here, or we'll be insanely slow */
+
 /* TO rgba */
+
+inline static void
+_cogl_swap_r_b (guchar *dst)
+{
+  guchar tmp = dst[0];
+  dst[0] = dst[2];
+  dst[2] = tmp;
+}
 
 inline static void
 _cogl_g_to_rgba (const guchar *src, guchar *dst)
@@ -42,6 +53,15 @@ _cogl_g_to_rgba (const guchar *src, guchar *dst)
   dst[1] = src[0];
   dst[2] = src[0];
   dst[3] = 255;
+}
+
+inline static void
+_cogl_a_to_rgba (const guchar *src, guchar *dst)
+{
+  dst[0] = 255;
+  dst[1] = 255;
+  dst[2] = 255;
+  dst[3] = src[0];
 }
 
 inline static void
@@ -54,38 +74,11 @@ _cogl_rgb_to_rgba (const guchar *src, guchar *dst)
 }
 
 inline static void
-_cogl_bgr_to_rgba (const guchar *src, guchar *dst)
-{
-  dst[0] = src[2];
-  dst[1] = src[1];
-  dst[2] = src[0];
-  dst[3] = 255;
-}
-
-inline static void
-_cogl_bgra_to_rgba (const guchar *src, guchar *dst)
-{
-  dst[0] = src[2];
-  dst[1] = src[1];
-  dst[2] = src[0];
-  dst[3] = src[3];
-}
-
-inline static void
 _cogl_argb_to_rgba (const guchar *src, guchar *dst)
 {
   dst[0] = src[1];
   dst[1] = src[2];
   dst[2] = src[3];
-  dst[3] = src[0];
-}
-
-inline static void
-_cogl_abgr_to_rgba (const guchar *src, guchar *dst)
-{
-  dst[0] = src[3];
-  dst[1] = src[2];
-  dst[2] = src[1];
   dst[3] = src[0];
 }
 
@@ -102,20 +95,30 @@ inline static void
 _cogl_rgb565_to_rgba (const guchar *src, guchar *dst)
 {
   gushort *c = (gushort*)src;
-  dst[0] = (((*c << 3) & 0xf8) | ((*c >> 2) & 0x7));
+  dst[0] = (((*c >> 8) & 0xf8) | ((*c >> 13) & 0x7));
   dst[1] = (((*c >> 3) & 0xfc) | ((*c >> 9) & 0x3));
-  dst[2] = (((*c >> 8) & 0xf8) | ((*c >> 5) & 0x7));
+  dst[2] = (((*c << 3) & 0xf8) | ((*c >> 2) & 0x7));
   dst[3] = 255;
 }
 
 inline static void
-_cogl_bgr565_to_rgba (const guchar *src, guchar *dst)
+_cogl_rgba5551_to_rgba (const guchar *src, guchar *dst)
 {
   gushort *c = (gushort*)src;
-  dst[0] = (((*c >> 8) & 0xf8) | ((*c >> 5) & 0x7));
-  dst[1] = (((*c >> 3) & 0xfc) | ((*c >> 9) & 0x3));
-  dst[2] = (((*c << 3) & 0xf8) | ((*c >> 2) & 0x7));
-  dst[3] = 255;
+  dst[0] = (((*c >> 8) & 0xf8) | ((*c >> 13) & 0x7));
+  dst[1] = (((*c >> 3) & 0xf8) | ((*c >> 8) & 0x7));
+  dst[2] = (((*c << 2) & 0xf8) | ((*c >> 3) & 0x7));
+  dst[3] = (*c & 0x0001) ? 255 : 0;
+}
+
+inline static void
+_cogl_rgba4444_to_rgba (const guchar *src, guchar *dst)
+{
+  gushort *c = (gushort*)src;
+  dst[0] = (((*c >> 8) & 0xf0) | ((*c >> 12) & 0xF));
+  dst[1] = (((*c >> 4) & 0xf0) | ((*c >> 8) & 0xF));
+  dst[2] = (((*c     ) & 0xf0) | ((*c >> 4) & 0xF));
+  dst[3] = (((*c << 4) & 0xf0) | ((*c     ) & 0xF));
 }
 
 /* FROM rgba */
@@ -127,28 +130,17 @@ _cogl_rgba_to_g (const guchar *src, guchar *dst)
 }
 
 inline static void
+_cogl_rgba_to_a (const guchar *src, guchar *dst)
+{
+  dst[0] = src[3];
+}
+
+inline static void
 _cogl_rgba_to_rgb (const guchar *src, guchar *dst)
 {
   dst[0] = src[0];
   dst[1] = src[1];
   dst[2] = src[2];
-}
-
-inline static void
-_cogl_rgba_to_bgr (const guchar *src, guchar *dst)
-{
-  dst[0] = src[2];
-  dst[1] = src[1];
-  dst[2] = src[0];
-}
-
-inline static void
-_cogl_rgba_to_bgra (const guchar *src, guchar *dst)
-{
-  dst[0] = src[2];
-  dst[1] = src[1];
-  dst[2] = src[0];
-  dst[3] = src[3];
 }
 
 inline static void
@@ -161,12 +153,32 @@ _cogl_rgba_to_argb (const guchar *src, guchar *dst)
 }
 
 inline static void
-_cogl_rgba_to_abgr (const guchar *src, guchar *dst)
+_cogl_rgba_to_rgb565 (const guchar *src, guchar *dst)
 {
-  dst[0] = src[3];
-  dst[1] = src[2];
-  dst[2] = src[1];
-  dst[3] = src[0];
+  gushort *c = (gushort*)dst;
+  *c = ((src[2]       ) >> 3) |
+       ((src[1] & 0xFC) << 3) |
+       ((src[0] & 0xF8) << 8);
+}
+
+inline static void
+_cogl_rgba_to_rgba5551 (const guchar *src, guchar *dst)
+{
+  gushort *c = (gushort*)dst;
+  *c = ((src[3] & 0xF0) >> 7) |
+       ((src[2] & 0xF8) >> 2) |
+       ((src[1] & 0xF8) << 3) |
+       ((src[0] & 0xF8) << 8);
+}
+
+inline static void
+_cogl_rgba_to_rgba4444 (const guchar *src, guchar *dst)
+{
+  gushort *c = (gushort*)dst;
+  *c = ((src[3]       ) >> 4) |
+       ((src[2] & 0xF0)     ) |
+       ((src[1] & 0xF0) << 4) |
+       ((src[0] & 0xF0) << 8);
 }
 
 /* (Un)Premultiplication */
@@ -203,32 +215,6 @@ _cogl_unpremult_alpha_first (const guchar *src, guchar *dst)
 }
 
 gboolean
-_cogl_bitmap_fallback_can_convert (CoglPixelFormat src, CoglPixelFormat dst)
-{
-  if (src == dst)
-    return FALSE;
-
-  switch (src & COGL_UNORDERED_MASK)
-    {
-    case COGL_PIXEL_FORMAT_G_8:
-    case COGL_PIXEL_FORMAT_RGB_888:
-    case COGL_PIXEL_FORMAT_RGBA_8888:
-    case COGL_PIXEL_FORMAT_RGB_565:
-
-      if ((dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_24 &&
-	  (dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_32 &&
-	  (dst & COGL_PIXEL_SIZE_MASK) != COGL_PIXEL_FORMAT_G_8)
-	return FALSE;
-      break;
-
-    default:
-      return FALSE;
-    }
-
-  return TRUE;
-}
-
-gboolean
 _cogl_bitmap_fallback_can_unpremult (CoglPixelFormat format)
 {
   return ((format & COGL_UNORDERED_MASK) == COGL_PIXEL_FORMAT_32);
@@ -246,10 +232,6 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
   gint     x,y;
   guchar   temp_rgba[4] = {0,0,0,0};
 
-  /* Make sure conversion supported */
-  if (!_cogl_bitmap_fallback_can_convert (bmp->format, dst_format))
-    return FALSE;
-
   src_bpp = _cogl_get_format_bpp (bmp->format);
   dst_bpp = _cogl_get_format_bpp (dst_format);
 
@@ -257,74 +239,95 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
   *dst_bmp = *bmp;
   dst_bmp->rowstride = sizeof(guchar) * dst_bpp * dst_bmp->width;
   dst_bmp->format = ((bmp->format & COGL_PREMULT_BIT) |
-		     (dst_format & COGL_UNPREMULT_MASK));
+                     (dst_format & COGL_UNPREMULT_MASK));
 
   /* Allocate a new buffer to hold converted data */
   dst_bmp->data = g_malloc (sizeof(guchar)
-			    * dst_bmp->height
-			    * dst_bmp->rowstride);
+                            * dst_bmp->height
+                            * dst_bmp->rowstride);
+  /* This preprocessor hack is able to generate all the fast conversion
+   * code we need */
 
-  /* FIXME: Optimize */
-  for (y = 0; y < bmp->height; y++)
-    {
-      src = (guchar*)bmp->data      + y * bmp->rowstride;
-      dst = (guchar*)dst_bmp->data  + y * dst_bmp->rowstride;
-
-      for (x = 0; x < bmp->width; x++)
-	{
-	  /* FIXME: Would be nice to at least remove this inner
-           * branching, but not sure it can be done without
-           * rewriting of the whole loop */
-	  switch (bmp->format & COGL_UNPREMULT_MASK)
-	    {
-	    case COGL_PIXEL_FORMAT_G_8:
-	      _cogl_g_to_rgba (src, temp_rgba); break;
-            case COGL_PIXEL_FORMAT_RGB_565:
-              _cogl_rgb565_to_rgba (src, temp_rgba); break;
-            case COGL_PIXEL_FORMAT_BGR_565:
-              _cogl_bgr565_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_RGB_888:
-	      _cogl_rgb_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_BGR_888:
-	      _cogl_bgr_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_RGBA_8888:
-	      _cogl_rgba_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_BGRA_8888:
-	      _cogl_bgra_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_ARGB_8888:
-	      _cogl_argb_to_rgba (src, temp_rgba); break;
-	    case COGL_PIXEL_FORMAT_ABGR_8888:
-	      _cogl_abgr_to_rgba (src, temp_rgba); break;
-	    default:
-	      break;
-	    }
-
-	  switch (dst_format & COGL_UNPREMULT_MASK)
-	    {
-	    case COGL_PIXEL_FORMAT_G_8:
-	      _cogl_rgba_to_g (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_RGB_888:
-	      _cogl_rgba_to_rgb (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_BGR_888:
-	      _cogl_rgba_to_bgr (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_RGBA_8888:
-	      _cogl_rgba_to_rgba (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_BGRA_8888:
-	      _cogl_rgba_to_bgra (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_ARGB_8888:
-	      _cogl_rgba_to_argb (temp_rgba, dst); break;
-	    case COGL_PIXEL_FORMAT_ABGR_8888:
-	      _cogl_rgba_to_abgr (temp_rgba, dst); break;
-	    default:
-	      break;
-	    }
-
-	  src += src_bpp;
-	  dst += dst_bpp;
-	}
+#define TRY_CONVERSION(TFROM, TTO, TSWAP, FMT_DST)                    \
+  if (FMT_DST == dst_format)                                          \
+    {                                                                 \
+      for (y = 0; y < bmp->height; y++)                               \
+        {                                                             \
+          src = (guchar*)bmp->data      + y * bmp->rowstride;         \
+          dst = (guchar*)dst_bmp->data  + y * dst_bmp->rowstride;     \
+                                                                      \
+          for (x = 0; x < bmp->width; x++)                            \
+            {                                                         \
+              _cogl_##TFROM##_to_rgba (src, temp_rgba);               \
+                                                                      \
+              if (TSWAP)                                              \
+                _cogl_swap_r_b(temp_rgba);                            \
+                                                                      \
+              _cogl_rgba_to_##TTO (temp_rgba, dst);                   \
+                                                                      \
+              src += src_bpp;                                         \
+              dst += dst_bpp;                                         \
+            }                                                         \
+        }                                                             \
+      return TRUE;                                                    \
     }
 
-  return TRUE;
+#define TRY_CONVERSIONS(TFROM, SWAP) \
+  {                              \
+  TRY_CONVERSION(TFROM, g, SWAP, COGL_PIXEL_FORMAT_G_8) \
+  TRY_CONVERSION(TFROM, rgb565, SWAP, COGL_PIXEL_FORMAT_RGB_565)  \
+  TRY_CONVERSION(TFROM, rgb565, !SWAP, COGL_PIXEL_FORMAT_BGR_565)  \
+  TRY_CONVERSION(TFROM, rgba5551, SWAP, COGL_PIXEL_FORMAT_RGBA_5551)  \
+  TRY_CONVERSION(TFROM, rgba5551, !SWAP, COGL_PIXEL_FORMAT_BGRA_5551)  \
+  TRY_CONVERSION(TFROM, rgba4444, SWAP, COGL_PIXEL_FORMAT_RGBA_4444)  \
+  TRY_CONVERSION(TFROM, rgba4444, !SWAP, COGL_PIXEL_FORMAT_BGRA_4444)  \
+  TRY_CONVERSION(TFROM, rgb, SWAP, COGL_PIXEL_FORMAT_RGB_888)  \
+  TRY_CONVERSION(TFROM, rgb, !SWAP, COGL_PIXEL_FORMAT_BGR_888)  \
+  TRY_CONVERSION(TFROM, rgba, SWAP, COGL_PIXEL_FORMAT_RGBA_8888)  \
+  TRY_CONVERSION(TFROM, rgba, !SWAP, COGL_PIXEL_FORMAT_BGRA_8888)  \
+  TRY_CONVERSION(TFROM, argb, SWAP, COGL_PIXEL_FORMAT_ARGB_8888)  \
+  TRY_CONVERSION(TFROM, argb, !SWAP, COGL_PIXEL_FORMAT_ABGR_8888)  \
+  }
+
+  switch (bmp->format & COGL_UNPREMULT_MASK)
+  {
+  case COGL_PIXEL_FORMAT_G_8:
+    TRY_CONVERSIONS(g, FALSE); break;
+  case COGL_PIXEL_FORMAT_RGB_565:
+    TRY_CONVERSIONS(rgb565, FALSE); break;
+  case COGL_PIXEL_FORMAT_BGR_565:
+    TRY_CONVERSIONS(rgb565, TRUE); break;
+  case COGL_PIXEL_FORMAT_RGBA_5551:
+    TRY_CONVERSIONS(rgba5551, FALSE); break;
+  case COGL_PIXEL_FORMAT_BGRA_5551:
+    TRY_CONVERSIONS(rgba5551, TRUE); break;
+  case COGL_PIXEL_FORMAT_RGBA_4444:
+    TRY_CONVERSIONS(rgba4444, FALSE); break;
+  case COGL_PIXEL_FORMAT_BGRA_4444:
+    TRY_CONVERSIONS(rgba4444, TRUE); break;
+  case COGL_PIXEL_FORMAT_RGB_888:
+    TRY_CONVERSIONS(rgb, FALSE); break;
+  case COGL_PIXEL_FORMAT_BGR_888:
+    TRY_CONVERSIONS(rgb, TRUE); break;
+  case COGL_PIXEL_FORMAT_RGBA_8888:
+    TRY_CONVERSIONS(rgba, FALSE); break;
+  case COGL_PIXEL_FORMAT_BGRA_8888:
+    TRY_CONVERSIONS(rgba, TRUE); break;
+  case COGL_PIXEL_FORMAT_ARGB_8888:
+    TRY_CONVERSIONS(argb, FALSE); break;
+  case COGL_PIXEL_FORMAT_ABGR_8888:
+    TRY_CONVERSIONS(argb, TRUE); break;
+  default:
+    break;
+  }
+
+#undef TRY_CONVERSIONS
+#undef TRY_CONVERSION
+
+  g_free(dst_bmp->data);
+  dst_bmp->data = 0;
+  /* We can't do anything we haven't got here */
+  return FALSE;
 }
 
 gboolean

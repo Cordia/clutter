@@ -103,9 +103,16 @@ typedef enum
                                      COGL_BGR_BIT),
   COGL_PIXEL_FORMAT_RGBA_4444     = (COGL_PIXEL_FORMAT_16 | 
                                      COGL_A_BIT),
+  COGL_PIXEL_FORMAT_BGRA_4444     = (COGL_PIXEL_FORMAT_16 | 
+                                     COGL_BGR_BIT |
+                                     COGL_A_BIT),                                              
   COGL_PIXEL_FORMAT_RGBA_5551     = (1 |
                                      COGL_PIXEL_FORMAT_16 | 
                                      COGL_A_BIT),
+  COGL_PIXEL_FORMAT_BGRA_5551     = (1 |
+                                    COGL_PIXEL_FORMAT_16 |
+                                    COGL_BGR_BIT |
+                                    COGL_A_BIT),                                     
   COGL_PIXEL_FORMAT_YUV           = (1 | 
                                      COGL_PIXEL_FORMAT_16),
   COGL_PIXEL_FORMAT_G_8           = COGL_PIXEL_FORMAT_8,

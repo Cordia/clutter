@@ -791,7 +791,10 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
 	    first_pixel = priv->image->data + priv->image->bytes_per_line * y
 			  + x * priv->image->bits_per_pixel/8;
           else
-            g_warning ("%s: XGetImage() failed", __FUNCTION__);
+            {
+              g_warning ("%s: XGetImage() failed", __FUNCTION__);
+              return;
+            }
 	}
       else
 	{
