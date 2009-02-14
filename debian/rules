@@ -6,10 +6,10 @@ DEB_COMPRESS_EXCLUDE = .c
 ARCH = $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 ifneq (,$(findstring i386,$(ARCH)))
   DEB_CONFIGURE_EXTRA_FLAGS := --disable-gtk-doc --with-flavour=glx \
-			     --with-gles=2.0
+			     --with-gles=2.0 --enable-debug=no
 else
   DEB_CONFIGURE_EXTRA_FLAGS := --disable-gtk-doc --with-flavour=eglx \
-			     --with-gles=2.0
+			     --with-gles=2.0 --enable-debug=no
 endif
 
 DEB_DH_STRIP_ARGS := --dbg-package=libclutter-0.8-0

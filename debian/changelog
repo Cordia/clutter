@@ -1,3 +1,11 @@
+clutter (0.8.2-0maemo18~unreleased) unstable; urgency=low
+
+  * Started to compile without debug code and Gobject checks, so that we get
+    enough testing for the code without checking code (which can affect the
+    behaviour).
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Sat, 14 Feb 2009 14:15:52 +0200
+
 clutter (0.8.2-0maemo17) unstable; urgency=low
 
   * Removed needless print for scratchbox
