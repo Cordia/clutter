@@ -78,7 +78,19 @@ cogl_create_context ()
   
   /* Init OpenGL state */
   GE( cogl_wrap_glTexEnvx (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE) );
-  GE( glColorMask (TRUE, TRUE, TRUE, FALSE) );
+
+  /* fill performance drops on some devices (PVR arm driver) when colormask is
+   * set. Mask off alpha only if alpha channel really exist.
+   */
+  {
+      GLint alphaSize = 0;
+      glGetIntegerv(GL_ALPHA_BITS, &alphaSize);
+      if (alphaSize > 0)
+      { 
+          GE( glColorMask (TRUE, TRUE, TRUE, FALSE) );
+      }
+  }
+
   GE( glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) );
   cogl_enable (0);
   
