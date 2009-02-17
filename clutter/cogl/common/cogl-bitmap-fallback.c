@@ -274,6 +274,7 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
 
 #define TRY_CONVERSIONS(TFROM, SWAP) \
   {                              \
+  TRY_CONVERSION(TFROM, a, SWAP, COGL_PIXEL_FORMAT_A_8) \
   TRY_CONVERSION(TFROM, g, SWAP, COGL_PIXEL_FORMAT_G_8) \
   TRY_CONVERSION(TFROM, rgb565, SWAP, COGL_PIXEL_FORMAT_RGB_565)  \
   TRY_CONVERSION(TFROM, rgb565, !SWAP, COGL_PIXEL_FORMAT_BGR_565)  \
@@ -291,6 +292,8 @@ _cogl_bitmap_fallback_convert (const CoglBitmap *bmp,
 
   switch (bmp->format & COGL_UNPREMULT_MASK)
   {
+  case COGL_PIXEL_FORMAT_A_8:
+      TRY_CONVERSIONS(a, FALSE); break;
   case COGL_PIXEL_FORMAT_G_8:
     TRY_CONVERSIONS(g, FALSE); break;
   case COGL_PIXEL_FORMAT_RGB_565:

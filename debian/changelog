@@ -4,6 +4,7 @@ clutter (0.8.2-0maemo18~unreleased) unstable; urgency=low
     enough testing for the code without checking code (which can affect the
     behaviour).
   * committed patch from http://bugzilla.openedhand.com/show_bug.cgi?id=1228
+  * Added conversion to A8 that got missed out of conversion code
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Sat, 14 Feb 2009 14:15:52 +0200
 
