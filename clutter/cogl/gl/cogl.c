@@ -975,6 +975,11 @@ _cogl_features_init ()
     }
 #endif
 
+  if (cogl_check_extension ("GL_IMG_texture_compression_pvrtc", gl_extensions))
+    {
+      flags |= COGL_FEATURE_TEXTURE_PVRTC;
+    }
+
   if (cogl_check_extension ("GL_EXT_packed_pixel", gl_extensions))
     {
       flags |= COGL_FEATURE_PACKED_PIXEL;

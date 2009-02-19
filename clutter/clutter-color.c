@@ -35,6 +35,7 @@
 #endif
 
 #include <pango/pango-attributes.h>
+#include <gobject/gvaluecollector.h>
 
 #include "clutter-main.h"
 #include "clutter-color.h"
@@ -150,7 +151,7 @@ clutter_color_to_hlsx (const ClutterColor *src,
   ClutterFixed red, green, blue;
   ClutterFixed min, max, delta;
   ClutterFixed h, l, s;
-  
+
   g_return_if_fail (src != NULL);
 
   red   = CLUTTER_INT_TO_FIXED (src->red)   / 255;
@@ -235,7 +236,7 @@ clutter_color_from_hlsx (ClutterColor *dest,
 {
   ClutterFixed h, l, s;
   ClutterFixed m1, m2;
-  
+
   g_return_if_fail (dest != NULL);
 
   l = luminance;
@@ -321,9 +322,9 @@ clutter_color_to_hls (const ClutterColor *src,
 		      guint8             *saturation)
 {
   ClutterFixed h, l, s;
-  
+
   clutter_color_to_hlsx (src, &h, &l, &s);
-  
+
   if (hue)
     *hue = (guint8) CFX_INT (h * 255) / 360;
 
@@ -365,7 +366,7 @@ clutter_color_from_hls (ClutterColor *dest,
  * @src: a #ClutterColor
  * @dest: return location for the shaded color
  * @shade: the shade factor to apply
- * 
+ *
  * Shades @src by the factor of @shade and saves the modified
  * color into @dest.
  */
@@ -382,7 +383,7 @@ clutter_color_shade (const ClutterColor *src,
  * @src: a #ClutterColor
  * @dest: return location for the shaded color
  * @shade: #ClutterFixed the shade factor to apply
- * 
+ *
  * Fixed point version of clutter_color_shade().
  *
  * Shades @src by the factor of @shade and saves the modified
@@ -399,7 +400,7 @@ clutter_color_shadex (const ClutterColor *src,
 
   g_return_if_fail (src != NULL);
   g_return_if_fail (dest != NULL);
-  
+
   clutter_color_to_hlsx (src, &h, &l, &s);
 
   l = CFX_MUL (l, shade);
@@ -413,7 +414,7 @@ clutter_color_shadex (const ClutterColor *src,
     s = CFX_ONE;
   else if (s < 0)
     s = 0;
-  
+
   clutter_color_from_hlsx (dest, h, l, s);
   dest->alpha = src->alpha;
 }
@@ -431,7 +432,7 @@ guint32
 clutter_color_to_pixel (const ClutterColor *src)
 {
   g_return_val_if_fail (src != NULL, 0);
-  
+
   return (src->alpha | src->blue << 8 | src->green << 16  | src->red << 24);
 }
 
@@ -461,8 +462,8 @@ clutter_color_from_pixel (ClutterColor *dest,
  * @dest: return location for a #ClutterColor
  *
  * Parses a string definition of a color, filling the
- * <structfield>red</structfield>, <structfield>green</structfield>, 
- * <structfield>blue</structfield> and <structfield>alpha</structfield> 
+ * <structfield>red</structfield>, <structfield>green</structfield>,
+ * <structfield>blue</structfield> and <structfield>alpha</structfield>
  * channels of @dest. If alpha is not specified it will be set full opaque.
  * The color in @dest is not allocated.
  *
@@ -509,7 +510,7 @@ clutter_color_parse (const gchar  *color,
 	    }
 	}
     }
-  
+
   /* Fall back to pango for named colors - note pango does not handle alpha */
   if (pango_color_parse (&pango_color, color))
     {
@@ -592,7 +593,7 @@ ClutterColor *
 clutter_color_copy (const ClutterColor *color)
 {
   ClutterColor *result;
-  
+
   g_return_val_if_fail (color != NULL, NULL);
 
   result = g_slice_new (ClutterColor);
@@ -612,21 +613,302 @@ clutter_color_copy (const ClutterColor *color)
 void
 clutter_color_free (ClutterColor *color)
 {
-  g_return_if_fail (color != NULL);
-
+  if (G_LIKELY (color))
   g_slice_free (ClutterColor, color);
+}
+
+/**
+ * clutter_color_new:
+ * @red: red component of the color, between 0 and 255
+ * @green: green component of the color, between 0 and 255
+ * @blue: blue component of the color, between 0 and 255
+ * @alpha: alpha component of the color, between 0 and 255
+ *
+ * Creates a new #ClutterColor with the given values.
+ *
+ * Return value: the newly allocated color. Use clutter_color_free()
+ *   when done
+ *
+ * Since: 0.8.4
+ */
+ClutterColor *
+clutter_color_new (guint8 red,
+                   guint8 green,
+                   guint8 blue,
+                   guint8 alpha)
+{
+  ClutterColor *color;
+
+  color = g_slice_new (ClutterColor);
+
+  color->red   = MIN (red,   255);
+  color->green = MIN (green, 255);
+  color->blue  = MIN (blue,  255);
+  color->alpha = MIN (alpha, 255);
+
+  return color;
+}
+
+static void
+clutter_value_transform_color_string (const GValue *src,
+                                      GValue       *dest)
+{
+  gchar *string = clutter_color_to_string (src->data[0].v_pointer);
+
+  g_value_take_string (dest, string);
+}
+
+static void
+clutter_value_transform_string_color (const GValue *src,
+                                      GValue       *dest)
+{
+  ClutterColor color = { 0, };
+
+  clutter_color_parse (g_value_get_string (src), &color);
+
+  clutter_value_set_color (dest, &color);
 }
 
 GType
 clutter_color_get_type (void)
 {
-  static GType our_type = 0;
-  
-  if (!our_type)
-    our_type = g_boxed_type_register_static (I_("ClutterColor"),
+  static GType _clutter_color_type = 0;
+
+  if (G_UNLIKELY (_clutter_color_type == 0))
+    {
+       _clutter_color_type =
+         g_boxed_type_register_static (I_("ClutterColor"),
 		    			     (GBoxedCopyFunc) clutter_color_copy,
 					     (GBoxedFreeFunc) clutter_color_free);
-  return our_type;
+
+       g_value_register_transform_func (_clutter_color_type, G_TYPE_STRING,
+                                        clutter_value_transform_color_string);
+       g_value_register_transform_func (G_TYPE_STRING, _clutter_color_type,
+                                        clutter_value_transform_string_color);
+    }
+
+  return _clutter_color_type;
+}
+
+static void
+clutter_value_init_color (GValue *value)
+{
+  value->data[0].v_pointer = NULL;
+}
+
+static void
+clutter_value_free_color (GValue *value)
+{
+  if (!(value->data[1].v_uint & G_VALUE_NOCOPY_CONTENTS))
+    clutter_color_free (value->data[0].v_pointer);
+}
+
+static void
+clutter_value_copy_color (const GValue *src,
+                          GValue       *dest)
+{
+  dest->data[0].v_pointer = clutter_color_copy (src->data[0].v_pointer);
+}
+
+static gpointer
+clutter_value_peek_color (const GValue *value)
+{
+  return value->data[0].v_pointer;
+}
+
+static gchar *
+clutter_value_collect_color (GValue      *value,
+                             guint        n_collect_values,
+                             GTypeCValue *collect_values,
+                             guint        collect_flags)
+{
+  if (!collect_values[0].v_pointer)
+      value->data[0].v_pointer = NULL;
+  else
+    {
+      if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+        {
+          value->data[0].v_pointer = collect_values[0].v_pointer;
+          value->data[1].v_uint = G_VALUE_NOCOPY_CONTENTS;
+        }
+      else
+        {
+          value->data[0].v_pointer =
+            clutter_color_copy (collect_values[0].v_pointer);
+        }
+    }
+
+  return NULL;
+}
+
+static gchar *
+clutter_value_lcopy_color (const GValue *value,
+                           guint         n_collect_values,
+                           GTypeCValue  *collect_values,
+                           guint         collect_flags)
+{
+  ClutterColor **color_p = collect_values[0].v_pointer;
+
+  if (!color_p)
+    return g_strdup_printf ("value location for `%s' passed as NULL",
+                            G_VALUE_TYPE_NAME (value));
+
+  if (!value->data[0].v_pointer)
+    *color_p = NULL;
+  else
+    {
+      if (collect_flags & G_VALUE_NOCOPY_CONTENTS)
+        *color_p = value->data[0].v_pointer;
+      else
+        *color_p = clutter_color_copy (value->data[0].v_pointer);
+    }
+
+  return NULL;
+}
+
+/**
+ * clutter_value_set_color:
+ * @value: a #GValue initialized to #CLUTTER_TYPE_COLOR
+ * @color: the color to set
+ *
+ * Sets @value to @color.
+ *
+ * Since: 0.8.4
+ */
+void
+clutter_value_set_color (GValue       *value,
+                         ClutterColor *color)
+{
+  g_return_if_fail (CLUTTER_VALUE_HOLDS_COLOR (value));
+
+  value->data[0].v_pointer = clutter_color_copy (color);
+}
+
+/**
+ * clutter_value_get_color:
+ * @value: a #GValue initialized to #CLUTTER_TYPE_COLOR
+ *
+ * Gets the #ClutterColor contained in @value.
+ *
+ * Return value: the colors inside the passed #GValue
+ *
+ * Since: 0.8.4
+ */
+const ClutterColor *
+clutter_value_get_color (const GValue *value)
+{
+  g_return_val_if_fail (CLUTTER_VALUE_HOLDS_COLOR (value), NULL);
+
+  return value->data[0].v_pointer;
+}
+
+static void
+param_color_init (GParamSpec *pspec)
+{
+  ClutterParamSpecColor *cspec = CLUTTER_PARAM_SPEC_COLOR (pspec);
+
+  cspec->default_value = NULL;
+}
+
+static void
+param_color_finalize (GParamSpec *pspec)
+{
+  ClutterParamSpecColor *cspec = CLUTTER_PARAM_SPEC_COLOR (pspec);
+
+  clutter_color_free (cspec->default_value);
+}
+
+static void
+param_color_set_default (GParamSpec *pspec,
+                        GValue     *value)
+{
+  value->data[0].v_pointer = CLUTTER_PARAM_SPEC_COLOR (pspec)->default_value;
+  value->data[1].v_uint = G_VALUE_NOCOPY_CONTENTS;
+}
+
+static gint
+param_color_values_cmp (GParamSpec   *pspec,
+                        const GValue *value1,
+                        const GValue *value2)
+{
+  guint32 color1, color2;
+
+  color1 = clutter_color_to_pixel (value1->data[0].v_pointer);
+  color2 = clutter_color_to_pixel (value2->data[0].v_pointer);
+
+  if (color1 < color2)
+    return -1;
+  else if (color1 == color2)
+    return 0;
+  else
+    return 1;
+}
+
+static const GTypeValueTable _clutter_color_value_table = {
+  clutter_value_init_color,
+  clutter_value_free_color,
+  clutter_value_copy_color,
+  clutter_value_peek_color,
+  "p",
+  clutter_value_collect_color,
+  "p",
+  clutter_value_lcopy_color
+};
+
+GType
+clutter_param_color_get_type (void)
+{
+  static GType pspec_type = 0;
+
+  if (G_UNLIKELY (pspec_type == 0))
+    {
+      const GParamSpecTypeInfo pspec_info = {
+        sizeof (ClutterParamSpecColor),
+        16,
+        param_color_init,
+        CLUTTER_TYPE_COLOR,
+        param_color_finalize,
+        param_color_set_default,
+        NULL,
+        param_color_values_cmp,
+      };
+
+      pspec_type = g_param_type_register_static (I_("ClutterParamSpecColor"),
+                                                 &pspec_info);
+    }
+
+  return pspec_type;
+}
+
+/**
+ * clutter_param_spec_color:
+ * @name: name of the property
+ * @nick: short name
+ * @blurb: description (can be translatable)
+ * @default_value: default value
+ * @flags: flags for the param spec
+ *
+ * Creates a #GParamSpec for properties using #ClutterColor.
+ *
+ * Return value: the newly created #GParamSpec
+ *
+ * Since: 0.8.4
+ */
+GParamSpec *
+clutter_param_spec_color (const gchar        *name,
+                          const gchar        *nick,
+                          const gchar        *blurb,
+                          const ClutterColor *default_value,
+                          GParamFlags         flags)
+{
+  ClutterParamSpecColor *cspec;
+
+  cspec = g_param_spec_internal (CLUTTER_TYPE_PARAM_COLOR,
+                                 name, nick, blurb, flags);
+
+  cspec->default_value = clutter_color_copy (default_value);
+
+  return G_PARAM_SPEC (cspec);
 }
 
 /**
@@ -645,7 +927,7 @@ void          clutter_color_interp     (const ClutterColor *src1,
 {
   gint r,g,b,a;
   gint namt = 255-amt;
-  
+
   r = ((src1->red * namt) + (src2->red * amt)) >> 8;
   g = ((src1->green * namt) + (src2->green * amt)) >> 8;
   b = ((src1->blue * namt) + (src2->blue * amt)) >> 8;
@@ -668,7 +950,7 @@ void          clutter_color_interp     (const ClutterColor *src1,
  * clutter_color_diff:
  *
  * Returns the difference between @src1 and @src2
- * This is not geometric distance in colour space, it's just 
+ * This is not geometric distance in colour space, it's just
  * a fast bodge.
  *
  * Since: 0.8.2-maemo
@@ -676,9 +958,9 @@ void          clutter_color_interp     (const ClutterColor *src1,
 gint        clutter_color_diff       (const ClutterColor *src1,
                                       const ClutterColor *src2)
 {
-  return 
-        abs((gint)src1->red - (gint)src2->red) + 
-        abs((gint)src1->green - (gint)src2->green) + 
-        abs((gint)src1->blue - (gint)src2->blue) + 
+  return
+        abs((gint)src1->red - (gint)src2->red) +
+        abs((gint)src1->green - (gint)src2->green) +
+        abs((gint)src1->blue - (gint)src2->blue) +
         abs((gint)src1->alpha - (gint)src2->alpha);
 }

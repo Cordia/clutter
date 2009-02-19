@@ -5,6 +5,8 @@ clutter (0.8.2-0maemo18~unreleased) unstable; urgency=low
     behaviour).
   * committed patch from http://bugzilla.openedhand.com/show_bug.cgi?id=1228
   * Added conversion to A8 that got missed out of conversion code
+  * Moved changes from 0.8.4 clutter-color to this branch
+  * Properly set up PVRTC texture compressiion support flag
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Sat, 14 Feb 2009 14:15:52 +0200
 

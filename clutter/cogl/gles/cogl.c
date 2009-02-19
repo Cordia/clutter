@@ -836,8 +836,11 @@ _cogl_features_init ()
 {
   ClutterFeatureFlags flags = 0;
   int                 max_clip_planes = 0;
+  const gchar        *gl_extensions;
 
   _COGL_GET_CONTEXT (ctx, NO_RETVAL);
+
+  gl_extensions = (const gchar*) glGetString (GL_EXTENSIONS);
 
   ctx->num_stencil_bits = 0;
   GE( cogl_wrap_glGetIntegerv (GL_STENCIL_BITS, &ctx->num_stencil_bits) );
@@ -851,6 +854,11 @@ _cogl_features_init ()
 #ifdef HAVE_COGL_GLES2
   flags |= COGL_FEATURE_SHADERS_GLSL | COGL_FEATURE_OFFSCREEN | COGL_FEATURE_TEXTURE_NPOT;
 #endif
+
+  if (cogl_check_extension ("GL_IMG_texture_compression_pvrtc", gl_extensions))
+    {
+      flags |= COGL_FEATURE_TEXTURE_PVRTC;
+    }
 
   ctx->feature_flags = flags;
   ctx->features_cached = TRUE;
