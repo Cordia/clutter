@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo19~unreleased) unstable; urgency=low
+
+  * unreleased
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 23 Feb 2009 13:59:13 +0200
+
 clutter (0.8.2-0maemo18) unstable; urgency=low
 
   * Started to compile without debug code and Gobject checks, so that we get
