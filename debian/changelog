@@ -73,7 +73,7 @@ clutter (0.8.2-0maemo14) unstable; urgency=low
   * Added clutter_x11_texture_pixmap_add_shape to deal with transparency in
     textures via XShapeGetRectangles    
   * Modified eglx_texture_pixmap to try creating a texture with alpha before
-    it creates one without - this solves the transparent window issue on Rover
+    it creates one without - this solves the transparent window issue on device
   * removed warning from GL/cogl.c
   * quick fix to get update area working on scratchbox
   * Added a whole load of floating point matrix functions to stop the 
