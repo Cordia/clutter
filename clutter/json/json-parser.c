@@ -1,5 +1,5 @@
 /* json-parser.c - JSON streams parser
- * 
+ *
  * This file is part of JSON-GLib
  * Copyright (C) 2007  OpenedHand Ltd.
  *
@@ -167,7 +167,7 @@ json_parser_class_init (JsonParserClass *klass)
   /**
    * JsonParser::parse-start:
    * @parser: the #JsonParser that received the signal
-   * 
+   *
    * The ::parse-start signal is emitted when the parser began parsing
    * a JSON data stream.
    */
@@ -197,7 +197,7 @@ json_parser_class_init (JsonParserClass *klass)
   /**
    * JsonParser::object-start:
    * @parser: the #JsonParser that received the signal
-   * 
+   *
    * The ::object-start signal is emitted each time the #JsonParser
    * starts parsing a #JsonObject.
    */
@@ -560,7 +560,7 @@ json_parse_object (JsonParser *parser,
       if (token == G_TOKEN_LEFT_CURLY)
         {
           JsonNode *old_node = priv->current_node;
-      
+
           priv->current_node = json_node_new (JSON_NODE_OBJECT);
 
           token = json_parse_object (parser, scanner, TRUE);
@@ -571,7 +571,7 @@ json_parse_object (JsonParser *parser,
           if (token != G_TOKEN_NONE)
             {
               g_free (name);
-              
+
               if (node)
                 json_node_free (node);
 
@@ -594,7 +594,7 @@ json_parse_object (JsonParser *parser,
 
           continue;
         }
-     
+
       if (token == G_TOKEN_LEFT_BRACE)
         {
           JsonNode *old_node = priv->current_node;
@@ -616,7 +616,7 @@ json_parse_object (JsonParser *parser,
 
           json_object_add_member (object, name, node);
           node->parent = priv->current_node;
-          
+
           g_signal_emit (parser, parser_signals[OBJECT_MEMBER], 0,
                          object,
                          name);
@@ -641,6 +641,8 @@ json_parse_object (JsonParser *parser,
             }
           else
             {
+              g_free (name);
+              json_object_unref (object);
               return G_TOKEN_INT;
             }
         }
@@ -676,6 +678,8 @@ json_parse_object (JsonParser *parser,
           break;
 
         default:
+          g_free (name);
+          json_object_unref (object);
           return G_TOKEN_SYMBOL;
         }
 
@@ -683,7 +687,7 @@ json_parse_object (JsonParser *parser,
         {
           json_object_add_member (object, name, node);
           node->parent = priv->current_node;
-          
+
           g_signal_emit (parser, parser_signals[OBJECT_MEMBER], 0,
                          object,
                          name);
@@ -737,7 +741,7 @@ json_parse_statement (JsonParser *parser,
         if (next_token == G_TOKEN_INT || next_token == G_TOKEN_FLOAT)
           {
             priv->root = priv->current_node = json_node_new (JSON_NODE_VALUE);
-            
+
             token = g_scanner_get_next_token (scanner);
             switch (token)
               {
@@ -792,7 +796,7 @@ json_scanner_msg_handler (GScanner *scanner,
                    "Parse error on line %d: %s",
                    scanner->line,
                    message);
-      
+
       parser->priv->last_error = error;
       g_signal_emit (parser, parser_signals[ERROR], 0, error);
     }
@@ -814,7 +818,7 @@ json_scanner_new (JsonParser *parser)
 
 /**
  * json_parser_new:
- * 
+ *
  * Creates a new #JsonParser instance. You can use the #JsonParser to
  * load a JSON stream from either a file or a buffer and then walk the
  * hierarchy using the data types API.
@@ -865,7 +869,7 @@ json_parser_load_from_file (JsonParser   *parser,
       g_propagate_error (error, internal_error);
       retval = FALSE;
     }
-  
+
   g_free (data);
 
   return retval;
@@ -948,7 +952,7 @@ json_parser_load_from_data (JsonParser   *parser,
                         if (symbols[i].token == expected_token)
                           symbol_name = symbol_names + symbols[i].name_offset;
 
-                      if (msg)
+                      if (!msg)
                         msg = g_strconcat ("e.g. `", symbol_name, "'", NULL);
                     }
 
