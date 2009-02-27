@@ -136,11 +136,11 @@ _cogl_bitmap_check_alpha(CoglBitmap  *bmp,
   csemi = ctotal - (ctransparent + copaque);
 
   if (has_transparent)
-    *has_transparent = ctransparent > ctotal/50;
+    *has_transparent = ctransparent > /*ctotal/50*/0;
   if (has_semi)
-    *has_semi = csemi > ctotal/50;
+    *has_semi = csemi > /*ctotal/50*/0;
   if (has_opaque)
-    *has_opaque = copaque > ctotal/50;
+    *has_opaque = copaque > /*ctotal/50*/0;
 }
 
 /* Find the best 16 bit format for this bitmap. It can
