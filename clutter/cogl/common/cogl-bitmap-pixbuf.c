@@ -123,8 +123,8 @@ _cogl_bitmap_check_alpha(CoglBitmap  *bmp,
           * as far as I know, C standard doesn't say a bool has to be
           * between 0 and 1, so I use ternary to make sure. I *hope*
           * this gets optimised out */
-         ctransparent += ((*src) < 32) ? 1 : 0;
-         copaque += ((*src) >= 224) ? 1 : 0;
+         ctransparent += ((*src) < 16) ? 1 : 0;
+         copaque += ((*src) >= 240) ? 1 : 0;
          src += 4;
        }
    }
