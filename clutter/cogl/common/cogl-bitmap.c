@@ -30,7 +30,7 @@
 #include "cogl.h"
 #include "cogl-internal.h"
 #include "cogl-bitmap.h"
-#include "cogl-pvr-texture.h"
+#include "pvr-texture.h"
 
 #include <string.h>
 
@@ -185,7 +185,7 @@ gboolean        cogl_bitmap_save_pvrtc4       (const gchar *filename,
         }
     }
 
-  compressed = cogl_pvr_texture_compress_pvrtc4(
+  compressed = pvr_texture_compress_pvrtc4(
                         uncompressed, width, height,
                         &compressed_size);
   /* free data if we created it above */
@@ -195,9 +195,12 @@ gboolean        cogl_bitmap_save_pvrtc4       (const gchar *filename,
   if (!compressed)
     return FALSE;
 
-  if (!cogl_pvr_texture_save_pvrtc4( filename, compressed, compressed_size,
+  if (!pvr_texture_save_pvrtc4( filename, compressed, compressed_size,
                                      width, height))
-    return FALSE;
+    {
+      g_free (compressed);
+      return FALSE;
+    }
 
   g_free (compressed);
   return TRUE;

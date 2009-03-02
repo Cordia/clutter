@@ -36,7 +36,7 @@
 #include "cogl-handle.h"
 
 #include "cogl-gles2-wrapper.h"
-#include "cogl-pvr-texture.h"
+#include "cogl-pvr-texture-gl.h"
 
 #include <string.h>
 #include <stdlib.h>

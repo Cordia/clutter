@@ -4,6 +4,8 @@ clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
     Fixed invalid reporting of extension string
   * clutter-backend-egl now dumps GLES extension string if 
     CLUTTER_DEBUG=backend
+  * Refactored PVR texture compression code into GL-related and
+    non-GL related code
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  2 Mar 2009 09:37:27 +0200
 

@@ -26,5 +26,7 @@ libclutter_cogl_common_la_SOURCES = 	\
 	cogl-bitmap-pixbuf.c 		\
 	cogl-clip-stack.h 		\
 	cogl-clip-stack.c		\
-	cogl-pvr-texture.h 		\
-	cogl-pvr-texture.c 
+	pvr-texture.h 			\
+	pvr-texture.c 			\
+	cogl-pvr-texture-gl.h 		\
+	cogl-pvr-texture-gl.c 

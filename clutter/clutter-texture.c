@@ -62,7 +62,6 @@
 #include "clutter-enum-types.h"
 
 #include "cogl/cogl.h"
-#include "cogl/common/cogl-pvr-texture.h"
 
 #define CLUTTER_DEFAULT_PIXEL_FORMAT COGL_PIXEL_FORMAT_ANY_16
 

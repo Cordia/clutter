@@ -1,66 +1,111 @@
-#include "cogl.h"
-#include "cogl-internal.h"
-#include "cogl-pvr-texture.h"
-#include "cogl-util.h"
+/*
+ * Copyright (C) 2008 Nokia Corporation.
+ *
+ * Authored By Gordon Williams <gordon.williams@collabora.co.uk>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA
+ *
+ */
 
-#if CLUTTER_COGL_HAS_GLES
-#include <GLES2/gl2.h>
-//#include <GLES2/gl2extimg.h>
-#endif
-
-#if CLUTTER_COGL_HAS_GL
-#include <GL/gl.h>
-#endif
+#include "pvr-texture.h"
 
 #include <glib/gstdio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#if USE_GL
 /* These are defined in GLES2/gl2ext + gl2extimg, but we want them available
- * so we can compile with OpenGL nicely */
+ * so we can compile without the SGX/Imagination libraries */
 #define GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG                       0x8C00
 #define GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG                       0x8C01
 #define GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG                      0x8C02
 #define GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG                      0x8C03
 #define GL_ETC1_RGB8_OES                                         0x8D64
+#endif
 
-typedef struct PVR_TEXTURE_HEADER_TAG {
-    unsigned int dwHeaderSize;     /* size of the structure */
-    unsigned int dwHeight;         /* height of surface to be created */
-    unsigned int dwWidth;          /* width of input surface */
-    unsigned int dwMipMapCount;    /* number of MIP-map levels requested */
-    unsigned int dwpfFlags;        /* pixel format flags */
-    unsigned int dwDataSize;       /* Size of the compress data */
-    unsigned int dwBitCount;       /* number of bits per pixel */
-    unsigned int dwRBitMask;       /* mask for red bit */
-    unsigned int dwGBitMask;       /* mask for green bits */
-    unsigned int dwBBitMask;       /* mask for blue bits */
-    unsigned int dwAlphaBitMask;   /* mask for alpha channel */
-    unsigned int dwPVR;            /* should be 'P' 'V' 'R' '!' */
-    unsigned int dwNumSurfs;       /* number of slices for volume textures or skyboxes */
-} PVR_TEXTURE_HEADER;
+typedef struct Color {
+  guchar red;
+  guchar green;
+  guchar blue;
+  guchar alpha;
+} Color;
 
-#define MGLPT_PVRTC2 0x18
-#define MGLPT_PVRTC4 0x19
-#define ETC_RGB_4BPP 0x36
+static inline void
+color_interp     (const Color *src1,
+                  const Color *src2,
+                  gint                amt,
+                  Color       *dest)
+{
+  gint r,g,b,a;
+  gint namt = 255-amt;
 
-#define PVR_FLAG_TWIDDLED 0x00000200
-#define PVR_FLAG_ALPHA    0x00008000
+  r = ((src1->red * namt) + (src2->red * amt)) >> 8;
+  g = ((src1->green * namt) + (src2->green * amt)) >> 8;
+  b = ((src1->blue * namt) + (src2->blue * amt)) >> 8;
+  a = ((src1->alpha * namt) + (src2->alpha * amt)) >> 8;
+  if (r<0) r=0;
+  if (g<0) g=0;
+  if (b<0) b=0;
+  if (a<0) a=0;
+  if (r>255) r=255;
+  if (g>255) g=255;
+  if (b>255) b=255;
+  if (a>255) a=255;
+  dest->red = r;
+  dest->green = g;
+  dest->blue = b;
+  dest->alpha = a;
+}
+
+static inline gint
+color_diff       (const Color *src1,
+                  const Color *src2)
+{
+  return
+        abs((gint)src1->red - (gint)src2->red) +
+        abs((gint)src1->green - (gint)src2->green) +
+        abs((gint)src1->blue - (gint)src2->blue) +
+        abs((gint)src1->alpha - (gint)src2->alpha);
+}
+
+static inline gboolean
+color_equal      (const Color *src1,
+                  const Color *src2)
+{
+  return
+        src1->red == src2->red &&
+        src1->green == src2->green &&
+        src1->blue == src2->blue &&
+        src1->alpha == src2->alpha;
+}
 
 /*
- * cogl_pvr_texture_save_pvrtc4:
+ * pvr_texture_save_pvrtc4:
  *
- * saves an already compressed (with cogl_pvr_texture_compress)
+ * saves an already compressed (with pvr_texture_compress)
  * data slice to a file. Returns TRUE on success
  *
  * Since: 0.8.2-maemo
  */
-gboolean cogl_pvr_texture_save_pvrtc4(
-                        const gchar *filename,
-                        const guchar *data,
-                        guint data_size,
-                        gint width, gint height)
+gboolean pvr_texture_save_pvrtc4(
+                      const gchar *filename,
+                      const guchar *data,
+                      guint data_size,
+                      gint width, gint height)
 {
     FILE *texfile;
     PVR_TEXTURE_HEADER head;
@@ -103,41 +148,52 @@ gboolean cogl_pvr_texture_save_pvrtc4(
         if ((result).alpha < (col).alpha) (result).alpha = (col).alpha; \
 }
 
-inline guchar find_best(
-                ClutterColor pixel_col,
-                ClutterColor *low,
-                ClutterColor *high,
+inline static guchar find_best(
+                Color pixel_col,
+                Color *low,
+                Color *high,
                 guint block_stride,
                 guint x_interp,
                 guint y_interp)
 {
-  ClutterColor tmpa, tmpb;
+  Color tmpa, tmpb;
   guchar amtx, amty;
-  ClutterColor cl, ch, clm, chm;
+  Color cl, ch, clm, chm;
   guint diff[4];
+
+  /* special case - if everything is equal then we don't care what we choose
+   * and we can skip a load of calculation */
+  if (color_equal(&low[0], &low[1]) &&
+      color_equal(&low[block_stride], &low[block_stride+1]) &&
+      color_equal(&low[block_stride], &low[0]) &&
+      color_equal(&high[0], &high[1]) &&
+      color_equal(&high[block_stride], &high[block_stride+1]) &&
+      color_equal(&high[block_stride], &high[0]) &&
+      color_equal(&low[0], &high[0]))
+    return 0;
 
   /* interpolate our colours spatially */
 
   amtx = x_interp * 64;
   amty = y_interp * 64;
 
-  clutter_color_interp(&low[0], &low[1], amtx, &tmpa);
-  clutter_color_interp(&low[block_stride], &low[block_stride+1], amtx, &tmpb);
-  clutter_color_interp(&tmpa, &tmpb, amty, &cl);
+  color_interp(&low[0], &low[1], amtx, &tmpa);
+  color_interp(&low[block_stride], &low[block_stride+1], amtx, &tmpb);
+  color_interp(&tmpa, &tmpb, amty, &cl);
 
-  clutter_color_interp(&high[0], &high[1], amtx, &tmpa);
-  clutter_color_interp(&high[block_stride], &high[block_stride+1], amtx, &tmpb);
-  clutter_color_interp(&tmpa, &tmpb, amty, &ch);
+  color_interp(&high[0], &high[1], amtx, &tmpa);
+  color_interp(&high[block_stride], &high[block_stride+1], amtx, &tmpb);
+  color_interp(&tmpa, &tmpb, amty, &ch);
 
   /* interpolate for the mid-colours */
-  clutter_color_interp(&cl, &ch, 96, &clm); /* 3/8 */
-  clutter_color_interp(&cl, &ch, 160, &chm); /* 5/8 */
+  color_interp(&cl, &ch, 96, &clm); /* 3/8 */
+  color_interp(&cl, &ch, 160, &chm); /* 5/8 */
 
   /* work out differences */
-  diff[0] = clutter_color_diff(&pixel_col, &cl);
-  diff[1] = clutter_color_diff(&pixel_col, &clm);
-  diff[2] = clutter_color_diff(&pixel_col, &chm);
-  diff[3] = clutter_color_diff(&pixel_col, &ch);
+  diff[0] = color_diff(&pixel_col, &cl);
+  diff[1] = color_diff(&pixel_col, &clm);
+  diff[2] = color_diff(&pixel_col, &chm);
+  diff[3] = color_diff(&pixel_col, &ch);
 
   /* work out which one is smaller */
   if (diff[0] < diff[1] && diff[0] < diff[2] && diff[0] < diff[3])
@@ -149,7 +205,7 @@ inline guchar find_best(
   return 3;
 }
 
-inline guint clutter_color_to_pvr_color( ClutterColor *col )
+inline static guint color_to_pvr_color( Color *col )
 {
   /* 16 bit colour, if top bit is 1 it's 555, otherwise
    * it's 3444 */
@@ -170,9 +226,9 @@ inline guint clutter_color_to_pvr_color( ClutterColor *col )
     }
 }
 
-inline ClutterColor clutter_pvr_color_to_color( guint32 col )
+inline static Color pvr_color_to_color( guint32 col )
 {
-  ClutterColor result;
+  Color result;
   /* If top bit is 1, this is full alpha */
   if (col & 0x8000)
     {
@@ -190,6 +246,27 @@ inline ClutterColor clutter_pvr_color_to_color( guint32 col )
     }
   return result;
 }
+
+static inline gboolean
+is_power_2(int a)
+{
+  return !(a & (a - 1)) && a;
+}
+
+static inline guint32
+log_2(guint v)
+{
+  guint32 r; // result of log2(v) will go here
+  guint32 shift;
+
+  r =     (v > 0xFFFF) << 4; v >>= r;
+  shift = (v > 0xFF  ) << 3; v >>= shift; r |= shift;
+  shift = (v > 0xF   ) << 2; v >>= shift; r |= shift;
+  shift = (v > 0x3   ) << 1; v >>= shift; r |= shift;
+                                          r |= (v >> 1);
+  return r;
+}
+
 
 /* calculate the masks needed to access the morton-ordered image.
  * Values must be a power of 2 */
@@ -210,26 +287,26 @@ static void _calculate_access_masks( gint width, gint height,
   if (width > height)
     {
       *morton_mask = (height*height)-1;
-      *xshift = cogl_util_log_2(height);
+      *xshift = log_2(height);
       *xmask = 0xFFFFFFFF & ~*morton_mask;
     }
   else
     { // width < height
       *morton_mask = (width*width)-1;
-      *yshift = cogl_util_log_2(width);
+      *yshift = log_2(width);
       *ymask = 0xFFFFFFFF & ~*morton_mask;
     }
 }
 
 /**
- * cogl_pvr_texture_compress_pvrtc4:
+ * pvr_texture_compress_pvrtc4:
  *
  * Takes an RGBA8888 bitmap and returns the data (and size) created
  * after it has been compressed in the PVRTC4 format.
  *
  * Since: 0.8.2-maemo
  */
-guchar *cogl_pvr_texture_compress_pvrtc4(
+guchar *pvr_texture_compress_pvrtc4(
                 const guchar *uncompressed_data,
                 gint width,
                 gint height,
@@ -237,7 +314,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
 {
   guchar *compressed_data = 0;
   guint width_block, height_block, block_stride;
-  ClutterColor *col_low, *col_high;
+  Color *col_low, *col_high;
   gint x,y,z;
   guint32 *out_data;
   guint32 morton_mask, xshift, xmask, yshift, ymask;
@@ -245,8 +322,8 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
   g_return_val_if_fail(compressed_size!=0, 0);
   /* must be a multiple of 4 + Power of 2 in each direction */
   if ((width&3) || (height&3) ||
-      !cogl_util_is_power_2(width) ||
-      !cogl_util_is_power_2(height))
+      !is_power_2(width) ||
+      !is_power_2(height))
     return 0;
 
   width_block = width / 4;
@@ -259,8 +336,8 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
   compressed_data = g_malloc(*compressed_size);
   /* but we make our block colour list one bigger all the way around
    * and copy the colours so we don't need to do bounds checking */
-  col_low = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
-  col_high = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
+  col_low = g_malloc(sizeof(Color)*block_stride*(height_block+2));
+  col_high = g_malloc(sizeof(Color)*block_stride*(height_block+2));
 
   /* work out maximum and minimum colour values for each block */
   for (y=0;y<height_block;y++)
@@ -268,10 +345,10 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
       guint block_offs = (y+1)*block_stride;
       for (x=0;x<width_block;x++)
         {
-          ClutterColor clow, chigh;
-          ClutterColor *block;
+          Color clow, chigh;
+          Color *block;
 
-          block = (ClutterColor*)&uncompressed_data[(x + y*width) * 16];
+          block = (Color*)&uncompressed_data[(x + y*width) * 16];
           clow = block[0];
           chigh = block[0];
           SETMIN(clow, block[1]);
@@ -282,7 +359,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
           SETMAX(chigh, block[3]);
           for (z=1;z<4;z++)
             {
-              ClutterColor *blockline = &block[width*z];
+              Color *blockline = &block[width*z];
               SETMIN(clow, blockline[0]);
               SETMAX(chigh, blockline[0]);
               SETMIN(clow, blockline[1]);
@@ -304,16 +381,16 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
   /* copy top and bottom of our block so we get repeats */
   memcpy((void*)&col_low[0],
          (void*)&col_low[block_stride],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
   memcpy((void*)&col_high[0],
          (void*)&col_high[block_stride],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
   memcpy((void*)&col_low[block_stride*(height_block+1)],
          (void*)&col_low[block_stride*height_block],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
   memcpy((void*)&col_high[block_stride*(height_block+1)],
          (void*)&col_high[block_stride*height_block],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
 
   /* now assemble each block */
   out_data = (guint32*)compressed_data;
@@ -326,7 +403,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
       my = (my | (my << 1)) & 0x55555555;
       for (x=0;x<width_block;x++)
         {
-          ClutterColor *block;
+          Color *block;
           gint offs = x + y*block_stride;
           guint32 pixel_high_word = 0;
           guint32 pixel_low_word = 0;
@@ -335,7 +412,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
           gint mx, mz; /* for morton numbers later */
 
           /* now work out what every pixel should be... */
-          block = (ClutterColor*)&uncompressed_data
+          block = (Color*)&uncompressed_data
                         [(x + y*width) * 4 * sizeof(guint32)];
           /* find_best interpolates our two sets of colours to where they should
            * be (the blocks we get colour from swap halfway through the block
@@ -355,8 +432,8 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
                                   (by+2)&3);
               }
            /* pack our two colours */
-           col_a = clutter_color_to_pvr_color(&col_low[offs+1+block_stride]);
-           col_b = clutter_color_to_pvr_color(&col_high[offs+1+block_stride]);
+           col_a = color_to_pvr_color(&col_low[offs+1+block_stride]);
+           col_b = color_to_pvr_color(&col_high[offs+1+block_stride]);
            /* and finally pack into a block */
            /* last bit is the modulation mode, but we're cheating and
             * just going for the easy 0, 3/8, 5/8, 1 one */
@@ -389,29 +466,29 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
 }
 
 /**
- * cogl_pvr_texture_decompress_pvrtc4:
+ * pvr_texture_decompress_pvrtc4:
  *
  * Returns an RGBA8888 bitmap created from decompressing the given compressed
  * data that was in PVRTC4 format...
  *
  * Since: 0.8.2-maemo
  */
-guchar *cogl_pvr_texture_decompress_pvrtc4(
+guchar *pvr_texture_decompress_pvrtc4(
                 const guchar *compressed_data,
                 gint width,
                 gint height)
 {
-  ClutterColor *uncompressed_data = 0;
+  Color *uncompressed_data = 0;
   guint32 *compressed_datal = (guint32*)compressed_data;
   guint32 *arranged_data = 0; /* data after it has been rearranged */
   gint width_block, height_block, block_stride;
-  ClutterColor *col_low, *col_high;
+  Color *col_low, *col_high;
   gint x,y;
   guint32 morton_mask, xshift, xmask, yshift, ymask;
   /* must be a multiple of 4 + Power of 2 in each direction */
   if ((width&3) || (height&3) ||
-      !cogl_util_is_power_2(width) ||
-      !cogl_util_is_power_2(height))
+      !is_power_2(width) ||
+      !is_power_2(height))
     return 0;
 
   width_block = width / 4;
@@ -420,12 +497,12 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
   _calculate_access_masks(width_block, height_block,
       &morton_mask, &xshift, &xmask, &yshift, &ymask);
   /* 4 bits per pixel, or 64 bits per block*/
-  uncompressed_data = g_malloc(sizeof(ClutterColor)*width*height);
+  uncompressed_data = g_malloc(sizeof(Color)*width*height);
   arranged_data = (guint32*)g_malloc(sizeof(guint32)*2*width_block*height_block);
   /* but we make our block colour list one bigger all the way around
    * and copy the colours so we don't need to do bounds checking */
-  col_low = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
-  col_high = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
+  col_low = g_malloc(sizeof(Color)*block_stride*(height_block+2));
+  col_high = g_malloc(sizeof(Color)*block_stride*(height_block+2));
 
   /* re-arrange data and  */
   for (y=0;y<height_block;y++)
@@ -462,8 +539,8 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
           arranged_data[(x+(y*width_block))*2+1] = compressed_datal[mz+1];
           pixel_col_word = compressed_datal[mz+1];
 
-          col_high[offs+x+1] = clutter_pvr_color_to_color(pixel_col_word >> 16);
-          col_low[offs+x+1] = clutter_pvr_color_to_color(pixel_col_word & 0xFFFE);
+          col_high[offs+x+1] = pvr_color_to_color(pixel_col_word >> 16);
+          col_low[offs+x+1] = pvr_color_to_color(pixel_col_word & 0xFFFE);
         }
 
         col_low[offs] = col_low[offs+1];
@@ -473,15 +550,15 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
       }
     /* copy top and bottom of our block so we get repeats */
     memcpy(&col_low[0], &col_low[block_stride],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
     memcpy(&col_high[0], &col_high[block_stride],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
     memcpy(&col_low[block_stride*(height_block+1)],
            &col_low[block_stride*height_block],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
     memcpy(&col_high[block_stride*(height_block+1)],
            &col_high[block_stride*height_block],
-                sizeof(ClutterColor)*block_stride);
+                sizeof(Color)*block_stride);
 
     for (y=0;y<height_block;y++)
       for (x=0;x<width_block;x++)
@@ -495,7 +572,7 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
           for (by=0;by<4;by++)
             for (bx=0;bx<4;bx++)
               {
-                ClutterColor tmpa, tmpb, cl, ch, col;
+                Color tmpa, tmpb, cl, ch, col;
                 gint boffs = offs + ((bx+2)>>2) + (((by+2)>>2) * block_stride);
                 gint pixel_bits;
                 gint amtx, amty;
@@ -505,26 +582,26 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
                 pixel_bits = pixel_bits_word&3;
                 pixel_bits_word = pixel_bits_word >> 2;
 
-                clutter_color_interp(&col_low[boffs],
+                color_interp(&col_low[boffs],
                                 &col_low[boffs+1], amtx, &tmpa);
-                clutter_color_interp(&col_low[boffs+block_stride],
+                color_interp(&col_low[boffs+block_stride],
                                 &col_low[boffs+block_stride+1], amtx, &tmpb);
-                clutter_color_interp(&tmpa, &tmpb, amty, &cl);
+                color_interp(&tmpa, &tmpb, amty, &cl);
 
-                clutter_color_interp(&col_high[boffs],
+                color_interp(&col_high[boffs],
                                 &col_high[boffs+1], amtx, &tmpa);
-                clutter_color_interp(&col_high[boffs+block_stride],
+                color_interp(&col_high[boffs+block_stride],
                                 &col_high[boffs+block_stride+1], amtx, &tmpb);
-                clutter_color_interp(&tmpa, &tmpb, amty, &ch);
+                color_interp(&tmpa, &tmpb, amty, &ch);
 
                 if (block_alpha_mode)
                   {
                     if (pixel_bits==0)
                       col = cl;
                     else if (pixel_bits==1)
-                      clutter_color_interp(&cl, &ch, 128, &col);
+                      color_interp(&cl, &ch, 128, &col);
                     else if (pixel_bits==2) {
-                      clutter_color_interp(&cl, &ch, 128, &col);
+                      color_interp(&cl, &ch, 128, &col);
                       col.alpha = 0;
                     } else col = ch;
                   }
@@ -533,9 +610,9 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
                     if (pixel_bits==0)
                       col = cl;
                     else if (pixel_bits==1)
-                      clutter_color_interp(&cl, &ch, 96, &col);
+                      color_interp(&cl, &ch, 96, &col);
                     else if (pixel_bits==2) {
-                      clutter_color_interp(&cl, &ch, 160, &col);
+                      color_interp(&cl, &ch, 160, &col);
                     } else col = ch;
                   }
               uncompressed_data[(x*4) + (y*width*4) + bx + (by*width)]
@@ -547,146 +624,4 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
   g_free(col_high);
   g_free(arranged_data);
   return (guchar*)uncompressed_data;
-}
-
-/*
- * cogl_pvr_texture_load:
- *
- * Loads a '.pvr' texture file into OpenGL and returns the clutter texture.
- * Has a fallback of decompressing if the texture is PVRTC4 and the GPU
- * doesn't support it.
- *
- * Since: 0.8.2-maemo
- */
-CoglHandle cogl_pvr_texture_load(const char *filename)
-{
-  GLuint tex;
-  PVR_TEXTURE_HEADER header;
-  guchar *texture_data;
-  GLuint gl_format = 0;
-  FILE *texfile = 0;
-  guint read_count;
-
-  /* load file */
-  texfile = g_fopen(filename, "rb");
-  if (!texfile)
-    return 0;
-
-  read_count = fread(&header, 1, sizeof(PVR_TEXTURE_HEADER), texfile);
-  if (read_count != sizeof(PVR_TEXTURE_HEADER))
-    {
-      g_warning("%s: File not large enough for header", __FUNCTION__);
-      fclose (texfile);
-      return 0;
-    }
-
-  /* checks */
-  if (((header.dwPVR      ) & 0xFF) != 'P' &&
-      ((header.dwPVR >>  8) & 0xFF) != 'V' &&
-      ((header.dwPVR >> 16) & 0xFF) != 'R' &&
-      ((header.dwPVR >> 24) & 0xFF) != '!')
-    {
-      g_warning("%s: Invalid PVR magic number 0x%08x", __FUNCTION__,
-                header.dwPVR);
-      fclose (texfile);
-      return 0;
-    }
-
-  /* load image */
-  texture_data = g_malloc(header.dwDataSize);
-  if (!texture_data)
-    {
-      g_warning("%s: Couldn't allocate texture data", __FUNCTION__);
-      fclose (texfile);
-      return 0;
-    }
-  read_count = fread(texture_data, 1, header.dwDataSize, texfile);
-  if (read_count != header.dwDataSize)
-    {
-      g_warning("%s: File not large enough for image data header describes",
-                __FUNCTION__);
-      fclose (texfile);
-      g_free (texture_data);
-      return 0;
-    }
-
-  fclose(texfile);
-
-  /* work out format */
-  if ((header.dwpfFlags & 0xFF) == MGLPT_PVRTC2)
-    {
-      if (header.dwAlphaBitMask)
-        gl_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
-      else
-        gl_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
-      /* We have no fallback for PVRTC2 */
-      if (!cogl_features_available(COGL_FEATURE_TEXTURE_PVRTC))
-        {
-          g_free(texture_data);
-          texture_data = 0;
-        }
-    }
-  else if ((header.dwpfFlags & 0xFF) == MGLPT_PVRTC4)
-    {
-      if (header.dwAlphaBitMask)
-        gl_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
-      else
-        gl_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
-      /* If we don't support PVRTC4, decompress it and use that */
-      if (!cogl_features_available(COGL_FEATURE_TEXTURE_PVRTC))
-        {
-          guchar *uncompressed;
-
-          uncompressed = cogl_pvr_texture_decompress_pvrtc4(
-                texture_data, header.dwWidth, header.dwHeight);
-          gl_format = GL_RGBA;
-
-          g_free(texture_data);
-          texture_data = uncompressed;
-        }
-    }
-  else if ((header.dwpfFlags & 0xFF) == ETC_RGB_4BPP)
-    {
-        gl_format = GL_ETC1_RGB8_OES;
-    }
-  else
-    g_warning("%s: Unknown PVR file format 0x%02x", __FUNCTION__,
-              header.dwpfFlags & 0xFF);
-
-  /* load into GL */
-  GE( glEnable(GL_TEXTURE_2D) );
-  GE( glGenTextures(1, &tex) );
-  GE( glBindTexture(GL_TEXTURE_2D, tex) );
-
-  if (!texture_data)
-    return COGL_INVALID_HANDLE;
-
-  if (gl_format == GL_RGBA)
-    {
-      CoglHandle tex;
-      /* we've had to fall back to decompressing the texture */
-      tex =  cogl_texture_new_from_data    (header.dwWidth, header.dwHeight,
-                                            0, 0,
-                                            COGL_PIXEL_FORMAT_RGBA_8888,
-                                            COGL_PIXEL_FORMAT_ANY,
-                                            header.dwWidth*4,
-                                            texture_data);
-      g_free(texture_data);
-      return tex;
-    }
-  else
-    {
-      GE( glCompressedTexImage2D(GL_TEXTURE_2D, 0, gl_format,
-                             header.dwWidth, header.dwHeight, 0,
-                             header.dwDataSize, texture_data) );
-      g_free(texture_data);
-      /* texture format is NOT COGL_PIXEL_FORMAT_RGBA_4444, but we
-       * don't have the correct one */
-      return cogl_texture_new_from_foreign (
-                tex, GL_TEXTURE_2D,
-                header.dwWidth, header.dwHeight,
-                0, 0,
-                COGL_PIXEL_FORMAT_RGBA_4444);
-    }
-
 }
