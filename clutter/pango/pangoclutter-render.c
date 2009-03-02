@@ -314,6 +314,9 @@ pango_clutter_ensure_glyph_cache_for_layout (PangoLayout *layout)
             {
               PangoGlyphInfo *gi = &glyphs->glyphs[i];
  
+              if (!run->item->analysis.font)
+                /* Font not found */
+                continue;
 	      pango_clutter_renderer_get_cached_glyph (renderer,
 						       run->item->analysis.font,
 						       gi->glyph);

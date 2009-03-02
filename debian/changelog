@@ -6,6 +6,7 @@ clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
     CLUTTER_DEBUG=backend
   * Refactored PVR texture compression code into GL-related and
     non-GL related code
+  * Don't crash if fonts are not installed.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  2 Mar 2009 09:37:27 +0200
 
