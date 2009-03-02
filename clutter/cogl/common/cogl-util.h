@@ -66,4 +66,7 @@ ClutterVertex cogl_util_unproject_f( float mtx[16],
                                      ClutterFixed viewport[4],
                                      ClutterVertex obj_coord);
 
+gboolean
+cogl_check_extension (const gchar *name, const gchar *ext);
+
 #endif /* __COGL_UTIL_H */

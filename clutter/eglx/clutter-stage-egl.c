@@ -99,14 +99,14 @@ clutter_stage_egl_realize (ClutterActor *actor)
         EGL_BUFFER_SIZE,    16,
         EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
                                   be faster */
-        
+
         /* This one may be set to EGL_WINDOW_BIT later if it fails */
-        EGL_SURFACE_TYPE,    EGL_WINDOW_BIT | EGL_PIXMAP_BIT, 
+        EGL_SURFACE_TYPE,    EGL_WINDOW_BIT | EGL_PIXMAP_BIT,
 
 #ifdef HAVE_COGL_GLES2
 	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-#endif /* HAVE_COGL_GLES2 */	        
-        
+#endif /* HAVE_COGL_GLES2 */
+
 	EGL_NONE
       };
 
@@ -127,7 +127,7 @@ clutter_stage_egl_realize (ClutterActor *actor)
         {
           g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
           goto fail;
-        }                     
+        }
       g_debug ("%d configs", num_configs);
 
       for (c = 0; c < num_configs; ++c)
@@ -182,10 +182,10 @@ clutter_stage_egl_realize (ClutterActor *actor)
       if (status != EGL_TRUE || config_count == 0)
         {
           gint idx;
-          /* If we can't find any config then it's probably because we have a driver that 
+          /* If we can't find any config then it's probably because we have a driver that
            * doesn't support EGL_PIXMAP at all, so we try again and choose a config that
            * doesn't require it */
-          g_debug ("%s: eglChooseConfig failed, disabling EGL_PIXMAP_BIT", __FUNCTION__);          
+          g_debug ("%s: eglChooseConfig failed, disabling EGL_PIXMAP_BIT", __FUNCTION__);
           for (idx = 0; idx < G_N_ELEMENTS(cfg_attribs); idx+=2)
             if (cfg_attribs[idx] == EGL_SURFACE_TYPE)
               cfg_attribs[idx+1] &= ~EGL_PIXMAP_BIT;
@@ -227,7 +227,7 @@ clutter_stage_egl_realize (ClutterActor *actor)
                             FocusChangeMask |
                             ExposureMask |
                             PropertyChangeMask);
-#ifdef USE_XINPUT          
+#ifdef USE_XINPUT
               _clutter_x11_select_events (stage_x11->xwin);
 #endif
             }

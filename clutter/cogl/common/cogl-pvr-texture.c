@@ -42,7 +42,7 @@ typedef struct PVR_TEXTURE_HEADER_TAG {
 } PVR_TEXTURE_HEADER;
 
 #define MGLPT_PVRTC2 0x18
-#define MGLPT_PVRTC4 0x19             
+#define MGLPT_PVRTC4 0x19
 #define ETC_RGB_4BPP 0x36
 
 #define PVR_FLAG_TWIDDLED 0x00000200
@@ -55,11 +55,11 @@ typedef struct PVR_TEXTURE_HEADER_TAG {
  * data slice to a file. Returns TRUE on success
  *
  * Since: 0.8.2-maemo
- */ 
+ */
 gboolean cogl_pvr_texture_save_pvrtc4(
-                        const gchar *filename, 
-                        const guchar *data, 
-                        guint data_size, 
+                        const gchar *filename,
+                        const guchar *data,
+                        guint data_size,
                         gint width, gint height)
 {
     FILE *texfile;
@@ -77,16 +77,16 @@ gboolean cogl_pvr_texture_save_pvrtc4(
     head.dwAlphaBitMask = 1;   /* mask for alpha channel */
     head.dwPVR = 'P' | 'V'<<8 | 'R'<<16 | '!'<<24; /* should be 'P' 'V' 'R' '!' */
     head.dwNumSurfs = 1;       /* number of slices for volume textures or skyboxes */
-       
+
     /* load file */
     texfile = g_fopen(filename, "wb");
-    if (!texfile) 
+    if (!texfile)
       return FALSE;
-    
+
     fwrite(&head, 1, sizeof(PVR_TEXTURE_HEADER), texfile);
     fwrite(data, 1, data_size, texfile);
     fclose(texfile);
-    
+
     return TRUE;
 }
 
@@ -103,42 +103,42 @@ gboolean cogl_pvr_texture_save_pvrtc4(
         if ((result).alpha < (col).alpha) (result).alpha = (col).alpha; \
 }
 
-inline guchar find_best( 
+inline guchar find_best(
                 ClutterColor pixel_col,
                 ClutterColor *low,
                 ClutterColor *high,
                 guint block_stride,
                 guint x_interp,
                 guint y_interp)
-{  
+{
   ClutterColor tmpa, tmpb;
   guchar amtx, amty;
-  ClutterColor cl, ch, clm, chm; 
+  ClutterColor cl, ch, clm, chm;
   guint diff[4];
-  
+
   /* interpolate our colours spatially */
-  
+
   amtx = x_interp * 64;
-  amty = y_interp * 64;  
-  
+  amty = y_interp * 64;
+
   clutter_color_interp(&low[0], &low[1], amtx, &tmpa);
   clutter_color_interp(&low[block_stride], &low[block_stride+1], amtx, &tmpb);
   clutter_color_interp(&tmpa, &tmpb, amty, &cl);
-  
+
   clutter_color_interp(&high[0], &high[1], amtx, &tmpa);
   clutter_color_interp(&high[block_stride], &high[block_stride+1], amtx, &tmpb);
   clutter_color_interp(&tmpa, &tmpb, amty, &ch);
-  
+
   /* interpolate for the mid-colours */
   clutter_color_interp(&cl, &ch, 96, &clm); /* 3/8 */
   clutter_color_interp(&cl, &ch, 160, &chm); /* 5/8 */
-  
+
   /* work out differences */
   diff[0] = clutter_color_diff(&pixel_col, &cl);
   diff[1] = clutter_color_diff(&pixel_col, &clm);
   diff[2] = clutter_color_diff(&pixel_col, &chm);
   diff[3] = clutter_color_diff(&pixel_col, &ch);
-  
+
   /* work out which one is smaller */
   if (diff[0] < diff[1] && diff[0] < diff[2] && diff[0] < diff[3])
     return 0;
@@ -155,7 +155,7 @@ inline guint clutter_color_to_pvr_color( ClutterColor *col )
    * it's 3444 */
   if (col->alpha >= 224)
     {
-      /* We're opaqueish */ 
+      /* We're opaqueish */
       return 0x8000 |
              ((col->red & 0xF8) << 7) |
              ((col->green & 0xF8) << 2) |
@@ -204,11 +204,11 @@ static void _calculate_access_masks( gint width, gint height,
   *ymask = 0;
   *morton_mask = 0xFFFFFFFF;
   if (width == height)
-    {      
+    {
       return;
     }
   if (width > height)
-    {     
+    {
       *morton_mask = (height*height)-1;
       *xshift = cogl_util_log_2(height);
       *xmask = 0xFFFFFFFF & ~*morton_mask;
@@ -230,9 +230,9 @@ static void _calculate_access_masks( gint width, gint height,
  * Since: 0.8.2-maemo
  */
 guchar *cogl_pvr_texture_compress_pvrtc4(
-                const guchar *uncompressed_data, 
-                gint width, 
-                gint height, 
+                const guchar *uncompressed_data,
+                gint width,
+                gint height,
                 guint *compressed_size)
 {
   guchar *compressed_data = 0;
@@ -241,27 +241,27 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
   gint x,y,z;
   guint32 *out_data;
   guint32 morton_mask, xshift, xmask, yshift, ymask;
-  
+
   g_return_val_if_fail(compressed_size!=0, 0);
   /* must be a multiple of 4 + Power of 2 in each direction */
-  if ((width&3) || (height&3) || 
+  if ((width&3) || (height&3) ||
       !cogl_util_is_power_2(width) ||
       !cogl_util_is_power_2(height))
     return 0;
-  
+
   width_block = width / 4;
   block_stride = width_block+2;
-  height_block = height / 4;  
+  height_block = height / 4;
   _calculate_access_masks(width_block, height_block,
       &morton_mask, &xshift, &xmask, &yshift, &ymask);
   /* 4 bits per pixel, or 64 bits per block*/
-  *compressed_size = width_block*height_block*sizeof(guint32)*2; 
+  *compressed_size = width_block*height_block*sizeof(guint32)*2;
   compressed_data = g_malloc(*compressed_size);
   /* but we make our block colour list one bigger all the way around
    * and copy the colours so we don't need to do bounds checking */
   col_low = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
   col_high = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
-  
+
   /* work out maximum and minimum colour values for each block */
   for (y=0;y<height_block;y++)
     {
@@ -270,7 +270,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
         {
           ClutterColor clow, chigh;
           ClutterColor *block;
-        
+
           block = (ClutterColor*)&uncompressed_data[(x + y*width) * 16];
           clow = block[0];
           chigh = block[0];
@@ -285,7 +285,7 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
               ClutterColor *blockline = &block[width*z];
               SETMIN(clow, blockline[0]);
               SETMAX(chigh, blockline[0]);
-              SETMIN(clow, blockline[1]);            
+              SETMIN(clow, blockline[1]);
               SETMAX(chigh, blockline[1]);
               SETMIN(clow, blockline[2]);
               SETMAX(chigh, blockline[2]);
@@ -302,28 +302,28 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
       col_high[block_offs+width_block+1] = col_high[block_offs+width_block];
     }
   /* copy top and bottom of our block so we get repeats */
-  memcpy((void*)&col_low[0], 
-         (void*)&col_low[block_stride], 
+  memcpy((void*)&col_low[0],
+         (void*)&col_low[block_stride],
                 sizeof(ClutterColor)*block_stride);
-  memcpy((void*)&col_high[0], 
-         (void*)&col_high[block_stride], 
+  memcpy((void*)&col_high[0],
+         (void*)&col_high[block_stride],
                 sizeof(ClutterColor)*block_stride);
-  memcpy((void*)&col_low[block_stride*(height_block+1)], 
-         (void*)&col_low[block_stride*height_block], 
+  memcpy((void*)&col_low[block_stride*(height_block+1)],
+         (void*)&col_low[block_stride*height_block],
                 sizeof(ClutterColor)*block_stride);
-  memcpy((void*)&col_high[block_stride*(height_block+1)], 
-         (void*)&col_high[block_stride*height_block], 
+  memcpy((void*)&col_high[block_stride*(height_block+1)],
+         (void*)&col_high[block_stride*height_block],
                 sizeof(ClutterColor)*block_stride);
-        
+
   /* now assemble each block */
-  out_data = (guint32*)compressed_data;  
+  out_data = (guint32*)compressed_data;
   for (y=0;y<height_block;y++)
     {
       gint my; /* for morton numbers later */
       my = (y | (y << 8)) & 0x00FF00FF;
       my = (my | (my << 4)) & 0x0F0F0F0F;
       my = (my | (my << 2)) & 0x33333333;
-      my = (my | (my << 1)) & 0x55555555;        
+      my = (my | (my << 1)) & 0x55555555;
       for (x=0;x<width_block;x++)
         {
           ClutterColor *block;
@@ -333,25 +333,25 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
           guint col_a, col_b;
           gint bx,by;
           gint mx, mz; /* for morton numbers later */
-          
+
           /* now work out what every pixel should be... */
           block = (ClutterColor*)&uncompressed_data
-                        [(x + y*width) * 4 * sizeof(guint32)];     
-          /* find_best interpolates our two sets of colours to where they should 
+                        [(x + y*width) * 4 * sizeof(guint32)];
+          /* find_best interpolates our two sets of colours to where they should
            * be (the blocks we get colour from swap halfway through the block
            * hence the crazy offset stuff. It then figures out which one of the
-           * 4 values for the pixel works best */ 
+           * 4 values for the pixel works best */
           for (by=3;by>=0;by--)
             for (bx=3;bx>=0;bx--)
-              {   
+              {
                 gint boffs = offs + ((bx+2)>>2) + (((by+2)>>2) * block_stride);
-                pixel_low_word = (pixel_low_word << 2) | 
+                pixel_low_word = (pixel_low_word << 2) |
                           find_best(
-                                  block[bx + by*width], 
-                                  &col_low[boffs], 
+                                  block[bx + by*width],
+                                  &col_low[boffs],
                                   &col_high[boffs],
                                   block_stride,
-                                  (bx+2)&3, 
+                                  (bx+2)&3,
                                   (by+2)&3);
               }
            /* pack our two colours */
@@ -360,29 +360,29 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
            /* and finally pack into a block */
            /* last bit is the modulation mode, but we're cheating and
             * just going for the easy 0, 3/8, 5/8, 1 one */
-           pixel_high_word = (col_b << 16) | (col_a & 0xFFFE);         
-  
-           /* PVR Stores images in a Morton arrangement to get some spatial 
+           pixel_high_word = (col_b << 16) | (col_a & 0xFFFE);
+
+           /* PVR Stores images in a Morton arrangement to get some spatial
             * locality
-            * 
+            *
             * Interleave lower 16 bits of x and y, so the bits of x
             * are in the even positions and bits from y in the odd;
-            * z gets the resulting 32-bit Morton Number. */        
+            * z gets the resulting 32-bit Morton Number. */
            mx = (x | (x << 8)) & 0x00FF00FF;
            mx = (mx | (mx << 4)) & 0x0F0F0F0F;
            mx = (mx | (mx << 2)) & 0x33333333;
-           mx = (mx | (mx << 1)) & 0x55555555;          
+           mx = (mx | (mx << 1)) & 0x55555555;
            mz = (my | (mx << 1)) & morton_mask;
            mz |= (x << xshift) & xmask;
            mz |= (y << yshift) & ymask;
            mz = mz << 1;
-           
+
            /* write data out */
            out_data[mz  ] = pixel_low_word;
            out_data[mz+1] = pixel_high_word;
       }
     }
-  
+
   g_free(col_low);
   g_free(col_high);
   return compressed_data;
@@ -397,8 +397,8 @@ guchar *cogl_pvr_texture_compress_pvrtc4(
  * Since: 0.8.2-maemo
  */
 guchar *cogl_pvr_texture_decompress_pvrtc4(
-                const guchar *compressed_data, 
-                gint width, 
+                const guchar *compressed_data,
+                gint width,
                 gint height)
 {
   ClutterColor *uncompressed_data = 0;
@@ -409,14 +409,14 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
   gint x,y;
   guint32 morton_mask, xshift, xmask, yshift, ymask;
   /* must be a multiple of 4 + Power of 2 in each direction */
-  if ((width&3) || (height&3) || 
+  if ((width&3) || (height&3) ||
       !cogl_util_is_power_2(width) ||
       !cogl_util_is_power_2(height))
     return 0;
-    
+
   width_block = width / 4;
   block_stride = width_block+2;
-  height_block = height / 4;  
+  height_block = height / 4;
   _calculate_access_masks(width_block, height_block,
       &morton_mask, &xshift, &xmask, &yshift, &ymask);
   /* 4 bits per pixel, or 64 bits per block*/
@@ -426,7 +426,7 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
    * and copy the colours so we don't need to do bounds checking */
   col_low = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
   col_high = g_malloc(sizeof(ClutterColor)*block_stride*(height_block+2));
-  
+
   /* re-arrange data and  */
   for (y=0;y<height_block;y++)
     {
@@ -437,18 +437,18 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
       my = (my | (my << 4)) & 0x0F0F0F0F;
       my = (my | (my << 2)) & 0x33333333;
       my = (my | (my << 1)) & 0x55555555;
-         
+
       for (x=0;x<width_block;x++)
         {
           guint32 pixel_col_word = 0;
           gint mx, mz; /* for morton numbers later */
-          
-          /* PVR Stores images in Morton pattern to get some spatial 
+
+          /* PVR Stores images in Morton pattern to get some spatial
           * locality
-          * 
+          *
           * Interleave lower 16 bits of x and y, so the bits of x
           * are in the even positions and bits from y in the odd;
-          * z gets the resulting 32-bit Morton Number. */        
+          * z gets the resulting 32-bit Morton Number. */
           mx = (x | (x << 8)) & 0x00FF00FF;
           mx = (mx | (mx << 4)) & 0x0F0F0F0F;
           mx = (mx | (mx << 2)) & 0x33333333;
@@ -457,67 +457,67 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
           mz |= (x << xshift) & xmask;
           mz |= (y << yshift) & ymask;
           mz = mz << 1;
-         
+
           arranged_data[(x+(y*width_block))*2  ] = compressed_datal[mz  ];
           arranged_data[(x+(y*width_block))*2+1] = compressed_datal[mz+1];
           pixel_col_word = compressed_datal[mz+1];
-          
+
           col_high[offs+x+1] = clutter_pvr_color_to_color(pixel_col_word >> 16);
           col_low[offs+x+1] = clutter_pvr_color_to_color(pixel_col_word & 0xFFFE);
         }
-        
+
         col_low[offs] = col_low[offs+1];
-        col_low[offs+block_stride+1] = col_low[offs+block_stride];  
+        col_low[offs+block_stride+1] = col_low[offs+block_stride];
         col_high[offs] = col_high[offs+1];
         col_high[offs+block_stride+1] = col_high[offs+block_stride];
       }
     /* copy top and bottom of our block so we get repeats */
-    memcpy(&col_low[0], &col_low[block_stride], 
+    memcpy(&col_low[0], &col_low[block_stride],
                 sizeof(ClutterColor)*block_stride);
-    memcpy(&col_high[0], &col_high[block_stride], 
+    memcpy(&col_high[0], &col_high[block_stride],
                 sizeof(ClutterColor)*block_stride);
-    memcpy(&col_low[block_stride*(height_block+1)], 
-           &col_low[block_stride*height_block], 
+    memcpy(&col_low[block_stride*(height_block+1)],
+           &col_low[block_stride*height_block],
                 sizeof(ClutterColor)*block_stride);
-    memcpy(&col_high[block_stride*(height_block+1)], 
-           &col_high[block_stride*height_block], 
-                sizeof(ClutterColor)*block_stride);      
-          
+    memcpy(&col_high[block_stride*(height_block+1)],
+           &col_high[block_stride*height_block],
+                sizeof(ClutterColor)*block_stride);
+
     for (y=0;y<height_block;y++)
       for (x=0;x<width_block;x++)
         {
           gint bx,by;
-          gint offs = x + y*block_stride;      
+          gint offs = x + y*block_stride;
           guint32 pixel_bits_word = arranged_data[(x+(y*width_block))*2];
           guint32 pixel_col_word  = arranged_data[(x+(y*width_block))*2 + 1];
           gboolean block_alpha_mode = pixel_col_word&1;
           /* now work out what every pixel in this block should be... */
           for (by=0;by<4;by++)
             for (bx=0;bx<4;bx++)
-              {   
-                ClutterColor tmpa, tmpb, cl, ch, col;     
+              {
+                ClutterColor tmpa, tmpb, cl, ch, col;
                 gint boffs = offs + ((bx+2)>>2) + (((by+2)>>2) * block_stride);
                 gint pixel_bits;
                 gint amtx, amty;
-                              
+
                 amtx = ((bx+2)&3) * 64;
-                amty = ((by+2)&3) * 64;  
+                amty = ((by+2)&3) * 64;
                 pixel_bits = pixel_bits_word&3;
                 pixel_bits_word = pixel_bits_word >> 2;
-  
-                clutter_color_interp(&col_low[boffs], 
+
+                clutter_color_interp(&col_low[boffs],
                                 &col_low[boffs+1], amtx, &tmpa);
-                clutter_color_interp(&col_low[boffs+block_stride], 
+                clutter_color_interp(&col_low[boffs+block_stride],
                                 &col_low[boffs+block_stride+1], amtx, &tmpb);
                 clutter_color_interp(&tmpa, &tmpb, amty, &cl);
-  
-                clutter_color_interp(&col_high[boffs], 
+
+                clutter_color_interp(&col_high[boffs],
                                 &col_high[boffs+1], amtx, &tmpa);
-                clutter_color_interp(&col_high[boffs+block_stride], 
+                clutter_color_interp(&col_high[boffs+block_stride],
                                 &col_high[boffs+block_stride+1], amtx, &tmpb);
                 clutter_color_interp(&tmpa, &tmpb, amty, &ch);
-                
-                if (block_alpha_mode) 
+
+                if (block_alpha_mode)
                   {
                     if (pixel_bits==0)
                       col = cl;
@@ -526,7 +526,7 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
                     else if (pixel_bits==2) {
                       clutter_color_interp(&cl, &ch, 128, &col);
                       col.alpha = 0;
-                    } else col = ch;                    
+                    } else col = ch;
                   }
                 else
                   {
@@ -536,13 +536,13 @@ guchar *cogl_pvr_texture_decompress_pvrtc4(
                       clutter_color_interp(&cl, &ch, 96, &col);
                     else if (pixel_bits==2) {
                       clutter_color_interp(&cl, &ch, 160, &col);
-                    } else col = ch;                              
-                  } 
+                    } else col = ch;
+                  }
               uncompressed_data[(x*4) + (y*width*4) + bx + (by*width)]
                 = col;
             }
-      }  
-  
+      }
+
   g_free(col_low);
   g_free(col_high);
   g_free(arranged_data);
@@ -566,12 +566,12 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
   GLuint gl_format = 0;
   FILE *texfile = 0;
   guint read_count;
-  
+
   /* load file */
   texfile = g_fopen(filename, "rb");
   if (!texfile)
     return 0;
-    
+
   read_count = fread(&header, 1, sizeof(PVR_TEXTURE_HEADER), texfile);
   if (read_count != sizeof(PVR_TEXTURE_HEADER))
     {
@@ -579,7 +579,7 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
       fclose (texfile);
       return 0;
     }
-  
+
   /* checks */
   if (((header.dwPVR      ) & 0xFF) != 'P' &&
       ((header.dwPVR >>  8) & 0xFF) != 'V' &&
@@ -591,7 +591,7 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
       fclose (texfile);
       return 0;
     }
-    
+
   /* load image */
   texture_data = g_malloc(header.dwDataSize);
   if (!texture_data)
@@ -609,14 +609,14 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
       g_free (texture_data);
       return 0;
     }
-    
+
   fclose(texfile);
-  
+
   /* work out format */
   if ((header.dwpfFlags & 0xFF) == MGLPT_PVRTC2)
     {
       if (header.dwAlphaBitMask)
-        gl_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;                    
+        gl_format = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
       else
         gl_format = GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
       /* We have no fallback for PVRTC2 */
@@ -625,25 +625,25 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
           g_free(texture_data);
           texture_data = 0;
         }
-    } 
+    }
   else if ((header.dwpfFlags & 0xFF) == MGLPT_PVRTC4)
     {
       if (header.dwAlphaBitMask)
         gl_format = GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
       else
         gl_format = GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG;
-      /* If we don't support PVRTC4, decompress it and use that */        
+      /* If we don't support PVRTC4, decompress it and use that */
       if (!cogl_features_available(COGL_FEATURE_TEXTURE_PVRTC))
         {
           guchar *uncompressed;
-          
+
           uncompressed = cogl_pvr_texture_decompress_pvrtc4(
                 texture_data, header.dwWidth, header.dwHeight);
-          gl_format = GL_RGBA;          
-          
+          gl_format = GL_RGBA;
+
           g_free(texture_data);
           texture_data = uncompressed;
-        }      
+        }
     }
   else if ((header.dwpfFlags & 0xFF) == ETC_RGB_4BPP)
     {
@@ -652,7 +652,7 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
   else
     g_warning("%s: Unknown PVR file format 0x%02x", __FUNCTION__,
               header.dwpfFlags & 0xFF);
-   
+
   /* load into GL */
   GE( glEnable(GL_TEXTURE_2D) );
   GE( glGenTextures(1, &tex) );
@@ -660,13 +660,13 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
 
   if (!texture_data)
     return COGL_INVALID_HANDLE;
-    
+
   if (gl_format == GL_RGBA)
     {
       CoglHandle tex;
       /* we've had to fall back to decompressing the texture */
       tex =  cogl_texture_new_from_data    (header.dwWidth, header.dwHeight,
-                                            0, 0,                                            
+                                            0, 0,
                                             COGL_PIXEL_FORMAT_RGBA_8888,
                                             COGL_PIXEL_FORMAT_ANY,
                                             header.dwWidth*4,
@@ -676,17 +676,17 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
     }
   else
     {
-      GE( glCompressedTexImage2D(GL_TEXTURE_2D, 0, gl_format, 
+      GE( glCompressedTexImage2D(GL_TEXTURE_2D, 0, gl_format,
                              header.dwWidth, header.dwHeight, 0,
                              header.dwDataSize, texture_data) );
-      g_free(texture_data);     
+      g_free(texture_data);
       /* texture format is NOT COGL_PIXEL_FORMAT_RGBA_4444, but we
        * don't have the correct one */
       return cogl_texture_new_from_foreign (
                 tex, GL_TEXTURE_2D,
                 header.dwWidth, header.dwHeight,
-                0, 0, 
+                0, 0,
                 COGL_PIXEL_FORMAT_RGBA_4444);
     }
-  
+
 }

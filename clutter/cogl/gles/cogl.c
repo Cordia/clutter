@@ -80,12 +80,6 @@ cogl_get_proc_address (const gchar* name)
   return NULL;
 }
 
-gboolean
-cogl_check_extension (const gchar *name, const gchar *ext)
-{
-  return FALSE;
-}
-
 void
 cogl_paint_init (const ClutterColor *color)
 {

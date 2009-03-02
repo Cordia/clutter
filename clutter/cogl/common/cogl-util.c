@@ -30,6 +30,7 @@
 #include "cogl.h"
 #include "cogl-internal.h"
 #include "cogl-util.h"
+#include <string.h>
 
 /**
  * cogl_util_next_p2:
@@ -209,3 +210,27 @@ ClutterVertex cogl_util_unproject_f(   float mtx[16],
   return res_vtx;
 }
 
+gboolean
+cogl_check_extension (const gchar *name, const gchar *ext)
+{
+  gchar *end;
+  gint name_len, n;
+
+  if (name == NULL || ext == NULL)
+    return FALSE;
+
+  end = (gchar*)(ext + strlen(ext));
+
+  name_len = strlen(name);
+
+  while (ext < end)
+    {
+      n = strcspn(ext, " ");
+
+      if ((name_len == n) && (!strncmp(name, ext, n)))
+        return TRUE;
+      ext += (n + 1);
+    }
+
+  return FALSE;
+}

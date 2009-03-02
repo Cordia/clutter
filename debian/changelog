@@ -1,6 +1,9 @@
 clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
 
-  * WRITEME
+  * Moved cogl_check_extension to common (so GLES uses it now)
+    Fixed invalid reporting of extension string
+  * clutter-backend-egl now dumps GLES extension string if 
+    CLUTTER_DEBUG=backend
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  2 Mar 2009 09:37:27 +0200
 

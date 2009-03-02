@@ -143,31 +143,6 @@ cogl_get_proc_address (const gchar* name)
   return NULL;
 }
 
-gboolean
-cogl_check_extension (const gchar *name, const gchar *ext)
-{
-  gchar *end;
-  gint name_len, n;
-
-  if (name == NULL || ext == NULL)
-    return FALSE;
-
-  end = (gchar*)(ext + strlen(ext));
-
-  name_len = strlen(name);
-
-  while (ext < end)
-    {
-      n = strcspn(ext, " ");
-
-      if ((name_len == n) && (!strncmp(name, ext, n)))
-	return TRUE;
-      ext += (n + 1);
-    }
-
-  return FALSE;
-}
-
 void
 cogl_paint_init (const ClutterColor *color)
 {

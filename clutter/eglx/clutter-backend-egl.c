@@ -217,12 +217,14 @@ clutter_backend_egl_get_features (ClutterBackend *backend)
                 "GL_VENDOR: %s\n"
                 "GL_RENDERER: %s\n"
                 "GL_VERSION: %s\n"
+                "GL_EXTENSIONS: %s\n"
                 "EGL_VENDOR: %s\n"
                 "EGL_VERSION: %s\n"
                 "EGL_EXTENSIONS: %s\n",
                 glGetString (GL_VENDOR),
                 glGetString (GL_RENDERER),
                 glGetString (GL_VERSION),
+                glGetString (GL_EXTENSIONS),
                 eglQueryString (backend_egl->edpy, EGL_VENDOR),
                 eglQueryString (backend_egl->edpy, EGL_VERSION),
                 eglQueryString (backend_egl->edpy, EGL_EXTENSIONS));
@@ -242,9 +244,9 @@ clutter_backend_egl_create_stage (ClutterBackend  *backend,
 
   CLUTTER_NOTE (BACKEND, "Creating stage of type `%s'",
                 g_type_name (CLUTTER_STAGE_TYPE));
-  
+
   stage = g_object_new (CLUTTER_STAGE_TYPE, NULL);
-  
+
   /* copy backend data into the stage */
   stage_x11 = CLUTTER_STAGE_X11 (stage);
   stage_x11->xdpy = backend_x11->xdpy;
@@ -252,12 +254,12 @@ clutter_backend_egl_create_stage (ClutterBackend  *backend,
   stage_x11->xscreen = backend_x11->xscreen_num;
   stage_x11->backend = backend_x11;
   stage_x11->wrapper = wrapper;
-  
+
   CLUTTER_NOTE (MISC, "EGLX stage created (display:%p, screen:%d, root:%u)",
                 stage_x11->xdpy,
                 stage_x11->xscreen,
                 (unsigned int) stage_x11->xwin_root);
-  
+
   return stage;
 }
 
