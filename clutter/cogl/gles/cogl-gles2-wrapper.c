@@ -145,6 +145,9 @@ cogl_gles2_settings_equal (const CoglGles2WrapperSettings *a,
       if (a->color_enabled != b->color_enabled)
           return FALSE;
 
+      if (a->color_array_enabled != b->color_array_enabled)
+            return FALSE;
+
       if (a->texture_2d_enabled && a->alpha_only != b->alpha_only)
 	return FALSE;
 
@@ -240,6 +243,7 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
   GLuint shader_obj;
   CoglGles2WrapperShader *shader;
   GSList *node;
+  gboolean color_enabled;
 
   _COGL_GET_GLES2_WRAPPER (w, NULL);
 
@@ -251,10 +255,13 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
 				   FALSE, TRUE))
       return (CoglGles2WrapperShader *) node->data;
 
+  color_enabled = settings->color_enabled ||
+                  settings->color_array_enabled;
+
   /* Otherwise create a new shader */
   shader_source = g_string_new (cogl_fixed_fragment_shader_header_start);
 
-  if (settings->color_enabled ||
+  if (color_enabled ||
       (!settings->texture_2d_enabled) ||
       settings->alpha_only)
     g_string_append (shader_source, cogl_fixed_fragment_shader_header_color);
@@ -273,7 +280,7 @@ cogl_gles2_get_fragment_shader (const CoglGles2WrapperSettings *settings)
 			 cogl_fixed_fragment_shader_texture_alpha_only);
       else
         {
-          if (settings->color_enabled)
+          if (color_enabled)
             g_string_append (shader_source,
                              cogl_fixed_fragment_shader_texture_color);
           else
@@ -1004,6 +1011,11 @@ cogl_wrap_glEnable (GLenum cap)
       _COGL_GLES2_CHANGE_SETTING (w, alpha_test_enabled, TRUE);
       break;
 
+    case GL_COLOR_ARRAY:
+      _COGL_GLES2_CHANGE_SETTING (w, color_array_enabled, TRUE);
+      glEnable (cap);
+      break;
+
     default:
       glEnable (cap);
     }
@@ -1026,6 +1038,11 @@ cogl_wrap_glDisable (GLenum cap)
 
     case GL_ALPHA_TEST:
       _COGL_GLES2_CHANGE_SETTING (w, alpha_test_enabled, FALSE);
+      break;
+
+    case GL_COLOR_ARRAY:
+      _COGL_GLES2_CHANGE_SETTING (w, color_array_enabled, FALSE);
+      glDisable (cap);
       break;
 
     case GL_LIGHTING: /* We never did lighting anyway */

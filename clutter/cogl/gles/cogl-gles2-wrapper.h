@@ -82,6 +82,7 @@ struct _CoglGles2WrapperSettings
   GLint    alpha_test_func;
 
   gboolean color_enabled;
+  gboolean color_array_enabled;
 
   gboolean fog_enabled;
   GLint    fog_mode;

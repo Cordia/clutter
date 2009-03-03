@@ -53,6 +53,13 @@ color_interp     (const Color *src1,
   gint r,g,b,a;
   gint namt = 255-amt;
 
+  /* shortcut for simple case */
+  if (amt==0)
+    {
+      memcpy(dest, src1, sizeof(Color));
+      return;
+    }
+
   r = ((src1->red * namt) + (src2->red * amt)) >> 8;
   g = ((src1->green * namt) + (src2->green * amt)) >> 8;
   b = ((src1->blue * namt) + (src2->blue * amt)) >> 8;
