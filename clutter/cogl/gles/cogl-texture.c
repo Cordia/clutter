@@ -1642,8 +1642,10 @@ cogl_texture_set_region (CoglHandle       handle,
 
       /* Swap bitmaps if succeeded */
       if (!success) return FALSE;
+
+      if (source_bmp.data != temp_bmp.data)
+        source_bmp_owner = TRUE;
       source_bmp = temp_bmp;
-      source_bmp_owner = TRUE;
     }
 
   /* Send data to GL */
