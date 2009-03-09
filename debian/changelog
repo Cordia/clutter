@@ -12,6 +12,8 @@ clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
   * added small speedup to PVRTC
   * Modified timeline priority to ensure that animation happens before redraws
   * Fixed possible double-free in cogl_texture_set_region
+  * Moved Jan Arne's additions in PVRTC to clutter
+  * Made clutter create a black window by default, NB#104157
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  2 Mar 2009 09:37:27 +0200
 

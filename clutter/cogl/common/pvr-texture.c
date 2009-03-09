@@ -26,6 +26,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
+#include <unistd.h>
 
 #if USE_GL
 /* These are defined in GLES2/gl2ext + gl2extimg, but we want them available
@@ -140,6 +142,118 @@ gboolean pvr_texture_save_pvrtc4(
     fclose(texfile);
 
     return TRUE;
+}
+
+gboolean
+pvr_texture_save_pvrtc4_atomically (const gchar   *filename,
+                                    const guchar  *data,
+                                    guint          data_size,
+                                    gint           width,
+                                    gint           height,
+                                    GError       **error)
+{
+  gchar *tmpl;
+  gint fd;
+  PVR_TEXTURE_HEADER head;
+
+  /* Head */
+  head.dwHeaderSize = sizeof(PVR_TEXTURE_HEADER);     /* size of the structure */
+  head.dwHeight = height;         /* height of surface to be created */
+  head.dwWidth = width;          /* width of input surface */
+  head.dwMipMapCount = 0;    /* number of MIP-map levels requested */
+  head.dwpfFlags = MGLPT_PVRTC4 | PVR_FLAG_TWIDDLED | PVR_FLAG_ALPHA;        /* pixel format flags */
+  head.dwDataSize = data_size;       /* Size of the compress data */
+  head.dwBitCount = 4;       /* number of bits per pixel */
+  head.dwRBitMask = 0;       /* mask for red bit */
+  head.dwGBitMask = 0;       /* mask for green bits */
+  head.dwBBitMask = 0;       /* mask for blue bits */
+  head.dwAlphaBitMask = 1;   /* mask for alpha channel */
+  head.dwPVR = 'P' | 'V'<<8 | 'R'<<16 | '!'<<24; /* should be 'P' 'V' 'R' '!' */
+  head.dwNumSurfs = 1;       /* number of slices for volume textures or skyboxes */
+
+  tmpl = g_strdup_printf ("%sXXXXXX", filename);
+  fd = mkstemp (tmpl);
+  if (fd == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not open template file for %s",
+                   filename);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  if (write(fd, &head, sizeof(PVR_TEXTURE_HEADER)) == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not write header to %s",
+                   tmpl);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  if (write(fd, data, data_size) == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not write header to %s",
+                   tmpl);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  if (fdatasync (fd) == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not sync %s",
+                   tmpl);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  if (close (fd) == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not close %s",
+                   tmpl);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  if (rename (tmpl, filename) == -1)
+    {
+      GFileError code = g_file_error_from_errno (errno);
+
+      g_set_error (error,
+                   G_FILE_ERROR,
+                   code,
+                   "Could not rename %s to %s",
+                   tmpl,
+                   filename);
+      g_free (tmpl);
+      return FALSE;
+    }
+
+  g_free (tmpl);
+  return TRUE;
 }
 
 #define SETMIN(result, col) { \

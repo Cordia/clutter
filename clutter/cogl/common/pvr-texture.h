@@ -67,4 +67,10 @@ guchar *pvr_texture_decompress_pvrtc4(
                 gint width,
                 gint height);
 
+gboolean pvr_texture_save_pvrtc4_atomically (const gchar   *filename,
+                                             const guchar  *data,
+                                             guint          data_size,
+                                             gint           width,
+                                             gint           height,
+                                             GError       **error);
 #endif /*PVRTEXTURE_H_*/

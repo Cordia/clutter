@@ -96,7 +96,10 @@ clutter_stage_egl_realize (ClutterActor *actor)
       EGLConfig *all_configs;
 
       EGLint cfg_attribs[16] = {
-        EGL_BUFFER_SIZE,    16,
+        EGL_BUFFER_SIZE,  16,
+        /*EGL_RED_SIZE,    8,
+        EGL_GREEN_SIZE,    8,
+        EGL_BLUE_SIZE,    8,*/
         EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
                                   be faster */
 
@@ -209,7 +212,7 @@ clutter_stage_egl_realize (ClutterActor *actor)
                                stage_x11->xwin_width,
                                stage_x11->xwin_height,
                                0, 0,
-                               WhitePixel (stage_x11->xdpy,
+                               BlackPixel (stage_x11->xdpy,
                                            stage_x11->xscreen));
 
       /*
