@@ -63,7 +63,7 @@
 
 #include "cogl/cogl.h"
 
-#define CLUTTER_DEFAULT_PIXEL_FORMAT COGL_PIXEL_FORMAT_ANY_16
+#define CLUTTER_DEFAULT_PIXEL_FORMAT COGL_PIXEL_FORMAT_ANY
 
 static void clutter_scriptable_iface_init (ClutterScriptableIface *iface);
 

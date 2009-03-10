@@ -1,6 +1,8 @@
 clutter (0.8.2-0maemo21~unreleased) unstable; urgency=low
 
-  * WRITEME
+  * Moved back to 24/32 bit textures
+  * Set default stage colour to black
+  * Ensured no depth buffer was created for EGLX backend
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 10 Mar 2009 09:41:04 +0200
 

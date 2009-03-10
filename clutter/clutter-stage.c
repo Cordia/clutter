@@ -836,9 +836,9 @@ clutter_stage_init (ClutterStage *self)
   priv->is_cursor_visible = TRUE;
   priv->use_fog           = FALSE;
 
-  priv->color.red   = 0xff;
-  priv->color.green = 0xff;
-  priv->color.blue  = 0xff;
+  priv->color.red   = 0x00;
+  priv->color.green = 0x00;
+  priv->color.blue  = 0x00;
   priv->color.alpha = 0xff;
 
   priv->perspective.fovy   = CFX_60; /* 60 Degrees */

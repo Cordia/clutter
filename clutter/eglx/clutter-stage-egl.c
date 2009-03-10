@@ -95,11 +95,12 @@ clutter_stage_egl_realize (ClutterActor *actor)
       int num_configs;
       EGLConfig *all_configs;
 
-      EGLint cfg_attribs[16] = {
+      EGLint cfg_attribs[18] = {
         EGL_BUFFER_SIZE,  16,
         /*EGL_RED_SIZE,    8,
         EGL_GREEN_SIZE,    8,
         EGL_BLUE_SIZE,    8,*/
+        EGL_DEPTH_SIZE,   0,
         EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
                                   be faster */
 
