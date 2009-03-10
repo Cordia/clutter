@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo20) unstable; urgency=low
 
   * Moved cogl_check_extension to common (so GLES uses it now)
     Fixed invalid reporting of extension string
@@ -13,9 +13,10 @@ clutter (0.8.2-0maemo20~unreleased) unstable; urgency=low
   * Modified timeline priority to ensure that animation happens before redraws
   * Fixed possible double-free in cogl_texture_set_region
   * Moved Jan Arne's additions in PVRTC to clutter
-  * Made clutter create a black window by default, NB#104157
+  * Fixes: NB#104157 - Made clutter create a black window by default
+  * Kimmo removed some auto-generated files from SVN.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  2 Mar 2009 09:37:27 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 10 Mar 2009 09:30:31 +0200
 
 clutter (0.8.2-0maemo19) unstable; urgency=low
 
