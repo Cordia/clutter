@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo21~unreleased) unstable; urgency=low
+
+  * WRITEME
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 10 Mar 2009 09:41:04 +0200
+
 clutter (0.8.2-0maemo20) unstable; urgency=low
 
   * Moved cogl_check_extension to common (so GLES uses it now)
