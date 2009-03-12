@@ -1,6 +1,6 @@
 NULL =
 
-SUBDIRS = clutter tests po
+SUBDIRS = clutter tests
 
 #if BUILD_GTK_DOC
 #SUBDIRS += doc
