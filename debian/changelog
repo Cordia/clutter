@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo22-unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo22~unreleased) unstable; urgency=low
 
   * Fix for NB#104132 - crash while trying to queue redraw on exit
 
