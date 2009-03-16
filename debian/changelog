@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo22-unreleased) unstable; urgency=low
+
+  * Fix for NB#104132 - crash while trying to queue redraw on exit
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 16 Mar 2009 10:29:55 +0000
+
 clutter (0.8.2-0maemo21) unstable; urgency=low
 
   * Moved back to 24/32 bit textures

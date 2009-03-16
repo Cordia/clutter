@@ -3039,7 +3039,8 @@ clutter_actor_queue_redraw (ClutterActor *self)
 
   g_return_if_fail (CLUTTER_IS_ACTOR (self));
 
-  if (!self->priv->allow_redraw)
+  if (!self->priv->allow_redraw ||
+      (CLUTTER_PRIVATE_FLAGS (self) & CLUTTER_ACTOR_IN_DESTRUCTION))
     return;
 
   clutter_actor_notify_modified( self );
