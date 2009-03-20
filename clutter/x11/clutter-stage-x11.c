@@ -77,8 +77,8 @@ send_wmspec_change_state (ClutterBackendX11 *backend_x11,
   xclient.data.l[3] = 0;
   xclient.data.l[4] = 0;
 
-  XSendEvent (backend_x11->xdpy, 
-              DefaultRootWindow(backend_x11->xdpy), 
+  XSendEvent (backend_x11->xdpy,
+              DefaultRootWindow(backend_x11->xdpy),
               False,
               SubstructureRedirectMask|SubstructureNotifyMask,
               (XEvent *)&xclient);
@@ -156,7 +156,7 @@ clutter_stage_x11_set_wm_protocols (ClutterStageX11 *stage_x11)
   ClutterBackendX11 *backend_x11 = stage_x11->backend;
   Atom protocols[2];
   int n = 0;
-  
+
   protocols[n++] = backend_x11->atom_WM_DELETE_WINDOW;
   protocols[n++] = backend_x11->atom_NET_WM_PING;
 
@@ -318,19 +318,19 @@ set_wm_title (ClutterStageX11 *stage_x11)
 
   if (stage_x11->title == NULL)
     {
-      XDeleteProperty (stage_x11->xdpy, 
-                       stage_x11->xwin, 
+      XDeleteProperty (stage_x11->xdpy,
+                       stage_x11->xwin,
                        backend_x11->atom_NET_WM_NAME);
     }
   else
     {
-      XChangeProperty (stage_x11->xdpy, 
-                       stage_x11->xwin, 
-                       backend_x11->atom_NET_WM_NAME, 
-                       backend_x11->atom_UTF8_STRING, 
-                       8, 
-                       PropModeReplace, 
-                       (unsigned char *) stage_x11->title, 
+      XChangeProperty (stage_x11->xdpy,
+                       stage_x11->xwin,
+                       backend_x11->atom_NET_WM_NAME,
+                       backend_x11->atom_UTF8_STRING,
+                       8,
+                       PropModeReplace,
+                       (unsigned char *) stage_x11->title,
                        (int) strlen (stage_x11->title));
     }
 }
@@ -355,8 +355,8 @@ set_cursor_visible (ClutterStageX11 *stage_x11)
     }
   else
     {
-#if 0 /* HAVE_XFIXES - seems buggy/unreliable, check cursor in firefox 
-       *               loading page after hiding.  
+#if 0 /* HAVE_XFIXES - seems buggy/unreliable, check cursor in firefox
+       *               loading page after hiding.
       */
       XFixesHideCursor (stage_x11->xdpy, stage_x11->xwin);
 #else
@@ -366,7 +366,7 @@ set_cursor_visible (ClutterStageX11 *stage_x11)
 
       pix = XCreatePixmap (stage_x11->xdpy, stage_x11->xwin, 1, 1, 1);
       memset (&col, 0, sizeof (col));
-      curs = XCreatePixmapCursor (stage_x11->xdpy, 
+      curs = XCreatePixmapCursor (stage_x11->xdpy,
                                   pix, pix,
                                   &col, &col,
                                   1, 1);
@@ -435,8 +435,8 @@ clutter_stage_x11_set_fullscreen (ClutterStageWindow *stage_window,
             }
           else
             {
-              /* We need to set window user resize-able for metacity at 
-               * at least to allow the window to fullscreen *sigh*  
+              /* We need to set window user resize-able for metacity at
+               * at least to allow the window to fullscreen *sigh*
               */
               if (clutter_stage_get_user_resizable (stage) == TRUE)
                 was_resizeable = TRUE;
@@ -456,8 +456,8 @@ clutter_stage_x11_set_fullscreen (ClutterStageWindow *stage_window,
           if (!CLUTTER_ACTOR_IS_MAPPED (stage_x11))
             {
               /* FIXME: This wont work if we support more states */
-              XDeleteProperty (stage_x11->xdpy, 
-                               stage_x11->xwin, 
+              XDeleteProperty (stage_x11->xdpy,
+                               stage_x11->xwin,
                                backend_x11->atom_NET_WM_STATE);
             }
           else
@@ -596,7 +596,7 @@ clutter_stage_window_iface_init (ClutterStageWindowIface *iface)
  * clutter_x11_get_stage_window:
  * @stage: a #ClutterStage
  *
- * Gets the stages X Window. 
+ * Gets the stages X Window.
  *
  * Return value: An XID for the stage window.
  *
@@ -619,7 +619,7 @@ clutter_x11_get_stage_window (ClutterStage *stage)
  * clutter_x11_get_stage_from_window:
  * @win: an X Window ID
  *
- * Gets the stage for a particular X window.  
+ * Gets the stage for a particular X window.
  *
  * Return value: The stage or NULL if a stage does not exist for the window.
  *
@@ -715,11 +715,11 @@ clutter_x11_set_stage_foreign (ClutterStage *stage,
                          &width, &height,
                          &border,
                          &depth);
-  
+
   if (clutter_x11_untrap_x_errors () ||
       !status ||
       width == 0 || height == 0 ||
-      depth != stage_x11->xvisinfo->depth)
+      (stage_x11->xvisinfo && depth != stage_x11->xvisinfo->depth))
     {
       g_warning ("Unable to retrieve the new window geometry");
       return FALSE;
