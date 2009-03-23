@@ -1,8 +1,8 @@
-clutter (0.8.2-0maemo23~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo23) unstable; urgency=low
 
   * Artem's patch for clutter-gtk support
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 20 Mar 2009 12:02:04 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 23 Mar 2009 13:42:45 +0200
  
 clutter (0.8.2-0maemo22) unstable; urgency=low
 
