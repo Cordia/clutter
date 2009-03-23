@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo24~unreleased) unstable; urgency=low
+
+  * writeme
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 23 Mar 2009 14:33:10 +0200
+
 clutter (0.8.2-0maemo23) unstable; urgency=low
 
   * Artem's patch for clutter-gtk support
