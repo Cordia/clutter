@@ -108,7 +108,12 @@ clutter_event_source_new (ClutterBackend *backend)
 static gboolean
 check_xpending (ClutterBackend *backend)
 {
-  return XPending (CLUTTER_BACKEND_X11 (backend)->xdpy);
+  int events;
+  clutter_x11_trap_x_errors ();
+  events = XPending (CLUTTER_BACKEND_X11 (backend)->xdpy);
+  if (clutter_x11_untrap_x_errors ())
+    /* g_warning ("%s: X errors received during XPending call", __func__) */ ;
+  return events;
 }
 
 static gboolean
