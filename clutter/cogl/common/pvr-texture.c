@@ -1,4 +1,6 @@
 /*
+ * This file is part of libhildondesktop
+ *
  * Copyright (C) 2008 Nokia Corporation.
  *
  * Authored By Gordon Williams <gordon.williams@collabora.co.uk>
@@ -347,6 +349,34 @@ inline static guint color_to_pvr_color( Color *col )
     }
 }
 
+inline static void nearest_pvr_color( Color *col, gboolean use_max ) {
+  if (col->alpha >= 224)
+    {
+      if (use_max) {
+        col->red = MIN(col->red + 7, 255);
+        col->green = MIN(col->green + 7, 255);
+        col->blue = MIN(col->blue + 7, 255);
+      }
+      col->alpha = 0xFF;
+      col->red   = (col->red & 0xF8) | (col->red >> 5);
+      col->green = (col->green & 0xF8) | (col->green >> 5);
+      col->blue  = (col->blue & 0xF8) | (col->blue >> 5);
+    }
+  else
+    {
+      if (use_max) {
+        col->alpha = MIN(col->alpha + 31, 255);
+        col->red = MIN(col->red + 15, 255);
+        col->green = MIN(col->green + 15, 255);
+        col->blue = MIN(col->blue + 15, 255);
+      }
+      col->alpha = (col->alpha & 0xE0) | (col->alpha >> 3);
+      col->red   = (col->red & 0xF0) | (col->red >> 4);
+      col->green = (col->green & 0xF0) | (col->green >> 4);
+      col->blue  = (col->blue & 0xF0) | (col->blue >> 4);
+    }
+}
+
 inline static Color pvr_color_to_color( guint32 col )
 {
   Color result;
@@ -490,6 +520,8 @@ guchar *pvr_texture_compress_pvrtc4(
               SETMIN(clow, blockline[3]);
               SETMAX(chigh, blockline[3]);
             }
+          nearest_pvr_color(&clow, FALSE);
+          nearest_pvr_color(&chigh, TRUE);
           col_low[1+x+block_offs] = clow;
           col_high[1+x+block_offs] = chigh;
         }

@@ -93,11 +93,6 @@ struct _ClutterEGLXTexturePixmapPrivate
 void
 clutter_eglx_texture_pixmap_paint (ClutterActor *actor);
 
-static EGLConfig
-clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
-                            EGLSurface *surface,
-			    EGLNativePixmapType p_or_w);
-
 static void
 clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
                                         gint x,
@@ -105,6 +100,10 @@ clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
                                         gint width,
                                         gint height);
 
+static EGLConfig
+clutter_eglx_get_eglconfig (EGLDisplay *display,
+                            EGLSurface *surface, Pixmap pixmap,
+                            int depth);
 
 static void
 clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor);
@@ -288,9 +287,8 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
   if (pixmap)
     {
       EGLConfig conf = clutter_eglx_get_eglconfig (
-                                backend->edpy, 1,
-		                &priv->egl_surface,
-                                (EGLNativePixmapType)pixmap);
+                                backend->edpy, &priv->egl_surface,
+                                pixmap, pixmap_depth);
       print_config_info (conf);
     }
   else
@@ -307,9 +305,8 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
 	  return;
 	}
       conf = clutter_eglx_get_eglconfig (
-                        backend->edpy, 0,
-                        &priv->egl_surface,
-                        (EGLNativePixmapType)pixmap);
+                        backend->edpy, &priv->egl_surface,
+                        pixmap, pixmap_depth);
       print_config_info (conf);
     }
 
@@ -423,15 +420,15 @@ clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor)
    * will free it anyway if we unrealise or set a new texture  */
 }
 
-static const EGLint pixmap_creation_config[] = {
+static const EGLint pixmap_creation_config_rgb[] = {
         EGL_TEXTURE_TARGET,             EGL_TEXTURE_2D,
         EGL_TEXTURE_FORMAT,             EGL_TEXTURE_RGB,
         EGL_NONE
 };
 
-static const EGLint window_creation_config[] = {
+static const EGLint pixmap_creation_config_rgba[] = {
         EGL_TEXTURE_TARGET,             EGL_TEXTURE_2D,
-        EGL_TEXTURE_FORMAT,             EGL_TEXTURE_RGB,
+        EGL_TEXTURE_FORMAT,             EGL_TEXTURE_RGBA,
         EGL_NONE
 };
 
@@ -444,39 +441,19 @@ static const EGLint pixmap_config[] = {
 	EGL_NONE
 };
 
-static const EGLint window_config[] = {
-	EGL_SURFACE_TYPE,		EGL_PIXMAP_BIT,
-	EGL_RENDERABLE_TYPE,		EGL_OPENGL_ES2_BIT,
-	EGL_DEPTH_SIZE,			0,
-	EGL_BIND_TO_TEXTURE_RGB,	EGL_TRUE,
-	EGL_NONE
-};
-
-
 
 static EGLConfig
-clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
-                            EGLSurface *surface, EGLNativePixmapType p_or_w)
+clutter_eglx_get_eglconfig (EGLDisplay *display,
+                            EGLSurface *surface, Pixmap pixmap,
+                            int depth)
 {
    EGLConfig configs[20];
-   EGLint creation_config[
-                    MAX(sizeof(pixmap_creation_config),
-                        sizeof(window_creation_config))];
    int i, nconfigs = 0;
    EGLBoolean ret;
+   gboolean has_alpha = depth==32;
 
-   if (for_pixmap)
-     {
-       ret = eglChooseConfig (display, pixmap_config, configs,
-		              G_N_ELEMENTS (configs), &nconfigs);
-       memcpy(creation_config, pixmap_creation_config, sizeof(pixmap_creation_config));
-     }
-   else
-     {
-       ret = eglChooseConfig (display, window_config, configs,
-		              G_N_ELEMENTS (configs), &nconfigs);
-       memcpy(creation_config, window_creation_config, sizeof(window_creation_config));
-     }
+   ret = eglChooseConfig (display, pixmap_config, configs,
+                          G_N_ELEMENTS (configs), &nconfigs);
 
    if (ret != EGL_TRUE)
      {
@@ -490,33 +467,19 @@ clutter_eglx_get_eglconfig (EGLDisplay *display, int for_pixmap,
 
    for (i = 0; i < nconfigs; ++i)
     {
-      int j;
-      /* we don't seem to be able to find out if we have an alpha channel or
-       * not from the pixmap (depth may be 32, but no alpha) - so we'll
-       * just try once with alpha, and if it fails we try without */
-
-      /* set up texture for alpha and try to create a surface... */
-      for (j=0; creation_config[j]!=EGL_NONE; j+=2)
-        if (creation_config[j] == EGL_TEXTURE_FORMAT)
-          creation_config[j+1] = EGL_TEXTURE_RGBA;
-
-      *surface = eglCreatePixmapSurface (display, configs[i],
-                                         p_or_w, creation_config);
-
-      if (*surface == EGL_NO_SURFACE)
-        {
-          /* set up texture for no alpha and try... */
-          for (j=0; creation_config[j]!=EGL_NONE; j+=2)
-            if (creation_config[j] == EGL_TEXTURE_FORMAT)
-              creation_config[j+1] = EGL_TEXTURE_RGB;
-          *surface = eglCreatePixmapSurface (display, configs[i],
-                                             p_or_w, creation_config);
-        }
+      if (has_alpha)
+        *surface = eglCreatePixmapSurface (display, configs[i],
+                                           (EGLNativePixmapType)pixmap,
+                                           pixmap_creation_config_rgba);
+      else
+        *surface = eglCreatePixmapSurface (display, configs[i],
+                                           (EGLNativePixmapType)pixmap,
+                                           pixmap_creation_config_rgb);
 
       if (*surface != EGL_NO_SURFACE)
         break;
 
-      g_debug ("%s: eglCreate(Pixmap|Window)Surface failed for config:",
+      g_debug ("%s: eglCreatePixmapSurface failed for config:",
                __FUNCTION__);
       print_config_info (configs[i]);
    }
