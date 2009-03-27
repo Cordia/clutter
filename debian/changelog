@@ -3,6 +3,8 @@ clutter (0.8.2-0maemo25~unreleased) unstable; urgency=low
   * clutter/cogl/common/pvr-texture.c: fix some texture encoding artefacts
   * clutter/eglx/clutter-eglx-texture-pixmap.c: Now only use alphs channel
     if depth is reported as 32 bit, because depth != pixel bpp.
+  * clutter/eglx/clutter-stage-egl.c: Changed depth to 24 bits. THIS REQUIRES
+    THE NEW KERNEL
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 09:44:29 +0200
 

@@ -96,7 +96,7 @@ clutter_stage_egl_realize (ClutterActor *actor)
       EGLConfig *all_configs;
 
       EGLint cfg_attribs[18] = {
-        EGL_BUFFER_SIZE,  16,
+        EGL_BUFFER_SIZE,  24,
         /*EGL_RED_SIZE,    8,
         EGL_GREEN_SIZE,    8,
         EGL_BLUE_SIZE,    8,*/
