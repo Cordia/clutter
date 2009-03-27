@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo25~unreleased) unstable; urgency=low
+
+  * writeme
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 09:44:29 +0200
+
 clutter (0.8.2-0maemo24) unstable; urgency=low
 
   Kimmo:
