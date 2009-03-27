@@ -1,11 +1,11 @@
-clutter (0.8.2-0maemo24~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo24) unstable; urgency=low
 
   Kimmo:
   * x11/clutter-event-x11.c (check_xpending): Trap X errors during XPending
     call. This
   * Fixes: NB#108179 - Desktop crashes when device rebooted.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 23 Mar 2009 14:33:10 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 08:49:44 +0200
 
 clutter (0.8.2-0maemo23) unstable; urgency=low
 
