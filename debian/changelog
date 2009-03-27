@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo25~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo25) unstable; urgency=low
 
   * clutter/cogl/common/pvr-texture.c: fix some texture encoding artefacts
   * clutter/eglx/clutter-eglx-texture-pixmap.c: Now only use alphs channel
