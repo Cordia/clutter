@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo26~unreleased) unstable; urgency=low
+
+  * writeme
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 15:16:36 +0200
+
 clutter (0.8.2-0maemo25) unstable; urgency=low
 
   * clutter/cogl/common/pvr-texture.c: fix some texture encoding artefacts
