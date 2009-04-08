@@ -1,6 +1,6 @@
 clutter (0.8.2-0maemo26~unreleased) unstable; urgency=low
 
-  * writeme
+  * Disable compilation of Glib debug messages.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 15:16:36 +0200
 
