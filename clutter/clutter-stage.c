@@ -1955,6 +1955,10 @@ clutter_stage_queue_redraw (ClutterStage *stage)
 {
   g_return_if_fail (CLUTTER_IS_STAGE (stage));
 
+  /* If we're being destroyed, don't queue a redraw */
+  if (CLUTTER_PRIVATE_FLAGS (stage) & CLUTTER_ACTOR_IN_DESTRUCTION)
+    return;
+
   /* Set our damaged area to cover everything */
   clutter_actor_get_geometry(CLUTTER_ACTOR(stage),
       &stage->priv->damaged_area);
@@ -1973,7 +1977,7 @@ clutter_stage_queue_redraw (ClutterStage *stage)
 }
 
 /**
- * clutter_stage_queue_redraw:
+ * clutter_stage_queue_redraw_damage:
  * @stage: the #ClutterStage
  *
  * Queues a redraw for the passed stage.

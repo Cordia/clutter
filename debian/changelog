@@ -1,6 +1,8 @@
 clutter (0.8.2-0maemo26~unreleased) unstable; urgency=low
 
   * Disable compilation of Glib debug messages.
+  * Add check for whether stage is in destruction, and if so, don't queue
+    redraws. Fixes: NB#110878
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 15:16:36 +0200
 
