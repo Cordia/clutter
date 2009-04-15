@@ -71,6 +71,132 @@ clutter_stage_egl_unrealize (ClutterActor *actor)
 }
 
 static void
+clutter_stage_print_config(const char *name, EGLConfig config)
+{
+  EGLint red = -1, green = -1, blue = -1, alpha = -1, stencil = -1;
+  EGLint rgba_bindable = -1, rgb_bindable = -1;
+
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_RED_SIZE, &red);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_GREEN_SIZE, &green);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_BLUE_SIZE, &blue);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_ALPHA_SIZE, &alpha);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_STENCIL_SIZE, &stencil);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_BIND_TO_TEXTURE_RGB, &rgb_bindable);
+  eglGetConfigAttrib (clutter_eglx_display (),
+                      config,
+                      EGL_BIND_TO_TEXTURE_RGBA, &rgba_bindable);
+  g_debug ("%s: %s R:%d G:%d B:%d A:%d S:%d RGB:%d RGBA:%d",
+           __FUNCTION__, name,
+           red, green, blue, alpha, stencil,
+           rgb_bindable, rgba_bindable);
+}
+
+static void
+clutter_stage_get_configs(ClutterBackendEGL *backend_egl,
+                          int bpp,
+                          EGLConfig *configs,
+                          int max_configs,
+                          int *config_count)
+{
+  /*int c;
+  int num_configs;
+  EGLConfig *all_configs;*/
+  EGLBoolean         status;
+
+  EGLint cfg_attribs[18] = {
+    EGL_BUFFER_SIZE,  bpp,
+    EGL_DEPTH_SIZE,   0,
+    EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
+                              be faster */
+
+    /* This one may be set to EGL_WINDOW_BIT later if it fails */
+    EGL_SURFACE_TYPE,    EGL_WINDOW_BIT | EGL_PIXMAP_BIT,
+
+#ifdef HAVE_COGL_GLES2
+    EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+#endif /* HAVE_COGL_GLES2 */
+
+    EGL_NONE
+  };
+
+  /* Debug Display */
+  /*status = eglGetConfigs (clutter_eglx_display (), NULL, 0, &num_configs);
+  if (status != EGL_TRUE)
+    {
+      g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
+      goto fail;
+    }
+
+  all_configs = g_malloc (num_configs * sizeof (EGLConfig));
+  status = eglGetConfigs (clutter_eglx_display (),
+                 all_configs,
+                 num_configs,
+                 &num_configs);
+  if (status != EGL_TRUE)
+    {
+      g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
+      goto fail;
+    }
+  g_debug ("%d configs", num_configs);
+
+  for (c = 0; c < num_configs; ++c)
+    clutter_stage_print_config("eglGetConfigs:", all_configs[c]);
+
+  g_free (all_configs);*/
+
+  status = eglGetConfigs (clutter_eglx_display (),
+                          configs,
+                          max_configs,
+                          config_count);
+  if (status != EGL_TRUE)
+    {
+      g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
+      *config_count = 0;
+      return;
+    }
+
+  status = eglChooseConfig (backend_egl->edpy,
+                            cfg_attribs,
+                            configs,
+                            max_configs,
+                            config_count);
+  if (status != EGL_TRUE || *config_count == 0)
+    {
+      gint idx;
+      /* If we can't find any config then it's probably because we have a driver that
+       * doesn't support EGL_PIXMAP at all, so we try again and choose a config that
+       * doesn't require it */
+      g_debug ("%s: eglChooseConfig failed, disabling EGL_PIXMAP_BIT", __FUNCTION__);
+      for (idx = 0; idx < G_N_ELEMENTS(cfg_attribs); idx+=2)
+        if (cfg_attribs[idx] == EGL_SURFACE_TYPE)
+          cfg_attribs[idx+1] &= ~EGL_PIXMAP_BIT;
+      status = eglChooseConfig (backend_egl->edpy,
+                                cfg_attribs,
+                                configs,
+                                max_configs,
+                                config_count);
+    }
+  if (status != EGL_TRUE)
+    {
+      g_critical ("%s: eglChooseConfig failed", __FUNCTION__);
+      *config_count = 0;
+      return;
+    }
+}
+
+static void
 clutter_stage_egl_realize (ClutterActor *actor)
 {
   ClutterStageEGL   *stage_egl = CLUTTER_STAGE_EGL (actor);
@@ -79,7 +205,6 @@ clutter_stage_egl_realize (ClutterActor *actor)
   ClutterBackendX11 *backend_x11;
   EGLConfig          configs[20], chosen_config = 0;
   EGLint             config_count;
-  EGLBoolean         status;
   gboolean           is_offscreen = FALSE;
 
   g_debug ("%s: Realizing main stage", __FUNCTION__);
@@ -91,119 +216,15 @@ clutter_stage_egl_realize (ClutterActor *actor)
 
   if (G_LIKELY (!is_offscreen))
     {
-      int c;
-      int num_configs;
-      EGLConfig *all_configs;
-
-      EGLint cfg_attribs[18] = {
-        EGL_BUFFER_SIZE,  24,
-        /*EGL_RED_SIZE,    8,
-        EGL_GREEN_SIZE,    8,
-        EGL_BLUE_SIZE,    8,*/
-        EGL_DEPTH_SIZE,   0,
-        EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
-                                  be faster */
-
-        /* This one may be set to EGL_WINDOW_BIT later if it fails */
-        EGL_SURFACE_TYPE,    EGL_WINDOW_BIT | EGL_PIXMAP_BIT,
-
-#ifdef HAVE_COGL_GLES2
-	EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-#endif /* HAVE_COGL_GLES2 */
-
-	EGL_NONE
-      };
-
-      /* Debug Display */
-      status = eglGetConfigs (clutter_eglx_display (), NULL, 0, &num_configs);
-      if (status != EGL_TRUE)
-        {
-          g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
-          goto fail;
-        }
-
-      all_configs = g_malloc (num_configs * sizeof (EGLConfig));
-      status = eglGetConfigs (clutter_eglx_display (),
-		     all_configs,
-		     num_configs,
-		     &num_configs);
-      if (status != EGL_TRUE)
-        {
-          g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
-          goto fail;
-        }
-      g_debug ("%d configs", num_configs);
-
-      for (c = 0; c < num_configs; ++c)
-	{
-	  EGLint red = -1, green = -1, blue = -1, alpha = -1, stencil = -1;
-	  EGLint rgba_bindable = -1, rgb_bindable = -1;
-
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_RED_SIZE, &red);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_GREEN_SIZE, &green);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_BLUE_SIZE, &blue);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_ALPHA_SIZE, &alpha);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_STENCIL_SIZE, &stencil);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_BIND_TO_TEXTURE_RGB, &rgb_bindable);
-	  eglGetConfigAttrib (clutter_eglx_display (),
-			      all_configs[c],
-			      EGL_BIND_TO_TEXTURE_RGBA, &rgba_bindable);
-	  g_debug ("%s: EGLConfig == R:%d G:%d B:%d A:%d S:%d RGB:%d RGBA:%d",
-		   __FUNCTION__,
-		   red, green, blue, alpha, stencil,
-		   rgb_bindable, rgba_bindable);
-	}
-
-      g_free (all_configs);
-
-      status = eglGetConfigs (clutter_eglx_display (),
-                              configs,
-                              G_N_ELEMENTS (configs),
-                              &config_count);
-      if (status != EGL_TRUE)
-        {
-          g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
-          goto fail;
-        }
-
-      status = eglChooseConfig (backend_egl->edpy,
-				cfg_attribs,
-				configs,
-                                G_N_ELEMENTS (configs),
-				&config_count);
-      if (status != EGL_TRUE || config_count == 0)
-        {
-          gint idx;
-          /* If we can't find any config then it's probably because we have a driver that
-           * doesn't support EGL_PIXMAP at all, so we try again and choose a config that
-           * doesn't require it */
-          g_debug ("%s: eglChooseConfig failed, disabling EGL_PIXMAP_BIT", __FUNCTION__);
-          for (idx = 0; idx < G_N_ELEMENTS(cfg_attribs); idx+=2)
-            if (cfg_attribs[idx] == EGL_SURFACE_TYPE)
-              cfg_attribs[idx+1] &= ~EGL_PIXMAP_BIT;
-          status = eglChooseConfig (backend_egl->edpy,
-                                    cfg_attribs,
-                                    configs,
-                                    G_N_ELEMENTS (configs),
-                                    &config_count);
-        }
-      if (status != EGL_TRUE)
-        {
-          g_critical ("%s: eglChooseConfig failed", __FUNCTION__);
-          goto fail;
-        }
+      gint configs16, configs32;
+      gint c;
+      /* Get configs for 32, then 16 bit. If we couldn't get any config from
+       * 32 bit to work we will then try 16 bits */
+      clutter_stage_get_configs(backend_egl, 32, configs,
+                                G_N_ELEMENTS (configs), &configs32);
+      clutter_stage_get_configs(backend_egl, 16, &configs[configs32],
+                                G_N_ELEMENTS (configs)-configs32, &configs16);
+      config_count = configs16 + configs32;
 
       if (stage_x11->xwin == None)
 	stage_x11->xwin =
@@ -215,12 +236,6 @@ clutter_stage_egl_realize (ClutterActor *actor)
                                0, 0,
                                BlackPixel (stage_x11->xdpy,
                                            stage_x11->xscreen));
-
-      /*
-      stage_x11->xwin = XCreateSimpleWindow(stage_x11->xdpy,
-		             DefaultRootWindow(stage_x11->xdpy), 0, 0, 300, 300,
-                             0, 0, WhitePixel (stage_x11->xdpy, stage_x11->xscreen));
-			     */
 
       if (clutter_x11_has_event_retrieval ())
         {
@@ -267,6 +282,9 @@ clutter_stage_egl_realize (ClutterActor *actor)
 	{
 	  chosen_config = configs[c];
 	  backend_egl->egl_config = chosen_config;
+
+	  clutter_stage_print_config("Chosen", chosen_config);
+
           break;
 	}
       }

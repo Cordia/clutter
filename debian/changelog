@@ -3,6 +3,9 @@ clutter (0.8.2-0maemo26~unreleased) unstable; urgency=low
   * Disable compilation of Glib debug messages.
   * Add check for whether stage is in destruction, and if so, don't queue
     redraws. Fixes: NB#110878
+  * clutter/eglx/clutter-stage-egl.c: Clutter now chooses 32 bit for the stage
+    if it can, and 16 bit if not. Also simplified debug messages to make them
+    useful. Part of the solution for NB#93044  
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 27 Mar 2009 15:16:36 +0200
 
