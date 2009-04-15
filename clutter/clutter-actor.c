@@ -1923,6 +1923,10 @@ clutter_actor_dispose (GObject *object)
   g_signal_emit (self, actor_signals[DESTROY], 0);
 
   G_OBJECT_CLASS (clutter_actor_parent_class)->dispose (object);
+  /* Remove ourselves from the event list if we happened to have been put
+   * in it. We only use the pointer here so it doesn't matter that the
+   * object has been disposed of. */
+  clutter_event_remove_source( self );
 }
 
 static void

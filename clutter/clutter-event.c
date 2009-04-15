@@ -273,11 +273,11 @@ clutter_key_event_unicode (ClutterKeyEvent *keyev)
 
 /**
  * clutter_keysym_to_unicode:
- * @keyval: a clutter key symbol 
- * 
+ * @keyval: a clutter key symbol
+ *
  * Convert from a Clutter key symbol to the corresponding ISO10646 (Unicode)
  * character.
- * 
+ *
  * Return value: the corresponding unicode character, or 0 if there
  *               is no corresponding character.
  **/
@@ -310,17 +310,17 @@ clutter_keysym_to_unicode (guint keyval)
       return clutter_keysym_to_unicode_tab[mid].ucs;
     }
   }
- 
+
   /* No matching Unicode value found */
   return 0;
 }
 
 /**
  * clutter_event_get_device_id:
- * @event: a clutter event 
- * 
+ * @event: a clutter event
+ *
  * Retrieves the events device id if set.
- * 
+ *
  * Return value: A unique identifier for the device or -1 if the event has
  *               no specific device set.
  **/
@@ -448,9 +448,42 @@ clutter_event_free (ClutterEvent *event)
 }
 
 /**
+ * clutter_event_remove_source:
+ * @actor: A #ClutterActor.
+ *
+ * Removes and frees all events in the queue that contain a source that
+ * is the given clutter actor.
+ */
+void
+clutter_event_remove_source  (ClutterActor       *actor)
+{
+  ClutterMainContext *context = clutter_context_get_default ();
+  GList *l;
+
+  if (!context->events_queue)
+    return;
+
+  l = context->events_queue->head;
+  while (l)
+    {
+      GList *nextl = l->next;
+      ClutterEvent *event = (ClutterEvent*)l->data;
+      /* if this event's source is this actor, remove it from the queue */
+      if (event->any.source == actor)
+        {
+          g_queue_remove(context->events_queue, l->data);
+          clutter_event_free(event);
+        }
+      /* We're safe to carry on here because we saved our last
+       * 'next' pointer before removing this one */
+      l = nextl;
+    }
+}
+
+/**
  * clutter_event_get:
  *
- * Pops an event off the event queue. Applications should not need to call 
+ * Pops an event off the event queue. Applications should not need to call
  * this.
  *
  * Return value: A #ClutterEvent or NULL if queue empty
@@ -473,9 +506,9 @@ clutter_event_get (void)
 
 /**
  * clutter_event_peek:
- * 
- * Returns a pointer to the first event from the event queue but 
- * does not remove it. 
+ *
+ * Returns a pointer to the first event from the event queue but
+ * does not remove it.
  *
  * Return value: A #ClutterEvent or NULL if queue empty.
  *
@@ -487,7 +520,7 @@ clutter_event_peek (void)
   ClutterMainContext *context = clutter_context_get_default ();
 
   g_return_val_if_fail (context != NULL, NULL);
-  
+
   if (context->events_queue == NULL)
     return NULL;
 

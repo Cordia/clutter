@@ -117,7 +117,7 @@ typedef enum {
  *
  * Since: 0.4
  */
-typedef enum 
+typedef enum
 {
   CLUTTER_NOTHING = 0,
   CLUTTER_KEY_PRESS,
@@ -422,6 +422,7 @@ void                clutter_event_put           (ClutterEvent       *event);
 ClutterEvent *      clutter_event_new           (ClutterEventType    type);
 ClutterEvent *      clutter_event_copy          (ClutterEvent       *event);
 void                clutter_event_free          (ClutterEvent       *event);
+void                clutter_event_remove_source (ClutterActor       *actor);
 ClutterEventType    clutter_event_type          (ClutterEvent       *event);
 guint32             clutter_event_get_time      (ClutterEvent       *event);
 ClutterModifierType clutter_event_get_state     (ClutterEvent       *event);
