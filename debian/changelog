@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo28~unreleased) unstable; urgency=low
+
+  * writeme
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 16 Apr 2009 13:32:59 +0300
+
 clutter (0.8.2-0maemo27) unstable; urgency=low
 
   * clutter-actor.c, clutter-event.c, clutter-event.h: Fix for NB#110783
