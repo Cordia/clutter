@@ -29,7 +29,7 @@
 #include <X11/Xatom.h>
 
 #ifdef USE_XINPUT
-#include "XInput.h"
+#include <X11/extensions/XInput.h>
 #endif
 
 #include "clutter-x11.h"

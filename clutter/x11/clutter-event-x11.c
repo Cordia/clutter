@@ -43,10 +43,6 @@
 
 #include <X11/Xatom.h>
 
-#ifdef USE_XINPUT
-#include "XInput.h"
-#endif
-
 /* XEMBED protocol support for toolkit embedding */
 #define XEMBED_MAPPED                   (1 << 0)
 #define MAX_SUPPORTED_XEMBED_VERSION    1
