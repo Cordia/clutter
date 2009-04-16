@@ -1,11 +1,11 @@
-clutter (0.8.2-0maemo27~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo27) unstable; urgency=low
 
-  * clutter-actor.c, clutter-event.c, clutter-event.h: Fix for NB#110783, we 
-    now remove any events from the event queue that have their source set to 
-    any actor that is disposed of.
+  * clutter-actor.c, clutter-event.c, clutter-event.h: Fix for NB#110783
+  * Fixes: NB#110783 - we now remove any events from the event queue that have
+    their source set to any actor that is disposed of.
   * Remove our own copy of XInput.h, it is again available from libxi-dev.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 15 Apr 2009 15:09:00 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 16 Apr 2009 13:29:48 +0300
 
 clutter (0.8.2-0maemo26) unstable; urgency=low
 
