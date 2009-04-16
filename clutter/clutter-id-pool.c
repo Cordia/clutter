@@ -48,7 +48,7 @@ clutter_id_pool_new  (guint initial_size)
 
   self = g_slice_new (ClutterIDPool);
 
-  self->array = g_array_sized_new (FALSE, FALSE, 
+  self->array = g_array_sized_new (FALSE, FALSE,
                                    sizeof (gpointer), initial_size);
   self->free_ids = NULL;
   return self;
@@ -112,10 +112,10 @@ clutter_id_pool_lookup (ClutterIDPool *id_pool,
 {
   gpointer *array;
 
-  g_return_val_if_fail (id_pool != NULL, NULL);
-  g_return_val_if_fail (id_pool->array != NULL, NULL);
-
-  g_return_val_if_fail (id < id_pool->array->len, NULL);
+  if (!id_pool ||
+      !id_pool->array ||
+      id >= id_pool->array->len)
+    return 0;
 
   array = (void*) id_pool->array->data;
 

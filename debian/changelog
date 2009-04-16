@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo28~unreleased) unstable; urgency=low
 
-  * writeme
+  * Modified clutter_id_pool_lookup to not segfault if the ID is not in the 
+    pool, and if g_return_if_fail is undefined. Fixes NB#111366
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 16 Apr 2009 13:32:59 +0300
 
