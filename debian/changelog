@@ -2,6 +2,8 @@ clutter (0.8.2-0maemo28) unstable; urgency=low
 
   * Modified clutter_id_pool_lookup to not segfault if the ID is not in the 
     pool, and if g_return_if_fail is undefined. Fixes NB#111366
+  * Fixes: NB#111366 - Desktop crashed when playing around switcher button in
+    32 bpp mode
   * Modified clutter_actor_destroy to not use g_return_if_fail
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 17 Apr 2009 14:51:39 +0300
