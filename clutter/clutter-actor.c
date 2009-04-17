@@ -3006,7 +3006,11 @@ clutter_actor_destroy (ClutterActor *self)
 {
   ClutterActorPrivate *priv;
 
-  g_return_if_fail (CLUTTER_IS_ACTOR (self));
+  if (!CLUTTER_IS_ACTOR (self))
+    {
+      g_critical("%s: CLUTTER_IS_ACTOR(%p) FAILED", __FUNCTION__, self);
+      return;
+    }
 
   priv = self->priv;
 
