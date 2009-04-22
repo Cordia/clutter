@@ -120,9 +120,7 @@ clutter_stage_get_configs(ClutterBackendEGL *backend_egl,
     EGL_DEPTH_SIZE,   0,
     EGL_STENCIL_SIZE,   0, /* Skip stencil as we can use Scissoring to
                               be faster */
-
-    /* This one may be set to EGL_WINDOW_BIT later if it fails */
-    EGL_SURFACE_TYPE,    EGL_WINDOW_BIT | EGL_PIXMAP_BIT,
+    EGL_SURFACE_TYPE,    EGL_WINDOW_BIT,
 
 #ifdef HAVE_COGL_GLES2
     EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
@@ -156,7 +154,7 @@ clutter_stage_get_configs(ClutterBackendEGL *backend_egl,
 
   g_free (all_configs);*/
 
-  status = eglGetConfigs (clutter_eglx_display (),
+  /*status = eglGetConfigs (clutter_eglx_display (),
                           configs,
                           max_configs,
                           config_count);
@@ -165,29 +163,13 @@ clutter_stage_get_configs(ClutterBackendEGL *backend_egl,
       g_critical ("%s: eglGetConfigs failed", __FUNCTION__);
       *config_count = 0;
       return;
-    }
+    }*/
 
   status = eglChooseConfig (backend_egl->edpy,
                             cfg_attribs,
                             configs,
                             max_configs,
                             config_count);
-  if (status != EGL_TRUE || *config_count == 0)
-    {
-      gint idx;
-      /* If we can't find any config then it's probably because we have a driver that
-       * doesn't support EGL_PIXMAP at all, so we try again and choose a config that
-       * doesn't require it */
-      g_debug ("%s: eglChooseConfig failed, disabling EGL_PIXMAP_BIT", __FUNCTION__);
-      for (idx = 0; idx < G_N_ELEMENTS(cfg_attribs); idx+=2)
-        if (cfg_attribs[idx] == EGL_SURFACE_TYPE)
-          cfg_attribs[idx+1] &= ~EGL_PIXMAP_BIT;
-      status = eglChooseConfig (backend_egl->edpy,
-                                cfg_attribs,
-                                configs,
-                                max_configs,
-                                config_count);
-    }
   if (status != EGL_TRUE)
     {
       g_critical ("%s: eglChooseConfig failed", __FUNCTION__);

@@ -1,3 +1,10 @@
+clutter (0.8.2-0maemo29~unreleased) unstable; urgency=low
+
+  * clutter/eglx/clutter-stage-egl.c: Fix for NB#112421. Make sure double
+    buffering is enabled.
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 22 Apr 2009 14:56:39 +0300
+ 
 clutter (0.8.2-0maemo28) unstable; urgency=low
 
   * Modified clutter_id_pool_lookup to not segfault if the ID is not in the 
