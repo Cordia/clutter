@@ -93,12 +93,12 @@ struct _ClutterLabelCachedLayout
 struct _ClutterLabelPrivate
 {
   PangoFontDescription *font_desc;
-  
+
   ClutterColor          fgcol;
 
   gchar                *text;
   gchar                *font_name;
-  
+
   guint                 alignment        : 2;
   guint                 wrap             : 1;
   guint                 use_underline    : 1;
@@ -308,7 +308,7 @@ clutter_label_get_preferred_width (ClutterActor *self,
                                    ClutterUnit   for_height,
                                    ClutterUnit  *min_width_p,
                                    ClutterUnit  *natural_width_p)
-{ 
+{
   ClutterLabel *label = CLUTTER_LABEL (self);
   ClutterLabelPrivate *priv = label->priv;
   PangoRectangle logical_rect = { 0, };
@@ -332,7 +332,7 @@ clutter_label_get_preferred_width (ClutterActor *self,
     }
 
   if (natural_width_p)
-    *natural_width_p = layout_width; 
+    *natural_width_p = layout_width;
 }
 
 static void
@@ -386,11 +386,11 @@ clutter_label_allocate (ClutterActor          *self,
   parent_class->allocate (self, box, origin_changed);
 }
 
-static void 
+static void
 clutter_label_dispose (GObject *object)
 {
   ClutterLabel         *self = CLUTTER_LABEL(object);
-  ClutterLabelPrivate  *priv;  
+  ClutterLabelPrivate  *priv;
 
   priv = self->priv;
 
@@ -400,14 +400,14 @@ clutter_label_dispose (GObject *object)
   G_OBJECT_CLASS (clutter_label_parent_class)->dispose (object);
 }
 
-static void 
+static void
 clutter_label_finalize (GObject *object)
 {
   ClutterLabel         *self = CLUTTER_LABEL(object);
-  ClutterLabelPrivate  *priv;  
+  ClutterLabelPrivate  *priv;
 
   priv = self->priv;
-  
+
   if (priv->font_desc)
     pango_font_description_free (priv->font_desc);
 
@@ -418,9 +418,9 @@ clutter_label_finalize (GObject *object)
 }
 
 static void
-clutter_label_set_property (GObject      *object, 
+clutter_label_set_property (GObject      *object,
 			    guint         prop_id,
-			    const GValue *value, 
+			    const GValue *value,
 			    GParamSpec   *pspec)
 {
   ClutterLabel        *label;
@@ -429,7 +429,7 @@ clutter_label_set_property (GObject      *object,
   label = CLUTTER_LABEL(object);
   priv = label->priv;
 
-  switch (prop_id) 
+  switch (prop_id)
     {
     case PROP_FONT_NAME:
       clutter_label_set_font_name (label, g_value_get_string (value));
@@ -457,7 +457,7 @@ clutter_label_set_property (GObject      *object,
       break;
     case PROP_WRAP_MODE:
       clutter_label_set_line_wrap_mode (label, g_value_get_enum (value));
-      break;	  
+      break;
     case PROP_ELLIPSIZE:
       clutter_label_set_ellipsize (label, g_value_get_enum (value));
       break;
@@ -468,9 +468,9 @@ clutter_label_set_property (GObject      *object,
 }
 
 static void
-clutter_label_get_property (GObject    *object, 
+clutter_label_get_property (GObject    *object,
 			    guint       prop_id,
-			    GValue     *value, 
+			    GValue     *value,
 			    GParamSpec *pspec)
 {
   ClutterLabel        *label;
@@ -480,7 +480,7 @@ clutter_label_get_property (GObject    *object,
   label = CLUTTER_LABEL (object);
   priv = label->priv;
 
-  switch (prop_id) 
+  switch (prop_id)
     {
     case PROP_FONT_NAME:
       g_value_set_string (value, priv->font_name);
@@ -516,7 +516,7 @@ clutter_label_get_property (GObject    *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-    } 
+    }
 }
 
 static void
@@ -556,30 +556,30 @@ clutter_label_class_init (ClutterLabelClass *klass)
 			 "Font Colour",
 			 CLUTTER_TYPE_COLOR,
 			 CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_ATTRIBUTES,
      g_param_spec_boxed ("attributes",
 			 "Attributes",
-			 "A list of style attributes to apply to the " 
+			 "A list of style attributes to apply to the "
 			 "text of the label",
 			 PANGO_TYPE_ATTR_LIST,
 			 CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_USE_MARKUP,
      g_param_spec_boolean ("use-markup",
 			   "Use markup",
-			   "The text of the label includes XML markup. " 
+			   "The text of the label includes XML markup. "
 			   "See pango_parse_markup()",
 			   FALSE,
 			   CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_WRAP,
      g_param_spec_boolean ("wrap",
 			   "Line wrap",
 			   "If set, wrap lines if the text becomes too wide",
 			   FALSE,
 			   CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_WRAP_MODE,
      g_param_spec_enum ("wrap-mode",
 			"Line wrap mode",
@@ -587,7 +587,7 @@ clutter_label_class_init (ClutterLabelClass *klass)
 			PANGO_TYPE_WRAP_MODE,
 			PANGO_WRAP_WORD,
 			CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_ELLIPSIZE,
      g_param_spec_enum ( "ellipsize",
 			 "Ellipsize",
@@ -597,7 +597,7 @@ clutter_label_class_init (ClutterLabelClass *klass)
 			 PANGO_TYPE_ELLIPSIZE_MODE,
 			 PANGO_ELLIPSIZE_NONE,
 			 CLUTTER_PARAM_READWRITE));
-  g_object_class_install_property 
+  g_object_class_install_property
     (gobject_class, PROP_ALIGNMENT,
      g_param_spec_enum ( "alignment",
 			 "Alignment",
@@ -683,7 +683,7 @@ clutter_label_new_with_text (const gchar *font_name,
  * @text: the text to be displayed
  * @color: #ClutterColor for text
  *
- * Creates a new #ClutterLabel displaying @text with @color 
+ * Creates a new #ClutterLabel displaying @text with @color
  * using @font_name.
  *
  * Return value: a #ClutterLabel
@@ -741,11 +741,15 @@ void
 clutter_label_set_text (ClutterLabel *label,
 		        const gchar  *text)
 {
-  ClutterLabelPrivate  *priv;  
+  ClutterLabelPrivate  *priv;
 
   g_return_if_fail (CLUTTER_IS_LABEL (label));
 
   priv = label->priv;
+
+  /* Check for if the text is exactly the same */
+  if (priv->text!=0 && g_str_equal(priv->text, text))
+    return;
 
   g_free (priv->text);
 
@@ -773,7 +777,7 @@ G_CONST_RETURN gchar *
 clutter_label_get_font_name (ClutterLabel *label)
 {
   g_return_val_if_fail (CLUTTER_IS_LABEL (label), NULL);
-  
+
   return label->priv->font_name;
 }
 
@@ -796,7 +800,7 @@ clutter_label_set_font_name (ClutterLabel *label,
   PangoFontDescription *desc;
 
   g_return_if_fail (CLUTTER_IS_LABEL (label));
-  
+
   if (!font_name || font_name[0] == '\0')
     font_name = DEFAULT_FONT_NAME;
 
@@ -816,7 +820,7 @@ clutter_label_set_font_name (ClutterLabel *label,
 
   g_free (priv->font_name);
   priv->font_name = g_strdup (font_name);
-  
+
   if (priv->font_desc)
     pango_font_description_free (priv->font_desc);
 
@@ -826,7 +830,7 @@ clutter_label_set_font_name (ClutterLabel *label,
 
   if (label->priv->text && label->priv->text[0] != '\0')
     clutter_actor_queue_relayout (CLUTTER_ACTOR (label));
-  
+
   g_object_notify (G_OBJECT (label), "font-name");
 }
 
@@ -897,7 +901,7 @@ clutter_label_get_color (ClutterLabel *label,
  * @label: a #ClutterLabel
  * @mode: a #PangoEllipsizeMode
  *
- * Sets the mode used to ellipsize (add an ellipsis: "...") to the text 
+ * Sets the mode used to ellipsize (add an ellipsis: "...") to the text
  * if there is not enough space to render the entire string.
  *
  * Since: 0.2
@@ -911,7 +915,7 @@ clutter_label_set_ellipsize (ClutterLabel          *label,
   g_return_if_fail (CLUTTER_IS_LABEL (label));
   g_return_if_fail (mode >= PANGO_ELLIPSIZE_NONE &&
 		    mode <= PANGO_ELLIPSIZE_END);
-  
+
   priv = label->priv;
 
   if ((PangoEllipsizeMode) priv->ellipsize != mode)
@@ -930,7 +934,7 @@ clutter_label_set_ellipsize (ClutterLabel          *label,
  * clutter_label_get_ellipsize:
  * @label: a #ClutterLabel
  *
- * Returns the ellipsizing position of the label. 
+ * Returns the ellipsizing position of the label.
  * See clutter_label_set_ellipsize().
  *
  * Return value: #PangoEllipsizeMode
@@ -966,9 +970,9 @@ clutter_label_set_line_wrap (ClutterLabel *label,
   g_return_if_fail (CLUTTER_IS_LABEL (label));
 
   priv = label->priv;
-  
+
   wrap = wrap != FALSE;
-  
+
   if (priv->wrap != wrap)
     {
       priv->wrap = wrap;
@@ -985,7 +989,7 @@ clutter_label_set_line_wrap (ClutterLabel *label,
  * clutter_label_get_line_wrap:
  * @label: a #ClutterLabel
  *
- * Returns whether lines in the label are automatically wrapped. 
+ * Returns whether lines in the label are automatically wrapped.
  * See clutter_label_set_line_wrap ().
  *
  * Return value: %TRUE if the lines of the label are automatically wrapped.
@@ -1020,7 +1024,7 @@ clutter_label_set_line_wrap_mode (ClutterLabel *label,
   g_return_if_fail (CLUTTER_IS_LABEL (label));
 
   priv = label->priv;
-  
+
   if (priv->wrap_mode != wrap_mode)
     {
       priv->wrap_mode = wrap_mode;
@@ -1055,13 +1059,13 @@ clutter_label_get_line_wrap_mode (ClutterLabel *label)
 /**
  * clutter_label_get_layout:
  * @label: a #ClutterLabel
- * 
+ *
  * Gets the #PangoLayout used to display the label.
  * The layout is useful to e.g. convert text positions to
  * pixel positions.
  * The returned layout is owned by the label so need not be
  * freed by the caller.
- * 
+ *
  * Return value: the #PangoLayout for this label
  *
  * Since: 0.2
@@ -1088,7 +1092,7 @@ clutter_label_set_attributes_internal (ClutterLabel  *label,
  * clutter_label_set_attributes:
  * @label: a #ClutterLabel
  * @attrs: a #PangoAttrList
- * 
+ *
  * Sets a #PangoAttrList; the attributes in the list are applied to the
  * label text. The attributes set with this function will be ignored
  * if the "use_markup" property
@@ -1108,7 +1112,7 @@ clutter_label_set_attributes (ClutterLabel     *label,
 
   if (attrs)
     pango_attr_list_ref (attrs);
-  
+
   if (priv->attrs)
     pango_attr_list_unref (priv->attrs);
 
@@ -1196,7 +1200,7 @@ gboolean
 clutter_label_get_use_markup (ClutterLabel *label)
 {
   g_return_val_if_fail (CLUTTER_IS_LABEL (label), FALSE);
-  
+
   return label->priv->use_markup;
 }
 
@@ -1247,7 +1251,7 @@ PangoAlignment
 clutter_label_get_alignment (ClutterLabel *label)
 {
   g_return_val_if_fail (CLUTTER_IS_LABEL (label), FALSE);
-  
+
   return label->priv->alignment;
 }
 
