@@ -1,11 +1,14 @@
-clutter (0.8.2-0maemo29~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo29) unstable; urgency=low
 
   * eglx/clutter-stage-egl.c: Fix for NB#112421. Make sure double
     buffering is enabled.
+  * Fixes: NB#112421 - transition in between task launcher and application
+    subgroup shows blue screen
   * clutter/clutter-label.c: Fix for NB#100805 - labels only fire
     a redraw if their text has actually changed from the previous value.
+  * Fixes: NB#100805 - Constant CPU activity while nothing happens on screen
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 22 Apr 2009 14:56:39 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 27 Apr 2009 11:29:16 +0300
  
 clutter (0.8.2-0maemo28) unstable; urgency=low
 
