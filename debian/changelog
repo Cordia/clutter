@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo30~unreleased) unstable; urgency=low
+
+  * writeme
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 30 Apr 2009 14:48:25 +0300
+
 clutter (0.8.2-0maemo29) unstable; urgency=low
 
   * eglx/clutter-stage-egl.c: Fix for NB#112421. Make sure double
