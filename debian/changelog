@@ -1,6 +1,10 @@
 clutter (0.8.2-0maemo30~unreleased) unstable; urgency=low
 
-  * writeme
+  * Fixes: NB#113685 Changed cogl_util_unproject to detect potential divide by
+    0 caused by a scale = 0 matrix.
+  * Added checks to clutter_actor_set_scale to produce a g_critical when a 
+    scale value is set to 0. While cogl_util_unproject is fixed, many other
+    things will most likely be quite unhappy with a scale of 0.  
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 30 Apr 2009 14:48:25 +0300
 

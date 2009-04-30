@@ -167,6 +167,9 @@ ClutterVertex cogl_util_unproject(   ClutterFixed mtx[16],
                            &res.y,
                            &res.z,
                            &_w);
+  if (_w == 0) {
+    _w = 1;
+  }
   res.x = MTX_GL_SCALE_X (res.x, _w, viewport[2], viewport[0]);
   res.y = MTX_GL_SCALE_Y2 (res.y, _w, viewport[3], viewport[1]);
   res.z = MTX_GL_SCALE_Z (res.z, _w, viewport[2], viewport[0]);
@@ -200,6 +203,9 @@ ClutterVertex cogl_util_unproject_f(   float mtx[16],
                              &res[1],
                              &res[2],
                              &res[3]);
+  if (res[3] == 0) {
+    res[3] = FLT_MIN;
+  }
   res[0] = MTX_GL_SCALE_X_F  (res[0], res[3], viewport_f[2], viewport_f[0]);
   res[1] = MTX_GL_SCALE_Y2_F (res[1], res[3], viewport_f[3], viewport_f[1]);
   res[2] = MTX_GL_SCALE_Z_F  (res[2], res[3], viewport_f[2], viewport_f[0]);

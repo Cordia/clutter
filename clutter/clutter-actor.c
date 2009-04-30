@@ -4878,6 +4878,17 @@ clutter_actor_set_scalex (ClutterActor *self,
   g_object_ref (self);
   g_object_freeze_notify (G_OBJECT (self));
 
+  if (scale_x==0)
+    {
+      g_critical("%s: X scale is being set to 0", __FUNCTION__);
+      scale_x = 1;
+    }
+  if (scale_y==0)
+    {
+      g_critical("%s: Y scale is being set to 0", __FUNCTION__);
+      scale_y = 1;
+    }
+
   self->priv->scale_x = scale_x;
   g_object_notify (G_OBJECT (self), "scale-x");
 
