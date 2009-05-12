@@ -1,8 +1,12 @@
 clutter (0.8.2-0maemo31~unreleased) unstable; urgency=low
 
-  * foo
+  Fixes: NB#115664
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 11 May 2009 16:17:52 +0300
+  * clutter/clutter-stage.c: modified comments, made GLES use glScissor based
+    partial updates rather than glViewport (which was too inaccurate and not
+    actually much faster with current drivers)
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 12 May 2009 16:17:52 +0300
 
 clutter (0.8.2-0maemo30) unstable; urgency=low
 

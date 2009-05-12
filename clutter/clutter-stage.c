@@ -72,20 +72,24 @@
 /* ----------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------*/
-/* This is whether we do damage using glViewport or glScissor. glScissor clips
- * what we render while updating the whole screen, but glViewport actually
- * renders only the area given, so should be a lot faster on SGX if the
- * drivers pay attention to it. */
+/* This is whether we do damage using glViewport or glScissor.
+ *
+ *   * glScissor clips what we render while updating the whole screen
+ *   * glViewport actually modifies the viewport to render to that area.
+ *
+ * On SGX with decent drivers there shouldn't be any real difference, although
+ * it is much easier for floating point inaccuracy to creep in with glViewport
+ *  */
 
-/* For some reason this doesn't work in scratchbox. It is debatable if it is
- * faster or not too. The strange error is that after the first viewport
- * update, clutter never gets called to paint again until a fullscreen
- * update is made. */
+/* For some reason glViewport doesn't work in scratchbox. The strange error is
+ * that after the first viewport update, clutter never gets called to paint
+ * again until a fullscreen update is made. */
+
 /* If we're using double-buffering we want to update the area for this frame
  * AND the area for the last frame. */
 #if CLUTTER_COGL_HAS_GLES
-#define VIEWPORT_DAMAGE 1
-#define DOUBLE_BUFFER 0
+#define VIEWPORT_DAMAGE 0
+#define DOUBLE_BUFFER 1
 #else
 #define VIEWPORT_DAMAGE 0
 #define DOUBLE_BUFFER 1
