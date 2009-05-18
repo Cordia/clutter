@@ -1,12 +1,11 @@
-clutter (0.8.2-0maemo31~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo31) unstable; urgency=low
 
-  Fixes: NB#115664
-
+  * Fixes: NB#115664 - 1-pixel jitter in screen updates
   * clutter/clutter-stage.c: modified comments, made GLES use glScissor based
     partial updates rather than glViewport (which was too inaccurate and not
     actually much faster with current drivers)
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 12 May 2009 16:17:52 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 18 May 2009 11:11:17 +0300
 
 clutter (0.8.2-0maemo30) unstable; urgency=low
 
