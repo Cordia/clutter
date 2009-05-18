@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo32~unreleased) unstable; urgency=low
+
+  * write_something_here
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 18 May 2009 11:13:03 +0300
+
 clutter (0.8.2-0maemo31) unstable; urgency=low
 
   * Fixes: NB#115664 - 1-pixel jitter in screen updates
