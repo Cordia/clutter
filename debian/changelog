@@ -1,8 +1,11 @@
 clutter (0.8.2-0maemo32~unreleased) unstable; urgency=low
 
-  * write_something_here
+  * Fix for white rectangles on screen rotation
+    (clutter/cogl/common/cogl-clip-stack.c) - now only attempt stencil
+    buffer operations IF we have a stencil buffer (we disable this in GLES
+    to try and increase rendering speed/decrease memory usage).    
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 18 May 2009 11:13:03 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 20 May 2009 17:13:03 +0300
 
 clutter (0.8.2-0maemo31) unstable; urgency=low
 

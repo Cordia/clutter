@@ -139,10 +139,13 @@ static void
 _cogl_clip_stack_add (const CoglClipStackEntry *entry, int depth)
 {
   int has_clip_planes = cogl_features_available (COGL_FEATURE_FOUR_CLIP_PLANES);
+  int stencil_bits;
 
   /* if we can do it all with scissoring, then just do that and return */
   if (_cogl_clip_stack_scissor_rebuild())
     return;
+
+  glGetIntegerv(GL_STENCIL_BITS, &stencil_bits);
 
   /* If this is the first entry and we support clip planes then use
      that instead */
@@ -151,7 +154,7 @@ _cogl_clip_stack_add (const CoglClipStackEntry *entry, int depth)
 			   entry->y_offset,
 			   entry->width,
 			   entry->height);
-  else
+  else if (stencil_bits)
     _cogl_add_stencil_clip (entry->x_offset,
 			    entry->y_offset,
 			    entry->width,
