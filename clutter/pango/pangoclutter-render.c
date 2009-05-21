@@ -284,7 +284,7 @@ pango_clutter_ensure_glyph_cache_for_layout (PangoLayout *layout)
   PangoContext    *context;
   PangoFontMap    *fontmap;
   PangoRenderer   *renderer;
-  PangoLayoutIter *iter;
+  PangoLayoutIter *iter, *orig_iter;
  
   g_return_if_fail (PANGO_IS_LAYOUT (layout));
  
@@ -294,7 +294,7 @@ pango_clutter_ensure_glyph_cache_for_layout (PangoLayout *layout)
   renderer = _pango_clutter_font_map_get_renderer
     (PANGO_CLUTTER_FONT_MAP (fontmap));
  
-  if ((iter = pango_layout_get_iter (layout)) == NULL)
+  if ((iter = orig_iter = pango_layout_get_iter (layout)) == NULL)
     return;
  
   do
@@ -325,7 +325,7 @@ pango_clutter_ensure_glyph_cache_for_layout (PangoLayout *layout)
     }
   while (pango_layout_iter_next_line (iter));
  
-  pango_layout_iter_free (iter);
+  pango_layout_iter_free (orig_iter);
 }
 
 static void
