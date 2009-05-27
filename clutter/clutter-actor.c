@@ -2978,7 +2978,7 @@ clutter_actor_init (ClutterActor *self)
   priv->scale_y      = CFX_ONE;
   priv->shader_data  = NULL;
   priv->show_on_set_parent = TRUE;
-  priv->visibility_detect = TRUE;
+  priv->visibility_detect = FALSE;
   priv->allow_redraw      = TRUE;
 
   priv->needs_width_request  = TRUE;

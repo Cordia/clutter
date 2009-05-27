@@ -664,15 +664,16 @@ cogl_wrap_glLoadIdentity ()
 static void
 cogl_gles2_wrapper_mult_matrix (float *dst, const float *a, const float *b)
 {
-  int i, j, k;
+  int i, j;
 
-  for (i = 0; i < 4; i++)
+  for (i = 0; i < 16; i+=4)
     for (j = 0; j < 4; j++)
       {
-	float sum = 0.0f;
-	for (k = 0; k < 4; k++)
-	  sum += a[k * 4 + j] * b[i * 4 + k];
-	dst[i * 4 + j] = sum;
+        dst[i + j] =
+                    a[j] * b[i] +
+                    a[4 + j] * b[i + 1] +
+                    a[8 + j] * b[i + 2] +
+                    a[12 + j] * b[i + 3];
       }
 }
 
@@ -767,12 +768,7 @@ cogl_wrap_glScalef (GLfloat x, GLfloat y, GLfloat z)
 void
 cogl_wrap_glTranslatex (GLfixed x, GLfixed y, GLfixed z)
 {
-  float matrix[16];
-
-  if (x==0 && y==0 && z==0)
-    return;
-
-  memset (matrix, 0, sizeof (matrix));
+  /*memset (matrix, 0, sizeof (matrix));
   matrix[0] = 1.0f;
   matrix[5] = 1.0f;
   matrix[10] = 1.0f;
@@ -781,7 +777,29 @@ cogl_wrap_glTranslatex (GLfixed x, GLfixed y, GLfixed z)
   matrix[14] = CLUTTER_FIXED_TO_FLOAT (z);
   matrix[15] = 1.0f;
 
-  cogl_wrap_glMultMatrix (matrix);
+  cogl_wrap_glMultMatrix (matrix);*/
+
+
+  if (x!=0 || y!=0 || z!=0)
+    {
+      float *matrix;
+      float fx, fy, fz;
+
+      _COGL_GET_GLES2_WRAPPER (w, NO_RETVAL);
+
+      fx = CLUTTER_FIXED_TO_FLOAT (x);
+      fy = CLUTTER_FIXED_TO_FLOAT (y);
+      fz = CLUTTER_FIXED_TO_FLOAT (z);
+
+      matrix = cogl_gles2_get_matrix_stack_top (w);
+
+      matrix[12] +=  matrix[0]*fx + matrix[4]*fy + matrix[8]*fz;
+      matrix[13] +=  matrix[1]*fx + matrix[5]*fy + matrix[9]*fz;
+      matrix[14] +=  matrix[2]*fx + matrix[6]*fy + matrix[10]*fz;
+      matrix[15] +=  matrix[3]*fx + matrix[7]*fy + matrix[11]*fz;
+
+      cogl_gles2_wrapper_update_matrix (w, w->matrix_mode);
+    }
 }
 
 void

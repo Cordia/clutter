@@ -1385,8 +1385,7 @@ cogl_texture_get_properties (CoglHandle       handle,
   CoglTexture *tex;
 
   /* Check if valid texture handle */
-  if (!cogl_is_texture (handle))
-    return;
+  g_return_if_fail( cogl_is_texture (handle) );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1412,8 +1411,7 @@ cogl_texture_get_width (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1425,8 +1423,7 @@ cogl_texture_get_height (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1438,8 +1435,7 @@ cogl_texture_get_format (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return COGL_PIXEL_FORMAT_ANY;
+  g_return_val_if_fail( cogl_is_texture (handle), COGL_PIXEL_FORMAT_ANY );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1451,8 +1447,7 @@ cogl_texture_get_rowstride (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1464,8 +1459,7 @@ cogl_texture_get_max_waste (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1477,8 +1471,7 @@ cogl_texture_is_sliced (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return FALSE;
+  g_return_val_if_fail( cogl_is_texture (handle), FALSE );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1498,8 +1491,7 @@ cogl_texture_get_gl_texture (CoglHandle handle,
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return FALSE;
+  g_return_val_if_fail( cogl_is_texture (handle), FALSE );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1523,8 +1515,7 @@ cogl_texture_get_min_filter (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1536,8 +1527,7 @@ cogl_texture_get_mag_filter (CoglHandle handle)
 {
   CoglTexture *tex;
 
-  if (!cogl_is_texture (handle))
-    return 0;
+  g_return_val_if_fail( cogl_is_texture (handle), 0 );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -1995,8 +1985,7 @@ cogl_texture_rectangle (CoglHandle   handle,
   ClutterFixed       tempx;
 
   /* Check if valid texture */
-  if (!cogl_is_texture (handle))
-    return;
+  g_return_if_fail( cogl_is_texture (handle) );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 
@@ -2072,8 +2061,7 @@ _cogl_texture_drawarrays (CoglHandle         handle,
   _COGL_GET_CONTEXT (ctx, NO_RETVAL);
 
   /* Check if valid texture */
-  if (!cogl_is_texture (handle))
-    return;
+  g_return_if_fail( cogl_is_texture (handle) );
 
   tex = _cogl_texture_pointer_from_handle (handle);
 

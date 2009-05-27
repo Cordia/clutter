@@ -1,6 +1,17 @@
 clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
 
-  * foo
+  Speedups based on profiling
+
+  * clutter/clutter-actor.c: Disable visibility detection by default - we must
+    enable it explicitly for actors in hildon-desktop now
+  * clutter/clutter-fixed.h: Now use macro rather than inline asm function -
+    this produces much better assembler for cogl_util_mtx_transform
+  * clutter/cogl/gles/cogl-gles2-wrapper.c: slight unroll + big speedup for
+    cogl_gles2_wrapper_mult_matrix, also special case for cogl_translatex
+    which accounted for most of the cogl_gles2_wrapper_mult_matrix calls.
+  * clutter/cogl/gles/cogl-texture.c: changed 'if !cogl_is_texture' to
+    g_return_if_fail, as we don't want these runtime checks, and 
+    cogl_is_texture is *very* slow (linear search)
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 27 May 2009 13:26:16 +0300
 

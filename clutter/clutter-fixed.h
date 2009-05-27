@@ -290,7 +290,12 @@ typedef gint32 ClutterAngle;    /* angle such that 1024 == 2*PI */
 #define CFX_INT         CLUTTER_FIXED_INT
 #define CFX_MUL         CLUTTER_FIXED_MUL
 #define CFX_DIV         CLUTTER_FIXED_DIV
-#define CFX_QMUL(x,y)   clutter_qmulx (x,y)
+//#define CFX_QMUL(x,y)   clutter_qmulx (x,y)
+/* remove inline asm function as the overhead is greater than just inlining -
+ * and it doesn't include the possibility of evaluating as a constant
+ * expression */
+#define CFX_QMUL(x,y)   \
+     ((ClutterFixed)(((long long)(x) * (long long)(y)) >> CFX_Q))
 #define CFX_QDIV(x,y)   clutter_qdivx (x,y)
 
 /*< public >*/
