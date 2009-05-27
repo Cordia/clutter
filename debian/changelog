@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 27 May 2009 13:26:16 +0300
+
 clutter (0.8.2-0maemo32) unstable; urgency=low
 
   * Fix for white rectangles on screen rotation
