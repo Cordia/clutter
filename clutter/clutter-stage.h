@@ -235,6 +235,7 @@ gboolean              clutter_stage_is_default         (ClutterStage *stage);
 
 void                  clutter_stage_set_damaged_area   (ClutterActor *self,
                                                         ClutterGeometry area);
+void clutter_stage_set_shaped_mode (ClutterActor *self, int mode);
 
 /* Commodity macro */
 #define clutter_stage_add(stage,actor)                  G_STMT_START {  \

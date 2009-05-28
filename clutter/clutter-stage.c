@@ -123,6 +123,8 @@ struct _ClutterStagePrivate
    * so we must update both */
   ClutterGeometry     last_damaged_area;
 
+  int                 shaped_mode;
+
   guint is_fullscreen     : 1;
   guint is_offscreen      : 1;
   guint is_cursor_visible : 1;
@@ -240,6 +242,16 @@ clutter_stage_allocate (ClutterActor          *self,
     }
 }
 
+/* 0 - no shape
+ * 1 - shape (fullscreen, i.e. all Clutter drawing is clipped)
+ */
+void
+clutter_stage_set_shaped_mode (ClutterActor *self, int mode)
+{
+  ClutterStagePrivate *priv = CLUTTER_STAGE (self)->priv;
+  priv->shaped_mode = mode;
+}
+
 static void
 clutter_stage_paint (ClutterActor *self)
 {
@@ -249,6 +261,9 @@ clutter_stage_paint (ClutterActor *self)
   guint                width, height;
 
   CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_IN_PAINT);
+
+  if (priv->shaped_mode)
+    return;
 
   CLUTTER_NOTE (PAINT, "Initializing stage paint");
 

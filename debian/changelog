@@ -13,6 +13,9 @@ clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
     g_return_if_fail, as we don't want these runtime checks, and 
     cogl_is_texture is *very* slow (linear search)
 
+  * clutter/clutter-stage.[ch]: Added clutter_stage_set_shaped_mode for
+    non-composited mode.
+
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 27 May 2009 13:26:16 +0300
 
 clutter (0.8.2-0maemo32) unstable; urgency=low
