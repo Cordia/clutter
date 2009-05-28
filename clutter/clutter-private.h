@@ -77,8 +77,8 @@ struct _ClutterInputDevice
   ClutterActor *motion_last_actor;
 
   gint          click_count;
-  gint          previous_x; 
-  gint          previous_y; 
+  gint          previous_x;
+  gint          previous_y;
   guint32       previous_time;
   gint          previous_button_number;
 };
@@ -87,12 +87,12 @@ typedef struct _ClutterMainContext ClutterMainContext;
 
 struct _ClutterMainContext
 {
-  ClutterBackend  *backend;            /* holds a pointer to the windowing 
+  ClutterBackend  *backend;            /* holds a pointer to the windowing
                                           system backend */
   ClutterStageManager *stage_manager;  /* stages */
   GQueue          *events_queue;       /* the main event queue */
 
-  guint            is_initialized : 1;  
+  guint            is_initialized : 1;
   guint            motion_events_per_actor : 1;/* set for enter/leave events */
   guint            defer_display_setup : 1;
   guint            options_parsed : 1;
@@ -104,8 +104,8 @@ struct _ClutterMainContext
   guint            motion_frequency;   /* Motion events per second */
   gint             num_reactives;      /* Num of reactive actors */
 
-  ClutterIDPool   *id_pool;            /* mapping between reused integer ids 
-                                        * and actors 
+  ClutterIDPool   *id_pool;            /* mapping between reused integer ids
+                                        * and actors
                                         */
   guint            frame_rate;         /* Default FPS */
   gboolean         disable_skip_frames;/* Should timeline not skip frames */
@@ -114,8 +114,8 @@ struct _ClutterMainContext
                                         * (or NULL if there is no pointer grab
                                         */
   ClutterActor    *keyboard_grab_actor; /* The actor having the pointer grab
-                                         * (or NULL if there is no pointer 
-                                         *  grab) 
+                                         * (or NULL if there is no pointer
+                                         *  grab)
                                          */
   GSList          *shaders;            /* stack of overridden shaders */
 
@@ -215,6 +215,10 @@ gboolean _clutter_boolean_handled_accumulator (GSignalInvocationHint *ihint,
 
 void _clutter_actor_apply_modelview_transform_recursive (ClutterActor *self,
 						       ClutterActor *ancestor);
+
+// Big hack to remove threading calls
+#define g_object_freeze_notify(X)
+#define g_object_thaw_notify(X)
 
 G_END_DECLS
 

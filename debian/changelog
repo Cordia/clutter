@@ -12,6 +12,9 @@ clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
   * clutter/cogl/gles/cogl-texture.c: changed 'if !cogl_is_texture' to
     g_return_if_fail, as we don't want these runtime checks, and 
     cogl_is_texture is *very* slow (linear search)
+  * clutter/clutter-private.h: added blank #define for g_object_freeze_notify
+    and g_object_thaw_notify, as these caused excessive slowness and we don't
+    need threading support.
 
   Kimmo:
   * clutter/clutter-stage.[ch]: Added clutter_stage_set_shaped_mode for
