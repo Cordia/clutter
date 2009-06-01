@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo33) unstable; urgency=low
 
   Speedups based on profiling
 
@@ -21,7 +21,7 @@ clutter (0.8.2-0maemo33~unreleased) unstable; urgency=low
     non-composited mode.
   * Add -O2 compilation flag.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 27 May 2009 13:26:16 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 01 Jun 2009 08:22:50 +0300
 
 clutter (0.8.2-0maemo32) unstable; urgency=low
 
