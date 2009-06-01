@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo34~unreleased) unstable; urgency=low
 
-  * foo
+  * tests/test-actors.c: Modify to add optional code for requesting
+    non-composition support.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon,  1 Jun 2009 08:24:39 +0300
 

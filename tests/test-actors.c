@@ -9,6 +9,14 @@
 #include <stdlib.h>
 #include <glib.h>
 
+/* Uncomment to run in hildon-desktop "non-composited mode" */
+/* #define REQ_NON_COMPOSITION 1 */
+
+#ifdef REQ_NON_COMPOSITION
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#endif
+
 #define TRAILS  0
 #define NHANDS  6
 #define RADIUS  ((CLUTTER_STAGE_WIDTH()+CLUTTER_STAGE_HEIGHT())/NHANDS)
@@ -140,6 +148,13 @@ main (int argc, char *argv[])
   gint             i;
   GError          *error;
 
+#ifdef REQ_NON_COMPOSITION
+  Window           xwin;
+  Atom             non_comp_atom;
+  Display         *dpy;
+  int              one = 1;
+#endif
+
   error = NULL;
 
   clutter_init_with_args (&argc, &argv,
@@ -162,6 +177,19 @@ main (int argc, char *argv[])
   clutter_stage_set_title (CLUTTER_STAGE (stage), "Actors Test");
   clutter_stage_set_color (CLUTTER_STAGE (stage),
 		           &stage_color);
+
+#ifdef REQ_NON_COMPOSITION
+  /* request non-composited mode */
+  clutter_stage_fullscreen (stage);
+  xwin = clutter_x11_get_stage_window (stage);
+  dpy = XOpenDisplay(NULL);
+  non_comp_atom = XInternAtom(dpy, "_HILDON_NON_COMPOSITED_WINDOW", False);
+  XChangeProperty (dpy, xwin, non_comp_atom,
+                   XA_INTEGER, 32, PropModeReplace,
+                   (unsigned char *) &one, 1);
+  printf ("stage win is %lx\n", xwin);
+  XSync (dpy, False);
+#endif
 
   oh = g_new(SuperOH, 1);
 
