@@ -2,6 +2,8 @@ clutter (0.8.2-0maemo34~unreleased) unstable; urgency=low
 
   * tests/test-actors.c: Modify to add optional code for requesting
     non-composition support.
+  * debian/control: modified dependencies to use the correct (virtual)
+    package for GL/GLES depending on target platform
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon,  1 Jun 2009 08:24:39 +0300
 
