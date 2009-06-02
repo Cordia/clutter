@@ -1,11 +1,13 @@
-clutter (0.8.2-0maemo34~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo34) unstable; urgency=low
 
   * tests/test-actors.c: Modify to add optional code for requesting
     non-composition support.
   * debian/control: modified dependencies to use the correct (virtual)
     package for GL/GLES depending on target platform
+  * Fixes: NB#119932 - clutter should explicitly build depend on libgl-dev for
+    x86 environment.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon,  1 Jun 2009 08:24:39 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue, 02 Jun 2009 16:48:08 +0300
 
 clutter (0.8.2-0maemo33) unstable; urgency=low
 
