@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo35~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue,  2 Jun 2009 16:50:14 +0300
+
 clutter (0.8.2-0maemo34) unstable; urgency=low
 
   * tests/test-actors.c: Modify to add optional code for requesting
