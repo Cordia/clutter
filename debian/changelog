@@ -1,6 +1,15 @@
 clutter (0.8.2-0maemo35~unreleased) unstable; urgency=low
 
-  * foo
+  Kimmo:
+  * clutter/x11/clutter-x11-texture-pixmap.[ch]
+    (clutter_x11_texture_pixmap_set_redirection): New function to toggle
+    XComposite redirection on/off within Clutter. This is used from
+    libmatchbox2 to sync redirection states between the two libraries.
+    (ClutterX11TexturePixmapPrivate): Add window_redirected member.
+    (clutter_x11_texture_pixmap_set_window): Redirect only if the stage is
+    not in shaped mode. Unredirect only if the window was redirected before.
+  * clutter/clutter-stage.c (_clutter_stage_get_shaped_mode): New function to
+    read the shaped mode setting of a stage.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue,  2 Jun 2009 16:50:14 +0300
 

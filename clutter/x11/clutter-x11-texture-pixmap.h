@@ -91,6 +91,9 @@ void  clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture
 void clutter_x11_texture_pixmap_clear_shapes(ClutterX11TexturePixmap *texture);
 void clutter_x11_texture_pixmap_add_shape(ClutterX11TexturePixmap *texture,
                                           ClutterGeometry geo);
+void
+clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
+                                            gboolean setting);
 
 G_END_DECLS
 

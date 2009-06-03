@@ -216,6 +216,8 @@ gboolean _clutter_boolean_handled_accumulator (GSignalInvocationHint *ihint,
 void _clutter_actor_apply_modelview_transform_recursive (ClutterActor *self,
 						       ClutterActor *ancestor);
 
+int _clutter_stage_get_shaped_mode (ClutterActor *self);
+
 // Big hack to remove threading calls
 #define g_object_freeze_notify(X)
 #define g_object_thaw_notify(X)

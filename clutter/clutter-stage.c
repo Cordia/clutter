@@ -252,6 +252,13 @@ clutter_stage_set_shaped_mode (ClutterActor *self, int mode)
   priv->shaped_mode = mode;
 }
 
+int
+_clutter_stage_get_shaped_mode (ClutterActor *self)
+{
+  ClutterStagePrivate *priv = CLUTTER_STAGE (self)->priv;
+  return priv->shaped_mode;
+}
+
 static void
 clutter_stage_paint (ClutterActor *self)
 {

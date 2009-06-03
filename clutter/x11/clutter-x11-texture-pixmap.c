@@ -45,6 +45,7 @@
 #include "clutter-x11.h"
 #include "clutter-backend-x11.h"
 #include "clutter-debug.h"
+#include "clutter-private.h"
 
 #include "cogl/cogl.h"
 
@@ -114,6 +115,7 @@ struct _ClutterX11TexturePixmapPrivate
 
   /* FIXME: lots of gbooleans. coalesce into bitfields */
   gboolean	have_shm;
+  gboolean      window_redirected;
   gboolean      window_redirect_automatic;
   gboolean      window_mapped;
   gboolean      destroyed;
@@ -407,6 +409,7 @@ clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
   self->priv->pixmap_height = 0;
   self->priv->pixmap_width = 0;
   self->priv->shminfo.shmid = -1;
+  self->priv->window_redirected = FALSE;
   self->priv->window_redirect_automatic = TRUE;
   self->priv->window_mapped = FALSE;
   self->priv->destroyed = FALSE;
@@ -1094,6 +1097,39 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
   g_object_unref (texture);
 }
 
+void
+clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
+                                            gboolean setting)
+{
+  ClutterX11TexturePixmapPrivate *priv;
+  Display *dpy = clutter_x11_get_default_display ();
+
+  priv = texture->priv;
+
+  if (setting && !priv->window_redirected && priv->window)
+    {
+      XCompositeRedirectWindow (dpy,
+                                priv->window,
+                                priv->window_redirect_automatic ?
+                                CompositeRedirectAutomatic :
+                                CompositeRedirectManual);
+      XSync (dpy, False);
+      priv->window_redirected = TRUE;
+    }
+  else if (!setting && priv->window_redirected && priv->window)
+    {
+      clutter_x11_trap_x_errors ();
+      XCompositeUnredirectWindow (dpy,
+                                  priv->window,
+                                  priv->window_redirect_automatic ?
+                                  CompositeRedirectAutomatic :
+                                  CompositeRedirectManual);
+      XSync (clutter_x11_get_default_display (), False);
+      clutter_x11_untrap_x_errors ();
+      priv->window_redirected = FALSE;
+    }
+}
+
 /**
  * clutter_x11_texture_pixmap_set_window:
  * @texture: the texture to bind
@@ -1130,13 +1166,18 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
   if (priv->window)
     {
       clutter_x11_remove_filter (on_x_event_filter_too, (gpointer)texture);
-      clutter_x11_trap_x_errors ();
-      XCompositeUnredirectWindow(clutter_x11_get_default_display (),
-                                  priv->window,
-                                  priv->window_redirect_automatic ?
-                                  CompositeRedirectAutomatic : CompositeRedirectManual);
-      XSync (clutter_x11_get_default_display (), False);
-      clutter_x11_untrap_x_errors ();
+      if (priv->window_redirected)
+        {
+          clutter_x11_trap_x_errors ();
+          XCompositeUnredirectWindow(dpy,
+                                     priv->window,
+                                     priv->window_redirect_automatic ?
+                                     CompositeRedirectAutomatic :
+                                     CompositeRedirectManual);
+          XSync (clutter_x11_get_default_display (), False);
+          clutter_x11_untrap_x_errors ();
+          priv->window_redirected = FALSE;
+        }
     }
 
   priv->window = window;
@@ -1158,12 +1199,16 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
         return;
       }
 
-    XCompositeRedirectWindow
-                       (dpy,
-                        window,
-                        automatic ?
-                        CompositeRedirectAutomatic : CompositeRedirectManual);
-    XSync (dpy, False);
+    if (!_clutter_stage_get_shaped_mode (clutter_stage_get_default ()))
+      {
+        XCompositeRedirectWindow (dpy,
+                                  window,
+                                  automatic ?
+                                  CompositeRedirectAutomatic :
+                                  CompositeRedirectManual);
+        XSync (dpy, False);
+        priv->window_redirected = TRUE;
+      }
   }
 
   clutter_x11_untrap_x_errors ();
