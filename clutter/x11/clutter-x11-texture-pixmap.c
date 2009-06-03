@@ -1108,13 +1108,15 @@ clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
 
   if (setting && !priv->window_redirected && priv->window)
     {
+      clutter_x11_trap_x_errors ();
       XCompositeRedirectWindow (dpy,
                                 priv->window,
                                 priv->window_redirect_automatic ?
                                 CompositeRedirectAutomatic :
                                 CompositeRedirectManual);
-      XSync (dpy, False);
       priv->window_redirected = TRUE;
+      XSync (dpy, False);
+      clutter_x11_untrap_x_errors ();
     }
   else if (!setting && priv->window_redirected && priv->window)
     {
@@ -1124,9 +1126,9 @@ clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
                                   priv->window_redirect_automatic ?
                                   CompositeRedirectAutomatic :
                                   CompositeRedirectManual);
-      XSync (clutter_x11_get_default_display (), False);
-      clutter_x11_untrap_x_errors ();
       priv->window_redirected = FALSE;
+      XSync (dpy, False);
+      clutter_x11_untrap_x_errors ();
     }
 }
 
