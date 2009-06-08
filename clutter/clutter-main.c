@@ -207,7 +207,7 @@ clutter_redraw (ClutterStage *stage)
   _clutter_stage_maybe_relayout (CLUTTER_ACTOR (stage));
 
   _clutter_backend_ensure_context (ctx->backend, stage);
-  
+
   /* Frame timing */
   if (G_UNLIKELY (clutter_get_show_frame_time ()))
     {
@@ -244,7 +244,7 @@ clutter_redraw (ClutterStage *stage)
 	  g_timer_start (timer);
 	}
     }
-    
+
   /* Frame timing */
   if (G_UNLIKELY (clutter_get_show_frame_time ()))
     {
@@ -415,11 +415,11 @@ _clutter_do_pick (ClutterStage   *stage,
   */
   glFinish();
 
-  /* glEnable (GL_DITHER); we never enabled this originally, so its
-     probably not safe to then enable it */
-
   /* Read the color of the screen co-ords pixel */
   glReadPixels (x, viewport[3] - y -1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+
+  /* Enable dither. It is enabled by default anyway */
+  glEnable (GL_DITHER);
 
   if (pixel[0] == 0xff && pixel[1] == 0xff && pixel[2] == 0xff)
     return CLUTTER_ACTOR (stage);
@@ -1233,7 +1233,7 @@ pre_parse_hook (GOptionContext  *context,
   env_string = g_getenv ("CLUTTER_SHOW_FPS");
   if (env_string)
     clutter_show_fps = TRUE;
-    
+
    env_string = g_getenv ("CLUTTER_SHOW_FRAME_TIME");
   if (env_string)
     clutter_show_frame_time = TRUE;
