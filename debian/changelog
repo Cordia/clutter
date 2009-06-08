@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo35~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo35) unstable; urgency=low
 
   Kimmo:
   * clutter/x11/clutter-x11-texture-pixmap.[ch]
@@ -11,7 +11,7 @@ clutter (0.8.2-0maemo35~unreleased) unstable; urgency=low
   * clutter/clutter-stage.c (_clutter_stage_get_shaped_mode): New function to
     read the shaped mode setting of a stage.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue,  2 Jun 2009 16:50:14 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 08 Jun 2009 09:55:57 +0300
 
 clutter (0.8.2-0maemo34) unstable; urgency=low
 
