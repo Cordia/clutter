@@ -123,6 +123,8 @@ print_config_info (EGLConfig conf)
   EGLint red = -1, green = -1, blue = -1, alpha = -1, stencil = -1;
   EGLint rgba_bindable = -1, rgb_bindable = -1, tex_target = -1;
 
+  if (!conf) return;
+
   eglGetConfigAttrib (clutter_eglx_display (),
 		      conf,
 		      EGL_RED_SIZE, &red);
@@ -312,10 +314,13 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
 
   if (priv->egl_surface == EGL_NO_SURFACE)
     {
-      g_warning ("%s: error %x, failed to create %s surface for %lx",
+      g_warning ("%s: error %x, failed to create %s surface for %lx, "
+                 "using GLES fallback.",
 	       __FUNCTION__, eglGetError (),
 	       pixmap ? "pixmap" : "window",
 	       pixmap ? pixmap : window);
+
+      priv->use_fallback = TRUE;
       return;
     }
 
@@ -447,25 +452,25 @@ clutter_eglx_get_eglconfig (EGLDisplay *display,
                             EGLSurface *surface, Pixmap pixmap,
                             int depth)
 {
-   EGLConfig configs[20];
-   int i, nconfigs = 0;
-   EGLBoolean ret;
-   gboolean has_alpha = depth==32;
+  EGLConfig configs[20];
+  int i, nconfigs = 0;
+  EGLBoolean ret;
+  gboolean has_alpha = depth==32;
 
-   ret = eglChooseConfig (display, pixmap_config, configs,
-                          G_N_ELEMENTS (configs), &nconfigs);
+  ret = eglChooseConfig (display, pixmap_config, configs,
+                         G_N_ELEMENTS (configs), &nconfigs);
 
-   if (ret != EGL_TRUE)
-     {
-       g_debug ("%s: eglChooseConfig failed: %x", __FUNCTION__, eglGetError());
-       return NULL;
-     }
+  if (ret != EGL_TRUE)
+    {
+      g_debug ("%s: eglChooseConfig failed: %x", __FUNCTION__, eglGetError());
+      return NULL;
+    }
    /*else
      {
        g_debug ("%s: got %d matching configs", __FUNCTION__, nconfigs);
      }*/
 
-   for (i = 0; i < nconfigs; ++i)
+  for (i = 0; i < nconfigs; ++i)
     {
       if (has_alpha)
         *surface = eglCreatePixmapSurface (display, configs[i],
@@ -477,14 +482,15 @@ clutter_eglx_get_eglconfig (EGLDisplay *display,
                                            pixmap_creation_config_rgb);
 
       if (*surface != EGL_NO_SURFACE)
-        break;
+        return configs[i];
 
       g_debug ("%s: eglCreatePixmapSurface failed for config:",
                __FUNCTION__);
       print_config_info (configs[i]);
    }
 
-   return configs[i];
+   /* We failed to get any surface */
+   return NULL;
 }
 
 static void
