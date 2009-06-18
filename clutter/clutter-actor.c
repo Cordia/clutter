@@ -5662,15 +5662,23 @@ void
 clutter_actor_set_parent (ClutterActor *self,
 		          ClutterActor *parent)
 {
+#ifndef G_DEBUG_DISABLE
   ClutterMainContext *clutter_context;
+#endif
   ClutterActorPrivate *priv;
 
+#ifndef G_DEBUG_DISABLE
   clutter_context = clutter_context_get_default ();
+#else
+  clutter_context_get_default ();
+#endif
 
   g_return_if_fail (CLUTTER_IS_ACTOR (self));
   g_return_if_fail (CLUTTER_IS_ACTOR (parent));
   g_return_if_fail (self != parent);
+#ifndef G_DEBUG_DISABLE
   g_return_if_fail (clutter_context != NULL);
+#endif
 
   priv = self->priv;
 

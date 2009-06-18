@@ -302,13 +302,11 @@ guint _clutter_pix_to_id (guchar pixel[4]);
 
 static inline void init_bits (void)
 {
-  ClutterMainContext *ctx;
-
   static gboolean done = FALSE;
   if (G_LIKELY (done))
     return;
 
-  ctx = clutter_context_get_default ();
+  clutter_context_get_default ();
 
   done = TRUE;
 }

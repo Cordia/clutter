@@ -347,9 +347,7 @@ clutter_behaviour_path_class_init (ClutterBehaviourPathClass *klass)
 static void
 clutter_behaviour_path_init (ClutterBehaviourPath *self)
 {
-  ClutterBehaviourPathPrivate *priv;
-
-  self->priv = priv = CLUTTER_BEHAVIOUR_PATH_GET_PRIVATE (self);
+  self->priv = CLUTTER_BEHAVIOUR_PATH_GET_PRIVATE (self);
 }
 
 static void

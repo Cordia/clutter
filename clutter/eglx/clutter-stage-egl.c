@@ -184,7 +184,6 @@ clutter_stage_egl_realize (ClutterActor *actor)
   ClutterStageEGL   *stage_egl = CLUTTER_STAGE_EGL (actor);
   ClutterStageX11   *stage_x11 = CLUTTER_STAGE_X11 (actor);
   ClutterBackendEGL *backend_egl;
-  ClutterBackendX11 *backend_x11;
   EGLConfig          configs[20], chosen_config = 0;
   EGLint             config_count;
   gboolean           is_offscreen = FALSE;
@@ -194,7 +193,6 @@ clutter_stage_egl_realize (ClutterActor *actor)
   g_object_get (stage_x11->wrapper, "offscreen", &is_offscreen, NULL);
 
   backend_egl = CLUTTER_BACKEND_EGL (clutter_get_default_backend ());
-  backend_x11 = CLUTTER_BACKEND_X11 (clutter_get_default_backend ());
 
   if (G_LIKELY (!is_offscreen))
     {
