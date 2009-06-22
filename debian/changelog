@@ -1,13 +1,14 @@
-clutter (0.8.2-0maemo37~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo37) unstable; urgency=low
 
   Kimmo:
   * Fix some minor Coverity issues, such as unused variables.
+
   Gordon:
   * clutter/eglx/clutter-eglx-texture-pixmap.c: When we fail to create a
     pixmap surface for our pixmap (probably because of low SGX wrapped memory),
     use our fallback GLES-only code.    
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Thu, 18 Jun 2009 16:22:15 +0100
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 22 Jun 2009 10:28:11 +0300
 
 clutter (0.8.2-0maemo36) unstable; urgency=low
 
