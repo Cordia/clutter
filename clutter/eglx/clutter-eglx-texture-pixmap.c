@@ -388,6 +388,9 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
                             width, height, format))
     {
       g_debug ("%s: Unable to create cogl texture", __FUNCTION__);
+
+      glDeleteTextures (1, &priv->texture_id);
+
       CLUTTER_NOTE (TEXTURE, "Falling back to X11 manual mechanism");
       priv->use_fallback = TRUE;
       return;
@@ -707,7 +710,9 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
                 "pixmap-height", &pixmap_height,
                 NULL);
 
-  if (priv->egl_surface == EGL_NO_SURFACE)
+  if (priv->egl_surface == EGL_NO_SURFACE ||
+      clutter_texture_get_cogl_texture(CLUTTER_TEXTURE(actor)) ==
+      COGL_INVALID_HANDLE)
     {
       /*
       guint         window;
@@ -718,7 +723,9 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
                __FUNCTION__,
                name ? name : "null",
                pixmap, window, pixmap_width, pixmap_height, pixmap_depth);*/
-      clutter_eglx_texture_pixmap_paint_fail (actor);
+
+      /* No longer paint red fail rectangle - it just annoys users */
+      //clutter_eglx_texture_pixmap_paint_fail (actor);
       return;
     }
 

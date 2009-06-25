@@ -1451,6 +1451,8 @@ clutter_x11_texture_pixmap_paint (ClutterActor *self)
   t_h = CFX_ONE;
 
   cogl_texture = clutter_texture_get_cogl_texture(CLUTTER_TEXTURE(self));
+  if (cogl_texture == COGL_INVALID_HANDLE)
+    return;
 
   /* so now we go through our shapes and render */
   for (shape = priv->shapes; shape; shape = shape->next)

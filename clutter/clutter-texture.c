@@ -577,6 +577,7 @@ clutter_texture_paint (ClutterActor *self)
                 "painting texture '%s'",
 		clutter_actor_get_name (self) ? clutter_actor_get_name (self)
                                               : "unknown");
+
   col.alpha = clutter_actor_get_paint_opacity (self);
   cogl_color (&col);
 
@@ -586,6 +587,9 @@ clutter_texture_paint (ClutterActor *self)
 		       "opacity: %i",
 		x_1, y_1, x_2, y_2,
 		clutter_actor_get_opacity (self));
+
+  if (priv->texture == COGL_INVALID_HANDLE)
+    return;
 
   if (priv->repeat_x && priv->width > 0)
     t_w = CFX_QDIV (CLUTTER_INT_TO_FIXED (x_2 - x_1),
