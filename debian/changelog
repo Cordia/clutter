@@ -2,6 +2,7 @@ clutter (0.8.2-0maemo38~unreleased) unstable; urgency=low
 
   Gordon:
   Fixes: NB#124464 - Hildon-desktop crash
+  Fixes: NB#118722, NB#122350 - Red bordered windows
   * clutter/clutter-texture.c: Check for COGL_INVALID_HANDLE texture
     (other functions in clutter-texture checked, but not _paint)
   * clutter/eglx/clutter-eglx-texture-pixmap.c: Check for COGL_INVALID_HANDLE
