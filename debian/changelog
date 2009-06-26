@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo38~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo38) unstable; urgency=low
 
   Gordon:
   Fixes: NB#124464 - Hildon-desktop crash
@@ -11,7 +11,7 @@ clutter (0.8.2-0maemo38~unreleased) unstable; urgency=low
     but no cogl_texture). Fix texture leak if cogl_texture_new_from_foreign
     failed.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 22 Jun 2009 10:29:47 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 26 Jun 2009 12:45:47 +0300
 
 clutter (0.8.2-0maemo37) unstable; urgency=low
 
