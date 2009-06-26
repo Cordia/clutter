@@ -725,7 +725,7 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
                pixmap, window, pixmap_width, pixmap_height, pixmap_depth);*/
 
       /* No longer paint red fail rectangle - it just annoys users */
-      //clutter_eglx_texture_pixmap_paint_fail (actor);
+      clutter_eglx_texture_pixmap_paint_fail (actor);
       return;
     }
 
