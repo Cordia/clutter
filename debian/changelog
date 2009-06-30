@@ -1,8 +1,11 @@
 clutter (0.8.2-0maemo39~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  Fixes: NB#118722 - Red bordered windows
+  * clutter/x11/clutter-x11-texture-pixmap.c: Remove red-bordered warning 
+    shape (we now render nothing if we were unable to get a texture).
 
- -- Aapo Kojo <aapo.kojo@nokia.com>  Fri, 26 Jun 2009 12:48:26 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 29 Jun 2009 09:36:00 +0100
 
 clutter (0.8.2-0maemo38) unstable; urgency=low
 

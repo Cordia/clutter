@@ -42,7 +42,9 @@
  * The class requires the EGL_EXT_texture_from_pixmap OpenGL extension.
  */
 
-
+/* Whether to draw a red-bordered window when there is no valid pixmap
+ * (If we don't, we just draw nothing) */
+#define DEBUG_RED_RECT 0
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -658,6 +660,7 @@ clutter_eglx_texture_pixmap_new (void)
   return actor;
 }
 
+#if DEBUG_RED_RECT
 static void
 clutter_eglx_texture_pixmap_paint_fail (ClutterActor *actor)
 {
@@ -681,6 +684,7 @@ clutter_eglx_texture_pixmap_paint_fail (ClutterActor *actor)
   cogl_rectangle (0, 10, 10, h-20);
   cogl_rectangle (w-10, 10, 10, h-20);
 }
+#endif //DEBUG_RED_RECT
 
 void
 clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
@@ -724,8 +728,9 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
                name ? name : "null",
                pixmap, window, pixmap_width, pixmap_height, pixmap_depth);*/
 
-      /* No longer paint red fail rectangle - it just annoys users */
+#if DEBUG_RED_RECT
       clutter_eglx_texture_pixmap_paint_fail (actor);
+#endif //DEBUG_RED_RECT
       return;
     }
 
