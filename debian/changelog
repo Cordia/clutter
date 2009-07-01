@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo40~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Aapo Kojo <aapo.kojo@nokia.com>  Wed, 01 Jul 2009 14:20:20 +0300
+
 clutter (0.8.2-0maemo39) unstable; urgency=low
 
   Gordon:
