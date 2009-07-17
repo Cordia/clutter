@@ -1,6 +1,6 @@
 clutter (0.8.2-0maemo40~unreleased) unstable; urgency=low
 
-  * foo
+  * Added dependency: opengles-sgx-img-common-dev [armel]
 
  -- Aapo Kojo <aapo.kojo@nokia.com>  Wed, 01 Jul 2009 14:20:20 +0300
 
