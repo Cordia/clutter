@@ -95,6 +95,10 @@ void
 clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
                                             gboolean setting);
 
+void clutter_x11_texture_pixmap_set_allow_alpha(ClutterX11TexturePixmap *texture,
+                                                gboolean allow);
+gboolean clutter_x11_texture_pixmap_get_allow_alpha(ClutterX11TexturePixmap *texture);
+
 G_END_DECLS
 
 #endif

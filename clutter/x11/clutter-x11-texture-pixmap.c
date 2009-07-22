@@ -121,6 +121,7 @@ struct _ClutterX11TexturePixmapPrivate
   gboolean      destroyed;
   gboolean      owns_pixmap;
   gboolean      override_redirect;
+  gboolean      allow_alpha;
   gint          window_x, window_y;
 
   GList         *shapes;
@@ -414,6 +415,7 @@ clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
   self->priv->window_mapped = FALSE;
   self->priv->destroyed = FALSE;
   self->priv->override_redirect = FALSE;
+  self->priv->allow_alpha = TRUE;
   self->priv->window_x = 0;
   self->priv->window_y = 0;
   self->priv->shapes = 0;
@@ -849,6 +851,9 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
     }
   else
     goto free_image_and_return;
+
+  if (!priv->allow_alpha)
+    pixel_has_alpha = FALSE;
 
   /* For debugging purposes, un comment to simply generate dummy
    * pixmap data. (A Green background and Blue cross) */
@@ -1507,4 +1512,19 @@ void clutter_x11_texture_pixmap_add_shape(ClutterX11TexturePixmap *texture,
   ageo = (ClutterGeometry*)g_malloc(sizeof(ClutterGeometry));
   *ageo = geo;
   priv->shapes = g_list_append(priv->shapes, ageo);
+}
+
+/* Set whether we will allow this pixmap to have an alpha channel or not */
+void clutter_x11_texture_pixmap_set_allow_alpha(ClutterX11TexturePixmap *texture,
+                                                gboolean allow)
+{
+  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+  texture->priv->allow_alpha = allow;
+}
+
+/* Get whether we will allow this pixmap to have an alpha channel or not */
+gboolean clutter_x11_texture_pixmap_get_allow_alpha(ClutterX11TexturePixmap *texture)
+{
+  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+  return texture->priv->allow_alpha;
 }

@@ -1,6 +1,10 @@
 clutter (0.8.2-0maemo41~unreleased) unstable; urgency=low
 
-  * foo
+  * clutter/eglx/clutter-eglx-texture-pixmap.c
+    clutter/x11/clutter-x11-texture-pixmap.c
+    clutter/x11/clutter-x11-texture-pixmap.h: added a set_allow_alpha function
+    for use with the new sapwood (to disable the alpha channel on RGBA pixmaps
+    for windows that aren't really transparent but need RGBA anyway).
 
  -- Aapo Kojo <aapo.kojo@nokia.com>  Mon, 20 Jul 2009 12:48:30 +0300
 

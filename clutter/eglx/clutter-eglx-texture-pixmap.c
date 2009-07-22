@@ -242,6 +242,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
   Pixmap                          pixmap;
   Window                          window;
   guint                           pixmap_depth;
+  gboolean                        has_alpha;
   CoglPixelFormat                 format;
   EGLint			  value;
   ClutterBackendEGL		  *backend;
@@ -288,11 +289,16 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
 
   /*g_debug("%s: Pixmap depth %d", __FUNCTION__, pixmap_depth);*/
 
+  has_alpha = pixmap_depth==32;
+  if (!clutter_x11_texture_pixmap_get_allow_alpha(
+        CLUTTER_X11_TEXTURE_PIXMAP(actor)))
+    has_alpha = FALSE;
+
   if (pixmap)
     {
       EGLConfig conf = clutter_eglx_get_eglconfig (
                                 backend->edpy, &priv->egl_surface,
-                                pixmap, pixmap_depth);
+                                pixmap, has_alpha);
       print_config_info (conf);
     }
   else
@@ -310,7 +316,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
 	}
       conf = clutter_eglx_get_eglconfig (
                         backend->edpy, &priv->egl_surface,
-                        pixmap, pixmap_depth);
+                        pixmap, has_alpha);
       print_config_info (conf);
     }
 
@@ -455,12 +461,11 @@ static const EGLint pixmap_config[] = {
 static EGLConfig
 clutter_eglx_get_eglconfig (EGLDisplay *display,
                             EGLSurface *surface, Pixmap pixmap,
-                            int depth)
+                            gboolean has_alpha)
 {
   EGLConfig configs[20];
   int i, nconfigs = 0;
   EGLBoolean ret;
-  gboolean has_alpha = depth==32;
 
   ret = eglChooseConfig (display, pixmap_config, configs,
                          G_N_ELEMENTS (configs), &nconfigs);
