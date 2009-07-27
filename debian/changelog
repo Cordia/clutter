@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo41~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo41) unstable; urgency=low
 
   * clutter/eglx/clutter-eglx-texture-pixmap.c
     clutter/x11/clutter-x11-texture-pixmap.c
@@ -6,7 +6,7 @@ clutter (0.8.2-0maemo41~unreleased) unstable; urgency=low
     for use with the new sapwood (to disable the alpha channel on RGBA pixmaps
     for windows that aren't really transparent but need RGBA anyway).
 
- -- Aapo Kojo <aapo.kojo@nokia.com>  Mon, 20 Jul 2009 12:48:30 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 27 Jul 2009 15:32:23 +0300
 
 clutter (0.8.2-0maemo40) unstable; urgency=low
 
