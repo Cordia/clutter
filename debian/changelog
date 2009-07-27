@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo42~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 27 Jul 2009 15:34:27 +0300
+
 clutter (0.8.2-0maemo41) unstable; urgency=low
 
   * clutter/eglx/clutter-eglx-texture-pixmap.c
