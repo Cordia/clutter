@@ -388,6 +388,7 @@ clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor)
       eglDestroySurface (backend->edpy, priv->egl_surface);
       if (clutter_x11_untrap_x_errors ())
         g_debug ("%s: X errors", __FUNCTION__);
+      XSync (dpy, FALSE);
       priv->egl_surface = EGL_NO_SURFACE;
     }
 
