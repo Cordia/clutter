@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo42~unreleased) unstable; urgency=low
 
-  * Speed improvements to help fix 130870
+  Fixes: NB#131303
+  * Speed improvements
     clutter/eglx/clutter-eglx-texture-pixmap.c: Speed improvements for pixmap
     create/destroy (70ms -> 26ms). Remove calls to eglQuerySurface that aren't
     actually required, remove un-needed XSync, only re-allocate pixmap texture
