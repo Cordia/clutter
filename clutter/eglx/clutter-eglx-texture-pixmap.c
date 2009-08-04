@@ -45,6 +45,8 @@
 /* Whether to draw a red-bordered window when there is no valid pixmap
  * (If we don't, we just draw nothing) */
 #define DEBUG_RED_RECT 0
+/* We don't want to print configs in most cases, as this can take around 30ms or so */
+#define DEBUG_PRINT_CONFIGS 0
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -90,6 +92,9 @@ struct _ClutterEGLXTexturePixmapPrivate
   guint         current_pixmap_depth;
   guint         current_pixmap_width;
   guint         current_pixmap_height;
+
+  /* If the pixmap has changed, we'll want to try and recreate the surface */
+  gboolean      pixmap_changed;
 };
 
 void
@@ -122,6 +127,7 @@ G_DEFINE_TYPE (ClutterEGLXTexturePixmap,    \
 static void
 print_config_info (EGLConfig conf)
 {
+#if DEBUG_PRINT_CONFIGS
   EGLint red = -1, green = -1, blue = -1, alpha = -1, stencil = -1;
   EGLint rgba_bindable = -1, rgb_bindable = -1, tex_target = -1;
 
@@ -155,6 +161,7 @@ print_config_info (EGLConfig conf)
 	   __FUNCTION__,
 	   red, green, blue, alpha, stencil,
 	   rgb_bindable, rgba_bindable, tex_target);
+#endif
 }
 
 static void
@@ -244,9 +251,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
   guint                           pixmap_depth;
   gboolean                        has_alpha;
   CoglPixelFormat                 format;
-  EGLint			  value;
   ClutterBackendEGL		  *backend;
-  guint                           width, height;
 
   backend = CLUTTER_BACKEND_EGL (clutter_get_default_backend ());
   priv = CLUTTER_EGLX_TEXTURE_PIXMAP (actor)->priv;
@@ -279,15 +284,6 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       g_warning ("%s: no Pixmap or Window to bind to", __FUNCTION__);
       return;
     }
-
-  /*
-  if (pixmap && window)
-    {
-      g_warning ("%s: Pixmap AND Window defined, using pixmap", __FUNCTION__);
-    }
-    */
-
-  /*g_debug("%s: Pixmap depth %d", __FUNCTION__, pixmap_depth);*/
 
   has_alpha = pixmap_depth==32;
   if (!clutter_x11_texture_pixmap_get_allow_alpha(
@@ -332,22 +328,6 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       return;
     }
 
-  /* get size and format */
-  if (eglQuerySurface (backend->edpy, priv->egl_surface, EGL_WIDTH, &value)
-                         == EGL_FALSE)
-    return;
-  width = value;
-
-  if (eglQuerySurface (backend->edpy, priv->egl_surface, EGL_HEIGHT, &value)
-                         == EGL_FALSE)
-    return;
-  height = value;
-  /*
-  g_debug ("%s: got width %u, height %u (X says %u, %u)", __FUNCTION__,
-                width, height,
-                priv->current_pixmap_width, priv->current_pixmap_height);
-                */
-
   /* bind the surface to a GL texture */
   glGenTextures (1, &priv->texture_id);
   glBindTexture (GL_TEXTURE_2D, priv->texture_id);
@@ -361,39 +341,21 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       return;
     }
 
-  if (eglQuerySurface (backend->edpy, priv->egl_surface,
-		       EGL_TEXTURE_FORMAT, &value) == EGL_FALSE)
+  if (!has_alpha)
     {
-      g_warning ("%s: eglQuerySurface EGL_TEXTURE_FORMAT failed", __FUNCTION__);
-      return;
-    }
-
-  if (value == EGL_TEXTURE_RGB)
-    {
-            /*
-      g_debug ("%s: surface format is EGL_TEXTURE_RGB", __FUNCTION__);
-      */
       if (priv->current_pixmap_depth == 16)
         format = COGL_PIXEL_FORMAT_RGB_565;
       else
         format = COGL_PIXEL_FORMAT_RGB_888;
     }
-  else if (value == EGL_TEXTURE_RGBA)
+  else
     {
       g_debug ("%s: surface format is EGL_TEXTURE_RGBA", __FUNCTION__);
       format = COGL_PIXEL_FORMAT_RGBA_8888;
     }
-  else
-    {
-      g_debug ("%s: surface format is EGL_NO_TEXTURE", __FUNCTION__);
-      return;
-    }
-
-  /*g_debug ("%s: GL texture %u corresponds to surface %p", __FUNCTION__,
-           priv->texture_id, priv->egl_surface);*/
 
   if (!create_cogl_texture (CLUTTER_TEXTURE (actor), priv->texture_id,
-                            width, height, format))
+              priv->current_pixmap_width, priv->current_pixmap_height, format))
     {
       g_debug ("%s: Unable to create cogl texture", __FUNCTION__);
 
@@ -403,8 +365,6 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       priv->use_fallback = TRUE;
       return;
     }
-
-  /*g_debug ("%s: texture pixmap created", __FUNCTION__);*/
 }
 
 static void
@@ -426,7 +386,6 @@ clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor)
                 */
       clutter_x11_trap_x_errors ();
       eglDestroySurface (backend->edpy, priv->egl_surface);
-      XSync (dpy, FALSE);
       if (clutter_x11_untrap_x_errors ())
         g_debug ("%s: X errors", __FUNCTION__);
       priv->egl_surface = EGL_NO_SURFACE;
@@ -505,10 +464,10 @@ clutter_eglx_get_eglconfig (EGLDisplay *display,
 
 static void
 clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
-                                        gint                     x,
-                                        gint                     y,
-                                        gint                     width,
-                                        gint                     height)
+                                         gint                     x,
+                                         gint                     y,
+                                         gint                     width,
+                                         gint                     height)
 {
   guint                pixmap, pixmap_depth, pixmap_width, pixmap_height;
   ClutterEGLXTexturePixmapPrivate *priv;
@@ -540,26 +499,17 @@ clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
                 "pixmap-height", &pixmap_height,
                 NULL);
 
-  if ((pixmap != priv->current_pixmap ||
-       pixmap_depth != priv->current_pixmap_depth ||
-       pixmap_width != priv->current_pixmap_width ||
-       pixmap_height != priv->current_pixmap_height) &&
-       priv->egl_surface != EGL_NO_SURFACE)
+  if (pixmap != priv->current_pixmap ||
+      pixmap_depth != priv->current_pixmap_depth ||
+      pixmap_width != priv->current_pixmap_width ||
+      pixmap_height != priv->current_pixmap_height ||
+      priv->egl_surface == EGL_NO_SURFACE)
     {
-      g_debug ("%s: Pixmap has changed, destroying surface", __FUNCTION__);
-      clutter_eglx_texture_pixmap_surface_destroy(CLUTTER_ACTOR(texture));
+      priv->pixmap_changed = TRUE;
     }
 
-  if (priv->egl_surface == EGL_NO_SURFACE)
-    {
-            /*
-      g_debug ("%s: Surface not previously created, creating", __FUNCTION__);
-      */
-      clutter_eglx_texture_pixmap_surface_create(CLUTTER_ACTOR(texture));
-    }
-
-  if (priv->egl_surface != EGL_NO_SURFACE
-      && CLUTTER_ACTOR_IS_VISIBLE (CLUTTER_ACTOR (texture)))
+  if (/*priv->egl_surface != EGL_NO_SURFACE
+      && */CLUTTER_ACTOR_IS_VISIBLE (CLUTTER_ACTOR (texture)))
     clutter_actor_queue_redraw (CLUTTER_ACTOR (texture));
 }
 
@@ -699,6 +649,13 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
   int do_release = 1;
 
   priv = CLUTTER_EGLX_TEXTURE_PIXMAP (actor)->priv;
+
+  if (priv->pixmap_changed) {
+    priv->pixmap_changed = FALSE;
+    g_debug ("%s: Pixmap has changed, destroying surface", __FUNCTION__);
+    clutter_eglx_texture_pixmap_surface_destroy(actor);
+    clutter_eglx_texture_pixmap_surface_create(actor);
+  }
 
   if (priv->use_fallback)
     {
