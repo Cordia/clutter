@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo43~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed,  5 Aug 2009 09:35:56 +0300
+
 clutter (0.8.2-0maemo42) unstable; urgency=low
 
   * Fixes: NB#131303 - clutter_eglx_texture_pixmap_surface_create takes too
