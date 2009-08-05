@@ -1,6 +1,7 @@
-clutter (0.8.2-0maemo42~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo42) unstable; urgency=low
 
-  Fixes: NB#131303
+  * Fixes: NB#131303 - clutter_eglx_texture_pixmap_surface_create takes too
+    long
   * Speed improvements
     clutter/eglx/clutter-eglx-texture-pixmap.c: Speed improvements for pixmap
     create/destroy (70ms -> 26ms). Remove calls to eglQuerySurface that aren't
