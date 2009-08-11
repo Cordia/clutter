@@ -2120,8 +2120,10 @@ void
 clutter_stage_set_damaged_area (ClutterActor *self, ClutterGeometry area)
 {
   ClutterStagePrivate *priv = CLUTTER_STAGE (self)->priv;
+  gint width, height;
+  clutter_actor_get_size(self, (guint*)&width, (guint*)&height);
 
-  /* check if this is invalid */
+  /* check if this is invalid, invalidate the stage too */
   if (area.width <=0 || area.height <= 0)
     {
       priv->damaged_area.x = 0;
@@ -2130,6 +2132,34 @@ clutter_stage_set_damaged_area (ClutterActor *self, ClutterGeometry area)
       priv->damaged_area.height = 0;
       return;
     }
+
+  /* clip to the screen */
+  if (area.x < 0)
+    {
+      area.width += area.x;
+      area.x = 0;
+    }
+  if (area.y < 0)
+    {
+      area.height += area.y;
+      area.y = 0;
+    }
+  if (area.x > width || area.y > height)
+    { // offscreen
+      area.x = 0;
+      area.y = 0;
+      area.width = 0;
+      area.height = 0;
+    }
+  if (area.x + area.width > width)
+    area.width = width - area.x;
+  if (area.y + area.height > height)
+    area.height = height - area.y;
+
+  /* if this is invalid *now* (but not earlier),
+   * it was offscreen - so ignore it */
+  if (area.width <=0 || area.height <= 0)
+    return;
 
   /* check if the stage is invalid */
   if (priv->damaged_area.width <=0 || priv->damaged_area.height <= 0)
@@ -2150,14 +2180,16 @@ clutter_stage_set_damaged_area (ClutterActor *self, ClutterGeometry area)
           priv->damaged_area.height += priv->damaged_area.y - area.y;
           priv->damaged_area.y = area.y;
         }
-      if (area.x+area.width > priv->damaged_area.x+priv->damaged_area.width)
+      if (area.x + area.width >
+          priv->damaged_area.x + priv->damaged_area.width)
         {
-          priv->damaged_area.width = (area.x+area.width) -
+          priv->damaged_area.width = (area.x + area.width) -
                                      priv->damaged_area.x;
         }
-      if (area.y+area.height > priv->damaged_area.y+priv->damaged_area.height)
+      if (area.y + area.height >
+          priv->damaged_area.y + priv->damaged_area.height)
         {
-          priv->damaged_area.height = (area.y+area.height) -
+          priv->damaged_area.height = (area.y + area.height) -
                                       priv->damaged_area.y;
         }
     }

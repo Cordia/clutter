@@ -1,8 +1,10 @@
-clutter (0.8.2-0maemo43~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo43) unstable; urgency=low
 
-  * foo
+  * clutter/clutter-stage.c (clutter_stage_set_damaged_area): Clip to screen.
+  * Fixes: NB#131044 - Desktop having bluescreen when sliding it side by side
+    holding finger over some vidget
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed,  5 Aug 2009 09:35:56 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 11 Aug 2009 09:46:51 +0300
 
 clutter (0.8.2-0maemo42) unstable; urgency=low
 
