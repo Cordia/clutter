@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo44~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 11 Aug 2009 09:50:25 +0300
+
 clutter (0.8.2-0maemo43) unstable; urgency=low
 
   * clutter/clutter-stage.c (clutter_stage_set_damaged_area): Clip to screen.
