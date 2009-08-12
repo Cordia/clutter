@@ -742,7 +742,6 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
   GError                               *error = NULL;
   guint                                 bytes_per_line;
   char				       *data;
-  gboolean                              data_allocated = FALSE;
   int                                   err_code;
   char                                  pixel_bpp;
   gboolean                              pixel_has_alpha;
@@ -910,9 +909,6 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                  error->message);
       g_error_free (error);
     }
-
-  if (data_allocated)
-    g_free (data);
 
 free_image_and_return:
   if (priv->have_shm)

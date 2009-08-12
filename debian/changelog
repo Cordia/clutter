@@ -1,6 +1,9 @@
 clutter (0.8.2-0maemo44~unreleased) unstable; urgency=low
 
-  * foo
+  Kimmo:
+  * clutter/x11/clutter-x11-texture-pixmap.c
+    (clutter_x11_texture_pixmap_update_area_real): Remove dead code related to
+    unused 'data_allocated' variable. (Coverity found it.)
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 11 Aug 2009 09:50:25 +0300
 
