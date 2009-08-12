@@ -342,7 +342,8 @@ on_x_event_filter_too (XEvent *xev, ClutterEvent *cev, gpointer data)
         break;
       /* Only sync the window pixmap if the size has changed */
       if (xev->xconfigure.width != priv->pixmap_width ||
-          xev->xconfigure.height != priv->pixmap_height)
+          xev->xconfigure.height != priv->pixmap_height ||
+          !priv->window_mapped)
         clutter_x11_texture_pixmap_sync_window (texture);
       break;
     }

@@ -1,11 +1,16 @@
-clutter (0.8.2-0maemo44~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo44) unstable; urgency=low
 
   Kimmo:
   * clutter/x11/clutter-x11-texture-pixmap.c
     (clutter_x11_texture_pixmap_update_area_real): Remove dead code related to
     unused 'data_allocated' variable. (Coverity found it.)
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue, 11 Aug 2009 09:50:25 +0300
+  Gordon:
+  * clutter/x11/clutter-x11-texture-pixmap.c (on_x_event_filter_too): Update
+    the window also if ConfigureNotify comes for an unmapped window.
+  * Fixes: NB#131879 - Problem handling damage for a fullscreen window
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Aug 2009 16:16:35 +0300
 
 clutter (0.8.2-0maemo43) unstable; urgency=low
 
