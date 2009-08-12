@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo45~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Aug 2009 16:25:48 +0300
+
 clutter (0.8.2-0maemo44) unstable; urgency=low
 
   Kimmo:
