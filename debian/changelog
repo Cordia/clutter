@@ -1,6 +1,8 @@
 clutter (0.8.2-0maemo45~unreleased) unstable; urgency=low
 
-  * foo
+  * clutter/clutter-actor.c: Made allow_redraw act on children as well (so we
+    can cut down redraws from hildon-desktop). Stop set_opacity and set_clip
+    causing redraw if nothing has changed.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 12 Aug 2009 16:25:48 +0300
 

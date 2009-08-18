@@ -396,6 +396,9 @@ static void clutter_actor_set_request_mode       (ClutterActor *self,
                                                   ClutterRequestMode mode);
 static gboolean clutter_actor_is_on_stage(ClutterActor *self);
 
+static ClutterActor *
+            clutter_actor_get_stage_if_allow_redraw (ClutterActor *actor);
+
 G_DEFINE_ABSTRACT_TYPE_WITH_CODE (ClutterActor,
                                   clutter_actor,
                                   G_TYPE_INITIALLY_UNOWNED,
@@ -3047,13 +3050,12 @@ clutter_actor_queue_redraw (ClutterActor *self)
 
   g_return_if_fail (CLUTTER_IS_ACTOR (self));
 
-  if (!self->priv->allow_redraw ||
-      (CLUTTER_PRIVATE_FLAGS (self) & CLUTTER_ACTOR_IN_DESTRUCTION))
+  if (CLUTTER_PRIVATE_FLAGS (self) & CLUTTER_ACTOR_IN_DESTRUCTION)
     return;
 
   clutter_actor_notify_modified( self );
 
-  if ((stage = clutter_actor_get_stage (self)) != NULL)
+  if ((stage = clutter_actor_get_stage_if_allow_redraw (self)) != NULL)
     clutter_stage_queue_redraw (CLUTTER_STAGE (stage));
 }
 
@@ -4989,10 +4991,13 @@ clutter_actor_set_opacity (ClutterActor *self,
 {
   g_return_if_fail (CLUTTER_IS_ACTOR (self));
 
-  self->priv->opacity = opacity;
+  if (self->priv->opacity != opacity)
+    {
+      self->priv->opacity = opacity;
 
-  if (CLUTTER_ACTOR_IS_VISIBLE (self))
-    clutter_actor_queue_redraw (self);
+      if (CLUTTER_ACTOR_IS_VISIBLE (self))
+        clutter_actor_queue_redraw (self);
+    }
 }
 
 /**
@@ -5488,6 +5493,14 @@ clutter_actor_set_clipu (ClutterActor *self,
   g_return_if_fail (CLUTTER_IS_ACTOR (self));
 
   priv = self->priv;
+
+  /* If there has been no change... */
+  if (priv->has_clip &&
+      priv->clip[0] == xoff &&
+      priv->clip[1] == yoff &&
+      priv->clip[2] == width &&
+      priv->clip[3] == height)
+    return;
 
   priv->clip[0] = xoff;
   priv->clip[1] = yoff;
@@ -7493,6 +7506,24 @@ clutter_actor_get_stage (ClutterActor *actor)
   return actor;
 }
 
+/* Only return the stage if allow_redraw is set for all parents.
+ * Used in clutter_actor_queue_redraw to stop us redrawing if
+ * any parent doesn't have allow_redraw set... */
+static ClutterActor *
+clutter_actor_get_stage_if_allow_redraw (ClutterActor *actor)
+{
+  g_return_val_if_fail (CLUTTER_IS_ACTOR (actor), NULL);
+
+  while (actor && !(CLUTTER_PRIVATE_FLAGS (actor) & CLUTTER_ACTOR_IS_TOPLEVEL))
+    {
+      if (!CLUTTER_ACTOR_GET_PRIVATE(actor)->allow_redraw)
+        return NULL;
+      actor = clutter_actor_get_parent (actor);
+    }
+
+  return actor;
+}
+
 /**
  * clutter_actor_allocate_preferred_size:
  * @self: a #ClutterActor
@@ -7674,8 +7705,8 @@ void clutter_actor_set_visibility_detect(ClutterActor *self, gboolean use)
  * @self: a #ClutterActor
  *
  * Sets whether to allow clutter_actor_queue_redraw to actually work
- * when called on this actor. Used for optimisation of when to allow
- * redrawing.
+ * when called on this actor OR ANY OF ITS CHILDREN. Used for optimisation
+ * of when to allow redrawing.
  *
  * Since: 0.8.2-maemo
  */
