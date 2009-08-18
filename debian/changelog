@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo45~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo45) unstable; urgency=low
 
   Gordon:
     Fixes: NB#113278 - choppy playback when notification arrives
