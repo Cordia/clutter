@@ -89,7 +89,11 @@
  * AND the area for the last frame. */
 #if CLUTTER_COGL_HAS_GLES
 #define VIEWPORT_DAMAGE 0
-#define DOUBLE_BUFFER 1
+#define DOUBLE_BUFFER 0
+/* We *should* be double-buffered, but because we're just blitting in
+ * glSwapBuffers rather than flipping, we can do without the extra areas
+ * drawn. THIS MUST BE SET TO 1 IF FLIPPING IS EVER IMPLEMENTED
+ */
 #else
 #define VIEWPORT_DAMAGE 0
 #define DOUBLE_BUFFER 1
@@ -367,21 +371,12 @@ static void
 clutter_stage_pick (ClutterActor       *self,
 		    const ClutterColor *color)
 {
-  ClutterStagePrivate *priv = CLUTTER_STAGE (self)->priv;
   /* Paint nothing, cogl_paint_init() effectively paints the stage
    * silhouette for us - see _clutter_do_pick().
    * Chain up to the groups paint howerer so our children get picked
    * - clutter_group_pick
    */
   CLUTTER_ACTOR_CLASS (clutter_stage_parent_class)->paint (self);
-  /* Here we set the damaged area to the whole of the screen, as
-   * the 'pick' will have destroyed it and the next time we render
-   * we'll have to do everything */
-  priv->damaged_area.x = 0;
-  priv->damaged_area.y = 0;
-  clutter_actor_get_size(self,
-              &priv->damaged_area.width,
-              &priv->damaged_area.height);
 }
 
 static void

@@ -383,8 +383,11 @@ _clutter_do_pick (ClutterStage   *stage,
   ClutterMainContext *context;
   guchar              pixel[4];
   GLint               viewport[4];
+  gint                inv_y;
   ClutterColor        white = { 0xff, 0xff, 0xff, 0xff };
+  ClutterColor        previous_color;
   guint32             id;
+  ClutterGeometry     damaged_area;
 
   context = clutter_context_get_default ();
 
@@ -393,10 +396,39 @@ _clutter_do_pick (ClutterStage   *stage,
   /* needed for when a context switch happens */
   _clutter_stage_maybe_setup_viewport (stage);
 
-  cogl_paint_init (&white);
+  /* Get ready for drawing, don't clear the whole screen here
+   * as we want to render just to a small area */
+  cogl_paint_init (0);
+
+  /* Calls should work under both GL and GLES, note GLES needs RGBA */
+  glGetIntegerv(GL_VIEWPORT, viewport);
+
+  /* Work out where we need to read from - it is actually inverted
+   * compared to everything else we render */
+  inv_y = viewport[3] - y -1;
+
+  /* Read the color of the pixel we're about to overwrite*/
+  glReadPixels (x, inv_y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE,
+                (guchar*)&previous_color);
 
   /* Disable dithering (if any) when doing the painting in pick mode */
   glDisable (GL_DITHER);
+
+  /* Clip down to just a small area around the click */
+  damaged_area.x = x;
+  damaged_area.y = y;
+  damaged_area.width = 1;
+  damaged_area.height = 1;
+  cogl_clip_set(
+            CLUTTER_INT_TO_FIXED( damaged_area.x ),
+            CLUTTER_INT_TO_FIXED( damaged_area.y ),
+            CLUTTER_INT_TO_FIXED( damaged_area.width ),
+            CLUTTER_INT_TO_FIXED( damaged_area.height ));
+
+  /* Render a white backing rectangle */
+  cogl_color(&white);
+  cogl_rectangle(damaged_area.x, damaged_area.y,
+                 damaged_area.width, damaged_area.height);
 
   /* Render the entire scence in pick mode - just single colored silhouette's
    * are drawn offscreen (as we never swap buffers)
@@ -405,16 +437,24 @@ _clutter_do_pick (ClutterStage   *stage,
   clutter_actor_paint (CLUTTER_ACTOR (stage));
   context->pick_mode = CLUTTER_PICK_NONE;
 
-  /* Calls should work under both GL and GLES, note GLES needs RGBA */
-  glGetIntegerv(GL_VIEWPORT, viewport);
+  /* Revert our changes to clipping... */
+  cogl_clip_unset();
 
   /* Below to be safe, particularly on GL ES. an EGL wait call or full
-   * could be nicer.
-  */
+   * could be nicer. */
   glFinish();
 
   /* Read the color of the screen co-ords pixel */
-  glReadPixels (x, viewport[3] - y -1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+  glReadPixels (x, inv_y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+
+  /* Now render the previous color back onto the screen, to save
+   * doing a redraw of the area. This won't take effect on SGX
+   * until the next call to SwapBuffers, but it's not like we'll
+   * really miss a single pixel. */
+  previous_color.alpha = 255;
+  cogl_color(&previous_color);
+  cogl_rectangle(damaged_area.x, damaged_area.y,
+                 damaged_area.width, damaged_area.height);
 
   /* Enable dither. It is enabled by default anyway */
   glEnable (GL_DITHER);
