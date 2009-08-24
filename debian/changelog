@@ -1,6 +1,6 @@
-clutter (0.8.2-0maemo46~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo46) unstable; urgency=low
 
-    Fixes: NB#134034 - Blue screen observed in various scenarios
+  * Fixes: NB#134034 - Blue screen observed in various scenarios
            Also allows single-buffering to work passably and 
   * clutter/clutter-main.c: set DOUBLE_BUFFER=0 as we don't need to write to
     such a large area while eglSwapBuffers uses blitting rather than flipping.
@@ -9,7 +9,7 @@ clutter (0.8.2-0maemo46~unreleased) unstable; urgency=low
     screen, and then set the whole area as 'damaged').
   * clutter/clutter-stage.c: Now don't set the whole screen areas as damaged
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 21 Aug 2009 12:47:28 +0100
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 24 Aug 2009 15:57:54 +0300
 
 clutter (0.8.2-0maemo45) unstable; urgency=low
 
