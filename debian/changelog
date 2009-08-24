@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo47~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 24 Aug 2009 15:59:29 +0300
+
 clutter (0.8.2-0maemo46) unstable; urgency=low
 
   * Fixes: NB#134034 - Blue screen observed in various scenarios
