@@ -1,6 +1,9 @@
 clutter (0.8.2-0maemo47~unreleased) unstable; urgency=low
 
-  * foo
+  Kimmo:
+  * clutter/x11/clutter-x11-texture-pixmap.c
+    (clutter_x11_texture_pixmap_set_redirection): Allow setting the
+    redirection irrespective of Clutter's idea of it.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 24 Aug 2009 15:59:29 +0300
 

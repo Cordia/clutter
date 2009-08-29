@@ -1108,7 +1108,7 @@ clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
 
   priv = texture->priv;
 
-  if (setting && !priv->window_redirected && priv->window)
+  if (setting && priv->window)
     {
       clutter_x11_trap_x_errors ();
       XCompositeRedirectWindow (dpy,
@@ -1120,7 +1120,7 @@ clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
       XSync (dpy, False);
       clutter_x11_untrap_x_errors ();
     }
-  else if (!setting && priv->window_redirected && priv->window)
+  else if (!setting && priv->window)
     {
       clutter_x11_trap_x_errors ();
       XCompositeUnredirectWindow (dpy,
