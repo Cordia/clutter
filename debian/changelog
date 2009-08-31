@@ -1,15 +1,17 @@
-clutter (0.8.2-0maemo47~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo47) unstable; urgency=low
 
   Kimmo:
   * clutter/x11/clutter-x11-texture-pixmap.c
     (clutter_x11_texture_pixmap_set_redirection): Allow setting the
     redirection irrespective of Clutter's idea of it.
+
   Adam:
   * clutter/x11/clutter-event-x11.c:
     (events_queue): don't process events for more than 400 ms
-    (clutter_event_prepare, clutter_event_check): respect clutter_x11_event_processing_blocked
+    (clutter_event_prepare, clutter_event_check): respect
+    clutter_x11_event_processing_blocked
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 24 Aug 2009 15:59:29 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 31 Aug 2009 14:21:23 +0300
 
 clutter (0.8.2-0maemo46) unstable; urgency=low
 
