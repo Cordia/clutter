@@ -62,6 +62,8 @@
 #define XEMBED_UNREGISTER_ACCELERATOR   13
 #define XEMBED_ACTIVATE_ACCELERATOR     14
 
+gboolean clutter_x11_event_processing_blocked;
+
 static Window ParentEmbedderWin = None;
 
 typedef struct _ClutterEventSource      ClutterEventSource;
@@ -816,8 +818,15 @@ events_queue (ClutterBackend *backend)
   Display           *xdisplay = backend_x11->xdpy;
   XEvent             xevent;
   ClutterMainContext  *clutter_context;
+  static GTimer *timer;
 
   clutter_context = clutter_context_get_default ();
+
+  /* Observe the elapsed time we spend on event processing not to starve
+   * g_timeout_add() callbacks to death. */
+  if (!timer)
+    timer = g_timer_new ();
+  g_timer_start (timer);
 
   while (!clutter_events_pending () && XPending (xdisplay))
     {
@@ -834,6 +843,10 @@ events_queue (ClutterBackend *backend)
         {
           clutter_event_free (event);
         }
+
+      /* Take a break every 40 milisecs. */
+      if (g_timer_elapsed (timer, NULL) >= 0.04)
+        break;
     }
 }
 
@@ -897,7 +910,10 @@ clutter_event_prepare (GSource *source,
   clutter_threads_enter ();
 
   *timeout = -1;
-  retval = (clutter_events_pending () || check_xpending (backend));
+  if (clutter_x11_event_processing_blocked)
+    retval = FALSE;
+  else
+    retval = (clutter_events_pending () || check_xpending (backend));
 
   clutter_threads_leave ();
 
@@ -913,7 +929,9 @@ clutter_event_check (GSource *source)
 
   clutter_threads_enter ();
 
-  if (event_source->event_poll_fd.revents & G_IO_IN)
+  if (clutter_x11_event_processing_blocked)
+    retval = FALSE;
+  else if (event_source->event_poll_fd.revents & G_IO_IN)
     retval = (clutter_events_pending () || check_xpending (backend));
   else
     retval = FALSE;
