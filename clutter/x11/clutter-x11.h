@@ -134,15 +134,6 @@ gboolean clutter_x11_has_xinput (void);
 
 gboolean clutter_x11_has_composite_extension (void);
 
-/**
- * clutter_x11_event_processing_blocked:
- *
- * As long as %TRUE the X11 backend won't start processing any new X events.
- * Useful when you want to spin clutter_main() in an event filter function
- * and would mind reentering it.
- */
-extern gboolean clutter_x11_event_processing_blocked;
-
 G_END_DECLS
 
 #endif /* __CLUTTER_X11_H__ */
