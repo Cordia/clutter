@@ -1,8 +1,15 @@
 clutter (0.8.2-0maemo49~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  * clutter/clutter-main.c
+    clutter/clutter-main.h
+    clutter/clutter-private.h: Add extra function called 
+    clutter_grab_pointer_without_pick. This allows input events to be received
+    but ensures that clutter does not do picking in order to find which actor
+    is under the cursor. Also removed un-needed glFinish for picking (syncing 
+    should be done in GLES) and increased clutter motion events frequency.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  1 Sep 2009 12:43:14 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  7 Sep 2009 14:34:14 +0100
 
 clutter (0.8.2-0maemo48) unstable; urgency=low
 

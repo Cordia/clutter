@@ -154,6 +154,7 @@ void             clutter_set_default_frame_rate      (guint    frames_per_sec);
 guint            clutter_get_default_frame_rate      (void);
 
 void             clutter_grab_pointer                (ClutterActor *actor);
+void             clutter_grab_pointer_without_pick   (ClutterActor *actor);
 void             clutter_ungrab_pointer              (void);
 ClutterActor *   clutter_get_pointer_grab            (void);
 

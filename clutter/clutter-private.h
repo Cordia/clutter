@@ -113,6 +113,8 @@ struct _ClutterMainContext
   ClutterActor    *pointer_grab_actor; /* The actor having the pointer grab
                                         * (or NULL if there is no pointer grab
                                         */
+  gboolean         grab_actor_needs_pick; /* Whether to perform a pick for
+                                                the grabbed actor or not */
   ClutterActor    *keyboard_grab_actor; /* The actor having the pointer grab
                                          * (or NULL if there is no pointer
                                          *  grab)

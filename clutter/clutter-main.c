@@ -440,9 +440,8 @@ _clutter_do_pick (ClutterStage   *stage,
   /* Revert our changes to clipping... */
   cogl_clip_unset();
 
-  /* Below to be safe, particularly on GL ES. an EGL wait call or full
-   * could be nicer. */
-  glFinish();
+  /* We should *not* have to wait here as OpenGL/GLES will ensure that
+   * everything is in sync. Calling glFinish would just slow us down more. */
 
   /* Read the color of the screen co-ords pixel */
   glReadPixels (x, inv_y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
@@ -2076,9 +2075,13 @@ clutter_do_event (ClutterEvent *event)
                 }
 
               /* Map the event to a reactive actor */
-              actor = _clutter_do_pick (CLUTTER_STAGE (stage),
-                                        x, y,
-                                        CLUTTER_PICK_REACTIVE);
+              if (context->pointer_grab_actor &&
+                  !context->grab_actor_needs_pick)
+                actor = context->pointer_grab_actor;
+              else
+                actor = _clutter_do_pick (CLUTTER_STAGE (stage),
+                                          x, y,
+                                          CLUTTER_PICK_REACTIVE);
 
               event->any.source = actor;
               if (!actor)
@@ -2273,6 +2276,8 @@ clutter_grab_pointer (ClutterActor *actor)
 
   context = clutter_context_get_default ();
 
+  context->grab_actor_needs_pick = TRUE;
+
   if (context->pointer_grab_actor == actor)
     return;
 
@@ -2292,6 +2297,20 @@ clutter_grab_pointer (ClutterActor *actor)
 			 on_pointer_grab_weak_notify,
 			 NULL);
     }
+}
+
+/* Just like clutter_grab_pointer, but allows the programmer
+ * to request that Clutter does not perform the pick operation on every
+ * mouse move event. This is useful if we don't want the added delay of
+ * a pick operation. */
+void
+clutter_grab_pointer_without_pick (ClutterActor *actor)
+{
+  ClutterMainContext *context = clutter_context_get_default ();
+
+  clutter_grab_pointer(actor);
+
+  context->grab_actor_needs_pick = FALSE;
 }
 
 /**
@@ -2499,7 +2518,7 @@ clutter_get_motion_events_frequency (void)
     {
       guint frequency;
 
-      frequency = clutter_default_fps / 4;
+      frequency = clutter_default_fps / 2;
       frequency = CLAMP (frequency, 20, 45);
 
       return frequency;
