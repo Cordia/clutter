@@ -4,7 +4,7 @@ clutter (0.8.2-0maemo50~unreleased) unstable; urgency=low
   
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  7 Sep 2009 14:34:14 +0100  
 
-clutter (0.8.2-0maemo49~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo49) unstable; urgency=low
 
   Gordon:
   * clutter/clutter-main.c
