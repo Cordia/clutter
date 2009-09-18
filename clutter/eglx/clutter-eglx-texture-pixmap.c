@@ -234,6 +234,8 @@ create_cogl_texture (ClutterTexture *texture,
     {
       /*g_debug ("%s: created cogl handle %x", __FUNCTION__, (int)handle);*/
       clutter_texture_set_cogl_texture (texture, handle);
+      /* unref because clutter_texture_set_cogl_texture ref'd the handle */
+      cogl_texture_unref (handle);
       return TRUE;
     }
   else

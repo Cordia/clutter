@@ -1,6 +1,9 @@
 clutter (0.8.2-0maemo50~unreleased) unstable; urgency=low
 
-  * foo
+  Kimmo:
+  * clutter/eglx/clutter-eglx-texture-pixmap.c (create_cogl_texture): Unref
+    the cogl texture because clutter_texture_set_cogl_texture already
+    references it for its own purposes. Related to NB#134230 and NB#98132
   
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  7 Sep 2009 14:34:14 +0100  
 
