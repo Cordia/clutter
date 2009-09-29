@@ -1,11 +1,15 @@
-clutter (0.8.2-0maemo50~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo50) unstable; urgency=low
 
   Kimmo:
   * clutter/eglx/clutter-eglx-texture-pixmap.c (create_cogl_texture): Unref
     the cogl texture because clutter_texture_set_cogl_texture already
     references it for its own purposes. Related to NB#134230 and NB#98132
+  * clutter/clutter-stage.c (clutter_stage_paint): Move setting of the
+    CLUTTER_ACTOR_IN_PAINT flag to after the shaped mode check.
+    (redraw_update_idle): Do not draw onto the screen in shaped mode.
+    Related to NB#134893
   
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Tue,  7 Sep 2009 14:34:14 +0100  
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue, 29 Sep 2009 13:50:10 +0300
 
 clutter (0.8.2-0maemo49) unstable; urgency=low
 
