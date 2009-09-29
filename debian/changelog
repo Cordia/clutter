@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo51~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue, 29 Sep 2009 14:13:20 +0300
+
 clutter (0.8.2-0maemo50) unstable; urgency=low
 
   Kimmo:
