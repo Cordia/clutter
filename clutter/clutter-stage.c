@@ -271,10 +271,10 @@ clutter_stage_paint (ClutterActor *self)
   gboolean             update_area;
   guint                width, height;
 
-  CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_IN_PAINT);
-
   if (priv->shaped_mode)
     return;
+
+  CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_IN_PAINT);
 
   CLUTTER_NOTE (PAINT, "Initializing stage paint");
 
@@ -1953,6 +1953,10 @@ redraw_update_idle (gpointer user_data)
       g_source_remove (priv->update_idle);
       priv->update_idle = 0;
     }
+
+  if (priv->shaped_mode)
+    /* Clutter drawing should not be done in 'shaped mode' */
+    return FALSE;
 
   CLUTTER_NOTE (MULTISTAGE, "redrawing via idle for stage:%p", stage);
   clutter_redraw (stage);
