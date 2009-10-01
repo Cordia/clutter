@@ -1,8 +1,12 @@
 clutter (0.8.2-0maemo51~unreleased) unstable; urgency=low
 
-  * foo
+  * clutter/eglx/clutter-eglx-texture-pixmap.c
+    (clutter_eglx_texture_pixmap_dispose): Delete the texture to avoid a
+    memory leak.
+    Fixes: NB#134230 - Memory leak in hildon-desktop when starting and closing
+    Media Player
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue, 29 Sep 2009 14:13:20 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Thu, 01 Oct 2009 14:13:17 +0300
 
 clutter (0.8.2-0maemo50) unstable; urgency=low
 
