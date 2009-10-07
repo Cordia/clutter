@@ -7520,6 +7520,9 @@ clutter_actor_get_stage_if_allow_redraw (ClutterActor *actor)
         return NULL;
       actor = clutter_actor_get_parent (actor);
     }
+  /* Check the stage itself for the allow_redraw flag */
+  if (actor && !CLUTTER_ACTOR_GET_PRIVATE(actor)->allow_redraw)
+    return NULL;
 
   return actor;
 }

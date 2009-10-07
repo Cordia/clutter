@@ -271,9 +271,6 @@ clutter_stage_paint (ClutterActor *self)
   gboolean             update_area;
   guint                width, height;
 
-  if (priv->shaped_mode)
-    return;
-
   CLUTTER_SET_PRIVATE_FLAGS (self, CLUTTER_ACTOR_IN_PAINT);
 
   CLUTTER_NOTE (PAINT, "Initializing stage paint");

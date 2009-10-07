@@ -1,8 +1,15 @@
-clutter (0.8.2-0maemo52~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo52) unstable; urgency=low
 
-  * foo
+  Gordon:
+  Small bugfix allowing us to stop redraws for screen blanking while not
+  conflicting with what we do for rotation.
+  * clutter/clutter-actor.c: clutter_actor_get_stage_if_allow_redraw now
+    checks the allow_redraw flag on the stage.
+  * clutter/clutter-stage.c: Removed shaped_mode return in paint, as it is too
+    late if we ever get to this point (screen has been cleared + will be
+    flipped)
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Tue,  6 Oct 2009 09:01:27 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed,  7 Oct 2009 11:24:14 +0100
 
 clutter (0.8.2-0maemo51) unstable; urgency=low
 
