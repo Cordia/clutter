@@ -95,8 +95,6 @@ struct _ClutterEGLXTexturePixmapPrivate
 
   /* If the pixmap has changed, we'll want to try and recreate the surface */
   gboolean      pixmap_changed;
-
-  gboolean      dispose_called;
 };
 
 void
@@ -182,7 +180,6 @@ clutter_eglx_texture_pixmap_init (ClutterEGLXTexturePixmap *self)
   priv->current_pixmap_depth = 0;
   priv->current_pixmap_width = 0;
   priv->current_pixmap_height = 0;
-  priv->dispose_called = FALSE;
 
   if (_ext_check_done == FALSE)
     {
@@ -214,23 +211,10 @@ clutter_eglx_texture_pixmap_dispose (GObject *object)
 
   priv = CLUTTER_EGLX_TEXTURE_PIXMAP (object)->priv;
 
-  /* this dispose handler is called twice because of how
-   * clutter_actor_destroy works */
-  if (priv->dispose_called)
-    return;
-
   if (priv->egl_surface != EGL_NO_SURFACE)
     clutter_eglx_texture_pixmap_surface_destroy(CLUTTER_ACTOR(object));
 
-  if (priv->texture_id)
-    {
-      glDeleteTextures (1, &priv->texture_id);
-      priv->texture_id = 0;
-    }
-
   G_OBJECT_CLASS (clutter_eglx_texture_pixmap_parent_class)->dispose (object);
-
-  priv->dispose_called = TRUE;
 }
 
 static gboolean
@@ -378,7 +362,6 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       g_debug ("%s: Unable to create cogl texture", __FUNCTION__);
 
       glDeleteTextures (1, &priv->texture_id);
-      priv->texture_id = 0;
 
       CLUTTER_NOTE (TEXTURE, "Falling back to X11 manual mechanism");
       priv->use_fallback = TRUE;
