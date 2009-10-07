@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo54~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed,  7 Oct 2009 15:08:00 +0300
+
 clutter (0.8.2-0maemo53) unstable; urgency=low
 
   * Revert fix for NB#134230 because fix for NB#139960 was reverted.
