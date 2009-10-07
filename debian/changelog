@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo52) unstable; urgency=low
 
   Gordon:
+  Fixes for NB#142006 - CallUI doesn't update orientation when screen is off
   Small bugfix allowing us to stop redraws for screen blanking while not
   conflicting with what we do for rotation.
   * clutter/clutter-actor.c: clutter_actor_get_stage_if_allow_redraw now
