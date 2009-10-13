@@ -7585,103 +7585,97 @@ clutter_actor_allocate_preferred_size (ClutterActor *self,
  */
 static gboolean clutter_actor_is_on_stage(ClutterActor *self)
 {
-  ClutterActor *stage;
   ClutterActorPrivate *priv;
+  ClutterVertex  verts[4];
+  ClutterActorBox actor_box, stage_box;
+  ClutterActorBox *box = &self->priv->allocation;
+  gboolean visible = FALSE;
+  ClutterFixed           mtx[16];
+  ClutterFixed           mtx_p[16];
+  ClutterFixed           v[4];
+  int i;
 
-      /* check to see if the vertices (in stage coordinates)
-       * are on the stage or not. Create a box from them and
-       * the stage, and check if the elements are inside or not. */
+  /* check to see if the vertices (in stage coordinates)
+   * are on the stage or not. Create a box from them and
+   * the stage, and check if the elements are inside or not. */
 
   if (!CLUTTER_IS_ACTOR (self)) return TRUE;
 
   priv = CLUTTER_ACTOR_GET_PRIVATE(self);
   if (!priv->visibility_detect) return TRUE;
 
-  if ((stage = clutter_actor_get_stage (self)) != NULL)
+  /* TODO: move this code back to clutter_actor_get_abs_allocation_vertices
+   * because it's just way tidier + less duplication */
+
+  cogl_get_modelview_matrix (mtx);
+  cogl_get_projection_matrix (mtx_p);
+  cogl_get_viewport (v);
+
+  verts[0].x = 0;
+  verts[0].y = 0;
+  verts[0].z = 0;
+  verts[1].x = box->x2 - box->x1;
+  verts[1].y = 0;
+  verts[1].z = 0;
+  verts[2].x = 0;
+  verts[2].y = box->y2 - box->y1;
+  verts[2].z = 0;
+  verts[3].x = box->x2 - box->x1;
+  verts[3].y = box->y2 - box->y1;
+  verts[3].z = 0;
+
+  for (i=0;i<4;i++)
+    verts[i] = cogl_util_unproject(mtx, mtx_p, v, verts[i]);
+
+  clutter_actor_get_box_from_vertices(verts, &actor_box);
+
+  /* If we have scissor testing enabled, things outside the scissor
+   * box won't be drawn anyway, so use the box rather than the stage
+   * to allow us to clip even more stuff out */
+
+  if (glIsEnabled (GL_SCISSOR_TEST))
     {
-      ClutterVertex  verts[4];
-      ClutterActorBox actor_box, stage_box;
-      ClutterActorBox *box = &self->priv->allocation;
-      gboolean visible = FALSE;
-      ClutterFixed           mtx[16];
-      ClutterFixed           mtx_p[16];
-      ClutterFixed           v[4];
-      int i;
-
-      /* TODO: move this code back to clutter_actor_get_abs_allocation_vertices
-       * because it's just way tidier + less duplication */
-
-      cogl_get_modelview_matrix (mtx);
-      cogl_get_projection_matrix (mtx_p);
-      cogl_get_viewport (v);
-
-      verts[0].x = 0;
-      verts[0].y = 0;
-      verts[0].z = 0;
-      verts[1].x = box->x2 - box->x1;
-      verts[1].y = 0;
-      verts[1].z = 0;
-      verts[2].x = 0;
-      verts[2].y = box->y2 - box->y1;
-      verts[2].z = 0;
-      verts[3].x = box->x2 - box->x1;
-      verts[3].y = box->y2 - box->y1;
-      verts[3].z = 0;
-
-      for (i=0;i<4;i++)
-        verts[i] = cogl_util_unproject(mtx, mtx_p, v, verts[i]);
-
-      clutter_actor_get_box_from_vertices(verts, &actor_box);
-
-      /* If we have scissor testing enabled, things outside the scissor
-       * box won't be drawn anyway, so use the box rather than the stage
-       * to allow us to clip even more stuff out */
-
-      if (glIsEnabled (GL_SCISSOR_TEST))
-        {
-          GLint scissor_box[4];
-          /* for some reason the scissor box is inverted wrt what we calculate */
-          glGetIntegerv (GL_SCISSOR_BOX, scissor_box);
-          stage_box.x1 = CLUTTER_UNITS_FROM_INT(scissor_box[0]);
-          stage_box.y1 = CLUTTER_UNITS_FROM_INT(scissor_box[1]);
-          stage_box.x2 = CLUTTER_UNITS_FROM_INT(scissor_box[0]+scissor_box[2]);
-          stage_box.y2 = CLUTTER_UNITS_FROM_INT(scissor_box[1]+scissor_box[3]);
-        }
-      else
-        {
-          stage_box.x1 = CLUTTER_UNITS_FROM_INT(0);
-          stage_box.y1 = CLUTTER_UNITS_FROM_INT(0);
-          stage_box.x2 = clutter_actor_get_widthu( stage );
-          stage_box.y2 = clutter_actor_get_heightu( stage );
-        }
-
-      visible = actor_box.x1<=stage_box.x2 && actor_box.x2>=stage_box.x1 &&
-                actor_box.y1<=stage_box.y2 && actor_box.y2>=stage_box.y1;
-
-      /*if (visible == 0) {
-        int d = clutter_actor_get_depth(self);
-        int px,py;
-        guint sx,sy;
-        clutter_actor_get_position(self, &px, &py);
-        clutter_actor_get_size(self, &sx, &sy);
-        g_debug("%d %d %d %d [%d,%d,%d,%d, %d] ---  %d %d %d %d %d",
-              CLUTTER_UNITS_TO_INT(actor_box.x1),
-              CLUTTER_UNITS_TO_INT(actor_box.y1),
-              CLUTTER_UNITS_TO_INT(actor_box.x2),
-              CLUTTER_UNITS_TO_INT(actor_box.y2),
-              px, py, px+sx, py+sy, d,
-              CLUTTER_UNITS_TO_INT(stage_box.x1),
-              CLUTTER_UNITS_TO_INT(stage_box.y1),
-              CLUTTER_UNITS_TO_INT(stage_box.x2),
-              CLUTTER_UNITS_TO_INT(stage_box.y2),
-              visible);
-      }*/
-
-      return visible;
+      GLint scissor_box[4];
+      /* for some reason the scissor box is inverted wrt what we calculate */
+      glGetIntegerv (GL_SCISSOR_BOX, scissor_box);
+      stage_box.x1 = CLUTTER_UNITS_FROM_INT(scissor_box[0]);
+      stage_box.y1 = CLUTTER_UNITS_FROM_INT(scissor_box[1]);
+      stage_box.x2 = CLUTTER_UNITS_FROM_INT(scissor_box[0]+scissor_box[2]);
+      stage_box.y2 = CLUTTER_UNITS_FROM_INT(scissor_box[1]+scissor_box[3]);
+    }
+  else
+    {
+      /* FIXME: If rendering to an FBO, the width and height will be
+       * wrong here */
+      stage_box.x1 = CLUTTER_UNITS_FROM_INT(0);
+      stage_box.y1 = CLUTTER_UNITS_FROM_INT(0);
+      stage_box.x2 = v[2];
+      stage_box.y2 = v[3];
     }
 
-    /* we are unable to tell, so just play safe */
-    return TRUE;
+  visible = actor_box.x1<=stage_box.x2 && actor_box.x2>=stage_box.x1 &&
+            actor_box.y1<=stage_box.y2 && actor_box.y2>=stage_box.y1;
+
+  /*if (visible == 0) {
+    int d = clutter_actor_get_depth(self);
+    int px,py;
+    guint sx,sy;
+    clutter_actor_get_position(self, &px, &py);
+    clutter_actor_get_size(self, &sx, &sy);
+    g_debug("%d %d %d %d [%d,%d,%d,%d, %d] ---  %d %d %d %d %d",
+          CLUTTER_UNITS_TO_INT(actor_box.x1),
+          CLUTTER_UNITS_TO_INT(actor_box.y1),
+          CLUTTER_UNITS_TO_INT(actor_box.x2),
+          CLUTTER_UNITS_TO_INT(actor_box.y2),
+          px, py, px+sx, py+sy, d,
+          CLUTTER_UNITS_TO_INT(stage_box.x1),
+          CLUTTER_UNITS_TO_INT(stage_box.y1),
+          CLUTTER_UNITS_TO_INT(stage_box.x2),
+          CLUTTER_UNITS_TO_INT(stage_box.y2),
+          visible);
+  }*/
+
+  return visible;
 }
 
 /**
