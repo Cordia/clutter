@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo54~unreleased) unstable; urgency=low
 
   Gordon:
+  Needed for hildon-desktop fix for 141411
   * clutter/clutter-actor.c: Make visibility detection work off of the viewport
     size rather than the stage size - which fixes problems when rendering to an
     FBO.
