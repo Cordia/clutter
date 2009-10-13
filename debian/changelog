@@ -1,4 +1,10 @@
-clutter (0.8.2-0maemo54~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo55~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 13 Oct 2009 18:08:00 +0300
+
+clutter (0.8.2-0maemo54) unstable; urgency=low
 
   Gordon:
   Needed for hildon-desktop fix for 141411
@@ -6,7 +12,7 @@ clutter (0.8.2-0maemo54~unreleased) unstable; urgency=low
     size rather than the stage size - which fixes problems when rendering to an
     FBO.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed,  7 Oct 2009 15:08:00 +0300
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Wed, 13 Oct 2009 15:22:00 +0100
 
 clutter (0.8.2-0maemo53) unstable; urgency=low
 
