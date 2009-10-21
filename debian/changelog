@@ -1,6 +1,9 @@
 clutter (0.8.2-0maemo55~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  * Re-apply the glDeleteTextures patch.
+  * Fixes: NB#134230 - Memory leak in hildon-desktop when starting and closing
+    Media Player
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 13 Oct 2009 18:08:00 +0300
 
