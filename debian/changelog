@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo56~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo56) unstable; urgency=low
 
   Gordon:
   * clutter/cogl/cogl.h.in
@@ -10,7 +10,7 @@ clutter (0.8.2-0maemo56~unreleased) unstable; urgency=low
   * clutter/eglx/clutter-eglx-texture-pixmap.c: Now give cogl full ownership
     of the texture, so we always free it (even on resize).
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 10:10:11 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 17:41:30 +0300
 
 clutter (0.8.2-0maemo55) unstable; urgency=low
 
