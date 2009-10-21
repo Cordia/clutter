@@ -2198,3 +2198,19 @@ cogl_texture_triangles (CoglHandle         handle,
                         use_color
                         );
 }
+
+/* Set whether a texture is foreign or not - this sets whether the OpenGL
+ * will be freed when this cogl texture is destroyed */
+void
+cogl_texture_set_foreign(CoglHandle handle, gboolean foreign)
+{
+  CoglTexture *tex;
+
+  /* Check if valid texture */
+  if (!cogl_is_texture (handle))
+    return;
+
+  tex = _cogl_texture_pointer_from_handle (handle);
+
+  tex->is_foreign = foreign;
+}

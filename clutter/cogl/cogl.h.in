@@ -790,6 +790,11 @@ CoglHandle      cogl_texture_new_from_foreign (GLuint              gl_handle,
                                                GLuint              y_pot_waste,
                                                CoglPixelFormat     format);
 
+/* Set whether a texture is foreign or not - this sets whether the OpenGL
+ * will be freed when this cogl texture is destroyed */
+void
+cogl_texture_set_foreign(CoglHandle handle, gboolean foreign);
+
 /**
  * cogl_is_texture:
  * @handle: A CoglHandle

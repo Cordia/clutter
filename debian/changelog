@@ -1,6 +1,14 @@
 clutter (0.8.2-0maemo56~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  * clutter/cogl/cogl.h.in
+  * clutter/cogl/gl/cogl-texture.c
+  * clutter/cogl/gles/cogl-texture.c: add cogl_texture_set_foreign
+    to let cogl free the textures when it is done with them.
+  * clutter/cogl/common/cogl-pvr-texture-gl.c: Fix some stupid bugs meaning
+    that PVR textures were leaked.
+  * clutter/eglx/clutter-eglx-texture-pixmap.c: Now give cogl full ownership
+    of the texture, so we always free it (even on resize).
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 10:10:11 +0300
 

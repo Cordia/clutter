@@ -59,7 +59,6 @@
  */
 CoglHandle cogl_pvr_texture_load(const char *filename)
 {
-  GLuint tex;
   PVR_TEXTURE_HEADER header;
   guchar *texture_data;
   GLuint gl_format = 0;
@@ -152,11 +151,6 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
     g_warning("%s: Unknown PVR file format 0x%02x", __FUNCTION__,
               header.dwpfFlags & 0xFF);
 
-  /* load into GL */
-  GE( glEnable(GL_TEXTURE_2D) );
-  GE( glGenTextures(1, &tex) );
-  GE( glBindTexture(GL_TEXTURE_2D, tex) );
-
   if (!texture_data)
     return COGL_INVALID_HANDLE;
 
@@ -175,16 +169,28 @@ CoglHandle cogl_pvr_texture_load(const char *filename)
     }
   else
     {
+      CoglHandle handle;
+      GLuint tex;
+
+      /* load into GL */
+      GE( glEnable(GL_TEXTURE_2D) );
+      GE( glGenTextures(1, &tex) );
+      GE( glBindTexture(GL_TEXTURE_2D, tex) );
       GE( glCompressedTexImage2D(GL_TEXTURE_2D, 0, gl_format,
                              header.dwWidth, header.dwHeight, 0,
                              header.dwDataSize, texture_data) );
       g_free(texture_data);
       /* texture format is NOT COGL_PIXEL_FORMAT_RGBA_4444, but we
        * don't have the correct one */
-      return cogl_texture_new_from_foreign (
+      handle = cogl_texture_new_from_foreign (
                 tex, GL_TEXTURE_2D,
                 header.dwWidth, header.dwHeight,
                 0, 0,
                 COGL_PIXEL_FORMAT_RGBA_4444);
+      /* Force COGL to take ownership of this texture and destroy it
+       * when the CoglTexture is destroyed */
+      cogl_texture_set_foreign(handle, FALSE);
+
+      return handle;
     }
 }

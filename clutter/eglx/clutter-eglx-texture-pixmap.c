@@ -83,7 +83,6 @@ static gboolean          _ext_check_done = FALSE;
 
 struct _ClutterEGLXTexturePixmapPrivate
 {
-  GLuint	texture_id;
   EGLSurface    egl_surface;
 
   gboolean      use_fallback;
@@ -177,7 +176,6 @@ clutter_eglx_texture_pixmap_init (ClutterEGLXTexturePixmap *self)
                                    ClutterEGLXTexturePixmapPrivate);
   priv->egl_surface = EGL_NO_SURFACE;
   priv->use_fallback = FALSE;
-  priv->texture_id = 0;
   priv->current_pixmap = 0;
   priv->current_pixmap_depth = 0;
   priv->current_pixmap_width = 0;
@@ -216,21 +214,13 @@ clutter_eglx_texture_pixmap_dispose (GObject *object)
 
   /* this dispose handler is called twice because of how
    * clutter_actor_destroy works */
-  if (priv->dispose_called)
-    return;
 
   if (priv->egl_surface != EGL_NO_SURFACE)
     clutter_eglx_texture_pixmap_surface_destroy(CLUTTER_ACTOR(object));
 
-  if (priv->texture_id)
-    {
-      glDeleteTextures (1, &priv->texture_id);
-      priv->texture_id = 0;
-    }
+  /* Texture deletion is now handled by the CoglTexture */
 
   G_OBJECT_CLASS (clutter_eglx_texture_pixmap_parent_class)->dispose (object);
-
-  priv->dispose_called = TRUE;
 }
 
 static gboolean
@@ -248,6 +238,9 @@ create_cogl_texture (ClutterTexture *texture,
 
   if (handle)
     {
+      /* Force COGL to take ownership of this texture and destroy it
+       * when the CoglTexture is destroyed */
+      cogl_texture_set_foreign(handle, FALSE);
       /*g_debug ("%s: created cogl handle %x", __FUNCTION__, (int)handle);*/
       clutter_texture_set_cogl_texture (texture, handle);
       /* unref because clutter_texture_set_cogl_texture ref'd the handle */
@@ -270,6 +263,7 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
   gboolean                        has_alpha;
   CoglPixelFormat                 format;
   ClutterBackendEGL		  *backend;
+  GLuint	                  texture_id;
 
   backend = CLUTTER_BACKEND_EGL (clutter_get_default_backend ());
   priv = CLUTTER_EGLX_TEXTURE_PIXMAP (actor)->priv;
@@ -347,13 +341,13 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
     }
 
   /* bind the surface to a GL texture */
-  glGenTextures (1, &priv->texture_id);
-  glBindTexture (GL_TEXTURE_2D, priv->texture_id);
+  glGenTextures (1, &texture_id);
+  glBindTexture (GL_TEXTURE_2D, texture_id);
 
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-  if (glIsTexture (priv->texture_id) == GL_FALSE)
+  if (glIsTexture (texture_id) == GL_FALSE)
     {
       g_warning ("%s: failed to bind texture", __FUNCTION__);
       return;
@@ -372,13 +366,12 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor)
       format = COGL_PIXEL_FORMAT_RGBA_8888;
     }
 
-  if (!create_cogl_texture (CLUTTER_TEXTURE (actor), priv->texture_id,
+  if (!create_cogl_texture (CLUTTER_TEXTURE (actor), texture_id,
               priv->current_pixmap_width, priv->current_pixmap_height, format))
     {
       g_debug ("%s: Unable to create cogl texture", __FUNCTION__);
 
-      glDeleteTextures (1, &priv->texture_id);
-      priv->texture_id = 0;
+      glDeleteTextures (1, &texture_id);
 
       CLUTTER_NOTE (TEXTURE, "Falling back to X11 manual mechanism");
       priv->use_fallback = TRUE;
@@ -667,6 +660,8 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
   guint         pixmap, pixmap_depth, pixmap_width, pixmap_height;
   ClutterEGLXTexturePixmapPrivate       *priv;
   int do_release = 1;
+  GLuint texture_id;
+  CoglHandle handle;
 
   priv = CLUTTER_EGLX_TEXTURE_PIXMAP (actor)->priv;
 
@@ -696,9 +691,10 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
                 "pixmap-height", &pixmap_height,
                 NULL);
 
+  handle = clutter_texture_get_cogl_texture(CLUTTER_TEXTURE(actor));
+
   if (priv->egl_surface == EGL_NO_SURFACE ||
-      clutter_texture_get_cogl_texture(CLUTTER_TEXTURE(actor)) ==
-      COGL_INVALID_HANDLE)
+      handle == COGL_INVALID_HANDLE)
     {
       /*
       guint         window;
@@ -730,8 +726,11 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
   clutter_x11_trap_x_errors ();
   XSync (clutter_x11_get_default_display (), FALSE);
 
+  if (!handle || !cogl_texture_get_gl_texture (handle, &texture_id, NULL))
+    return;
+
   glEnable (GL_TEXTURE_2D);
-  glBindTexture (GL_TEXTURE_2D, priv->texture_id);
+  glBindTexture (GL_TEXTURE_2D, texture_id);
 
   if (eglBindTexImage (clutter_eglx_display (),
                        priv->egl_surface,
@@ -739,7 +738,7 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
     {
       g_debug ("%s: eglBindTexImage(disp, %x) failed (tex %x): %x",
                __FUNCTION__, (unsigned int)priv->egl_surface,
-               priv->texture_id, eglGetError ());
+               texture_id, eglGetError ());
       do_release = 0;
     }
 
