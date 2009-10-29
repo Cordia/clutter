@@ -131,11 +131,8 @@ clutter_stage_x11_show (ClutterActor *actor)
 
   if (stage_x11->xwin)
     {
-      /* Fire off a redraw to avoid flicker on first map.
-       * Appears not to work perfectly on intel drivers at least.
-       */
-      clutter_redraw (stage_x11->wrapper);
-
+      /* No redraw here because drawing before mapping won't
+       * be any use at all */
       XSync (stage_x11->xdpy, FALSE);
       XMapWindow (stage_x11->xdpy, stage_x11->xwin);
     }
