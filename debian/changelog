@@ -1,6 +1,10 @@
 clutter (0.8.2-0maemo57~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  * clutter/x11/clutter-x11-texture-pixmap.h
+  * clutter/x11/clutter-x11-texture-pixmap.c : Removed automatic redirecting
+    code as this couldn't be turned off and was causing flicker and pain on 
+    composite non-composite changes. Also makes us more like upstream clutter.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 17:43:04 +0300
 

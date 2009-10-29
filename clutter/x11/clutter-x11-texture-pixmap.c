@@ -65,7 +65,6 @@ enum
   PROP_DEPTH,
   PROP_AUTO,
   PROP_WINDOW,
-  PROP_WINDOW_REDIRECT_AUTOMATIC,
   PROP_WINDOW_MAPPED,
   PROP_DESTROYED,
   PROP_WINDOW_X,
@@ -115,8 +114,6 @@ struct _ClutterX11TexturePixmapPrivate
 
   /* FIXME: lots of gbooleans. coalesce into bitfields */
   gboolean	have_shm;
-  gboolean      window_redirected;
-  gboolean      window_redirect_automatic;
   gboolean      window_mapped;
   gboolean      destroyed;
   gboolean      owns_pixmap;
@@ -411,8 +408,6 @@ clutter_x11_texture_pixmap_init (ClutterX11TexturePixmap *self)
   self->priv->pixmap_height = 0;
   self->priv->pixmap_width = 0;
   self->priv->shminfo.shmid = -1;
-  self->priv->window_redirected = FALSE;
-  self->priv->window_redirect_automatic = TRUE;
   self->priv->window_mapped = FALSE;
   self->priv->destroyed = FALSE;
   self->priv->override_redirect = FALSE;
@@ -470,20 +465,7 @@ clutter_x11_texture_pixmap_set_property (GObject      *object,
       break;
     case PROP_WINDOW:
       clutter_x11_texture_pixmap_set_window (texture,
-                                             g_value_get_uint (value),
-                                             priv->window_redirect_automatic);
-      break;
-    case PROP_WINDOW_REDIRECT_AUTOMATIC:
-      {
-        gboolean new;
-        new = g_value_get_boolean (value);
-
-        /* Change the update mode.. */
-        if (new != priv->window_redirect_automatic && priv->window)
-          clutter_x11_texture_pixmap_set_window (texture, priv->window, new);
-
-        priv->window_redirect_automatic = new;
-      }
+                                             g_value_get_uint (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -519,9 +501,6 @@ clutter_x11_texture_pixmap_get_property (GObject      *object,
       break;
     case PROP_WINDOW:
       g_value_set_uint (value, priv->window);
-      break;
-    case PROP_WINDOW_REDIRECT_AUTOMATIC:
-      g_value_set_boolean (value, priv->window_redirect_automatic);
       break;
     case PROP_WINDOW_MAPPED:
       g_value_set_boolean (value, priv->window_mapped);
@@ -638,17 +617,6 @@ clutter_x11_texture_pixmap_class_init (ClutterX11TexturePixmapClass *klass)
                              G_PARAM_READWRITE);
 
   g_object_class_install_property (object_class, PROP_WINDOW, pspec);
-
-  pspec = g_param_spec_boolean ("window-redirect-automatic",
-                                "Window Redirect Automatic",
-                                "If composite window redirects are set to "
-                                "Automatic (or Manual if false)",
-                                TRUE,
-                                G_PARAM_READWRITE);
-
-  g_object_class_install_property (object_class,
-                                   PROP_WINDOW_REDIRECT_AUTOMATIC, pspec);
-
 
   pspec = g_param_spec_boolean ("window-mapped",
                                 "Window Mapped",
@@ -1099,41 +1067,6 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
   g_object_unref (texture);
 }
 
-void
-clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
-                                            gboolean setting)
-{
-  ClutterX11TexturePixmapPrivate *priv;
-  Display *dpy = clutter_x11_get_default_display ();
-
-  priv = texture->priv;
-
-  if (setting && priv->window)
-    {
-      clutter_x11_trap_x_errors ();
-      XCompositeRedirectWindow (dpy,
-                                priv->window,
-                                priv->window_redirect_automatic ?
-                                CompositeRedirectAutomatic :
-                                CompositeRedirectManual);
-      priv->window_redirected = TRUE;
-      XSync (dpy, False);
-      clutter_x11_untrap_x_errors ();
-    }
-  else if (!setting && priv->window)
-    {
-      clutter_x11_trap_x_errors ();
-      XCompositeUnredirectWindow (dpy,
-                                  priv->window,
-                                  priv->window_redirect_automatic ?
-                                  CompositeRedirectAutomatic :
-                                  CompositeRedirectManual);
-      priv->window_redirected = FALSE;
-      XSync (dpy, False);
-      clutter_x11_untrap_x_errors ();
-    }
-}
-
 /**
  * clutter_x11_texture_pixmap_set_window:
  * @texture: the texture to bind
@@ -1150,8 +1083,7 @@ clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
  **/
 void
 clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
-                                       Window                   window,
-                                       gboolean                 automatic)
+                                       Window                   window)
 {
   ClutterX11TexturePixmapPrivate *priv;
   XWindowAttributes attr;
@@ -1164,28 +1096,15 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
   if (!clutter_x11_has_composite_extension())
     return;
 
-  if (priv->window == window && automatic == priv->window_redirect_automatic)
+  if (priv->window == window)
     return;
 
   if (priv->window)
     {
       clutter_x11_remove_filter (on_x_event_filter_too, (gpointer)texture);
-      if (priv->window_redirected)
-        {
-          clutter_x11_trap_x_errors ();
-          XCompositeUnredirectWindow(dpy,
-                                     priv->window,
-                                     priv->window_redirect_automatic ?
-                                     CompositeRedirectAutomatic :
-                                     CompositeRedirectManual);
-          XSync (clutter_x11_get_default_display (), False);
-          clutter_x11_untrap_x_errors ();
-          priv->window_redirected = FALSE;
-        }
     }
 
   priv->window = window;
-  priv->window_redirect_automatic = automatic;
   priv->window_mapped = FALSE;
   priv->destroyed = FALSE;
 
@@ -1201,17 +1120,6 @@ clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
         g_warning ("bad window 0x%x", (guint32)window);
         priv->window = None;
         return;
-      }
-
-    if (!_clutter_stage_get_shaped_mode (clutter_stage_get_default ()))
-      {
-        XCompositeRedirectWindow (dpy,
-                                  window,
-                                  automatic ?
-                                  CompositeRedirectAutomatic :
-                                  CompositeRedirectManual);
-        XSync (dpy, False);
-        priv->window_redirected = TRUE;
       }
   }
 

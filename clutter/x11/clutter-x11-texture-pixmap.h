@@ -76,8 +76,7 @@ void  clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap  *texture,
                                              Pixmap                    pixmap);
 
 void  clutter_x11_texture_pixmap_set_window (ClutterX11TexturePixmap *texture,
-                                             Window                   window,
-                                             gboolean                 automatic);
+                                             Window                   window);
 void  clutter_x11_texture_pixmap_sync_window (ClutterX11TexturePixmap *texture);
 
 void  clutter_x11_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
@@ -91,9 +90,6 @@ void  clutter_x11_texture_pixmap_set_automatic (ClutterX11TexturePixmap *texture
 void clutter_x11_texture_pixmap_clear_shapes(ClutterX11TexturePixmap *texture);
 void clutter_x11_texture_pixmap_add_shape(ClutterX11TexturePixmap *texture,
                                           ClutterGeometry geo);
-void
-clutter_x11_texture_pixmap_set_redirection (ClutterX11TexturePixmap *texture,
-                                            gboolean setting);
 
 void clutter_x11_texture_pixmap_set_allow_alpha(ClutterX11TexturePixmap *texture,
                                                 gboolean allow);
