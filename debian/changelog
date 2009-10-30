@@ -7,6 +7,8 @@ clutter (0.8.2-0maemo57~unreleased) unstable; urgency=low
     composite non-composite changes. Also makes us more like upstream clutter.
   * clutter/x11/clutter-stage-x11.c: remove forced redraw on _show, as it 
     never worked anyway (redraw before a map doesn't update anything)
+  * clutter/x11/clutter-x11-texture-pixmap.c: Replace unnecessary XGrabServer
+    with XSync.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 17:43:04 +0300
 

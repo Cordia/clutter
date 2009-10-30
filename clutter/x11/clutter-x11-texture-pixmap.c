@@ -451,7 +451,6 @@ clutter_x11_texture_pixmap_set_property (GObject      *object,
                                          GParamSpec   *pspec)
 {
   ClutterX11TexturePixmap  *texture = CLUTTER_X11_TEXTURE_PIXMAP (object);
-  ClutterX11TexturePixmapPrivate *priv = texture->priv;
 
   switch (prop_id)
     {
@@ -1176,23 +1175,18 @@ clutter_x11_texture_pixmap_sync_window (ClutterX11TexturePixmap *texture)
       Display *dpy = clutter_x11_get_default_display ();
       gboolean mapped, notify_x, notify_y, notify_override_redirect;
 
-      /*
-       * Make sure the window is mapped when getting the pixmap -- it's what
-       * compiz does.
-       */
-
+      /* We may get a BadMatch error here if the window is not mapped.
+       * If so, ignore it - pixmap should be set to None in that case anyway */
       clutter_x11_trap_x_errors ();
-      XGrabServer (dpy);
-
       XGetWindowAttributes (dpy, priv->window, &attr);
       mapped = attr.map_state == IsViewable;
       if (mapped)
         pixmap = XCompositeNameWindowPixmap (dpy, priv->window);
       else
         pixmap = None;
-
-      XUngrabServer (dpy);
-      clutter_x11_untrap_x_errors ();
+      XSync (dpy, FALSE);
+      if (clutter_x11_untrap_x_errors() && pixmap!=None)
+        g_warning("%s: Got X error but pixmap is still set", __FUNCTION__);
 
       notify_x = attr.x != priv->window_x;
       notify_y = attr.y != priv->window_y;
