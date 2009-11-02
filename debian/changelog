@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo57~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo57) unstable; urgency=low
 
   Gordon:
   * clutter/x11/clutter-x11-texture-pixmap.h
@@ -10,7 +10,7 @@ clutter (0.8.2-0maemo57~unreleased) unstable; urgency=low
   * clutter/x11/clutter-x11-texture-pixmap.c: Replace unnecessary XGrabServer
     with XSync.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 21 Oct 2009 17:43:04 +0300
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 02 Nov 2009 12:40:07 +0200
 
 clutter (0.8.2-0maemo56) unstable; urgency=low
 
