@@ -172,7 +172,7 @@ void             clutter_grab_pointer_for_device     (ClutterActor  *actor,
                                                       gint           id);
 
 void             clutter_ungrab_pointer_for_device   (gint id);
-
+void             clutter_set_software_selection      (gboolean software);
 
 G_END_DECLS
 

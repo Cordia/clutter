@@ -1,6 +1,10 @@
 clutter (0.8.2-0maemo58~unreleased) unstable; urgency=low
 
-  * foo
+  Gordon:
+  * clutter/clutter-main.c/h
+    clutter/clutter-private.h: Added code to handle Software selection for the
+    most common cases (off by default). This saves the delay caused by repeated
+    draws and redraws on SGX.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon,  2 Nov 2009 12:41:43 +0200
 

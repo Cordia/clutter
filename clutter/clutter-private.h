@@ -131,6 +131,10 @@ struct _ClutterMainContext
 
   GSList              *input_devices; /* For extra input devices, i.e
                                          MultiTouch */
+
+  gboolean             software_selection; /* Whether to perform old clutter
+                                selection using rendering + readback (FALSE)
+                                or selection purely in software (TRUE) */
 };
 
 #define CLUTTER_CONTEXT()	(clutter_context_get_default ())

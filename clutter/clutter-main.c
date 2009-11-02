@@ -38,6 +38,7 @@
 #include <glib/gi18n-lib.h>
 #include <locale.h>
 
+#include "clutter-container.h"
 #include "clutter-event.h"
 #include "clutter-backend.h"
 #include "clutter-main.h"
@@ -375,6 +376,77 @@ _clutter_pixel_to_id (guchar pixel[4])
 }
 
 ClutterActor *
+_clutter_do_software_pick(ClutterContainer *container,
+                          gdouble x,
+                          gdouble y,
+                          gboolean *valid)
+{
+  ClutterActor *picked = 0;
+  /* We have to iterate over these in reverse order */
+  GList *list = g_list_reverse(clutter_container_get_children(container));
+  GList *el;
+
+  for (el=list;el;el=el->next)
+    {
+      ClutterActor *actor = CLUTTER_ACTOR(el->data);
+      gdouble ax, ay;
+      gdouble scalex, scaley;
+      ClutterUnit anchorx, anchory;
+      ClutterUnit width, height;
+      ClutterFixed px,py;
+
+      if (!CLUTTER_ACTOR_IS_VISIBLE(actor))
+        continue;
+
+      clutter_actor_get_scale(actor, &scalex, &scaley);
+      if (scalex==0 || scaley==0)
+        continue;
+
+      /* Big safety check here - don't attempt this if anything
+       * is rotated, as we'll get it wrong. */
+      if (clutter_actor_get_rotationu(actor, CLUTTER_X_AXIS, 0, 0, 0)!=0 ||
+          clutter_actor_get_rotationu(actor, CLUTTER_Y_AXIS, 0, 0, 0)!=0 ||
+          clutter_actor_get_rotationu(actor, CLUTTER_Z_AXIS, 0, 0, 0)!=0)
+        {
+          *valid = FALSE;
+          goto out;
+        }
+
+      clutter_actor_get_anchor_pointu(actor, &anchorx, &anchory);
+      clutter_actor_get_positionu(actor, &px, &py);
+      ax = ((x - CLUTTER_FIXED_TO_DOUBLE(px)) / scalex)
+          + CLUTTER_FIXED_TO_DOUBLE(anchorx);
+      ay = ((y - CLUTTER_FIXED_TO_DOUBLE(py)) / scaley)
+          + CLUTTER_FIXED_TO_DOUBLE(anchory);
+
+      /* If we have a container, check what is inside first */
+      if (CLUTTER_IS_CONTAINER(actor))
+        {
+          picked = _clutter_do_software_pick(
+              CLUTTER_CONTAINER(actor), ax, ay, valid);
+          if (picked || !*valid)
+            break;
+        }
+
+      /* else check this actor itself */
+      if (CLUTTER_ACTOR_IS_REACTIVE(actor))
+        {
+          clutter_actor_get_sizeu(actor, &width, &height);
+          if (ax>=0 && ay>=0 &&
+              ax<CLUTTER_FIXED_TO_DOUBLE(width) &&
+              ay<CLUTTER_FIXED_TO_DOUBLE(height))
+            {
+              picked = actor;
+              break; /* we're done... */
+            }
+        }
+    }
+out:
+  g_list_free(list);
+  return picked;
+}
+
+ClutterActor *
 _clutter_do_pick (ClutterStage   *stage,
 		  gint            x,
 		  gint            y,
@@ -390,6 +462,25 @@ _clutter_do_pick (ClutterStage   *stage,
   ClutterGeometry     damaged_area;
 
   context = clutter_context_get_default ();
+
+  /* Try fast picking. valid will be set to FALSE if any actor is
+   * rotated - in which case we will have to do normal clutter
+   * selection.
+   */
+  if (context->software_selection)
+    {
+      gboolean valid = TRUE;
+      ClutterActor *sel = _clutter_do_software_pick(CLUTTER_CONTAINER(stage),
+                                                    x, y, &valid);
+      if (valid)
+        {
+          /* We don't ever check the stage as it is right at the top, so as the
+           * stage covers everything - if we found nothing, return that. */
+          if (!sel)
+            sel = CLUTTER_ACTOR(stage);
+          return sel;
+        }
+    }
 
   _clutter_backend_ensure_context (context->backend, stage);
 
@@ -2641,4 +2732,15 @@ clutter_get_input_device_for_id (gint id)
   }
 
   return NULL;
+}
+
+/** Whether to perform old clutter selection using rendering + readback (FALSE)
+  * or selection purely in software (TRUE) */
+void
+clutter_set_software_selection (gboolean software)
+{
+  ClutterMainContext *context;
+  context = clutter_context_get_default ();
+
+  return context->software_selection = software;
 }
