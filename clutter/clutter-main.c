@@ -2742,5 +2742,5 @@ clutter_set_software_selection (gboolean software)
   ClutterMainContext *context;
   context = clutter_context_get_default ();
 
-  return context->software_selection = software;
+  context->software_selection = software;
 }
