@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo58~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo58) unstable; urgency=low
 
   Gordon:
   * clutter/clutter-main.c/h
@@ -6,7 +6,7 @@ clutter (0.8.2-0maemo58~unreleased) unstable; urgency=low
     most common cases (off by default). This saves the delay caused by repeated
     draws and redraws on SGX.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon,  2 Nov 2009 12:41:43 +0200
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 04 Nov 2009 15:28:18 +0200
 
 clutter (0.8.2-0maemo57) unstable; urgency=low
 
