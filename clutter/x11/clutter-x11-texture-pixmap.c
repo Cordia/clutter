@@ -1177,6 +1177,7 @@ clutter_x11_texture_pixmap_sync_window (ClutterX11TexturePixmap *texture)
 
       /* We may get a BadMatch error here if the window is not mapped.
        * If so, ignore it - pixmap should be set to None in that case anyway */
+      XSync (dpy, FALSE);
       clutter_x11_trap_x_errors ();
       XGetWindowAttributes (dpy, priv->window, &attr);
       mapped = attr.map_state == IsViewable;
