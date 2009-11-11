@@ -1,11 +1,11 @@
-clutter (0.8.2-0maemo59~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo59) unstable; urgency=low
 
   Gordon:
   * clutter/x11/clutter-x11-texture-pixmap.c: Add XSync before the trap to
     ensure that we don't accidentally catch X errors that were intended for
     something else. Tweaks after introduction of NB#145154
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed,  4 Nov 2009 15:29:08 +0200
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 11 Nov 2009 13:45:59 +0200
 
 clutter (0.8.2-0maemo58) unstable; urgency=low
 
