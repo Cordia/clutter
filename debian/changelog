@@ -1,6 +1,14 @@
 clutter (0.8.2-0maemo60~unreleased) unstable; urgency=low
 
-  * foo
+  * Fixes: NB#145902 - Clicking the dashboard icon highlights it but does not
+    open the dashboard
+  * We skipped the only motion event between the ButtonPress and ButtonRelease
+    because of event throttling.  The skipped motion which would have generated
+    the leave-event which would have dehighlighted the tasks button.
+  * clutter/clutter-main.c (clutter_do_event):
+    generate_enter_leave_events() (if any) for button events too.
+  * clutter/clutter-main.c (generate_enter_leave_events):
+    Modified the signature accordingly.
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 11 Nov 2009 13:46:59 +0200
 
