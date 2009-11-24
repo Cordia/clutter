@@ -2197,7 +2197,7 @@ clutter_do_event (ClutterEvent *event)
                         x, y, actor);
 
           /* Generate enter leave events (if any) */
-          if (event->type != CLUTTER_MOTION)
+          if (event->type == CLUTTER_MOTION)
             {
               generate_enter_leave_events (event, event->motion.source,
                                            event->motion.device,

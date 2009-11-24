@@ -1,5 +1,7 @@
 clutter (0.8.2-0maemo60~unreleased) unstable; urgency=low
 
+  * Misc regression fix - when run in debug mode clutter asserts on every 
+    click. != vs == issue
   * Fixes: NB#145902 - Clicking the dashboard icon highlights it but does not
     open the dashboard
   * We skipped the only motion event between the ButtonPress and ButtonRelease
