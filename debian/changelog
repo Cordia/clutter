@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo60~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo60) unstable; urgency=low
 
   * Misc regression fix - when run in debug mode clutter asserts on every 
     click. != vs == issue
@@ -12,7 +12,7 @@ clutter (0.8.2-0maemo60~unreleased) unstable; urgency=low
   * clutter/clutter-main.c (generate_enter_leave_events):
     Modified the signature accordingly.
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Wed, 11 Nov 2009 13:46:59 +0200
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 30 Nov 2009 15:42:30 +0200
 
 clutter (0.8.2-0maemo59) unstable; urgency=low
 
