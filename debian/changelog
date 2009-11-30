@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 30 Nov 2009 15:43:38 +0200
+
 clutter (0.8.2-0maemo60) unstable; urgency=low
 
   * Misc regression fix - when run in debug mode clutter asserts on every 
