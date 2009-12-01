@@ -3,7 +3,7 @@ clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
   * clutter/cogl/cogl.h.in
     clutter/cogl/gl/cogl-texture.c
     clutter/cogl/gl/cogl.c: Fixes #4870 on bugs.maemo.org (original patch by
-    stskeeps) - Sometimes colour channels swapped in X86 scratchbox. Remove 
+    javispedro) - Sometimes colour channels swapped in X86 scratchbox. Remove 
     packed_pixel check, as it was broken in many ways, and now just assume we
     are using GL1.2, as this is shipped by default with the maemo development
     kit. So now we don't do the conversion so it's faster, and the bug doesn't
