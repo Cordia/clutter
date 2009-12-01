@@ -822,9 +822,7 @@ _cogl_pixel_format_to_gl (CoglPixelFormat  format,
   GLenum          glintformat = 0;
   GLenum          glformat = 0;
   GLenum          gltype = 0;
-  gboolean        support_packed_pixel = FALSE;
-
-  support_packed_pixel = cogl_features_available(COGL_FEATURE_PACKED_PIXEL);
+  gboolean        support_gl_1_2 = TRUE;
 
   /* No premultiplied formats accepted  by GL
    * (FIXME: latest hardware?) */
@@ -903,7 +901,7 @@ _cogl_pixel_format_to_gl (CoglPixelFormat  format,
     case COGL_PIXEL_FORMAT_BGR_565:
       glintformat = GL_RGB;
       glformat = GL_RGB;
-      if (support_packed_pixel)
+      if (support_gl_1_2)
           gltype = GL_UNSIGNED_SHORT_5_6_5;
       else
         {
@@ -918,7 +916,7 @@ _cogl_pixel_format_to_gl (CoglPixelFormat  format,
     case COGL_PIXEL_FORMAT_RGBA_4444:
       glintformat = GL_RGBA;
       glformat = GL_RGBA;
-      if (support_packed_pixel)
+      if (support_gl_1_2)
         gltype = GL_UNSIGNED_SHORT_4_4_4_4;
       else
         {
@@ -929,7 +927,7 @@ _cogl_pixel_format_to_gl (CoglPixelFormat  format,
     case COGL_PIXEL_FORMAT_RGBA_5551:
       glintformat = GL_RGBA;
       glformat = GL_RGBA;
-      if (support_packed_pixel)
+      if (support_gl_1_2)
         gltype = GL_UNSIGNED_SHORT_5_5_5_1;
       else
         {

@@ -955,11 +955,6 @@ _cogl_features_init ()
       flags |= COGL_FEATURE_TEXTURE_PVRTC;
     }
 
-  if (cogl_check_extension ("GL_EXT_packed_pixel", gl_extensions))
-    {
-      flags |= COGL_FEATURE_PACKED_PIXEL;
-    }
-
   if (cogl_check_extension ("GL_ARB_shader_objects", gl_extensions) &&
       cogl_check_extension ("GL_ARB_vertex_shader", gl_extensions) &&
       cogl_check_extension ("GL_ARB_fragment_shader", gl_extensions))
