@@ -120,6 +120,7 @@ static void
 clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor);
 
 static ClutterX11TexturePixmapClass *parent_class = NULL;
+static ClutterActorClass *clutter_actor_class = NULL;
 
 G_DEFINE_TYPE (ClutterEGLXTexturePixmap,    \
                clutter_eglx_texture_pixmap, \
@@ -527,6 +528,14 @@ clutter_eglx_texture_pixmap_update_area (ClutterX11TexturePixmap *texture,
 }
 
 static void
+clutter_eglx_texture_pixmap_realize (ClutterActor *actor)
+{
+  CLUTTER_ACTOR_CLASS (clutter_actor_class)->realize (actor);
+
+  CLUTTER_ACTOR_SET_FLAGS (actor, CLUTTER_ACTOR_REALIZED);
+}
+
+static void
 clutter_eglx_texture_pixmap_class_init (ClutterEGLXTexturePixmapClass *klass)
 {
   GObjectClass                 *object_class = G_OBJECT_CLASS (klass);
@@ -538,11 +547,12 @@ clutter_eglx_texture_pixmap_class_init (ClutterEGLXTexturePixmapClass *klass)
   g_type_class_add_private (klass, sizeof (ClutterEGLXTexturePixmapPrivate));
 
   parent_class = g_type_class_peek_parent(klass);
+  clutter_actor_class = g_type_class_peek_parent(parent_class);
 
   object_class->dispose = clutter_eglx_texture_pixmap_dispose;
 
-  klass->overridden_paint = actor_class->paint;
   actor_class->paint = clutter_eglx_texture_pixmap_paint;
+  actor_class->realize = clutter_eglx_texture_pixmap_realize;
 
   x11_texture_class->update_area = clutter_eglx_texture_pixmap_update_area;
 }
@@ -674,7 +684,7 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
 
   if (priv->use_fallback)
     {
-      CLUTTER_EGLX_TEXTURE_PIXMAP_GET_CLASS(actor)->overridden_paint(actor);
+      CLUTTER_ACTOR_CLASS(clutter_actor_class)->paint(actor);
       return;
     }
 
@@ -745,7 +755,7 @@ clutter_eglx_texture_pixmap_paint (ClutterActor *actor)
   if (clutter_x11_untrap_x_errors ())
     g_debug ("%s: X errors", __FUNCTION__);
 
-  CLUTTER_EGLX_TEXTURE_PIXMAP_GET_CLASS(actor)->overridden_paint(actor);
+  CLUTTER_ACTOR_CLASS(clutter_actor_class)->paint(actor);
 
   if (do_release &&
       eglReleaseTexImage (clutter_eglx_display (), priv->egl_surface,

@@ -1,5 +1,10 @@
 clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
 
+  *  clutter/eglx/clutter-eglx-texture-pixmap.c/h
+     clutter/x11/clutter-x11-texture-pixmap.c/h: Fixes NB#141778 - EGLX backend
+     does not implement realize. Remove the overridden_paint elements, as we 
+     can just access the parent class directly, implement realise in eglx tfp.
+
   * clutter/cogl/cogl.h.in
     clutter/cogl/gl/cogl-texture.c
     clutter/cogl/gl/cogl.c: Fixes #4870 on bugs.maemo.org (original patch by

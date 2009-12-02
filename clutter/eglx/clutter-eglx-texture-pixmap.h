@@ -48,8 +48,6 @@ typedef struct _ClutterEGLXTexturePixmapPrivate ClutterEGLXTexturePixmapPrivate;
 struct _ClutterEGLXTexturePixmapClass
 {
   ClutterX11TexturePixmapClass   parent_class;
-
-  void (*overridden_paint)(ClutterActor *actor);
 };
 
 struct _ClutterEGLXTexturePixmap

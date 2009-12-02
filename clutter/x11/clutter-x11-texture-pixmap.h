@@ -55,7 +55,6 @@ struct _ClutterX11TexturePixmapClass
                                            gint                     y,
                                            gint                     width,
                                            gint                     height);
-  void                  (*overridden_paint)(ClutterActor *actor);
 };
 
 struct _ClutterX11TexturePixmap

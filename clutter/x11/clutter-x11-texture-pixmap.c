@@ -557,7 +557,6 @@ clutter_x11_texture_pixmap_class_init (ClutterX11TexturePixmapClass *klass)
 
   klass->update_area         = clutter_x11_texture_pixmap_update_area_real;
 
-  klass->overridden_paint = actor_class->paint;
   actor_class->paint = clutter_x11_texture_pixmap_paint;
 
   pspec = g_param_spec_uint ("pixmap",
@@ -1331,7 +1330,7 @@ clutter_x11_texture_pixmap_paint (ClutterActor *self)
   /* If we have no shapes, just call what we had before */
   if (priv->shapes==0)
     {
-      CLUTTER_X11_TEXTURE_PIXMAP_GET_CLASS(self)->overridden_paint(self);
+      CLUTTER_ACTOR_CLASS(clutter_x11_texture_pixmap_parent_class)->paint(self);
       return;
     }
 
@@ -1425,6 +1424,6 @@ void clutter_x11_texture_pixmap_set_allow_alpha(ClutterX11TexturePixmap *texture
 /* Get whether we will allow this pixmap to have an alpha channel or not */
 gboolean clutter_x11_texture_pixmap_get_allow_alpha(ClutterX11TexturePixmap *texture)
 {
-  g_return_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture));
+  g_return_val_if_fail (CLUTTER_X11_IS_TEXTURE_PIXMAP (texture), 0);
   return texture->priv->allow_alpha;
 }
