@@ -568,6 +568,9 @@ fi
 
 AC_SUBST(CLUTTER_DEBUG_CFLAGS)
 
+dnl Only build tests/* if debugging.
+AM_CONDITIONAL(BUILD_TESTS, test "x$enable_debug" = "xyes")
+
 dnl = Enable strict compiler flags =========================================
 
 # use strict compiler flags only on development releases

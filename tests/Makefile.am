@@ -1,3 +1,5 @@
+if BUILD_TESTS
+
 noinst_PROGRAMS = test-textures test-events test-offscreen test-scale \
                   test-actors test-behave test-text test-entry test-project \
 		  test-perspective test-rotate test-depth \
@@ -76,3 +78,5 @@ test_label_cache_SOURCES          = test-label-cache.c
 test_pick_SOURCES                 = test-pick.c
 
 EXTRA_DIST = redhand.png test-script.json
+
+endif

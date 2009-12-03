@@ -15,6 +15,7 @@ clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
     manifest itself any more.
 
   * for NB#149132: rm -rf usr/share/doc in package creation time on armel.
+  * don't build the tests
 
  -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 30 Nov 2009 15:43:38 +0200
 
