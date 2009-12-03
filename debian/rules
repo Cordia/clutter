@@ -20,3 +20,9 @@ makebuilddir/libclutter-0.8-0::
 	autoreconf -f -i
 
 # common-binary-predeb-arch:: list-missing
+
+# Save SSU d/l volume.
+ifeq ($(DEB_BUILD_ARCH),armel)
+binary-post-install/libclutter-0.8-0::
+	rm -rf "debian/$(cdbs_curpkg)/usr/share/doc"
+endif
