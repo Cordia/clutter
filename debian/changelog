@@ -1,4 +1,4 @@
-clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo61) unstable; urgency=low
 
   *  clutter/eglx/clutter-eglx-texture-pixmap.c/h
      clutter/x11/clutter-x11-texture-pixmap.c/h: Fixes NB#141778 - EGLX backend
@@ -17,7 +17,7 @@ clutter (0.8.2-0maemo61~unreleased) unstable; urgency=low
   * for NB#149132: rm -rf usr/share/doc in package creation time on armel.
   * don't build the tests
 
- -- Kimmo Hämäläinen <kimmo.hamalainen@nokia.com>  Mon, 30 Nov 2009 15:43:38 +0200
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  7 Dec 2009 10:24:38 +0000
 
 clutter (0.8.2-0maemo60) unstable; urgency=low
 
