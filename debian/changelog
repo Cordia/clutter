@@ -1,10 +1,10 @@
-clutter (0.8.2-0maemo62~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo62) unstable; urgency=low
 
   * clutter/clutter-timeline.c: Fixes NB#149943 - non-linear animations. Keep
     track of the error in the calculated frame number each frame and use it
     when calculating how many frames to skip.
   
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  7 Dec 2009 10:24:38 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 11 Dec 2009 12:27:38 +0000
 
 clutter (0.8.2-0maemo61) unstable; urgency=low
 
