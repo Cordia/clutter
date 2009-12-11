@@ -112,6 +112,7 @@ struct _ClutterTimelinePrivate
 
   GTimeVal prev_frame_timeval;
   guint  msecs_delta;
+  gint   msecs_jitter; /* To allow us to render a frame a little early/late */
 
   GHashTable *markers_by_frame;
   GHashTable *markers_by_name;
@@ -568,6 +569,7 @@ clutter_timeline_init (ClutterTimeline *self)
   priv->fps = clutter_get_default_frame_rate ();
   priv->n_frames = 0;
   priv->msecs_delta = 0;
+  priv->msecs_jitter = 0;
 
   priv->markers_by_frame = g_hash_table_new (NULL, NULL);
   priv->markers_by_name = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -606,23 +608,31 @@ timeline_timeout_func (gpointer data)
     }
 
   /* Interpolate the current frame based on the timeval of the
-   * previous frame */
+   * previous frame. Also use msecs_jitter - the sum of all errors
+   * since we started playing. This means we won't play things
+   * too fast/slow if we repeatedly under/overestimate the frame time. */
   msecs = (timeval.tv_sec - priv->prev_frame_timeval.tv_sec) * 1000;
   msecs += (timeval.tv_usec - priv->prev_frame_timeval.tv_usec) / 1000;
-  priv->msecs_delta = msecs;
+  priv->msecs_jitter += msecs;
   if (context->disable_skip_frames == FALSE)
     {
-      n_frames = msecs / (1000 / priv->fps);
-      if (n_frames == 0)
+      gint frame_ms = 1000 / priv->fps;
+      n_frames = priv->msecs_jitter / frame_ms;
+      if (n_frames <= 0)
         n_frames = 1;
 
+      priv->msecs_jitter -= n_frames * frame_ms;
       priv->skipped_frames = n_frames - 1;
+
+      //g_debug("JITTER %d (%d frames)", priv->msecs_jitter, n_frames);
     }
   else
     {
       n_frames = 1;
       priv->skipped_frames = 0;
+      priv->msecs_jitter = 0;
     }
+  priv->msecs_delta = msecs;
 
   if (priv->skipped_frames)
     CLUTTER_TIMESTAMP (SCHEDULER,
@@ -796,6 +806,7 @@ timeline_timeout_add (ClutterTimeline *timeline,
     }
   priv->skipped_frames   = 0;
   priv->msecs_delta      = 0;
+  priv->msecs_jitter     = 0;
 
   return timeout_add (interval, func, data, notify);
 }
