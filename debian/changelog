@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo63~unreleased) unstable; urgency=low
+
+  * foo.
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 11 Dec 2009 12:27:38 +0000
+
 clutter (0.8.2-0maemo62) unstable; urgency=low
 
   * clutter/clutter-timeline.c: Fixes NB#149943 - non-linear animations. Keep
