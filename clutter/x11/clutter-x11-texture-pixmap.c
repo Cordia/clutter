@@ -183,7 +183,7 @@ try_alloc_shm (ClutterX11TexturePixmap *texture)
 
   priv = texture->priv;
   dpy  = clutter_x11_get_default_display();
-
+  
   g_return_val_if_fail (priv->pixmap, FALSE);
 
   if (!XShmQueryExtension(dpy) || g_getenv("CLUTTER_X11_NO_SHM"))
@@ -533,7 +533,7 @@ clutter_x11_texture_pixmap_realize (ClutterActor *actor)
       realize (actor);
 
   CLUTTER_ACTOR_SET_FLAGS (actor, CLUTTER_ACTOR_REALIZED);
-
+  
   clutter_x11_texture_pixmap_update_area_real (texture,
 					       0, 0,
 					       priv->pixmap_width,
@@ -729,13 +729,8 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
   GError                               *error = NULL;
   guint                                 bytes_per_line;
   char				       *data;
+  gboolean                              data_allocated = FALSE;
   int                                   err_code;
-  char                                  pixel_bpp;
-  gboolean                              pixel_has_alpha;
-
-#if 0
-  clock_t start_t = clock();
-#endif
 
   if (!CLUTTER_ACTOR_IS_REALIZED (texture))
     return;
@@ -778,14 +773,8 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                                    priv->pixmap_width, priv->pixmap_height,
                                    AllPlanes,
                                    ZPixmap);
-          if (priv->image)
-	    first_pixel = priv->image->data + priv->image->bytes_per_line * y
+		  first_pixel  = priv->image->data + priv->image->bytes_per_line * y
 			  + x * priv->image->bits_per_pixel/8;
-          else
-            {
-              g_warning ("%s: XGetImage() failed", __FUNCTION__);
-              return;
-            }
 	}
       else
 	{
@@ -811,35 +800,54 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                  priv->pixmap);
       /* safe to assume pixmap has gone away? - therefor reset */
       clutter_x11_texture_pixmap_set_pixmap (texture, None);
-      goto free_image_and_return;
+      return;
     }
 
   if (priv->depth == 24)
     {
-      bytes_per_line = image->bytes_per_line;
+      guint xpos, ypos;
+
+      for (ypos=0; ypos<height; ypos++)
+	for (xpos=0; xpos<width; xpos++)
+           {
+	    char *p = first_pixel + image->bytes_per_line*ypos
+			  + xpos * 4;
+	    p[3] = 0xFF;
+           }
+
       data = first_pixel;
-      pixel_bpp = 3;
-      pixel_has_alpha = FALSE;
+      bytes_per_line = image->bytes_per_line;
     }
   else if (priv->depth == 16)
     {
-      bytes_per_line = image->bytes_per_line;
-      data = first_pixel;
-      pixel_bpp = 2;
-      pixel_has_alpha = FALSE;
+      guint xpos, ypos;
+      data = g_malloc (height * width * 4);
+      data_allocated = TRUE;
+      bytes_per_line = width * 4;
+
+      for (ypos=0; ypos<height; ypos++)
+	for (xpos=0; xpos<width; xpos++)
+            {
+	    char *src_p = first_pixel + image->bytes_per_line * ypos
+			    + xpos * 2;
+	    guint16 *src_pixel = (guint16 *)src_p;
+	    char *dst_p = data + bytes_per_line * ypos + xpos * 4;
+	    guint32 *dst_pixel = (guint32 *)dst_p;
+
+	    *dst_pixel =
+	      ((((*src_pixel << 3) & 0xf8) | ((*src_pixel >> 2) & 0x7)) | \
+	      (((*src_pixel << 5) & 0xfc00) | ((*src_pixel >> 1) & 0x300)) | \
+	      (((*src_pixel << 8) & 0xf80000) | ((*src_pixel << 3) & 0x70000)))
+	      | 0xff000000;
+	  }
     }
   else if (priv->depth == 32)
     {
       bytes_per_line = image->bytes_per_line;
       data = first_pixel;
-      pixel_bpp = 4;
-      pixel_has_alpha = TRUE;
     }
   else
-    goto free_image_and_return;
-
-  if (!priv->allow_alpha)
-    pixel_has_alpha = FALSE;
+    return;
 
   /* For debugging purposes, un comment to simply generate dummy
    * pixmap data. (A Green background and Blue cross) */
@@ -871,20 +879,20 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
       width != priv->pixmap_width || height != priv->pixmap_height)
     clutter_texture_set_area_from_rgb_data  (CLUTTER_TEXTURE (texture),
 					     (guint8 *)data,
-					     pixel_has_alpha,
+					     TRUE,
 					     x, y,
 					     width, height,
 					     bytes_per_line,
-					     pixel_bpp,
+					     4,
 					     CLUTTER_TEXTURE_RGB_FLAG_BGR,
 					     &error);
   else
     clutter_texture_set_from_rgb_data  (CLUTTER_TEXTURE (texture),
 					(guint8 *)data,
-					pixel_has_alpha,
+					TRUE,
 					width, height,
 					bytes_per_line,
-					pixel_bpp,
+					4,
 					CLUTTER_TEXTURE_RGB_FLAG_BGR,
 					&error);
 
@@ -896,15 +904,12 @@ clutter_x11_texture_pixmap_update_area_real (ClutterX11TexturePixmap *texture,
                  error->message);
       g_error_free (error);
     }
+	
+  if (data_allocated)
+    g_free (data);
 
-free_image_and_return:
   if (priv->have_shm)
     XFree (image);
-#if 0
-  clock_t end_t = clock();
-  int time = (int)((double)(end_t - start_t) * (1000.0 / CLOCKS_PER_SEC));
-  g_print("clutter-x11-update-area-real(%d,%d,%d,%d) %d bits - %d ms\n",x,y,width,height,priv->depth,time);
-#endif
 }
 
 /**
@@ -997,7 +1002,7 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
   priv = texture->priv;
 
   clutter_x11_trap_x_errors ();
-
+  
   status = XGetGeometry (clutter_x11_get_default_display(),
                          (Drawable)pixmap,
                          &root,
@@ -1007,7 +1012,7 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
                          &height,
                          &border_width,
                          &depth);
-
+  
   if (clutter_x11_untrap_x_errors () || status == 0)
     {
       if (pixmap != None)
@@ -1051,7 +1056,7 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
       priv->depth = depth;
       new_pixmap_depth = TRUE;
     }
-
+  
   /* NB: We defer sending the signals until updating all the
    * above members so the values are all available to the
    * signal handlers. */
