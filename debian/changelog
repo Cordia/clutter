@@ -1,6 +1,7 @@
 clutter (0.8.2-0maemo63~unreleased) unstable; urgency=low
 
-  * foo.
+  * clutter/x11/clutter-stage-x11.c: Change default stage size to 800x480.
+    This is ugly, but stops the strange half-blanking effect on startup.
 
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Fri, 11 Dec 2009 12:27:38 +0000
 
