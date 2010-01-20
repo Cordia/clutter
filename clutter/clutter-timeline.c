@@ -113,6 +113,10 @@ struct _ClutterTimelinePrivate
   GTimeVal prev_frame_timeval;
   guint  msecs_delta;
   gint   msecs_jitter; /* To allow us to render a frame a little early/late */
+  gint   msecs_avr; /* Average delay between frames - we have to average as the
+                       SGX pipeline can store many frames. This starts off as 0,
+                       which helps to negate the initial delay as the frame works
+                       its way through the pipeline */
 
   GHashTable *markers_by_frame;
   GHashTable *markers_by_name;
@@ -570,6 +574,7 @@ clutter_timeline_init (ClutterTimeline *self)
   priv->n_frames = 0;
   priv->msecs_delta = 0;
   priv->msecs_jitter = 0;
+  priv->msecs_avr = 0;
 
   priv->markers_by_frame = g_hash_table_new (NULL, NULL);
   priv->markers_by_name = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -583,7 +588,7 @@ timeline_timeout_func (gpointer data)
   ClutterTimeline        *timeline = data;
   ClutterTimelinePrivate *priv;
   GTimeVal                timeval;
-  guint                   n_frames;
+  gint                    n_frames;
   gulong                  msecs;
   ClutterMainContext     *context;
 
@@ -610,10 +615,33 @@ timeline_timeout_func (gpointer data)
   /* Interpolate the current frame based on the timeval of the
    * previous frame. Also use msecs_jitter - the sum of all errors
    * since we started playing. This means we won't play things
-   * too fast/slow if we repeatedly under/overestimate the frame time. */
+   * too fast/slow if we repeatedly under/overestimate the frame time.
+   *
+   * Since SGX queues stuff up and takes a while to render, the time difference
+   * between calls to this function is NOT the same as the time difference
+   * between frames as they appear on the screen. We average the frame time
+   * here to roughly try simulate this as we have no feedback.
+   *
+   * My take on the lurching that we are trying to fix... it might be wrong,
+   * but it's been run past the SGX guys and they think it's fair:
+   *
+   * Imagine we send frames at roughly constant intervals of 30ms
+   * SGX/CPU takes a while to power up, but once it's done it can render in
+   * maybe 15ms, So :
+   *  * maybe 70ms for first frame (during this time some frames queue up)
+   *  * then 15ms, 15ms, 15ms (as queue is emptied)
+   *  * then 30ms as queue is mostly empty and stuff settles down
+   *
+   * So we have to deal with this - which is why we use msecs_avr and
+   * start it at 0 so it (VERY roughly) matches the first few frames...
+   *
+   *    15, 22, 26, 28, 29, 30, 30, 30...
+   *
+   *  */
   msecs = (timeval.tv_sec - priv->prev_frame_timeval.tv_sec) * 1000;
   msecs += (timeval.tv_usec - priv->prev_frame_timeval.tv_usec) / 1000;
-  priv->msecs_jitter += msecs;
+  priv->msecs_avr = (priv->msecs_avr*3+msecs) / 4;
+  priv->msecs_jitter += priv->msecs_avr;
   if (context->disable_skip_frames == FALSE)
     {
       gint frame_ms = 1000 / priv->fps;
@@ -624,7 +652,7 @@ timeline_timeout_func (gpointer data)
       priv->msecs_jitter -= n_frames * frame_ms;
       priv->skipped_frames = n_frames - 1;
 
-      //g_debug("JITTER %d (%d frames)", priv->msecs_jitter, n_frames);
+      //g_debug("JITTER %d (%d frames, %d ms, %d avr ms)", priv->msecs_jitter, n_frames, msecs, priv->msecs_avr);
     }
   else
     {
