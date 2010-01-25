@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo65~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 25 Jan 2010 14:20:38 +0000
+
 clutter (0.8.2-0maemo64) unstable; urgency=low
 
   * clutter/x11/clutter-stage-x11.c: Fixes NB#154347 - initially 640x480 win.
