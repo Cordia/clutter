@@ -119,6 +119,9 @@ clutter_eglx_texture_pixmap_surface_create (ClutterActor *actor);
 static void
 clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor);
 
+static void
+clutter_eglx_texture_pixmap_freeing_pixmap (ClutterEGLXTexturePixmap *self);
+
 static ClutterX11TexturePixmapClass *parent_class = NULL;
 static ClutterActorClass *clutter_actor_class = NULL;
 
@@ -204,6 +207,11 @@ clutter_eglx_texture_pixmap_init (ClutterEGLXTexturePixmap *self)
 
       _ext_check_done = TRUE;
     }
+
+  /* We need to know when the pixmap is about to be freed, so we can
+   * eglDestroySurface before it's gone */
+  g_signal_connect (self, "pixmap-freeing",
+                    G_CALLBACK (clutter_eglx_texture_pixmap_freeing_pixmap), 0);
 }
 
 static void
@@ -407,6 +415,16 @@ clutter_eglx_texture_pixmap_surface_destroy (ClutterActor *actor)
 
   /* It looks like we can keep the old texture as clutter
    * will free it anyway if we unrealise or set a new texture  */
+}
+
+static void clutter_eglx_texture_pixmap_freeing_pixmap (ClutterEGLXTexturePixmap *self)
+{
+  ClutterEGLXTexturePixmapPrivate *priv = self->priv;
+  /** We need to ensure that we get rid of the surface before the pixmap
+   * is XFreePixmap'd. The pixmap will be set to 0 or the new value right
+   * after, so we'll be notified to create a new surface if we need to. */
+  if (priv->egl_surface != EGL_NO_SURFACE)
+    clutter_eglx_texture_pixmap_surface_destroy(CLUTTER_ACTOR(self));
 }
 
 static const EGLint pixmap_creation_config_rgb[] = {

@@ -1,8 +1,11 @@
-clutter (0.8.2-0maemo65~unreleased) unstable; urgency=low
+clutter (0.8.2-0maemo65) unstable; urgency=low
 
-  * foo
+  * clutter/eglx/clutter-eglx-texture-pixmap.c
+    clutter/x11/clutter-x11-texture-pixmap.c: Fixes NB#151672 - Clutter 
+    generates BadDrawable errors. Add signal for 'pixmap freeing' in x11tfp,
+    and use it in eglxtfp to destroy the surface before the pixmap is freed.
 
- -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon, 25 Jan 2010 14:20:38 +0000
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  1 Feb 2010 10:20:38 +0000
 
 clutter (0.8.2-0maemo64) unstable; urgency=low
 

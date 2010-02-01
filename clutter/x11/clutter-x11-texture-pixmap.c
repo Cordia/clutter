@@ -75,7 +75,7 @@ enum
 enum
 {
   UPDATE_AREA,
-  /* FIXME: Pixmap lost signal? */
+  PIXMAP_FREEING,
   LAST_SIGNAL
 };
 
@@ -429,6 +429,7 @@ clutter_x11_texture_pixmap_dispose (GObject *object)
 
   if (priv->owns_pixmap && priv->pixmap)
     {
+      g_signal_emit (texture, signals[PIXMAP_FREEING], 0, NULL);
       XFreePixmap (clutter_x11_get_default_display (), priv->pixmap);
       priv->pixmap = None;
     }
@@ -684,6 +685,25 @@ clutter_x11_texture_pixmap_class_init (ClutterX11TexturePixmapClass *klass)
                     G_TYPE_INT,
                     G_TYPE_INT,
                     G_TYPE_INT);
+
+  /**
+    * ClutterX11TexturePixmap::pixmap-freeing:
+    * @texture: the object which received the signal
+    *
+    * The ::pixmap-freeing signal is emitted to notify whoever is interested
+    * that the pixmap is about to be freed with XFreePixmap. This is useful
+    * for eglx-texture-pixmap when we really need to eglDestroySurface BEFORE
+    * the pixmap gets killed.
+    *
+    * Since: 0.8
+    */
+  signals[PIXMAP_FREEING] =
+      g_signal_new ("pixmap-freeing",
+                    G_TYPE_FROM_CLASS (object_class),
+                    G_SIGNAL_RUN_FIRST,
+                    0, NULL, NULL,
+                    g_cclosure_marshal_VOID__VOID,
+                    G_TYPE_NONE, 0, NULL);
 
   default_backend = clutter_get_default_backend ();
 
@@ -1005,7 +1025,10 @@ clutter_x11_texture_pixmap_set_pixmap (ClutterX11TexturePixmap *texture,
   if (priv->pixmap != pixmap)
     {
       if (priv->pixmap && priv->owns_pixmap)
-        XFreePixmap (clutter_x11_get_default_display (), priv->pixmap);
+        {
+          g_signal_emit (texture, signals[PIXMAP_FREEING], 0, NULL);
+          XFreePixmap (clutter_x11_get_default_display (), priv->pixmap);
+        }
 
       priv->pixmap = pixmap;
       new_pixmap = TRUE;
