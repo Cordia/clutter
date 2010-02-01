@@ -1,3 +1,9 @@
+clutter (0.8.2-0maemo66~unreleased) unstable; urgency=low
+
+  * foo
+
+ -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  1 Feb 2010 10:30:38 +0000
+
 clutter (0.8.2-0maemo65) unstable; urgency=low
 
   * clutter/eglx/clutter-eglx-texture-pixmap.c
