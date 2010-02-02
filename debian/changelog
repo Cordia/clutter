@@ -15,7 +15,8 @@ clutter (0.8.2-0maemo65) unstable; urgency=low
 
 clutter (0.8.2-0maemo64) unstable; urgency=low
 
-  * clutter/x11/clutter-stage-x11.c: Fixes NB#154347 - initially 640x480 win.
+  * clutter/x11/clutter-stage-x11.c:
+  * Fixes: NB#154347 - initially 640x480 win.
     Was changed for maemo63, but including bug number for this release.
   * clutter/clutter-timeline.c: Rolled back changes for NB#149943, apart from
     some minor improvements.
