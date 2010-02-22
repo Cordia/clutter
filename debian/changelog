@@ -1,7 +1,7 @@
 clutter (0.8.2-0maemo66~unreleased) unstable; urgency=low
 
-  * foo
-
+  * clutter/x11/clutter-x11-texture-pixmap.c: Small documentation update.
+  
  -- Gordon Williams <gordon.williams@collabora.co.uk>  Mon,  1 Feb 2010 10:30:38 +0000
 
 clutter (0.8.2-0maemo65) unstable; urgency=low
