@@ -137,7 +137,7 @@ clutter_frame_source_get_ticks (ClutterFrameSource *frame_source)
 {
   GTimeVal time_now;
 
-  g_source_get_current_time ((GSource *) frame_source, &time_now);
+  g_get_current_time (&time_now);
   
   return (time_now.tv_sec - frame_source->start_time.tv_sec) * 1000
          + (time_now.tv_usec - frame_source->start_time.tv_usec) / 1000;

@@ -24,7 +24,7 @@ noinst_PROGRAMS += test-devices
 endif
 
 INCLUDES = -I$(top_srcdir)/ -I$(top_srcdir)/clutter -I$(top_builddir)/clutter
-LDADD = $(top_builddir)/clutter/libclutter-@CLUTTER_FLAVOUR@-@CLUTTER_MAJORMINOR@.la
+LDADD = $(top_builddir)/clutter/libclutter-@CLUTTER_FLAVOUR@-@CLUTTER_MAJORMINOR@.la -lm -lX11
 AM_CFLAGS = $(CLUTTER_CFLAGS)
 AM_LDFLAGS = $(CLUTTER_LIBS)
 

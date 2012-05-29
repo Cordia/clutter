@@ -1150,8 +1150,8 @@ cogl_texture_new_from_file (const gchar     *filename,
   /* If it is a PVR file, try and load it directly into the GPU */
   if (g_str_has_suffix(filename, ".pvr"))
     {
-      CoglHandle tex = cogl_pvr_texture_load(filename);
-      if (tex) return tex;
+      CoglHandle han = cogl_pvr_texture_load(filename);
+      if (han) return han;
     }
 
   /* Try loading with imaging backend */
