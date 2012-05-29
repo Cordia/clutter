@@ -210,6 +210,16 @@ else
   AC_MSG_RESULT([not found])
 fi
 
+AC_MSG_CHECKING([for XINPUT extension >= 1.5])
+PKG_CHECK_EXISTS([xi >= 1.5], [have_xinput=yes], [have_xinput=no])
+if test "x$have_xinput" = "xyes"; then
+  AC_DEFINE(HAVE_XINPUT, 1, [Define to 1 if we have the XINPUT X extension])
+  X11_LIBS="$X11_LIBS -lXi"
+  AC_MSG_RESULT([found])
+else
+  AC_MSG_RESULT([not found])
+fi
+
 x11_tests=no
 
 # Currently require all extentions, may not for actual release.
