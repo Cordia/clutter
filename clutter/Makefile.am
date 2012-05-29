@@ -87,7 +87,6 @@ source_h =					\
 	$(srcdir)/clutter-types.h		\
 	$(srcdir)/clutter-units.h 		\
 	$(srcdir)/clutter-util.h 		\
-	$(top_builddir)/clutter/clutter-version.h \
 	$(NULL)
 
 clutter-marshal.h: stamp-clutter-marshal.h
