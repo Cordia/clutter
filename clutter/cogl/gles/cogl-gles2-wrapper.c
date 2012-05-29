@@ -543,7 +543,7 @@ cogl_gles2_wrapper_update_matrix (CoglGles2Wrapper *wrapper, GLenum matrix_num)
 }
 
 void
-cogl_wrap_glClearColorx (GLclampx r, GLclampx g, GLclampx b, GLclampx a)
+cogl_wrap_glClearColorx (GLfixed r, GLfixed g, GLfixed b, GLfixed a)
 {
   glClearColor (CLUTTER_FIXED_TO_FLOAT (r),
 		CLUTTER_FIXED_TO_FLOAT (g),
@@ -1123,7 +1123,7 @@ cogl_wrap_glAlphaFunc (GLenum func, GLclampf ref)
 }
 
 void
-cogl_wrap_glColor4x (GLclampx r, GLclampx g, GLclampx b, GLclampx a)
+cogl_wrap_glColor4x (GLfixed r, GLfixed g, GLfixed b, GLfixed a)
 {
   gboolean is_white = (r>=65535) && (g>=65535) & (b>=65535) & (a>=65535);
   _COGL_GET_GLES2_WRAPPER (w, NO_RETVAL);

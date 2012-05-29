@@ -200,7 +200,7 @@ struct _CoglGles2WrapperShader
 void cogl_gles2_wrapper_init (CoglGles2Wrapper *wrapper);
 void cogl_gles2_wrapper_deinit (CoglGles2Wrapper *wrapper);
 
-void cogl_wrap_glClearColorx (GLclampx r, GLclampx g, GLclampx b, GLclampx a);
+void cogl_wrap_glClearColorx (GLfixed r, GLfixed g, GLfixed b, GLfixed a);
 
 void cogl_wrap_glPushMatrix ();
 void cogl_wrap_glPopMatrix ();
@@ -236,7 +236,7 @@ void cogl_wrap_glDisableClientState (GLenum array);
 
 void cogl_wrap_glAlphaFunc (GLenum func, GLclampf ref);
 
-void cogl_wrap_glColor4x (GLclampx r, GLclampx g, GLclampx b, GLclampx a);
+void cogl_wrap_glColor4x (GLfixed r, GLfixed g, GLfixed b, GLfixed a);
 
 void cogl_wrap_glClipPlanex (GLenum plane, GLfixed *equation);
 
