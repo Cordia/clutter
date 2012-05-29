@@ -10,6 +10,6 @@ cogl=@CLUTTER_COGL@
 Name: Clutter
 Description: Clutter Core Library (${backend} backend)
 Version: @VERSION@
-Libs: -L${libdir} -lclutter-${backend}-${apiversion}
+Libs: -L${libdir} -lclutter-${backend}-${apiversion} @GLX_LIBS@@GLES_LIBS@
 Cflags: -I${includedir}/clutter-${apiversion}
 Requires: ${requires}
