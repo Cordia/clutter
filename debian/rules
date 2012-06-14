@@ -2,14 +2,17 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
 DEB_COMPRESS_EXCLUDE = .c
 ifeq ($(DEB_BUILD_ARCH),armel)
-  DEB_CONFIGURE_EXTRA_FLAGS := --disable-gtk-doc --with-flavour=eglx \
-			     --with-gles=2.0 --enable-debug=no
+  DEB_CONFIGURE_EXTRA_FLAGS := --with-flavour=eglx --with-gles=2.0 --enable-debug=no
 else
-  DEB_CONFIGURE_EXTRA_FLAGS := --disable-gtk-doc --with-flavour=glx \
-			     --with-gles=2.0 --enable-debug=no
+  DEB_CONFIGURE_EXTRA_FLAGS := --with-flavour=glx --with-gles=2.0 --enable-debug=no
 endif
+
+DEB_CONFIGURE_EXTRA_FLAGS += --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) --enable-manual=yes
+#DEB_CONFIGURE_EXTRA_FLAGS += --disable-gtk-doc
 
 DEB_DH_STRIP_ARGS := --dbg-package=libclutter-0.8-0
 
@@ -21,7 +24,7 @@ makebuilddir/libclutter-0.8-0::
 # common-binary-predeb-arch:: list-missing
 
 # Save SSU d/l volume.
-ifeq ($(DEB_BUILD_ARCH),armel)
-binary-post-install/libclutter-0.8-0::
-	rm -rf "debian/$(cdbs_curpkg)/usr/share/doc"
-endif
+#ifeq ($(DEB_BUILD_ARCH),armel)
+#binary-post-install/libclutter-0.8-0::
+#	rm -rf "debian/$(cdbs_curpkg)/usr/share/doc"
+#endif
